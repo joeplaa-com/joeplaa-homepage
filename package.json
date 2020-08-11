@@ -2,14 +2,25 @@
   "name": "joeplaa.com",
   "version": "0.1.0",
   "private": true,
+  "description": "joeplaa.com homepage",
+  "main": "index.js",
+  "repository": "git@github.com:joeplaa/joeplaa.com.git",
+  "author": "Joep van de Laarschot",
+  "license": "Proprietary",
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
-    "start": "next start"
+    "build": "env ANALYZE=true next build && node sitemap_generator.js && next export",
+    "start": "next start",
+    "test": "env NODE_ICU_DATA='node_modules/full-icu' jest"
   },
   "dependencies": {
     "next": "9.5.2",
     "react": "16.13.1",
     "react-dom": "16.13.1"
+  },
+  "devDependencies": {
+    "@next/bundle-analyzer": "^9.5.2",
+    "jest": "^26.3.0",
+    "nextjs-sitemap-generator": "^1.0.0"
   }
 }
