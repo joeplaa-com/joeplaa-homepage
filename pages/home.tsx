@@ -1,12 +1,9 @@
 import React from 'react';
-import Link from 'next/link';
 import { NextSeo } from 'next-seo';
-import { Button, Col, Container, Jumbotron, ListGroup, ListGroupItem, ListGroupItemHeading, Row } from 'reactstrap';
-import { FaBox, FaCalendarAlt, FaCheck, FaCoins, FaMobile, FaReceipt, FaShoppingCart, FaUser } from 'react-icons/fa';
+import { Col, Container, Row } from 'reactstrap';
 import Layout from '../src/components/Layout';
 import detectWebp from '../src/functions/detectWebp';
-import nl from '../src/data/nl.json';
-import settings from '../src/data/settings.json';
+import en from '../src/data/en.json';
 
 const Masthead = () => {
     return (
@@ -32,19 +29,19 @@ const Home = () => {
     return (
         <>
             <NextSeo
-                title={nl.HomePageTitle}
+                title={en.HomePageTitle}
                 titleTemplate='jodiBooks.com | %s'
-                description={nl.HomePageDescription}
+                description={en.HomePageDescription}
                 openGraph={{
                     url: process.env.NEXT_PUBLIC_URL + '/home',
-                    title: nl.HomePageTitle,
-                    description: nl.HomePageDescription,
+                    title: en.HomePageTitle,
+                    description: en.HomePageDescription,
                     images: [
                     ]
                 }}
             />
 
-            <Layout title={nl.HomePageTitle}>
+            <Layout title={en.HomePageTitle}>
                 <Masthead />
             </Layout >
         </>

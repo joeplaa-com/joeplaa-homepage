@@ -1,18 +1,18 @@
 import * as React from 'react';
 import { AppProps } from 'next/app'
 import { Provider } from 'react-redux';
+import { PersistGate } from 'redux-persist/integration/react';
 import configureStore from '../src/store/configureStore';
 import '../styles/site.scss';
 
-const App = ({ Component, pageProps }: AppProps) => {
-    // Get the application-wide store instance, prepopulating with state from the server where available.
-    const store = configureStore();
-
+const MyApp = ({ Component, pageProps }: AppProps) => {
     return (
-            <Provider store={store}>
+        <Provider store={configureStore().store}>
+            <PersistGate persistor={configureStore().persistor} loading={null}>
                 <Component {...pageProps} />
-            </Provider>
+            </PersistGate>
+        </Provider>
     );
 };
 
-export default App;
+export default MyApp;

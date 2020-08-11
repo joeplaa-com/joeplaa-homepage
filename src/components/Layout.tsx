@@ -4,12 +4,12 @@ import Head from 'next/head';
 import BrowserCheck from './BrowserCheck';
 import Footer from './Footer';
 import Menu from './Menu';
-import nl from '../data/nl.json';
+import en from '../data/en.json';
 
 const Layout = (props: { children?: React.ReactNode, title?: string }) => (
     <div>
         <Head>
-            <title>{nl.Title}</title>
+            <title>{props.title}</title>
         </Head>
         <header>
             <BrowserCheck />

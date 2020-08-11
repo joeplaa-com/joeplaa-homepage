@@ -4,7 +4,7 @@ import { Button, Col, Modal, ModalHeader, ModalBody, ModalFooter, Row } from 're
 import { browserName } from 'react-device-detect';
 import { differenceInDays } from 'date-fns';
 import settings from '../data/settings.json';
-import nl from '../data/nl.json';
+import en from '../data/en.json';
 import { applicationActionCreators } from '../store/actions/application';
 import { IApplicationState, IRootState } from '../store/interfaces';
 
@@ -30,9 +30,9 @@ const BrowserCheck: React.FC<ApplicationProps> = () => {
         return (
             <section className="top-banner">
                 <Modal isOpen={state && state.showModal && (state.setModal === undefined || differenceInDays(new Date(), state.setModal) > 1)} toggle={toggleHideModal}>
-                    <ModalHeader toggle={toggleHideModal}>{nl.UnsupportedTitle}</ModalHeader>
+                    <ModalHeader toggle={toggleHideModal}>{en.UnsupportedTitle}</ModalHeader>
                     <ModalBody>
-                        {nl.UnsupportedMessage}
+                        {en.UnsupportedMessage}
                         <p></p>
                         <div className="d-flex justify-content-around">
                             <Button color="success" href={settings.externalUrl.chrome}>Google Chrome</Button>{' '}
@@ -40,17 +40,17 @@ const BrowserCheck: React.FC<ApplicationProps> = () => {
                             <Button color="primary" href={settings.externalUrl.edge}>Microsoft Edge</Button>{' '}
                         </div>
                         <p></p>
-                        {nl.UnsupportedContinue}
+                        {en.UnsupportedContinue}
                     </ModalBody>
                     <ModalFooter>
-                        <Button outline color="primary" href={settings.externalUrl.browserInfo}>{nl.Info}</Button>
-                        <Button outline color="primary" onClick={toggleHideModal}>{nl.Continue}</Button>
+                        <Button outline color="primary" href={settings.externalUrl.browserInfo}>{en.Info}</Button>
+                        <Button outline color="primary" onClick={toggleHideModal}>{en.Continue}</Button>
                     </ModalFooter>
                 </Modal>
                 <Row>
                     <Col className="top-banner-col">
-                        <div className="mr-2">{nl.ShowModalMessage}</div>
-                        <Button outline color="dark" size="sm" onClick={toggleShowModal}>{nl.ShowModal}</Button>
+                        <div className="mr-2">{en.ShowModalMessage}</div>
+                        <Button outline color="dark" size="sm" onClick={toggleShowModal}>{en.ShowModal}</Button>
                     </Col>
                 </Row>
             </section>

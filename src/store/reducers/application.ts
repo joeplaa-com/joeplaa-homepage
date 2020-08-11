@@ -1,5 +1,5 @@
 import { Action, Reducer } from 'redux';
-import { ApplicationState } from '../interfaces';
+import { IApplicationState } from '../interfaces';
 import { KnownAction } from '../actions/application';
 
 // We support Blink (Brave, Chrome, Chromium, current Edge, current Opera), Gecko (Firefox) and WebKit (Safari) based browsers
@@ -10,13 +10,13 @@ const unsupportedBrowsers = ['Internet Explorer', 'IE'];
 // ----------------
 // REDUCER - For a given state and action, returns the new state. To support time travel, this must not mutate the old state.
 
-export const initialApplicationState: ApplicationState = {
+export const initialApplicationState: IApplicationState = {
     isSupported: undefined,
     showModal: false,
     setModal: undefined
 };
 
-export const applicationReducer: Reducer<ApplicationState> = (state: ApplicationState | undefined, incomingAction: Action): ApplicationState => {
+export const applicationReducer: Reducer<IApplicationState> = (state: IApplicationState | undefined, incomingAction: Action): IApplicationState => {
     if (state === undefined) {
         return initialApplicationState;
     }

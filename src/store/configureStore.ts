@@ -1,28 +1,34 @@
-import { applyMiddleware, combineReducers, compose, createStore } from 'redux';
-import thunk from 'redux-thunk';
-import { reducers } from './';
-import { initialApplicationState } from './reducers/application';
+import { applyMiddleware, createStore, Middleware } from 'redux';
+import thunkMiddleware from 'redux-thunk';
+import { persistStore, persistReducer } from 'redux-persist';
+import storage from 'redux-persist/lib/storage';
+import rootReducer from './reducers';
 
-export default function configureStore() {
-    const middleware = [
-        thunk
-    ];
-
-    const rootReducer = combineReducers({
-        ...reducers
-    });
-
-    const enhancers = [];
-    const windowIfDefined = typeof window === 'undefined' ? null : window as any;
-    if (windowIfDefined && windowIfDefined.__REDUX_DEVTOOLS_EXTENSION__) {
-        enhancers.push(windowIfDefined.__REDUX_DEVTOOLS_EXTENSION__());
+const bindMiddleware = (middleware: Middleware[]) => {
+    if (process.env.NODE_ENV !== "production") {
+        const { composeWithDevTools } = require("redux-devtools-extension");
+        return composeWithDevTools(applyMiddleware(...middleware));
     }
+    return applyMiddleware(...middleware as Middleware[]);
+};
 
-    return createStore(
-        rootReducer,
-        {
-            application: initialApplicationState
-        },
-        compose(applyMiddleware(...middleware), ...enhancers)
+const persistConfig = {
+    key: "nextjs",
+    whitelist: ["application"], // only reducer will be persisted, add other reducers if needed
+    storage, // if needed, use a safer storage
+};
+
+const persistedReducer = persistReducer(persistConfig, rootReducer);
+
+const configureStore = () => {
+    const store = createStore(
+        persistedReducer,
+        bindMiddleware([thunkMiddleware])
     );
-}
+
+    const persistor = persistStore(store);
+
+    return { store, persistor };
+};
+
+export default configureStore;

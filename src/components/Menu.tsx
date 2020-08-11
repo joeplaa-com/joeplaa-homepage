@@ -8,7 +8,7 @@ import { IconContext } from 'react-icons/lib';
 import { FaList, FaAddressBook, FaTruck, FaTags, FaFileExport, FaCog, FaReadme, FaSignOutAlt } from 'react-icons/fa';
 import { MdHome, MdToday, MdTrendingUp, MdTrendingDown, MdDonutLarge, MdBuild, MdAccountCircle } from 'react-icons/md';
 import settings from '../data/settings.json';
-import nl from '../data/nl.json';
+import en from '../data/en.json';
 
 const Menu = () => {
     // toggle burger navbar
@@ -28,7 +28,7 @@ const Menu = () => {
                             <DropdownItem className="nav-link" href={settings.homepageUrl.home}>
                                 <span className="d-inline-flex justify-content-center align-items-center">
                                     <MdHome />
-                                    <span className="d-flex d-md-none d-lg-flex ml-1">{nl.Home}</span>
+                                    <span className="d-flex d-md-none d-lg-flex ml-1">{en.Home}</span>
                                 </span>
                             </DropdownItem>
                         </NavItem>
@@ -42,7 +42,7 @@ const Menu = () => {
                             <DropdownItem className="nav-link" href={settings.homepageUrl.blog}>
                                 <span className="d-inline-flex justify-content-center align-items-center">
                                     <MdToday />
-                                    <span className="d-flex d-md-none d-lg-flex ml-1">{nl.Blog}</span>
+                                    <span className="d-flex d-md-none d-lg-flex ml-1">{en.Blog}</span>
                                 </span>
                             </DropdownItem>
                         </NavItem>
@@ -56,7 +56,7 @@ const Menu = () => {
                             <DropdownItem className="nav-link" href={settings.homepageUrl.portfolio}>
                                 <span className="d-inline-flex justify-content-center align-items-center">
                                     <MdToday />
-                                    <span className="d-flex d-md-none d-lg-flex ml-1">{nl.Portfolio}</span>
+                                    <span className="d-flex d-md-none d-lg-flex ml-1">{en.Portfolio}</span>
                                 </span>
                             </DropdownItem>
                         </NavItem>
@@ -69,15 +69,15 @@ const Menu = () => {
                         <DropdownToggle nav caret>
                             <span className="d-inline-flex justify-content-center align-items-center">
                                 <MdAccountCircle />
-                                <span className="d-flex d-md-none d-lg-flex ml-1">{nl.Recommended}</span>
+                                <span className="d-flex d-md-none d-lg-flex ml-1">{en.Recommended}</span>
                             </span>
                         </DropdownToggle>
                     </IconContext.Provider>
                     <IconContext.Provider value={{ size: '16' }}>
                         <DropdownMenu right>
-                            <DropdownItem tag="a" href={settings.homepageUrl.books}><FaCog /><span className="ml-1">{nl.Books}</span></DropdownItem>
-                            <DropdownItem tag="a" href={settings.homepageUrl.talks}><FaReadme /><span className="ml-1">{nl.Talks}</span></DropdownItem>
-                            <DropdownItem tag="a" href={settings.homepageUrl.videos}><FaReadme /><span className="ml-1">{nl.Videos}</span></DropdownItem>
+                            <DropdownItem tag="a" href={settings.homepageUrl.books}><FaCog /><span className="ml-1">{en.Books}</span></DropdownItem>
+                            <DropdownItem tag="a" href={settings.homepageUrl.talks}><FaReadme /><span className="ml-1">{en.Talks}</span></DropdownItem>
+                            <DropdownItem tag="a" href={settings.homepageUrl.videos}><FaReadme /><span className="ml-1">{en.Videos}</span></DropdownItem>
                         </DropdownMenu>
                     </IconContext.Provider>
                 </Dropdown>
