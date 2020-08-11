@@ -1,0 +1,7 @@
+# paris_homepage/jodibooks-homepage/.eslintignore
+# /node_modules/* and /bower_components/* in the project root are ignored by default
+
+.next/*
+build/*
+node_modules/*
+out/*
