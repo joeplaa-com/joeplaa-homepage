@@ -1,137 +1,63 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import { Button, Col, Row } from 'reactstrap';
-import { FaChrome, FaFirefox, FaEdge } from 'react-icons/fa';
-import { ReactCookieProps, withCookies } from 'react-cookie';
-import { ApplicationState } from '../store/interfaces';
-import Calendar from './Calendar';
-import SpinnerComp from './Spinnercomp';
-import StatusMessage from './StatusMessage';
-import { RootState } from '../store/interfaces';
-import constants from '../data/constants.json';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { Button, Col, Modal, ModalHeader, ModalBody, ModalFooter, Row } from 'reactstrap';
+import { browserName } from 'react-device-detect';
+import { differenceInDays } from 'date-fns';
+import settings from '../data/settings.json';
 import nl from '../data/nl.json';
 import { applicationActionCreators } from '../store/actions/application';
-import { getToken, isTokenValid } from '../cookies/token';
+import { IApplicationState, IRootState } from '../store/interfaces';
 
 // At runtime, Redux will merge together...
 type ApplicationProps =
-    ApplicationState // ... state we've requested from the Redux store
+    IApplicationState // ... state we've requested from the Redux store
     & typeof applicationActionCreators // ... plus action creators we've requested
-    & ReactCookieProps // ... plus cookies
 
-class BrowserCheck extends React.Component<ApplicationProps> {
-    constructor(props: ApplicationProps) {
-        super(props);
-    }
+const BrowserCheck: React.FC<ApplicationProps> = () => {
+    const dispatch = useDispatch();
+    const state = useSelector((state: IRootState) => state.application);
 
-    public componentDidMount() {
-        // If the token has expired (or expires within an hour), redirect to the refresh page
-        if (!isTokenValid(this.props.cookies)) {
-            window.location.href = process.env.NEXT_PUBLIC_REFRESHTOKEN_PATH!;
-        }
+    const toggleHideModal = () => dispatch(applicationActionCreators.hideModal());
+    const toggleShowModal = () => dispatch(applicationActionCreators.showModal());
 
-        this.props.requestSettings(getToken(this.props.cookies));
-    }
+    useEffect(() => {
+        dispatch(applicationActionCreators.setBrowser(browserName));
+    }, []);
 
-    continueUntested = () => {
-        this.props.forceContinue();
-    }
-
-    public render() {
-        let renderContent;
-        if (this.props.isDetected) {
-            if (this.props.isSupported) {
-                // browser supported: show calendar
-                if (!this.props.maintenance && this.props.license) {
-                    if (!this.props.isLoading) {
-                        renderContent = <Calendar />
-                    } else {
-                        renderContent = <SpinnerComp />;
-                    };
-                } else {
-                    renderContent = <StatusMessage />;
-                };
-            } else if (this.props.isUnsupported) {
-                // browser unsupported: warn/block user and show download links for supported browsers
-                renderContent =
-                    <Row className="statusClassRow">
-                        <Col xs="12" sm="10" md="9" lg="6" className="statusClassCol statusClassLicense">
-                            <h1>{nl.UnsupportedTitle}</h1>
-                            <Row className="d-flex justify-content-between align-items-center">
-                                <Col>{nl.UnsupportedMessage}</Col>
-                            </Row>
-                            <p></p>
-                            <Row className="d-flex justify-content-around">
-                                <Button color="success" href={constants.externalUrl.chrome}><FaChrome />{' '}Google Chrome</Button>
-                                <Button color="warning" href={constants.externalUrl.firefox}><FaFirefox />{' '}Mozilla Firefox</Button>
-                                <Button color="primary" href={constants.externalUrl.edge}><FaEdge />{' '}Microsoft Edge</Button>
-                            </Row>
-                            <hr />
-                            <p></p>
-                            <Row className="d-flex justify-content-between align-items-center">
-                                <Col>{nl.BrowserInfo}</Col>
-                                <Col xs='auto' className="d-flex justify-content-center align-items-center">
-                                    <Button outline color="warning" href={process.env.NEXT_PUBLIC_HOME_URL + constants.homepageUrl.errorHelp}>{nl.Contact}</Button>
-                                    <p>&nbsp;</p>
-                                    <Button outline color="warning" href={process.env.NEXT_PUBLIC_DOCS_URL + constants.docsUrl.browserInfo}>{nl.Info}</Button>
-                                </Col>
-                            </Row>
-                        </Col>
-                    </Row>;
-            } else {
-                // catch all others: support not tested: warn user, show download links for supported browser, but allow them to continue
-                renderContent =
-                    <Row className="statusClassRow">
-                        <Col xs="12" sm="10" md="9" lg="6" className="statusClassCol statusClassBrowser">
-                            <h1>{nl.UntestedTitle}</h1>
-                            <Row className="d-flex justify-content-between align-items-center">
-                                <Col>{nl.UntestedMessage}</Col>
-                            </Row>
-                            <p></p>
-                            <Row className="d-flex justify-content-around">
-                                <Button color="success" href={constants.externalUrl.chrome}><FaChrome />{' '}Chrome</Button>
-                                <Button color="warning" href={constants.externalUrl.firefox}><FaFirefox />{' '}Firefox</Button>
-                                <Button color="primary" href={constants.externalUrl.edge}><FaEdge />{' '}Edge</Button>
-                            </Row>
-                            <hr />
-                            <p></p>
-                            <Row className="d-flex justify-content-between align-items-center">
-                                <Col>{nl.UntestedContinue}</Col>
-                                <Col xs='auto'><Button outline color="primary" onClick={this.continueUntested}>{' '}{nl.Continue}</Button></Col>
-                            </Row>
-                            <hr />
-                            <p></p>
-                            <Row className="d-flex justify-content-between align-items-center">
-                                <Col>{nl.BrowserInfo}</Col>
-                                <Col xs='auto' className="d-flex justify-content-center align-items-center">
-                                    <Button outline color="primary" href={process.env.NEXT_PUBLIC_HOME_URL + constants.homepageUrl.errorHelp}>{nl.Contact}</Button>
-                                    <p>&nbsp;</p>
-                                    <Button outline color="primary" href={process.env.NEXT_PUBLIC_DOCS_URL + constants.docsUrl.browserInfo}>{nl.Info}</Button>
-                                </Col>
-                            </Row>
-                        </Col>
-                    </Row>;
-            }
-        } else {
-            renderContent = <SpinnerComp />;
-        }
-
+    if (state && !state.isSupported) {
+        // Browser unsupported: warn user and show download links for supported browsers, but allow them to continue.
+        // Keep this state for one day. After one day the visitor gets the modal again.
         return (
-            renderContent
-        )
+            <section className="top-banner">
+                <Modal isOpen={state && state.showModal && (state.setModal === undefined || differenceInDays(new Date(), state.setModal) > 1)} toggle={toggleHideModal}>
+                    <ModalHeader toggle={toggleHideModal}>{nl.UnsupportedTitle}</ModalHeader>
+                    <ModalBody>
+                        {nl.UnsupportedMessage}
+                        <p></p>
+                        <div className="d-flex justify-content-around">
+                            <Button color="success" href={settings.externalUrl.chrome}>Google Chrome</Button>{' '}
+                            <Button color="warning" href={settings.externalUrl.firefox}>Mozilla Firefox</Button>{' '}
+                            <Button color="primary" href={settings.externalUrl.edge}>Microsoft Edge</Button>{' '}
+                        </div>
+                        <p></p>
+                        {nl.UnsupportedContinue}
+                    </ModalBody>
+                    <ModalFooter>
+                        <Button outline color="primary" href={settings.externalUrl.browserInfo}>{nl.Info}</Button>
+                        <Button outline color="primary" onClick={toggleHideModal}>{nl.Continue}</Button>
+                    </ModalFooter>
+                </Modal>
+                <Row>
+                    <Col className="top-banner-col">
+                        <div className="mr-2">{nl.ShowModalMessage}</div>
+                        <Button outline color="dark" size="sm" onClick={toggleShowModal}>{nl.ShowModal}</Button>
+                    </Col>
+                </Row>
+            </section>
+        );
+    } else {
+        return null;
     }
-}
-
-const mapStateToProps = (state: RootState) => {
-    return {
-        isDetected: (state.application && state.application.isDetected),
-        isSupported: (state.application && state.application.isSupported),
-        isUnsupported: (state.application && state.application.isUnsupported),
-        isLoading: (state.application && state.application.isLoading),
-        license: (state.application && state.application.license),
-        maintenance: (state.application && state.application.maintenance),
-        settings: (state.application && state.application.settings)
-    };
 };
 
-export default withCookies(connect(mapStateToProps, applicationActionCreators)(BrowserCheck as any));
+export default BrowserCheck;

@@ -11,10 +11,9 @@ const unsupportedBrowsers = ['Internet Explorer', 'IE'];
 // REDUCER - For a given state and action, returns the new state. To support time travel, this must not mutate the old state.
 
 export const initialApplicationState: ApplicationState = {
-    isDetected: false,
-    isSupported: false,
-    isUnsupported: false,
-    isLoading: true
+    isSupported: undefined,
+    showModal: false,
+    setModal: undefined
 };
 
 export const applicationReducer: Reducer<ApplicationState> = (state: ApplicationState | undefined, incomingAction: Action): ApplicationState => {
@@ -28,29 +27,34 @@ export const applicationReducer: Reducer<ApplicationState> = (state: Application
             if (supportedBrowsers.includes(action.browser)) {
                 return {
                     ...state,
-                    isDetected: true,
-                    isSupported: true,
-                    isUnsupported: false
+                    isSupported: true
                 };
             } else if (unsupportedBrowsers.includes(action.browser)) {
                 return {
                     ...state,
-                    isDetected: true,
-                    isSupported: false,
-                    isUnsupported: true
+                    isSupported: false
                 };
             } else {
                 return {
                     ...state,
-                    isDetected: true,
-                    isSupported: false,
-                    isUnsupported: false
+                    isSupported: false
                 };
             };
-        case 'FORCE_SET_BROWSER':
+        case 'HIDE_MODAL':
             return {
                 ...state,
-                isSupported: true,
+                showModal: false,
+                setModal: new Date()
+            };
+        case 'SHOW_MODAL':
+            return {
+                ...state,
+                showModal: true,
+                setModal: undefined
+            };
+        case 'DESTROY_SESSION':
+            return {
+                ...initialApplicationState
             };
     };
 

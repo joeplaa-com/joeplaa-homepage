@@ -1,0 +1,46 @@
+{
+    "homepageUrl": {
+        "books": "/recommended/books",
+        "blog": "/blog",
+        "home": "/home",
+        "portfolio": "/portfolio",
+        "talks": "/recommended/talks",
+        "videos": "/recommended/videos"
+    },
+    "externalUrl": {
+        "browserInfo": "https://docs.jodibooks.com/docs/wiki/browsers",
+        "chrome": "https://www.google.com/chrome/",
+        "edge": "https://www.microsoft.com/nl-nl/edge/features",
+        "firefox": "https://www.mozilla.org/nl-NL/firefox/download/"
+    },
+    "settings": {
+        "name": "joeplaa.com"
+    },
+    "social": [
+        {
+            "name": "facebook",
+            "value": "joeplaa",
+            "link": "https://www.facebook.com/"
+        },
+        {
+            "name": "instagram",
+            "value": "joeplaa",
+            "link": "https://www.instagram.com/"
+        },
+        {
+            "name": "linkedin",
+            "value": "joeplaa",
+            "link": "https://www.linkedin.com/in/"
+        },
+        {
+            "name": "github",
+            "value": "joeplaa",
+            "link": "https://github.com/"
+        },
+        {
+            "name": "mail",
+            "value": "info@joeplaa.com",
+            "link": "mailto:"
+        }
+    ]
+}

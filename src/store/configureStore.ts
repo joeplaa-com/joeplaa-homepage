@@ -1,8 +1,13 @@
 import { applyMiddleware, combineReducers, compose, createStore } from 'redux';
+import thunk from 'redux-thunk';
 import { reducers } from './';
 import { initialApplicationState } from './reducers/application';
 
 export default function configureStore() {
+    const middleware = [
+        thunk
+    ];
+
     const rootReducer = combineReducers({
         ...reducers
     });
@@ -18,6 +23,6 @@ export default function configureStore() {
         {
             application: initialApplicationState
         },
-        compose(applyMiddleware(), ...enhancers)
+        compose(applyMiddleware(...middleware), ...enhancers)
     );
 }

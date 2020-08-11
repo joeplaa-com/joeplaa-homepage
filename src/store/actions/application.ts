@@ -9,13 +9,21 @@ interface SetBrowserAction {
     browser: string;
 }
 
-interface ForceSetBrowserAction {
-    type: 'FORCE_SET_BROWSER';
+interface HideModal {
+    type: 'HIDE_MODAL';
+}
+
+interface ShowModal {
+    type: 'SHOW_MODAL';
+}
+
+interface DestroySession {
+    type: 'DESTROY_SESSION';
 }
 
 // Declare a 'discriminated union' type. This guarantees that all references to 'type' properties contain one of the
 // declared type strings (and not any other arbitrary string).
-export type KnownAction = SetBrowserAction | ForceSetBrowserAction
+export type KnownAction = SetBrowserAction | HideModal | ShowModal | DestroySession
 
 // ----------------
 // ACTION CREATORS - These are functions exposed to UI components that will trigger a state transition.
@@ -25,7 +33,10 @@ export const applicationActionCreators = {
     setBrowser: (browserName: string): AppThunkAction<KnownAction> => (dispatch) => {
         dispatch({ type: 'SET_BROWSER', browser: browserName });
     },
-    forceContinue: (): AppThunkAction<KnownAction> => (dispatch) => {
-        dispatch({ type: 'FORCE_SET_BROWSER' });
+    hideModal: (): AppThunkAction<KnownAction> => (dispatch) => {
+        dispatch({ type: 'HIDE_MODAL' });
+    },
+    showModal: (): AppThunkAction<KnownAction> => (dispatch) => {
+        dispatch({ type: 'SHOW_MODAL' });
     },
 };

@@ -1,20 +1,21 @@
-import * as React from 'react';
-import { Col, Row } from 'reactstrap';
-import constants from '../data/constants.json';
-import nl from '../data/nl.json';
+import React from 'react';
+import { Container, Row, Col } from 'reactstrap';
+import Copyright from './Copyright';
+import SocialButtons from './SocialButtons';
+import settings from '../data/settings.json';
+import { ISocialButton } from '../store/interfaces';
 
 const Footer = () => (
-    <footer id="footer" className="col-12 col-xl-10 mx-auto mt-5">
-        <Row>
-            <Col xs="12" sm="6">
-                <div>{nl.Shared_Layout_SendEmail}</div>
-                <div><a href={"mailto:" + constants.settings.supportEmail}>{constants.settings.supportEmail}</a></div>
+    <Container>
+        <Row className="text-center mt-4">
+            <Col xs="12">
+                <SocialButtons size={28} className="text-light" buttons={settings.social as ISocialButton[]} />
             </Col>
-            <Col xs="12" sm="6" className="text-sm-right">
-                <span>jodiBooks Beauty </span><span>{constants.settings.version}</span>
+            <Col xs="12">
+                <Copyright />
             </Col>
         </Row>
-    </footer>
-)
+    </Container>
+);
 
 export default Footer;

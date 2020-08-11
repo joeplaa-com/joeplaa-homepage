@@ -7,18 +7,10 @@ export default class MyDocument extends Document {
     };
 
     render () {
-        /* Make sure to use data-aphrodite attribute in the style tag here
-         so that aphrodite knows which style tag it's in control of when
-         the client goes to render styles. If you don't you'll get a second
-         <style> tag */
         return (
             <html>
                 <Head>
                     <meta charSet="utf-8" />
-                    <meta
-                        name="viewport"
-                        content="minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no"
-                    />
 
                     {/* favicon related */}
                     <link rel="apple-touch-icon" sizes="57x57" href="/icons/apple-icon-57x57.png" />
@@ -61,7 +53,7 @@ export default class MyDocument extends Document {
                         <div style={{ height: '100vw', width: '100%' }}>
                             <div style={{ padding: '20px', position: 'absolute', left: '50%', top: '50%', transform: 'translate(-50%, -50%)' }}>
                                 <h1>Oeps!!!!</h1>
-                                <p>De agenda werkt alleen met JavaScript, maar zo te zien heb je JavaScript gedeactiveerd in je browser.</p>
+                                <p>Deze website werkt alleen met JavaScript, maar zo te zien is JavaScript gedeactiveerd in deze browser.</p>
                                 <p>Kijk hier hoe je JavaScript weer activeert: <a href="https://www.enable-javascript.com/nl/">Hoe activeer ik JavaScript in mijn web browser?</a></p>
                             </div>
                         </div>
