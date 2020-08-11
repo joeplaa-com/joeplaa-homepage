@@ -27,17 +27,20 @@ export const applicationReducer: Reducer<IApplicationState> = (state: IApplicati
             if (supportedBrowsers.includes(action.browser)) {
                 return {
                     ...state,
-                    isSupported: true
+                    isSupported: true,
+                    showModal: false
                 };
             } else if (unsupportedBrowsers.includes(action.browser)) {
                 return {
                     ...state,
-                    isSupported: false
+                    isSupported: false,
+                    showModal: true
                 };
             } else {
                 return {
                     ...state,
-                    isSupported: false
+                    isSupported: false,
+                    showModal: false
                 };
             };
         case 'HIDE_MODAL':

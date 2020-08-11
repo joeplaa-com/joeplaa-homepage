@@ -55,138 +55,43 @@ $nav-pills-link-active-bg:      $component-active-bg;
 /* -------begin jodiBooks additions-------- */
 
 /* ---footer--- */
+body, html {
+    height: 100%;
+    margin: 0px;
+}
+
 footer.footer {
     background: $jodiGrayDark;
     color: $jodiGrayLight;
-    padding-top: 2rem;
-    padding-bottom: 2rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
 }
 
-/* Put a border between the columns of a row for layouts sm and up */
-.row.border-between-dark > [class*='col-']:before {
-    background: $jodiGrayDark;
-    bottom: 0;
-    content: " ";
-    left: 0;
-    position: absolute;
-    width: 1px;
-    top: 0;
-}
-
-.row.border-between-light > [class*='col-']:before {
-    background: $jodiGrayLight;
-    bottom: 0;
-    content: " ";
-    left: 0;
-    position: absolute;
-    width: 1px;
-    top: 0;
-}
-
-.row.border-between-dark > [class*='col-']:first-child:before {
-    display: none;
-}
-
-.row.border-between-light > [class*='col-']:first-child:before {
-    display: none;
-}
-
-.btn-contact {
-    display: block;
-    margin: .25rem;
-    height: auto;
-    width: 150px;
+.full-window {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    min-height: 100vh;
+    /* mobile viewport bug fix */
+    min-height: -webkit-fill-available;
+    overflow: hidden;
 }
 
-.btn-help {
-    display: block;
-    margin: .25rem;
-    width: 150px;
+main.main {
+    display: flex;
+    flex-grow: 1;
+    min-height: 100vh;
+    /* mobile viewport bug fix */
+    min-height: -webkit-fill-available;
+    overflow: hidden;
 }
 
-.call-to-action {
-    position: relative;
-    background-color: $jodiGrayDark;
-    background-size: cover;
-    padding-top: 6rem;
-    padding-bottom: 6rem;
+nav.nav {
+    box-shadow: $box-shadow;
 }
 
-    .call-to-action .overlay {
-        position: absolute;
-        background-color: $jodiGrayLight;
-        height: 100%;
-        width: 100%;
-        top: 0;
-        left: 0;
-        opacity: 0.5;
-    }
-
-.default-content {
-    padding-top: 7rem;
-    padding-bottom: 7rem;
-    background-color: $jodiGrayLight;
-}
-
-    .default-content .default-content-item {
-        max-width: 20rem;
-        margin: 0 0;
-        padding: .5rem;
-    } 
-    
-        .default-content .default-content-item .jumbotron {
-            background-color: $jodiGrayDark;
-            color: $jodiGrayLight;
-            margin: 0;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
-
-.features-icons {
-    padding-top: 7rem;
-    padding-bottom: 7rem;
-    background-color: $jodiGrayDark;
-    color: $jodiGrayLight;
-}
-
-    .features-icons .features-icons-item {
-        max-width: 20rem;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        margin: 0 auto;
-    }
-
-        .features-icons .features-icons-item .features-icons-icon {
-            height: 6rem;
-            color: $jodiGrayLight;
-        }
-
-.instagram {
-    padding: 2rem;
-    background-color: $jodiGrayLight;
-}
-
-.jodi-home-cover {
-    position: relative;
-    background-position: 50% calc(50% + 0px);
-    background-repeat: no-repeat;
-    background-size: cover;
-}
-
-    .jodi-home-cover .jodi-home-cover-logo {
-        width: 50%;
-        max-width: 250px;
-        min-width: 110px;
-    }
-
-.listgroup-overlay {
-    background-color: $jodiOverlayComp !important;
+nav.navbar {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
 }
 
 .masthead {
@@ -221,168 +126,6 @@ footer.footer {
         }
 }
 
-.react-icons {
-    vertical-align: middle;
-}
-
-.showcase .showcase-title {
-    padding-top: 7rem;
-    padding-bottom: 2rem;
-    background-color: $jodiGrayLight;
-}
-
-.showcase .showcase-blurb {
-    padding-bottom: 2rem;
-    padding-top: 2rem;
-    background-color: $jodiGrayLight;
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-    .showcase .showcase-blurb .jumbotron{
-        background-color: $jodiGrayDark;
-        color: $jodiGrayLight;
-        padding: 2rem;
-        margin-bottom: 0;
-    }
-
-    .showcase .showcase-blurb .overlay {
-        position: absolute;
-        background-color: $jodiOverlayBg;
-        height: 100%;
-        width: 100%;
-        top: 0;
-        left: 0;
-    }
-
-    .showcase .showcase-blurb .blue {
-        position: absolute;
-        background-color: $jodiBlueMedium;
-        height: 100%;
-        width: 100%;
-        top: 0;
-        left: 0;
-    }
-
-    .showcase .showcase-blurb .green {
-        position: absolute;
-        background-color: $jodiGreenMedium;
-        height: 100%;
-        width: 100%;
-        top: 0;
-        left: 0;
-    }
-
-    .showcase .showcase-blurb .pink {
-        position: absolute;
-        background-color: $jodiPinkMedium;
-        height: 100%;
-        width: 100%;
-        top: 0;
-        left: 0;
-    }
-
-    .showcase .showcase-blurb .gray {
-        position: absolute;
-        background-color: $jodiGrayDark;
-        height: 100%;
-        width: 100%;
-        top: 0;
-        left: 0;
-    }
-
-.showcase .showcase-text-blue {
-    padding: 2rem;
-    background-color: $jodiBlueMedium;
-    color: $jodiGrayLight;
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-}
-
-.showcase .showcase-text-green {
-    padding: 2rem;
-    background-color: $jodiGreenMedium;
-    color: $jodiGrayLight;
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-}
-
-.showcase .showcase-text-pink {
-    padding: 2rem;
-    background-color: $jodiPinkMedium;
-    color: $jodiGrayLight;
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-}
-
-.showcase .showcase-text-gray {
-    padding: 2rem;
-    background-color: $jodiGrayDark;
-    color: $jodiGrayLight;
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-}
-
-.showcase .showcase-img {
-    min-height: 20rem;
-    padding: 2rem;
-    position: relative;
-    background-size: cover;
-    background-color: $jodiGrayDark;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-    .showcase .showcase-img .overlay {
-        position: absolute;
-        background-color: $jodiOverlayBg;
-        height: 100%;
-        width: 100%;
-        top: 0;
-        left: 0;
-    }
-
-    .showcase .showcase-img .blue {
-        position: absolute;
-        background-color: $jodiBlueMedium;
-        height: 100%;
-        width: 100%;
-        top: 0;
-        left: 0;
-    }
-
-    .showcase .showcase-img .green {
-        position: absolute;
-        background-color: $jodiGreenMedium;
-        height: 100%;
-        width: 100%;
-        top: 0;
-        left: 0;
-    }
-
-    .showcase .showcase-img .pink {
-        position: absolute;
-        background-color: $jodiPinkMedium;
-        height: 100%;
-        width: 100%;
-        top: 0;
-        left: 0;
-    }
-
-    .showcase .showcase-img .jumbotron{
-        padding: 2rem;
-        margin-bottom: 0;
-    }
-
 .top-banner {
     background-color: $jodiPinkLight;
     padding: .5rem;
@@ -394,12 +137,6 @@ footer.footer {
         justify-content: center;
         align-items: center;
     }
-
-.whoarewe {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-}
 
 /* -------end jodiBooks additions-------- */
 

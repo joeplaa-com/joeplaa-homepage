@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import {
-    Collapse, Container,
+    Collapse,
     Dropdown, DropdownToggle, DropdownMenu, DropdownItem, UncontrolledDropdown,
     Nav, Navbar, NavbarBrand, NavbarToggler, NavItem
 } from 'reactstrap';
@@ -28,7 +28,7 @@ const Menu = () => {
                             <DropdownItem className="nav-link" href={settings.homepageUrl.home}>
                                 <span className="d-inline-flex justify-content-center align-items-center">
                                     <MdHome />
-                                    <span className="d-flex d-md-none d-lg-flex ml-1">{en.Home}</span>
+                                    <span className="d-flex d-sm-none d-md-flex ml-1">{en.Home}</span>
                                 </span>
                             </DropdownItem>
                         </NavItem>
@@ -42,7 +42,7 @@ const Menu = () => {
                             <DropdownItem className="nav-link" href={settings.homepageUrl.blog}>
                                 <span className="d-inline-flex justify-content-center align-items-center">
                                     <MdToday />
-                                    <span className="d-flex d-md-none d-lg-flex ml-1">{en.Blog}</span>
+                                    <span className="d-flex d-sm-none d-md-flex ml-1">{en.Blog}</span>
                                 </span>
                             </DropdownItem>
                         </NavItem>
@@ -56,20 +56,20 @@ const Menu = () => {
                             <DropdownItem className="nav-link" href={settings.homepageUrl.portfolio}>
                                 <span className="d-inline-flex justify-content-center align-items-center">
                                     <MdToday />
-                                    <span className="d-flex d-md-none d-lg-flex ml-1">{en.Portfolio}</span>
+                                    <span className="d-flex d-sm-none d-md-flex ml-1">{en.Portfolio}</span>
                                 </span>
                             </DropdownItem>
                         </NavItem>
                     </IconContext.Provider>
                 </UncontrolledDropdown>
 
-                {/*Settings*/}
+                {/*Recommended*/}
                 <Dropdown inNavbar className="m-1" isOpen={recommendedOpen} toggle={toggleRecommended}>
                     <IconContext.Provider value={{ size: '24' }}>
                         <DropdownToggle nav caret>
                             <span className="d-inline-flex justify-content-center align-items-center">
                                 <MdAccountCircle />
-                                <span className="d-flex d-md-none d-lg-flex ml-1">{en.Recommended}</span>
+                                <span className="d-flex d-sm-none d-md-flex ml-1">{en.Recommended}</span>
                             </span>
                         </DropdownToggle>
                     </IconContext.Provider>
@@ -86,13 +86,11 @@ const Menu = () => {
     };
 
     return (
-        <Navbar expand="md" light className="bg-white shadow fixed-top navbar-ontop">
-            <Container>
-                <NavbarToggler onClick={toggleNavbar} className="mr-2" />
-                <Collapse isOpen={!collapsed} navbar className="justify-content-end">
-                    {renderNav()}
-                </Collapse>
-            </Container>
+        <Navbar expand="sm" light className="bg-white shadow navbar-ontop nav">
+            <NavbarToggler onClick={toggleNavbar} className="mr-2" />
+            <Collapse isOpen={!collapsed} navbar className="justify-content-end">
+                {renderNav()}
+            </Collapse>
         </Navbar >
     )
 }

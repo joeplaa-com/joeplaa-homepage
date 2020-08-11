@@ -23,29 +23,25 @@ const SocialButtons = ({ buttons, className, size }: { buttons: Array<ISocialBut
         return (<SpecificIcon />);
     };
 
-    function renderIcons() {
-        const renderedIcons: Array<React.ReactNode> = [];
-        const classString = 'btn ' + `${className}`;
-        buttons.map(button => {
-            const buttonLink = button.link + button.value;
-            renderedIcons.push(
-                <a className={classString}
-                    style={{ fontSize: size || 18 }}
-                    href={buttonLink} target="_blank" rel="noopener noreferrer"
-                    key={name}
-                    id={name}
-                >
-                    {renderIcon(button)}
-                </a>
-            )
-        })
-        return renderedIcons;
-    }
+    const renderedIcons: Array<React.ReactNode> = [];
+    const classString = 'btn ' + `${className}`;
+    buttons.map(button => {
+        const buttonLink = button.link + button.value;
+        renderedIcons.push(
+            <a className={classString}
+                style={{ fontSize: size || 18 }}
+                href={buttonLink} target="_blank" rel="noopener noreferrer"
+                key={name + buttonLink}
+                id={name}
+            >
+                {renderIcon(button)}
+            </a>
+        )
+    })
+
 
     return (
-        <div>
-            {renderIcons}
-        </div>
+        <div>{renderedIcons}</div>
     );
 };
 

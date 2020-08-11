@@ -13,14 +13,12 @@ const Masthead = () => {
             backgroundPosition: 'center'
         }}>
             <Col xs="12" className="overlay"></Col>
-            <Container>
-                <Row>
-                    <Col xs="12" sm="10" md="6" lg="4" className="mx-auto my-auto">
-                        <h1 className="d-none d-md-block">jodiBooks Beauty</h1>
-                        <h4 className="m-4 mt-sm-0">Samen maken wij het salonpakket dat bijna net zo leuk is als je werk.</h4>
-                    </Col>
-                </Row>
-            </Container>
+            <Row>
+                <Col xs="12" sm="10" md="6" lg="4" className="mx-auto my-auto">
+                    <h1 className="d-none d-md-block">jodiBooks Beauty</h1>
+                    <h4 className="m-4 mt-sm-0">Samen maken wij het salonpakket dat bijna net zo leuk is als je werk.</h4>
+                </Col>
+            </Row>
         </section>
     );
 };

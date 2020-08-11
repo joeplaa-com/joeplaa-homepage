@@ -6,16 +6,11 @@ import { differenceInDays } from 'date-fns';
 import settings from '../data/settings.json';
 import en from '../data/en.json';
 import { applicationActionCreators } from '../store/actions/application';
-import { IApplicationState, IRootState } from '../store/interfaces';
+import { IRootState } from '../store/interfaces';
 
-// At runtime, Redux will merge together...
-type ApplicationProps =
-    IApplicationState // ... state we've requested from the Redux store
-    & typeof applicationActionCreators // ... plus action creators we've requested
-
-const BrowserCheck: React.FC<ApplicationProps> = () => {
+const BrowserCheck = () => {
     const dispatch = useDispatch();
-    const state = useSelector((state: IRootState) => state.application);
+    const application = useSelector((state: IRootState) => state.application);
 
     const toggleHideModal = () => dispatch(applicationActionCreators.hideModal());
     const toggleShowModal = () => dispatch(applicationActionCreators.showModal());
@@ -24,12 +19,14 @@ const BrowserCheck: React.FC<ApplicationProps> = () => {
         dispatch(applicationActionCreators.setBrowser(browserName));
     }, []);
 
-    if (state && !state.isSupported) {
+    console.log(application);
+
+    if (application && !application.isSupported) {
         // Browser unsupported: warn user and show download links for supported browsers, but allow them to continue.
         // Keep this state for one day. After one day the visitor gets the modal again.
         return (
-            <section className="top-banner">
-                <Modal isOpen={state && state.showModal && (state.setModal === undefined || differenceInDays(new Date(), state.setModal) > 1)} toggle={toggleHideModal}>
+            <div className="top-banner">
+                <Modal isOpen={application && application.showModal && (application.setModal === undefined || differenceInDays(new Date(), application.setModal) > 1)} toggle={toggleHideModal}>
                     <ModalHeader toggle={toggleHideModal}>{en.UnsupportedTitle}</ModalHeader>
                     <ModalBody>
                         {en.UnsupportedMessage}
@@ -53,7 +50,7 @@ const BrowserCheck: React.FC<ApplicationProps> = () => {
                         <Button outline color="dark" size="sm" onClick={toggleShowModal}>{en.ShowModal}</Button>
                     </Col>
                 </Row>
-            </section>
+            </div>
         );
     } else {
         return null;
