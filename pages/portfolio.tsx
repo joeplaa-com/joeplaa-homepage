@@ -23,7 +23,7 @@ const Masthead = () => {
     );
 };
 
-const Home = ():ReactElement => {
+const Portfolio = ():ReactElement => {
     return (
         <>
             <NextSeo
@@ -46,4 +46,4 @@ const Home = ():ReactElement => {
     );
 };
 
-export default Home;
+export default Portfolio;

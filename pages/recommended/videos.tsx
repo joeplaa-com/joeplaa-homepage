@@ -1,14 +1,14 @@
 import React, { ReactElement } from 'react';
 import { NextSeo } from 'next-seo';
 import { Col, Row } from 'reactstrap';
-import Layout from '../src/components/Layout';
-import detectWebp from '../src/functions/detectWebp';
-import en from '../src/data/en.json';
+import Layout from '../../src/components/Layout';
+import detectWebp from '../../src/functions/detectWebp';
+import en from '../../src/data/en.json';
 
 const Masthead = () => {
     return (
         <section className="masthead text-center" style={{
-            backgroundImage: `url(${detectWebp() ? require('../src/assets/banner.jpg?webp') : require('../src/assets/banner.jpg')})`,
+            backgroundImage: `url(${detectWebp() ? require('../../src/assets/banner.jpg?webp') : require('../../src/assets/banner.jpg')})`,
             backgroundSize: 'cover',
             backgroundPosition: 'center'
         }}>
@@ -23,7 +23,7 @@ const Masthead = () => {
     );
 };
 
-const Home = ():ReactElement => {
+const Videos = ():ReactElement => {
     return (
         <>
             <NextSeo
@@ -46,4 +46,5 @@ const Home = ():ReactElement => {
     );
 };
 
-export default Home;
+export default const Videos = ():ReactElement => {
+    ;
