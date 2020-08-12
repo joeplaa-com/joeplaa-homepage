@@ -1,13 +1,14 @@
-import Container from '../components/container'
-import MoreStories from '../components/more-stories'
-import HeroPost from '../components/hero-post'
-import Intro from '../components/intro'
-import Layout from '../components/layout'
-import { getAllPosts } from '../lib/api'
 import Head from 'next/head'
-import { CMS_NAME } from '../lib/constants'
+import Container from '../src/components/container'
+import HeroPost from '../src/components/hero-post'
+import Intro from '../src/components/intro'
+import Layout from '../src/components/layout'
+import MoreStories from '../src/components/more-stories'
+import { IallPosts } from '../src/interfaces'
+import { CMS_NAME } from '../src/lib/constants'
+import { getAllPosts } from '../src/lib/api'
 
-export default function Index({ allPosts }) {
+export default function Index({ allPosts }: { allPosts: Array<IallPosts> }) {
     const heroPost = allPosts[0]
     const morePosts = allPosts.slice(1)
     return (

@@ -1,5 +1,5 @@
-import cn from "classnames";
-import Link from "next/link";
+import cn from "components/node_modules/classnames";
+import Link from "components/node_modules/next/link";
 
 export default function CoverImage({ title, src, slug }) {
     const image = (
