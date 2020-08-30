@@ -10,11 +10,21 @@ export interface IallPosts {
 export interface ILayoutProps {
     children: React.ReactNode;
     preview?: string;
-    siteDescription: string;
-    siteTitle: string;
+    siteDescription?: string;
+    siteTitle?: string;
 }
 
 export interface IMetaProps {
     siteTitle: string;
     siteDescription: string;
+}
+
+export interface IinitialPost {
+    slug: string;
+}
+
+export interface IPostProps {
+    post: IinitialPost;
+    morePosts: string;
+    preview: string;
 }
