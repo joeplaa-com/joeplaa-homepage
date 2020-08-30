@@ -8,10 +8,10 @@ import PostBody from '../../src/components/post-body'
 import Header from '../../src/components/header'
 import PostHeader from '../../src/components/post-header'
 import Layout from '../../src/components/layout'
-import { IPostProps } from '../../src/interfaces'
+import { IPostProps, IallPostsProps } from '../../src/interfaces'
 import { getPostBySlug, getAllPosts } from '../../src/lib/api'
 import PostTitle from '../../src/components/post-title'
-import { CMS_NAME } from '../../src/lib/constants'
+import data from '../../src/lib/data.json'
 import markdownToHtml from '../../src/lib/markdownToHtml'
 
 export default function Post({ post: initialPost, preview }: IPostProps) {
@@ -56,13 +56,13 @@ export default function Post({ post: initialPost, preview }: IPostProps) {
             <Container>
                 <Header />
                 {router.isFallback ? (
-                    <PostTitle>Loading…</PostTitle>
+                    <PostTitle>{data.loading}</PostTitle>
                 ) : (
                     <>
                         <article className="mb-32">
                             <Head>
                                 <title>
-                                    {post.title} | Next.js Blog Example with {CMS_NAME}
+                                    {post.title}{data.pageTitle}
                                 </title>
                                 <meta property="og:image" content={post.ogImage.url} />
                             </Head>
@@ -71,6 +71,7 @@ export default function Post({ post: initialPost, preview }: IPostProps) {
                                 coverImage={post.coverImage}
                                 date={post.date}
                                 author={post.author}
+                                slug={post.slug}
                             />
                             <PostBody content={htmlContent} />
                         </article>
@@ -90,7 +91,7 @@ export async function getStaticProps({ params }) {
         'content',
         'ogImage',
         'coverImage',
-    ])
+    ]) as IallPostsProps
     const content = await markdownToHtml(post.content || '')
 
     return {
@@ -108,7 +109,7 @@ export async function getStaticPaths() {
     const posts = getAllPosts(['slug'])
 
     return {
-        paths: posts.map((posts) => {
+        paths: posts.map((posts: IallPostsProps) => {
             return {
                 params: {
                     slug: posts.slug,

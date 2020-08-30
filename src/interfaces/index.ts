@@ -4,8 +4,10 @@ export interface IallPostsProps {
     slug: string;
     author: IAuthorProps;
     coverImage: string;
-    excerpt: string;
+    excerpt?: string;
     key?: string;
+    content?: string;
+    ogImage?: string;
 }
 
 export interface IAuthorProps {

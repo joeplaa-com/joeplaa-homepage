@@ -1,4 +1,4 @@
-Sitemap: [sitemap.xml url]
+Sitemap: [sitemap.xml https://joeplaa.com]
 
 User-agent: *
 Allow: /*
