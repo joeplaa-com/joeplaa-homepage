@@ -55,14 +55,14 @@ export default function Post({ post: initialPost, preview }: IPostProps) {
             <Container>
                 {router.isFallback
                     ? (
-                        <PostTitle>{data.loading}</PostTitle>
+                        <PostTitle>{data.Loading}</PostTitle>
                     )
                     : (
                         <>
                             <article className="mb-32">
                                 <Head>
                                     <title>
-                                        {post.title}{data.pageTitle}
+                                        {post.title}{data.PageTitle}
                                     </title>
                                     <meta property="og:image" content={post.ogImage.url} />
                                 </Head>

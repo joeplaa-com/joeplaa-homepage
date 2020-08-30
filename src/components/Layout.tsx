@@ -9,7 +9,7 @@ export default function Layout(props: ILayoutProps) {
     return (
         <>
             <Head>
-                <title>{data.homeTitle}</title>
+                <title>{data.HomeTitle}</title>
             </Head>
 
             <Meta
@@ -19,7 +19,7 @@ export default function Layout(props: ILayoutProps) {
 
             <Header />
 
-            <div className="min-h-screen">
+            <div>
                 <main>{props.children}</main>
             </div>
 

@@ -1,5 +1,12 @@
 {
-    "loading": "Loading...",
-    "homeTitle": "joeplaa.com",
-    "pageTitle": " | joeplaa.com"
+    "Continue": "Continue",
+    "Info": "Info",
+    "Loading": "Loading...",
+    "HomeTitle": "joeplaa.com",
+    "PageTitle": " | joeplaa.com",
+    "ShowModal": "Show more",
+    "ShowModalMessage": "This website does not work properly in your current browser.",
+    "UnsupportedContinue": "Press continue to view this site anyway.",
+    "UnsupportedMessage": "This website does not work properly in your current browser. Use one of the browser below for the best experience.",
+    "UnsupportedTitle": "Browser not supported"
 }
