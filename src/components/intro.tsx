@@ -1,5 +1,3 @@
-import { CMS_NAME } from "../lib/constants";
-
 export default function Intro() {
     return (
         <section>
@@ -12,8 +10,7 @@ export default function Intro() {
                     href="https://nextjs.org/"
                 >
           Next.js
-                </a>{" "}
-        and {CMS_NAME}.
+                </a>
             </h4>
         </section>
     );
