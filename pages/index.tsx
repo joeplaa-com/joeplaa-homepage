@@ -1,4 +1,4 @@
-import Container from '../src/components/container'
+import { Container } from 'reactstrap'
 import HeroPost from '../src/components/hero-post'
 import Intro from '../src/components/intro'
 import Layout from '../src/components/layout'

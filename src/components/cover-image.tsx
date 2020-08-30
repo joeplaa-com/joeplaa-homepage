@@ -1,4 +1,3 @@
-import cn from "classnames";
 import Link from "next/link";
 import { ICoverImageProps } from '../interfaces'
 
@@ -7,9 +6,6 @@ export default function CoverImage({ title, src, slug }: ICoverImageProps) {
         <img
             src={src}
             alt={`Cover Image for ${title}`}
-            className={cn("shadow-small", {
-                "hover:shadow-medium transition-shadow duration-200": slug,
-            })}
         />
     );
     return (

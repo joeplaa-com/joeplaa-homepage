@@ -3,9 +3,8 @@ import { useForm, usePlugin } from 'tinacms'
 import { useRouter } from 'next/router'
 import ErrorPage from 'next/error'
 import Head from 'next/head'
-import Container from '../../src/components/container'
+import { Container } from 'reactstrap'
 import PostBody from '../../src/components/post-body'
-import Header from '../../src/components/header'
 import PostHeader from '../../src/components/post-header'
 import Layout from '../../src/components/layout'
 import { IPostProps, IallPostsProps } from '../../src/interfaces'
@@ -54,29 +53,30 @@ export default function Post({ post: initialPost, preview }: IPostProps) {
     return (
         <Layout preview={preview}>
             <Container>
-                <Header />
-                {router.isFallback ? (
-                    <PostTitle>{data.loading}</PostTitle>
-                ) : (
-                    <>
-                        <article className="mb-32">
-                            <Head>
-                                <title>
-                                    {post.title}{data.pageTitle}
-                                </title>
-                                <meta property="og:image" content={post.ogImage.url} />
-                            </Head>
-                            <PostHeader
-                                title={post.title}
-                                coverImage={post.coverImage}
-                                date={post.date}
-                                author={post.author}
-                                slug={post.slug}
-                            />
-                            <PostBody content={htmlContent} />
-                        </article>
-                    </>
-                )}
+                {router.isFallback
+                    ? (
+                        <PostTitle>{data.loading}</PostTitle>
+                    )
+                    : (
+                        <>
+                            <article className="mb-32">
+                                <Head>
+                                    <title>
+                                        {post.title}{data.pageTitle}
+                                    </title>
+                                    <meta property="og:image" content={post.ogImage.url} />
+                                </Head>
+                                <PostHeader
+                                    title={post.title}
+                                    coverImage={post.coverImage}
+                                    date={post.date}
+                                    author={post.author}
+                                    slug={post.slug}
+                                />
+                                <PostBody content={htmlContent} />
+                            </article>
+                        </>
+                    )}
             </Container>
         </Layout>
     )

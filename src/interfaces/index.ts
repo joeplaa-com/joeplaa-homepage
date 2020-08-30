@@ -15,10 +15,6 @@ export interface IAuthorProps {
     picture: string;
 }
 
-export interface IContainerProps {
-    children: React.ReactNode;
-}
-
 export interface ICoverImageProps {
     title: string;
     src: string;
