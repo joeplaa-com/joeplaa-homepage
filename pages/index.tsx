@@ -1,12 +1,12 @@
 import Container from '../src/components/container'
 import HeroPost from '../src/components/hero-post'
 import Intro from '../src/components/intro'
-import Layout from '../src/components/Layout'
+import Layout from '../src/components/layout'
 import MoreStories from '../src/components/more-stories'
-import { IallPosts } from '../src/interfaces'
+import { IallPostsProps } from '../src/interfaces'
 import { getAllPosts } from '../src/lib/api'
 
-export default function Index({ allPosts }: { allPosts: Array<IallPosts> }) {
+export default function Index({ allPosts }: { allPosts: Array<IallPostsProps> }) {
     const heroPost = allPosts[0]
     const morePosts = allPosts.slice(1)
     return (

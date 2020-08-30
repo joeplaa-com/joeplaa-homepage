@@ -2,6 +2,7 @@ import Avatar from "./avatar";
 import DateFormater from "./date-formater";
 import CoverImage from "./cover-image";
 import Link from "next/link";
+import { IallPostsProps } from '../interfaces'
 
 export default function PostPreview({
     title,
@@ -10,7 +11,7 @@ export default function PostPreview({
     excerpt,
     author,
     slug,
-}) {
+}: IallPostsProps) {
     return (
         <div>
             <div className="mb-5">

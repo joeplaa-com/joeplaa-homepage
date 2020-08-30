@@ -2,6 +2,7 @@ import Avatar from "./avatar";
 import DateFormater from "./date-formater";
 import CoverImage from "./cover-image";
 import Link from "next/link";
+import { IHeroPostProps } from '../interfaces'
 
 export default function HeroPost({
     title,
@@ -10,7 +11,7 @@ export default function HeroPost({
     excerpt,
     author,
     slug,
-}) {
+}: IHeroPostProps) {
     return (
         <section>
             <div className="mb-8 md:mb-16">

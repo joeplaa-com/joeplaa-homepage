@@ -1,6 +1,6 @@
 import Head from 'next/head';
 import Footer from "./footer";
-import Meta from "./Meta";
+import Meta from "./meta";
 import { ILayoutProps } from '../interfaces';
 import { CMS_NAME } from '../lib/constants'
 

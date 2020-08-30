@@ -7,14 +7,14 @@ import Container from '../../src/components/container'
 import PostBody from '../../src/components/post-body'
 import Header from '../../src/components/header'
 import PostHeader from '../../src/components/post-header'
-import Layout from '../../src/components/Layout'
+import Layout from '../../src/components/layout'
 import { IPostProps } from '../../src/interfaces'
 import { getPostBySlug, getAllPosts } from '../../src/lib/api'
 import PostTitle from '../../src/components/post-title'
 import { CMS_NAME } from '../../src/lib/constants'
 import markdownToHtml from '../../src/lib/markdownToHtml'
 
-export default function Post({ post: initialPost, morePosts, preview }: IPostProps) {
+export default function Post({ post: initialPost, preview }: IPostProps) {
     const router = useRouter()
     if (!router.isFallback && !initialPost?.slug) {
         return <ErrorPage statusCode={404} />
