@@ -1,7 +1,6 @@
 export const supportedBrowsers = ['Chrome', 'Chromium', 'Edge', 'EdgeChromium', 'Firefox', 'Safari', 'Mobile Safari']
 export const unsupportedBrowsers = ['Internet Explorer', 'IE']
 export const urls = {
-    public: "https://www.joeplaa.com",
     external: {
         browserInfo: "https://reactjs.org/docs/react-dom.html#browser-support",
         chrome: "https://www.google.com/chrome/",
