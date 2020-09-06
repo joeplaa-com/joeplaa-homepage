@@ -19,7 +19,7 @@ export default function Index({ allPosts }: { allPosts: Array<IallPostsProps> })
                 titleTemplate={data.SiteTitle + ' | %s'}
                 description={data.HomeDescription}
                 openGraph={{
-                    url: urls.public + urls.internal.home,
+                    url: process.env.NEXT_PUBLIC_URL + urls.internal.home,
                     title: data.HomeTitle,
                     description: data.HomeDescription,
                     images: [

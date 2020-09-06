@@ -18,9 +18,9 @@ export default function Index() {
             authorName={data.AuthorName}
             title={data.SiteTitle}
             description={data.SiteDescription}
-            url={urls.public}
+            url={process.env.NEXT_PUBLIC_URL}
             images={[
-                urls.public + '/og_logo.png',
+                process.env.NEXT_PUBLIC_URL + '/og_logo.png',
             ]}
         />
     );
