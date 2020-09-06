@@ -1,10 +1,11 @@
 import Head from "next/head";
 import { IMetaProps } from '../interfaces';
+import data from '../lib/data.json';
 
-export default function Meta (props: IMetaProps) {
+export default function Meta(props: IMetaProps) {
     return (
         <Head>
-            <meta name="viewport" content="width=device-width, initial-scale=1" />
+            <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no" />
             <meta charSet="utf-8" />
             <title>{props.siteTitle}</title>
             <meta name="Description" content={props.siteDescription}></meta>
@@ -35,15 +36,15 @@ export default function Meta (props: IMetaProps) {
 
             {/* Information for the Facebook Scraper: */}
             <meta property="og:type" content="website" />
-            <meta property="og:site_name" content="jodiBooks Beauty" />
-            <meta property="og:title" content="Het salonpakket dat bijna net zo leuk is als je werk." />
-            <meta property="og:description" content="jodiBooks Beauty, bijna net zo leuk als je werk." />
-            <meta property="og:url" content="https://www.jodibooks.com" />
-            <meta property="og:image" content="/icons/og_logo.png" />
-            <meta property="og:image:secure_url" content="/icons/og_logo.png" />
+            <meta property="og:site_name" content={data.SiteName} />
+            <meta property="og:title" content={data.SiteTitle} />
+            <meta property="og:description" content={data.SiteDescription} />
+            <meta property="og:url" content={process.env.NEXT_PUBLIC_URL} />
+            <meta property="og:image" content="/icons/android-icon-192x192.png" />
+            <meta property="og:image:secure_url" content="/icons/android-icon-192x192.png" />
             <meta property="og:image:type" content="image/png" />
-            <meta property="og:image:width" content="300" />
-            <meta property="og:image:height" content="300" />
+            <meta property="og:image:width" content="192" />
+            <meta property="og:image:height" content="192" />
         </Head>
     );
 }
