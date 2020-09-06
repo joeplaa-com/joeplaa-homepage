@@ -12,6 +12,7 @@ export const urls = {
         home: "/home",
         howto: "/howto",
         portfolio: "/portfolio",
-        recommended: "/recommended"
+        books: "/recommended/books",
+        videos: "/recommended/videos"
     }
 }

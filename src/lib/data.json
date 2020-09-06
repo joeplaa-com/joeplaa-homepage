@@ -1,11 +1,17 @@
 {
     "AuthorName": "Joep van de Laarschot",
+    "Blog": "Blog",
+    "Books": "Books",
     "Continue": "Continue",
+    "Home": "Home",
+    "Howto": "Howto",
     "Info": "Info",
     "Loading": "Loading...",
     "HomeDescription": "My journey to reach my goal: Help 2 billion people.",
     "HomeTitle": "joeplaa.com",
     "PageTitle": " | joeplaa.com",
+    "Portfolio": "Portfolio",
+    "Recommended": "Recommended",
     "ShowModal": "Show more",
     "ShowModalMessage": "This website does not work properly in your current browser.",
     "SiteDescription": "My journey to reach my goal: Help 2 billion people.",
@@ -13,5 +19,6 @@
     "SiteTitle": "joeplaa.com",
     "UnsupportedContinue": "Press continue to view this site anyway.",
     "UnsupportedMessage": "This website does not work properly in your current browser. Use one of the browser below for the best experience.",
-    "UnsupportedTitle": "Browser not supported"
+    "UnsupportedTitle": "Browser not supported",
+    "Videos": "Videos"
 }
