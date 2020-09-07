@@ -15,7 +15,7 @@ export default {
                 url: process.env.NEXT_PUBLIC_URL + '/og_logo.png',
                 width: 300,
                 height: 300,
-                alt: 'jodiBooks logo',
+                alt: 'joeplaa logo',
             }
         ]
     }
