@@ -5,34 +5,36 @@
 @import "../node_modules/bootstrap/scss/mixins";
 @import "../node_modules/bootstrap/scss/variables";
 
-/* -------begin Bootstrap customization-------- */
-
-/* simply assign the value */
+/* custom colors */
 /* triadic */
 $tri-primary:       #ea153c;
 $tri-secondary:     #3cea15;
 $tri-tertiary:      #153cea;
 
-/* tetradic */
-$tetra-primary:     #ae153c;
-$tetra-secondary:   #a6ae15;
-$tetra-tertiary:    #15eac3;
-$tetra-quaternary:  #5915ea;
-
-/* triadic */
+/* monochromes */
 $white: $white;
-$red-100: #fce7eb !default;
-$red-200: #fad0d8 !default;
-$red-300: #f8b8c4 !default;
-$red-400: #f6a1b1 !default;
-$red-500: #f48a9d !default;
-$red-600: #f2729a !default;
-$red-700: #f05b76 !default;
-$red-800: #ee4363 !default;
-$red-900: #ec2c4f !default;
+$red-100: #fce7eb;
+$red-200: #fad0d8;
+$red-300: #f8b8c4;
+$red-400: #f6a1b1;
+$red-500: #f48a9d;
+$red-600: #f2729a;
+$red-700: #f05b76;
+$red-800: #ee4363;
+$red-900: #ec2c4f;
 $red-full: $tri-primary;
+$blue-100: #e7ebfc;
+$blue-200: #d0d8fa;
+$blue-300: #b8c4f8;
+$blue-400: #a1b1f6;
+$blue-500: #8a9df4;
+$blue-600: #728af2;
+$blue-700: #5b76f0;
+$blue-800: #4363ee;
+$blue-900: #2c4fec;
+$blue-full: $tri-tertiary;
 
-$reds: () !default;
+$reds: ();
 $reds: map-merge(
   (
     "r100": $red-100,
@@ -47,11 +49,48 @@ $reds: map-merge(
   ),
   $reds
 );
+$blues: ();
+$blues: map-merge(
+  (
+    "b100": $blue-100,
+    "b200": $blue-200,
+    "b300": $blue-300,
+    "b400": $blue-400,
+    "b500": $blue-500,
+    "b600": $blue-600,
+    "b700": $blue-700,
+    "b800": $blue-800,
+    "b900": $blue-900
+  ),
+  $blues
+);
+
+/* -------begin Bootstrap customization-------- */
+/* simply assign the value */
 
 /* or, use an existing variable */
 $theme-colors: (
     primary: $red-full
 );
+
+$body-bg:                           $gray-100;
+
+$component-active-color:            $white;
+$component-active-bg:               $red-full;
+
+$link-color:                        $tri-primary;
+$link-decoration:                   none;
+$link-hover-color:                  darken($link-color, 15%);
+$link-hover-decoration:             underline;
+
+$navbar-light-color:                $red-full;
+$navbar-light-hover-color:          $red-700;
+$navbar-light-active-color:         $red-900;
+$navbar-light-disabled-color:       $red-300;
+$navbar-light-toggler-border-color: $red-100;
+
+$nav-pills-link-active-color:       $component-active-color !important;
+$nav-pills-link-active-bg:          $component-active-bg;
 
 /* -------end Bootstrap customization-------- */
 
@@ -62,7 +101,7 @@ $link-light-color:          $light;
 $link-light-hover-color:    darken($link-light-color, 15%);
 
 footer {
-    background: gray;
+    background: $red-300;
     color: $light;
     padding-top: 1rem;
     padding-bottom: 1rem;
@@ -86,13 +125,13 @@ footer {
     color: $navbar-light-color;
     border-color: $navbar-light-toggler-border-color;
 }
-    .navbarLink:hover {
+    .linkNav:hover {
         color: $navbar-light-hover-color;
     }
-    .navbarLink:active {
+    .linkNav:active {
         color: $navbar-light-active-color;
     }
-    .navbarLink:disabled {
+    .linkNav:disabled {
         color: $navbar-light-disabled-color;
     }
 

@@ -9,7 +9,7 @@ export default function Header() {
     const toggle = () => setIsOpen(!isOpen);
 
     return (
-        <Navbar color='light' light expand='md'>
+        <Navbar color='white' light className='shadow' expand='md'>
             <NavbarBrand href='/'>{siteInfo.SiteName}</NavbarBrand>
             <NavbarToggler onClick={toggle} />
             <Collapse isOpen={isOpen} navbar>
