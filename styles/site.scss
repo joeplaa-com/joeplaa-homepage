@@ -8,18 +8,93 @@
 /* -------begin Bootstrap customization-------- */
 
 /* simply assign the value */
-$main:          #9ecae1;
-$second:        #9ecae1;
-$third:         #9ecae1;
+/* triadic */
+$tri-primary:       #ea153c;
+$tri-secondary:     #3cea15;
+$tri-tertiary:      #153cea;
+
+/* tetradic */
+$tetra-primary:     #ae153c;
+$tetra-secondary:   #a6ae15;
+$tetra-tertiary:    #15eac3;
+$tetra-quaternary:  #5915ea;
+
+/* triadic */
+$white: $white;
+$red-100: #fce7eb !default;
+$red-200: #fad0d8 !default;
+$red-300: #f8b8c4 !default;
+$red-400: #f6a1b1 !default;
+$red-500: #f48a9d !default;
+$red-600: #f2729a !default;
+$red-700: #f05b76 !default;
+$red-800: #ee4363 !default;
+$red-900: #ec2c4f !default;
+$red-full: $tri-primary;
+
+$reds: () !default;
+$reds: map-merge(
+  (
+    "r100": $red-100,
+    "r200": $red-200,
+    "r300": $red-300,
+    "r400": $red-400,
+    "r500": $red-500,
+    "r600": $red-600,
+    "r700": $red-700,
+    "r800": $red-800,
+    "r900": $red-900
+  ),
+  $reds
+);
 
 /* or, use an existing variable */
 $theme-colors: (
-    primary: $main
+    primary: $red-full
 );
 
 /* -------end Bootstrap customization-------- */
 
 /* -------begin custom additions-------- */
+$link-dark-color:           $dark;
+$link-dark-hover-color:     darken($link-dark-color, 15%);
+$link-light-color:          $light;
+$link-light-hover-color:    darken($link-light-color, 15%);
+
+footer {
+    background: gray;
+    color: $light;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+
+.linkDark {
+    color: $link-dark-color;
+}
+    .linkDark:hover {
+        color: $link-dark-hover-color;
+    }
+
+.linkLight {
+    color: $link-light-color;
+}
+    .linkLight:hover {
+        color: $link-light-hover-color;
+    }
+
+.linkNav {
+    color: $navbar-light-color;
+    border-color: $navbar-light-toggler-border-color;
+}
+    .navbarLink:hover {
+        color: $navbar-light-hover-color;
+    }
+    .navbarLink:active {
+        color: $navbar-light-active-color;
+    }
+    .navbarLink:disabled {
+        color: $navbar-light-disabled-color;
+    }
 
 /* ---footer--- */
 

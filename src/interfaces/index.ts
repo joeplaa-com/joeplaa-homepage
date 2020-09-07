@@ -45,6 +45,11 @@ export interface ILayoutProps {
     siteTitle?: string;
 }
 
+export interface Ilink {
+    classString?: string;
+    color: 'dark' | 'light' | 'navbar';
+}
+
 export interface IMetaProps {
     siteTitle: string;
     siteDescription: string;

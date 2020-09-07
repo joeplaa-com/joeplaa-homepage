@@ -5,37 +5,42 @@ import { useRouter } from 'next/router'
 import { data, navigation } from '../lib/data'
 
 export default function Navigation({ className }: { className: string }) {
+    const router = useRouter();
+
     function activeLink(href) {
-        const router = useRouter();
         const path = router.pathname;
 
         return (path === href)
     }
 
+    function handleClick(href) {
+        router.push(href)
+    }
+
     return (
         <Nav className={className} navbar pills>
-            <NavItem active={activeLink(navigation.home)}>
-                <NavLink href={navigation.home}>{data.Home}</NavLink>
+            <NavItem>
+                <NavLink href={navigation.home} active={activeLink(navigation.home)}>{data.Home}</NavLink>
             </NavItem>
-            <NavItem active={activeLink(navigation.blog)}>
-                <NavLink href={navigation.blog}>{data.Blog}</NavLink>
+            <NavItem>
+                <NavLink href={navigation.blog} active={activeLink(navigation.blog)}>{data.Blog}</NavLink>
             </NavItem>
-            <NavItem active={activeLink(navigation.portfolio)}>
-                <NavLink href={navigation.portfolio}>{data.Portfolio}</NavLink>
+            <NavItem>
+                <NavLink href={navigation.portfolio} active={activeLink(navigation.portfolio)}>{data.Portfolio}</NavLink>
             </NavItem>
-            <NavItem active={activeLink(navigation.howto)}>
-                <NavLink href={navigation.howto}>{data.Howto}</NavLink>
+            <NavItem>
+                <NavLink href={navigation.howto} active={activeLink(navigation.howto)}>{data.Howto}</NavLink>
             </NavItem>
-            <UncontrolledDropdown nav inNavbar>
+            <UncontrolledDropdown inNavbar>
                 <DropdownToggle nav caret>
                     {data.Recommended}
                 </DropdownToggle>
                 <DropdownMenu right>
-                    <DropdownItem>
-                        <NavLink href={navigation.books}>{data.Books}</NavLink>
+                    <DropdownItem active={activeLink(navigation.books)} onClick={() => handleClick(navigation.books)}>
+                        {data.Books}
                     </DropdownItem>
-                    <DropdownItem>
-                        <NavLink href={navigation.videos}>{data.Videos}</NavLink>
+                    <DropdownItem active={activeLink(navigation.videos)} onClick={() => handleClick(navigation.videos)}>
+                        {data.Videos}
                     </DropdownItem>
                 </DropdownMenu>
             </UncontrolledDropdown>
