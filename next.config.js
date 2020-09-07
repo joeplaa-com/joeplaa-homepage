@@ -17,11 +17,11 @@ module.exports = withBundleAnalyzer(
             // but you can overwrite them here with any valid value you want.
             handleImages: ['jpg', 'jpeg', 'png', 'svg', 'webp'],
             inlineImageLimit: 8192,
-            imagesFolder: 'images',
+            imagesFolder: 'assets',
             imagesName: '[name]-[hash].[ext]',
-            imagesOutputPath: 'static/images',
+            imagesOutputPath: 'static/assets',
             optimizeImages: true,
-            optimizeImagesInDev: false,
+            optimizeImagesInDev: true,
             removeOriginalExtension: true,
             mozjpeg: {
                 quality: 80
