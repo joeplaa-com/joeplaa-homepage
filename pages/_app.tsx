@@ -19,4 +19,7 @@ function MyApp({ Component, pageProps }: AppProps) {
     )
 }
 
-export default withTina(MyApp)
+export default withTina(MyApp, {
+    enabled: true,
+    sidebar: true,
+})

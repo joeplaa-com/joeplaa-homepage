@@ -25,9 +25,7 @@
         "redux-persist": "^6.0.0",
         "remark": "^12.0.1",
         "remark-html": "^12.0.0",
-        "sass": "^1.26.10",
-        "styled-components": "^5.1.1",
-        "tinacms": "^0.29.0"
+        "sass": "^1.26.10"
     },
     "devDependencies": {
         "@next/bundle-analyzer": "^9.5.3",
@@ -39,7 +37,11 @@
         "eslint-plugin-react": "^7.20.5",
         "eslint-plugin-react-hooks": "^4.0.8",
         "nextjs-sitemap-generator": "^1.1.1",
+        "react-tinacms-editor": "^0.29.0",
+        "react-tinacms-inline": "^0.29.0",
         "redux-devtools-extension": "^2.13.8",
+        "styled-components": "^5.1.1",
+        "tinacms": "^0.29.0",
         "typescript": "^4.0.2"
     }
 }

@@ -1,5 +1,5 @@
 import { useState, useEffect, useMemo } from 'react'
-import { useForm, usePlugin } from 'tinacms'
+import { useCMS, useForm, usePlugin } from 'tinacms'
 import { useRouter } from 'next/router'
 import ErrorPage from 'next/error'
 import Head from 'next/head'
@@ -18,6 +18,19 @@ export default function Post({ post: initialPost, preview }: IPostProps) {
     if (!router.isFallback && !initialPost?.slug) {
         return <ErrorPage statusCode={404} />
     }
+
+    const cms = useCMS()
+    const [editorRegistered, setEditorRegistered] = useState(false)
+
+    useEffect(() => {
+        if (!editorRegistered && cms.enabled) {
+            import('react-tinacms-editor').then(({ MarkdownFieldPlugin, HtmlFieldPlugin }) => {
+                cms.plugins.add(MarkdownFieldPlugin)
+                cms.plugins.add(HtmlFieldPlugin)
+                setEditorRegistered(true)
+            })
+        }
+    }, [cms.enabled])
 
     const formConfig = {
         id: initialPost.slug,
