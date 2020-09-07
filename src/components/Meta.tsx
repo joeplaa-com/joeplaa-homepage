@@ -36,9 +36,9 @@ export default function Meta(props: IMetaProps) {
 
             {/* Information for the Facebook Scraper: */}
             <meta property="og:type" content="website" />
-            <meta property="og:site_name" content={data.SiteName} />
-            <meta property="og:title" content={data.SiteTitle} />
-            <meta property="og:description" content={data.SiteDescription} />
+            <meta property="og:site_name" content={data.siteInfo.SiteName} />
+            <meta property="og:title" content={data.siteInfo.SiteTitle} />
+            <meta property="og:description" content={data.siteInfo.SiteDescription} />
             <meta property="og:url" content={process.env.NEXT_PUBLIC_URL} />
             <meta property="og:image" content="/icons/android-icon-192x192.png" />
             <meta property="og:image:secure_url" content="/icons/android-icon-192x192.png" />

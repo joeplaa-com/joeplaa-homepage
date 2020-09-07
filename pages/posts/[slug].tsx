@@ -62,7 +62,7 @@ export default function Post({ post: initialPost, preview }: IPostProps) {
                             <article className="mb-32">
                                 <Head>
                                     <title>
-                                        {post.title}{data.PageTitle}
+                                        {post.title}{data.siteInfo.PageTitle}
                                     </title>
                                     <meta property="og:image" content={post.ogImage.url} />
                                 </Head>

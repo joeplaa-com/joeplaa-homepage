@@ -14,9 +14,9 @@ export default function Index() {
         <BlogJsonLd
             datePublished='08/30/2020'
             dateModified='08/30/2020'
-            authorName={data.AuthorName}
-            title={data.SiteTitle}
-            description={data.SiteDescription}
+            authorName={data.siteInfo.Authorname}
+            title={data.siteInfo.SiteTitle}
+            description={data.siteInfo.SiteDescription}
             url={process.env.NEXT_PUBLIC_URL}
             images={[
                 process.env.NEXT_PUBLIC_URL + '/og_logo.png',

@@ -6,10 +6,10 @@ export default {
         type: 'website',
         url: process.env.NEXT_PUBLIC_URL + '/',
         locale: 'en_US',
-        site_name: data.SiteName,
-        title: data.SiteTitle,
-        titleTemplate: data.SiteTitle + ' | %s',
-        description: data.SiteDescription,
+        site_name: data.siteInfo.SiteName,
+        title: data.siteInfo.SiteTitle,
+        titleTemplate: data.siteInfo.SiteTitle + ' | %s',
+        description: data.siteInfo.SiteDescription,
         images: [
             {
                 url: process.env.NEXT_PUBLIC_URL + '/og_logo.png',

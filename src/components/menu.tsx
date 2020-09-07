@@ -10,7 +10,7 @@ export default function Header() {
 
     return (
         <Navbar color="light" light expand="md">
-            <NavbarBrand href="/">{data.SiteName}</NavbarBrand>
+            <NavbarBrand href="/">{data.siteInfo.SiteName}</NavbarBrand>
             <NavbarToggler onClick={toggle} />
             <Collapse isOpen={isOpen} navbar>
                 <Navigation className="mx-auto" />

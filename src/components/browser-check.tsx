@@ -29,15 +29,15 @@ const BrowserCheck = () => {
                         {data.UnsupportedMessage}
                         <p></p>
                         <div className="d-flex justify-content-around">
-                            <Button color="success" href={urls.external.chrome}>Google Chrome</Button>{' '}
-                            <Button color="warning" href={urls.external.firefox}>Mozilla Firefox</Button>{' '}
-                            <Button color="primary" href={urls.external.edge}>Microsoft Edge</Button>{' '}
+                            <Button color="success" href={urls.chrome}>Google Chrome</Button>{' '}
+                            <Button color="warning" href={urls.firefox}>Mozilla Firefox</Button>{' '}
+                            <Button color="primary" href={urls.edge}>Microsoft Edge</Button>{' '}
                         </div>
                         <p></p>
                         {data.UnsupportedContinue}
                     </ModalBody>
                     <ModalFooter>
-                        <Button outline color="primary" href={urls.external.browserInfo}>{data.Info}</Button>
+                        <Button outline color="primary" href={urls.browserInfo}>{data.Info}</Button>
                         <Button outline color="primary" onClick={toggleHideModal}>{data.Continue}</Button>
                     </ModalFooter>
                 </Modal>

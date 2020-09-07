@@ -9,7 +9,7 @@ export default function Layout(props: ILayoutProps) {
     return (
         <>
             <Head>
-                <title>{data.HomeTitle}</title>
+                <title>{data.siteInfo.HomeTitle}</title>
             </Head>
 
             <Meta

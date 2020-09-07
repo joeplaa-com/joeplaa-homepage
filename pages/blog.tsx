@@ -14,13 +14,13 @@ export default function Index({ allPosts }: { allPosts: Array<IallPostsProps> })
     return (
         <>
             <NextSeo
-                title={data.HomeTitle}
-                titleTemplate={data.SiteTitle + ' | %s'}
-                description={data.HomeDescription}
+                title={data.siteInfo.HomeTitle}
+                titleTemplate={data.siteInfo.SiteTitle + ' | %s'}
+                description={data.siteInfo.HomeDescription}
                 openGraph={{
                     url: process.env.NEXT_PUBLIC_URL + data.menu.home,
-                    title: data.HomeTitle,
-                    description: data.HomeDescription,
+                    title: data.siteInfo.HomeTitle,
+                    description: data.siteInfo.HomeDescription,
                     images: [
                     ]
                 }}
