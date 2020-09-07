@@ -23,6 +23,7 @@ $red-700: #f05b76;
 $red-800: #ee4363;
 $red-900: #ec2c4f;
 $red-full: $tri-primary;
+
 $blue-100: #e7ebfc;
 $blue-200: #d0d8fa;
 $blue-300: #b8c4f8;
@@ -76,14 +77,14 @@ $theme-colors: (
 $body-bg:                           $gray-100;
 
 $component-active-color:            $white;
-$component-active-bg:               $red-full;
+$component-active-bg:               $red-900;
 
 $link-color:                        $tri-primary;
 $link-decoration:                   none;
 $link-hover-color:                  darken($link-color, 15%);
 $link-hover-decoration:             underline;
 
-$navbar-light-color:                $red-full;
+$navbar-light-color:                $red-800;
 $navbar-light-hover-color:          $red-700;
 $navbar-light-active-color:         $red-900;
 $navbar-light-disabled-color:       $red-300;

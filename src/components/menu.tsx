@@ -10,7 +10,9 @@ export default function Header() {
 
     return (
         <Navbar color='white' light className='shadow' expand='md'>
-            <NavbarBrand href='/'>{siteInfo.SiteName}</NavbarBrand>
+            <NavbarBrand href='/'>
+                <img alt={siteInfo.SiteName} src={require('../assets/banner-com.png')} height="65px" />
+            </NavbarBrand>
             <NavbarToggler onClick={toggle} />
             <Collapse isOpen={isOpen} navbar>
                 <Navigation className='mx-auto' />
