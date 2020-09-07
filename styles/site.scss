@@ -5,403 +5,139 @@
 @import "../node_modules/bootstrap/scss/mixins";
 @import "../node_modules/bootstrap/scss/variables";
 
-/* -------begin Bootstrap customization-------- */
+/* custom colors */
+/* triadic */
+$tri-primary:       #ea153c;
+$tri-secondary:     #3cea15;
+$tri-tertiary:      #153cea;
 
+/* monochromes */
+$white: $white;
+$red-100: #fce7eb;
+$red-200: #fad0d8;
+$red-300: #f8b8c4;
+$red-400: #f6a1b1;
+$red-500: #f48a9d;
+$red-600: #f2729a;
+$red-700: #f05b76;
+$red-800: #ee4363;
+$red-900: #ec2c4f;
+$red-full: $tri-primary;
+$blue-100: #e7ebfc;
+$blue-200: #d0d8fa;
+$blue-300: #b8c4f8;
+$blue-400: #a1b1f6;
+$blue-500: #8a9df4;
+$blue-600: #728af2;
+$blue-700: #5b76f0;
+$blue-800: #4363ee;
+$blue-900: #2c4fec;
+$blue-full: $tri-tertiary;
+
+$reds: ();
+$reds: map-merge(
+  (
+    "r100": $red-100,
+    "r200": $red-200,
+    "r300": $red-300,
+    "r400": $red-400,
+    "r500": $red-500,
+    "r600": $red-600,
+    "r700": $red-700,
+    "r800": $red-800,
+    "r900": $red-900
+  ),
+  $reds
+);
+$blues: ();
+$blues: map-merge(
+  (
+    "b100": $blue-100,
+    "b200": $blue-200,
+    "b300": $blue-300,
+    "b400": $blue-400,
+    "b500": $blue-500,
+    "b600": $blue-600,
+    "b700": $blue-700,
+    "b800": $blue-800,
+    "b900": $blue-900
+  ),
+  $blues
+);
+
+/* -------begin Bootstrap customization-------- */
 /* simply assign the value */
-$jodiBlueLight:     #9ecae1;
-$jodiBlueMedium:    #6baed6;
-$jodiBlue:          #3182bd;
-$jodiBlueDark:      #204d74;
-$jodiGreenLight:    #9ee1ca;
-$jodiGreenMedium:   #6bd6ae;
-$jodiGreen:         #31bd82;
-$jodiGreenDark:     #20744d;
-$jodiPinkLight:     #e19eca;
-$jodiPinkMedium:    #d66bae;
-$jodiPink:          #bd3182;
-$jodiPinkDark:      #74204d;
-$jodiGrayLight:     #f5f5f5;
-$jodiGrayMedium:    #ebebeb;
-$jodiGray:          #cdcdcd;
-$jodiGrayDark:      #6c757d;
-$jodiOverlayBg:     rgba(245,245,245,0.4);
-$jodiOverlayComp:   rgba(245,245,245,0.7);
-$jodiOverlayDark:   rgba(108, 117, 125,0.7);
 
 /* or, use an existing variable */
 $theme-colors: (
-    primary: $jodiBlue,
-    success: $jodiGreen,
-    warning: $jodiPink
+    primary: $red-full
 );
-$border-radius-lg:              2rem;
 
-$component-active-color:        $dark;
-$component-active-bg:           $jodiGrayMedium;
+$body-bg:                           $gray-100;
 
-$headings-font-weight:          700;
+$component-active-color:            $white;
+$component-active-bg:               $red-full;
 
-$jumbotron-padding:             1rem;
-$jumbotron-bg:                  $jodiOverlayComp;
+$link-color:                        $tri-primary;
+$link-decoration:                   none;
+$link-hover-color:                  darken($link-color, 15%);
+$link-hover-decoration:             underline;
 
-$list-group-bg:                 $jodiGrayLight;
-$list-group-border-radius:      $border-radius-lg;
+$navbar-light-color:                $red-full;
+$navbar-light-hover-color:          $red-700;
+$navbar-light-active-color:         $red-900;
+$navbar-light-disabled-color:       $red-300;
+$navbar-light-toggler-border-color: $red-100;
 
-$nav-pills-link-active-color:   $component-active-color;
-$nav-pills-link-active-bg:      $component-active-bg;
+$nav-pills-link-active-color:       $component-active-color !important;
+$nav-pills-link-active-bg:          $component-active-bg;
 
 /* -------end Bootstrap customization-------- */
 
-/* -------begin jodiBooks additions-------- */
+/* -------begin custom additions-------- */
+$link-dark-color:           $dark;
+$link-dark-hover-color:     darken($link-dark-color, 15%);
+$link-light-color:          $light;
+$link-light-hover-color:    darken($link-light-color, 15%);
+
+footer {
+    background: $red-300;
+    color: $light;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+
+.linkDark {
+    color: $link-dark-color;
+}
+    .linkDark:hover {
+        color: $link-dark-hover-color;
+    }
+
+.linkLight {
+    color: $link-light-color;
+}
+    .linkLight:hover {
+        color: $link-light-hover-color;
+    }
+
+.linkNav {
+    color: $navbar-light-color;
+    border-color: $navbar-light-toggler-border-color;
+}
+    .linkNav:hover {
+        color: $navbar-light-hover-color;
+    }
+    .linkNav:active {
+        color: $navbar-light-active-color;
+    }
+    .linkNav:disabled {
+        color: $navbar-light-disabled-color;
+    }
 
 /* ---footer--- */
-footer.footer {
-    background: $jodiGrayDark;
-    color: $jodiGrayLight;
-    padding-top: 2rem;
-    padding-bottom: 2rem;
-}
 
-/* Put a border between the columns of a row for layouts sm and up */
-.row.border-between-dark > [class*='col-']:before {
-    background: $jodiGrayDark;
-    bottom: 0;
-    content: " ";
-    left: 0;
-    position: absolute;
-    width: 1px;
-    top: 0;
-}
-
-.row.border-between-light > [class*='col-']:before {
-    background: $jodiGrayLight;
-    bottom: 0;
-    content: " ";
-    left: 0;
-    position: absolute;
-    width: 1px;
-    top: 0;
-}
-
-.row.border-between-dark > [class*='col-']:first-child:before {
-    display: none;
-}
-
-.row.border-between-light > [class*='col-']:first-child:before {
-    display: none;
-}
-
-.btn-contact {
-    display: block;
-    margin: .25rem;
-    height: auto;
-    width: 150px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-
-.btn-help {
-    display: block;
-    margin: .25rem;
-    width: 150px;
-}
-
-.call-to-action {
-    position: relative;
-    background-color: $jodiGrayDark;
-    background-size: cover;
-    padding-top: 6rem;
-    padding-bottom: 6rem;
-}
-
-    .call-to-action .overlay {
-        position: absolute;
-        background-color: $jodiGrayLight;
-        height: 100%;
-        width: 100%;
-        top: 0;
-        left: 0;
-        opacity: 0.5;
-    }
-
-.default-content {
-    padding-top: 7rem;
-    padding-bottom: 7rem;
-    background-color: $jodiGrayLight;
-}
-
-    .default-content .default-content-item {
-        max-width: 20rem;
-        margin: 0 0;
-        padding: .5rem;
-    } 
-    
-        .default-content .default-content-item .jumbotron {
-            background-color: $jodiGrayDark;
-            color: $jodiGrayLight;
-            margin: 0;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
-
-.features-icons {
-    padding-top: 7rem;
-    padding-bottom: 7rem;
-    background-color: $jodiGrayDark;
-    color: $jodiGrayLight;
-}
-
-    .features-icons .features-icons-item {
-        max-width: 20rem;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        margin: 0 auto;
-    }
-
-        .features-icons .features-icons-item .features-icons-icon {
-            height: 6rem;
-            color: $jodiGrayLight;
-        }
-
-.instagram {
-    padding: 2rem;
-    background-color: $jodiGrayLight;
-}
-
-.jodi-home-cover {
-    position: relative;
-    background-position: 50% calc(50% + 0px);
-    background-repeat: no-repeat;
-    background-size: cover;
-}
-
-    .jodi-home-cover .jodi-home-cover-logo {
-        width: 50%;
-        max-width: 250px;
-        min-width: 110px;
-    }
-
-.listgroup-overlay {
-    background-color: $jodiOverlayComp !important;
-}
-
-.masthead {
-    position: relative;
-    background-color: $jodiGrayDark;
-    background-size: cover;
-    padding-top: 5.5rem;
-    padding-bottom: 5.5rem;
-}
-
-    .masthead .overlay {
-        position: absolute;
-        background-color: $jodiOverlayBg;
-        height: 100%;
-        width: 100%;
-        top: 0;
-        left: 0;
-    }
-
-    .masthead h1 {
-        font-size: 2rem;
-    }
-
-@media (min-width: 768px) {
-    .masthead {
-        padding-top: 12rem;
-        padding-bottom: 12rem;
-    }
-
-        .masthead h1 {
-            font-size: 3rem;
-        }
-}
-
-.react-icons {
-    vertical-align: middle;
-}
-
-.showcase .showcase-title {
-    padding-top: 7rem;
-    padding-bottom: 2rem;
-    background-color: $jodiGrayLight;
-}
-
-.showcase .showcase-blurb {
-    padding-bottom: 2rem;
-    padding-top: 2rem;
-    background-color: $jodiGrayLight;
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-    .showcase .showcase-blurb .jumbotron{
-        background-color: $jodiGrayDark;
-        color: $jodiGrayLight;
-        padding: 2rem;
-        margin-bottom: 0;
-    }
-
-    .showcase .showcase-blurb .overlay {
-        position: absolute;
-        background-color: $jodiOverlayBg;
-        height: 100%;
-        width: 100%;
-        top: 0;
-        left: 0;
-    }
-
-    .showcase .showcase-blurb .blue {
-        position: absolute;
-        background-color: $jodiBlueMedium;
-        height: 100%;
-        width: 100%;
-        top: 0;
-        left: 0;
-    }
-
-    .showcase .showcase-blurb .green {
-        position: absolute;
-        background-color: $jodiGreenMedium;
-        height: 100%;
-        width: 100%;
-        top: 0;
-        left: 0;
-    }
-
-    .showcase .showcase-blurb .pink {
-        position: absolute;
-        background-color: $jodiPinkMedium;
-        height: 100%;
-        width: 100%;
-        top: 0;
-        left: 0;
-    }
-
-    .showcase .showcase-blurb .gray {
-        position: absolute;
-        background-color: $jodiGrayDark;
-        height: 100%;
-        width: 100%;
-        top: 0;
-        left: 0;
-    }
-
-.showcase .showcase-text-blue {
-    padding: 2rem;
-    background-color: $jodiBlueMedium;
-    color: $jodiGrayLight;
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-}
-
-.showcase .showcase-text-green {
-    padding: 2rem;
-    background-color: $jodiGreenMedium;
-    color: $jodiGrayLight;
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-}
-
-.showcase .showcase-text-pink {
-    padding: 2rem;
-    background-color: $jodiPinkMedium;
-    color: $jodiGrayLight;
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-}
-
-.showcase .showcase-text-gray {
-    padding: 2rem;
-    background-color: $jodiGrayDark;
-    color: $jodiGrayLight;
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-}
-
-.showcase .showcase-img {
-    min-height: 20rem;
-    padding: 2rem;
-    position: relative;
-    background-size: cover;
-    background-color: $jodiGrayDark;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-    .showcase .showcase-img .overlay {
-        position: absolute;
-        background-color: $jodiOverlayBg;
-        height: 100%;
-        width: 100%;
-        top: 0;
-        left: 0;
-    }
-
-    .showcase .showcase-img .blue {
-        position: absolute;
-        background-color: $jodiBlueMedium;
-        height: 100%;
-        width: 100%;
-        top: 0;
-        left: 0;
-    }
-
-    .showcase .showcase-img .green {
-        position: absolute;
-        background-color: $jodiGreenMedium;
-        height: 100%;
-        width: 100%;
-        top: 0;
-        left: 0;
-    }
-
-    .showcase .showcase-img .pink {
-        position: absolute;
-        background-color: $jodiPinkMedium;
-        height: 100%;
-        width: 100%;
-        top: 0;
-        left: 0;
-    }
-
-    .showcase .showcase-img .jumbotron{
-        padding: 2rem;
-        margin-bottom: 0;
-    }
-
-.top-banner {
-    background-color: $jodiPinkLight;
-    padding: .5rem;
-}
-
-    .top-banner .top-banner-col {
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        align-items: center;
-    }
-
-.whoarewe {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-}
-
-/* -------end jodiBooks additions-------- */
+/* -------end custom additions-------- */
 
 /* finally, import Bootstrap to set the changes! */
 @import "../node_modules/bootstrap";

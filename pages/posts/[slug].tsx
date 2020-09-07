@@ -10,7 +10,7 @@ import Layout from '../../src/components/layout'
 import { IPostProps, IallPostsProps } from '../../src/interfaces'
 import { getPostBySlug, getAllPosts } from '../../src/lib/api'
 import PostTitle from '../../src/components/post-title'
-import data from '../../src/lib/data.json'
+import { data, siteInfo } from '../../src/lib/data'
 import markdownToHtml from '../../src/lib/markdownToHtml'
 
 export default function Post({ post: initialPost, preview }: IPostProps) {
@@ -62,7 +62,7 @@ export default function Post({ post: initialPost, preview }: IPostProps) {
                             <article className="mb-32">
                                 <Head>
                                     <title>
-                                        {post.title}{data.PageTitle}
+                                        {post.title}{siteInfo.PageTitle}
                                     </title>
                                     <meta property="og:image" content={post.ogImage.url} />
                                 </Head>

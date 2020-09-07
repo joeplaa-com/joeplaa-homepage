@@ -1,12 +1,12 @@
 import { NextSeo } from 'next-seo'
 import { Container } from 'reactstrap'
-import HeroPost from '../src/components/hero-post'
-import Intro from '../src/components/intro'
-import Layout from '../src/components/layout'
-import MoreStories from '../src/components/more-stories'
-import { IallPostsProps } from '../src/interfaces'
-import { getAllPosts } from '../src/lib/api'
-import { siteInfo, navigation } from '../src/lib/data'
+import HeroPost from '../../src/components/hero-post'
+import Intro from '../../src/components/intro'
+import Layout from '../../src/components/layout'
+import MoreStories from '../../src/components/more-stories'
+import { IallPostsProps } from '../../src/interfaces'
+import { getAllPosts } from '../../src/lib/api'
+import { siteInfo, navigation } from '../../src/lib/data'
 
 export default function Index({ allPosts }: { allPosts: Array<IallPostsProps> }) {
     const heroPost = allPosts[0]

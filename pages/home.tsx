@@ -6,8 +6,7 @@ import Layout from '../src/components/layout'
 import MoreStories from '../src/components/more-stories'
 import { IallPostsProps } from '../src/interfaces'
 import { getAllPosts } from '../src/lib/api'
-import { urls } from '../src/lib/constants'
-import data from '../src/lib/data.json'
+import { siteInfo, navigation } from '../src/lib/data'
 
 export default function Index({ allPosts }: { allPosts: Array<IallPostsProps> }) {
     const heroPost = allPosts[0]
@@ -15,13 +14,13 @@ export default function Index({ allPosts }: { allPosts: Array<IallPostsProps> })
     return (
         <>
             <NextSeo
-                title={data.HomeTitle}
-                titleTemplate={data.SiteTitle + ' | %s'}
-                description={data.HomeDescription}
+                title={siteInfo.HomeTitle}
+                titleTemplate={siteInfo.SiteTitle + ' | %s'}
+                description={siteInfo.HomeDescription}
                 openGraph={{
-                    url: process.env.NEXT_PUBLIC_URL + urls.internal.home,
-                    title: data.HomeTitle,
-                    description: data.HomeDescription,
+                    url: process.env.NEXT_PUBLIC_URL + navigation.home,
+                    title: siteInfo.HomeTitle,
+                    description: siteInfo.HomeDescription,
                     images: [
                     ]
                 }}
@@ -31,7 +30,7 @@ export default function Index({ allPosts }: { allPosts: Array<IallPostsProps> })
                     <Intro />
                     {heroPost && (
                         <HeroPost
-                            title={heroPost.title}
+                            title={heroPost.title + siteInfo.PageTitle}
                             coverImage={heroPost.coverImage}
                             date={heroPost.date}
                             author={heroPost.author}

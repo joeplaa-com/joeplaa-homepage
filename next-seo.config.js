@@ -1,15 +1,15 @@
-import { urls } from './src/lib/constants'
-import data from './src/lib/data.json'
+/* eslint-disable no-undef */
+import { siteInfo } from './src/lib/data'
 
 export default {
     openGraph: {
         type: 'website',
         url: process.env.NEXT_PUBLIC_URL + '/',
         locale: 'en_US',
-        site_name: data.SiteName,
-        title: data.SiteTitle,
-        titleTemplate: data.SiteTitle + ' | %s',
-        description: data.SiteDescription,
+        site_name: siteInfo.SiteName,
+        title: siteInfo.SiteTitle,
+        titleTemplate: siteInfo.SiteTitle + ' | %s',
+        description: siteInfo.SiteDescription,
         images: [
             {
                 url: process.env.NEXT_PUBLIC_URL + '/og_logo.png',
