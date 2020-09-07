@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 import { siteInfo } from './src/lib/data'
 
 export default {
