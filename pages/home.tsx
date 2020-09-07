@@ -6,7 +6,6 @@ import Layout from '../src/components/layout'
 import MoreStories from '../src/components/more-stories'
 import { IallPostsProps } from '../src/interfaces'
 import { getAllPosts } from '../src/lib/api'
-import { urls } from '../src/lib/constants'
 import data from '../src/lib/data.json'
 
 export default function Index({ allPosts }: { allPosts: Array<IallPostsProps> }) {
@@ -19,7 +18,7 @@ export default function Index({ allPosts }: { allPosts: Array<IallPostsProps> })
                 titleTemplate={data.SiteTitle + ' | %s'}
                 description={data.HomeDescription}
                 openGraph={{
-                    url: process.env.NEXT_PUBLIC_URL + urls.internal.home,
+                    url: process.env.NEXT_PUBLIC_URL + data.menu.home,
                     title: data.HomeTitle,
                     description: data.HomeDescription,
                     images: [

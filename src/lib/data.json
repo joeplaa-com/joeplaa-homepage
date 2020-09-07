@@ -1,4 +1,21 @@
 {
+    "menu": {
+        "blog": "/blog",
+        "home": "/home",
+        "howto": "/howto",
+        "portfolio": "/portfolio",
+        "books": "/recommended/books",
+        "videos": "/recommended/videos"
+    },
+    "urls": {
+        "facebook": "https://www.facebook.com/joeplaadotcom",
+        "github": "https://github.com/joeplaa",
+        "goodreads": "https://www.goodreads.com/joeplaa",
+        "instagram": "https://www.instagram.com/joeplaa/",
+        "linkedin": "https://www.linkedin.com/in/joeplaa/",
+        "mailto": "mailto:info@joeplaa.com"
+
+    },
     "AuthorName": "Joep van de Laarschot",
     "Blog": "Blog",
     "Books": "Books",
