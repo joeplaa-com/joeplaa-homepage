@@ -2,9 +2,9 @@
 import React from 'react'
 import { DropdownItem, DropdownMenu, DropdownToggle, UncontrolledDropdown, Nav, NavItem, NavLink } from 'reactstrap'
 import { useRouter } from 'next/router'
-import data from '../lib/data.json'
+import { data, navigation } from '../lib/data'
 
-export default function Navigation({ className }: {className: string}) {
+export default function Navigation({ className }: { className: string }) {
     function activeLink(href) {
         const router = useRouter();
         const path = router.pathname;
@@ -14,17 +14,17 @@ export default function Navigation({ className }: {className: string}) {
 
     return (
         <Nav className={className} navbar pills>
-            <NavItem active={activeLink(data.menu.home)}>
-                <NavLink href={data.menu.home}>{data.Home}</NavLink>
+            <NavItem active={activeLink(navigation.home)}>
+                <NavLink href={navigation.home}>{data.Home}</NavLink>
             </NavItem>
-            <NavItem active={activeLink(data.menu.blog)}>
-                <NavLink href={data.menu.blog}>{data.Blog}</NavLink>
+            <NavItem active={activeLink(navigation.blog)}>
+                <NavLink href={navigation.blog}>{data.Blog}</NavLink>
             </NavItem>
-            <NavItem active={activeLink(data.menu.portfolio)}>
-                <NavLink href={data.menu.portfolio}>{data.Portfolio}</NavLink>
+            <NavItem active={activeLink(navigation.portfolio)}>
+                <NavLink href={navigation.portfolio}>{data.Portfolio}</NavLink>
             </NavItem>
-            <NavItem active={activeLink(data.menu.howto)}>
-                <NavLink href={data.menu.howto}>{data.Howto}</NavLink>
+            <NavItem active={activeLink(navigation.howto)}>
+                <NavLink href={navigation.howto}>{data.Howto}</NavLink>
             </NavItem>
             <UncontrolledDropdown nav inNavbar>
                 <DropdownToggle nav caret>
@@ -32,10 +32,10 @@ export default function Navigation({ className }: {className: string}) {
                 </DropdownToggle>
                 <DropdownMenu right>
                     <DropdownItem>
-                        <NavLink href={data.menu.books}>{data.Books}</NavLink>
+                        <NavLink href={navigation.books}>{data.Books}</NavLink>
                     </DropdownItem>
                     <DropdownItem>
-                        <NavLink href={data.menu.videos}>{data.Videos}</NavLink>
+                        <NavLink href={navigation.videos}>{data.Videos}</NavLink>
                     </DropdownItem>
                 </DropdownMenu>
             </UncontrolledDropdown>

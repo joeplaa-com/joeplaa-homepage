@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Button, Col, Modal, ModalHeader, ModalBody, ModalFooter, Row } from 'reactstrap';
 import { browserName } from 'react-device-detect';
 import { differenceInDays } from 'date-fns';
-import data from '../lib/data.json';
+import { data } from '../lib/data';
 import { urls } from '../lib/constants';
 import { applicationActionCreators } from '../store/actions/application';
 

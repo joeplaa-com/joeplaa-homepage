@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { Collapse, Navbar, NavbarBrand, NavbarToggler } from 'reactstrap'
 import Navigation from './navigation'
 import Social from './social'
-import data from '../lib/data.json'
+import { siteInfo } from '../lib/data'
 
 export default function Header() {
     const [isOpen, setIsOpen] = useState(false);
@@ -10,7 +10,7 @@ export default function Header() {
 
     return (
         <Navbar color="light" light expand="md">
-            <NavbarBrand href="/">{data.siteInfo.SiteName}</NavbarBrand>
+            <NavbarBrand href="/">{siteInfo.SiteName}</NavbarBrand>
             <NavbarToggler onClick={toggle} />
             <Collapse isOpen={isOpen} navbar>
                 <Navigation className="mx-auto" />
