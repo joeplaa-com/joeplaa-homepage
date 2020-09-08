@@ -2,9 +2,9 @@ import Avatar from "./avatar";
 import DateFormater from "./date-formater";
 import CoverImage from "./cover-image";
 import PostTitle from "./post-title";
-import { IPostHeaderProps } from '../interfaces'
+import { PostHeaderProps } from '../types'
 
-export default function PostHeader({ title, coverImage, date, author, slug }: IPostHeaderProps) {
+export default function PostHeader({ title, coverImage, date, author, slug }: PostHeaderProps) {
     return (
         <>
             <PostTitle>{title}</PostTitle>

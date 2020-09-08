@@ -1,7 +1,7 @@
 import Link from "next/link";
-import { ICoverImageProps } from '../interfaces'
+import { CoverImageProps } from '../types'
 
-export default function CoverImage({ title, src, slug }: ICoverImageProps) {
+export default function CoverImage({ title, src, slug }: CoverImageProps) {
     const image = (
         <img
             src={src}

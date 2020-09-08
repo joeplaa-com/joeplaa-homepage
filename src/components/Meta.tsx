@@ -1,8 +1,8 @@
-import Head from 'next/head';
-import { IMetaProps } from '../interfaces';
-import { siteInfo } from '../lib/data';
+import Head from 'next/head'
+import { MetaProps } from '../types'
+import { siteInfo } from '../lib/data'
 
-export default function Meta(props: IMetaProps) {
+export default function Meta(props: MetaProps) {
     return (
         <Head>
             <meta name='viewport' content='minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no' />

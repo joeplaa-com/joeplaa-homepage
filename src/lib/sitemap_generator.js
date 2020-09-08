@@ -7,7 +7,7 @@ sitemap({
     baseUrl: 'https://joeplaa.com',
     ignoreIndexFiles: true,
     pagesDirectory: __dirname + "\\..\\..\\pages",
-    targetDirectory: '../../public/',
+    targetDirectory: './public/',
     nextConfigPath: __dirname + "\\..\\..\\next.config.js",
     ignoredExtensions: [
         'png',

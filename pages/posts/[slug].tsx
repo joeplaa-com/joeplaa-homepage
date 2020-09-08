@@ -9,12 +9,12 @@ import PostTitle from '../../src/components/post-title'
 import { getPostBySlug, getAllPosts } from '../../src/lib/api'
 import { siteInfo } from '../../src/lib/data'
 import markdownToHtml from '../../src/lib/markdownToHtml'
-import { PostType } from '../../src/types'
+import { PostTypeProps } from '../../src/types'
 
 type Props = {
-    post: PostType
-    morePosts: PostType[]
-    preview?: boolean
+    post: PostTypeProps
+    morePosts: PostTypeProps[]
+    preview?: string
 }
 
 const Post = ({ post, morePosts, preview }: Props) => {
@@ -68,7 +68,7 @@ export async function getStaticProps({ params }: Params) {
         'content',
         'ogImage',
         'coverImage',
-    ])
+    ]) as PostTypeProps
     const content = await markdownToHtml(post.content || '')
 
     return {
@@ -85,7 +85,7 @@ export async function getStaticPaths() {
     const posts = getAllPosts(['slug'])
 
     return {
-        paths: posts.map((posts) => {
+        paths: posts.map((posts: PostTypeProps) => {
             return {
                 params: {
                     slug: posts.slug,

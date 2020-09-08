@@ -2,10 +2,10 @@ import Head from 'next/head';
 import Footer from './footer';
 import Header from './header';
 import Meta from './meta';
-import { ILayoutProps } from '../interfaces';
+import { LayoutProps } from '../types';
 import { siteInfo } from '../lib/data'
 
-export default function Layout(props: ILayoutProps) {
+export default function Layout(props: LayoutProps) {
     return (
         <>
             <Head>
