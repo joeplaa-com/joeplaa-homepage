@@ -27,7 +27,7 @@ export default function Index({ allPosts }: AllPostsProps) {
             />
             <Layout siteDescription={heroPost.excerpt} siteTitle={heroPost.title} >
                 <Container>
-                    <Intro />
+                    
                     {heroPost && (
                         <HeroPost
                             title={heroPost.title}

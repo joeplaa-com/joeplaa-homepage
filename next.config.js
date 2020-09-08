@@ -17,7 +17,7 @@ module.exports = withBundleAnalyzer(
             // but you can overwrite them here with any valid value you want.
             handleImages: ['jpg', 'jpeg', 'png', 'svg', 'webp'],
             inlineImageLimit: 8192,
-            imagesFolder: 'assets',
+            imagesFolder: 'src/assets',
             imagesName: '[name]-[hash].[ext]',
             imagesOutputPath: 'static/assets',
             optimizeImages: true,

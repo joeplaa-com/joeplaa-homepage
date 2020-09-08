@@ -11,7 +11,7 @@ export default function Header() {
     return (
         <Navbar color='white' light className='shadow' expand='md'>
             <NavbarBrand href='/'>
-                <img alt={siteInfo.SiteName} src={require('../assets/banner-com.png')} height="65px" />
+                <img alt={siteInfo.SiteName} src={require('../assets/banner-com-s.png')} height="65px" />
             </NavbarBrand>
             <NavbarToggler onClick={toggle} />
             <Collapse isOpen={isOpen} navbar>

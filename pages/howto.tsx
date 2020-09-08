@@ -1,14 +1,13 @@
 import { NextSeo } from 'next-seo'
 import { Container } from 'reactstrap'
 import HeroPost from '../src/components/hero-post'
-import Intro from '../src/components/intro'
 import Layout from '../src/components/layout'
 import MoreStories from '../src/components/more-stories'
 import { AllPostsProps } from '../src/types'
 import { getAllPosts } from '../src/lib/api'
 import { siteInfo, navigation } from '../src/lib/data'
 
-export default function Index({ allPosts }: AllPostsProps) {
+export default function Howto({ allPosts }: AllPostsProps) {
     const heroPost = allPosts[0]
     const morePosts = allPosts.slice(1)
     return (
@@ -33,7 +32,7 @@ export default function Index({ allPosts }: AllPostsProps) {
             />
             <Layout siteDescription={heroPost.excerpt} siteTitle={heroPost.title} >
                 <Container>
-                    <Intro />
+                    
                     {heroPost && (
                         <HeroPost
                             title={heroPost.title}

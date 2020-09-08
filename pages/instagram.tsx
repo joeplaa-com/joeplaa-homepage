@@ -7,7 +7,7 @@ import { AllPostsProps } from '../src/types'
 import { getAllPosts } from '../src/lib/api'
 import { siteInfo, navigation } from '../src/lib/data'
 
-export default function Blog({ allPosts }: AllPostsProps) {
+export default function Instagram({ allPosts }: AllPostsProps) {
     const heroPost = allPosts[0]
     const morePosts = allPosts.slice(1)
     return (

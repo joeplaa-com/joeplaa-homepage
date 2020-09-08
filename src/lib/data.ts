@@ -19,7 +19,7 @@ export const siteInfo = {
     AuthorName: 'Joep van de Laarschot',
     BusinessName: 'Joeplaa',
     HomeDescription: 'Who is Joep and what is Joeplaa?',
-    HomeTitle: 'About Joeplaa | joeplaa.com',
+    HomeTitle: 'Joeplaa | joeplaa.com',
     PageTitle: ' | joeplaa.com',
     SiteDescription: 'My journey to reach my goal: Help 2 billion people.',
     SiteName: 'joeplaa.com',

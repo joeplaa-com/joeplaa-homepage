@@ -12,22 +12,22 @@ export default function Header({ classString, color }: LinkProps) {
         <IconContext.Provider value={{ size: '1.25rem' }}>
             <Nav className={classString} nav>
                 <NavItem>
-                    <NavLink className={linkColor(color)} href={urls.facebook}><FaFacebook /></NavLink>
+                    <NavLink className={linkColor(color) + ' nav-padding-social'} href={urls.facebook}><FaFacebook /></NavLink>
                 </NavItem>
                 <NavItem>
-                    <NavLink className={linkColor(color)} href={urls.instagram}><FaInstagram /></NavLink>
+                    <NavLink className={linkColor(color) + ' nav-padding-social'} href={urls.instagram}><FaInstagram /></NavLink>
                 </NavItem>
                 <NavItem>
-                    <NavLink className={linkColor(color)} href={urls.linkedin}><FaLinkedin /></NavLink>
+                    <NavLink className={linkColor(color) + ' nav-padding-social'} href={urls.linkedin}><FaLinkedin /></NavLink>
                 </NavItem>
                 <NavItem>
-                    <NavLink className={linkColor(color)} href={urls.github}><FaGithub /></NavLink>
+                    <NavLink className={linkColor(color) + ' nav-padding-social'} href={urls.github}><FaGithub /></NavLink>
                 </NavItem>
                 <NavItem>
-                    <NavLink className={linkColor(color)} href={urls.goodreads}><FaGoodreads /></NavLink>
+                    <NavLink className={linkColor(color) + ' nav-padding-social'} href={urls.goodreads}><FaGoodreads /></NavLink>
                 </NavItem>
                 <NavItem>
-                    <NavLink className={linkColor(color)} href={urls.mailto}><MdMail /></NavLink>
+                    <NavLink className={linkColor(color) + ' nav-padding-social'} href={urls.mailto}><MdMail /></NavLink>
                 </NavItem>
             </Nav>
         </IconContext.Provider>
