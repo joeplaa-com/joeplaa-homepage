@@ -22,6 +22,12 @@ export default function Index({ allPosts }: { allPosts: Array<IallPostsProps> })
                     title: siteInfo.HomeTitle,
                     description: siteInfo.HomeDescription,
                     images: [
+                        {
+                            url: process.env.NEXT_PUBLIC_URL + '/banner-howto-white.png',
+                            width: 300,
+                            height: 300,
+                            alt: 'joeplaa howto banner',
+                        }
                     ]
                 }}
             />
