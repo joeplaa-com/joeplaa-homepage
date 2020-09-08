@@ -14,7 +14,7 @@ export default function Index() {
         <BlogJsonLd
             datePublished='08/30/2020'
             dateModified='08/30/2020'
-            authorName={siteInfo.Authorname}
+            authorName={siteInfo.AuthorName}
             title={siteInfo.SiteTitle}
             description={siteInfo.SiteDescription}
             url={process.env.NEXT_PUBLIC_URL}

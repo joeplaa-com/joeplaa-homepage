@@ -1,8 +1,8 @@
-import Avatar from './avatar';
-import DateFormater from './date-formater';
-import CoverImage from './cover-image';
-import Link from 'next/link';
-import { IHeroPostProps } from '../interfaces'
+import Avatar from './avatar'
+import DateFormater from './date-formater'
+import CoverImage from './cover-image'
+import Link from 'next/link'
+import { HeroPostProps } from '../types'
 
 export default function HeroPost({
     title,
@@ -11,7 +11,7 @@ export default function HeroPost({
     excerpt,
     author,
     slug,
-}: IHeroPostProps) {
+}: HeroPostProps) {
     return (
         <section>
             <div className='mb-8 md:mb-16'>

@@ -5,9 +5,9 @@ import { FaFacebook, FaInstagram, FaLinkedin, FaGithub, FaGoodreads } from 'reac
 import { MdMail } from 'react-icons/md'
 import { urls } from '../lib/data'
 import linkColor from '../lib/linkColor'
-import { Ilink } from '../interfaces'
+import { LinkProps } from '../types'
 
-export default function Header({ classString, color }: Ilink) {
+export default function Header({ classString, color }: LinkProps) {
     return (
         <IconContext.Provider value={{ size: '1.25rem' }}>
             <Nav className={classString} nav>

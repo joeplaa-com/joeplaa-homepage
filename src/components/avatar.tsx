@@ -1,6 +1,6 @@
-import { IAuthorProps } from '../interfaces'
+import { AuthorProps } from '../types'
 
-export default function Avatar({ name, picture }: IAuthorProps) {
+export default function Avatar({ name, picture }: AuthorProps) {
     return (
         <div className="flex items-center">
             <img src={picture} className="w-12 h-12 rounded-full mr-4" alt={name} />

@@ -4,11 +4,11 @@ import HeroPost from '../src/components/hero-post'
 import Intro from '../src/components/intro'
 import Layout from '../src/components/layout'
 import MoreStories from '../src/components/more-stories'
-import { IallPostsProps } from '../src/interfaces'
+import { AllPostsProps } from '../src/types'
 import { getAllPosts } from '../src/lib/api'
 import { siteInfo, navigation } from '../src/lib/data'
 
-export default function Index({ allPosts }: { allPosts: Array<IallPostsProps> }) {
+export default function Index({ allPosts }: AllPostsProps) {
     const heroPost = allPosts[0]
     const morePosts = allPosts.slice(1)
     return (
