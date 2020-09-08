@@ -1,6 +1,5 @@
 import React from 'react'
 import { AppProps } from 'next/app'
-import { withTina } from 'tinacms'
 import { Provider } from 'react-redux'
 import { PersistGate } from 'redux-persist/integration/react'
 import { DefaultSeo } from 'next-seo'
@@ -19,7 +18,4 @@ function MyApp({ Component, pageProps }: AppProps) {
     )
 }
 
-export default withTina(MyApp, {
-    enabled: true,
-    sidebar: true,
-})
+export default MyApp

@@ -4,11 +4,11 @@
 const sitemap = require('nextjs-sitemap-generator');
 // https://github.com/IlusionDev/nextjs-sitemap-generator
 sitemap({
-    baseUrl: 'https://jodibooks.com',
+    baseUrl: 'https://joeplaa.com',
     ignoreIndexFiles: true,
-    pagesDirectory: __dirname + "\\pages",
-    targetDirectory: './public/',
-    nextConfigPath: __dirname + "\\next.config.js",
+    pagesDirectory: __dirname + "\\..\\..\\pages",
+    targetDirectory: '../../public/',
+    nextConfigPath: __dirname + "\\..\\..\\next.config.js",
     ignoredExtensions: [
         'png',
         'jpg',
