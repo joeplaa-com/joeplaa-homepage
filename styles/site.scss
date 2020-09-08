@@ -153,21 +153,20 @@ footer {
 
 .image-container {
     position: relative;
-    text-align: center;
-    color: white;
 }
 
-.image-centered {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
-
-.responsive {
-    max-width: 100%;
-    height: auto;
-  }
+    .image-container .overlay {
+        position: absolute;
+        bottom: 0; /* At the bottom. Use top:0 to append it to the top */
+        top: 0;
+        background: rgba($black, 0.1); /* Background with 0.5 opacity */
+        color: $white;
+        width: 100%;
+        padding: 2rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
 
 .linkDark {
     color: $link-dark-color;
@@ -200,6 +199,7 @@ footer {
 a.nav-padding-social {
     padding: 0.5rem 0.5rem;
 }
+
 /* ---footer--- */
 
 /* -------end custom additions-------- */

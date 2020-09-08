@@ -38,10 +38,12 @@ export default function Home() {
                             <Img
                                 src={require('../src/assets/home-banner.jpg')}
                                 alt={siteInfo.HomeTitle + '-banner'}
-                                className='responsive'
+                                className='img-fluid'
                                 webp
                                 sizes={[320, 480, 640, 960, 1280, 1600, 1920]} />
-                            <h1 className='image-centered'>{siteInfo.HomeTitle}</h1>
+                            <div className='overlay'>
+                                <h1>{siteInfo.HomeTitle}</h1>
+                            </div>
                         </div>
                     </Col>
                 </Row>
