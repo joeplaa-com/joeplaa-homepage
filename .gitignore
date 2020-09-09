@@ -1,5 +1,14 @@
+# Packagers
+node_modules
+.yarn/*
+!.yarn/releases
+!.yarn/plugins
+!.yarn/sdks
+!.yarn/versions
+.pnp.*
+
+# Next.js
 .env
 .now
 .next
-node_modules
 /out
