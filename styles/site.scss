@@ -5,35 +5,28 @@
 @import "../node_modules/bootstrap/scss/mixins";
 @import "../node_modules/bootstrap/scss/variables";
 
-/* custom colors */
-/* triadic */
-$tri-primary:       #ea153c;
-$tri-secondary:     #3cea15;
-$tri-tertiary:      #153cea;
+/* custom colors 
+    https://www.sessions.edu/color-calculator/
+    https://mdigi.tools/color-shades/
+*/
+$chili:             #c21807;
+
+$ana-primary:       $chili;
+$ana-secondary:     #c27407;
+$ana-tertiary:      #c20755;
 
 /* monochromes */
 $white: $white;
-$red-100: #fce7eb;
-$red-200: #fad0d8;
-$red-300: #f8b8c4;
-$red-400: #f6a1b1;
-$red-500: #f48a9d;
-$red-600: #f2729a;
-$red-700: #f05b76;
-$red-800: #ee4363;
-$red-900: #ec2c4f;
-$red-full: $tri-primary;
-
-$blue-100: #e7ebfc;
-$blue-200: #d0d8fa;
-$blue-300: #b8c4f8;
-$blue-400: #a1b1f6;
-$blue-500: #8a9df4;
-$blue-600: #728af2;
-$blue-700: #5b76f0;
-$blue-800: #4363ee;
-$blue-900: #2c4fec;
-$blue-full: $tri-tertiary;
+$red-100: #f9e8e6;
+$red-200: #f3d1cd;
+$red-300: #edbab5;
+$red-400: #e7a39c;
+$red-500: #e18c83;
+$red-600: #da746a;
+$red-700: #d45d51;
+$red-800: #ce4639;
+$red-900: #c82f20;
+$red-full: $chili;
 
 $reds: ();
 $reds: map-merge(
@@ -50,28 +43,14 @@ $reds: map-merge(
   ),
   $reds
 );
-$blues: ();
-$blues: map-merge(
-  (
-    "b100": $blue-100,
-    "b200": $blue-200,
-    "b300": $blue-300,
-    "b400": $blue-400,
-    "b500": $blue-500,
-    "b600": $blue-600,
-    "b700": $blue-700,
-    "b800": $blue-800,
-    "b900": $blue-900
-  ),
-  $blues
-);
 
 /* -------begin Bootstrap customization-------- */
 /* simply assign the value */
 
 /* or, use an existing variable */
 $theme-colors: (
-    primary: $red-full
+    primary: $red-full,
+    secondary: $gray-100
 );
 
 $body-bg:                           $gray-100;
@@ -79,14 +58,13 @@ $body-bg:                           $gray-100;
 $component-active-color:            $white;
 $component-active-bg:               $red-900;
 
-$link-color:                        $tri-primary;
+$link-color:                        $red-full;
 $link-hover-color:                  darken($link-color, 15%);
 
 $navbar-light-color:                $red-800;
 $navbar-light-hover-color:          $red-700;
 $navbar-light-active-color:         $red-900;
 $navbar-light-disabled-color:       $red-300;
-$navbar-light-toggler-border-color: $red-100;
 
 $nav-pills-link-active-color:       $component-active-color !important;
 $nav-pills-link-active-bg:          $component-active-bg;
@@ -143,7 +121,7 @@ $link-light-color:          $light;
 $link-light-hover-color:    darken($link-light-color, 15%);
 
 footer {
-    background: $red-300;
+    background: $gray-500;
     color: $light;
     padding-top: 1rem;
     padding-bottom: 1rem;

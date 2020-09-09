@@ -17,13 +17,13 @@ export default function Home() {
                     description: siteInfo.HomeDescription,
                     images: [
                         {
-                            url: process.env.NEXT_PUBLIC_URL + '/banner-white.png',
+                            url: process.env.NEXT_PUBLIC_URL + '/white-banner.png',
                             width: 300,
                             height: 300,
                             alt: 'joeplaa banner',
                         },
                         {
-                            url: process.env.NEXT_PUBLIC_URL + '/banner-com-white.png',
+                            url: process.env.NEXT_PUBLIC_URL + '/white-banner-com.png',
                             width: 300,
                             height: 300,
                             alt: 'joeplaa.com banner',
