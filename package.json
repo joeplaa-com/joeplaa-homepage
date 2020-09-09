@@ -9,7 +9,7 @@
     "license": "Proprietary",
     "scripts": {
         "dev": "next",
-        "build": "env ANALYZE=true next build && node ./src/lib/sitemap_generator.js && next export",
+        "build": "env ANALYZE=true next build && yarn node ./src/lib/sitemap_generator.js && next export",
         "start": "next start"
     },
     "dependencies": {
