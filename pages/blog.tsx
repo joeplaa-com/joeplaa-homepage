@@ -31,8 +31,7 @@ export default function Blog({ allPosts }: AllPostsProps) {
                 }}
             />
             <Layout siteDescription={heroPost.excerpt} siteTitle={heroPost.title} >
-                <Container>
-                    
+                <Container fluid>
                     {heroPost && (
                         <HeroPost
                             title={heroPost.title}

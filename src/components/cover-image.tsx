@@ -1,15 +1,16 @@
 import Link from "next/link";
+import Img from 'react-optimized-image'
 import { CoverImageProps } from '../types'
 
 export default function CoverImage({ title, src, slug }: CoverImageProps) {
     const image = (
-        <img
+        <Img
             src={src}
             alt={`Cover Image for ${title}`}
         />
     );
     return (
-        <div className="-mx-5 sm:mx-0">
+        <div>
             {slug ? (
                 <Link as={`/posts/${slug}`} href="/posts/[slug]">
                     <a aria-label={title}>{image}</a>
