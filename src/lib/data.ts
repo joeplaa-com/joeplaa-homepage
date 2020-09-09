@@ -3,8 +3,7 @@ export const navigation = {
     home: '/home',
     howto: '/howto',
     portfolio: '/portfolio',
-    books: '/recommended/books',
-    videos: '/recommended/videos'
+    recommended: '/recommended'
 };
 export const urls = {
     facebook: 'https://www.facebook.com/joeplaadotcom',
@@ -19,7 +18,7 @@ export const siteInfo = {
     AuthorName: 'Joep van de Laarschot',
     BusinessName: 'Joeplaa',
     HomeDescription: 'Who is Joep and what is Joeplaa?',
-    HomeTitle: 'Joeplaa | joeplaa.com',
+    HomeTitle: 'Home | joeplaa.com',
     PageTitle: ' | joeplaa.com',
     SiteDescription: 'My journey to reach my goal: Help 2 billion people.',
     SiteName: 'joeplaa.com',

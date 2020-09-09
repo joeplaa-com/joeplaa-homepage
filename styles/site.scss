@@ -120,7 +120,30 @@ $link-dark-hover-color:     darken($link-dark-color, 15%);
 $link-light-color:          $light;
 $link-light-hover-color:    darken($link-light-color, 15%);
 
-footer {
+$card-column-sizes: (
+    xs: 1,
+    sm: 1,
+    md: 2,
+    lg: 3,
+    xl: 4
+);
+
+@each $breakpoint-size, $column-count in $card-column-sizes {
+    @include media-breakpoint-up($breakpoint-size) {
+        div.card-columns {
+            margin-top: 1rem;
+            column-count: $column-count;
+            column-gap: 1.25rem;
+
+            div.card {
+            display: inline-block;
+            width: 100%; // Don't let them exceed the column width
+            }
+        }
+    }
+}
+
+.footer {
     background: $gray-500;
     color: $light;
     padding-top: 1rem;
@@ -135,7 +158,7 @@ footer {
         position: absolute;
         bottom: 0; /* At the bottom. Use top:0 to append it to the top */
         top: 0;
-        background: rgba($black, 0.1); /* Background with 0.5 opacity */
+        background: rgba($gray-100, 0.1); /* Background with 0.5 opacity */
         color: $white;
         width: 100%;
         padding: 2rem;
