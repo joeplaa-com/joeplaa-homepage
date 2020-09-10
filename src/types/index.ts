@@ -9,7 +9,7 @@ export type AuthorProps = {
 
 export type CoverImageProps = {
     slug: string
-    src: string
+    picture: string
     title: string
 }
 

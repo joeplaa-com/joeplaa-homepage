@@ -29,6 +29,7 @@ function getFilesFromDir (dir, fileTypes) {
 }
 
 // #2. Create image object
+// https://stackoverflow.com/questions/38374344/require-file-with-a-variable-in-react-js
 function printRequireLines (filePaths) {
     let file;
     let key;

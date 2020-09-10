@@ -3,11 +3,12 @@ import Img from 'react-optimized-image'
 import { images } from '../lib/images'
 import { CoverImageProps } from '../types'
 
-export default function CoverImage({ title, src, slug }: CoverImageProps) {
+export default function CoverImage({ title, picture, slug }: CoverImageProps) {
     const image = (
-        <Img
-            src={images[src]}
+        <img
+            src={images[picture]}
             alt={`Cover Image for ${title}`}
+            className='img-fluid'
         />
     );
     return (

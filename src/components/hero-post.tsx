@@ -28,7 +28,7 @@ export default function HeroPost({
                         <DateFormater dateString={date} />
                     </CardSubtitle>
                 </CardBody>
-                <CoverImage title={title} src={coverImage} slug={slug} />
+                <CoverImage title={title} picture={coverImage} slug={slug} />
                 <CardBody>
                     <Avatar name={author.name} picture={author.picture} />
                     <CardText>{excerpt}</CardText>
