@@ -2,7 +2,6 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 const fs = require("fs");
 const path = require("path");
-const util = require('util');
 
 // #1. Retrieve the files
 // ===
@@ -12,9 +11,9 @@ const util = require('util');
 // dir: path of the directory you want to search the files for
 // fileTypes: array of file types you are search files, ex: ['.txt', '.jpg']
 // ===
-function getFilesFromDir(dir, fileTypes) {
+function getFilesFromDir (dir, fileTypes) {
     var filesToReturn = [];
-    function walkDir(currentPath) {
+    function walkDir (currentPath) {
         var files = fs.readdirSync(currentPath);
         for (var i in files) {
             var curFile = path.join(currentPath, files[i]);
@@ -30,39 +29,44 @@ function getFilesFromDir(dir, fileTypes) {
 }
 
 // #2. Create image object
-function getImageObject(filePaths) {
-    let images = {};
+function printRequireLines (filePaths) {
+    let file;
+    let key;
+    let images = '';
 
     filePaths.forEach(path => {
         file = path.replace(/\\/g, "/");
-        images[file.split('/').slice(1).join('/')] = function() { require(file) };
+        key = file.split('/').slice(1).join('/');
+        relPath = '../' + file.split('/').slice(1).join('/');
+        line = "    '" + key + "'" + ": " + "require('" + relPath + "')," + "\n";
+        images = images + line;
     });
 
     return images;
 }
 
 // #3. Save the data as JS files
-function writeToJSFile(filename, object) {
+function writeToTSFile (filename, fileObject) {
     // eslint-disable-next-line no-undef
-    fs.writeFileSync("./" + filename + ".js", "export const " + filename + " = " + util.inspect(object), 'utf8', function(err) {
+    fs.writeFileSync("./src/lib/" + filename + ".ts", "export const " + filename + " = { \n" + printRequireLines(fileObject) + "}", 'utf8', function (err) {
         if (err) {
             console.log("An error occured while writing JS Object to File.");
             return console.log(err);
         }
 
-        console.log("JS file " + filename + ".js" + " has been saved.");
+        console.log("TS file " + filename + ".ts" + " has been saved.");
     });
 }
 
 // Set constants
-const mainAssetsDirectory = "../assets";
+const mainAssetsDirectory = "./src/assets";
 //const publicAssetsDirectory = "../../public/assets";
 const fileTypes = [".jpg", ".jpeg", ".png", ".webp"]
 
 // Get files and images
 const files = getFilesFromDir(mainAssetsDirectory, fileTypes);
-const images = getImageObject(files);
-console.log(images)
 
 // Save data
-writeToJSFile("images", images);
+writeToTSFile("images", files);
+
+console.log(`✅ images.js generated!`);

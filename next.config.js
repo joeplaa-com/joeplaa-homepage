@@ -5,7 +5,7 @@ const withModernizr = require("next-plugin-modernizr");
 const withBundleAnalyzer = require('@next/bundle-analyzer')({
     enabled: process.env.ANALYZE === 'true',
 });
-const redirects = require('./src/lib/redirects');
+const redirects = require('./src/build/redirects');
 
 module.exports = withBundleAnalyzer(
     withModernizr(

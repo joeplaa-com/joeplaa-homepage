@@ -8,8 +8,8 @@
     "author": "Joep van de Laarschot",
     "license": "Proprietary",
     "scripts": {
-        "dev": "next",
-        "build": "env ANALYZE=true next build && node ./src/lib/sitemap_generator.js && next export",
+        "dev": "node ./src/build/requireImages.js && next",
+        "build": "node ./src/build/requireImages.js && env ANALYZE=true next build && node ./src/build/sitemap_generator.js && next export",
         "start": "next start"
     },
     "dependencies": {
