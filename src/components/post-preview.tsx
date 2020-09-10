@@ -1,7 +1,7 @@
 import { Card, CardBody, CardSubtitle, CardTitle, CardText } from 'reactstrap'
-import Avatar from './avatar';
-import DateFormater from './date-formater';
-import CoverImage from './cover-image';
+import Avatar from './avatar'
+import DateFormater from './date-formater'
+import CoverImage from './cover-image'
 import Link from 'next/link';
 import { PostTypeProps } from '../types'
 

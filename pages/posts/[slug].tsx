@@ -5,7 +5,6 @@ import { Container } from 'reactstrap'
 import PostBody from '../../src/components/post-body'
 import PostHeader from '../../src/components/post-header'
 import Layout from '../../src/components/layout'
-import PostTitle from '../../src/components/post-title'
 import { getPostBySlug, getAllPosts } from '../../src/lib/api'
 import { siteInfo } from '../../src/lib/data'
 import markdownToHtml from '../../src/lib/markdownToHtml'
@@ -24,13 +23,13 @@ const Post = ({ post, morePosts, preview }: Props) => {
     }
     return (
         <Layout preview={preview}>
-            <Container>
+            <Container className='post-container shadow'>
                 {router.isFallback
                     ? (
-                        <PostTitle>Loading…</PostTitle>
+                        <h1>Loading…</h1>
                     )
                     : (
-                        <article className="mb-32">
+                        <article>
                             <Head>
                                 <title>
                                     {post.title}{' '}{siteInfo.PageTitle}

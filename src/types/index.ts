@@ -56,10 +56,6 @@ export type PostHeaderProps = {
     title: string
 }
 
-export type PostTitleProps = {
-    children: React.ReactNode
-}
-
 export type PostTypeProps = {
     author: AuthorProps
     content?: string
