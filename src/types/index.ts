@@ -18,15 +18,6 @@ export type DateFormatterProps = {
     dateString: string
 }
 
-export type HeroPostProps = {
-    author: AuthorProps
-    coverImage: string
-    date: string
-    excerpt: string
-    slug: string
-    title: string
-}
-
 export type LayoutProps = {
     children: React.ReactNode
     preview?: string
@@ -66,5 +57,10 @@ export type PostTypeProps = {
         url: string
     }
     slug: string
+    tags: string
     title: string
+}
+
+export type TagProps = {
+    name: string
 }

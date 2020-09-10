@@ -15,6 +15,7 @@ export default function MoreStories({ posts }: { posts: Array<PostTypeProps> }) 
                         author={post.author}
                         slug={post.slug}
                         excerpt={post.excerpt}
+                        tags={post.tags}
                     />
                 ))}
             </CardColumns>

@@ -5,10 +5,12 @@ import Layout from '../src/components/layout'
 import MoreStories from '../src/components/more-stories'
 import { AllPostsProps } from '../src/types'
 import { getAllPosts } from '../src/lib/api'
+import { mdFields } from '../src/lib/constants'
 import { siteInfo, navigation } from '../src/lib/data'
 
 export default function Blog({ allPosts }: AllPostsProps) {
     const heroPost = allPosts[0]
+    console.log(heroPost);
     const morePosts = allPosts.slice(1)
     return (
         <>
@@ -40,6 +42,7 @@ export default function Blog({ allPosts }: AllPostsProps) {
                             author={heroPost.author}
                             slug={heroPost.slug}
                             excerpt={heroPost.excerpt}
+                            tags={heroPost.tags}
                         />
                     )}
                     {morePosts.length > 0 && <MoreStories posts={morePosts} />}
@@ -50,14 +53,7 @@ export default function Blog({ allPosts }: AllPostsProps) {
 }
 
 export async function getStaticProps() {
-    const allPosts = getAllPosts([
-        'title',
-        'date',
-        'slug',
-        'author',
-        'coverImage',
-        'excerpt',
-    ])
+    const allPosts = getAllPosts(mdFields)
 
     return {
         props: { allPosts },
