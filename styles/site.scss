@@ -50,7 +50,8 @@ $reds: map-merge(
 /* or, use an existing variable */
 $theme-colors: (
     primary: $red-full,
-    secondary: $gray-100
+    secondary: $gray-100,
+    gray-light: $gray-200
 );
 
 $body-bg:                           $gray-100;
@@ -59,7 +60,7 @@ $component-active-color:            $white;
 $component-active-bg:               $red-900;
 
 $link-color:                        $red-full;
-$link-hover-color:                  darken($link-color, 15%);
+$link-hover-color:                  darken($link-color, 5%);
 
 $navbar-light-color:                $red-800;
 $navbar-light-hover-color:          $red-700;
@@ -122,10 +123,8 @@ $link-light-hover-color:    darken($link-light-color, 15%);
 
 $card-column-sizes: (
     xs: 1,
-    sm: 1,
     md: 2,
-    lg: 3,
-    xl: 4
+    lg: 3
 );
 
 @each $breakpoint-size, $column-count in $card-column-sizes {
@@ -199,7 +198,21 @@ a.nav-padding-social {
     padding: 0.5rem 0.5rem;
 }
 
-/* ---footer--- */
+$post-container-padding: (
+    xs: 1rem,
+    md: 2rem
+);
+
+@each $breakpoint-size, $padding in $post-container-padding {
+    @include media-breakpoint-up($breakpoint-size) {
+        div.post-container {
+            background-color: $white;
+            margin-bottom: 2rem;
+            margin-top: 2rem;
+            padding: $padding $padding;
+        }
+    }
+}
 
 /* -------end custom additions-------- */
 

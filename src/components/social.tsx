@@ -1,6 +1,6 @@
 import React from 'react'
 import { Nav, NavItem, NavLink } from 'reactstrap'
-import { IconContext } from 'react-icons';
+import { IconContext } from 'react-icons'
 import { FaFacebook, FaInstagram, FaLinkedin, FaGithub, FaGoodreads } from 'react-icons/fa'
 import { MdMail } from 'react-icons/md'
 import { urls } from '../lib/data'

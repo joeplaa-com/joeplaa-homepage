@@ -41,4 +41,7 @@ export const data = {
     UnsupportedMessage: 'This website does not work properly in your current browser. Use one of the browser below for the best experience.',
     UnsupportedTitle: 'Browser not supported',
     Videos: 'Videos'
-}
+};
+export const settings = {
+    DateFormat: 'LLLL d, yyyy'
+};

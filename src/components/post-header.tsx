@@ -1,25 +1,21 @@
-import Avatar from "./avatar";
-import DateFormater from "./date-formater";
-import CoverImage from "./cover-image";
-import PostTitle from "./post-title";
+import Avatar from "./avatar"
+import DateFormater from "./date-formater"
+import CoverImage from "./cover-image"
 import { PostHeaderProps } from '../types'
 
 export default function PostHeader({ title, coverImage, date, author, slug }: PostHeaderProps) {
     return (
         <>
-            <PostTitle>{title}</PostTitle>
-            <div className="hidden md:block md:mb-12">
-                <Avatar name={author.name} picture={author.picture} />
+            <h1>{title}</h1>
+            <div className='mb-2 mt-2 mb-sm-3 mt-sm-3 mb-sm-4 mt-sm-4'>
+                <CoverImage title={title} picture={coverImage} slug={slug} rounded={true} />
             </div>
-            <div className="mb-8 md:mb-16 -mx-5 sm:mx-0">
-                <CoverImage title={title} src={coverImage} slug={slug} />
-            </div>
-            <div className="max-w-2xl mx-auto">
-                <div className="block md:hidden mb-6">
+            <div className="mx-auto mb-2 mt-2 mb-sm-3 mt-sm-3 mb-sm-4 mt-sm-4">
+                <div className="mb-2">
                     <Avatar name={author.name} picture={author.picture} />
                 </div>
-                <div className="mb-6 text-lg">
-                    <DateFormater dateString={date} />
+                <div>
+                    <em><DateFormater dateString={date} /></em>
                 </div>
             </div>
         </>

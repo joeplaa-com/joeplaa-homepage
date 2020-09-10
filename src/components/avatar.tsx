@@ -1,10 +1,16 @@
+import Img from 'react-optimized-image'
+import { images } from '../lib/images'
 import { AuthorProps } from '../types'
 
 export default function Avatar({ name, picture }: AuthorProps) {
     return (
-        <div className="flex items-center">
-            <img src={picture} className="w-12 h-12 rounded-full mr-4" alt={name} />
-            <div className="text-xl font-bold">{name}</div>
+        <div className='d-flex flex-row align-items-center'>
+            <img
+                src={images[picture]}
+                alt={name}
+                className='img-fluid mr-2 rounded-circle' 
+                width='50px' />
+            <div>{name}</div>
         </div>
     );
 }

@@ -9,7 +9,8 @@ export type AuthorProps = {
 
 export type CoverImageProps = {
     slug: string
-    src: string
+    picture: string
+    rounded?: boolean
     title: string
 }
 
@@ -53,10 +54,6 @@ export type PostHeaderProps = {
     date: string
     slug?: string
     title: string
-}
-
-export type PostTitleProps = {
-    children: React.ReactNode
 }
 
 export type PostTypeProps = {
