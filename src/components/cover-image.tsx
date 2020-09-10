@@ -3,18 +3,19 @@ import Img from 'react-optimized-image'
 import { images } from '../lib/images'
 import { CoverImageProps } from '../types'
 
-export default function CoverImage({ title, picture, slug }: CoverImageProps) {
+export default function CoverImage({ title, picture, slug, rounded }: CoverImageProps) {
+    const className = rounded ? ' rounded' : '';
     const image = (
         <img
             src={images[picture]}
-            alt={`Cover Image for ${title}`}
-            className='img-fluid'
+            alt={'Cover Image for' + title}
+            className={'img-fluid' + className}
         />
     );
     return (
         <div>
             {slug ? (
-                <Link as={`/posts/${slug}`} href="/posts/[slug]">
+                <Link as={`/posts/${slug}`} href='/posts/[slug]'>
                     <a aria-label={title}>{image}</a>
                 </Link>
             ) : (

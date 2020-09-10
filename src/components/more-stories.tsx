@@ -1,14 +1,11 @@
-import { Card, CardBody, CardColumns, CardTitle, CardText } from 'reactstrap'
+import { CardColumns } from 'reactstrap'
 import PostPreview from "./post-preview";
 import { PostTypeProps } from '../types'
 
-export default function MoreStories({ posts }: { posts: Array<PostTypeProps> } ) {
+export default function MoreStories({ posts }: { posts: Array<PostTypeProps> }) {
     return (
         <section>
-            <h2>
-                More Stories
-            </h2>
-            <div>
+            <CardColumns>
                 {posts.map((post) => (
                     <PostPreview
                         key={post.slug}
@@ -20,7 +17,7 @@ export default function MoreStories({ posts }: { posts: Array<PostTypeProps> } )
                         excerpt={post.excerpt}
                     />
                 ))}
-            </div>
+            </CardColumns>
         </section>
     );
 }

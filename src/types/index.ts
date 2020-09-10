@@ -10,6 +10,7 @@ export type AuthorProps = {
 export type CoverImageProps = {
     slug: string
     picture: string
+    rounded?: boolean
     title: string
 }
 

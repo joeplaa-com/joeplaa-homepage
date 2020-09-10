@@ -24,14 +24,18 @@ export default function HeroPost({
                             </Link>
                         </h3>
                     </CardTitle>
+
                     <CardSubtitle>
-                        <DateFormater dateString={date} />
+                        <em><DateFormater dateString={date} /></em>
                     </CardSubtitle>
                 </CardBody>
+
                 <CoverImage title={title} picture={coverImage} slug={slug} />
+
                 <CardBody>
-                    <Avatar name={author.name} picture={author.picture} />
                     <CardText>{excerpt}</CardText>
+
+                    <Avatar name={author.name} picture={author.picture} />
                 </CardBody>
             </Card>
         </section>
