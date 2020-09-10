@@ -22,7 +22,7 @@ export default function Howto({ allPosts }: AllPostsProps) {
                     description: siteInfo.HomeDescription,
                     images: [
                         {
-                            url: process.env.NEXT_PUBLIC_URL + '/banner-howto-white.png',
+                            url: process.env.NEXT_PUBLIC_URL + '/white-banner-howto.png',
                             width: 300,
                             height: 300,
                             alt: 'joeplaa howto banner',

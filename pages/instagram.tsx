@@ -22,7 +22,7 @@ export default function Instagram({ allPosts }: AllPostsProps) {
                     description: siteInfo.HomeDescription,
                     images: [
                         {
-                            url: process.env.NEXT_PUBLIC_URL + '/banner-blog-white.png',
+                            url: process.env.NEXT_PUBLIC_URL + '/white-banner-blog.png',
                             width: 300,
                             height: 300,
                             alt: 'joeplaa blog banner',

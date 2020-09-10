@@ -4,7 +4,7 @@ import Social from './social'
 
 export default function Footer() {
     return (
-        <footer>
+        <footer className='footer'>
             <Container>
                 <Copyright color='light' />
                 <Social classString='justify-content-center' color='light' />

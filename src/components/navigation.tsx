@@ -1,6 +1,6 @@
 
 import React from 'react'
-import { DropdownItem, DropdownMenu, DropdownToggle, UncontrolledDropdown, Nav, NavItem, NavLink } from 'reactstrap'
+import { Nav, NavItem, NavLink } from 'reactstrap'
 import { useRouter } from 'next/router'
 import { data, navigation } from '../lib/data'
 
@@ -11,10 +11,6 @@ export default function Navigation({ className }: { className: string }) {
         const path = router.pathname;
 
         return (path === href)
-    }
-
-    function handleClick(href) {
-        router.push(href)
     }
 
     return (
@@ -31,19 +27,9 @@ export default function Navigation({ className }: { className: string }) {
             <NavItem>
                 <NavLink href={navigation.howto} active={activeLink(navigation.howto)}>{data.Howto}</NavLink>
             </NavItem>
-            <UncontrolledDropdown inNavbar>
-                <DropdownToggle nav caret>
-                    {data.Recommended}
-                </DropdownToggle>
-                <DropdownMenu right>
-                    <DropdownItem active={activeLink(navigation.books)} onClick={() => handleClick(navigation.books)}>
-                        {data.Books}
-                    </DropdownItem>
-                    <DropdownItem active={activeLink(navigation.videos)} onClick={() => handleClick(navigation.videos)}>
-                        {data.Videos}
-                    </DropdownItem>
-                </DropdownMenu>
-            </UncontrolledDropdown>
+            <NavItem>
+                <NavLink href={navigation.recommended} active={activeLink(navigation.recommended)}>{data.Recommended}</NavLink>
+            </NavItem>
         </Nav>
     );
 }
