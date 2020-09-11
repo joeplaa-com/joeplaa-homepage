@@ -29,9 +29,11 @@ export default function HeroPost({
 
                     <CardSubtitle>
                         <em><DateFormater dateString={date} /></em>
-                        {tags.split(', ').map((tag) => (
-                            <Tag key={tag} name={tag} />
-                        ))}
+                        <span className='tags'>
+                            {tags.split(', ').map((tag) => (
+                                <Tag key={tag} name={tag} page='blog' />
+                            ))}
+                        </span>
                     </CardSubtitle>
                 </CardBody>
 

@@ -11,8 +11,8 @@ const BrowserCheck = () => {
     const dispatch = useDispatch();
     const application = useSelector((state) => state.application);
 
-    const toggleHideModal = () => dispatch(applicationActionCreators.hideModal());
-    const toggleShowModal = () => dispatch(applicationActionCreators.showModal());
+    const toggleHideModal = () => dispatch(applicationActionCreators.hideBrowserModal());
+    const toggleShowModal = () => dispatch(applicationActionCreators.showBrowserModal());
 
     useEffect(() => {
         dispatch(applicationActionCreators.setBrowser(browserName));

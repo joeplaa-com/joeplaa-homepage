@@ -32,9 +32,11 @@ export default function PostPreview({
 
                 <CardSubtitle className='mb-2'>
                     <em><DateFormater dateString={date} /></em>
-                    {tags.split(', ').map((tag) => (
-                        <Tag key={tag} name={tag} />
-                    ))}
+                    <span className='tags'>
+                        {tags.split(', ').map((tag) => (
+                            <Tag key={tag} name={tag} page='blog' />
+                        ))}
+                    </span>
                 </CardSubtitle>
 
                 <CardText>{excerpt}</CardText>

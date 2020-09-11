@@ -1,3 +1,4 @@
+import { useSelector } from 'react-redux'
 import { NextSeo } from 'next-seo'
 import { Container } from 'reactstrap'
 import HeroPost from '../src/components/hero-post'
@@ -7,10 +8,11 @@ import { AllPostsProps } from '../src/types'
 import { getAllPosts } from '../src/lib/api'
 import { mdFields } from '../src/lib/constants'
 import { siteInfo, navigation } from '../src/lib/data'
+import filterTag from '../src/lib/filterTag'
 
 export default function Blog({ allPosts }: AllPostsProps) {
+    const application = useSelector((state) => state.application);
     const heroPost = allPosts[0]
-    console.log(heroPost);
     const morePosts = allPosts.slice(1)
     return (
         <>
@@ -34,7 +36,7 @@ export default function Blog({ allPosts }: AllPostsProps) {
             />
             <Layout siteDescription={heroPost.excerpt} siteTitle={heroPost.title} >
                 <Container>
-                    {heroPost && (
+                    {heroPost && filterTag(heroPost, application.filter.blog) && (
                         <HeroPost
                             title={heroPost.title}
                             coverImage={heroPost.coverImage}

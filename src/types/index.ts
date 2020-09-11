@@ -63,4 +63,5 @@ export type PostTypeProps = {
 
 export type TagProps = {
     name: string
+    page: 'blog' | 'howto' | 'portfolio' | 'recommended'
 }
