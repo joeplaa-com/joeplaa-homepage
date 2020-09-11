@@ -131,20 +131,29 @@ $card-column-sizes: (
 @each $breakpoint-size, $column-count in $card-column-sizes {
     @include media-breakpoint-up($breakpoint-size) {
         div.card-columns {
-            margin-top: 1rem;
+            margin-top: .875rem;
             column-count: $column-count;
             column-gap: 1.25rem;
 
             div.card {
-            display: inline-block;
-            width: 100%; // Don't let them exceed the column width
+                display: inline-block;
+                width: 100%; // Don't let them exceed the column width
             }
         }
     }
 }
+
+div.card {
+    box-shadow: $box-shadow;
+}
+
 div.card-subtitle {
     display: flex;
     align-items: center;
+}
+
+.filter {
+    margin-top: .875rem;
 }
 
 .footer {
@@ -220,13 +229,6 @@ $post-container-padding: (
 }
 
 a.tag {
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
-    margin: 0 .125rem;
-}
-
-span.tag {
     display: inline-flex;
     justify-content: center;
     align-items: center;
