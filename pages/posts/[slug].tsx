@@ -63,6 +63,7 @@ export async function getStaticProps({ params }: Params) {
         'title',
         'date',
         'slug',
+        'tags',
         'author',
         'content',
         'ogImage',

@@ -34,7 +34,7 @@ export default function Home() {
                 }}
             />
             <Layout siteDescription={siteInfo.HomeDescription} siteTitle={siteInfo.HomeTitle} >
-                <div className='image-container'>
+                <div className='image-container shadow'>
                     <Img
                         src={require('../src/assets/home-banner-beach.jpg')}
                         alt={siteInfo.HomeTitle + '-banner'}

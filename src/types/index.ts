@@ -1,5 +1,6 @@
 export type AllPostsProps = {
     allPosts: Array<PostTypeProps>
+    tags: Array<LabelProps>
 }
 
 export type AuthorProps = {
@@ -18,13 +19,14 @@ export type DateFormatterProps = {
     dateString: string
 }
 
-export type HeroPostProps = {
-    author: AuthorProps
-    coverImage: string
-    date: string
-    excerpt: string
-    slug: string
-    title: string
+export type FilterProps = {
+    page: 'blog' | 'howto' | 'portfolio' | 'recommended'
+    tags: Array<LabelProps>
+}
+
+export type LabelProps = {
+    value: string
+    label: string
 }
 
 export type LayoutProps = {
@@ -66,5 +68,11 @@ export type PostTypeProps = {
         url: string
     }
     slug: string
+    tags: string
     title: string
+}
+
+export type TagProps = {
+    page: 'blog' | 'howto' | 'portfolio' | 'recommended'
+    tag?: LabelProps
 }

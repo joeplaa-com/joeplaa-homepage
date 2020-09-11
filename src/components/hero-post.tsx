@@ -1,9 +1,11 @@
 import Link from 'next/link'
 import { Card, CardBody, CardSubtitle, CardTitle, CardText } from 'reactstrap'
 import Avatar from './avatar'
-import DateFormater from './date-formater'
 import CoverImage from './cover-image'
-import { HeroPostProps } from '../types'
+import DateFormater from './date-formater'
+import Tag from './tag'
+import getTags from '../lib/getTags'
+import { PostTypeProps } from '../types'
 
 export default function HeroPost({
     title,
@@ -12,7 +14,8 @@ export default function HeroPost({
     excerpt,
     author,
     slug,
-}: HeroPostProps) {
+    tags
+}: PostTypeProps) {
     return (
         <section>
             <Card className='mt-4'>
@@ -27,6 +30,11 @@ export default function HeroPost({
 
                     <CardSubtitle>
                         <em><DateFormater dateString={date} /></em>
+                        <span className='tags'>
+                            {getTags(tags).map((tag) => (
+                                <Tag key={tag.value} tag={tag} page='blog' />
+                            ))}
+                        </span>
                     </CardSubtitle>
                 </CardBody>
 
