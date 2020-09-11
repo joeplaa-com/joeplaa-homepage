@@ -1,5 +1,5 @@
 /* eslint-disable no-undef */
-import { siteInfo } from '../lib/data'
+import { siteInfo } from './data'
 
 export default {
     openGraph: {
