@@ -7,7 +7,7 @@ import { TagProps } from '../types'
 export default function Tag({ tag, page }: TagProps) {
     const dispatch = useDispatch();
     return (
-        <Badge color='primary' className='tag' href='#' onClick={() => dispatch(applicationActionCreators.setTagFilter(page, tag))}>
+        <Badge color='primary' className='tag' href='#' onClick={() => dispatch(applicationActionCreators.setTagsFilter(page, [tag]))}>
             <FaHashtag /><span>{tag.value.toUpperCase()}</span>
         </Badge>
     );

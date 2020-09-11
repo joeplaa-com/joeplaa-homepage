@@ -4,6 +4,7 @@ import Avatar from './avatar'
 import CoverImage from './cover-image'
 import DateFormater from './date-formater'
 import Tag from './tag'
+import getTags from '../lib/getTags'
 import { PostTypeProps } from '../types'
 
 export default function HeroPost({
@@ -30,8 +31,8 @@ export default function HeroPost({
                     <CardSubtitle>
                         <em><DateFormater dateString={date} /></em>
                         <span className='tags'>
-                            {tags.split(', ' || ',').map((tag) => (
-                                <Tag key={tag} tag={{ value: tag, label: tag }} page='blog' />
+                            {getTags(tags).map((tag) => (
+                                <Tag key={tag.value} tag={tag} page='blog' />
                             ))}
                         </span>
                     </CardSubtitle>

@@ -11,6 +11,7 @@ import { getAllPosts } from '../src/lib/api'
 import { mdFields } from '../src/lib/constants'
 import { siteInfo, navigation } from '../src/lib/data'
 import filterTag from '../src/lib/filterTag'
+import getTags from '../src/lib/getTags'
 import { applicationActionCreators } from '../src/store/actions/application'
 
 export default function Blog({ allPosts, tags }: AllPostsProps) {
@@ -68,8 +69,7 @@ export async function getStaticProps() {
     const allPosts = getAllPosts(mdFields);
     const tags = [];
     allPosts.forEach((post: PostTypeProps) => {
-        const postTags = post.tags.split(', ' || ',');
-        postTags.map(postTag => tags.filter(tag => tag.value === postTag).length > 0 ? null : tags.push({ value: postTag, label: postTag }));
+        getTags(post.tags).map(postTag => tags.filter(tag => tag.value === postTag.value).length > 0 ? null : tags.push(postTag));
     });
 
     return {

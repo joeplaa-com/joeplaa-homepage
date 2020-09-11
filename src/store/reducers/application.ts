@@ -139,14 +139,14 @@ export const applicationReducer: Reducer<IApplicationState> = (state: IApplicati
             };
         }
         break;
-    case 'SET_TAG_FILTER':
+    case 'SET_TAGS_FILTER':
         switch (action.page) {
         case 'blog':
             return {
                 ...state,
                 filter: {
                     ...state.filter,
-                    blog: [action.tag]
+                    blog: action.tags
                 }
             };
         case 'howto':
@@ -154,7 +154,7 @@ export const applicationReducer: Reducer<IApplicationState> = (state: IApplicati
                 ...state,
                 filter: {
                     ...state.filter,
-                    howto: [action.tag]
+                    howto: action.tags
                 }
             };
         case 'portfolio':
@@ -162,7 +162,7 @@ export const applicationReducer: Reducer<IApplicationState> = (state: IApplicati
                 ...state,
                 filter: {
                     ...state.filter,
-                    portfolio: [action.tag]
+                    portfolio: action.tags
                 }
             };
         case 'recommended':
@@ -170,7 +170,7 @@ export const applicationReducer: Reducer<IApplicationState> = (state: IApplicati
                 ...state,
                 filter: {
                     ...state.filter,
-                    recommended: [action.tag]
+                    recommended: action.tags
                 }
             };
         }

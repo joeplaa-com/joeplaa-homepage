@@ -4,6 +4,7 @@ import Avatar from './avatar'
 import DateFormater from './date-formater'
 import CoverImage from './cover-image'
 import Tag from './tag'
+import getTags from '../lib/getTags'
 import { PostTypeProps } from '../types'
 
 export default function PostPreview({
@@ -33,8 +34,8 @@ export default function PostPreview({
                 <CardSubtitle className='mb-2'>
                     <em><DateFormater dateString={date} /></em>
                     <span className='tags'>
-                        {tags.split(', ' || ',').map((tag) => (
-                            <Tag key={tag} tag={{ value: tag, label: tag }} page='blog' />
+                        {getTags(tags).map((tag) => (
+                            <Tag key={tag.value} tag={tag} page='blog' />
                         ))}
                     </span>
                 </CardSubtitle>

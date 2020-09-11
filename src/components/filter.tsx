@@ -19,16 +19,17 @@ export default function Filter({ page, tags }: FilterProps) {
         setModal(!modal);
     }
 
-    function setFilter(el: LabelProps) {
-        console.log(el)
-        application.filter[page].filter(tag => tag.value === el.value).length > 0
-            ? applicationActionCreators.removeTagFilter(page, el)
-            : applicationActionCreators.addTagFilter(page, el);
+    function setFilter(el: Array<LabelProps>) {
+        dispatch(applicationActionCreators.setTagsFilter('blog', el))
+    }
+
+    function applyFilter() {
+        //dispatch(applicationActionCreators.setTagsFilter('blog', application.filter[page]))
+        toggle();
     }
 
     function resetFilter() {
-        dispatch(applicationActionCreators.resetTagFilter())
-        toggle();
+        dispatch(applicationActionCreators.resetTagFilter());
     }
 
     return (
@@ -39,11 +40,12 @@ export default function Filter({ page, tags }: FilterProps) {
                         <CardBody>
                             <Row>
                                 <Col>
-                                    {data.SelectedTags}{': '}{application.filter[page].map((tag) => (
+                                    {data.SelectedTags}{': '}{application.filter[page].length > 0 && application.filter[page].map((tag) => (
                                         <Tag key={tag.value} tag={tag} page={page} />
                                     ))}
                                 </Col>
                                 <Col xs='auto' className='float-right'>
+                                    <Button outline color="primary" onClick={resetFilter}>Show all</Button>{' '}
                                     <Button outline color="primary" onClick={toggle}>{data.Filter}</Button>
                                 </Col>
                             </Row>
@@ -66,8 +68,7 @@ export default function Filter({ page, tags }: FilterProps) {
                     />
                 </ModalBody>
                 <ModalFooter>
-                    <Button color="primary" onClick={toggle}>Ok</Button>{' '}
-                    <Button color="secondary" onClick={resetFilter}>Reset filter</Button>
+                    <Button color="primary" onClick={applyFilter}>Ok</Button>{' '}
                 </ModalFooter>
             </Modal>
         </section>

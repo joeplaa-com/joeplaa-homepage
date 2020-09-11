@@ -35,10 +35,10 @@ interface RemoveTagFilter {
     tag: LabelProps
 }
 
-interface SetTagFilter {
-    type: 'SET_TAG_FILTER'
+interface SetTagsFilter {
+    type: 'SET_TAGS_FILTER'
     page: string
-    tag: LabelProps
+    tags: Array<LabelProps>
 }
 
 interface ResetTagFilter {
@@ -51,7 +51,7 @@ interface DestroySession {
 
 // Declare a 'discriminated union' type. This guarantees that all references to 'type' properties contain one of the
 // declared type strings (and not any other arbitrary string).
-export type KnownAction = SetBrowserAction | HideBrowserModal | ShowBrowserModal | AddTagFilter | AddTagsFilter | RemoveTagFilter | SetTagFilter | ResetTagFilter | DestroySession
+export type KnownAction = SetBrowserAction | HideBrowserModal | ShowBrowserModal | AddTagFilter | AddTagsFilter | RemoveTagFilter | SetTagsFilter | ResetTagFilter | DestroySession
 
 // ----------------
 // ACTION CREATORS - These are functions exposed to UI components that will trigger a state transition.
@@ -64,7 +64,8 @@ export const applicationActionCreators = {
     addTagFilter: (page: string, tag: LabelProps) => ({ type: 'ADD_TAG_FILTER', page: page, tag: tag }),
     addTagsFilter: (page: string, tags: Array<LabelProps>) => ({ type: 'ADD_TAGS_FILTER', page: page, tags: tags }),
     removeTagFilter: (page: string, tag: LabelProps) => ({ type: 'REMOVE_TAG_FILTER', page: page, tag: tag }),
-    setTagFilter: (page: string, tag: LabelProps) => ({ type: 'SET_TAG_FILTER', page: page, tag: tag }),
+    clearTagFilter: () => ({ type: 'REMOVE_TAG_FILTER' }),
+    setTagsFilter: (page: string, tags: Array<LabelProps>) => ({ type: 'SET_TAGS_FILTER', page: page, tags: tags }),
     resetTagFilter: () => ({ type: 'RESET_TAG_FILTER' }),
     destroySession: () => ({ type: 'DESTROY_SESSION' }),
 };
