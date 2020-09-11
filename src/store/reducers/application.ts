@@ -10,18 +10,22 @@ const unsupportedBrowsers = ['Internet Explorer', 'IE'];
 // ----------------
 // REDUCER - For a given state and action, returns the new state. To support time travel, this must not mutate the old state.
 
-const initialFilter = {
-    blog: [],
-    howto: [],
-    portfolio: [],
-    recommended: []
-}
-
 export const initialApplicationState: IApplicationState = {
     isSupported: undefined,
     showModal: false,
     setModal: undefined,
-    filter: initialFilter
+    filter: {
+        blog: [],
+        howto: [],
+        portfolio: [],
+        recommended: []
+    },
+    initialFilter: {
+        blog: [],
+        howto: [],
+        portfolio: [],
+        recommended: []
+    }
 };
 
 export const applicationReducer: Reducer<IApplicationState> = (state: IApplicationState | undefined, incomingAction: Action): IApplicationState => {
@@ -70,7 +74,7 @@ export const applicationReducer: Reducer<IApplicationState> = (state: IApplicati
                 ...state,
                 filter: {
                     ...state.filter,
-                    blog: [...state.filter.blog, action.name]
+                    blog: [...state.filter.blog, action.tag]
                 }
             };
         case 'howto':
@@ -78,7 +82,7 @@ export const applicationReducer: Reducer<IApplicationState> = (state: IApplicati
                 ...state,
                 filter: {
                     ...state.filter,
-                    howto: [...state.filter.howto, action.name]
+                    howto: [...state.filter.howto, action.tag]
                 }
             };
         case 'portfolio':
@@ -86,7 +90,7 @@ export const applicationReducer: Reducer<IApplicationState> = (state: IApplicati
                 ...state,
                 filter: {
                     ...state.filter,
-                    blog: [...state.filter.portfolio, action.name]
+                    portfolio: [...state.filter.portfolio, action.tag]
                 }
             };
         case 'recommended':
@@ -94,7 +98,7 @@ export const applicationReducer: Reducer<IApplicationState> = (state: IApplicati
                 ...state,
                 filter: {
                     ...state.filter,
-                    blog: [...state.filter.recommended, action.name]
+                    recommended: [...state.filter.recommended, action.tag]
                 }
             };
         }
@@ -106,7 +110,7 @@ export const applicationReducer: Reducer<IApplicationState> = (state: IApplicati
                 ...state,
                 filter: {
                     ...state.filter,
-                    blog: state.filter.blog.filter(tag => tag !== action.name)
+                    blog: state.filter.blog.filter(tag => tag.value !== action.tag.value)
                 }
             };
         case 'howto':
@@ -114,7 +118,7 @@ export const applicationReducer: Reducer<IApplicationState> = (state: IApplicati
                 ...state,
                 filter: {
                     ...state.filter,
-                    howto: state.filter.howto.filter(tag => tag !== action.name)
+                    howto: state.filter.howto.filter(tag => tag.value !== action.tag.value)
                 }
             };
         case 'portfolio':
@@ -122,7 +126,7 @@ export const applicationReducer: Reducer<IApplicationState> = (state: IApplicati
                 ...state,
                 filter: {
                     ...state.filter,
-                    blog: state.filter.portfolio.filter(tag => tag !== action.name)
+                    portfolio: state.filter.portfolio.filter(tag => tag.value !== action.tag.value)
                 }
             };
         case 'recommended':
@@ -130,7 +134,7 @@ export const applicationReducer: Reducer<IApplicationState> = (state: IApplicati
                 ...state,
                 filter: {
                     ...state.filter,
-                    blog: state.filter.recommended.filter(tag => tag !== action.name)
+                    recommended: state.filter.recommended.filter(tag => tag.value !== action.tag.value)
                 }
             };
         }
@@ -142,7 +146,7 @@ export const applicationReducer: Reducer<IApplicationState> = (state: IApplicati
                 ...state,
                 filter: {
                     ...state.filter,
-                    blog: [action.name]
+                    blog: [action.tag]
                 }
             };
         case 'howto':
@@ -150,7 +154,7 @@ export const applicationReducer: Reducer<IApplicationState> = (state: IApplicati
                 ...state,
                 filter: {
                     ...state.filter,
-                    howto: [action.name]
+                    howto: [action.tag]
                 }
             };
         case 'portfolio':
@@ -158,7 +162,7 @@ export const applicationReducer: Reducer<IApplicationState> = (state: IApplicati
                 ...state,
                 filter: {
                     ...state.filter,
-                    blog: [action.name]
+                    portfolio: [action.tag]
                 }
             };
         case 'recommended':
@@ -166,15 +170,67 @@ export const applicationReducer: Reducer<IApplicationState> = (state: IApplicati
                 ...state,
                 filter: {
                     ...state.filter,
-                    blog: [action.name]
+                    recommended: [action.tag]
                 }
             };
         }
         break;
-    case 'CLEAR_TAG_FILTER':
+    case 'ADD_TAGS_FILTER':
+        switch (action.page) {
+        case 'blog':
+            return {
+                ...state,
+                filter: {
+                    ...state.filter,
+                    blog: [...action.tags]
+                },
+                initialFilter: {
+                    ...state.initialFilter,
+                    blog: [...action.tags]
+                }
+            };
+        case 'howto':
+            return {
+                ...state,
+                filter: {
+                    ...state.filter,
+                    howto: [...action.tags]
+                },
+                initialFilter: {
+                    ...state.initialFilter,
+                    howto: [...action.tags]
+                }
+            };
+        case 'portfolio':
+            return {
+                ...state,
+                filter: {
+                    ...state.filter,
+                    portfolio: [...action.tags]
+                },
+                initialFilter: {
+                    ...state.initialFilter,
+                    portfolio: [...action.tags]
+                }
+            };
+        case 'recommended':
+            return {
+                ...state,
+                filter: {
+                    ...state.filter,
+                    recommended: [...action.tags]
+                },
+                initialFilter: {
+                    ...state.initialFilter,
+                    recommended: [...action.tags]
+                }
+            };
+        }
+        break;
+    case 'RESET_TAG_FILTER':
         return {
             ...state,
-            filter: initialFilter
+            filter: state.initialFilter
         };
     case 'DESTROY_SESSION':
         return {

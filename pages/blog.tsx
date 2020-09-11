@@ -1,19 +1,28 @@
-import { useSelector } from 'react-redux'
+import { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { NextSeo } from 'next-seo'
 import { Container } from 'reactstrap'
 import HeroPost from '../src/components/hero-post'
 import Layout from '../src/components/layout'
+import Filter from '../src/components/filter'
 import MoreStories from '../src/components/more-stories'
-import { AllPostsProps } from '../src/types'
+import { AllPostsProps, PostTypeProps } from '../src/types'
 import { getAllPosts } from '../src/lib/api'
 import { mdFields } from '../src/lib/constants'
 import { siteInfo, navigation } from '../src/lib/data'
 import filterTag from '../src/lib/filterTag'
+import { applicationActionCreators } from '../src/store/actions/application'
 
-export default function Blog({ allPosts }: AllPostsProps) {
+export default function Blog({ allPosts, tags }: AllPostsProps) {
+    const dispatch = useDispatch();
     const application = useSelector((state) => state.application);
     const heroPost = allPosts[0]
     const morePosts = allPosts.slice(1)
+    
+    useEffect(() => {
+        dispatch(applicationActionCreators.addTagsFilter('blog', tags));
+    }, []);
+
     return (
         <>
             <NextSeo
@@ -47,6 +56,7 @@ export default function Blog({ allPosts }: AllPostsProps) {
                             tags={heroPost.tags}
                         />
                     )}
+                    <Filter page='blog' tags={tags} />
                     {morePosts.length > 0 && <MoreStories posts={morePosts} />}
                 </Container>
             </Layout>
@@ -55,9 +65,14 @@ export default function Blog({ allPosts }: AllPostsProps) {
 }
 
 export async function getStaticProps() {
-    const allPosts = getAllPosts(mdFields)
+    const allPosts = getAllPosts(mdFields);
+    const tags = [];
+    allPosts.forEach((post: PostTypeProps) => {
+        const postTags = post.tags.split(', ' || ',');
+        postTags.map(postTag => tags.filter(tag => tag.value === postTag).length > 0 ? null : tags.push({ value: postTag, label: postTag }));
+    });
 
     return {
-        props: { allPosts },
+        props: { allPosts, tags },
     }
 }

@@ -1,15 +1,22 @@
 // -----------------
 // STATE - This defines the type of data maintained in the Redux store.
+import { LabelProps } from '../types'
 
 export interface IApplicationState {
     isSupported: boolean | undefined;
     showModal: boolean;
     setModal: Date | undefined;
     filter: {
-        blog: Array<string>,
-        howto: Array<string>,
-        portfolio: Array<string>,
-        recommended: Array<string>
+        blog: Array<LabelProps>,
+        howto: Array<LabelProps>,
+        portfolio: Array<LabelProps>,
+        recommended: Array<LabelProps>
+    }
+    initialFilter: {
+        blog: Array<LabelProps>,
+        howto: Array<LabelProps>,
+        portfolio: Array<LabelProps>,
+        recommended: Array<LabelProps>
     }
 }
 

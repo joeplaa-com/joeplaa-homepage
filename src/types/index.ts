@@ -1,5 +1,6 @@
 export type AllPostsProps = {
     allPosts: Array<PostTypeProps>
+    tags: Array<LabelProps>
 }
 
 export type AuthorProps = {
@@ -16,6 +17,16 @@ export type CoverImageProps = {
 
 export type DateFormatterProps = {
     dateString: string
+}
+
+export type FilterProps = {
+    page: 'blog' | 'howto' | 'portfolio' | 'recommended'
+    tags: Array<LabelProps>
+}
+
+export type LabelProps = {
+    value: string
+    label: string
 }
 
 export type LayoutProps = {
@@ -62,6 +73,6 @@ export type PostTypeProps = {
 }
 
 export type TagProps = {
-    name: string
     page: 'blog' | 'howto' | 'portfolio' | 'recommended'
+    tag?: LabelProps
 }
