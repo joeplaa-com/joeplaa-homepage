@@ -1,8 +1,7 @@
 import { useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { NextSeo } from 'next-seo'
 import { Container } from 'reactstrap'
-import HeroPost from '../src/components/hero-post'
 import Layout from '../src/components/layout'
 import Filter from '../src/components/filter'
 import MoreStories from '../src/components/more-stories'
@@ -10,7 +9,6 @@ import { AllPostsProps, PostTypeProps } from '../src/types'
 import { getAllPosts } from '../src/lib/api'
 import { mdFields } from '../src/lib/constants'
 import { siteInfo, navigation } from '../src/lib/data'
-import filterTag from '../src/lib/filterTag'
 import getTags from '../src/lib/getTags'
 import { filterActionCreators } from '../src/store/actions/filter'
 
@@ -18,9 +16,7 @@ const currentPage = navigation.portfolio;
 
 export default function Portfolio({ allPosts, tags }: AllPostsProps) {
     const dispatch = useDispatch();
-    const filter = useSelector((state) => state.filter);
-    const heroPost = allPosts[0]
-    const morePosts = allPosts.slice(1)
+    const morePosts = allPosts
 
     useEffect(() => {
         dispatch(filterActionCreators.addTagsFilter(currentPage, tags));
