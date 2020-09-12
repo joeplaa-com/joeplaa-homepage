@@ -14,15 +14,16 @@ export default function HeroPost({
     excerpt,
     author,
     slug,
-    tags
+    tags,
+    page
 }: PostTypeProps) {
     return (
         <section>
-            <Card className='mt-4'>
+            <Card className='mt-2'>
                 <CardBody>
                     <CardTitle>
                         <h3>
-                            <Link as={`/posts${slug}`} href='/posts/[slug]'>
+                            <Link as={`${page}/${slug}`} href={`${page}/[slug]`}>
                                 <a>{title}</a>
                             </Link>
                         </h3>
@@ -32,13 +33,13 @@ export default function HeroPost({
                         <em><DateFormater dateString={date} /></em>
                         <span className='tags'>
                             {getTags(tags).map((tag) => (
-                                <Tag key={tag.value} tag={tag} page='blog' />
+                                <Tag key={tag.value} tag={tag} page={page} />
                             ))}
                         </span>
                     </CardSubtitle>
                 </CardBody>
 
-                <CoverImage title={title} picture={coverImage} slug={slug} />
+                <CoverImage title={title} picture={coverImage} slug={slug} page={page} />
 
                 <CardBody>
                     <CardText>{excerpt}</CardText>

@@ -1,9 +1,9 @@
-import Link from "next/link"
+import Link from 'next/link'
 import Img from 'react-optimized-image'
 import { images } from '../lib/images'
 import { CoverImageProps } from '../types'
 
-export default function CoverImage({ title, picture, slug, rounded }: CoverImageProps) {
+export default function CoverImage({ title, picture, slug, rounded, page }: CoverImageProps) {
     const className = rounded ? ' rounded' : '';
     const image = (
         <img
@@ -15,7 +15,7 @@ export default function CoverImage({ title, picture, slug, rounded }: CoverImage
     return (
         <div>
             {slug ? (
-                <Link as={`/posts/${slug}`} href='/posts/[slug]'>
+                <Link as={`${page}/${slug}`} href={`${page}/[slug]`}>
                     <a aria-label={title}>{image}</a>
                 </Link>
             ) : (

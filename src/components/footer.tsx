@@ -1,4 +1,4 @@
-import { Container } from "reactstrap"
+import { Container } from 'reactstrap'
 import Copyright from './copyright'
 import Social from './social'
 

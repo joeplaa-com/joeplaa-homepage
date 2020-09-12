@@ -6,20 +6,23 @@ export interface IApplicationState {
     isSupported: boolean | undefined;
     showModal: boolean;
     setModal: Date | undefined;
-    filter: {
-        blog: Array<LabelProps>,
-        howto: Array<LabelProps>,
-        portfolio: Array<LabelProps>,
-        recommended: Array<LabelProps>
+}
+export interface IFilterState {
+    userFilter: {
+        '/blog': Array<LabelProps>,
+        '/howto': Array<LabelProps>,
+        '/portfolio': Array<LabelProps>,
+        '/recommended': Array<LabelProps>
     }
     initialFilter: {
-        blog: Array<LabelProps>,
-        howto: Array<LabelProps>,
-        portfolio: Array<LabelProps>,
-        recommended: Array<LabelProps>
+        '/blog': Array<LabelProps>,
+        '/howto': Array<LabelProps>,
+        '/portfolio': Array<LabelProps>,
+        '/recommended': Array<LabelProps>
     }
 }
 
 export interface IRootState {
     application: IApplicationState | undefined;
+    filter: IFilterState | undefined;
 }

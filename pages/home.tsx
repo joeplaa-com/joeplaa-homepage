@@ -46,7 +46,7 @@ export default function Home() {
                 </div>
                 <Container fluid>
                     <CardColumns>
-                        <Card outline color="primary">
+                        <Card outline color='primary'>
                             <CardBody>
                                 <CardTitle><h4>What is Joeplaa?</h4></CardTitle>
                                 <CardText>
@@ -56,7 +56,7 @@ export default function Home() {
                             </CardBody>
                         </Card>
 
-                        <Card outline color="primary">
+                        <Card outline color='primary'>
                             <CardBody>
                                 <CardTitle><h4>Who is Joeplaa?</h4></CardTitle>
                                 <CardText>
@@ -67,7 +67,7 @@ export default function Home() {
                             </CardBody>
                         </Card>
 
-                        <Card outline color="primary">
+                        <Card outline color='primary'>
                             <CardBody>
                                 <CardTitle><h4>Why joeplaa.com?</h4></CardTitle>
                                 <CardText>

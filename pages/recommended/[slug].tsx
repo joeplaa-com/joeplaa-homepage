@@ -6,7 +6,7 @@ import PostBody from '../../src/components/post-body'
 import PostHeader from '../../src/components/post-header'
 import Layout from '../../src/components/layout'
 import { getPostBySlug, getAllPosts } from '../../src/lib/api'
-import { siteInfo } from '../../src/lib/data'
+import { navigation, siteInfo } from '../../src/lib/data'
 import markdownToHtml from '../../src/lib/markdownToHtml'
 import { PostTypeProps } from '../../src/types'
 
@@ -16,6 +16,9 @@ type Props = {
     preview?: string
 }
 
+const currentPage = navigation.recommended;
+
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const Post = ({ post, morePosts, preview }: Props) => {
     const router = useRouter()
     if (!router.isFallback && !post?.slug) {
@@ -34,13 +37,14 @@ const Post = ({ post, morePosts, preview }: Props) => {
                                 <title>
                                     {post.title}{' '}{siteInfo.PageTitle}
                                 </title>
-                                <meta property="og:image" content={post.ogImage.url} />
+                                <meta property='og:image' content={post.ogImage.url} />
                             </Head>
                             <PostHeader
                                 title={post.title}
                                 coverImage={post.coverImage}
                                 date={post.date}
                                 author={post.author}
+                                page={currentPage}
                             />
                             <PostBody content={post.content} />
                         </article>
@@ -68,7 +72,7 @@ export async function getStaticProps({ params }: Params) {
         'content',
         'ogImage',
         'coverImage',
-    ]) as PostTypeProps
+    ], currentPage) as PostTypeProps
     const content = await markdownToHtml(post.content || '')
 
     return {
@@ -82,7 +86,7 @@ export async function getStaticProps({ params }: Params) {
 }
 
 export async function getStaticPaths() {
-    const posts = getAllPosts(['slug'])
+    const posts = getAllPosts(['slug'], currentPage)
 
     return {
         paths: posts.map((posts: PostTypeProps) => {

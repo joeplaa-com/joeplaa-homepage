@@ -14,18 +14,19 @@ export default function PostPreview({
     excerpt,
     author,
     slug,
-    tags
+    tags,
+    page
 }: PostTypeProps) {
     return (
         <Card>
             <CardBody>
                 <div className='mb-2'>
-                    <CoverImage slug={slug} title={title} picture={coverImage} rounded={true} />
+                    <CoverImage slug={slug} title={title} picture={coverImage} rounded={true} page={page} />
                 </div>
 
                 <CardTitle>
                     <h3>
-                        <Link as={`/posts/${slug}`} href='/posts/[slug]'>
+                        <Link as={`${page}/${slug}`} href={`${page}/[slug]`}>
                             <a>{title}</a>
                         </Link>
                     </h3>
@@ -35,7 +36,7 @@ export default function PostPreview({
                     <em><DateFormater dateString={date} /></em>
                     <span className='tags'>
                         {getTags(tags).map((tag) => (
-                            <Tag key={tag.value} tag={tag} page='blog' />
+                            <Tag key={tag.value} tag={tag} page={page} />
                         ))}
                     </span>
                 </CardSubtitle>

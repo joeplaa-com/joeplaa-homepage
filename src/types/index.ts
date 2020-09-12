@@ -10,6 +10,7 @@ export type AuthorProps = {
 
 export type CoverImageProps = {
     slug: string
+    page: string
     picture: string
     rounded?: boolean
     title: string
@@ -20,7 +21,7 @@ export type DateFormatterProps = {
 }
 
 export type FilterProps = {
-    page: 'blog' | 'howto' | 'portfolio' | 'recommended'
+    page: string
     tags: Array<LabelProps>
 }
 
@@ -54,6 +55,7 @@ export type PostHeaderProps = {
     author: AuthorProps
     coverImage: string
     date: string
+    page: string
     slug?: string
     title: string
 }
@@ -67,12 +69,13 @@ export type PostTypeProps = {
     ogImage?: {
         url: string
     }
+    page: string
     slug: string
     tags: string
     title: string
 }
 
 export type TagProps = {
-    page: 'blog' | 'howto' | 'portfolio' | 'recommended'
+    page: string
     tag?: LabelProps
 }

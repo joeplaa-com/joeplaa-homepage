@@ -1,16 +1,28 @@
 import fs from 'fs'
 import { join } from 'path'
 import matter from 'gray-matter'
+import { navigation } from './data'
 
-const postsDirectory = join(process.cwd(), '_posts')
-
-export function getPostSlugs() {
-    return fs.readdirSync(postsDirectory)
+function getPostsDirectory(page) {
+    switch (page) {
+    case '/blog':
+        return join(process.cwd(), '_posts' + navigation.blog);
+    case '/howto':
+        return join(process.cwd(), '_posts' + navigation.howto);
+    case '/portfolio':
+        return join(process.cwd(), '_posts' + navigation.portfolio);
+    case '/recommended':
+        return join(process.cwd(), '_posts' + navigation.recommended);
+    }
 }
 
-export function getPostBySlug(slug, fields = []) {
+export function getPostSlugs(page) {
+    return fs.readdirSync(getPostsDirectory(page))
+}
+
+export function getPostBySlug(slug, fields = [], page) {
     const realSlug = slug.replace(/\.md$/, '')
-    const fullPath = join(postsDirectory, `${realSlug}.md`)
+    const fullPath = join(getPostsDirectory(page), `${realSlug}.md`)
     const fileContents = fs.readFileSync(fullPath, 'utf8')
     const { data, content } = matter(fileContents)
 
@@ -33,7 +45,7 @@ export function getPostBySlug(slug, fields = []) {
     return items
 }
 
-export function getAllPosts(fields = []) {
-    const slugs = getPostSlugs()
-    return slugs.map(slug => getPostBySlug(slug, fields))
+export function getAllPosts(fields = [], page) {
+    const slugs = getPostSlugs(page)
+    return slugs.map(slug => getPostBySlug(slug, fields, page))
 }
