@@ -1,6 +1,12 @@
 /* eslint-disable no-undef */
 module.exports = [
     {
+        source: '/instagram',
+        destination: '/landing',
+        permanent: true,
+    },
+    // migrated blogposts from WordPress
+    {
         source: '/the-news',
         destination: '/posts/the-news',
         permanent: true,
@@ -155,6 +161,7 @@ module.exports = [
         destination: '/posts/i-love-the-beach',
         permanent: true,
     },
+    // migrated how-to's from WordPress
     {
         source: '/how-to-enable-samba-sharing-in-ubuntu',
         destination: '/howtos/enable-samba-sharing-in-ubuntu',

@@ -1,5 +1,5 @@
-import { NextSeo } from 'next-seo'
 import Link from 'next/link'
+import { NextSeo } from 'next-seo'
 import Img from 'react-optimized-image'
 import { Card, CardBody, CardColumns, CardTitle, CardText, Col, Container, Row } from 'reactstrap'
 import Layout from '../src/components/layout'
