@@ -46,7 +46,7 @@ export default function Howto({ allPosts, tags }: AllPostsProps) {
                     ]
                 }}
             />
-            <Layout siteDescription={heroPost.excerpt} siteTitle={heroPost.title} >
+            <Layout siteDescription={siteInfo.HowtoDescription} siteTitle={siteInfo.HowtoTitle + siteInfo.PageTitle} >
                 <Container>
                     <Filter page={currentPage} tags={tags} />
                     {heroPost && filterTag(heroPost, filter.userFilter[currentPage]) && (

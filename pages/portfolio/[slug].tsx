@@ -3,7 +3,7 @@ import ErrorPage from 'next/error'
 import Head from 'next/head'
 import { Container } from 'reactstrap'
 import PostBody from '../../src/components/post-body'
-import PostHeader from '../../src/components/post-header'
+import PortfolioHeader from '../../src/components/portfolio-header'
 import Layout from '../../src/components/layout'
 import { getPostBySlug, getAllPosts } from '../../src/lib/api'
 import { navigation, siteInfo } from '../../src/lib/data'
@@ -39,11 +39,10 @@ const Post = ({ post, morePosts, preview }: Props) => {
                                 </title>
                                 <meta property='og:image' content={post.ogImage.url} />
                             </Head>
-                            <PostHeader
+                            <PortfolioHeader
                                 title={post.title}
                                 coverImage={post.coverImage}
                                 date={post.date}
-                                author={post.author}
                                 page={currentPage}
                             />
                             <PostBody content={post.content} />

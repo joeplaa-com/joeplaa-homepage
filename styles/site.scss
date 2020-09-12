@@ -50,8 +50,9 @@ $reds: map-merge(
 /* or, use an existing variable */
 $theme-colors: (
     primary: $red-full,
-    secondary: $gray-100,
-    gray-light: $gray-200
+    secondary: $ana-secondary,
+    gray-light: $gray-200,
+    navbar-gray: $gray-100
 );
 
 $body-bg:                           $gray-100;

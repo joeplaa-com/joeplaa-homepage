@@ -24,7 +24,7 @@ export default function Instagram() {
                     ]
                 }}
             />
-            <Layout siteDescription={'todo'} siteTitle={'todo'} >
+            <Layout siteDescription={siteInfo.InstagramDescription} siteTitle={siteInfo.InstagramTitle + siteInfo.PageTitle} >
                 <Container>
                 </Container>
             </Layout>

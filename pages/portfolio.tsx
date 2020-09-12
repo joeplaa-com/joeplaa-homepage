@@ -1,16 +1,14 @@
 import { useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { NextSeo } from 'next-seo'
 import { Container } from 'reactstrap'
-import HeroPost from '../src/components/hero-post'
 import Layout from '../src/components/layout'
 import Filter from '../src/components/filter'
-import MoreStories from '../src/components/more-stories'
+import PortfolioStories from '../src/components/portfolio-stories'
 import { AllPostsProps, PostTypeProps } from '../src/types'
 import { getAllPosts } from '../src/lib/api'
 import { mdFields } from '../src/lib/constants'
 import { siteInfo, navigation } from '../src/lib/data'
-import filterTag from '../src/lib/filterTag'
 import getTags from '../src/lib/getTags'
 import { filterActionCreators } from '../src/store/actions/filter'
 
@@ -18,9 +16,6 @@ const currentPage = navigation.portfolio;
 
 export default function Portfolio({ allPosts, tags }: AllPostsProps) {
     const dispatch = useDispatch();
-    const filter = useSelector((state) => state.filter);
-    const heroPost = allPosts[0]
-    const morePosts = allPosts.slice(1)
 
     useEffect(() => {
         dispatch(filterActionCreators.addTagsFilter(currentPage, tags));
@@ -46,22 +41,10 @@ export default function Portfolio({ allPosts, tags }: AllPostsProps) {
                     ]
                 }}
             />
-            <Layout siteDescription={heroPost.excerpt} siteTitle={heroPost.title} >
+            <Layout siteDescription={siteInfo.PortfolioDescription} siteTitle={siteInfo.PortfolioTitle + siteInfo.PageTitle} >
                 <Container>
                     <Filter page={currentPage} tags={tags} />
-                    {heroPost && filterTag(heroPost, filter.userFilter[currentPage]) && (
-                        <HeroPost
-                            title={heroPost.title}
-                            coverImage={heroPost.coverImage}
-                            date={heroPost.date}
-                            author={heroPost.author}
-                            slug={heroPost.slug}
-                            excerpt={heroPost.excerpt}
-                            tags={heroPost.tags}
-                            page={currentPage}
-                        />
-                    )}
-                    {morePosts.length > 0 && <MoreStories posts={morePosts} page={currentPage} />}
+                    {allPosts.length > 0 && <PortfolioStories posts={allPosts} page={currentPage} />}
                 </Container>
             </Layout>
         </>

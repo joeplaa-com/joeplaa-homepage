@@ -33,7 +33,7 @@ export default function Home() {
                     ]
                 }}
             />
-            <Layout siteDescription={siteInfo.HomeDescription} siteTitle={siteInfo.HomeTitle} >
+            <Layout siteDescription={siteInfo.HomeDescription} siteTitle={siteInfo.HomeTitle + siteInfo.PageTitle} >
                 <div className='image-container shadow'>
                     <Img
                         src={require('../src/assets/home-banner-beach.jpg')}
@@ -137,7 +137,7 @@ export default function Home() {
 
                     <Row>
                         <Col md='6' lg='4' className='mx-auto'>
-                            <Card className='mb-2'>
+                            <Card className='mb-2' outline color='secondary'>
                                 <CardBody>
                                     <blockquote className='blockquote'>
                                         <small className='mb-0'>* <em>&quot;Isn&apos;t it a noble, an enlightened way of spending our brief time in the sun, to work at understanding the universe and how we have come to wake up in it?&quot;</em></small>

@@ -9,7 +9,7 @@ export default function Header() {
     const toggle = () => setIsOpen(!isOpen);
 
     return (
-        <Navbar color='secondary' light className='shadow' expand={settings.breakpoint}>
+        <Navbar color='navbar-gray' light className='shadow' expand={settings.breakpoint}>
             <NavbarBrand href='/'>
                 <img alt={siteInfo.SiteName} src={require('../assets/banner-com.png')} height='65px' />
             </NavbarBrand>
