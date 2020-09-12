@@ -5,14 +5,14 @@ import Select from 'react-select'
 import makeAnimated from 'react-select/animated'
 import Tag from '../components/tag'
 import { data } from '../lib/data'
-import { applicationActionCreators } from '../store/actions/application'
+import { filterActionCreators } from '../store/actions/filter'
 import { FilterProps, LabelProps } from "../types"
 
 const animatedComponents = makeAnimated();
 
 export default function Filter({ page, tags }: FilterProps) {
     const dispatch = useDispatch();
-    const application = useSelector((state) => state.application);
+    const filter = useSelector((state) => state.filter);
 
     const [modal, setModal] = useState(false);
     function toggle() {
@@ -20,16 +20,16 @@ export default function Filter({ page, tags }: FilterProps) {
     }
 
     function setFilter(el: Array<LabelProps>) {
-        dispatch(applicationActionCreators.setTagsFilter('blog', el))
+        dispatch(filterActionCreators.setTagsFilter('blog', el))
     }
 
     function applyFilter() {
-        //dispatch(applicationActionCreators.setTagsFilter('blog', application.filter[page]))
+        //dispatch(filterActionCreators.setTagsFilter('blog', filter.userFilter[page]))
         toggle();
     }
 
     function resetFilter() {
-        dispatch(applicationActionCreators.resetTagFilter());
+        dispatch(filterActionCreators.resetTagFilter());
     }
 
     return (
@@ -40,7 +40,7 @@ export default function Filter({ page, tags }: FilterProps) {
                         <CardBody>
                             <Row>
                                 <Col>
-                                    {data.SelectedTags}{': '}{application.filter[page].length > 0 && application.filter[page].map((tag) => (
+                                    {data.SelectedTags}{': '}{filter.userFilter[page].length > 0 && filter.userFilter[page].map((tag) => (
                                         <Tag key={tag.value} tag={tag} page={page} />
                                     ))}
                                 </Col>
@@ -60,7 +60,7 @@ export default function Filter({ page, tags }: FilterProps) {
                     <Select
                         closeMenuOnSelect={false}
                         components={animatedComponents}
-                        defaultValue={application.filter[page]}
+                        defaultValue={filter.userFilter[page]}
                         isMulti
                         name="tags"
                         options={tags}

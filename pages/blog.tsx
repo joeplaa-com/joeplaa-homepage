@@ -12,16 +12,16 @@ import { mdFields } from '../src/lib/constants'
 import { siteInfo, navigation } from '../src/lib/data'
 import filterTag from '../src/lib/filterTag'
 import getTags from '../src/lib/getTags'
-import { applicationActionCreators } from '../src/store/actions/application'
+import { filterActionCreators } from '../src/store/actions/filter'
 
 export default function Blog({ allPosts, tags }: AllPostsProps) {
     const dispatch = useDispatch();
-    const application = useSelector((state) => state.application);
+    const filter = useSelector((state) => state.filter);
     const heroPost = allPosts[0]
     const morePosts = allPosts.slice(1)
     
     useEffect(() => {
-        dispatch(applicationActionCreators.addTagsFilter('blog', tags));
+        dispatch(filterActionCreators.addTagsFilter('blog', tags));
     }, []);
 
     return (
@@ -46,7 +46,7 @@ export default function Blog({ allPosts, tags }: AllPostsProps) {
             />
             <Layout siteDescription={heroPost.excerpt} siteTitle={heroPost.title} >
                 <Container>
-                    {heroPost && filterTag(heroPost, application.filter.blog) && (
+                    {heroPost && filterTag(heroPost, filter.userFilter.blog) && (
                         <HeroPost
                             title={heroPost.title}
                             coverImage={heroPost.coverImage}

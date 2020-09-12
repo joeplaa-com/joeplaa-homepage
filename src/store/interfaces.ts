@@ -6,7 +6,9 @@ export interface IApplicationState {
     isSupported: boolean | undefined;
     showModal: boolean;
     setModal: Date | undefined;
-    filter: {
+}
+export interface IFilterState {
+    userFilter: {
         blog: Array<LabelProps>,
         howto: Array<LabelProps>,
         portfolio: Array<LabelProps>,
@@ -22,4 +24,5 @@ export interface IApplicationState {
 
 export interface IRootState {
     application: IApplicationState | undefined;
+    filter: IFilterState | undefined;
 }

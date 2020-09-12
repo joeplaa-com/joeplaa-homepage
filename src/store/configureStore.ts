@@ -14,7 +14,7 @@ const bindMiddleware = (middleware: Middleware[]) => {
 
 const persistConfig = {
     key: "nextjs",
-    whitelist: ["application"], // only reducer will be persisted, add other reducers if needed
+    whitelist: ["application"], // only this/these reducer(s) will be persisted, add other reducers if needed
     storage, // if needed, use a safer storage
 };
 
