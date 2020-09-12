@@ -46,7 +46,7 @@ export default function Recommended({ allPosts, tags }: AllPostsProps) {
                     ]
                 }}
             />
-            <Layout siteDescription={heroPost.excerpt} siteTitle={heroPost.title} >
+            <Layout siteDescription={siteInfo.RecommendedDescription} siteTitle={siteInfo.RecommendedTitle + siteInfo.PageTitle} >
                 <Container>
                     <Filter page={currentPage} tags={tags} />
                     {heroPost && filterTag(heroPost, filter.userFilter[currentPage]) && (

@@ -33,7 +33,7 @@ export default function Home() {
                     ]
                 }}
             />
-            <Layout siteDescription={siteInfo.HomeDescription} siteTitle={siteInfo.HomeTitle} >
+            <Layout siteDescription={siteInfo.HomeDescription} siteTitle={siteInfo.HomeTitle + siteInfo.PageTitle} >
                 <div className='image-container shadow'>
                     <Img
                         src={require('../src/assets/home-banner-beach.jpg')}

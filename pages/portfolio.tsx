@@ -46,21 +46,9 @@ export default function Portfolio({ allPosts, tags }: AllPostsProps) {
                     ]
                 }}
             />
-            <Layout siteDescription={heroPost.excerpt} siteTitle={heroPost.title} >
+            <Layout siteDescription={siteInfo.PortfolioDescription} siteTitle={siteInfo.PortfolioTitle + siteInfo.PageTitle} >
                 <Container>
                     <Filter page={currentPage} tags={tags} />
-                    {heroPost && filterTag(heroPost, filter.userFilter[currentPage]) && (
-                        <HeroPost
-                            title={heroPost.title}
-                            coverImage={heroPost.coverImage}
-                            date={heroPost.date}
-                            author={heroPost.author}
-                            slug={heroPost.slug}
-                            excerpt={heroPost.excerpt}
-                            tags={heroPost.tags}
-                            page={currentPage}
-                        />
-                    )}
                     {morePosts.length > 0 && <MoreStories posts={morePosts} page={currentPage} />}
                 </Container>
             </Layout>

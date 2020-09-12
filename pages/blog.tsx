@@ -46,7 +46,7 @@ export default function Blog({ allPosts, tags }: AllPostsProps) {
                     ]
                 }}
             />
-            <Layout siteDescription={heroPost.excerpt} siteTitle={heroPost.title} >
+            <Layout siteDescription={siteInfo.BlogDescription} siteTitle={siteInfo.BlogTitle + siteInfo.PageTitle} >
                 <Container>
                     <Filter page={currentPage} tags={tags} />
                     {heroPost && filterTag(heroPost, filter.userFilter[currentPage]) && (
