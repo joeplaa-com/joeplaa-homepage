@@ -39,8 +39,8 @@ export default function Filter({ page, tags }: FilterProps) {
                     <Card className='mb-2 mt-2'>
                         <CardBody>
                             <Row>
-                                <Col>
-                                    {data.SelectedTags}{': '}{filter.userFilter[page].length > 0 && filter.userFilter[page].map((tag) => (
+                                <Col className='d-flex align-items-center'>
+                                    {filter.userFilter[page].length > 0 && filter.userFilter[page].map((tag) => (
                                         <Tag key={tag.value} tag={tag} page={page} />
                                     ))}
                                 </Col>
