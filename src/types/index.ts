@@ -20,7 +20,7 @@ export type DateFormatterProps = {
 }
 
 export type FilterProps = {
-    page: 'blog' | 'howto' | 'portfolio' | 'recommended'
+    page: string
     tags: Array<LabelProps>
 }
 
@@ -67,12 +67,13 @@ export type PostTypeProps = {
     ogImage?: {
         url: string
     }
+    page: string
     slug: string
     tags: string
     title: string
 }
 
 export type TagProps = {
-    page: 'blog' | 'howto' | 'portfolio' | 'recommended'
+    page: string
     tag?: LabelProps
 }

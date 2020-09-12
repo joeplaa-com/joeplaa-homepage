@@ -14,7 +14,8 @@ export default function PostPreview({
     excerpt,
     author,
     slug,
-    tags
+    tags,
+    page
 }: PostTypeProps) {
     return (
         <Card>
@@ -35,7 +36,7 @@ export default function PostPreview({
                     <em><DateFormater dateString={date} /></em>
                     <span className='tags'>
                         {getTags(tags).map((tag) => (
-                            <Tag key={tag.value} tag={tag} page='blog' />
+                            <Tag key={tag.value} tag={tag} page={page} />
                         ))}
                     </span>
                 </CardSubtitle>

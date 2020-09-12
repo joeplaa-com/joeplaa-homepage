@@ -1,22 +1,23 @@
 import { Action, Reducer } from 'redux';
 import { IFilterState } from '../interfaces';
 import { KnownAction } from '../actions/filter';
+import { navigation } from '../../lib/data'
 
 // ----------------
 // REDUCER - For a given state and action, returns the new state. To support time travel, this must not mutate the old state.
 
 export const initialFilterState: IFilterState = {
     userFilter: {
-        blog: [],
-        howto: [],
-        portfolio: [],
-        recommended: []
+        '/blog': [],
+        '/howto': [],
+        '/portfolio': [],
+        '/recommended': []
     },
     initialFilter: {
-        blog: [],
-        howto: [],
-        portfolio: [],
-        recommended: []
+        '/blog': [],
+        '/howto': [],
+        '/portfolio': [],
+        '/recommended': []
     }
 };
 
@@ -30,52 +31,52 @@ export const filterReducer: Reducer<IFilterState> = (state: IFilterState | undef
     // Add user and initial tags
     case 'ADD_TAGS_FILTER':
         switch (action.page) {
-        case 'blog':
+        case navigation.blog:
             return {
                 ...state,
                 userFilter: {
                     ...state.userFilter,
-                    blog: [...action.tags]
+                    '/blog': [...action.tags]
                 },
                 initialFilter: {
                     ...state.initialFilter,
-                    blog: [...action.tags]
+                    '/blog': [...action.tags]
                 }
             };
-        case 'howto':
+        case navigation.howto:
             return {
                 ...state,
                 userFilter: {
                     ...state.userFilter,
-                    howto: [...action.tags]
+                    '/howto': [...action.tags]
                 },
                 initialFilter: {
                     ...state.initialFilter,
-                    howto: [...action.tags]
+                    '/howto': [...action.tags]
                 }
             };
-        case 'portfolio':
+        case navigation.portfolio:
             return {
                 ...state,
                 userFilter: {
                     ...state.userFilter,
-                    portfolio: [...action.tags]
+                    '/portfolio': [...action.tags]
                 },
                 initialFilter: {
                     ...state.initialFilter,
-                    portfolio: [...action.tags]
+                    '/portfolio': [...action.tags]
                 }
             };
-        case 'recommended':
+        case navigation.recommended:
             return {
                 ...state,
                 userFilter: {
                     ...state.userFilter,
-                    recommended: [...action.tags]
+                    '/recommended': [...action.tags]
                 },
                 initialFilter: {
                     ...state.initialFilter,
-                    recommended: [...action.tags]
+                    '/recommended': [...action.tags]
                 }
             };
         }
@@ -83,36 +84,36 @@ export const filterReducer: Reducer<IFilterState> = (state: IFilterState | undef
     // Set user tags
     case 'SET_TAGS_FILTER':
         switch (action.page) {
-        case 'blog':
+        case navigation.blog:
             return {
                 ...state,
                 userFilter: {
                     ...state.userFilter,
-                    blog: action.tags
+                    '/blog': action.tags
                 }
             };
-        case 'howto':
+        case navigation.howto:
             return {
                 ...state,
                 userFilter: {
                     ...state.userFilter,
-                    howto: action.tags
+                    '/howto': action.tags
                 }
             };
-        case 'portfolio':
+        case navigation.portfolio:
             return {
                 ...state,
                 userFilter: {
                     ...state.userFilter,
-                    portfolio: action.tags
+                    '/portfolio': action.tags
                 }
             };
-        case 'recommended':
+        case navigation.recommended:
             return {
                 ...state,
                 userFilter: {
                     ...state.userFilter,
-                    recommended: action.tags
+                    '/recommended': action.tags
                 }
             };
         }

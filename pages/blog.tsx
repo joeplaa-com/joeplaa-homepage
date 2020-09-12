@@ -14,6 +14,8 @@ import filterTag from '../src/lib/filterTag'
 import getTags from '../src/lib/getTags'
 import { filterActionCreators } from '../src/store/actions/filter'
 
+const currentPage = navigation.portfolio;
+
 export default function Blog({ allPosts, tags }: AllPostsProps) {
     const dispatch = useDispatch();
     const filter = useSelector((state) => state.filter);
@@ -21,7 +23,7 @@ export default function Blog({ allPosts, tags }: AllPostsProps) {
     const morePosts = allPosts.slice(1)
     
     useEffect(() => {
-        dispatch(filterActionCreators.addTagsFilter('blog', tags));
+        dispatch(filterActionCreators.addTagsFilter(currentPage, tags));
     }, []);
 
     return (
@@ -46,8 +48,8 @@ export default function Blog({ allPosts, tags }: AllPostsProps) {
             />
             <Layout siteDescription={heroPost.excerpt} siteTitle={heroPost.title} >
                 <Container>
-                    <Filter page='blog' tags={tags} />
-                    {heroPost && filterTag(heroPost, filter.userFilter.blog) && (
+                    <Filter page={currentPage} tags={tags} />
+                    {heroPost && filterTag(heroPost, filter.userFilter[currentPage]) && (
                         <HeroPost
                             title={heroPost.title}
                             coverImage={heroPost.coverImage}
@@ -56,9 +58,10 @@ export default function Blog({ allPosts, tags }: AllPostsProps) {
                             slug={heroPost.slug}
                             excerpt={heroPost.excerpt}
                             tags={heroPost.tags}
+                            page={currentPage}
                         />
                     )}
-                    {morePosts.length > 0 && <MoreStories posts={morePosts} />}
+                    {morePosts.length > 0 && <MoreStories posts={morePosts} page={currentPage} />}
                 </Container>
             </Layout>
         </>
@@ -66,7 +69,7 @@ export default function Blog({ allPosts, tags }: AllPostsProps) {
 }
 
 export async function getStaticProps() {
-    const allPosts = getAllPosts(mdFields);
+    const allPosts = getAllPosts(mdFields, currentPage);
     const tags = [];
     allPosts.forEach((post: PostTypeProps) => {
         getTags(post.tags).map(postTag => tags.filter(tag => tag.value === postTag.value).length > 0 ? null : tags.push(postTag));

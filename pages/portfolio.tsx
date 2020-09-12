@@ -1,15 +1,31 @@
+import { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { NextSeo } from 'next-seo'
 import { Container } from 'reactstrap'
 import HeroPost from '../src/components/hero-post'
 import Layout from '../src/components/layout'
+import Filter from '../src/components/filter'
 import MoreStories from '../src/components/more-stories'
-import { AllPostsProps } from '../src/types'
+import { AllPostsProps, PostTypeProps } from '../src/types'
 import { getAllPosts } from '../src/lib/api'
+import { mdFields } from '../src/lib/constants'
 import { siteInfo, navigation } from '../src/lib/data'
+import filterTag from '../src/lib/filterTag'
+import getTags from '../src/lib/getTags'
+import { filterActionCreators } from '../src/store/actions/filter'
 
-export default function Portfolio({ allPosts }: AllPostsProps) {
+const currentPage = navigation.portfolio;
+
+export default function Portfolio({ allPosts, tags }: AllPostsProps) {
+    const dispatch = useDispatch();
+    const filter = useSelector((state) => state.filter);
     const heroPost = allPosts[0]
     const morePosts = allPosts.slice(1)
+
+    useEffect(() => {
+        dispatch(filterActionCreators.addTagsFilter(currentPage, tags));
+    }, []);
+
     return (
         <>
             <NextSeo
@@ -22,18 +38,18 @@ export default function Portfolio({ allPosts }: AllPostsProps) {
                     description: siteInfo.HomeDescription,
                     images: [
                         {
-                            url: process.env.NEXT_PUBLIC_URL + '/banner-websites-white.png',
+                            url: process.env.NEXT_PUBLIC_URL + '/white-banner-websites.png',
                             width: 300,
                             height: 300,
-                            alt: 'joeplaa websites banner',
+                            alt: 'joeplaa website banner',
                         }
                     ]
                 }}
             />
             <Layout siteDescription={heroPost.excerpt} siteTitle={heroPost.title} >
                 <Container>
-                    
-                    {heroPost && (
+                    <Filter page={currentPage} tags={tags} />
+                    {heroPost && filterTag(heroPost, filter.userFilter[currentPage]) && (
                         <HeroPost
                             title={heroPost.title}
                             coverImage={heroPost.coverImage}
@@ -41,9 +57,11 @@ export default function Portfolio({ allPosts }: AllPostsProps) {
                             author={heroPost.author}
                             slug={heroPost.slug}
                             excerpt={heroPost.excerpt}
+                            tags={heroPost.tags}
+                            page={currentPage}
                         />
                     )}
-                    {morePosts.length > 0 && <MoreStories posts={morePosts} />}
+                    {morePosts.length > 0 && <MoreStories posts={morePosts} page={currentPage} />}
                 </Container>
             </Layout>
         </>
@@ -51,16 +69,13 @@ export default function Portfolio({ allPosts }: AllPostsProps) {
 }
 
 export async function getStaticProps() {
-    const allPosts = getAllPosts([
-        'title',
-        'date',
-        'slug',
-        'author',
-        'coverImage',
-        'excerpt',
-    ])
+    const allPosts = getAllPosts(mdFields, currentPage);
+    const tags = [];
+    allPosts.forEach((post: PostTypeProps) => {
+        getTags(post.tags).map(postTag => tags.filter(tag => tag.value === postTag.value).length > 0 ? null : tags.push(postTag));
+    });
 
     return {
-        props: { allPosts },
+        props: { allPosts, tags },
     }
 }

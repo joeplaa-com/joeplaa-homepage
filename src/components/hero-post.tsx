@@ -14,7 +14,8 @@ export default function HeroPost({
     excerpt,
     author,
     slug,
-    tags
+    tags,
+    page
 }: PostTypeProps) {
     return (
         <section>
@@ -32,7 +33,7 @@ export default function HeroPost({
                         <em><DateFormater dateString={date} /></em>
                         <span className='tags'>
                             {getTags(tags).map((tag) => (
-                                <Tag key={tag.value} tag={tag} page='blog' />
+                                <Tag key={tag.value} tag={tag} page={page} />
                             ))}
                         </span>
                     </CardSubtitle>
