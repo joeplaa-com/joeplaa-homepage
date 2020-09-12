@@ -52,7 +52,7 @@ export type PostBodyProps = {
 }
 
 export type PostHeaderProps = {
-    author: AuthorProps
+    author?: AuthorProps
     coverImage: string
     date: string
     page: string
@@ -61,7 +61,7 @@ export type PostHeaderProps = {
 }
 
 export type PostTypeProps = {
-    author: AuthorProps
+    author?: AuthorProps
     content?: string
     coverImage: string
     date: string

@@ -4,7 +4,7 @@ import { NextSeo } from 'next-seo'
 import { Container } from 'reactstrap'
 import Layout from '../src/components/layout'
 import Filter from '../src/components/filter'
-import MoreStories from '../src/components/more-stories'
+import PortfolioStories from '../src/components/portfolio-stories'
 import { AllPostsProps, PostTypeProps } from '../src/types'
 import { getAllPosts } from '../src/lib/api'
 import { mdFields } from '../src/lib/constants'
@@ -16,7 +16,6 @@ const currentPage = navigation.portfolio;
 
 export default function Portfolio({ allPosts, tags }: AllPostsProps) {
     const dispatch = useDispatch();
-    const morePosts = allPosts
 
     useEffect(() => {
         dispatch(filterActionCreators.addTagsFilter(currentPage, tags));
@@ -45,7 +44,7 @@ export default function Portfolio({ allPosts, tags }: AllPostsProps) {
             <Layout siteDescription={siteInfo.PortfolioDescription} siteTitle={siteInfo.PortfolioTitle + siteInfo.PageTitle} >
                 <Container>
                     <Filter page={currentPage} tags={tags} />
-                    {morePosts.length > 0 && <MoreStories posts={morePosts} page={currentPage} />}
+                    {allPosts.length > 0 && <PortfolioStories posts={allPosts} page={currentPage} />}
                 </Container>
             </Layout>
         </>
