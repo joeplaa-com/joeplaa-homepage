@@ -14,7 +14,7 @@ import filterTag from '../src/lib/filterTag'
 import getTags from '../src/lib/getTags'
 import { filterActionCreators } from '../src/store/actions/filter'
 
-const currentPage = navigation.portfolio;
+const currentPage = navigation.blog;
 
 export default function Blog({ allPosts, tags }: AllPostsProps) {
     const dispatch = useDispatch();

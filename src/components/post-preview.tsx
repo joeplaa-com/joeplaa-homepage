@@ -21,12 +21,12 @@ export default function PostPreview({
         <Card>
             <CardBody>
                 <div className='mb-2'>
-                    <CoverImage slug={slug} title={title} picture={coverImage} rounded={true} />
+                    <CoverImage slug={slug} title={title} picture={coverImage} rounded={true} page={page} />
                 </div>
 
                 <CardTitle>
                     <h3>
-                        <Link as={`/posts/${slug}`} href='/posts/[slug]'>
+                        <Link as={`${page}/${slug}`} href={`${page}/[slug]`}>
                             <a>{title}</a>
                         </Link>
                     </h3>

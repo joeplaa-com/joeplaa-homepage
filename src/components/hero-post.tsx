@@ -23,7 +23,7 @@ export default function HeroPost({
                 <CardBody>
                     <CardTitle>
                         <h3>
-                            <Link as={`/posts${slug}`} href='/posts/[slug]'>
+                            <Link as={`${page}/${slug}`} href={`${page}/[slug]`}>
                                 <a>{title}</a>
                             </Link>
                         </h3>
@@ -39,7 +39,7 @@ export default function HeroPost({
                     </CardSubtitle>
                 </CardBody>
 
-                <CoverImage title={title} picture={coverImage} slug={slug} />
+                <CoverImage title={title} picture={coverImage} slug={slug} page={page} />
 
                 <CardBody>
                     <CardText>{excerpt}</CardText>
