@@ -7,7 +7,7 @@ import makeAnimated from 'react-select/animated'
 import Tag from '../components/tag'
 import { data, settings } from '../lib/data'
 import { filterActionCreators } from '../store/actions/filter'
-import { FilterProps, LabelProps } from "../types"
+import { FilterProps, LabelProps } from '../types'
 
 export default function Filter({ page, tags }: FilterProps) {
     const dispatch = useDispatch();
@@ -45,7 +45,7 @@ export default function Filter({ page, tags }: FilterProps) {
                                     ))}
                                 </Col>
                                 <Col xs='auto' className='float-right'>
-                                    <Button outline color="primary" onClick={toggle}>
+                                    <Button outline color='primary' onClick={toggle}>
                                         <FaSlidersH />
                                         <span className={'d-none d-' + settings.breakpoint + '-inline'}>{' '}{data.Filter}</span>
                                     </Button>

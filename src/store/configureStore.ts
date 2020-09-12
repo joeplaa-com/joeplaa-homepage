@@ -4,17 +4,17 @@ import storage from 'redux-persist/lib/storage';
 import rootReducer from './reducers';
 
 const bindMiddleware = (middleware: Middleware[]) => {
-    if (process.env.NODE_ENV !== "production") {
+    if (process.env.NODE_ENV !== 'production') {
         // eslint-disable-next-line @typescript-eslint/no-var-requires
-        const { composeWithDevTools } = require("redux-devtools-extension");
+        const { composeWithDevTools } = require('redux-devtools-extension');
         return composeWithDevTools(applyMiddleware(...middleware));
     }
     return applyMiddleware(...middleware as Middleware[]);
 };
 
 const persistConfig = {
-    key: "nextjs",
-    whitelist: ["application"], // only this/these reducer(s) will be persisted, add other reducers if needed
+    key: 'nextjs',
+    whitelist: ['application'], // only this/these reducer(s) will be persisted, add other reducers if needed
     storage, // if needed, use a safer storage
 };
 

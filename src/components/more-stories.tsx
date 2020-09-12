@@ -1,6 +1,6 @@
 import { useSelector } from 'react-redux'
 import { CardColumns } from 'reactstrap'
-import PostPreview from "./post-preview";
+import PostPreview from './post-preview';
 import filterTag from '../lib/filterTag'
 import { PostTypeProps } from '../types'
 

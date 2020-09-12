@@ -1,4 +1,4 @@
-import Link from "next/link"
+import Link from 'next/link'
 import Img from 'react-optimized-image'
 import { images } from '../lib/images'
 import { CoverImageProps } from '../types'

@@ -34,7 +34,7 @@ const Post = ({ post, morePosts, preview }: Props) => {
                                 <title>
                                     {post.title}{' '}{siteInfo.PageTitle}
                                 </title>
-                                <meta property="og:image" content={post.ogImage.url} />
+                                <meta property='og:image' content={post.ogImage.url} />
                             </Head>
                             <PostHeader
                                 title={post.title}
