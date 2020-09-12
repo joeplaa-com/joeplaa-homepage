@@ -1,14 +1,13 @@
 import { useState } from 'react'
-import { Button, Card, CardBody, Col, Row, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap'
 import { useDispatch, useSelector } from 'react-redux'
+import { Button, Card, CardBody, Col, Row, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap'
+import { FaSlidersH } from 'react-icons/fa'
 import Select from 'react-select'
 import makeAnimated from 'react-select/animated'
 import Tag from '../components/tag'
-import { data } from '../lib/data'
+import { data, settings } from '../lib/data'
 import { filterActionCreators } from '../store/actions/filter'
 import { FilterProps, LabelProps } from "../types"
-
-const animatedComponents = makeAnimated();
 
 export default function Filter({ page, tags }: FilterProps) {
     const dispatch = useDispatch();
@@ -20,11 +19,10 @@ export default function Filter({ page, tags }: FilterProps) {
     }
 
     function setFilter(el: Array<LabelProps>) {
-        dispatch(filterActionCreators.setTagsFilter('blog', el))
+        dispatch(filterActionCreators.setTagsFilter(page, el))
     }
 
     function applyFilter() {
-        //dispatch(filterActionCreators.setTagsFilter('blog', filter.userFilter[page]))
         toggle();
     }
 
@@ -32,9 +30,11 @@ export default function Filter({ page, tags }: FilterProps) {
         dispatch(filterActionCreators.resetTagFilter());
     }
 
+    const animatedComponents = makeAnimated();
+
     return (
         <section>
-            <Row className='filter'>
+            <Row className={'filter'}>
                 <Col className='mx-auto'>
                     <Card className='mb-2 mt-2'>
                         <CardBody>
@@ -45,30 +45,33 @@ export default function Filter({ page, tags }: FilterProps) {
                                     ))}
                                 </Col>
                                 <Col xs='auto' className='float-right'>
-                                    <Button outline color="primary" onClick={resetFilter}>Show all</Button>{' '}
-                                    <Button outline color="primary" onClick={toggle}>{data.Filter}</Button>
+                                    <Button outline color="primary" onClick={toggle}>
+                                        <FaSlidersH />
+                                        <span className={'d-none d-' + settings.breakpoint + '-inline'}>{' '}{data.Filter}</span>
+                                    </Button>
                                 </Col>
                             </Row>
                         </CardBody>
                     </Card>
                 </Col>
             </Row>
-
             <Modal isOpen={modal} toggle={toggle}>
-                <ModalHeader toggle={toggle}>Modal title</ModalHeader>
+                <ModalHeader toggle={toggle}>{data.FilterTags}</ModalHeader>
                 <ModalBody>
                     <Select
                         closeMenuOnSelect={false}
                         components={animatedComponents}
-                        defaultValue={filter.userFilter[page]}
+                        value={filter.userFilter[page]}
                         isMulti
-                        name="tags"
+                        name='tags'
+                        noOptionsMessage={() => <p>{data.NoOptionsSelect}</p>}
                         options={tags}
                         onChange={setFilter}
                     />
                 </ModalBody>
                 <ModalFooter>
-                    <Button color="primary" onClick={applyFilter}>Ok</Button>{' '}
+                    <Button outline color='primary' onClick={resetFilter}>{data.ShowAll}</Button>{' '}
+                    <Button color='primary' onClick={applyFilter}>{data.Ok}</Button>{' '}
                 </ModalFooter>
             </Modal>
         </section>

@@ -46,6 +46,7 @@ export default function Blog({ allPosts, tags }: AllPostsProps) {
             />
             <Layout siteDescription={heroPost.excerpt} siteTitle={heroPost.title} >
                 <Container>
+                    <Filter page='blog' tags={tags} />
                     {heroPost && filterTag(heroPost, filter.userFilter.blog) && (
                         <HeroPost
                             title={heroPost.title}
@@ -57,7 +58,6 @@ export default function Blog({ allPosts, tags }: AllPostsProps) {
                             tags={heroPost.tags}
                         />
                     )}
-                    <Filter page='blog' tags={tags} />
                     {morePosts.length > 0 && <MoreStories posts={morePosts} />}
                 </Container>
             </Layout>

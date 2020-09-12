@@ -18,7 +18,7 @@ export default function HeroPost({
 }: PostTypeProps) {
     return (
         <section>
-            <Card className='mt-4'>
+            <Card className='mt-2'>
                 <CardBody>
                     <CardTitle>
                         <h3>

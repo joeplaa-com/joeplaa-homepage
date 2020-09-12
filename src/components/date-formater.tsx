@@ -4,5 +4,5 @@ import { DateFormatterProps } from '../types'
 
 export default function DateFormater({ dateString }: DateFormatterProps) {
     const date = parseISO(dateString);
-    return <time dateTime={dateString}>{format(date, settings.DateFormat)}</time>;
+    return <time dateTime={dateString}>{format(date, settings.dateFormat)}</time>;
 }

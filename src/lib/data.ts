@@ -30,13 +30,17 @@ export const data = {
     Books: 'Books',
     Continue: 'Continue',
     Filter: 'Filter',
+    FilterTags: 'Select tags to show',
     Home: 'Home',
     Howto: 'Howto',
     Info: 'Info',
     Loading: 'Loading...',
+    NoOptionsSelect: 'No further tags available',
+    Ok: 'Ok',
     Portfolio: 'Portfolio',
     Recommended: 'Recommended',
     SelectedTags: 'Selected tags',
+    ShowAll: 'Show all',
     ShowModal: 'Show more',
     ShowModalMessage: 'This website does not work properly in your current browser.',
     UnsupportedContinue: 'Press continue to view this site anyway.',
@@ -45,5 +49,6 @@ export const data = {
     Videos: 'Videos'
 };
 export const settings = {
-    DateFormat: 'LLLL d, yyyy'
+    breakpoint: 'md',
+    dateFormat: 'LLLL d, yyyy'
 };

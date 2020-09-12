@@ -9,7 +9,6 @@ export default function Navigation({ className }: { className: string }) {
 
     function activeLink(href) {
         const path = router.pathname;
-
         return (path === href)
     }
 
