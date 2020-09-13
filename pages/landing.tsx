@@ -96,20 +96,10 @@ export default function Landing() {
 
                             <Card>
                                 <CardBody>
-                                    <CardTitle><h5><Link href={navigation.books}><a>{data.Books}</a></Link></h5></CardTitle>
-                                    <LandingImage title='joeplaa recommended books' picture='assets/banner-blog.png' link={navigation.books} />
+                                    <CardTitle><h5><Link href={navigation.recommended}><a>{data.Recommended}</a></Link></h5></CardTitle>
+                                    <LandingImage title='joeplaa recommended' picture='assets/banner-blog.png' link={navigation.recommended} />
                                     <CardText>
-                                        Recommended books
-                                    </CardText>
-                                </CardBody>
-                            </Card>
-
-                            <Card>
-                                <CardBody>
-                                    <CardTitle><h5><Link href={navigation.videos}><a>{data.Videos}</a></Link></h5></CardTitle>
-                                    <LandingImage title='joeplaa recommended videos' picture='assets/banner-blog.png' link={navigation.videos} />
-                                    <CardText>
-                                        Recommended videos
+                                        Recommended books and videos
                                     </CardText>
                                 </CardBody>
                             </Card>

@@ -4,8 +4,7 @@ export const navigation = {
     howto: '/howto',
     portfolio: '/portfolio',
     pricing: '/pricing',
-    books: process.env.NEXT_PUBLIC_BLOG_URL + '/books',
-    videos: process.env.NEXT_PUBLIC_BLOG_URL + '/videos'
+    recommended: process.env.NEXT_PUBLIC_BLOG_URL + '/recommended'
 };
 export const urls = {
     github: 'https://github.com/joeplaa',
@@ -35,7 +34,6 @@ export const data = {
     AllRightsReserved: 'All rights reserved.',
     Backto: 'Back to overview',
     Blog: 'Blog',
-    Books: 'Books',
     Continue: 'Continue',
     Filter: 'Filter',
     FilterTags: 'Select tags to show',
@@ -47,14 +45,14 @@ export const data = {
     Ok: 'Ok',
     Portfolio: 'Portfolio',
     Pricing: 'Pricing',
+    Recommended: 'Recommended',
     SelectedTags: 'Selected tags',
     ShowAll: 'Show all',
     ShowModal: 'Show more',
     ShowModalMessage: 'This website does not work properly in your current browser.',
     UnsupportedContinue: 'Press continue to view this site anyway.',
     UnsupportedMessage: 'This website does not work properly in your current browser. Use one of the browser below for the best experience.',
-    UnsupportedTitle: 'Browser not supported',
-    Videos: 'Videos',
+    UnsupportedTitle: 'Browser not supported'
 };
 export const settings = {
     breakpoint: 'md',
