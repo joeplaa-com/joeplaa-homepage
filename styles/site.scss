@@ -214,6 +214,24 @@ a.nav-padding-social {
     padding: 0.5rem 0.5rem;
 }
 
+.nav-item a {
+    border-bottom: 2px solid transparent;
+    margin-left: .25rem;
+    margin-right: .25rem;
+}
+
+.nav-item a:hover {
+    border-bottom: 2px solid $navbar-light-active-color;
+    margin-left: .25rem;
+    margin-right: .25rem;
+}
+
+.nav-item a.active {
+    border-bottom: 2px solid $navbar-light-active-color;
+    margin-left: .25rem;
+    margin-right: .25rem;
+}
+
 $post-container-padding: (
     xs: 1rem,
     md: 2rem
