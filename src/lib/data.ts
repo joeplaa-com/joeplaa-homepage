@@ -7,7 +7,9 @@ export const navigation = {
     recommended: process.env.NEXT_PUBLIC_BLOG_URL + '/recommended'
 };
 export const urls = {
+    facebook: 'https://www.facebook.com/joeplaadotcom',
     github: 'https://github.com/joeplaa',
+    instagram: 'https://www.instagram.com/joeplaa/',
     linkedin: 'https://www.linkedin.com/in/joeplaa/',
     mailto: 'mailto:info@joeplaa.com',
     website: 'https://www.joeplaa.com'

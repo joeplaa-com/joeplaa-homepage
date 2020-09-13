@@ -12,6 +12,12 @@ export default function Header({ classString, color }: LinkProps) {
         <IconContext.Provider value={{ size: '1.25rem' }}>
             <Nav className={classString} nav='true'>
                 <NavItem>
+                    <NavLink className={linkColor(color) + ' nav-padding-social'} href={urls.facebook}><FaFacebook /></NavLink>
+                </NavItem>
+                <NavItem>
+                    <NavLink className={linkColor(color) + ' nav-padding-social'} href={urls.instagram}><FaInstagram /></NavLink>
+                </NavItem>
+                <NavItem>
                     <NavLink className={linkColor(color) + ' nav-padding-social'} href={urls.linkedin}><FaLinkedin /></NavLink>
                 </NavItem>
                 <NavItem>

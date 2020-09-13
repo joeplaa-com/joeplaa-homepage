@@ -9,39 +9,39 @@
     https://www.sessions.edu/color-calculator/
     https://mdigi.tools/color-shades/
 */
-$chili:             #c21807;
+$strong-blue:       #1807c2;
 
-$ana-primary:       $chili;
-$ana-secondary:     #c27407;
-$ana-tertiary:      #c20755;
+$ana-primary:       $strong-blue;
+$ana-secondary:     #7407c2;
+$ana-tertiary:      #07a0c2;
 
 /* monochromes */
 $white: $white;
-$red-100: #f9e8e6;
-$red-200: #f3d1cd;
-$red-300: #edbab5;
-$red-400: #e7a39c;
-$red-500: #e18c83;
-$red-600: #da746a;
-$red-700: #d45d51;
-$red-800: #ce4639;
-$red-900: #c82f20;
-$red-full: $chili;
+$blue-100: #e8e6f9;
+$blue-200: #d1cdf3;
+$blue-300: #bab5ed;
+$blue-400: #a39ce7;
+$blue-500: #8c83e1;
+$blue-600: #746ada;
+$blue-700: #5d51d4;
+$blue-800: #4639ce;
+$blue-900: #2f20c8;
+$blue-full: $strong-blue;
 
-$reds: ();
-$reds: map-merge(
+$blues: ();
+$blues: map-merge(
   (
-    "r100": $red-100,
-    "r200": $red-200,
-    "r300": $red-300,
-    "r400": $red-400,
-    "r500": $red-500,
-    "r600": $red-600,
-    "r700": $red-700,
-    "r800": $red-800,
-    "r900": $red-900
+    "b100": $blue-100,
+    "b200": $blue-200,
+    "b300": $blue-300,
+    "b400": $blue-400,
+    "b500": $blue-500,
+    "b600": $blue-600,
+    "b700": $blue-700,
+    "b800": $blue-800,
+    "b900": $blue-900
   ),
-  $reds
+  $blues
 );
 
 /* -------begin Bootstrap customization-------- */
@@ -49,7 +49,7 @@ $reds: map-merge(
 
 /* or, use an existing variable */
 $theme-colors: (
-    primary: $red-full,
+    primary: $blue-800,
     secondary: $ana-secondary,
     gray-light: $gray-200,
     navbar-gray: $gray-100
@@ -58,15 +58,15 @@ $theme-colors: (
 $body-bg:                           $gray-100;
 
 $component-active-color:            $white;
-$component-active-bg:               $red-900;
+$component-active-bg:               $blue-full;
 
-$link-color:                        $red-full;
-$link-hover-color:                  darken($link-color, 5%);
+$link-color:                        $blue-800;
+$link-hover-color:                  darken($link-color, 10%);
 
-$navbar-light-color:                $red-800;
-$navbar-light-hover-color:          $red-700;
-$navbar-light-active-color:         $red-900;
-$navbar-light-disabled-color:       $red-300;
+$navbar-light-color:                $link-color;
+$navbar-light-hover-color:          darken($navbar-light-color, 10%);
+$navbar-light-active-color:         $navbar-light-color;
+$navbar-light-disabled-color:       $blue-300;
 
 $nav-pills-link-active-color:       $component-active-color !important;
 $nav-pills-link-active-bg:          $component-active-bg;
