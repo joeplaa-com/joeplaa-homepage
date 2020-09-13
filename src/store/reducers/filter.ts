@@ -8,16 +8,12 @@ import { navigation } from '../../lib/data'
 
 export const initialFilterState: IFilterState = {
     userFilter: {
-        '/blog': [],
         '/howto': [],
-        '/portfolio': [],
-        '/recommended': []
+        '/portfolio': []
     },
     initialFilter: {
-        '/blog': [],
         '/howto': [],
-        '/portfolio': [],
-        '/recommended': []
+        '/portfolio': []
     }
 };
 
@@ -31,18 +27,6 @@ export const filterReducer: Reducer<IFilterState> = (state: IFilterState | undef
     // Add user and initial tags
     case 'ADD_TAGS_FILTER':
         switch (action.page) {
-        case navigation.blog:
-            return {
-                ...state,
-                userFilter: {
-                    ...state.userFilter,
-                    '/blog': [...action.tags]
-                },
-                initialFilter: {
-                    ...state.initialFilter,
-                    '/blog': [...action.tags]
-                }
-            };
         case navigation.howto:
             return {
                 ...state,
@@ -67,31 +51,11 @@ export const filterReducer: Reducer<IFilterState> = (state: IFilterState | undef
                     '/portfolio': [...action.tags]
                 }
             };
-        case navigation.recommended:
-            return {
-                ...state,
-                userFilter: {
-                    ...state.userFilter,
-                    '/recommended': [...action.tags]
-                },
-                initialFilter: {
-                    ...state.initialFilter,
-                    '/recommended': [...action.tags]
-                }
-            };
         }
         break;
     // Set user tags
     case 'SET_TAGS_FILTER':
         switch (action.page) {
-        case navigation.blog:
-            return {
-                ...state,
-                userFilter: {
-                    ...state.userFilter,
-                    '/blog': action.tags
-                }
-            };
         case navigation.howto:
             return {
                 ...state,
@@ -106,14 +70,6 @@ export const filterReducer: Reducer<IFilterState> = (state: IFilterState | undef
                 userFilter: {
                     ...state.userFilter,
                     '/portfolio': action.tags
-                }
-            };
-        case navigation.recommended:
-            return {
-                ...state,
-                userFilter: {
-                    ...state.userFilter,
-                    '/recommended': action.tags
                 }
             };
         }

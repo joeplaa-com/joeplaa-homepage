@@ -6,44 +6,44 @@
       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
       xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" 
       xmlns:xhtml="http://www.w3.org/1999/xhtml">
-      <url><loc>https://joeplaa.com/blog</loc>
+      <url><loc>https://joeplaa.com/home</loc>
                 
                 
                 
-                <lastmod>2020-09-08</lastmod>
-                </url><url><loc>https://joeplaa.com/home</loc>
+                <lastmod>2020-09-13</lastmod>
+                </url><url><loc>https://joeplaa.com/howto/[slug]</loc>
                 
                 
                 
-                <lastmod>2020-09-08</lastmod>
+                <lastmod>2020-09-13</lastmod>
                 </url><url><loc>https://joeplaa.com/howto</loc>
                 
                 
                 
-                <lastmod>2020-09-08</lastmod>
+                <lastmod>2020-09-13</lastmod>
                 </url><url><loc>https://joeplaa.com</loc>
                 
                 
                 
-                <lastmod>2020-09-08</lastmod>
+                <lastmod>2020-09-13</lastmod>
+                </url><url><loc>https://joeplaa.com/landing</loc>
+                
+                
+                
+                <lastmod>2020-09-13</lastmod>
+                </url><url><loc>https://joeplaa.com/portfolio/[slug]</loc>
+                
+                
+                
+                <lastmod>2020-09-13</lastmod>
                 </url><url><loc>https://joeplaa.com/portfolio</loc>
                 
                 
                 
-                <lastmod>2020-09-08</lastmod>
-                </url><url><loc>https://joeplaa.com/posts/[slug]</loc>
+                <lastmod>2020-09-13</lastmod>
+                </url><url><loc>https://joeplaa.com/pricing</loc>
                 
                 
                 
-                <lastmod>2020-09-08</lastmod>
-                </url><url><loc>https://joeplaa.com/recommended/books</loc>
-                
-                
-                
-                <lastmod>2020-09-08</lastmod>
-                </url><url><loc>https://joeplaa.com/recommended/videos</loc>
-                
-                
-                
-                <lastmod>2020-09-08</lastmod>
+                <lastmod>2020-09-13</lastmod>
                 </url></urlset>

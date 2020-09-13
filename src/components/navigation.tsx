@@ -18,7 +18,7 @@ export default function Navigation({ className }: { className: string }) {
                 <NavLink href={navigation.home} active={activeLink(navigation.home)}>{data.Home}</NavLink>
             </NavItem>
             <NavItem>
-                <NavLink href={navigation.blog} active={activeLink(navigation.blog)}>{data.Blog}</NavLink>
+                <NavLink href={navigation.pricing} active={activeLink(navigation.pricing)}>{data.Pricing}</NavLink>
             </NavItem>
             <NavItem>
                 <NavLink href={navigation.portfolio} active={activeLink(navigation.portfolio)}>{data.Portfolio}</NavLink>
@@ -27,7 +27,7 @@ export default function Navigation({ className }: { className: string }) {
                 <NavLink href={navigation.howto} active={activeLink(navigation.howto)}>{data.Howto}</NavLink>
             </NavItem>
             <NavItem>
-                <NavLink href={navigation.recommended} active={activeLink(navigation.recommended)}>{data.Recommended}</NavLink>
+                <NavLink href={navigation.blog} active={activeLink(navigation.blog)}>{data.Blog}</NavLink>
             </NavItem>
         </Nav>
     );

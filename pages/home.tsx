@@ -81,20 +81,6 @@ export default function Home() {
 
                         <Card>
                             <CardBody>
-                                <CardTitle><h5><Link href={navigation.blog}><a>{data.Blog}</a></Link></h5></CardTitle>
-                                <CardText>
-                                    The reason I started this website: I wanted a blog. When starting the focus was on goals, mindset, nutrition and health. Figuring out what I have to do and eat to stay healthy, however, has proven to be a big challenge.
-                                    A challenge I don&apos;t have enough time for at the moment. But there&apos;s a lot of stuff I&apos;m trying to understand about myself, humanity, the world and the universe and I learned that talking about them or writing them down really helps.
-                                    Giving words to my thought makes them more tangible, concrete and well better. They get more articulated and thought-through.
-                                </CardText>
-                                <CardText>
-                                    Subjects range from diet to mindset and psychology to sociology and politics.
-                                </CardText>
-                            </CardBody>
-                        </Card>
-
-                        <Card>
-                            <CardBody>
                                 <CardTitle><h5><Link href={navigation.portfolio}><a>{data.Portfolio}</a></Link></h5></CardTitle>
                                 <CardText>
                                     Together with Diana I have a company: <a href='https://www.jodibooks.com' target='_blank' rel='noopener noreferrer'>jodiBooks</a>.
@@ -118,18 +104,6 @@ export default function Home() {
                                 </CardText>
                                 <CardText>
                                     Subjects are: Ubuntu, file-sharing, virtual machines and website hosting.
-                                </CardText>
-                            </CardBody>
-                        </Card>
-
-                        <Card>
-                            <CardBody>
-                                <CardTitle><h5><Link href={navigation.recommended}><a>{data.Recommended}</a></Link></h5></CardTitle>
-                                <CardText>
-                                    The ideas I write about in my blog all started somewhere. Mostly after I&apos;ve seen a video on YouTube or read a book. In the recommended section I share the most influential and thought-provoking ones I&apos;ve encountered.
-                                </CardText>
-                                <CardText>
-                                    That doesn&apos;t mean I (still) fully support the ideas put forward in them. I grow, learn and change my mind and I&apos;ll very probably have to keep doing that and I hope you will join me.
                                 </CardText>
                             </CardBody>
                         </Card>

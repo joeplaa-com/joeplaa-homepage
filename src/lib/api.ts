@@ -5,14 +5,10 @@ import { navigation } from './data'
 
 function getPostsDirectory(page) {
     switch (page) {
-    case '/blog':
-        return join(process.cwd(), '_posts' + navigation.blog);
     case '/howto':
         return join(process.cwd(), '_posts' + navigation.howto);
     case '/portfolio':
         return join(process.cwd(), '_posts' + navigation.portfolio);
-    case '/recommended':
-        return join(process.cwd(), '_posts' + navigation.recommended);
     }
 }
 

@@ -1,16 +1,11 @@
 import Link from 'next/link'
 import { NextSeo } from 'next-seo'
 import { Card, CardBody, CardColumns, CardText, CardTitle, Container } from 'reactstrap'
-import HeroPost from '../src/components/hero-post'
 import LandingImage from '../src/components/landing-image'
 import Layout from '../src/components/layout'
-import { getAllPosts } from '../src/lib/api'
-import { mdFields } from '../src/lib/constants'
 import { data, siteInfo, navigation } from '../src/lib/data'
-import { AllPostsProps } from '../src/types'
 
-export default function Instagram({ allPosts }: AllPostsProps) {
-    const heroPost = allPosts[0]
+export default function Landing() {
     return (
         <>
             <NextSeo
@@ -55,38 +50,16 @@ export default function Instagram({ allPosts }: AllPostsProps) {
                     ]
                 }}
             />
-            <Layout siteDescription={siteInfo.InstagramDescription} siteTitle={siteInfo.InstagramTitle + siteInfo.PageTitle} >
+            <Layout siteDescription={siteInfo.LandingDescription} siteTitle={siteInfo.LandingTitle + siteInfo.PageTitle} >
                 <Container>
                     <section>
                         <CardColumns>
-                            {heroPost && (
-                                <HeroPost
-                                    title={heroPost.title}
-                                    coverImage={heroPost.coverImage}
-                                    date={heroPost.date}
-                                    author={heroPost.author}
-                                    slug={heroPost.slug}
-                                    excerpt={heroPost.excerpt}
-                                    tags={heroPost.tags}
-                                    page={navigation.blog}
-                                />
-                            )}
                             <Card>
                                 <CardBody>
                                     <CardTitle><h5><Link href={navigation.blog}><a>{data.Blog}</a></Link></h5></CardTitle>
                                     <LandingImage title='joeplaa blog' picture='assets/banner-blog.png' link={navigation.blog} />
                                     <CardText>
                                         My blog with subjects from diet to mindset and psychology to sociology and politics.
-                                    </CardText>
-                                </CardBody>
-                            </Card>
-
-                            <Card>
-                                <CardBody>
-                                    <CardTitle><h5><Link href={navigation.portfolio}><a>{data.Portfolio}</a></Link></h5></CardTitle>
-                                    <LandingImage title='joeplaa portfolio' picture='assets/banner-websites.png' link={navigation.portfolio} />
-                                    <CardText>
-                                        You can find examples of my work in my portfolio on this website.
                                     </CardText>
                                 </CardBody>
                             </Card>
@@ -103,10 +76,40 @@ export default function Instagram({ allPosts }: AllPostsProps) {
 
                             <Card>
                                 <CardBody>
-                                    <CardTitle><h5><Link href={navigation.recommended}><a>{data.Recommended}</a></Link></h5></CardTitle>
-                                    <LandingImage title='joeplaa recommendations' picture='assets/banner-com.png' link={navigation.portfolio} />
+                                    <CardTitle><h5><Link href={navigation.pricing}><a>{data.Pricing}</a></Link></h5></CardTitle>
+                                    <LandingImage title='joeplaa pricing' picture='assets/banner-com.png' link={navigation.pricing} />
                                     <CardText>
-                                        I grow, learn and change my mind and I&apos;ll very probably have to keep doing that and I hope you will join me.
+                                        Pricing of my services: website design and hosting.
+                                    </CardText>
+                                </CardBody>
+                            </Card>
+
+                            <Card>
+                                <CardBody>
+                                    <CardTitle><h5><Link href={navigation.portfolio}><a>{data.Portfolio}</a></Link></h5></CardTitle>
+                                    <LandingImage title='joeplaa portfolio' picture='assets/banner-websites.png' link={navigation.portfolio} />
+                                    <CardText>
+                                        Examples of my work in my portfolio.
+                                    </CardText>
+                                </CardBody>
+                            </Card>
+
+                            <Card>
+                                <CardBody>
+                                    <CardTitle><h5><Link href={navigation.books}><a>{data.Books}</a></Link></h5></CardTitle>
+                                    <LandingImage title='joeplaa recommended books' picture='assets/banner-blog.png' link={navigation.books} />
+                                    <CardText>
+                                        Recommended books
+                                    </CardText>
+                                </CardBody>
+                            </Card>
+
+                            <Card>
+                                <CardBody>
+                                    <CardTitle><h5><Link href={navigation.videos}><a>{data.Videos}</a></Link></h5></CardTitle>
+                                    <LandingImage title='joeplaa recommended videos' picture='assets/banner-blog.png' link={navigation.videos} />
+                                    <CardText>
+                                        Recommended videos
                                     </CardText>
                                 </CardBody>
                             </Card>
@@ -116,12 +119,4 @@ export default function Instagram({ allPosts }: AllPostsProps) {
             </Layout>
         </>
     )
-}
-
-export async function getStaticProps() {
-    const allPosts = getAllPosts(mdFields, navigation.blog);
-
-    return {
-        props: { allPosts },
-    }
 }
