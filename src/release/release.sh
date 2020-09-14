@@ -4,10 +4,8 @@
 # Browse to folder. Change this to you own location
 cd ../../
 
-# Checkout develop branch
-git checkout develop
-# or a feature branch
-#git checkout feature/...
+# Checkout "develop" branch
+git checkout project/create-next-website
 git pull
 
 # Set correct environment variables
@@ -23,7 +21,7 @@ yarn build
 
 # Publish website to Nginx
 # TEST (test.jodibooks.com):
-scp -r out/* jodibooks@192.168.178.156:/var/www/test-blog-joeplaa
+scp -r out/* jodibooks@192.168.178.156:/var/www/test-www-joeplaa
 
 # Restore environment variables
 mv .env.production.backup .env.production
