@@ -48,7 +48,7 @@ export default function Home() {
                     <CardColumns>
                         <Card outline color='primary'>
                             <CardBody>
-                                <CardTitle><h4>What is Joeplaa?</h4></CardTitle>
+                                <CardTitle><h3>What is Joeplaa?</h3></CardTitle>
                                 <CardText>
                                     Joeplaa, pronounce &quot;you-p-laah&quot;, is an abbreviation of my full name: <strong>Joe</strong>p van de <strong>Laa</strong>rschot.
                                     Initially I started using it to shorten my e-mail address, but it turned into my &quot;official&quot; handle @joeplaa everywhere on the web. So obviously I had to use for this website too.
@@ -58,7 +58,7 @@ export default function Home() {
 
                         <Card outline color='primary'>
                             <CardBody>
-                                <CardTitle><h4>Who is Joeplaa?</h4></CardTitle>
+                                <CardTitle><h3>Who is Joeplaa?</h3></CardTitle>
                                 <CardText>
                                     I&apos;m Joep, {getAge('1985/01/14')} years old and currently living in <a href='https://en.wikipedia.org/wiki/Eindhoven' target='_blank' rel='noopener noreferrer'>Eindhoven in The Netherlands</a>. I went to Eindhoven to study mechanical engineering at <a href='https://www.tue.nl/' target='_blank' rel='noopener noreferrer'>university</a>.
                                 </CardText>
@@ -73,7 +73,7 @@ export default function Home() {
 
                         <Card outline color='primary'>
                             <CardBody>
-                                <CardTitle><h4>Why joeplaa.com?</h4></CardTitle>
+                                <CardTitle><h3>Why joeplaa.com?</h3></CardTitle>
                                 <CardText>
                                     I&apos;ve originally started joeplaa.com as my personal blog. I wanted to have a place where I could write about anything that I was interested in and you can still find <a href={navigation.blog}>my blog here</a>.
                                 </CardText>
