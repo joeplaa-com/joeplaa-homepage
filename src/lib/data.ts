@@ -35,6 +35,7 @@ export const siteInfo = {
 };
 export const data = {
     AllRightsReserved: 'All rights reserved.',
+    Back: 'Back',
     Backto: 'Back to overview',
     Blog: 'Blog',
     Continue: 'Continue',
