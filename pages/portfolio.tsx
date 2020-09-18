@@ -7,12 +7,13 @@ import Filter from '../src/components/filter'
 import PortfolioStories from '../src/components/portfolio-stories'
 import { AllPostsProps, PostTypeProps } from '../src/types'
 import { getAllPosts } from '../src/lib/api'
-import { mdFields } from '../src/lib/constants'
+import { postModalFields } from '../src/lib/constants'
 import { siteInfo, navigation } from '../src/lib/data'
 import getTags from '../src/lib/getTags'
 import { filterActionCreators } from '../src/store/actions/filter'
 
 const currentPage = navigation.portfolio;
+const currentFolder = navigation.portfolioModals;
 
 export default function Portfolio({ allPosts, tags }: AllPostsProps) {
     const dispatch = useDispatch();
@@ -44,7 +45,7 @@ export default function Portfolio({ allPosts, tags }: AllPostsProps) {
             <Layout siteDescription={siteInfo.PortfolioDescription} siteTitle={siteInfo.PortfolioTitle + siteInfo.PageTitle} >
                 <Container>
                     <Filter page={currentPage} tags={tags} />
-                    {allPosts.length > 0 && <PortfolioStories posts={allPosts} page={currentPage} />}
+                    {allPosts.length > 0 && <PortfolioStories posts={allPosts} page={currentPage} folder={currentFolder} />}
                 </Container>
             </Layout>
         </>
@@ -52,7 +53,7 @@ export default function Portfolio({ allPosts, tags }: AllPostsProps) {
 }
 
 export async function getStaticProps() {
-    const allPosts = getAllPosts(mdFields, currentPage);
+    const allPosts = getAllPosts(postModalFields, currentFolder);
     const tags = [];
     allPosts.forEach((post: PostTypeProps) => {
         getTags(post.tags).map(postTag => tags.filter(tag => tag.value === postTag.value).length > 0 ? null : tags.push(postTag));

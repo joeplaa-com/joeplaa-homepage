@@ -1,9 +1,8 @@
-import Link from 'next/link'
 import Img from 'react-optimized-image'
 import { images } from '../lib/images'
-import { CoverImageProps } from '../types'
+import { PortfolioImageProps } from '../types'
 
-export default function CoverImage({ title, picture, slug, rounded, folder }: CoverImageProps) {
+export default function CoverImage({ title, picture, slug, rounded, onClick }: PortfolioImageProps) {
     const className = rounded ? ' rounded' : '';
     const image = (
         <img
@@ -15,9 +14,7 @@ export default function CoverImage({ title, picture, slug, rounded, folder }: Co
     return (
         <div>
             {slug ? (
-                <Link as={`${folder}/${slug}`} href={`${folder}/[slug]`}>
-                    <a aria-label={title}>{image}</a>
-                </Link>
+                <a href="#" onClick={onClick} aria-label={title}>{image}</a>
             ) : (
                 image
             )}
