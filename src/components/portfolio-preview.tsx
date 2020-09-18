@@ -4,6 +4,7 @@ import { FaTimes } from 'react-icons/fa'
 import Img from 'react-optimized-image'
 import DateFormater from './date-formater'
 import PortfolioImage from './portfolio-image'
+import PostBody from './post-body'
 import Tag from './tag'
 import { data } from '../lib/data'
 import getTags from '../lib/getTags'
@@ -60,7 +61,7 @@ export default function PortfolioPreview({
                 </ModalBody>
 
                 <ModalBody>
-                    {content}
+                    <PostBody content={content} />
                 </ModalBody>
 
                 <ModalFooter>
