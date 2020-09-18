@@ -10,7 +10,7 @@ export type AuthorProps = {
 
 export type CoverImageProps = {
     slug?: string
-    page: string
+    folder: string
     picture: string
     rounded?: boolean
     title: string
@@ -61,7 +61,7 @@ export type PostHeaderProps = {
     author?: AuthorProps
     coverImage: string
     date: string
-    page: string
+    folder: string
     slug?: string
     title: string
 }
@@ -72,10 +72,11 @@ export type PostTypeProps = {
     coverImage: string
     date: string
     excerpt: string
+    folder?: string
     ogImage?: {
         url: string
     }
-    page: string
+    page?: string
     slug: string
     tags: string
     title: string

@@ -2,7 +2,9 @@ export const navigation = {
     blog: process.env.NEXT_PUBLIC_BLOG_URL,
     home: '/home',
     howto: '/howto',
+    howtos: '/howtos',
     portfolio: '/portfolio',
+    portfolioModals: '/portfolioModals',
     pricing: '/pricing',
     recommended: process.env.NEXT_PUBLIC_BLOG_URL + '/recommended'
 };

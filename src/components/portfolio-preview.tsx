@@ -8,23 +8,25 @@ import { PostTypeProps } from '../types'
 
 export default function PortfolioPreview({
     title,
+    content,
     coverImage,
     date,
     excerpt,
     slug,
     tags,
-    page
+    page,
+    folder
 }: PostTypeProps) {
     return (
         <Card>
             <CardBody>
                 <div className='mb-2'>
-                    <CoverImage slug={slug} title={title} picture={coverImage} rounded={true} page={page} />
+                    <CoverImage slug={slug} title={title} picture={coverImage} rounded={true} folder={folder} />
                 </div>
 
                 <CardTitle>
                     <h3>
-                        <Link as={`${page}/${slug}`} href={`${page}/[slug]`}>
+                        <Link as={`${folder}/${slug}`} href={`${folder}/[slug]`}>
                             <a>{title}</a>
                         </Link>
                     </h3>
@@ -40,6 +42,7 @@ export default function PortfolioPreview({
                 </CardSubtitle>
 
                 <CardText>{excerpt}</CardText>
+                <CardText>{content}</CardText>
             </CardBody>
         </Card>
     );

@@ -3,9 +3,10 @@ import ErrorPage from 'next/error'
 import Head from 'next/head'
 import { Container } from 'reactstrap'
 import PostBody from '../../src/components/post-body'
-import PostHeader from '../../src/components/post-header'
+import PortfolioHeader from '../../src/components/portfolio-header'
 import Layout from '../../src/components/layout'
 import { getPostBySlug, getAllPosts } from '../../src/lib/api'
+import { mdModalFields } from '../../src/lib/constants'
 import { navigation, siteInfo } from '../../src/lib/data'
 import markdownToHtml from '../../src/lib/markdownToHtml'
 import { PostTypeProps } from '../../src/types'
@@ -16,7 +17,7 @@ type Props = {
     preview?: string
 }
 
-const currentPage = navigation.howto;
+const currentFolder = navigation.portfolioModals;
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const Post = ({ post, morePosts, preview }: Props) => {
@@ -39,12 +40,11 @@ const Post = ({ post, morePosts, preview }: Props) => {
                                 </title>
                                 <meta property='og:image' content={post.ogImage.url} />
                             </Head>
-                            <PostHeader
+                            <PortfolioHeader
                                 title={post.title}
                                 coverImage={post.coverImage}
                                 date={post.date}
-                                author={post.author}
-                                page={currentPage}
+                                folder={currentFolder}
                             />
                             <PostBody content={post.content} />
                         </article>
@@ -63,16 +63,7 @@ type Params = {
 }
 
 export async function getStaticProps({ params }: Params) {
-    const post = getPostBySlug(params.slug, [
-        'title',
-        'date',
-        'slug',
-        'tags',
-        'author',
-        'content',
-        'ogImage',
-        'coverImage',
-    ], currentPage) as PostTypeProps
+    const post = getPostBySlug(params.slug, mdModalFields, currentFolder) as PostTypeProps
     const content = await markdownToHtml(post.content || '')
 
     return {
@@ -86,7 +77,7 @@ export async function getStaticProps({ params }: Params) {
 }
 
 export async function getStaticPaths() {
-    const posts = getAllPosts(['slug'], currentPage)
+    const posts = getAllPosts(['slug'], currentFolder)
 
     return {
         paths: posts.map((posts: PostTypeProps) => {
