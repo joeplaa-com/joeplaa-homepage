@@ -53,6 +53,14 @@ export type MetaProps = {
     siteTitle: string
 }
 
+export type PortfolioImageProps = {
+    onClick: () => void
+    picture: string
+    rounded?: boolean
+    slug?: string
+    title: string
+}
+
 export type PostBodyProps = {
     content: string
 }

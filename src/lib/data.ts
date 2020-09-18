@@ -39,6 +39,7 @@ export const data = {
     AllRightsReserved: 'All rights reserved.',
     Back: 'Back',
     Backto: 'Back to overview',
+    BacktoPortfolio: 'Back to portfolio',
     Blog: 'Blog',
     Continue: 'Continue',
     Filter: 'Filter',
