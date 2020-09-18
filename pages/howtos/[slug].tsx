@@ -6,7 +6,7 @@ import PostBody from '../../src/components/post-body'
 import PostHeader from '../../src/components/post-header'
 import Layout from '../../src/components/layout'
 import { getPostBySlug, getAllPosts } from '../../src/lib/api'
-import { mdPostFields } from '../../src/lib/constants'
+import { postSlugFields } from '../../src/lib/constants'
 import { navigation, siteInfo } from '../../src/lib/data'
 import markdownToHtml from '../../src/lib/markdownToHtml'
 import { PostTypeProps } from '../../src/types'
@@ -64,7 +64,7 @@ type Params = {
 }
 
 export async function getStaticProps({ params }: Params) {
-    const post = getPostBySlug(params.slug, mdPostFields, postFolder) as PostTypeProps
+    const post = getPostBySlug(params.slug, postSlugFields, postFolder) as PostTypeProps
     const content = await markdownToHtml(post.content || '')
 
     return {

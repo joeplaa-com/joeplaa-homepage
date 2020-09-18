@@ -7,7 +7,7 @@ import Filter from '../src/components/filter'
 import PortfolioStories from '../src/components/portfolio-stories'
 import { AllPostsProps, PostTypeProps } from '../src/types'
 import { getAllPosts } from '../src/lib/api'
-import { mdModalFields } from '../src/lib/constants'
+import { postModalFields } from '../src/lib/constants'
 import { siteInfo, navigation } from '../src/lib/data'
 import getTags from '../src/lib/getTags'
 import { filterActionCreators } from '../src/store/actions/filter'
@@ -53,7 +53,7 @@ export default function Portfolio({ allPosts, tags }: AllPostsProps) {
 }
 
 export async function getStaticProps() {
-    const allPosts = getAllPosts(mdModalFields, currentFolder);
+    const allPosts = getAllPosts(postModalFields, currentFolder);
     const tags = [];
     allPosts.forEach((post: PostTypeProps) => {
         getTags(post.tags).map(postTag => tags.filter(tag => tag.value === postTag.value).length > 0 ? null : tags.push(postTag));

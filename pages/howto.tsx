@@ -8,7 +8,7 @@ import Filter from '../src/components/filter'
 import MoreStories from '../src/components/more-stories'
 import { AllPostsProps, PostTypeProps } from '../src/types'
 import { getAllPosts } from '../src/lib/api'
-import { mdPostFields } from '../src/lib/constants'
+import { postPageFields } from '../src/lib/constants'
 import { siteInfo, navigation } from '../src/lib/data'
 import filterTag from '../src/lib/filterTag'
 import getTags from '../src/lib/getTags'
@@ -71,7 +71,7 @@ export default function Howto({ allPosts, tags }: AllPostsProps) {
 }
 
 export async function getStaticProps() {
-    const allPosts = getAllPosts(mdPostFields, postFolder);
+    const allPosts = getAllPosts(postPageFields, postFolder);
     const tags = [];
     allPosts.forEach((post: PostTypeProps) => {
         getTags(post.tags).map(postTag => tags.filter(tag => tag.value === postTag.value).length > 0 ? null : tags.push(postTag));

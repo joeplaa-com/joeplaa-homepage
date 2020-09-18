@@ -11,23 +11,31 @@ export const template = {
     name: 'Joeplaa',
     url: 'https://www.joeplaa.com'
 }
-export const mdPostFields = [
+export const postSlugFields = [
     'author',
+    'content',
     'coverImage',
     'date',
-    'excerpt',
     'ogImage',
     'slug',
     'tags',
     'title',
 ]
-export const mdModalFields = [
+export const postPageFields = [
+    'author',
+    'coverImage',
+    'excerpt',
+    'date',
+    'slug',
+    'tags',
+    'title',
+]
+export const postModalFields = [
     'author',
     'content',
     'coverImage',
-    'date',
     'excerpt',
-    'ogImage',
+    'date',
     'slug',
     'tags',
     'title',
