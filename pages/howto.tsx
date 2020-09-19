@@ -15,7 +15,7 @@ import getTags from '../src/lib/getTags'
 import { filterActionCreators } from '../src/store/actions/filter'
 
 const currentPage = navigation.howto;
-const postFolder = navigation.howtos;
+const postsPath = navigation.howtos;
 
 export default function Howto({ allPosts, tags }: AllPostsProps) {
     const dispatch = useDispatch();
@@ -60,10 +60,10 @@ export default function Howto({ allPosts, tags }: AllPostsProps) {
                             excerpt={heroPost.excerpt}
                             tags={heroPost.tags}
                             page={currentPage}
-                            folder={postFolder}
+                            path={postsPath}
                         />
                     )}
-                    {morePosts.length > 0 && <MoreStories posts={morePosts} page={currentPage} folder={postFolder} />}
+                    {morePosts.length > 0 && <MoreStories posts={morePosts} page={currentPage} path={postsPath} />}
                 </Container>
             </Layout>
         </>
@@ -71,7 +71,7 @@ export default function Howto({ allPosts, tags }: AllPostsProps) {
 }
 
 export async function getStaticProps() {
-    const allPosts = getAllPosts(postPageFields, postFolder);
+    const allPosts = getAllPosts(postPageFields, postsPath);
     const tags = [];
     allPosts.forEach((post: PostTypeProps) => {
         getTags(post.tags).map(postTag => tags.filter(tag => tag.value === postTag.value).length > 0 ? null : tags.push(postTag));

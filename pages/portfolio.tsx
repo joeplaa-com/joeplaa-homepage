@@ -13,7 +13,7 @@ import getTags from '../src/lib/getTags'
 import { filterActionCreators } from '../src/store/actions/filter'
 
 const currentPage = navigation.portfolio;
-const currentFolder = navigation.portfolioModals;
+const postsPath = navigation.portfolioModals;
 
 export default function Portfolio({ allPosts, tags }: AllPostsProps) {
     const dispatch = useDispatch();
@@ -45,7 +45,7 @@ export default function Portfolio({ allPosts, tags }: AllPostsProps) {
             <Layout siteDescription={siteInfo.PortfolioDescription} siteTitle={siteInfo.PortfolioTitle + siteInfo.PageTitle} >
                 <Container>
                     <Filter page={currentPage} tags={tags} />
-                    {allPosts.length > 0 && <PortfolioStories posts={allPosts} page={currentPage} folder={currentFolder} />}
+                    {allPosts.length > 0 && <PortfolioStories posts={allPosts} page={currentPage} path={postsPath} />}
                 </Container>
             </Layout>
         </>
@@ -53,7 +53,7 @@ export default function Portfolio({ allPosts, tags }: AllPostsProps) {
 }
 
 export async function getStaticProps() {
-    const allPosts = getAllPosts(postModalFields, currentFolder);
+    const allPosts = getAllPosts(postModalFields, postsPath);
     const tags = [];
     allPosts.forEach((post: PostTypeProps) => {
         getTags(post.tags).map(postTag => tags.filter(tag => tag.value === postTag.value).length > 0 ? null : tags.push(postTag));
