@@ -2,7 +2,7 @@ import Img from 'react-optimized-image'
 import { images } from '../lib/images'
 import { PortfolioImageProps } from '../types'
 
-export default function CoverImage({ title, picture, slug, rounded, onClick }: PortfolioImageProps) {
+export default function postImage({ title, picture, slug, rounded, onClick }: PortfolioImageProps) {
     const className = rounded ? ' rounded' : '';
     const image = (
         <img

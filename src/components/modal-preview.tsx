@@ -3,7 +3,7 @@ import { Button, Card, CardBody, CardSubtitle, CardTitle, CardText, Modal, Modal
 import { FaTimes } from 'react-icons/fa'
 import Img from 'react-optimized-image'
 import DateFormater from './date-formater'
-import PortfolioImage from './portfolio-image'
+import ModalImage from './modal-image'
 import PostBody from './post-body'
 import Tag from './tag'
 import { data } from '../lib/data'
@@ -14,7 +14,7 @@ import { PostTypeProps } from '../types'
 export default function PortfolioPreview({
     title,
     content,
-    coverImage,
+    postImage,
     date,
     excerpt,
     slug,
@@ -28,7 +28,7 @@ export default function PortfolioPreview({
             <Card>
                 <CardBody>
                     <div className='mb-2'>
-                        <PortfolioImage slug={slug} title={title} picture={coverImage} rounded={true} onClick={toggle} />
+                        <ModalImage slug={slug} title={title} picture={postImage} rounded={true} onClick={toggle} />
                     </div>
 
                     <CardTitle>
@@ -54,7 +54,7 @@ export default function PortfolioPreview({
 
                 <ModalBody>
                     <img
-                        src={images[coverImage]}
+                        src={images[postImage]}
                         alt={'Cover Image for' + title}
                         className='img-fluid rounded'
                     />

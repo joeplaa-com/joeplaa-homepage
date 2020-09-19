@@ -1,9 +1,8 @@
-import Link from 'next/link'
 import { NextSeo } from 'next-seo'
 import Img from 'react-optimized-image'
-import { Card, CardBody, CardColumns, CardTitle, CardText, Col, Container, Row } from 'reactstrap'
+import { Card, CardBody, CardColumns, CardTitle, CardText, Container } from 'reactstrap'
 import Layout from '../src/components/layout'
-import { data, siteInfo, navigation } from '../src/lib/data'
+import { siteInfo, navigation } from '../src/lib/data'
 import { getAge } from '../src/lib/getAge'
 
 export default function Home() {

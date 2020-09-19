@@ -1,19 +1,19 @@
 import { useSelector } from 'react-redux'
 import { CardColumns } from 'reactstrap'
-import PortfolioPreview from './portfolio-preview';
+import ModalPreview from './modal-preview';
 import filterTag from '../lib/filterTag'
 import { PostTypeProps } from '../types'
 
-export default function MoreStories({ posts, page, path }: { posts: Array<PostTypeProps>, page: string, path: string }) {
+export default function ModalStories({ posts, page }: { posts: Array<PostTypeProps>, page: string }) {
     const filter = useSelector((state) => state.filter);
     return (
         <section>
             <CardColumns>
                 {posts.filter( (post) => (filterTag(post, filter.userFilter[page])) ).map((post) => (
-                    <PortfolioPreview
+                    <ModalPreview
                         key={post.slug}
                         title={post.title}
-                        coverImage={post.coverImage}
+                        postImage={post.postImage}
                         date={post.date}
                         slug={post.slug}
                         excerpt={post.excerpt}

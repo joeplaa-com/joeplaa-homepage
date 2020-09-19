@@ -3,7 +3,7 @@ import Img from 'react-optimized-image'
 import { images } from '../lib/images'
 import { LandingImageProps } from '../types'
 
-export default function CoverImage({ title, picture, link }: LandingImageProps) {
+export default function LandingImage({ title, picture, link }: LandingImageProps) {
     const image = (
         <img
             src={images[picture]}

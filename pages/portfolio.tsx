@@ -4,7 +4,7 @@ import { NextSeo } from 'next-seo'
 import { Container } from 'reactstrap'
 import Layout from '../src/components/layout'
 import Filter from '../src/components/filter'
-import PortfolioStories from '../src/components/portfolio-stories'
+import ModalStories from '../src/components/modal-stories'
 import { AllPostsProps, PostTypeProps } from '../src/types'
 import { getAllPosts } from '../src/lib/api'
 import { postModalFields } from '../src/lib/constants'
@@ -45,7 +45,7 @@ export default function Portfolio({ allPosts, tags }: AllPostsProps) {
             <Layout siteDescription={siteInfo.PortfolioDescription} siteTitle={siteInfo.PortfolioTitle + siteInfo.PageTitle} >
                 <Container>
                     <Filter page={currentPage} tags={tags} />
-                    {allPosts.length > 0 && <PortfolioStories posts={allPosts} page={currentPage} path={postsPath} />}
+                    {allPosts.length > 0 && <ModalStories posts={allPosts} page={currentPage} />}
                 </Container>
             </Layout>
         </>
