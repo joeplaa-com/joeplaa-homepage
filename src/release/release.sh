@@ -20,7 +20,7 @@ rm -rf .next/* out/*
 yarn build
 
 # Publish website to Nginx
-# TEST (test.jodibooks.com):
+# TEST (test.www.joeplaa.com):
 scp -Cpr out/* jodibooks@192.168.178.156:/var/www/test-www-joeplaa
 
 # Restore environment variables
