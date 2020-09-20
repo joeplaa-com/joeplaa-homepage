@@ -6,6 +6,8 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
 });
 const redirects = require('./src/build/redirects');
 
+process.setMaxListeners(20);
+
 module.exports = withBundleAnalyzer(
     withOptimizedImages({
         async redirects() {
