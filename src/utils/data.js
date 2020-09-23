@@ -28,7 +28,7 @@ module.exports = {
     meta: {
         title: `joeplaa.com`, //sitetitle
         titleTemplate: `joeplaa.com`, //sitename
-        description: `Helping people creating their websites.`, //sitedescription
+        description: `Helping people create their digital home.`, //sitedescription
         image: `/images/banner-www-com-white.png`,
         siteUrl: `https://www.joeplaa.com`,
         siteLanguage: `en-US`,
@@ -58,7 +58,7 @@ module.exports = {
         PortfolioTitle: 'Portfolio',
         PricingDescription: 'If you want a website, here\'s what it costs.',
         PricingTitle: 'Pricing',
-        SiteDescription: 'Helping people creating their websites.',
+        SiteDescription: 'Helping people create their digital home.',
         SiteName: 'joeplaa.com',
         SiteTitle: 'joeplaa.com',
         Umami: 'https://umami.joeplaa.com/umami.js'

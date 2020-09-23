@@ -1,5 +1,4 @@
-import { graphql, Link } from 'gatsby'
-import Img from 'gatsby-image'
+import { Link } from 'gatsby'
 import React from 'react'
 import SEO from 'react-seo-component'
 import Image from '../components/image'
@@ -31,58 +30,13 @@ export default ({ data }) => {
                     twitterUsername={twitterUsername}
                 />
                 <main>
-                    <div>
-                        <Image
-                            src="home-banner-beach.jpg"
-                            className="mx-auto shadow-xl"
-                            alt="beach banner"
-                        />
-                    </div>
-                    {data.allMdx.nodes.map(({ id, excerpt, frontmatter, fields }) => (
-                        <div key={id}>
-                            <Link to={fields.slug}>
-                                {
-                                    !!frontmatter.cover ? (
-                                        <Img fluid={frontmatter.cover.childImageSharp.fluid} />
-                                    ) : null
-                                }
-                                <h1>{frontmatter.title}</h1>
-                                <p>{frontmatter.date}</p>
-                                <p>{excerpt}</p>
-                            </Link>
-                        </div>
-                    ))}
+                    <Image
+                        src="home-banner-beach.jpg"
+                        className="mx-auto shadow-xl"
+                        alt="beach banner"
+                    />
                 </main>
             </Layout>
         </>
     );
 };
-
-export const query = graphql`
-  query SITE_INDEX_QUERY {
-    allMdx(
-      sort: { fields: [frontmatter___date], order: DESC }
-      filter: { frontmatter: { published: { eq: true } } }
-    ) {
-      nodes {
-        id
-        excerpt(pruneLength: 250)
-        frontmatter {
-          title
-          date(formatString: "YYYY MMMM Do")
-          cover {
-            publicURL
-            childImageSharp {
-                fluid(maxWidth: 1000, srcSetBreakpoints: [320, 480, 640, 960]) {
-                ...GatsbyImageSharpFluid_withWebp
-              }
-            }
-          }
-        }
-        fields {
-          slug
-        }
-      }
-    }
-  }
-`;
