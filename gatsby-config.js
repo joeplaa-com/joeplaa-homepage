@@ -8,6 +8,19 @@ module.exports = {
         `gatsby-transformer-sharp`,
         `gatsby-plugin-sharp`,
         {
+            resolve: `gatsby-plugin-manifest`,
+            options: {
+                name: data.meta.title, //
+                short_name: data.meta.title, //
+                description: data.meta.description, //
+                start_url: `/`,
+                background_color: `#fff`,
+                theme_color: `#07b1c2`,
+                display: `standalone`,
+                icon: `src/images/icon.png`,
+            },
+        },
+        {
             resolve: `gatsby-plugin-mdx`,
             options: {
                 extensions: [`.mdx`, `.md`],
