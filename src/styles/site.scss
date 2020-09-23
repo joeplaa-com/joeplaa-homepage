@@ -1,0 +1,267 @@
+/* custom.scss */
+
+/* import the necessary Bootstrap files */
+@import "../../node_modules/bootstrap/scss/functions";
+@import "../../node_modules/bootstrap/scss/mixins";
+@import "../../node_modules/bootstrap/scss/variables";
+
+/* custom colors 
+    https://www.sessions.edu/color-calculator/
+    https://maketintsandshades.com/
+    https://www.canva.com/colors/color-wheel/
+    https://www.color-hex.com/color/07b1c2
+*/
+$blue:       #07b1c2;
+
+$ana-primary:       $blue;
+$ana-secondary:     #1007c2;
+$ana-tertiary:      #07c216;
+
+/* monochromes */
+$white: $white;
+$blue-100: #e6f7f9;
+$blue-200: #cdeff3;
+$blue-300: #b5e8ed;
+$blue-400: #9ce0e7;
+$blue-500: #83d8e1;
+$blue-600: #6ad0da;
+$blue-700: #51c8d4;
+$blue-800: #39c1ce;
+$blue-900: #20b9c8;
+$blue-full: $blue;
+
+$blues: ();
+$blues: map-merge(
+  (
+    "b100": $blue-100,
+    "b200": $blue-200,
+    "b300": $blue-300,
+    "b400": $blue-400,
+    "b500": $blue-500,
+    "b600": $blue-600,
+    "b700": $blue-700,
+    "b800": $blue-800,
+    "b900": $blue-900
+  ),
+  $blues
+);
+
+/* -------begin Bootstrap customization-------- */
+/* simply assign the value */
+
+/* or, use an existing variable */
+$theme-colors: (
+    primary: $blue-800,
+    secondary: $ana-secondary,
+    gray-light: $gray-200,
+    navbar-gray: $gray-100
+);
+
+$body-bg:                           $gray-100;
+
+$component-active-color:            $white;
+$component-active-bg:               $blue-full;
+
+$link-color:                        $component-active-bg;
+$link-hover-color:                  darken($link-color, 10%);
+
+$navbar-light-color:                $link-color;
+$navbar-light-hover-color:          $link-hover-color;
+$navbar-light-active-color:         $link-hover-color;
+$navbar-light-disabled-color:       $blue-300;
+
+/* -------end Bootstrap customization-------- */
+
+/* -------begin markdown additions-------- */
+.markdown {
+    font-size: 1.125rem;
+}
+  
+    .markdown p,
+    .markdown ul,
+    .markdown ol,
+    .markdown blockquote,
+    .markdown img {
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+    }
+
+    .markdown pre,
+    .markdown blockquote {
+        background-color: $gray-200;
+        padding: 0.5rem 1rem;
+    }
+
+    .markdown h2 {
+        font-size: 1.875rem;
+        margin-top: 1.5rem;
+        margin-bottom: 1rem;
+    }
+
+    .markdown h3 {
+        font-size: 1.5rem;
+        margin-top: 1.375rem;
+        margin-bottom: 1rem;
+    }
+
+    .markdown h4 {
+        font-size: 1.375rem;
+        margin-top: 1.25rem;
+        margin-bottom: .875rem;
+    }
+
+    .markdown h5 {
+        font-size: 1.25rem;
+        margin-top: 1.125rem;
+        margin-bottom: .75rem;
+    }
+
+    .markdown h6 {
+        font-size: 1.125rem;
+        margin-top: 1rem;
+        margin-bottom: .5rem;
+    }
+/* -------end markdown additions-------- */
+
+/* -------begin custom additions-------- */
+$link-light-color:          $light;
+$link-light-hover-color:    darken($link-light-color, 15%);
+$link-light-active-color:   darken($link-light-color, 15%);
+
+$card-column-sizes: (
+    xs: 1,
+    md: 2,
+    lg: 3
+);
+
+/* Cards */
+@each $breakpoint-size, $column-count in $card-column-sizes {
+    @include media-breakpoint-up($breakpoint-size) {
+        div.card-columns {
+            margin-top: .875rem;
+            column-count: $column-count;
+            column-gap: 1.25rem;
+
+            div.card {
+                display: inline-block;
+                width: 100%; // Don't let them exceed the column width
+            }
+        }
+    }
+}
+
+div.card {
+    box-shadow: $box-shadow;
+}
+
+div.card-subtitle {
+    display: flex;
+    align-items: center;
+}
+
+.filter {
+    margin-bottom: .5rem;
+    margin-top: .5rem;
+}
+
+.footer {
+    background: $gray-500;
+    color: $light;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+
+.image-container {
+    position: relative;
+}
+
+    .image-container .overlay {
+        position: absolute;
+        bottom: 0; /* At the bottom. Use top:0 to append it to the top */
+        top: 0;
+        background: rgba($gray-100, 0.1); /* Background with 0.5 opacity */
+        color: $white;
+        width: 100%;
+        padding: 2rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+.linkLight {
+    color: $link-light-color;
+}
+    .linkLight:hover {
+        color: $link-light-hover-color;
+    }
+    .linkLight:active {
+        color: $link-light-hover-color;
+    }
+
+.linkNav {
+    color: $navbar-light-color;
+    border-color: $navbar-light-toggler-border-color;
+    border-bottom: 2px solid transparent;
+}
+    .linkNav:hover {
+        color: $navbar-light-hover-color;
+        border-bottom: 2px solid $navbar-light-hover-color;
+    }
+    .linkNav-active {
+        color: $navbar-light-active-color;
+        border-bottom: 2px solid $navbar-light-active-color;
+    }
+        .linkNav-active:hover {
+            color: $navbar-light-color;
+            border-bottom: 2px solid $navbar-light-color;
+        }
+    .linkNav:disabled {
+        color: $navbar-light-disabled-color;
+    }
+
+.modal-background {
+    background-color: $gray-200;
+}
+
+a.nav-padding-social {
+    padding: 0.5rem 0.5rem;
+}
+
+.nav-item a {
+    margin-left: .25rem;
+    margin-right: .25rem;
+}
+
+$post-container-padding: (
+    xs: 1rem,
+    md: 2rem
+);
+
+@each $breakpoint-size, $padding in $post-container-padding {
+    @include media-breakpoint-up($breakpoint-size) {
+        div.post-container {
+            background-color: $white;
+            margin-bottom: 2rem;
+            margin-top: 2rem;
+            padding: $padding $padding;
+        }
+    }
+}
+
+a.tag {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    margin: .125rem .125rem;
+    padding: 0.25rem;
+}
+
+.tags {
+    padding-bottom: 15px;
+    padding-top: 15px;
+}
+
+/* -------end custom additions-------- */
+
+/* finally, import Bootstrap to set the changes! */
+@import "../../node_modules/bootstrap";

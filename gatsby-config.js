@@ -5,8 +5,9 @@ module.exports = {
     plugins: [
         `gatsby-plugin-advanced-sitemap`,
         `gatsby-plugin-react-helmet`,
-        `gatsby-transformer-sharp`,
+        `gatsby-plugin-sass`,
         `gatsby-plugin-sharp`,
+        `gatsby-transformer-sharp`,
         {
             resolve: `gatsby-plugin-manifest`,
             options: {

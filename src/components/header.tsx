@@ -1,9 +1,11 @@
-import { Link } from 'gatsby';
-import React from 'react';
+import React from 'react'
+import Menu from './menu'
 
-export const Header = ({ siteTitle, siteDescription }) => (
-    <Link to="/">
-        <h1>{siteTitle}</h1>
-        <p>{siteDescription}</p>
-    </Link>
+export const Header = () => (
+    <header>
+        <div>
+            {/* <BrowserCheck /> */}
+            <Menu />
+        </div>
+    </header>
 );

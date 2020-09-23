@@ -45,6 +45,10 @@ module.exports = {
         pricing: '/pricing',
         recommended: process.env.GATSBY_URL_BLOG_URL + '/recommended'
     },
+    settings: {
+        breakpoint: 'md',
+        dateFormat: 'LLLL d, yyyy'
+    },
     siteInfo: {
         BusinessName: 'Joeplaa',
         HomeDescription: 'Who is Joep and what is Joeplaa?',

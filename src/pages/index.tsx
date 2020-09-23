@@ -1,10 +1,10 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import SEO from 'react-seo-component'
-import Image from '../components/image'
-import { Layout } from '../components/layout'
+import { navigate } from 'gatsby'
 import { useSiteMetadata } from '../hooks/useSiteMetadata'
+import { navigation } from '../utils/data'
 
-export default () => {
+export default (props) => {
     const {
         description,
         title,
@@ -15,27 +15,25 @@ export default () => {
         siteLocale,
         twitterUsername,
     } = useSiteMetadata()
+
+    const { location } = props;
+    const pathname = location.pathname;
+    useEffect(() => {
+        if (pathname === '/') {
+            navigate(navigation.home);
+        }
+    }, []);
+
     return (
-        <>
-            <Layout>
-                <SEO
-                    title={title}
-                    titleTemplate={titleTemplate}
-                    description={description || `nothin’`}
-                    image={`${siteUrl}${image}`}
-                    pathname={siteUrl}
-                    siteLanguage={siteLanguage}
-                    siteLocale={siteLocale}
-                    twitterUsername={twitterUsername}
-                />
-                <main>
-                    <Image
-                        src="home-banner-beach.jpg"
-                        className="mx-auto shadow-xl"
-                        alt="beach banner"
-                    />
-                </main>
-            </Layout>
-        </>
+        <SEO
+            title={title}
+            titleTemplate={titleTemplate}
+            description={description || `nothin’`}
+            image={`${siteUrl}${image}`}
+            pathname={siteUrl}
+            siteLanguage={siteLanguage}
+            siteLocale={siteLocale}
+            twitterUsername={twitterUsername}
+        />
     );
 };
