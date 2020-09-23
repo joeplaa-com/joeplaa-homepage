@@ -11,6 +11,7 @@ export default ({ data, pageContext }) => {
         siteUrl,
         siteLanguage,
         siteLocale,
+        titleTemplate,
         twitterUsername,
         authorName,
     } = useSiteMetadata();
@@ -21,6 +22,7 @@ export default ({ data, pageContext }) => {
         <Layout>
             <SEO
                 title={title}
+                titleTemplate={titleTemplate}
                 description={excerpt}
                 image={
                     cover === null
@@ -33,8 +35,8 @@ export default ({ data, pageContext }) => {
                 twitterUsername={twitterUsername}
                 author={authorName}
                 article={true}
-                publishedDate={date}
-                modifiedDate={new Date(Date.now()).toISOString()}
+                datePublished={date}
+                dateModified={new Date(Date.now()).toISOString()}
             />
             <h1>{frontmatter.title}</h1>
             <p>{frontmatter.date}</p>

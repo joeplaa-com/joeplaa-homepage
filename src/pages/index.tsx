@@ -9,6 +9,7 @@ export default ({ data }) => {
     const {
         description,
         title,
+        titleTemplate,
         image,
         siteUrl,
         siteLanguage,
@@ -20,6 +21,7 @@ export default ({ data }) => {
             <Layout>
                 <SEO
                     title={title}
+                    titleTemplate={titleTemplate}
                     description={description || `nothin’`}
                     image={`${siteUrl}${image}`}
                     pathname={siteUrl}
@@ -33,7 +35,7 @@ export default ({ data }) => {
                             <Link to={fields.slug}>
                                 {
                                     !!frontmatter.cover ? (
-                                        <Img sizes={frontmatter.cover.childImageSharp.sizes} />
+                                        <Img fluid={frontmatter.cover.childImageSharp.sizes} />
                                     ) : null
                                 }
                                 <h1>{frontmatter.title}</h1>
@@ -67,7 +69,7 @@ export const query = graphql`
                 maxWidth: 2000
                 traceSVG: { color: "#639" }
               ) {
-                ...GatsbyImageSharpSizes_tracedSVG
+                ...GatsbyImageSharpFluid_withWebp
               }
             }
           }

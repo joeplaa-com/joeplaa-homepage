@@ -26,8 +26,9 @@ module.exports = {
         UnsupportedTitle: 'Browser not supported'
     },
     meta: {
-        title: `The Localhost Blog`,
-        description: `This is my coding blog where I write about my coding journey.`,
+        title: `joeplaa.com`, //sitetitle
+        titleTemplate: `joeplaa.com`, //sitename
+        description: `Helping people creating their websites.`, //sitedescription
         image: `/images/banner-www-com-white.png`,
         siteUrl: `https://www.joeplaa.com`,
         siteLanguage: `en-US`,
@@ -57,7 +58,7 @@ module.exports = {
         PortfolioTitle: 'Portfolio',
         PricingDescription: 'If you want a website, here\'s what it costs.',
         PricingTitle: 'Pricing',
-        SiteDescription: 'My journey to reach my goal: Help 2 billion people.',
+        SiteDescription: 'Helping people creating their websites.',
         SiteName: 'joeplaa.com',
         SiteTitle: 'joeplaa.com',
         Umami: 'https://umami.joeplaa.com/umami.js'
