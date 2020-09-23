@@ -1,0 +1,10 @@
+{
+  "name": "joeplaa.com",
+  "version": "0.1.0",
+  "description": "joeplaa.com portfolio site",
+  "main": "index.js",
+  "repository": "git@github.com:joeplaa/joeplaa.com.git",
+  "author": "Joep van de Laarschot <joep@joeplaa.com>",
+  "license": "Proprietary",
+  "private": true
+}
