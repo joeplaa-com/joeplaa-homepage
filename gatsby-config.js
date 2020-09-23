@@ -1,16 +1,7 @@
-const siteMetadata = {
-    title: `The Localhost Blog`,
-    description: `This is my coding blog where I write about my coding journey.`,
-    image: `/images/banner-www-com-white.png`,
-    siteUrl: `https://joeplaa.com`,
-    siteLanguage: `en-US`,
-    siteLocale: `en_us`,
-    twitterUsername: ``,
-    authorName: `Joep van de Laarschot`,
-}
+const data = require("./src/utils/data.js")
 
 module.exports = {
-    siteMetadata: siteMetadata,
+    siteMetadata: data.meta,
     plugins: [
         `gatsby-plugin-advanced-sitemap`,
         `gatsby-plugin-react-helmet`,
