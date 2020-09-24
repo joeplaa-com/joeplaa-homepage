@@ -1,10 +1,12 @@
 module.exports = {
     data: {
+        About: 'About',
         AllRightsReserved: 'All rights reserved.',
         Back: 'Back',
         Backto: 'Back to overview',
         BacktoPortfolio: 'Back to portfolio',
         Blog: 'Blog',
+        Contact: 'Contact',
         Continue: 'Continue',
         Filter: 'Filter',
         FilterTags: 'Select tags to show',
@@ -37,12 +39,14 @@ module.exports = {
         authorName: `Joep van de Laarschot`,
     },
     navigation: {
+        about: '/home/#about',
         blog: process.env.GATSBY_BLOG_URL,
-        home: '/home',
+        contact: '/home/#contact',
+        home: '/home/#banner',
         howto: '/howto',
         howtos: '/howtos',
         portfolio: '/portfolio',
-        pricing: '/pricing',
+        pricing: '/home/#pricing',
         recommended: process.env.GATSBY_BLOG_URL + '/recommended'
     },
     settings: {
@@ -51,8 +55,11 @@ module.exports = {
     },
     siteInfo: {
         BusinessName: 'Joeplaa',
+        FirstName: 'Joep',
+        LastName: 'van de Laarschot',
         HomeDescription: 'Who is Joep and what is Joeplaa?',
-        HomeTitle: 'Home',
+        HomeTitle: 'Welcome to',
+        HomeSubtitle: 'Website design | Website hosting',
         HowtoDescription: 'How-to\'s and tutorials on subjects: Ubuntu, file-sharing, virtual machines and website hosting.',
         HowtoTitle: 'How-to',
         LandingDescription: 'Welcome on joeplaa.com. Click on the links to explore further.',

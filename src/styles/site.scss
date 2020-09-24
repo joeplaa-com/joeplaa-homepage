@@ -78,6 +78,10 @@ $link-light-color:          $component-active-color;
 $link-light-hover-color:    darken($link-light-color, 15%);
 $link-light-active-color:   darken($link-light-color, 10%);
 
+$link-dark-color:           $gray-900;
+$link-dark-hover-color:     lighten($link-dark-color, 15%);
+$link-dark-active-color:    darken($link-dark-color, 10%);
+
 /* -------begin markdown additions-------- */
 .markdown {
     font-size: 1.125rem;
@@ -153,11 +157,7 @@ $card-column-sizes: (
 
 div.card {
     box-shadow: $box-shadow;
-}
-
-div.card-subtitle {
-    display: flex;
-    align-items: center;
+    border-radius: 0;
 }
 /* -------end Cards-------- */
 
@@ -176,11 +176,19 @@ div.card-subtitle {
     padding-bottom: 1rem;
 }
 
-@include media-breakpoint-down(sm) {
-    main {
-        margin-top: 83px;
-    }
+.section-home {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 5rem 0;
 }
+
+// @include media-breakpoint-down(sm) {
+//     main {
+//         margin-top: 83px;
+//     }
+// }
 /* -------end Layout-------- */
 
 /* -------begin Navbar-------- */
@@ -322,6 +330,12 @@ a.tag {
         align-items: center;
     }
 
+.image-position {
+    background-size: cover;
+    background-position: center;
+    height: 100vh
+}
+
 .linkLight {
     color: $link-light-color;
 }
@@ -330,6 +344,16 @@ a.tag {
     }
     .linkLight:active {
         color: $link-light-hover-color;
+    }
+
+.linkDark {
+    color: $link-dark-color;
+}
+    .linkDark:hover {
+        color: $link-dark-hover-color;
+    }
+    .linkDark:active {
+        color: $link-dark-hover-color;
     }
 
 .modal-background {

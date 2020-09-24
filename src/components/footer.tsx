@@ -8,7 +8,7 @@ export default function Footer() {
         <footer className='footer'>
             <Container>
                 <Copyright color='light' />
-                <Social classString='justify-content-center' color='light' />
+                <Social className='justify-content-center' color='light' size='1.25rem' />
             </Container>
         </footer>
     );

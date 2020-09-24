@@ -38,7 +38,9 @@ const Image = ({ src, ...rest }) => {
         return <img src={publicURL} {...rest} />;
     }
 
-    return <Img fluid={childImageSharp.fluid} {...rest} />;
+    return <Img
+        fluid={childImageSharp.fluid}
+        {...rest} />;
 };
 
 export default Image;

@@ -11,7 +11,13 @@ export default function Navigation({ className }: { className: string }) {
                 <NavLink to={navigation.home}>{data.Home}</NavLink>
             </NavItem>
             <NavItem>
+                <NavLink to={navigation.about}>{data.About}</NavLink>
+            </NavItem>
+            <NavItem>
                 <NavLink to={navigation.pricing}>{data.Pricing}</NavLink>
+            </NavItem>
+            <NavItem>
+                <NavLink to={navigation.contact}>{data.Contact}</NavLink>
             </NavItem>
             <NavItem>
                 <NavLink to={navigation.portfolio}>{data.Portfolio}</NavLink>

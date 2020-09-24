@@ -5,26 +5,26 @@ import { FaFacebook, FaInstagram, FaLinkedin, FaGithub } from 'react-icons/fa'
 import { MdMail } from 'react-icons/md'
 import { urls } from '../utils/data'
 import linkColor from '../utils/linkColor'
-import { LinkProps } from '../types'
+import { SocialLinkProps } from '../types'
 
-export default function Header({ classString, color }: LinkProps) {
+export default function Header({ className, color, size }: SocialLinkProps) {
     return (
-        <IconContext.Provider value={{ size: '1.25rem' }}>
-            <Nav className={classString} nav='true'>
+        <IconContext.Provider value={{ size: size }}>
+            <Nav className={className} nav='true'>
                 <NavItem>
-                    <NavLink className={linkColor(color) + ' nav-padding-social'} href={urls.facebook}><FaFacebook /></NavLink>
+                    <NavLink className={linkColor(color) + ' nav-padding-social'} href={urls.facebook} target='_blank' rel='noopener noreferrer'><FaFacebook /></NavLink>
                 </NavItem>
                 <NavItem>
-                    <NavLink className={linkColor(color) + ' nav-padding-social'} href={urls.instagram}><FaInstagram /></NavLink>
+                    <NavLink className={linkColor(color) + ' nav-padding-social'} href={urls.instagram} target='_blank' rel='noopener noreferrer'><FaInstagram /></NavLink>
                 </NavItem>
                 <NavItem>
-                    <NavLink className={linkColor(color) + ' nav-padding-social'} href={urls.linkedin}><FaLinkedin /></NavLink>
+                    <NavLink className={linkColor(color) + ' nav-padding-social'} href={urls.linkedin} target='_blank' rel='noopener noreferrer'><FaLinkedin /></NavLink>
                 </NavItem>
                 <NavItem>
-                    <NavLink className={linkColor(color) + ' nav-padding-social'} href={urls.github}><FaGithub /></NavLink>
+                    <NavLink className={linkColor(color) + ' nav-padding-social'} href={urls.github} target='_blank' rel='noopener noreferrer'><FaGithub /></NavLink>
                 </NavItem>
                 <NavItem>
-                    <NavLink className={linkColor(color) + ' nav-padding-social'} href={urls.mailto}><MdMail /></NavLink>
+                    <NavLink className={linkColor(color) + ' nav-padding-social'} href={urls.mailto} target='_blank' rel='noopener noreferrer'><MdMail /></NavLink>
                 </NavItem>
             </Nav>
         </IconContext.Provider>
