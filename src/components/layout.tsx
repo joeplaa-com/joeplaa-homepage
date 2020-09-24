@@ -4,12 +4,14 @@ import Header from './header';
 
 export default function Layout({ children }) {
     return (
-        <>
-            <Header />
+        <div className="flex-wrapper">
             <div>
-                <main>{children}</main>
+                <Header />
+                <div>
+                    <main>{children}</main>
+                </div>
             </div>
             <Footer />
-        </>
+        </div>
     );
 };

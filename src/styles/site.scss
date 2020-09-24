@@ -164,6 +164,13 @@ div.card-subtitle {
     margin-top: .5rem;
 }
 
+.flex-wrapper {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+    justify-content: space-between
+}
+
 .footer {
     background: $gray-500;
     color: $light;
