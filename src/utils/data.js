@@ -37,13 +37,13 @@ module.exports = {
         authorName: `Joep van de Laarschot`,
     },
     navigation: {
-        blog: process.env.GATSBY_URL_BLOG_URL,
+        blog: process.env.GATSBY_BLOG_URL,
         home: '/home',
         howto: '/howto',
         howtos: '/howtos',
         portfolio: '/portfolio',
         pricing: '/pricing',
-        recommended: process.env.GATSBY_URL_BLOG_URL + '/recommended'
+        recommended: process.env.GATSBY_BLOG_URL + '/recommended'
     },
     settings: {
         breakpoint: 'md',
