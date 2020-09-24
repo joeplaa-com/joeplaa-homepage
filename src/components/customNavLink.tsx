@@ -7,19 +7,13 @@ const CustomNavLink = (props) => {
         return (
             <Link
                 {...props}
-                getProps={({ isCurrent }) => {
-                    // the object returned here is passed to the
-                    // anchor element's props
-                    return {
-                        className: isCurrent ? 'linkNav-active nav-link' : 'linkNav nav-link',
-                        active: isCurrent
-                    };
-                }}
+                activeClassName='nav-link-active'
+                className='nav-link'
             />
         )
     } else {
         return (
-            <NavLink href={props.href} className='linkNav'>
+            <NavLink href={props.href}>
                 {props.children}
             </NavLink>
         )

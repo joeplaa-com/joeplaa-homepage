@@ -6,7 +6,6 @@ module.exports = {
         `gatsby-plugin-advanced-sitemap`,
         `gatsby-plugin-react-helmet`,
         `gatsby-plugin-sass`,
-        `gatsby-plugin-sharp`,
         `gatsby-transformer-sharp`,
         {
             resolve: `gatsby-plugin-manifest`,
@@ -42,6 +41,13 @@ module.exports = {
                     },
                 },
             ],
+        },
+        {
+            resolve: `gatsby-plugin-sharp`,
+            options: {
+                stripMetadata: true,
+                defaultQuality: 70,
+            },
         },
         {
             resolve: `gatsby-source-filesystem`,

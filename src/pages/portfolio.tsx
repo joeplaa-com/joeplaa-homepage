@@ -2,7 +2,7 @@ import { graphql, Link } from 'gatsby'
 import Img from 'gatsby-image'
 import React from 'react'
 import SEO from 'react-seo-component'
-import Image from '../components/image'
+import ImageFluid from '../components/imageFluid'
 import Layout from '../components/layout'
 import { useSiteMetadata } from '../hooks/useSiteMetadata'
 
@@ -30,22 +30,20 @@ export default ({ data }) => {
                     siteLocale={siteLocale}
                     twitterUsername={twitterUsername}
                 />
-                <main>
-                    {data.allMdx.nodes.map(({ id, excerpt, frontmatter, fields }) => (
-                        <div key={id}>
-                            <Link to={fields.slug}>
-                                {
-                                    !!frontmatter.cover ? (
-                                        <Img fluid={frontmatter.cover.childImageSharp.fluid} />
-                                    ) : null
-                                }
-                                <h1>{frontmatter.title}</h1>
-                                <p>{frontmatter.date}</p>
-                                <p>{excerpt}</p>
-                            </Link>
-                        </div>
-                    ))}
-                </main>
+                {data.allMdx.nodes.map(({ id, excerpt, frontmatter, fields }) => (
+                    <div key={id}>
+                        <Link to={fields.slug}>
+                            {
+                                !!frontmatter.cover ? (
+                                    <Img fluid={frontmatter.cover.childImageSharp.fluid} />
+                                ) : null
+                            }
+                            <h1>{frontmatter.title}</h1>
+                            <p>{frontmatter.date}</p>
+                            <p>{excerpt}</p>
+                        </Link>
+                    </div>
+                ))}
             </Layout>
         </>
     );

@@ -11,7 +11,7 @@
     https://www.canva.com/colors/color-wheel/
     https://www.color-hex.com/color/07b1c2
 */
-$blue:       #07b1c2;
+$blue:              #07b1c2;
 
 $ana-primary:       $blue;
 $ana-secondary:     #1007c2;
@@ -64,19 +64,25 @@ $component-active-bg:               $blue-full;
 
 $link-color:                        $component-active-bg;
 $link-hover-color:                  darken($link-color, 10%);
+$link-active-color:                 darken($link-color, 15%);
 
 $navbar-light-color:                $link-color;
 $navbar-light-hover-color:          $link-hover-color;
-$navbar-light-active-color:         $link-hover-color;
+$navbar-light-active-color:         $link-active-color;
 $navbar-light-disabled-color:       $blue-300;
 
 /* -------end Bootstrap customization-------- */
+
+/* -------begin custom additions-------- */
+$link-light-color:          $component-active-color;
+$link-light-hover-color:    darken($link-light-color, 15%);
+$link-light-active-color:   darken($link-light-color, 10%);
 
 /* -------begin markdown additions-------- */
 .markdown {
     font-size: 1.125rem;
 }
-  
+
     .markdown p,
     .markdown ul,
     .markdown ol,
@@ -123,18 +129,13 @@ $navbar-light-disabled-color:       $blue-300;
     }
 /* -------end markdown additions-------- */
 
-/* -------begin custom additions-------- */
-$link-light-color:          $light;
-$link-light-hover-color:    darken($link-light-color, 15%);
-$link-light-active-color:   darken($link-light-color, 15%);
-
+/* -------begin Cards-------- */
 $card-column-sizes: (
     xs: 1,
     md: 2,
     lg: 3
 );
 
-/* Cards */
 @each $breakpoint-size, $column-count in $card-column-sizes {
     @include media-breakpoint-up($breakpoint-size) {
         div.card-columns {
@@ -158,15 +159,12 @@ div.card-subtitle {
     display: flex;
     align-items: center;
 }
+/* -------end Cards-------- */
 
-.filter {
-    margin-bottom: .5rem;
-    margin-top: .5rem;
-}
-
+/* -------begin Layout-------- */
 .flex-wrapper {
     display: flex;
-    min-height: 100vh;
+    min-height: 110vh;
     flex-direction: column;
     justify-content: space-between
 }
@@ -178,6 +176,135 @@ div.card-subtitle {
     padding-bottom: 1rem;
 }
 
+@include media-breakpoint-down(sm) {
+    main {
+        margin-top: 83px;
+    }
+}
+/* -------end Layout-------- */
+
+/* -------begin Navbar-------- */
+.navbar {
+    transition: all 0.4s;
+}
+
+.navbar .nav-link {
+    color: $link-light-color;
+    border-color: $link-light-color;
+    border-bottom: 2px solid transparent;
+}
+
+.navbar .nav-link:hover {
+    color: $link-light-hover-color;
+    border-bottom: 2px solid $link-light-hover-color;
+}
+
+.navbar .nav-link-active,
+.navbar .nav-link:active {
+    color: $link-light-active-color;
+    border-bottom: 2px solid $link-light-active-color;
+}
+
+.navbar .navbar-brand {
+    color: $link-light-color;
+}
+
+/* Change navbar styling on scroll */
+.navbar.active {
+    background: $gray-100;
+}
+
+.navbar.active .nav-link {
+    color: $navbar-light-color;
+    border-color: $navbar-light-color;
+    border-bottom: 2px solid transparent;
+}
+
+.navbar.active .nav-link:hover {
+    color: $navbar-light-hover-color;
+    border-bottom: 2px solid $navbar-light-hover-color;
+}
+
+.navbar.active .nav-link-active,
+.navbar.active .nav-link:active {
+    color: $navbar-light-active-color;
+    border-bottom: 2px solid $navbar-light-active-color;
+}
+
+.navbar.active .navbar-brand {
+    color: $navbar-light-color;
+}
+
+/* Change navbar styling on small viewports */
+@include media-breakpoint-down(sm) {
+    .navbar {
+        background: $gray-100;
+        box-shadow: $box-shadow;
+    }
+
+    .navbar .navbar-brand,
+    .navbar .nav-link {
+        color: $navbar-light-color;
+        border-bottom: 2px solid transparent;
+    }
+
+    .navbar .nav-link:hover {
+        color: $navbar-light-hover-color;
+        border-bottom: 2px solid $navbar-light-hover-color;
+    }
+
+    .navbar .nav-link-active,
+    .navbar .nav-link:active {
+        color: $navbar-light-active-color;
+        border-bottom: 2px solid $navbar-light-active-color;
+    }
+}
+
+.nav-item a {
+    font-weight: 600;
+    margin-left: .25rem;
+    margin-right: .25rem;
+}
+/* -------end Navbar-------- */
+
+/* -------begin Post-------- */
+$post-container-padding: (
+    xs: 1rem,
+    md: 2rem
+);
+
+@each $breakpoint-size, $padding in $post-container-padding {
+    @include media-breakpoint-up($breakpoint-size) {
+        div.post-container {
+            background-color: $white;
+            margin-bottom: 2rem;
+            margin-top: 2rem;
+            padding: $padding $padding;
+        }
+    }
+}
+/* -------end Post-------- */
+
+/* -------begin Tags-------- */
+.filter {
+    margin-bottom: .5rem;
+    margin-top: .5rem;
+}
+
+a.tag {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    margin: .125rem .125rem;
+    padding: 0.25rem;
+}
+
+.tags {
+    padding-bottom: 15px;
+    padding-top: 15px;
+}
+/* -------end Tags-------- */
+
 .image-container {
     position: relative;
 }
@@ -186,7 +313,7 @@ div.card-subtitle {
         position: absolute;
         bottom: 0; /* At the bottom. Use top:0 to append it to the top */
         top: 0;
-        background: rgba($gray-100, 0.1); /* Background with 0.5 opacity */
+        background: rgba($gray-800, 0.2); /* Background with 0.5 opacity */
         color: $white;
         width: 100%;
         padding: 2rem;
@@ -205,67 +332,12 @@ div.card-subtitle {
         color: $link-light-hover-color;
     }
 
-.linkNav {
-    color: $navbar-light-color;
-    border-color: $navbar-light-toggler-border-color;
-    border-bottom: 2px solid transparent;
-}
-    .linkNav:hover {
-        color: $navbar-light-hover-color;
-        border-bottom: 2px solid $navbar-light-hover-color;
-    }
-    .linkNav-active {
-        color: $navbar-light-active-color;
-        border-bottom: 2px solid $navbar-light-active-color;
-    }
-        .linkNav-active:hover {
-            color: $navbar-light-color;
-            border-bottom: 2px solid $navbar-light-color;
-        }
-    .linkNav:disabled {
-        color: $navbar-light-disabled-color;
-    }
-
 .modal-background {
     background-color: $gray-200;
 }
 
 a.nav-padding-social {
     padding: 0.5rem 0.5rem;
-}
-
-.nav-item a {
-    margin-left: .25rem;
-    margin-right: .25rem;
-}
-
-$post-container-padding: (
-    xs: 1rem,
-    md: 2rem
-);
-
-@each $breakpoint-size, $padding in $post-container-padding {
-    @include media-breakpoint-up($breakpoint-size) {
-        div.post-container {
-            background-color: $white;
-            margin-bottom: 2rem;
-            margin-top: 2rem;
-            padding: $padding $padding;
-        }
-    }
-}
-
-a.tag {
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
-    margin: .125rem .125rem;
-    padding: 0.25rem;
-}
-
-.tags {
-    padding-bottom: 15px;
-    padding-top: 15px;
 }
 
 /* -------end custom additions-------- */
