@@ -20,7 +20,7 @@ export default function Navigation({ className }: { className: string }) {
                 <NavLink to={navigation.howto}>{data.Howto}</NavLink>
             </NavItem>
             <NavItem>
-                <NavLink to={navigation.blog}>{data.Blog}</NavLink>
+                <NavLink href={navigation.blog}>{data.Blog}</NavLink>
             </NavItem>
         </Nav>
     );

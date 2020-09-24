@@ -3,21 +3,27 @@ import { Link } from 'gatsby'
 import { NavLink } from 'reactstrap'
 
 const CustomNavLink = (props) => {
-    return (
-        <NavLink>
+    if (props.to) {
+        return (
             <Link
                 {...props}
                 getProps={({ isCurrent }) => {
                     // the object returned here is passed to the
                     // anchor element's props
                     return {
-                        className: isCurrent ? 'linkNav-active' : 'linkNav',
+                        className: isCurrent ? 'linkNav-active nav-link' : 'linkNav nav-link',
                         active: isCurrent
                     };
                 }}
             />
-        </NavLink>
-    )
+        )
+    } else {
+        return (
+            <NavLink href={props.href} className='linkNav'>
+                {props.children}
+            </NavLink>
+        )
+    }
 }
 
 export default CustomNavLink
