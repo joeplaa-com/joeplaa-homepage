@@ -3,11 +3,16 @@ const data = require("./src/utils/data.js")
 module.exports = {
     siteMetadata: data.meta,
     plugins: [
-        `gatsby-plugin-anchor-links`,
         `gatsby-plugin-advanced-sitemap`,
         `gatsby-plugin-react-helmet`,
         `gatsby-plugin-sass`,
         `gatsby-transformer-sharp`,
+        {
+            resolve: "gatsby-plugin-anchor-links",
+            options: {
+                offset: -80
+            }
+        },
         {
             resolve: `gatsby-plugin-manifest`,
             options: {

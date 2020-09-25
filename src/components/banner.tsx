@@ -1,12 +1,13 @@
 import React from 'react'
 import Image from './image'
 import Social from './social'
+import { data } from '../utils/data'
 import { BannerProps } from '../types'
 
 const Banner = (props: BannerProps) => {
     const { title, subtitle, src, alt } = props;
     return (
-        <section id="Banner">
+        <section id={data.Banner}>
             <div className='image-container shadow'>
                 <Image
                     src={src}

@@ -5,6 +5,7 @@ module.exports = {
         Back: 'Back',
         Backto: 'Back to overview',
         BacktoPortfolio: 'Back to portfolio',
+        Banner: 'Banner',
         Blog: 'Blog',
         Contact: 'Contact',
         Continue: 'Continue',
