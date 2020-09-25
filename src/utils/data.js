@@ -18,8 +18,11 @@ module.exports = {
         Ok: 'Ok',
         Portfolio: 'Portfolio',
         Pricing: 'Pricing',
+        PricingDesign: 'Design',
         Recommended: 'Recommended',
         SelectedTags: 'Selected tags',
+        SendEmail: 'Send me an email',
+        Services: 'Services',
         ShowAll: 'Show all',
         ShowModal: 'Show more',
         ShowModalMessage: 'This website does not work properly in your current browser.',
@@ -41,19 +44,20 @@ module.exports = {
         authorName: `Joep van de Laarschot`,
     },
     navigation: {
-        about: '/home/#about',
+        about: '/home#about',
         blog: process.env.GATSBY_BLOG_URL,
-        contact: '/home/#contact',
-        home: '/home/#banner',
+        contact: '/home#contact',
+        home: '/home#banner',
         howto: '/howto',
         howtos: '/howtos',
         portfolio: '/portfolio',
-        pricing: '/home/#pricing',
+        pricing: '/home#pricing',
         recommended: process.env.GATSBY_BLOG_URL + '/recommended'
     },
     settings: {
         breakpoint: 'md',
-        dateFormat: 'LLLL d, yyyy'
+        dateFormat: 'LLLL d, yyyy',
+        iconSize: '40px'
     },
     siteInfo: {
         BusinessName: 'Joeplaa',
@@ -82,6 +86,11 @@ module.exports = {
         instagram: 'https://www.instagram.com/joeplaa/',
         linkedin: 'https://www.linkedin.com/in/joeplaa/',
         mailto: 'mailto:info@joeplaa.com',
-        website: process.env.GATSBY_URL
+        website: process.env.GATSBY_URL,
+        awsCloudfront: 'https://aws.amazon.com/cloudfront/',
+        awsLightsail: 'https://aws.amazon.com/lightsail/',
+        gatsbyjs: 'https://www.gatsbyjs.com/',
+        nextjs: 'https://nextjs.org/',
+        wordpress: 'https://wordpress.org/'
     },
 }

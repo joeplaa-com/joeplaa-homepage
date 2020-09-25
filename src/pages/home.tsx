@@ -2,8 +2,10 @@ import React from 'react'
 import SEO from 'react-seo-component'
 import About from '../components/about'
 import Banner from '../components/banner'
+import Contact from '../components/contact'
 import Layout from '../components/layout'
 import Pricing from '../components/pricing'
+import Services from '../components/Services'
 import { useSiteMetadata } from '../hooks/useSiteMetadata'
 import { siteInfo } from '../utils/data'
 
@@ -39,8 +41,12 @@ export default () => {
                     alt="beach banner" />
 
                 <About backgroundColor='background1' />
+                
+                <Services backgroundColor='background5' />
 
                 <Pricing backgroundColor='background3' />
+
+                <Contact backgroundColor='background4' />
             </Layout>
         </>
     );

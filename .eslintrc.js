@@ -10,6 +10,7 @@ module.exports = {
     env: {
         browser: true,
         node: true,
+        es2020: true
     },
     settings: {
         react: {
@@ -22,7 +23,10 @@ module.exports = {
         'plugin:react-hooks/recommended',
         'plugin:@typescript-eslint/recommended',
     ],
-    plugins: ['react', '@typescript-eslint'],
+    plugins: [
+        'react',
+        '@typescript-eslint'
+    ],
     rules: {
         indent: ["error", 4],
         '@typescript-eslint/explicit-function-return-type': "off",

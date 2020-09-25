@@ -1,4 +1,4 @@
-import { ReactElement } from "react"
+import { ReactNode } from "react"
 
 export type AboutProps = {
     backgroundColor: string
@@ -16,14 +16,22 @@ export type CopyrightLinkProps = {
     color: 'dark' | 'light' | 'navbar'
 }
 
-export type newTabProps = {
-    children?: string | ReactElement
+export type LayoutProps = {
+    children?: string | ReactNode
+}
+
+export type NewTabProps = {
+    children?: string | ReactNode
     className?: string
     href: string
     text?: string
 }
 
 export type PricingProps = {
+    backgroundColor: string
+}
+
+export type ServicesProps = {
     backgroundColor: string
 }
 
