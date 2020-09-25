@@ -1,9 +1,9 @@
 import React from 'react'
-import { Container } from 'reactstrap'
 import SEO from 'react-seo-component'
 import About from '../components/about'
 import Banner from '../components/banner'
 import Layout from '../components/layout'
+import Pricing from '../components/pricing'
 import { useSiteMetadata } from '../hooks/useSiteMetadata'
 import { siteInfo } from '../utils/data'
 
@@ -38,7 +38,9 @@ export default () => {
                     src="home-banner-code.jpg"
                     alt="beach banner" />
 
-                <About />
+                <About backgroundColor='background1' />
+
+                <Pricing backgroundColor='background3' />
             </Layout>
         </>
     );

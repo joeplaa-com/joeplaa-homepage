@@ -53,8 +53,6 @@ $blues: map-merge(
 $theme-colors: (
     primary: $blue-800,
     secondary: $ana-secondary,
-    gray-light: $gray-200,
-    navbar-gray: $gray-100
 );
 
 $body-bg:                           $gray-100;
@@ -81,6 +79,11 @@ $link-light-active-color:   darken($link-light-color, 10%);
 $link-dark-color:           $gray-900;
 $link-dark-hover-color:     lighten($link-dark-color, 15%);
 $link-dark-active-color:    darken($link-dark-color, 10%);
+
+.background1 {background-color: $gray-100;}
+.background2 {background-color: $gray-800;}
+.background3 {background-color: $blue-200;}
+.background4 {background-color: $blue-800;}
 
 /* -------begin markdown additions-------- */
 .markdown {
@@ -334,6 +337,16 @@ a.tag {
     background-position: center;
     height: 100vh
 }
+
+.svg-icon {
+    fill: $link-color;
+}
+    .svg-icon:hover {
+        fill: $link-hover-color;
+    }
+    .svg-icon:active {
+        fill: $link-hover-color;
+    }
 
 .linkLight {
     color: $link-light-color;

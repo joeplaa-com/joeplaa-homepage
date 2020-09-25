@@ -25,7 +25,9 @@ module.exports = {
         ShowModalMessage: 'This website does not work properly in your current browser.',
         UnsupportedContinue: 'Press continue to view this site anyway.',
         UnsupportedMessage: 'This website does not work properly in your current browser. Use one of the browser below for the best experience.',
-        UnsupportedTitle: 'Browser not supported'
+        UnsupportedTitle: 'Browser not supported',
+        WebDesign: 'Website design',
+        WebHosting: 'Website hosting'
     },
     meta: {
         title: `joeplaa.com`, //sitetitle

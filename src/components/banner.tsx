@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react'
 import Image from './image'
 import Social from './social'
 import { BannerProps } from '../types'

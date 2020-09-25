@@ -3,6 +3,7 @@ const data = require("./src/utils/data.js")
 module.exports = {
     siteMetadata: data.meta,
     plugins: [
+        `gatsby-plugin-anchor-links`,
         `gatsby-plugin-advanced-sitemap`,
         `gatsby-plugin-react-helmet`,
         `gatsby-plugin-sass`,
@@ -41,6 +42,14 @@ module.exports = {
                     },
                 },
             ],
+        },
+        {
+            resolve: "gatsby-plugin-react-svg",
+            options: {
+                rule: {
+                    include: /images/
+                }
+            }
         },
         {
             resolve: `gatsby-plugin-sharp`,
