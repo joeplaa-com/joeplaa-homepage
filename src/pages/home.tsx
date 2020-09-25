@@ -5,8 +5,7 @@ import About from '../components/about'
 import Banner from '../components/banner'
 import Layout from '../components/layout'
 import { useSiteMetadata } from '../hooks/useSiteMetadata'
-import { navigation, siteInfo } from '../utils/data'
-import { getAge } from '../utils/getAge'
+import { siteInfo } from '../utils/data'
 
 export default () => {
     const {

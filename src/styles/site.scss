@@ -181,7 +181,6 @@ div.card {
     flex-direction: column;
     justify-content: center;
     min-height: 100vh;
-    padding: 5rem 0;
 }
 
 // @include media-breakpoint-down(sm) {
@@ -243,30 +242,30 @@ div.card {
     color: $navbar-light-color;
 }
 
-/* Change navbar styling on small viewports */
-@include media-breakpoint-down(sm) {
-    .navbar {
-        background: $gray-100;
-        box-shadow: $box-shadow;
-    }
+// /* Change navbar styling on small viewports */
+// @include media-breakpoint-down(sm) {
+//     .navbar {
+//         background: $gray-100;
+//         box-shadow: $box-shadow;
+//     }
 
-    .navbar .navbar-brand,
-    .navbar .nav-link {
-        color: $navbar-light-color;
-        border-bottom: 2px solid transparent;
-    }
+//     .navbar .navbar-brand,
+//     .navbar .nav-link {
+//         color: $navbar-light-color;
+//         border-bottom: 2px solid transparent;
+//     }
 
-    .navbar .nav-link:hover {
-        color: $navbar-light-hover-color;
-        border-bottom: 2px solid $navbar-light-hover-color;
-    }
+//     .navbar .nav-link:hover {
+//         color: $navbar-light-hover-color;
+//         border-bottom: 2px solid $navbar-light-hover-color;
+//     }
 
-    .navbar .nav-link-active,
-    .navbar .nav-link:active {
-        color: $navbar-light-active-color;
-        border-bottom: 2px solid $navbar-light-active-color;
-    }
-}
+//     .navbar .nav-link-active,
+//     .navbar .nav-link:active {
+//         color: $navbar-light-active-color;
+//         border-bottom: 2px solid $navbar-light-active-color;
+//     }
+// }
 
 .nav-item a {
     font-weight: 600;
