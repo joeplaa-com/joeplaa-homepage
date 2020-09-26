@@ -42,7 +42,7 @@ export default () => {
 
                 <About backgroundColor='background1' />
                 
-                <Services backgroundColor='background5' />
+                <Services backgroundColor='background2' />
 
                 <Pricing backgroundColor='background3' />
 

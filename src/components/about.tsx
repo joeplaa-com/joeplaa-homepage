@@ -5,10 +5,9 @@ import Image from './image'
 import NewTabLink from './newTabLink'
 import Social from './social'
 import { data, navigation, siteInfo } from '../utils/data'
-import { AboutProps } from '../types'
+import { BackgroundProps } from '../types'
 
-const About = (props: AboutProps) => {
-    const { backgroundColor } = props;
+const About = ({ backgroundColor }: BackgroundProps) => {
     return (
         <section className={backgroundColor + ' ' + 'section-home'} id="About">
             <Container className='text-center text-md-left my-md-auto mb-3 mt-3'>

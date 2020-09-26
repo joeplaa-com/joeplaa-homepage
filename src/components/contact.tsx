@@ -2,12 +2,11 @@ import React from 'react'
 import { Button, Container, Col, Row, Form, FormGroup, Label, Input } from 'reactstrap'
 import NewTabLink from './newTabLink'
 import { data, urls } from '../utils/data'
-import { PricingProps } from '../types'
+import { BackgroundProps } from '../types'
 
-const Contact = (props: PricingProps) => {
-    const { backgroundColor } = props;
+const Contact = ({ backgroundColor }: BackgroundProps) => {
     return (
-        <section className={backgroundColor + ' ' + 'section-home markdown'} id={data.Contact}>
+        <section className={backgroundColor + ' ' + 'section-home'} id={data.Contact}>
             <Container className='text-center text-md-left my-md-auto mb-3 mt-3'>
                 <Row>
                     <Col>

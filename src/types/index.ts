@@ -1,6 +1,6 @@
 import { ReactNode } from "react"
 
-export type AboutProps = {
+export type BackgroundProps = {
     backgroundColor: string
 }
 
@@ -25,14 +25,6 @@ export type NewTabProps = {
     className?: string
     href: string
     text?: string
-}
-
-export type PricingProps = {
-    backgroundColor: string
-}
-
-export type ServicesProps = {
-    backgroundColor: string
 }
 
 export type SocialLinkProps = {

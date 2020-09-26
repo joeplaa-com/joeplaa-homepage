@@ -81,11 +81,11 @@ $link-dark-color:           $gray-900;
 $link-dark-hover-color:     lighten($link-dark-color, 15%);
 $link-dark-active-color:    darken($link-dark-color, 10%);
 
-.background1 {background-color: $gray-100;}
-.background2 {background-color: $gray-800;}
-.background3 {background-color: $blue-200;}
-.background4 {background-color: $blue-400;}
-.background5 {background-color: $blue-800;}
+.background1 {background: linear-gradient($gray-400, $blue-100);}
+.background2 {background: linear-gradient($blue-100, $blue-800);}
+.background3 {background: linear-gradient($blue-800, $blue-400);}
+.background4 {background: linear-gradient($blue-400, $gray-400);}
+.background5 {background: linear-gradient($gray-400, $gray-500);}
 
 /* -------begin markdown additions-------- */
 .markdown {
@@ -147,7 +147,6 @@ $link-dark-active-color:    darken($link-dark-color, 10%);
 }
 
 .footer {
-    background: $gray-500;
     color: $light;
     padding-top: 1rem;
     padding-bottom: 1rem;

@@ -4,12 +4,11 @@ import { IconContext } from 'react-icons'
 import { SiGatsby, SiGithub, SiNextDotJs, SiWordpress } from 'react-icons/si'
 import NewTabLink from './newTabLink'
 import { data, settings, urls } from '../utils/data'
-import { ServicesProps } from '../types'
+import { BackgroundProps } from '../types'
 import CloudFront from '../images/cloudfront.svg'
 import LightSail from '../images/lightsail.svg'
 
-const Services = (props: ServicesProps) => {
-    const { backgroundColor } = props;
+const Services = ({ backgroundColor }: BackgroundProps) => {
     return (
         <section className={backgroundColor + ' ' + 'section-home'} id={data.Services}>
             <Container className='text-center text-md-left my-md-auto mb-3 mt-3'>
