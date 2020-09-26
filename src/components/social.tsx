@@ -24,7 +24,7 @@ export default function Header({ className, color, size }: SocialLinkProps) {
                     <NavLink className={linkColor(color) + ' nav-padding-social'} href={urls.github} target='_blank' rel='noopener noreferrer'><FaGithub /></NavLink>
                 </NavItem>
                 <NavItem>
-                    <NavLink className={linkColor(color) + ' nav-padding-social'} href={urls.mailto} target='_blank' rel='noopener noreferrer'><MdMail /></NavLink>
+                    <NavLink className={linkColor(color) + ' nav-padding-social'} href={'mailto:' + urls.email} target='_blank' rel='noopener noreferrer'><MdMail /></NavLink>
                 </NavItem>
             </Nav>
         </IconContext.Provider>

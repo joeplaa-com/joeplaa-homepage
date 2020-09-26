@@ -14,6 +14,9 @@ export default function Navigation({ className }: { className: string }) {
                 <CustomNavLink to={navigation.about}>{data.About}</CustomNavLink>
             </NavItem>
             <NavItem>
+                <CustomNavLink to={navigation.services}>{data.Services}</CustomNavLink>
+            </NavItem>
+            <NavItem>
                 <CustomNavLink to={navigation.pricing}>{data.Pricing}</CustomNavLink>
             </NavItem>
             <NavItem>

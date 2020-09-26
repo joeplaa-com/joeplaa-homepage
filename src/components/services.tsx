@@ -2,6 +2,7 @@ import React from 'react'
 import { Container, Col, Row, Card, CardBody, CardDeck } from 'reactstrap'
 import { IconContext } from 'react-icons'
 import { SiGatsby, SiGithub, SiNextDotJs, SiWordpress } from 'react-icons/si'
+import Image from './image'
 import NewTabLink from './newTabLink'
 import { data, settings, urls } from '../utils/data'
 import { BackgroundProps } from '../types'
@@ -35,9 +36,9 @@ const Services = ({ backgroundColor }: BackgroundProps) => {
                                     <li>Do I want or need to update texts and images often? Take <strong>option 2</strong>.</li>
                                     <li>Actually it's both... Well, can I wait a few weeks?* Then try <strong>option 3</strong>.</li>
                                 </ol>
-                                <em className='small'>*I&apos;m still figuring this out.</em>
                             </div>
                             <div className='text-center'>
+                                <em className='small'>*I&apos;m still figuring this out.</em>
                                 <hr />
                                 <IconContext.Provider value={{ size: settings.iconSize }}>
                                     <NewTabLink href={urls.nextjs} className='nav-padding-social'><SiNextDotJs /></NewTabLink>
@@ -60,7 +61,13 @@ const Services = ({ backgroundColor }: BackgroundProps) => {
                                     <li>Dynamic websites will be hosted on <NewTabLink href={urls.awsLightsail}>AWS LightSail</NewTabLink>.</li>
                                     <li>Option three is currently only possible if you host the site yourself.</li>
                                 </ol>
-                                <p></p>
+                                <div className='my-3 my-md-auto mx-auto shadow' style={{ width: '100%' }}>
+                                    <Image
+                                        src={'lighthouse-wordpress.png'}
+                                        alt={'Lighthouse score of my WordPress site on AWS Lightsail'}
+                                        className="mx-auto"
+                                    />
+                                </div>
                             </div>
                             <div className='text-center'>
                                 <hr />
