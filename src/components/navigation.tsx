@@ -1,6 +1,6 @@
 import React from 'react'
 import { Nav, NavItem } from 'reactstrap'
-import NavLink from './customNavLink'
+import CustomNavLink from './customNavLink'
 import { data, navigation } from '../utils/data'
 
 export default function Navigation({ className }: { className: string }) {
@@ -8,25 +8,25 @@ export default function Navigation({ className }: { className: string }) {
     return (
         <Nav className={className} navbar>
             <NavItem>
-                <NavLink to={navigation.home}>{data.Home}</NavLink>
+                <CustomNavLink to={navigation.home}>{data.Home}</CustomNavLink>
             </NavItem>
             <NavItem>
-                <NavLink to={navigation.about}>{data.About}</NavLink>
+                <CustomNavLink to={navigation.about}>{data.About}</CustomNavLink>
             </NavItem>
             <NavItem>
-                <NavLink to={navigation.pricing}>{data.Pricing}</NavLink>
+                <CustomNavLink to={navigation.pricing}>{data.Pricing}</CustomNavLink>
             </NavItem>
             <NavItem>
-                <NavLink to={navigation.contact}>{data.Contact}</NavLink>
+                <CustomNavLink to={navigation.contact}>{data.Contact}</CustomNavLink>
             </NavItem>
             <NavItem>
-                <NavLink to={navigation.portfolio}>{data.Portfolio}</NavLink>
+                <CustomNavLink to={navigation.portfolio}>{data.Portfolio}</CustomNavLink>
             </NavItem>
             <NavItem>
-                <NavLink to={navigation.howto}>{data.Howto}</NavLink>
+                <CustomNavLink to={navigation.howto}>{data.Howto}</CustomNavLink>
             </NavItem>
             <NavItem>
-                <NavLink href={navigation.blog}>{data.Blog}</NavLink>
+                <CustomNavLink href={navigation.blog}>{data.Blog}</CustomNavLink>
             </NavItem>
         </Nav>
     );

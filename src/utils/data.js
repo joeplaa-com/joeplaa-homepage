@@ -45,14 +45,14 @@ module.exports = {
         authorName: `Joep van de Laarschot`,
     },
     navigation: {
-        about: '/home#about',
+        about: '/home#About',
         blog: process.env.GATSBY_BLOG_URL,
-        contact: '/home#contact',
-        home: '/home#banner',
+        contact: '/home#Contact',
+        home: '/home#Banner',
         howto: '/howto',
         howtos: '/howtos',
         portfolio: '/portfolio',
-        pricing: '/home#pricing',
+        pricing: '/home#Pricing',
         recommended: process.env.GATSBY_BLOG_URL + '/recommended'
     },
     settings: {
