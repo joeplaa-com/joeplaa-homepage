@@ -1,5 +1,6 @@
 # Project dependencies
 .cache
+.serverless
 node_modules
 
 # Build directory

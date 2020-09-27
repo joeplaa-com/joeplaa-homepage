@@ -1,58 +1,82 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Button, Container, Col, Row, Form, FormFeedback, FormGroup, Label, Input } from 'reactstrap'
 import { data, urls } from '../utils/data'
 import validateEmail from '../utils/validateEmail'
 import { BackgroundProps } from '../types'
 
-const Contact = ({ backgroundColor }: BackgroundProps) => {
-    // form validation errors
-    const [nameError, setNameError] = useState(false);
-    const [emailError, setEmailError] = useState(false);
-    // form to state
-    const [name, setName] = useState('');
-    const [business, setBusiness] = useState('');
-    const [email, setEmail] = useState('');
-    const [message, setMessage] = useState('');
-    const [staticDesign, setStaticDesign] = useState(false);
-    const [dynamicDesign, setDynamicDesign] = useState(false);
-    const [cmsDesign, setCMSDesign] = useState(false);
-    const [customDesign, setCustomDesign] = useState(false);
-    const [staticHosting, setStaticHosting] = useState(false);
-    const [dynamicHosting, setDynamicHosting] = useState(false);
-    const [captcha, setCaptcha] = useState(false);
+type ContactState = {
+    nameError: boolean
+    emailError: boolean
+    name: string
+    business: string
+    email: string
+    message: string
+    staticDesign: boolean
+    dynamicDesign: boolean
+    cmsDesign: boolean
+    customDesign: boolean
+    staticHosting: boolean
+    dynamicHosting: boolean,
+    captcha: boolean
+}
 
-    function resetForm() {
-        setName('');
-        setBusiness('');
-        setEmail('');
-        setMessage('');
-        setStaticDesign(false);
-        setDynamicDesign(false);
-        setCMSDesign(false);
-        setCustomDesign(false);
-        setStaticHosting(false);
-        setDynamicHosting(false);
-        setCaptcha(false);
+const initialState = {
+    nameError: false,
+    emailError: false,
+    name: '',
+    business: '',
+    email: '',
+    message: '',
+    staticDesign: false,
+    dynamicDesign: false,
+    cmsDesign: false,
+    customDesign: false,
+    staticHosting: false,
+    dynamicHosting: false,
+    captcha: false
+}
+
+export default class Contact extends React.Component<BackgroundProps, ContactState> {
+    constructor(props) {
+        super(props);
+        this.state = initialState;
     }
 
-    function handleSubmit(e) {
-        e.preventDefault();
-        const state = {
-            name: name,
-            business: business,
-            email: email,
-            message: message,
-            staticDesign: staticDesign,
-            dynamicDesign: dynamicDesign,
-            cmsDesign: cmsDesign,
-            customDesign: customDesign,
-            staticHosting: staticHosting,
-            dynamicHosting: dynamicHosting
+    // reset form after sending email
+    resetForm() {
+        this.setState(initialState)
+    }
+
+    // form validation errors
+    checkNameError() {
+        if (!this.state.name) {
+            this.setState({ nameError: true });
+        } else {
+            this.setState({ nameError: false });
         }
-        if (!captcha) {
-            fetch(urls.sendMailApi, {
+    }
+    checkEmailError() {
+        if (!validateEmail(this.state.email)) {
+            this.setState({ emailError: true });
+        } else {
+            this.setState({ emailError: false });
+        }
+    }
+
+    // check form and send form as email
+    checkForm() {
+        this.checkNameError();
+        this.checkEmailError();
+        if (this.state.name.length < 1 && validateEmail(this.state.email)) {
+            this.submit();
+        }
+    }
+
+    submit() {
+        if (!this.state.captcha) {
+            fetch(process.env.GATSBY_URL_MAIL, {
                 method: 'POST',
-                body: JSON.stringify(state),
+                body: JSON.stringify(this.state),
                 headers: {
                     Accept: 'application/json',
                     'Content-Type': 'application/json'
@@ -64,108 +88,131 @@ const Contact = ({ backgroundColor }: BackgroundProps) => {
                     alert(data.MailSendFailed + urls.email);
                 }
             });
-        };
-        resetForm();
+        }
+        this.resetForm();
     }
 
-    const checkNameError = () => {
-        if (!name) {
-            setNameError(true);
-        } else {
-            setNameError(false);
-        };
-    };
+    // change / update state
+    setName(event) {
+        this.setState({ name: event.target.value });
+    }
+    setBusiness(event) {
+        this.setState({ business: event.target.value });
+    }
+    setEmail(event) {
+        this.setState({ email: event.target.value });
+    }
+    setCheck(value: string) {
+        switch (value) {
+        case 'staticDesign': {
+            this.setState({ staticDesign: !this.state.staticDesign }); break;
+        }
+        case 'dynamicDesign': {
+            this.setState({ dynamicDesign: !this.state.dynamicDesign }); break;
+        }
+        case 'cmsDesign': {
+            this.setState({ cmsDesign: !this.state.cmsDesign }); break;
+        }
+        case 'customDesign': {
+            this.setState({ customDesign: !this.state.customDesign }); break;
+        }
+        case 'staticHosting': {
+            this.setState({ staticHosting: !this.state.staticHosting }); break;
+        }
+        case 'dynamicHosting': {
+            this.setState({ dynamicHosting: !this.state.dynamicHosting }); break;
+        }
+        case 'captcha': {
+            this.setState({ captcha: !this.state.captcha }); break;
+        }}
+    }
+    setMessage(event) {
+        this.setState({ message: event.target.value });
+    }
 
-    const checkEmailError = () => {
-        if (!validateEmail(email)) {
-            setEmailError(true);
-        } else {
-            setEmailError(false);
-        };
-    };
+    render() {
+        console.log(this.state);
+        return (
+            <section className={this.props.backgroundColor + ' ' + 'section-home'} id={data.Contact}>
+                <Container className='text-center text-md-left my-md-auto mb-3 mt-3'>
+                    <Row>
+                        <Col>
+                            <h1 className='display-1'>{data.Contact}</h1>
+                        </Col>
+                    </Row>
+                    <Row className='mt-3 d-flex flex-column justify-content-between align-items-center'>
+                        <Col className='col-12 col-sm-10 col-md-8 col-lg-6'>
+                            <h2>{data.SendEmail}</h2>
+                            <Form id="contact-form">
+                                <FormGroup>
+                                    <Label for="name">{data.Name}</Label>
+                                    <Input type="text" name="name" id="name" placeholder="John Doe" value={this.state.name} onChange={this.setName.bind(this)} onBlur={this.checkNameError.bind(this)} invalid={this.state.nameError} />
+                                    <FormFeedback>{data.NameErrorMessage}</FormFeedback>
+                                </FormGroup>
+                                <FormGroup>
+                                    <Label for="business-name">{data.Business}</Label>
+                                    <Input type="text" name="business-name" id="business-name" placeholder="ACME" value={this.state.business} onChange={this.setBusiness.bind(this)} />
+                                </FormGroup>
+                                <FormGroup>
+                                    <Label for="exampleEmail">{data.Email}</Label>
+                                    <Input type="email" name="email" id="email" placeholder="name@email.com" value={this.state.email} onChange={this.setEmail.bind(this)} onBlur={this.checkEmailError.bind(this)} invalid={this.state.emailError} />
+                                    <FormFeedback>{data.EmailErrorMessage}</FormFeedback>
+                                </FormGroup>
 
-    return (
-        <section className={backgroundColor + ' ' + 'section-home'} id={data.Contact}>
-            <Container className='text-center text-md-left my-md-auto mb-3 mt-3'>
-                <Row>
-                    <Col>
-                        <h1 className='display-1'>{data.Contact}</h1>
-                    </Col>
-                </Row>
-                <Row className='mt-3 d-flex flex-column justify-content-between align-items-center'>
-                    <Col className='col-12 col-sm-10 col-md-8 col-lg-6'>
-                        <h2>{data.SendEmail}</h2>
-                        <Form id="contact-form" onSubmit={handleSubmit} method="POST">
-                            <FormGroup>
-                                <Label for="name">{data.Name}</Label>
-                                <Input type="text" name="name" id="name" placeholder="John Doe" value={name} onChange={(event) => (setName(event.target.value))} onBlur={checkNameError} invalid={nameError} />
-                                <FormFeedback>{data.NameErrorMessage}</FormFeedback>
-                            </FormGroup>
-                            <FormGroup>
-                                <Label for="business-name">{data.Business}</Label>
-                                <Input type="text" name="business-name" id="business-name" placeholder="ACME" value={business} onChange={(event) => (setBusiness(event.target.value))} />
-                            </FormGroup>
-                            <FormGroup>
-                                <Label for="exampleEmail">{data.Email}</Label>
-                                <Input type="email" name="email" id="email" placeholder="name@email.com" value={email} onChange={(event) => (setEmail(event.target.value))} onBlur={checkEmailError} invalid={emailError} />
-                                <FormFeedback>{data.EmailErrorMessage}</FormFeedback>
-                            </FormGroup>
-
-                            <Label>{data.InterestedIn}</Label>
-                            <FormGroup check>
-                                <Label check>
-                                    <Input type="checkbox" checked={setStaticDesign || false}
-                                        onChange={(event) => (setStaticDesign(event.target.checked))} />Static website (Next.js or Gatsby.js)
-                                </Label>
-                            </FormGroup>
-                            <FormGroup check>
-                                <Label check>
-                                    <Input type="checkbox" checked={dynamicDesign || false}
-                                        onChange={(event) => (setDynamicDesign(event.target.checked))} />Dynamic website (WordPress)
-                                </Label>
-                            </FormGroup>
-                            <FormGroup check>
-                                <Label check>
-                                    <Input type="checkbox" checked={cmsDesign || false}
-                                        onChange={(event) => (setCMSDesign(event.target.checked))} />Static website + CMS
-                                </Label>
-                            </FormGroup>
-                            <FormGroup check>
-                                <Label check>
-                                    <Input type="checkbox" checked={customDesign || false}
-                                        onChange={(event) => (setCustomDesign(event.target.checked))} />Custom website
-                                </Label>
-                            </FormGroup>
-                            <FormGroup check>
-                                <Label check>
-                                    <Input type="checkbox" checked={staticHosting || false}
-                                        onChange={(event) => (setStaticHosting(event.target.checked))} />Static website hosting
-                                </Label>
-                            </FormGroup>
-                            <FormGroup check>
-                                <Label check>
-                                    <Input type="checkbox" checked={dynamicHosting || false}
-                                        onChange={(event) => (setDynamicHosting(event.target.checked))} />Dynamic website hosting
-                                </Label>
-                            </FormGroup>
-                            <p></p>
-                            <FormGroup>
-                                <Label for="other">{data.TextBox}</Label>
-                                <Input type="textarea" name="text" id="other" placeholder="I like your website and I want to know more about..." style={{ height: '120px' }} value={message} onChange={(event) => (setMessage(event.target.value))} />
-                            </FormGroup>
-                            <FormGroup check hidden>
-                                <Label check>
-                                    <Input type="checkbox" checked={captcha || false}
-                                        onChange={(event) => (setCaptcha(event.target.checked))} />
-                                </Label>
-                            </FormGroup>
-                            <Button color='secondary' type="submit">{data.Submit}</Button>
-                        </Form>
-                    </Col>
-                </Row>
-            </Container>
-        </section >
-    );
+                                <Label>{data.InterestedIn}</Label>
+                                <FormGroup check>
+                                    <Label check>
+                                        <Input type="checkbox" checked={this.state.staticDesign || false}
+                                            onChange={() => this.setCheck('staticDesign')} />Static website (Next.js or Gatsby.js)
+                                    </Label>
+                                </FormGroup>
+                                <FormGroup check>
+                                    <Label check>
+                                        <Input type="checkbox" checked={this.state.dynamicDesign || false}
+                                            onChange={() => this.setCheck('dynamicDesign')} />Dynamic website (WordPress)
+                                    </Label>
+                                </FormGroup>
+                                <FormGroup check>
+                                    <Label check>
+                                        <Input type="checkbox" checked={this.state.cmsDesign || false}
+                                            onChange={() => this.setCheck('cmsDesign')} />Static website + CMS
+                                    </Label>
+                                </FormGroup>
+                                <FormGroup check>
+                                    <Label check>
+                                        <Input type="checkbox" checked={this.state.customDesign || false}
+                                            onChange={() => this.setCheck('customDesign')} />Custom website
+                                    </Label>
+                                </FormGroup>
+                                <FormGroup check>
+                                    <Label check>
+                                        <Input type="checkbox" checked={this.state.staticHosting || false}
+                                            onChange={() => this.setCheck('staticHosting')} />Static website hosting
+                                    </Label>
+                                </FormGroup>
+                                <FormGroup check>
+                                    <Label check>
+                                        <Input type="checkbox" checked={this.state.dynamicHosting || false}
+                                            onChange={() => this.setCheck('dynamicHosting')} />Dynamic website hosting
+                                    </Label>
+                                </FormGroup>
+                                <p></p>
+                                <FormGroup>
+                                    <Label for="other">{data.TextBox}</Label>
+                                    <Input type="textarea" name="text" id="other" placeholder="I like your website and I want to know more about..." style={{ height: '120px' }} value={this.state.message} onChange={this.setMessage.bind(this)} />
+                                </FormGroup>
+                                <FormGroup check hidden>
+                                    <Label check>
+                                        <Input type="checkbox" checked={this.state.captcha || false}
+                                            onChange={() => this.setCheck('captcha')} />
+                                    </Label>
+                                </FormGroup>
+                                <Button color='secondary' onClick={this.checkForm.bind(this)}>{data.Submit}</Button>
+                            </Form>
+                        </Col>
+                    </Row>
+                </Container>
+            </section >
+        );
+    }
 }
-
-export default Contact;
