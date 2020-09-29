@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Dump = props => (
+const Dump = (props: never) => (
     <div
         style={{
             fontSize: 20,
@@ -13,7 +13,7 @@ const Dump = props => (
                 <strong style={{ color: 'white', background: 'red' }}>
                     {key} 💩
                 </strong>
-                {JSON.stringify(val, '', ' ')}
+                {JSON.stringify(val, null, ' ')}
             </pre>
         ))}
     </div>

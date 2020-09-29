@@ -1,8 +1,9 @@
 import React, { useMemo } from 'react';
 import { graphql, useStaticQuery } from 'gatsby';
 import Img from 'gatsby-image';
+import { ImageProps, ImageFixedNodeProps } from '../types'
 
-const ImageLogo = ({ src, ...rest }) => {
+const ImageLogo = ({ src, ...rest }: ImageProps) => {
     const data = useStaticQuery(graphql`
     query {
       images: allFile(
@@ -26,13 +27,13 @@ const ImageLogo = ({ src, ...rest }) => {
   `);
 
     const match = useMemo(
-        () => data.images.edges.find(({ node }) => src === node.relativePath),
+        () => data.images.edges.find(({ node }: ImageFixedNodeProps) => src === node.relativePath),
         [data, src]
     );
 
     if (!match) return null;
 
-    const { node: { childImageSharp, publicURL, extension } = {} } = match;
+    const { node: { childImageSharp, publicURL, extension } = {} } = match as ImageFixedNodeProps;
 
     if (extension === 'svg' || !childImageSharp) {
         return <img src={publicURL} {...rest} />;

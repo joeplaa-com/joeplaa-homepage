@@ -15,4 +15,4 @@ export default function Layout({ children }: LayoutProps) {
             <Footer backgroundColor='background5' />
         </div>
     );
-};
+}

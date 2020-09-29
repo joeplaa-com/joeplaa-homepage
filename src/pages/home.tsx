@@ -6,42 +6,31 @@ import Contact from '../components/contact'
 import Layout from '../components/layout'
 import Pricing from '../components/pricing'
 import Services from '../components/Services'
-import { useSiteMetadata } from '../hooks/useSiteMetadata'
-import { siteInfo } from '../utils/data'
+import { metaData, navigation } from '../utils/data'
 
-export default () => {
-    const {
-        description,
-        title,
-        titleTemplate,
-        image,
-        siteUrl,
-        siteLanguage,
-        siteLocale,
-        twitterUsername,
-    } = useSiteMetadata()
+const Home = () => {
     return (
         <>
             <Layout>
                 <SEO
-                    title={title}
-                    titleTemplate={titleTemplate}
-                    description={description || `nothin’`}
-                    image={`${siteUrl}${image}`}
-                    pathname={siteUrl}
-                    siteLanguage={siteLanguage}
-                    siteLocale={siteLocale}
-                    twitterUsername={twitterUsername}
+                    title={metaData.HomeTitle}
+                    description={metaData.HomeDescription || `nothin’`}
+                    image={`${metaData.SiteUrl}${metaData.HomeImage}`}
+                    pathname={`${metaData.SiteUrl}${navigation.home}`}
+                    titleTemplate={metaData.PageTitle}
+                    siteLanguage={metaData.SiteLanguage}
+                    siteLocale={metaData.SiteLocale}
+                    twitterUsername={metaData.TwitterUsername}
                 />
 
                 <Banner
-                    title={siteInfo.HomeTitle + ' ' + siteInfo.SiteName}
-                    subtitle={siteInfo.HomeSubtitle}
+                    title={metaData.HomeTitle + ' ' + metaData.SiteName}
+                    subtitle={metaData.HomeSubtitle}
                     src="home-banner-code.jpg"
                     alt="beach banner" />
 
                 <About backgroundColor='background1' />
-                
+
                 <Services backgroundColor='background2' />
 
                 <Pricing backgroundColor='background3' />
@@ -51,3 +40,5 @@ export default () => {
         </>
     );
 };
+
+export default Home;

@@ -2,9 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { Collapse, Navbar, NavbarBrand, NavbarToggler } from 'reactstrap'
 import ImageLogo from './imageLogo'
 import Navigation from './navigation'
-import { settings, siteInfo } from '../utils/data'
+import { metaData, settings } from '../utils/data'
 
-export default function Header() {
+export default function Menu() {
     const [isOpen, setIsOpen] = useState(false);
     const toggle = () => setIsOpen(!isOpen);
 
@@ -29,7 +29,7 @@ export default function Header() {
     return (
         <Navbar className={navbarActive + ' ' + 'fixed-top'} expand={settings.breakpoint}>
             <NavbarBrand href='/' className='d-flex align-items-center p-0'>
-                <ImageLogo alt={siteInfo.SiteName} src='banner-www-com.png' className="mr-2" />
+                <ImageLogo alt={metaData.SiteName} src='banner-www-com.png' className="mr-2" />
             </NavbarBrand>
             <NavbarToggler onClick={toggle} />
             <Collapse isOpen={isOpen} navbar>

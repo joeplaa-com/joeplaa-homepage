@@ -2,39 +2,29 @@ import { graphql, Link } from 'gatsby'
 import Img from 'gatsby-image'
 import React from 'react'
 import SEO from 'react-seo-component'
-import Image from '../components/image'
 import Layout from '../components/layout'
-import { useSiteMetadata } from '../hooks/useSiteMetadata'
+import { PostQueryData } from '../types'
+import { metaData, navigation } from '../utils/data'
 
-export default ({ data }) => {
-    const {
-        description,
-        title,
-        titleTemplate,
-        image,
-        siteUrl,
-        siteLanguage,
-        siteLocale,
-        twitterUsername,
-    } = useSiteMetadata()
+const Howto = ({ data }: PostQueryData) => {
     return (
         <>
             <Layout>
                 <SEO
-                    title={title}
-                    titleTemplate={titleTemplate}
-                    description={description || `nothin’`}
-                    image={`${siteUrl}${image}`}
-                    pathname={siteUrl}
-                    siteLanguage={siteLanguage}
-                    siteLocale={siteLocale}
-                    twitterUsername={twitterUsername}
+                    title={metaData.HowtoTitle}
+                    description={metaData.HowtoDescription || `nothin’`}
+                    image={`${metaData.SiteUrl}${metaData.HowtoImage}`}
+                    pathname={`${metaData.SiteUrl}${navigation.howto}`}
+                    titleTemplate={metaData.PageTitle}
+                    siteLanguage={metaData.SiteLanguage}
+                    siteLocale={metaData.SiteLocale}
+                    twitterUsername={metaData.TwitterUsername}
                 />
                 {data.allMdx.nodes.map(({ id, excerpt, frontmatter, fields }) => (
                     <div key={id}>
                         <Link to={fields.slug}>
                             {
-                                !!frontmatter.cover ? (
+                                frontmatter.cover ? (
                                     <Img fluid={frontmatter.cover.childImageSharp.fluid} />
                                 ) : null
                             }
@@ -77,3 +67,5 @@ export const query = graphql`
     }
   }
 `;
+
+export default Howto;

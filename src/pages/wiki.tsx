@@ -3,18 +3,19 @@ import Img from 'gatsby-image'
 import React from 'react'
 import SEO from 'react-seo-component'
 import Layout from '../components/layout'
-import { metaData, navigation } from '../utils/data'
 import { PostQueryData } from '../types'
+import { metaData, navigation } from '../utils/data'
 
-const Portfolio = ({ data }: PostQueryData) => {
+const Howto = ({ data }: PostQueryData) => {
+
     return (
         <>
             <Layout>
                 <SEO
-                    title={metaData.PortfolioTitle}
-                    description={metaData.PortfolioDescription || `nothin’`}
-                    image={`${metaData.SiteUrl}${metaData.PortfolioImage}`}
-                    pathname={`${metaData.SiteUrl}${navigation.portfolio}`}
+                    title={metaData.WikiTitle}
+                    description={metaData.WikiDescription || `nothin’`}
+                    image={`${metaData.SiteUrl}${metaData.WikiImage}`}
+                    pathname={`${metaData.SiteUrl}${navigation.wiki}`}
                     titleTemplate={metaData.PageTitle}
                     siteLanguage={metaData.SiteLanguage}
                     siteLocale={metaData.SiteLocale}
@@ -40,10 +41,10 @@ const Portfolio = ({ data }: PostQueryData) => {
 };
 
 export const query = graphql`
-  query SITE_PORTFOLIO_QUERY {
+  query SITE_WIKI_QUERY {
     allMdx(
       sort: { fields: [frontmatter___date], order: DESC }
-      filter: { frontmatter: { published: { eq: true } }, fileAbsolutePath: {regex: "/portfolio/"} }
+      filter: { frontmatter: { published: { eq: true } }, fileAbsolutePath: {regex: "/wiki/"} }
     ) {
       nodes {
         id
@@ -68,4 +69,4 @@ export const query = graphql`
   }
 `;
 
-export default Portfolio; 
+export default Howto;

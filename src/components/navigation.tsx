@@ -1,35 +1,36 @@
 import React from 'react'
 import { Nav, NavItem } from 'reactstrap'
 import CustomNavLink from './customNavLink'
-import { data, navigation } from '../utils/data'
+import { content, navigation } from '../utils/data'
+import { NavigationProps } from '../types'
 
-export default function Navigation({ className }: { className: string }) {
+export default function Navigation({ className }: NavigationProps) {
 
     return (
         <Nav className={className} navbar>
             <NavItem>
-                <CustomNavLink to={navigation.home}>{data.Home}</CustomNavLink>
+                <CustomNavLink to={navigation.home}>{content.Home}</CustomNavLink>
             </NavItem>
             <NavItem>
-                <CustomNavLink to={navigation.about}>{data.About}</CustomNavLink>
+                <CustomNavLink to={navigation.about}>{content.About}</CustomNavLink>
             </NavItem>
             <NavItem>
-                <CustomNavLink to={navigation.services}>{data.Services}</CustomNavLink>
+                <CustomNavLink to={navigation.services}>{content.Services}</CustomNavLink>
             </NavItem>
             <NavItem>
-                <CustomNavLink to={navigation.pricing}>{data.Pricing}</CustomNavLink>
+                <CustomNavLink to={navigation.pricing}>{content.Pricing}</CustomNavLink>
             </NavItem>
             <NavItem>
-                <CustomNavLink to={navigation.contact}>{data.Contact}</CustomNavLink>
+                <CustomNavLink to={navigation.contact}>{content.Contact}</CustomNavLink>
             </NavItem>
             <NavItem>
-                <CustomNavLink to={navigation.portfolio}>{data.Portfolio}</CustomNavLink>
+                <CustomNavLink to={navigation.portfolio}>{content.Portfolio}</CustomNavLink>
             </NavItem>
             <NavItem>
-                <CustomNavLink to={navigation.howto}>{data.Howto}</CustomNavLink>
+                <CustomNavLink to={navigation.howto}>{content.Howto}</CustomNavLink>
             </NavItem>
             <NavItem>
-                <CustomNavLink href={navigation.blog}>{data.Blog}</CustomNavLink>
+                <CustomNavLink to='empty' href={navigation.blog}>{content.Blog}</CustomNavLink>
             </NavItem>
         </Nav>
     );

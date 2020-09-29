@@ -1,21 +1,21 @@
 import React from 'react'
 import { Container, Col, Row, Card, CardBody, CardDeck, Table } from 'reactstrap'
-import { data } from '../utils/data'
+import { content } from '../utils/data'
 import { BackgroundProps } from '../types'
 
 const Pricing = ({ backgroundColor }: BackgroundProps) => {
     return (
-        <section className={backgroundColor + ' ' + 'section-home'} id={data.Pricing}>
+        <section className={backgroundColor + ' ' + 'section-home'} id={content.Pricing}>
             <Container className='text-center text-md-left my-md-auto mb-3 mt-3'>
                 <Row>
                     <Col>
-                        <h1 className='display-1'>{data.Pricing}</h1>
+                        <h1 className='display-1'>{content.Pricing}</h1>
                     </Col>
                 </Row>
                 <CardDeck>
                     <Card>
                         <CardBody>
-                            <h2>{data.WebDesign}</h2>
+                            <h2>{content.WebDesign}</h2>
                             <Table striped hover>
                                 <thead className='thead-dark'>
                                     <tr>
@@ -58,7 +58,7 @@ const Pricing = ({ backgroundColor }: BackgroundProps) => {
 
                     <Card>
                         <CardBody>
-                            <h2>{data.WebHosting}</h2>
+                            <h2>{content.WebHosting}</h2>
                             <Table striped hover>
                                 <thead className='thead-dark'>
                                     <tr>

@@ -1,16 +1,14 @@
 import React from 'react'
-import { Link } from 'gatsby'
-import { AnchorLink } from "gatsby-plugin-anchor-links";
+import { AnchorLink } from 'gatsby-plugin-anchor-links'
 import { NavLink } from 'reactstrap'
+import { CustomNavLinkProps } from '../types'
 
-const CustomNavLink = (props) => {
-    if (props.to) {
+const CustomNavLink = (props: CustomNavLinkProps) => {
+    if (!props.href) {
         return (
-            <AnchorLink
-                {...props}
-                activeClassName='nav-link-active'
-                className='nav-link'
-            />
+            <AnchorLink {...props} className={'nav-link'} title={props.title ? props.title : undefined}>
+                {props.children ? props.children : null}
+            </AnchorLink>
         )
     } else {
         return (

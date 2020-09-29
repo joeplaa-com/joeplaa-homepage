@@ -1,6 +1,6 @@
 import React from 'react'
 import { Button, Container, Col, Row, Form, FormFeedback, FormGroup, Label, Input } from 'reactstrap'
-import { data, urls } from '../utils/data'
+import { content, urls } from '../utils/data'
 import validateEmail from '../utils/validateEmail'
 import { BackgroundProps } from '../types'
 
@@ -37,7 +37,7 @@ const initialState = {
 }
 
 export default class Contact extends React.Component<BackgroundProps, ContactState> {
-    constructor(props) {
+    constructor(props: BackgroundProps) {
         super(props);
         this.state = initialState;
     }
@@ -74,7 +74,7 @@ export default class Contact extends React.Component<BackgroundProps, ContactSta
 
     submit() {
         if (!this.state.captcha) {
-            fetch(process.env.GATSBY_URL_MAIL, {
+            fetch(`${process.env.GATSBY_URL_MAIL}`, {
                 method: 'POST',
                 body: JSON.stringify(this.state),
                 headers: {
@@ -83,9 +83,9 @@ export default class Contact extends React.Component<BackgroundProps, ContactSta
                 }
             }).then((response) => {
                 if (response.ok) {
-                    alert(data.MailSendSuccess);
+                    alert(content.MailSendSuccess);
                 } else {
-                    alert(data.MailSendFailed + urls.email);
+                    alert(content.MailSendFailed + urls.email);
                 }
             });
         }
@@ -93,14 +93,14 @@ export default class Contact extends React.Component<BackgroundProps, ContactSta
     }
 
     // change / update state
-    setName(event) {
-        this.setState({ name: event.target.value });
+    setName(value: string) {
+        this.setState({ name: value });
     }
-    setBusiness(event) {
-        this.setState({ business: event.target.value });
+    setBusiness(value: string) {
+        this.setState({ business: value });
     }
-    setEmail(event) {
-        this.setState({ email: event.target.value });
+    setEmail(value: string) {
+        this.setState({ email: value });
     }
     setCheck(value: string) {
         switch (value) {
@@ -124,42 +124,42 @@ export default class Contact extends React.Component<BackgroundProps, ContactSta
         }
         case 'captcha': {
             this.setState({ captcha: !this.state.captcha }); break;
-        }}
+        }
+        }
     }
-    setMessage(event) {
-        this.setState({ message: event.target.value });
+    setMessage(value: string) {
+        this.setState({ message: value });
     }
 
     render() {
-        console.log(this.state);
         return (
-            <section className={this.props.backgroundColor + ' ' + 'section-home'} id={data.Contact}>
+            <section className={this.props.backgroundColor + ' ' + 'section-home'} id={content.Contact}>
                 <Container className='text-center text-md-left my-md-auto mb-3 mt-3'>
                     <Row>
                         <Col>
-                            <h1 className='display-1'>{data.Contact}</h1>
+                            <h1 className='display-1'>{content.Contact}</h1>
                         </Col>
                     </Row>
                     <Row className='mt-3 d-flex flex-column justify-content-between align-items-center'>
                         <Col className='col-12 col-sm-10 col-md-8 col-lg-6'>
-                            <h2>{data.SendEmail}</h2>
+                            <h2>{content.SendEmail}</h2>
                             <Form id="contact-form">
                                 <FormGroup>
-                                    <Label for="name">{data.Name}</Label>
-                                    <Input type="text" name="name" id="name" placeholder="John Doe" value={this.state.name} onChange={this.setName.bind(this)} onBlur={this.checkNameError.bind(this)} invalid={this.state.nameError} />
-                                    <FormFeedback>{data.NameErrorMessage}</FormFeedback>
+                                    <Label for="name">{content.Name}</Label>
+                                    <Input type="text" name="name" id="name" placeholder="John Doe" value={this.state.name} onChange={(e) => (this.setName(e.target.value))} onBlur={this.checkNameError.bind(this)} invalid={this.state.nameError} />
+                                    <FormFeedback>{content.NameErrorMessage}</FormFeedback>
                                 </FormGroup>
                                 <FormGroup>
-                                    <Label for="business-name">{data.Business}</Label>
-                                    <Input type="text" name="business-name" id="business-name" placeholder="ACME" value={this.state.business} onChange={this.setBusiness.bind(this)} />
+                                    <Label for="business-name">{content.Business}</Label>
+                                    <Input type="text" name="business-name" id="business-name" placeholder="ACME" value={this.state.business} onChange={(e) => (this.setBusiness(e.target.value))} />
                                 </FormGroup>
                                 <FormGroup>
-                                    <Label for="exampleEmail">{data.Email}</Label>
-                                    <Input type="email" name="email" id="email" placeholder="name@email.com" value={this.state.email} onChange={this.setEmail.bind(this)} onBlur={this.checkEmailError.bind(this)} invalid={this.state.emailError} />
-                                    <FormFeedback>{data.EmailErrorMessage}</FormFeedback>
+                                    <Label for="exampleEmail">{content.Email}</Label>
+                                    <Input type="email" name="email" id="email" placeholder="name@email.com" value={this.state.email} onChange={(e) => (this.setEmail(e.target.value))} onBlur={this.checkEmailError.bind(this)} invalid={this.state.emailError} />
+                                    <FormFeedback>{content.EmailErrorMessage}</FormFeedback>
                                 </FormGroup>
 
-                                <Label>{data.InterestedIn}</Label>
+                                <Label>{content.InterestedIn}</Label>
                                 <FormGroup check>
                                     <Label check>
                                         <Input type="checkbox" checked={this.state.staticDesign || false}
@@ -198,8 +198,8 @@ export default class Contact extends React.Component<BackgroundProps, ContactSta
                                 </FormGroup>
                                 <p></p>
                                 <FormGroup>
-                                    <Label for="other">{data.TextBox}</Label>
-                                    <Input type="textarea" name="text" id="other" placeholder="I like your website and I want to know more about..." style={{ height: '120px' }} value={this.state.message} onChange={this.setMessage.bind(this)} />
+                                    <Label for="other">{content.TextBox}</Label>
+                                    <Input type="textarea" name="text" id="other" placeholder="I like your website and I want to know more about..." style={{ height: '120px' }} value={this.state.message} onChange={(e) => (this.setMessage(e.target.value))} />
                                 </FormGroup>
                                 <FormGroup check hidden>
                                     <Label check>
@@ -207,7 +207,7 @@ export default class Contact extends React.Component<BackgroundProps, ContactSta
                                             onChange={() => this.setCheck('captcha')} />
                                     </Label>
                                 </FormGroup>
-                                <Button color='secondary' onClick={this.checkForm.bind(this)}>{data.Submit}</Button>
+                                <Button color='secondary' onClick={this.checkForm.bind(this)}>{content.Submit}</Button>
                             </Form>
                         </Col>
                     </Row>

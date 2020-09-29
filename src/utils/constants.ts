@@ -8,6 +8,7 @@ export const urls = {
 }
 export const template = {
     copy: 'Website design by',
+    license: 'MIT',
     name: 'Joeplaa',
-    url: 'https://www.joeplaa.com'
+    url: 'https://github.com/joeplaa/joeplaa.com'
 }

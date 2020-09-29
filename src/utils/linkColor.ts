@@ -1,11 +1,11 @@
-export default function linkColor (colorString) {
-    if (colorString === 'light') {
+export default function linkColor (color: string) {
+    if (color === 'light') {
         return 'linkLight';
-    } else if (colorString === 'dark') {
+    } else if (color === 'dark') {
         return 'linkDark';
-    } else if (colorString === 'navbar') {
+    } else if (color === 'navbar') {
         return 'linkNav';
     } else {
-        return null
+        return undefined
     }
 }

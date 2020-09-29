@@ -4,25 +4,25 @@ import { IconContext } from 'react-icons'
 import { SiGatsby, SiGithub, SiNextDotJs, SiWordpress } from 'react-icons/si'
 import Image from './image'
 import NewTabLink from './newTabLink'
-import { data, settings, urls } from '../utils/data'
+import { content, settings, urls } from '../utils/data'
 import { BackgroundProps } from '../types'
-import CloudFront from '../images/cloudfront.svg'
-import LightSail from '../images/lightsail.svg'
+import CloudFront from '../icons/cloudfront.svg'
+import LightSail from '../icons/lightsail.svg'
 
 const Services = ({ backgroundColor }: BackgroundProps) => {
     return (
-        <section className={backgroundColor + ' ' + 'section-home'} id={data.Services}>
+        <section className={backgroundColor + ' ' + 'section-home'} id={content.Services}>
             <Container className='text-center text-md-left my-md-auto mb-3 mt-3'>
                 <Row>
                     <Col>
-                        <h1 className='display-1'>{data.Services}</h1>
+                        <h1 className='display-1'>{content.Services}</h1>
                     </Col>
                 </Row>
                 <CardDeck>
                     <Card>
                         <CardBody className='d-flex flex-column justify-content-between'>
                             <div>
-                                <h2>{data.WebDesign}</h2>
+                                <h2>{content.WebDesign}</h2>
                                 <p>There are countless ways to build a website, but I&apos;ll keep it simple and offer three:</p>
                                 <ol>
                                     <li>A static website build with either <NewTabLink href={urls.nextjs}>Next.js</NewTabLink> or <NewTabLink href={urls.gatsbyjs}>Gatsby.js</NewTabLink>.</li>
@@ -30,11 +30,11 @@ const Services = ({ backgroundColor }: BackgroundProps) => {
                                     <li>A static front-end (Gatsby or Next.js) with a CMS back-end (Ghost, NetlifyCMS, Strapi, WordPress).</li>
                                 </ol>
                                 <hr />
-                                <p>Don't know what you want or need? Try these questions:</p>
+                                <p>Don&apos;t know what you want or need? Try these questions:</p>
                                 <ol>
                                     <li>Do I have very specific ideas or wishes about the looks? Take <strong>option 1</strong>.</li>
                                     <li>Do I want or need to update texts and images often? Take <strong>option 2</strong>.</li>
-                                    <li>Actually it's both... Well, can I wait a few weeks?* Then try <strong>option 3</strong>.</li>
+                                    <li>Actually it&apos;s both... Well, can I wait a few weeks?* Then try <strong>option 3</strong>.</li>
                                 </ol>
                             </div>
                             <div className='text-center'>
@@ -52,7 +52,7 @@ const Services = ({ backgroundColor }: BackgroundProps) => {
                     <Card>
                         <CardBody className='d-flex flex-column justify-content-between'>
                             <div>
-                                <h2>{data.WebHosting}</h2>
+                                <h2>{content.WebHosting}</h2>
                                 <p>When your website is finished, I&apos;ll share it through <NewTabLink href={urls.github}>Github</NewTabLink> or as a download. You can then upload the website to your own server or hosting service.</p>
                                 <p>If you have no idea what I just said, don&apos;t worry. I can also do all of that for you. Added advantage of that is that you can easily ask me for small updates to your site.</p>
                                 <hr />

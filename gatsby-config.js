@@ -1,7 +1,15 @@
-const data = require("./src/utils/data.js")
-
 module.exports = {
-    siteMetadata: data.meta,
+    siteMetadata: {
+        title: `joeplaa.com`, //sitetitle
+        titleTemplate: `joeplaa.com`, //sitename
+        description: `Helping people create their digital home.`, //sitedescription
+        image: `/images/banner-www-com-white.png`,
+        siteUrl: `https://www.joeplaa.com`,
+        siteLanguage: `en-US`,
+        siteLocale: `en_us`,
+        twitterUsername: ``,
+        authorName: `Joep van de Laarschot`,
+    },
     plugins: [
         `gatsby-plugin-advanced-sitemap`,
         `gatsby-plugin-react-helmet`,
@@ -16,9 +24,9 @@ module.exports = {
         {
             resolve: `gatsby-plugin-manifest`,
             options: {
-                name: data.meta.title, //
-                short_name: data.meta.title, //
-                description: data.meta.description, //
+                name: `joeplaa.com`,
+                short_name: `joeplaa.com`,
+                description: `Helping people create their digital home.`,
                 start_url: `/`,
                 background_color: `#fff`,
                 theme_color: `#07b1c2`,
@@ -52,7 +60,7 @@ module.exports = {
             resolve: "gatsby-plugin-react-svg",
             options: {
                 rule: {
-                    include: /images/
+                    include: /icons/
                 }
             }
         },
@@ -82,6 +90,13 @@ module.exports = {
             options: {
                 path: `${__dirname}/content/portfolio`,
                 name: `portfolio`,
+            },
+        },
+        {
+            resolve: `gatsby-source-filesystem`,
+            options: {
+                path: `${__dirname}/content/wiki`,
+                name: `wiki`,
             },
         },
     ],

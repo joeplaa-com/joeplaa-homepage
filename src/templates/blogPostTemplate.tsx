@@ -1,20 +1,12 @@
-import { graphql, Link } from 'gatsby';
-import { MDXRenderer } from 'gatsby-plugin-mdx';
+import { graphql, Link } from 'gatsby'
+import { MDXRenderer } from 'gatsby-plugin-mdx'
 import React from 'react'
-import SEO from 'react-seo-component';
-import Layout from '../components/layout';
-import { useSiteMetadata } from '../hooks/useSiteMetadata';
+import SEO from 'react-seo-component'
+import Layout from '../components/layout'
+import { metaData } from '../utils/data'
+import { PostTemplateProps } from '../types'
 
-export default ({ data, pageContext }) => {
-    const {
-        image,
-        siteUrl,
-        siteLanguage,
-        siteLocale,
-        titleTemplate,
-        twitterUsername,
-        authorName,
-    } = useSiteMetadata();
+const PostTemplate = ({ data, pageContext }: PostTemplateProps) => {
     const { frontmatter, body, fields, excerpt } = data.mdx;
     const { title, date, cover } = frontmatter;
     const { previous, next } = pageContext;
@@ -22,18 +14,18 @@ export default ({ data, pageContext }) => {
         <Layout>
             <SEO
                 title={title}
-                titleTemplate={titleTemplate}
+                titleTemplate={metaData.PageTitle}
                 description={excerpt}
                 image={
                     cover === null
-                        ? `${siteUrl}${image}`
-                        : `${siteUrl}${cover.publicURL}`
+                        ? `${metaData.SiteUrl}${metaData.SiteImage}`
+                        : `${metaData.SiteUrl}${cover.publicURL}`
                 }
-                pathname={`${siteUrl}${fields.slug}`}
-                siteLanguage={siteLanguage}
-                siteLocale={siteLocale}
-                twitterUsername={twitterUsername}
-                author={authorName}
+                pathname={`${metaData.SiteUrl}${fields.slug}`}
+                siteLanguage={metaData.SiteLanguage}
+                siteLocale={metaData.SiteLocale}
+                twitterUsername={metaData.TwitterUsername}
+                author={metaData.AuthorName}
                 article={true}
                 datePublished={date}
                 dateModified={new Date(Date.now()).toISOString()}
@@ -41,7 +33,7 @@ export default ({ data, pageContext }) => {
             <h1>{frontmatter.title}</h1>
             <p>{frontmatter.date}</p>
             <MDXRenderer>{body}</MDXRenderer>
-            {previous === false ? null : (
+            {!previous ? null : (
                 <>
                     {previous && (
                         <Link to={previous.fields.slug}>
@@ -50,7 +42,7 @@ export default ({ data, pageContext }) => {
                     )}
                 </>
             )}
-            {next === false ? null : (
+            {!next ? null : (
                 <>
                     {next && (
                         <Link to={next.fields.slug}>
@@ -81,3 +73,5 @@ export const query = graphql`
     }
   }
 `;
+
+export default PostTemplate;
