@@ -49,7 +49,7 @@ export default class Contact extends React.Component<BackgroundProps, ContactSta
 
     // form validation errors
     checkNameError() {
-        if (!this.state.name) {
+        if (this.state.name.length === 0) {
             this.setState({ nameError: true });
         } else {
             this.setState({ nameError: false });
@@ -67,27 +67,31 @@ export default class Contact extends React.Component<BackgroundProps, ContactSta
     checkForm() {
         this.checkNameError();
         this.checkEmailError();
-        if (this.state.name.length < 1 && validateEmail(this.state.email)) {
+        if (this.state.name.length !== 0 && validateEmail(this.state.email)) {
             this.submit();
         }
     }
 
     submit() {
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        const { nameError, emailError, captcha, ...sendState } = this.state;
+        const requestOptions = {
+            method: 'POST',
+            body: JSON.stringify(sendState),
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json'
+            }
+        };
         if (!this.state.captcha) {
-            fetch(`${process.env.GATSBY_URL_MAIL}`, {
-                method: 'POST',
-                body: JSON.stringify(this.state),
-                headers: {
-                    Accept: 'application/json',
-                    'Content-Type': 'application/json'
-                }
-            }).then((response) => {
-                if (response.ok) {
-                    alert(content.MailSendSuccess);
-                } else {
-                    alert(content.MailSendFailed + urls.email);
-                }
-            });
+            fetch(`${process.env.GATSBY_MAIL_URL}`, requestOptions)
+                .then((response) => {
+                    if (response.ok) {
+                        alert(content.MailSendSuccess);
+                    } else {
+                        alert(content.MailSendFailed + urls.email);
+                    }
+                });
         }
         this.resetForm();
     }
@@ -207,7 +211,7 @@ export default class Contact extends React.Component<BackgroundProps, ContactSta
                                             onChange={() => this.setCheck('captcha')} />
                                     </Label>
                                 </FormGroup>
-                                <Button color='secondary' onClick={this.checkForm.bind(this)}>{content.Submit}</Button>
+                                <Button color='secondary' onClick={() => this.checkForm()}>{content.Submit}</Button>
                             </Form>
                         </Col>
                     </Row>

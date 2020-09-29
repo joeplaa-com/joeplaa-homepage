@@ -1,7 +1,7 @@
 service: contact-form-api
 
 custom:
-  secrets: ${file(secrets-dev.json)}
+  secrets: ${file(secrets-prod.json)}
 
 provider:
   name: aws
@@ -19,17 +19,10 @@ provider:
       Resource: "*"
 
 functions:
-  sendJSON:
+  send:
     handler: handler.sendJSON
     events:
       - http:
           path: email/send/json
-          method: post
-          cors: true
-  sendFormEncoded:
-    handler: handler.sendFormEncoded
-    events:
-      - http:
-          path: email/send/formencoded
           method: post
           cors: true
