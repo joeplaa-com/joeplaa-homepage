@@ -24,6 +24,7 @@
         ".cache"
     ],
     "include": [
-        "src/components"
+        "src/components",
+        "src/typings/svg.d.ts"
     ]
 }

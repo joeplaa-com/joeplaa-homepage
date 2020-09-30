@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, Container, Col, Row, Form, FormFeedback, FormGroup, Label, Input } from 'reactstrap'
+import { Button, Card, CardBody, Container, Col, Row, Form, FormFeedback, FormGroup, Label, Input } from 'reactstrap'
 import { content, urls } from '../utils/data'
 import validateEmail from '../utils/validateEmail'
 import { BackgroundProps } from '../types'
@@ -17,7 +17,9 @@ type ContactState = {
     customDesign: boolean
     staticHosting: boolean
     dynamicHosting: boolean,
-    captcha: boolean
+    captcha: boolean,
+    sendSuccess: boolean,
+    sendFailed: boolean
 }
 
 const initialState = {
@@ -33,7 +35,9 @@ const initialState = {
     customDesign: false,
     staticHosting: false,
     dynamicHosting: false,
-    captcha: false
+    captcha: false,
+    sendSuccess: false,
+    sendFailed: false
 }
 
 export default class Contact extends React.Component<BackgroundProps, ContactState> {
@@ -74,7 +78,7 @@ export default class Contact extends React.Component<BackgroundProps, ContactSta
 
     submit() {
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
-        const { nameError, emailError, captcha, ...sendState } = this.state;
+        const { nameError, emailError, captcha, sendSuccess, sendFailed, ...sendState } = this.state;
         const requestOptions = {
             method: 'POST',
             body: JSON.stringify(sendState),
@@ -87,13 +91,13 @@ export default class Contact extends React.Component<BackgroundProps, ContactSta
             fetch(`${process.env.GATSBY_MAIL_URL}`, requestOptions)
                 .then((response) => {
                     if (response.ok) {
-                        alert(content.MailSendSuccess);
+                        this.setState({ sendSuccess: true });
                     } else {
-                        alert(content.MailSendFailed + urls.email);
+                        this.setState({ sendFailed: true });
+                        alert(content.MailSendFailed + urls.email)
                     }
                 });
         }
-        this.resetForm();
     }
 
     // change / update state
@@ -138,82 +142,91 @@ export default class Contact extends React.Component<BackgroundProps, ContactSta
     render() {
         return (
             <section className={this.props.backgroundColor + ' ' + 'section-home'} id={content.Contact}>
-                <Container className='text-center text-md-left my-md-auto mb-3 mt-3'>
+                <Container className='my-md-auto mb-3 mt-3'>
                     <Row>
                         <Col>
-                            <h1 className='display-1'>{content.Contact}</h1>
+                            <h1 className='text-center text-md-left display-1'>{content.Contact}</h1>
                         </Col>
                     </Row>
                     <Row className='mt-3 d-flex flex-column justify-content-between align-items-center'>
-                        <Col className='col-12 col-sm-10 col-md-8 col-lg-6'>
-                            <h2>{content.SendEmail}</h2>
-                            <Form id="contact-form">
-                                <FormGroup>
-                                    <Label for="name">{content.Name}</Label>
-                                    <Input type="text" name="name" id="name" placeholder="John Doe" value={this.state.name} onChange={(e) => (this.setName(e.target.value))} onBlur={this.checkNameError.bind(this)} invalid={this.state.nameError} />
-                                    <FormFeedback>{content.NameErrorMessage}</FormFeedback>
-                                </FormGroup>
-                                <FormGroup>
-                                    <Label for="business-name">{content.Business}</Label>
-                                    <Input type="text" name="business-name" id="business-name" placeholder="ACME" value={this.state.business} onChange={(e) => (this.setBusiness(e.target.value))} />
-                                </FormGroup>
-                                <FormGroup>
-                                    <Label for="exampleEmail">{content.Email}</Label>
-                                    <Input type="email" name="email" id="email" placeholder="name@email.com" value={this.state.email} onChange={(e) => (this.setEmail(e.target.value))} onBlur={this.checkEmailError.bind(this)} invalid={this.state.emailError} />
-                                    <FormFeedback>{content.EmailErrorMessage}</FormFeedback>
-                                </FormGroup>
+                        <Card className='col-12 col-sm-10 col-md-8 col-lg-6 contact-form'>
+                            <CardBody>
+                                {!this.state.sendSuccess
+                                    ? (<div>
+                                        <h2>{content.SendEmail}</h2>
+                                        <Form id="contact-form">
+                                            <FormGroup>
+                                                <Label for="name" className='label-bold'>{content.Name}</Label>
+                                                <Input type="text" name="name" id="name" placeholder="John Doe" value={this.state.name} onChange={(e) => (this.setName(e.target.value))} onBlur={this.checkNameError.bind(this)} invalid={this.state.nameError} />
+                                                <FormFeedback>{content.NameErrorMessage}</FormFeedback>
+                                            </FormGroup>
+                                            <FormGroup>
+                                                <Label for="business-name" className='label-bold'>{content.Business}</Label>
+                                                <Input type="text" name="business-name" id="business-name" placeholder="ACME" value={this.state.business} onChange={(e) => (this.setBusiness(e.target.value))} />
+                                            </FormGroup>
+                                            <FormGroup>
+                                                <Label for="exampleEmail" className='label-bold'>{content.Email}</Label>
+                                                <Input type="email" name="email" id="email" placeholder="name@email.com" value={this.state.email} onChange={(e) => (this.setEmail(e.target.value))} onBlur={this.checkEmailError.bind(this)} invalid={this.state.emailError} />
+                                                <FormFeedback>{content.EmailErrorMessage}</FormFeedback>
+                                            </FormGroup>
 
-                                <Label>{content.InterestedIn}</Label>
-                                <FormGroup check>
-                                    <Label check>
-                                        <Input type="checkbox" checked={this.state.staticDesign || false}
-                                            onChange={() => this.setCheck('staticDesign')} />Static website (Next.js or Gatsby.js)
-                                    </Label>
-                                </FormGroup>
-                                <FormGroup check>
-                                    <Label check>
-                                        <Input type="checkbox" checked={this.state.dynamicDesign || false}
-                                            onChange={() => this.setCheck('dynamicDesign')} />Dynamic website (WordPress)
-                                    </Label>
-                                </FormGroup>
-                                <FormGroup check>
-                                    <Label check>
-                                        <Input type="checkbox" checked={this.state.cmsDesign || false}
-                                            onChange={() => this.setCheck('cmsDesign')} />Static website + CMS
-                                    </Label>
-                                </FormGroup>
-                                <FormGroup check>
-                                    <Label check>
-                                        <Input type="checkbox" checked={this.state.customDesign || false}
-                                            onChange={() => this.setCheck('customDesign')} />Custom website
-                                    </Label>
-                                </FormGroup>
-                                <FormGroup check>
-                                    <Label check>
-                                        <Input type="checkbox" checked={this.state.staticHosting || false}
-                                            onChange={() => this.setCheck('staticHosting')} />Static website hosting
-                                    </Label>
-                                </FormGroup>
-                                <FormGroup check>
-                                    <Label check>
-                                        <Input type="checkbox" checked={this.state.dynamicHosting || false}
-                                            onChange={() => this.setCheck('dynamicHosting')} />Dynamic website hosting
-                                    </Label>
-                                </FormGroup>
-                                <p></p>
-                                <FormGroup>
-                                    <Label for="other">{content.TextBox}</Label>
-                                    <Input type="textarea" name="text" id="other" placeholder="I like your website and I want to know more about..." style={{ height: '120px' }} value={this.state.message} onChange={(e) => (this.setMessage(e.target.value))} />
-                                </FormGroup>
-                                <FormGroup check hidden>
-                                    <Label check>
-                                        <Input type="checkbox" checked={this.state.captcha || false}
-                                            onChange={() => this.setCheck('captcha')} />
-                                    </Label>
-                                </FormGroup>
-                                <Button color='secondary' onClick={() => this.checkForm()}>{content.Submit}</Button>
-                            </Form>
-                        </Col>
+                                            <Label className='label-bold'>{content.InterestedIn}</Label>
+                                            <FormGroup check>
+                                                <Label check>
+                                                    <Input type="checkbox" checked={this.state.staticDesign || false}
+                                                        onChange={() => this.setCheck('staticDesign')} />Static website (Next.js or Gatsby.js)
+                                                </Label>
+                                            </FormGroup>
+                                            <FormGroup check>
+                                                <Label check>
+                                                    <Input type="checkbox" checked={this.state.dynamicDesign || false}
+                                                        onChange={() => this.setCheck('dynamicDesign')} />Dynamic website (WordPress)
+                                                </Label>
+                                            </FormGroup>
+                                            <FormGroup check>
+                                                <Label check>
+                                                    <Input type="checkbox" checked={this.state.cmsDesign || false}
+                                                        onChange={() => this.setCheck('cmsDesign')} />Static website + CMS
+                                                </Label>
+                                            </FormGroup>
+                                            <FormGroup check>
+                                                <Label check>
+                                                    <Input type="checkbox" checked={this.state.customDesign || false}
+                                                        onChange={() => this.setCheck('customDesign')} />Custom website
+                                                </Label>
+                                            </FormGroup>
+                                            <FormGroup check>
+                                                <Label check>
+                                                    <Input type="checkbox" checked={this.state.staticHosting || false}
+                                                        onChange={() => this.setCheck('staticHosting')} />Static website hosting
+                                                </Label>
+                                            </FormGroup>
+                                            <FormGroup check>
+                                                <Label check>
+                                                    <Input type="checkbox" checked={this.state.dynamicHosting || false}
+                                                        onChange={() => this.setCheck('dynamicHosting')} />Dynamic website hosting
+                                                </Label>
+                                            </FormGroup>
+                                            <p></p>
+                                            <FormGroup>
+                                                <Label for="other" className='label-bold'>{content.TextBox}</Label>
+                                                <Input type="textarea" name="text" id="other" placeholder="I like your website and I want to know more about..." style={{ height: '120px' }} value={this.state.message} onChange={(e) => (this.setMessage(e.target.value))} />
+                                            </FormGroup>
+                                            <FormGroup check hidden>
+                                                <Label check>
+                                                    <Input type="checkbox" checked={this.state.captcha || false}
+                                                        onChange={() => this.setCheck('captcha')} />
+                                                </Label>
+                                            </FormGroup>
+                                            <Button color='secondary' onClick={() => this.checkForm()}>{this.state.sendFailed ? content.TryAgain : content.Submit}</Button>
+                                        </Form>
+                                    </div>)
+                                    : (<div>
+                                        <h2>{content.SendEmailDone}</h2>
+                                        <p>{content.MailSendSuccess}</p>
+                                    </div>)}
+                            </CardBody>
+                        </Card>
                     </Row>
                 </Container>
             </section >

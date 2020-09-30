@@ -158,12 +158,6 @@ $link-dark-active-color:    darken($link-dark-color, 10%);
     justify-content: center;
     min-height: 100vh;
 }
-
-// @include media-breakpoint-down(sm) {
-//     main {
-//         margin-top: 83px;
-//     }
-// }
 /* -------end Layout-------- */
 
 /* -------begin Navbar-------- */
@@ -218,55 +212,35 @@ $link-dark-active-color:    darken($link-dark-color, 10%);
     color: $navbar-light-color;
 }
 
-// /* Change navbar styling on small viewports */
-// @include media-breakpoint-down(sm) {
-//     .navbar {
-//         background: $gray-100;
-//         box-shadow: $box-shadow;
-//     }
-
-//     .navbar .navbar-brand,
-//     .navbar .nav-link {
-//         color: $navbar-light-color;
-//         border-bottom: 2px solid transparent;
-//     }
-
-//     .navbar .nav-link:hover {
-//         color: $navbar-light-hover-color;
-//         border-bottom: 2px solid $navbar-light-hover-color;
-//     }
-
-//     .navbar .nav-link-active,
-//     .navbar .nav-link:active {
-//         color: $navbar-light-active-color;
-//         border-bottom: 2px solid $navbar-light-active-color;
-//     }
-// }
-
 .nav-item a {
     font-weight: 600;
     margin-left: .25rem;
     margin-right: .25rem;
 }
-/* -------end Navbar-------- */
 
-/* -------begin Post-------- */
-$post-container-padding: (
-    xs: 1rem,
-    md: 2rem
-);
+/* -------begin Cards-------- */
+div.card {
+    box-shadow: $box-shadow;
+    border-radius: 0;
+    min-width: 18rem;
+}
 
-@each $breakpoint-size, $padding in $post-container-padding {
-    @include media-breakpoint-up($breakpoint-size) {
-        div.post-container {
-            background-color: $white;
-            margin-bottom: 2rem;
-            margin-top: 2rem;
-            padding: $padding $padding;
-        }
+.card-deck .card {
+    margin: $card-group-margin;
+}
+
+@include media-breakpoint-down(sm) {
+    .card-deck .card {
+        margin-left: 0;
+        margin-right: 0;
     }
 }
-/* -------end Post-------- */
+
+.card.contact-form {
+    background-color: $ana-primary;
+    border-color: $ana-primary;
+}
+/* -------end Cards-------- */
 
 /* -------begin Tags-------- */
 .filter {
@@ -288,15 +262,7 @@ a.tag {
 }
 /* -------end Tags-------- */
 
-div.card {
-    box-shadow: $box-shadow;
-    border-radius: 0;
-}
-
-.card-deck .card {
-    margin: $card-group-margin;
-}
-
+/* -------other-------- */
 .image-container {
     position: relative;
 }
@@ -318,6 +284,10 @@ div.card {
     background-size: cover;
     background-position: center;
     height: 100vh
+}
+
+.label-bold {
+    font-weight: 600;
 }
 
 .linkLight {

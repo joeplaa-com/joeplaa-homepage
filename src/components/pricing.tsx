@@ -21,38 +21,34 @@ const Pricing = ({ backgroundColor }: BackgroundProps) => {
                                     <tr>
                                         <th>Option</th>
                                         <th>Website type</th>
-                                        <th>Cost</th>
-                                        <th>Development time</th>
+                                        <th>Cost<sup>1</sup></th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
                                         <th scope="row">1</th>
                                         <td>Static</td>
-                                        <td>&euro; 500</td>
-                                        <td>1 week</td>
+                                        <td>&euro;500</td>
                                     </tr>
                                     <tr>
                                         <th scope="row">2</th>
                                         <td>Dynamic</td>
-                                        <td>&euro; 750</td>
-                                        <td>1 week</td>
+                                        <td>&euro;750</td>
                                     </tr>
                                     <tr>
                                         <th scope="row">3</th>
                                         <td>CMS</td>
-                                        <td>&euro; 750</td>
-                                        <td>4 weeks</td>
+                                        <td>&euro;750</td>
                                     </tr>
                                     <tr>
                                         <th scope="row">4</th>
                                         <td>Custom</td>
-                                        <td>&euro; 1000+*</td>
-                                        <td>2 weeks+*</td>
+                                        <td>&euro;1000+<sup>2</sup></td>
                                     </tr>
                                 </tbody>
                             </Table>
-                            <em>*Depending on requirements</em>
+                            <em><sup>1</sup>Ex. Dutch VAT (21%)</em><br />
+                            <em><sup>2</sup>Depending on requirements</em>
                         </CardBody>
                     </Card>
 
@@ -64,19 +60,19 @@ const Pricing = ({ backgroundColor }: BackgroundProps) => {
                                     <tr>
                                         <th>Option</th>
                                         <th>Website type</th>
-                                        <th>Costs per month</th>
+                                        <th>Costs per month<sup>1</sup></th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
                                         <th scope="row">1</th>
                                         <td>Static</td>
-                                        <td>&euro; 5</td>
+                                        <td>&euro;5</td>
                                     </tr>
                                     <tr>
                                         <th scope="row">2</th>
                                         <td>Dynamic</td>
-                                        <td>&euro; 10</td>
+                                        <td>&euro;10</td>
                                     </tr>
                                     <tr>
                                         <th scope="row">3</th>
