@@ -27,7 +27,7 @@ const PageNotFound = () => {
                                 <h1 className='display-1'>{content['404Header']}</h1>
                                 <h1>{content['404Title']}</h1>
                                 <p>{content['404Message']}</p>
-                                <Button onClick={() => navigate(-1)}>Back</Button>
+                                <Button onClick={() => navigate(-1)}>{content.Back}</Button>
                             </Col>
                         </Row>
                     </Container>
