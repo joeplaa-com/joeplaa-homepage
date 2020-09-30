@@ -5,7 +5,7 @@ import Layout from '../components/layout'
 import { content, metaData } from '../utils/data'
 import { navigate } from '@reach/router'
 
-const Home = () => {
+const PageNotFound = () => {
     return (
         <>
             <Layout>
@@ -20,7 +20,7 @@ const Home = () => {
                     twitterUsername={metaData.TwitterUsername}
                 />
 
-                <section className={'section-404'} id="404">
+                <section className='section-fill page-not-found' id={content["404Title"]}>
                     <Container className='text-center text-md-left my-auto'>
                         <Row>
                             <Col xs='12' sm='10' md='7' lg='5' xl='4' className='mx-auto'>
@@ -37,4 +37,4 @@ const Home = () => {
     );
 };
 
-export default Home;
+export default PageNotFound;

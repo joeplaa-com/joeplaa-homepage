@@ -1,9 +1,9 @@
 import React, { useMemo } from 'react';
-import { graphql, useStaticQuery } from 'gatsby';
+import { graphql, Link, useStaticQuery } from 'gatsby';
 import Img from 'gatsby-image';
 import { ImageProps, ImageFluidNodeProps } from '../types'
 
-const Image = ({ src, ...rest }: ImageProps) => {
+const Image = ({ src, to, ...rest }: ImageProps) => {
     const data = useStaticQuery(graphql`
     query {
       images: allFile(
@@ -36,10 +36,12 @@ const Image = ({ src, ...rest }: ImageProps) => {
     const { node: { childImageSharp, publicURL, extension } = {} } = match as ImageFluidNodeProps;
 
     if (extension === 'svg' || !childImageSharp) {
-        return <img src={publicURL} {...rest} />;
+        const svgImage = <img src={publicURL} {...rest} />
+        return to ? <Link to={to}>{svgImage}</Link> : svgImage;
     }
 
-    return <Img fluid={childImageSharp.fluid} {...rest} />;
+    const renderedImage = <Img fluid={childImageSharp.fluid} {...rest} />;
+    return to ? <Link to={to}>{renderedImage}</Link> : renderedImage;
 };
 
 export default Image;

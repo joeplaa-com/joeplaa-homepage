@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Collapse, Navbar, NavbarBrand, NavbarToggler } from 'reactstrap'
-import ImageLogo from './imageLogo'
 import Navigation from './navigation'
+import BannerWwwCom from '../svg/banner-www-com.svg'
 import { metaData, settings } from '../utils/data'
 
 export default function Menu() {
@@ -29,7 +29,7 @@ export default function Menu() {
     return (
         <Navbar className={navbarActive + ' ' + 'fixed-top'} expand={settings.breakpoint}>
             <NavbarBrand href='/' className='d-flex align-items-center p-0'>
-                <ImageLogo alt={metaData.SiteName} src='banner-www-com.png' className="mr-2" />
+                <div className="mr-2"><BannerWwwCom height="55px" /></div>
             </NavbarBrand>
             <NavbarToggler onClick={toggle} />
             <Collapse isOpen={isOpen} navbar>
