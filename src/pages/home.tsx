@@ -29,13 +29,13 @@ const Home = () => {
                     src="home-banner-code.jpg"
                     alt="beach banner" />
 
-                <About backgroundColor='background1' />
+                <About className='section-home background1' />
 
-                <Services backgroundColor='background2' />
+                <Services className='section-home background2' />
 
-                <Pricing backgroundColor='background3' />
+                <Pricing className='section-home background3' />
 
-                <Contact backgroundColor='background4' />
+                <Contact className='section-home background4' />
             </Layout>
         </>
     );
