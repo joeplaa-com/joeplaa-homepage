@@ -1,13 +1,13 @@
 import React from 'react'
 import { Container, Col, Row, Card, CardBody, CardDeck } from 'reactstrap'
 import { IconContext } from 'react-icons'
-import { SiGatsby, SiGithub, SiNextDotJs, SiWordpress } from 'react-icons/si'
+import { SiGatsby, SiGhost, SiGithub, SiNextDotJs, SiWordpress } from 'react-icons/si'
 import Image from './image'
 import NewTabLink from './newTabLink'
 import { content, settings, urls } from '../utils/data'
 import { SectionProps } from '../types'
-import CloudFront from '../icons/cloudfront.svg'
-import LightSail from '../icons/lightsail.svg'
+import CloudFront from '../svg/cloudfront.svg'
+import LightSail from '../svg/lightsail.svg'
 
 const Services = ({ className }: SectionProps) => {
     return (
@@ -26,7 +26,7 @@ const Services = ({ className }: SectionProps) => {
                                 <p>There are countless ways to build a website, but I&apos;ll keep it simple and offer three:</p>
                                 <ol>
                                     <li>A static website build with either <NewTabLink href={urls.nextjs}>Next.js</NewTabLink> or <NewTabLink href={urls.gatsbyjs}>Gatsby.js</NewTabLink>.</li>
-                                    <li>A dynamic website based on <NewTabLink href={urls.wordpress}>WordPress</NewTabLink>. </li>
+                                    <li>A dynamic website based on <NewTabLink href={urls.wordpress}>WordPress</NewTabLink> or a simple <NewTabLink href={urls.ghost}>Ghost</NewTabLink> blog.</li>
                                     <li>A static front-end (Gatsby or Next.js) with a CMS back-end (Ghost, NetlifyCMS, Strapi, WordPress).</li>
                                 </ol>
                                 <hr />
@@ -43,6 +43,7 @@ const Services = ({ className }: SectionProps) => {
                                 <IconContext.Provider value={{ size: settings.iconSize }}>
                                     <NewTabLink href={urls.nextjs} className='nav-padding-social'><SiNextDotJs /></NewTabLink>
                                     <NewTabLink href={urls.gatsbyjs} className='nav-padding-social'><SiGatsby /></NewTabLink>
+                                    <NewTabLink href={urls.ghost} className='nav-padding-social'><SiGhost /></NewTabLink>
                                     <NewTabLink href={urls.wordpress} className='nav-padding-social'><SiWordpress /></NewTabLink>
                                 </IconContext.Provider>
                             </div>
@@ -61,13 +62,6 @@ const Services = ({ className }: SectionProps) => {
                                     <li>Dynamic websites will be hosted on <NewTabLink href={urls.awsLightsail}>AWS LightSail</NewTabLink>.</li>
                                     <li>Option three is currently only possible if you host the site yourself.</li>
                                 </ol>
-                                <div className='my-3 my-md-auto mx-auto shadow' style={{ width: '100%' }}>
-                                    <Image
-                                        src={'lighthouse-wordpress.png'}
-                                        alt={'Lighthouse score of my WordPress site on AWS Lightsail'}
-                                        className="mx-auto"
-                                    />
-                                </div>
                             </div>
                             <div className='text-center'>
                                 <hr />
