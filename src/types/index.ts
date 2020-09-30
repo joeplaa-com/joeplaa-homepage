@@ -2,10 +2,6 @@ import { ReactNode } from 'react'
 import { FixedObject, FluidObject } from 'gatsby-image'
 import { Language } from 'prism-react-renderer'
 
-export type BackgroundProps = {
-    backgroundColor: string
-}
-
 export type BannerProps = {
     alt: string
     src: string
@@ -138,6 +134,10 @@ export type PostTemplateProps = {
         next: PostBasicProps,
         previous: PostBasicProps
     }
+}
+
+export type SectionProps = {
+    className: string
 }
 
 export type SocialLinkProps = {

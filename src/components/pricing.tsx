@@ -1,11 +1,11 @@
 import React from 'react'
 import { Container, Col, Row, Card, CardBody, CardDeck, Table } from 'reactstrap'
 import { content } from '../utils/data'
-import { BackgroundProps } from '../types'
+import { SectionProps } from '../types'
 
-const Pricing = ({ backgroundColor }: BackgroundProps) => {
+const Pricing = ({ className }: SectionProps) => {
     return (
-        <section className={backgroundColor + ' ' + 'section-home'} id={content.Pricing}>
+        <section className={className} id={content.Pricing}>
             <Container className='text-center text-md-left my-md-auto mb-3 mt-3'>
                 <Row>
                     <Col>

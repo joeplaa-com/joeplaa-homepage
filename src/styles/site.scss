@@ -139,24 +139,35 @@ $link-dark-active-color:    darken($link-dark-color, 10%);
 /* -------end markdown additions-------- */
 
 /* -------begin Layout-------- */
-.flex-wrapper {
+.page-wrapper {
+    height: 100vh;
     display: flex;
-    min-height: 110vh;
     flex-direction: column;
-    justify-content: space-between
+}
+
+.content {
+    flex: 1 0 auto;
 }
 
 .footer {
+    flex-shrink: 0;
     color: $light;
     padding-top: 1rem;
     padding-bottom: 1rem;
 }
 
 .section-home {
+    min-height: calc(100vh - 64px);
     display: flex;
     flex-direction: column;
     justify-content: center;
-    min-height: 100vh;
+}
+
+.section-404 {
+    height: 100%;
+    display: flex;
+    color: $light;
+    background: linear-gradient($gray-800, $gray-400);
 }
 /* -------end Layout-------- */
 
@@ -237,8 +248,8 @@ div.card {
 }
 
 .card.contact-form {
-    background-color: $ana-primary;
-    border-color: $ana-primary;
+    background-color: $blue-800;
+    border-color: $blue-800;
 }
 /* -------end Cards-------- */
 

@@ -1,4 +1,7 @@
 export const content = {
+    '404Header': '404',
+    '404Message': 'The page you\'re looking for does not exist (anymore).',
+    '404Title': 'Page not found',
     About: 'About',
     AllRightsReserved: 'All rights reserved.',
     Back: 'Back',
@@ -81,7 +84,7 @@ export const navigation = {
     about: '/home#About',
     blog: process.env.GATSBY_BLOG_URL,
     contact: '/home#Contact',
-    home: '/home',
+    home: '/home#Banner',
     howto: '/howto',
     howtos: '/howtos',
     portfolio: '/portfolio',

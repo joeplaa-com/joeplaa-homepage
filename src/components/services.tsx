@@ -5,13 +5,13 @@ import { SiGatsby, SiGithub, SiNextDotJs, SiWordpress } from 'react-icons/si'
 import Image from './image'
 import NewTabLink from './newTabLink'
 import { content, settings, urls } from '../utils/data'
-import { BackgroundProps } from '../types'
+import { SectionProps } from '../types'
 import CloudFront from '../icons/cloudfront.svg'
 import LightSail from '../icons/lightsail.svg'
 
-const Services = ({ backgroundColor }: BackgroundProps) => {
+const Services = ({ className }: SectionProps) => {
     return (
-        <section className={backgroundColor + ' ' + 'section-home'} id={content.Services}>
+        <section className={className} id={content.Services}>
             <Container className='text-center text-md-left my-md-auto mb-3 mt-3'>
                 <Row>
                     <Col>

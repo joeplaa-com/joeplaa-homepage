@@ -5,11 +5,11 @@ import Image from './image'
 import NewTabLink from './newTabLink'
 import Social from './social'
 import { content, metaData, navigation } from '../utils/data'
-import { BackgroundProps } from '../types'
+import { SectionProps } from '../types'
 
-const About = ({ backgroundColor }: BackgroundProps) => {
+const About = ({ className }: SectionProps) => {
     return (
-        <section className={backgroundColor + ' ' + 'section-home'} id="About">
+        <section className={className} id="About">
             <Container className='text-center text-md-left my-md-auto mb-3 mt-3'>
                 <Row>
                     <Col>
