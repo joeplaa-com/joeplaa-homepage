@@ -65,7 +65,8 @@ export type CustomNavLinkProps = {
 
 export type ImageProps = {
     alt: string
-    className: string
+    className?: string
+    to?: string
     src: string
 }
 
