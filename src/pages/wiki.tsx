@@ -1,12 +1,33 @@
-import { graphql, Link } from 'gatsby'
-import Img from 'gatsby-image'
-import React from 'react'
+import { graphql } from 'gatsby'
+import { MDXRenderer } from 'gatsby-plugin-mdx'
+import React, { useState } from 'react'
 import SEO from 'react-seo-component'
+import { Collapse, Container, ListGroup, ListGroupItem } from 'reactstrap'
 import Layout from '../components/layout'
 import { PostQueryData } from '../types'
 import { metaData, navigation } from '../utils/data'
 
 const Howto = ({ data }: PostQueryData) => {
+    const wikis = [];
+    const [isOpen, setIsOpen] = useState({})
+
+    data.allMdx.nodes.map(({ id, body, excerpt, frontmatter }) => {
+        wikis.push(<>
+            <ListGroupItem tag="button" href="#" onClick={() => {
+                const newIsOpen = {
+                    ...isOpen
+                }
+                newIsOpen[id] = !isOpen[id];
+                setIsOpen(newIsOpen)
+            }} className='wiki-card' key={id}>
+                <h1>{frontmatter.title}</h1>
+                <p>{frontmatter.excerpt || excerpt}</p>
+                <Collapse isOpen={isOpen[id]}>
+                    <MDXRenderer key={id}>{body}</MDXRenderer>
+                </Collapse>
+            </ListGroupItem>
+        </>)
+    })
 
     return (
         <>
@@ -21,20 +42,14 @@ const Howto = ({ data }: PostQueryData) => {
                     siteLocale={metaData.SiteLocale}
                     twitterUsername={metaData.TwitterUsername}
                 />
-                {data.allMdx.nodes.map(({ id, excerpt, frontmatter, fields }) => (
-                    <div key={id}>
-                        <Link to={fields.slug}>
-                            {
-                                frontmatter.cover ? (
-                                    <Img fluid={frontmatter.cover.childImageSharp.fluid} />
-                                ) : null
-                            }
-                            <h1>{frontmatter.title}</h1>
-                            <p>{frontmatter.date}</p>
-                            <p>{excerpt}</p>
-                        </Link>
-                    </div>
-                ))}
+
+                <section className='section-fill wiki' id={metaData.WikiTitle}>
+                    <Container className='text-center text-md-left my-auto'>
+                        <ListGroup>
+                            {wikis}
+                        </ListGroup>
+                    </Container>
+                </section>
             </Layout>
         </>
     );
@@ -43,26 +58,17 @@ const Howto = ({ data }: PostQueryData) => {
 export const query = graphql`
   query SITE_WIKI_QUERY {
     allMdx(
-      sort: { fields: [frontmatter___date], order: DESC }
+      sort: { fields: [frontmatter___title], order: ASC }
       filter: { frontmatter: { published: { eq: true } }, fileAbsolutePath: {regex: "/wiki/"} }
     ) {
       nodes {
         id
+        body
         excerpt(pruneLength: 250)
         frontmatter {
           title
           date(formatString: "YYYY MMMM Do")
-          cover {
-            publicURL
-            childImageSharp {
-                fluid(maxWidth: 1000, srcSetBreakpoints: [320, 480, 640, 960]) {
-                ...GatsbyImageSharpFluid_withWebp
-              }
-            }
-          }
-        }
-        fields {
-          slug
+          excerpt
         }
       }
     }

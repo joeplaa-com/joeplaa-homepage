@@ -166,14 +166,16 @@ $link-dark-active-color:    darken($link-dark-color, 10%);
 .section-fill {
     height: 100%;
     display: flex;
+    padding-top: 4.5rem;
 }
-
     .section-fill.landing {
         background: linear-gradient($blue-800, $gray-400);
     }
-
     .section-fill.page-not-found {
         color: $light;
+        background: linear-gradient($gray-800, $gray-400);
+    }
+    .section-fill.wiki {
         background: linear-gradient($gray-800, $gray-400);
     }
 /* -------end Layout-------- */
@@ -265,7 +267,6 @@ $card-column-sizes: (
     lg: 3
 );
 
-/* Cards */
 @each $breakpoint-size, $column-count in $card-column-sizes {
     @include media-breakpoint-up($breakpoint-size) {
         div.card-columns {

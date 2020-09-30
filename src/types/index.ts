@@ -91,6 +91,16 @@ export type PageProps = {
     }
 }
 
+type FrontMatterProps = {
+    cover?: {
+        childImageSharp: ChildImageSharpFluid
+        publicURL: string
+    }
+    date: string
+    excerpt: string
+    title: string
+}
+
 type PostBasicProps = {
     fields: {
         slug: string
@@ -98,24 +108,25 @@ type PostBasicProps = {
     frontmatter: FrontMatterProps
 }
 
-type FrontMatterProps = { 
-    cover: {
-        childImageSharp: ChildImageSharpFluid
-        publicURL: string
-    }
-    date: string
-    title: string
-}
-
 export type PostQueryData = {
     data: {
         allMdx: {
             nodes: Array<PostQueryNode>
+            group: Array<{
+                fieldValue: string
+                totalCount: number
+            }>
+        },
+        site: {
+            siteMetadata: { 
+                title: string
+            },
         }
     }
 }
 
 export interface PostQueryNode extends PostBasicProps {
+    body: string
     excerpt: string
     id: string
 }
@@ -124,16 +135,19 @@ export type PostTemplateProps = {
     data: {
         mdx: {
             body: string
+            edges: Array<{ node: PostBasicProps }>
             excerpt: string
             fields: {
                 slug: string
             }
             frontmatter: FrontMatterProps
+            totalCount: number
         }
     }
     pageContext: {
         next: PostBasicProps,
         previous: PostBasicProps
+        tag: string
     }
 }
 

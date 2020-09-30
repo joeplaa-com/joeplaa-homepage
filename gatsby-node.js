@@ -1,11 +1,12 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
 const { createFilePath } = require(`gatsby-source-filesystem`);
 const path = require(`path`);
+const _ = require("lodash");
 
 exports.createPages = ({ actions, graphql }) => {
     const { createPage } = actions;
-    const blogPostTemplate = path.resolve(
-        'src/templates/blogPostTemplate.tsx'
-    );
+    const blogPostTemplate = path.resolve('src/templates/blogPostTemplate.tsx');
+    const tagTemplate = path.resolve("src/templates/tags.tsx")
 
     return graphql(`
     {
@@ -20,6 +21,11 @@ exports.createPages = ({ actions, graphql }) => {
           frontmatter {
             title
           }
+        }
+      }
+      tagsGroup: allMdx(limit: 2000) {
+        group(field: frontmatter___tags) {
+          fieldValue
         }
       }
     }
@@ -46,6 +52,19 @@ exports.createPages = ({ actions, graphql }) => {
                 },
             });
         });
+
+        // Extract tag data from query
+        const tags = result.data.tagsGroup.group
+        // Make tag pages
+        tags.forEach(tag => {
+            createPage({
+                path: `/tags/${_.kebabCase(tag.fieldValue)}/`,
+                component: tagTemplate,
+                context: {
+                    tag: tag.fieldValue,
+                },
+            })
+        })
     });
 };
 

@@ -27,7 +27,7 @@ const Landing = () => {
                 />
 
                 <section className='section-fill landing' id={metaData.LandingTitle}>
-                    <Container className='text-center text-md-left my-auto pt-5'>
+                    <Container className='text-center text-md-left my-auto'>
                         <Row>
                             <CardColumns>
                                 <Card>
