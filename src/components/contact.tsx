@@ -1,6 +1,6 @@
 import React from 'react'
 import { Button, Card, CardBody, Container, Col, Row, Form, FormFeedback, FormGroup, Label, Input } from 'reactstrap'
-import { content, urls } from '../utils/data'
+import { content, metaData, urls } from '../utils/data'
 import validateEmail from '../utils/validateEmail'
 import { SectionProps } from '../types'
 
@@ -141,11 +141,11 @@ export default class Contact extends React.Component<SectionProps, ContactState>
 
     render() {
         return (
-            <section className={this.props.className} id={content.Contact}>
+            <section className={this.props.className} id={metaData.ContactTitle}>
                 <Container className='my-md-auto mb-3 mt-3'>
                     <Row>
                         <Col>
-                            <h1 className='text-center text-md-left display-1'>{content.Contact}</h1>
+                            <h1 className='text-center text-md-left display-1'>{metaData.ContactTitle}</h1>
                         </Col>
                     </Row>
                     <Row className='mt-3 d-flex flex-column justify-content-between align-items-center'>

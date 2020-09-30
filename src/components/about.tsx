@@ -4,7 +4,7 @@ import { Col, Container, Row } from 'reactstrap'
 import Image from './image'
 import NewTabLink from './newTabLink'
 import Social from './social'
-import { content, metaData, navigation } from '../utils/data'
+import { metaData, navigation } from '../utils/data'
 import { SectionProps } from '../types'
 
 const About = ({ className }: SectionProps) => {
@@ -13,7 +13,7 @@ const About = ({ className }: SectionProps) => {
             <Container className='text-center text-md-left my-md-auto mb-3 mt-3'>
                 <Row>
                     <Col>
-                        <h1 className='display-1'>{content.About}</h1>
+                        <h1 className='display-1'>{metaData.AboutTitle}</h1>
                     </Col>
                 </Row>
                 <Row>

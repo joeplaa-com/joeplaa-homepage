@@ -26,7 +26,7 @@ const Landing = () => {
                     twitterUsername={metaData.TwitterUsername}
                 />
 
-                <section className='section-fill landing' id={content.Landing}>
+                <section className='section-fill landing' id={metaData.LandingTitle}>
                     <Container className='text-center text-md-left my-auto pt-5'>
                         <Row>
                             <CardColumns>

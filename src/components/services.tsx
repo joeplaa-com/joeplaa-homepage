@@ -2,20 +2,19 @@ import React from 'react'
 import { Container, Col, Row, Card, CardBody, CardDeck } from 'reactstrap'
 import { IconContext } from 'react-icons'
 import { SiGatsby, SiGhost, SiGithub, SiNextDotJs, SiWordpress } from 'react-icons/si'
-import Image from './image'
 import NewTabLink from './newTabLink'
-import { content, settings, urls } from '../utils/data'
+import { content, metaData, settings, urls } from '../utils/data'
 import { SectionProps } from '../types'
 import CloudFront from '../svg/cloudfront.svg'
 import LightSail from '../svg/lightsail.svg'
 
 const Services = ({ className }: SectionProps) => {
     return (
-        <section className={className} id={content.Services}>
+        <section className={className} id={metaData.ServicesTitle}>
             <Container className='text-center text-md-left my-md-auto mb-3 mt-3'>
                 <Row>
                     <Col>
-                        <h1 className='display-1'>{content.Services}</h1>
+                        <h1 className='display-1'>{metaData.ServicesTitle}</h1>
                     </Col>
                 </Row>
                 <CardDeck>

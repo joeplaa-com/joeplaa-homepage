@@ -2,7 +2,6 @@ export const content = {
     '404Header': '404',
     '404Message': 'The page you\'re looking for does not exist (anymore).',
     '404Title': 'Page not found',
-    About: 'About',
     AllRightsReserved: 'All rights reserved.',
     Back: 'Back',
     Backto: 'Back to overview',
@@ -10,17 +9,12 @@ export const content = {
     Banner: 'Banner',
     Blog: 'Blog',
     Business: 'Business name',
-    Contact: 'Contact',
     Continue: 'Continue',
     Email: 'Email',
     EmailErrorMessage: 'Enter a valid email address',
     Filter: 'Filter',
     FilterTags: 'Select tags to show',
-    Home: 'Home',
-    Howto: 'How-to',
-    Info: 'Info',
     InterestedIn: 'I\'m interested in:',
-    Landing: 'Landing',
     Loading: 'Loading...',
     MailSendFailed: 'Something went wrong, please try again or email me directly at ',
     MailSendSuccess: 'Thank you for sending this message. I\'ll get back to you as soon as I can.',
@@ -28,13 +22,9 @@ export const content = {
     NameErrorMessage: 'Please enter a name',
     NoOptionsSelect: 'No further tags available',
     Ok: 'Ok',
-    Portfolio: 'Portfolio',
-    Pricing: 'Pricing',
-    PricingDesign: 'Design',
     SelectedTags: 'Selected tags',
     SendEmail: 'Send me an email',
     SendEmailDone: 'Thank you for your enquiry',
-    Services: 'Services',
     ShowAll: 'Show all',
     ShowModal: 'Show more',
     ShowModalMessage: 'This website does not work properly in your current browser.',
@@ -48,8 +38,10 @@ export const content = {
     WebHosting: 'Website hosting'
 };
 export const metaData = {
+    AboutTitle: 'About',
     AuthorName: `Joep van de Laarschot`,
     BusinessName: 'Joeplaa',
+    ContactTitle: 'Contact',
     FirstName: 'Joep',
     LastName: 'van de Laarschot',
     HomeDescription: 'Who is Joep and what is Joeplaa?',
@@ -79,7 +71,6 @@ export const metaData = {
     SiteTitle: 'joeplaa.com',
     SiteUrl: process.env.GATSBY_URL,
     TwitterUsername: ``,
-    Umami: 'https://umami.joeplaa.com/umami.js',
     WikiDescription: 'How I work and what tools I use.',
     WikiImage: '/images/banner-www-com-white.png',
     WikiTitle: 'Wiki'
@@ -98,7 +89,7 @@ export const navigation = {
     wiki: '/wiki'
 }
 export const settings = {
-    breakpoint: 'md',
+    breakpoint: 'lg',
     dateFormat: 'LLLL d, yyyy',
     iconSize: '40px'
 }
@@ -108,6 +99,7 @@ export const urls = {
     github: 'https://github.com/joeplaa',
     instagram: 'https://www.instagram.com/joeplaa/',
     linkedin: 'https://www.linkedin.com/in/joeplaa/',
+    umami: 'https://umami.joeplaa.com/umami.js',
     awsCloudfront: 'https://aws.amazon.com/cloudfront/',
     awsLightsail: 'https://aws.amazon.com/lightsail/',
     gatsbyjs: 'https://www.gatsbyjs.com/',

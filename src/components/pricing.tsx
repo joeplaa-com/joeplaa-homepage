@@ -1,15 +1,15 @@
 import React from 'react'
 import { Container, Col, Row, Card, CardBody, CardDeck, Table } from 'reactstrap'
-import { content } from '../utils/data'
+import { content, metaData } from '../utils/data'
 import { SectionProps } from '../types'
 
 const Pricing = ({ className }: SectionProps) => {
     return (
-        <section className={className} id={content.Pricing}>
+        <section className={className} id={metaData.PricingTitle}>
             <Container className='text-center text-md-left my-md-auto mb-3 mt-3'>
                 <Row>
                     <Col>
-                        <h1 className='display-1'>{content.Pricing}</h1>
+                        <h1 className='display-1'>{metaData.PricingTitle}</h1>
                     </Col>
                 </Row>
                 <CardDeck>

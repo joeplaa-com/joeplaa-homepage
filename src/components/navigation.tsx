@@ -1,7 +1,7 @@
 import React from 'react'
 import { Nav, NavItem } from 'reactstrap'
 import CustomNavLink from './customNavLink'
-import { content, navigation } from '../utils/data'
+import { content, metaData, navigation } from '../utils/data'
 import { NavigationProps } from '../types'
 
 export default function Navigation({ className }: NavigationProps) {
@@ -9,25 +9,25 @@ export default function Navigation({ className }: NavigationProps) {
     return (
         <Nav className={className} navbar>
             <NavItem>
-                <CustomNavLink to={navigation.home}>{content.Home}</CustomNavLink>
+                <CustomNavLink to={navigation.about}>{metaData.AboutTitle}</CustomNavLink>
             </NavItem>
             <NavItem>
-                <CustomNavLink to={navigation.about}>{content.About}</CustomNavLink>
+                <CustomNavLink to={navigation.services}>{metaData.ServicesTitle}</CustomNavLink>
             </NavItem>
             <NavItem>
-                <CustomNavLink to={navigation.services}>{content.Services}</CustomNavLink>
+                <CustomNavLink to={navigation.pricing}>{metaData.PricingTitle}</CustomNavLink>
             </NavItem>
             <NavItem>
-                <CustomNavLink to={navigation.pricing}>{content.Pricing}</CustomNavLink>
+                <CustomNavLink to={navigation.contact}>{metaData.ContactTitle}</CustomNavLink>
             </NavItem>
             <NavItem>
-                <CustomNavLink to={navigation.contact}>{content.Contact}</CustomNavLink>
+                <CustomNavLink to={navigation.portfolio}>{metaData.PortfolioTitle}</CustomNavLink>
             </NavItem>
             <NavItem>
-                <CustomNavLink to={navigation.portfolio}>{content.Portfolio}</CustomNavLink>
+                <CustomNavLink to={navigation.wiki}>{metaData.WikiTitle}</CustomNavLink>
             </NavItem>
             <NavItem>
-                <CustomNavLink to={navigation.howto}>{content.Howto}</CustomNavLink>
+                <CustomNavLink to={navigation.howto}>{metaData.HowtoTitle}</CustomNavLink>
             </NavItem>
             <NavItem>
                 <CustomNavLink to='empty' href={navigation.blog}>{content.Blog}</CustomNavLink>
