@@ -142,7 +142,6 @@ export type SectionProps = {
 }
 
 export type SocialLinkProps = {
-    className?: string
     color: 'dark' | 'light' | 'navbar'
     size: string
 }
