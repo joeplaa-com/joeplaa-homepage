@@ -65,6 +65,19 @@ module.exports = {
             }
         },
         {
+            resolve: 'gatsby-plugin-robots-txt',
+            options: {
+                env: {
+                    development: {
+                        policy: [{ userAgent: '*', disallow: ['/'] }]
+                    },
+                    production: {
+                        policy: [{ userAgent: '*', allow: '/' }]
+                    }
+                }
+            }
+        },
+        {
             resolve: `gatsby-plugin-sharp`,
             options: {
                 stripMetadata: true,
