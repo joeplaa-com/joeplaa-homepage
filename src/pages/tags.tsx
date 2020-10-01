@@ -2,7 +2,7 @@ import React from "react"
 import kebabCase from "lodash/kebabCase"
 import { Helmet } from "react-helmet"
 import { Link, graphql } from "gatsby"
-import { PostQueryData } from '../types'
+import { PostQueryProps } from '../types'
 
 const TagsPage = ({
     data: {
@@ -11,7 +11,7 @@ const TagsPage = ({
             siteMetadata: { title },
         },
     },
-}: PostQueryData) => {
+}: PostQueryProps) => {
     return (
         <div>
             <Helmet title={title} />

@@ -4,10 +4,10 @@ import React, { useState } from 'react'
 import SEO from 'react-seo-component'
 import { Collapse, Container, ListGroup, ListGroupItem } from 'reactstrap'
 import Layout from '../components/layout'
-import { PostQueryData } from '../types'
+import { PostQueryProps } from '../types'
 import { metaData, navigation } from '../utils/data'
 
-const Howto = ({ data }: PostQueryData) => {
+const Howto = ({ data }: PostQueryProps) => {
     const wikisPricing = [];
     const wikisProcedure = [];
     const wikisTechnologies = [];

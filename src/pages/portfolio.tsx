@@ -6,14 +6,14 @@ import { Container } from 'reactstrap'
 import Filter from '../components/filter'
 import Layout from '../components/layout'
 import PortfolioEntries from '../components/portfolioEntries'
-import { PostQueryData } from '../types'
+import { PostQueryProps } from '../types'
 import { filterActionCreators } from '../store/actions/filter'
 import currentPage from '../utils/currentPage'
 import { metaData, navigation } from '../utils/data'
 import filterTag from '../utils/filterTag'
 import formatAllTags from '../utils/formatAllTags'
 
-const Portfolio = ({ data }: PostQueryData) => {
+const Portfolio = ({ data }: PostQueryProps) => {
     const page = currentPage(data.allMdx.nodes[0].fileAbsolutePath);
     const tags = formatAllTags(data.allMdx.group);
 
@@ -73,6 +73,7 @@ export const query = graphql`
           tags
           title
         }
+        body
         fileAbsolutePath
         fields {
           slug

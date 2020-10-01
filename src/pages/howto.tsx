@@ -7,14 +7,14 @@ import Filter from '../components/filter'
 import Layout from '../components/layout'
 import PostHero from '../components/postHero'
 import PostMore from '../components/postMore'
-import { PostQueryData } from '../types'
+import { PostQueryProps } from '../types'
 import { filterActionCreators } from '../store/actions/filter'
 import currentPage from '../utils/currentPage'
 import { metaData, navigation } from '../utils/data'
 import filterTag from '../utils/filterTag'
 import formatAllTags from '../utils/formatAllTags'
 
-const Howto = ({ data }: PostQueryData) => {
+const Howto = ({ data }: PostQueryProps) => {
     const heroPost = data.allMdx.nodes[0];
     const morePosts = data.allMdx.nodes.slice(1);
     const page = currentPage(heroPost.fileAbsolutePath);

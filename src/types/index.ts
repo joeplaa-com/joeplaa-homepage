@@ -108,7 +108,7 @@ export type PageProps = {
 // === Begin Posts ===
 type FrontMatterProps = {
     author: string
-    cover?: {
+    cover: {
         childImageSharp: ChildImageSharpFluid
         publicURL: string
     }
@@ -118,8 +118,12 @@ type FrontMatterProps = {
     title: string
 }
 
+export interface PortfolioEntryProps extends PostBasicProps {
+    body: string
+}
+
 export type PostBasicProps = {
-    excerpt?: string
+    excerpt: string
     fields: {
         slug: string
     }
@@ -127,7 +131,16 @@ export type PostBasicProps = {
     frontmatter: FrontMatterProps
 }
 
-export type PostQueryData = {
+export type PostBodyProps = {
+    content: string
+}
+
+interface PostQueryNode extends PostBasicProps {
+    body: string
+    id: string
+}
+
+export type PostQueryProps = {
     data: {
         allMdx: {
             nodes: Array<PostQueryNode>
@@ -142,12 +155,6 @@ export type PostQueryData = {
             },
         }
     }
-}
-
-export interface PostQueryNode extends PostBasicProps {
-    body: string
-    excerpt: string
-    id: string
 }
 
 export type PostTemplateProps = {
@@ -183,7 +190,7 @@ export type PostHeaderProps = {
 export type PostImageProps = {
     className?: string
     onClick?: () => void
-    path?: string
+    path: boolean
     picture: ChildImageSharpFluid
     rounded?: boolean
     slug?: string
@@ -199,7 +206,7 @@ export type PostSubtitleProps = {
 
 export type PostTitleProps = {
     onClick?: () => void
-    path?: true
+    path: boolean
     slug: string
     title: string
 }

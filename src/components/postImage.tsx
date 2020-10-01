@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'gatsby'
-import Img from 'gatsby-image';
+import Img from 'gatsby-image'
 import { PostImageProps } from '../types'
 
 export default function PostImage({ className, title, picture, slug, rounded, path, onClick }: PostImageProps) {
