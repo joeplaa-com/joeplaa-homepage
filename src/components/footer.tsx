@@ -2,11 +2,11 @@ import React from 'react'
 import { Container } from 'reactstrap'
 import Copyright from './copyright'
 import Social from './social'
-import { BackgroundProps } from '../types'
+import { SectionProps } from '../types'
 
-export default function Footer({ backgroundColor }: BackgroundProps) {
+export default function Footer({ className }: SectionProps) {
     return (
-        <footer className={backgroundColor + ' ' + 'footer'}>
+        <footer className={className + ' ' + 'footer'}>
             <Container>
                 <Copyright color='light' />
                 <Social className='justify-content-center' color='light' size='1.25rem' />

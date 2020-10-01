@@ -18,7 +18,7 @@ module.exports = {
         {
             resolve: "gatsby-plugin-anchor-links",
             options: {
-                offset: 0
+                offset: -64
             }
         },
         {
@@ -60,7 +60,7 @@ module.exports = {
             resolve: "gatsby-plugin-react-svg",
             options: {
                 rule: {
-                    include: /icons/
+                    include: /svg/
                 }
             }
         },

@@ -4,16 +4,16 @@ import { Col, Container, Row } from 'reactstrap'
 import Image from './image'
 import NewTabLink from './newTabLink'
 import Social from './social'
-import { content, metaData, navigation } from '../utils/data'
-import { BackgroundProps } from '../types'
+import { metaData, navigation } from '../utils/data'
+import { SectionProps } from '../types'
 
-const About = ({ backgroundColor }: BackgroundProps) => {
+const About = ({ className }: SectionProps) => {
     return (
-        <section className={backgroundColor + ' ' + 'section-home'} id="About">
+        <section className={className} id="About">
             <Container className='text-center text-md-left my-md-auto mb-3 mt-3'>
                 <Row>
                     <Col>
-                        <h1 className='display-1'>{content.About}</h1>
+                        <h1 className='display-1'>{metaData.AboutTitle}</h1>
                     </Col>
                 </Row>
                 <Row>

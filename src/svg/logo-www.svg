@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:osb="http://www.openswatchbook.org/uri/2009/osb"
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   inkscape:export-ydpi="98.303993"
+   inkscape:export-xdpi="98.303993"
+   inkscape:export-filename="C:\Users\Joepje\OneDrive\Workspace\business\joeplaa.com\pictures\logo\logo-www.png"
+   width="512"
+   height="512"
+   viewBox="0 0 512 512"
+   version="1.1"
+   id="svg8"
+   sodipodi:docname="logo-www.svg"
+   inkscape:version="1.0.1 (3bc2e813f5, 2020-09-07)">
+  <sodipodi:namedview
+     inkscape:document-rotation="0"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1680"
+     inkscape:window-height="987"
+     id="namedview42"
+     showgrid="true"
+     inkscape:zoom="1"
+     inkscape:cx="256"
+     inkscape:cy="250"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer2"
+     showguides="true"
+     inkscape:guide-bbox="true">
+    <sodipodi:guide
+       position="7.95,66.25"
+       orientation="0,-1"
+       id="guide52" />
+    <sodipodi:guide
+       position="331.25,183.645"
+       orientation="1,0"
+       id="guide54" />
+    <sodipodi:guide
+       position="66.25,68.9"
+       orientation="1,0"
+       id="guide56" />
+    <sodipodi:guide
+       position="132.5,63.6"
+       orientation="1,0"
+       id="guide58" />
+    <sodipodi:guide
+       position="143.1,-13.25"
+       orientation="0,-1"
+       id="guide60" />
+    <inkscape:grid
+       type="xygrid"
+       id="grid62"
+       empspacing="10"
+       snapvisiblegridlinesonly="true" />
+  </sodipodi:namedview>
+  <defs
+     id="defs2">
+    <linearGradient
+       inkscape:collect="always"
+       id="linearGradient1514">
+      <stop
+         style="stop-color:#51c8d4;stop-opacity:1;"
+         offset="0"
+         id="stop1510" />
+      <stop
+         style="stop-color:#51c8d4;stop-opacity:0;"
+         offset="1"
+         id="stop1512" />
+    </linearGradient>
+    <linearGradient
+       id="linearGradient2865"
+       osb:paint="gradient">
+      <stop
+         style="stop-color:#d81b60;stop-opacity:1;"
+         offset="0"
+         id="stop2861" />
+      <stop
+         style="stop-color:#d81b60;stop-opacity:0;"
+         offset="1"
+         id="stop2863" />
+    </linearGradient>
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient1514"
+       id="linearGradient1516"
+       x1="66.25"
+       y1="66.25"
+       x2="331.25"
+       y2="66.25"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="scale(3.8641509)" />
+  </defs>
+  <metadata
+     id="metadata5">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     id="layer1"
+     transform="translate(0,-125.02081)">
+    <text
+       id="text94"
+       y="281.53519"
+       x="197.21176"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:4.97582px;line-height:1.25;font-family:'Gill Sans MT';-inkscape-font-specification:'Gill Sans MT Bold';letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.124395"
+       xml:space="preserve"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:182.447px;font-family:'Trebuchet MS';-inkscape-font-specification:'Trebuchet MS Bold';stroke-width:0.124395"
+         y="281.53519"
+         x="197.21176"
+         id="tspan92" /></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:50.88px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.265"
+       x="195.92799"
+       y="317.72363"
+       id="text46"><tspan
+         sodipodi:role="line"
+         id="tspan44"
+         x="195.92799"
+         y="317.72363"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:50.88px;font-family:'Trebuchet MS';-inkscape-font-specification:'Trebuchet MS';stroke-width:0.265" /></text>
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="g2917"
+     inkscape:label="backgroud-gradient-blue-700"
+     style="display:inline">
+    <rect
+       style="opacity:1;mix-blend-mode:normal;fill:url(#linearGradient1516);fill-opacity:1;fill-rule:nonzero;stroke-width:0.387037"
+       id="rect2915"
+       width="256"
+       height="512"
+       x="256"
+       y="0" />
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer5"
+     inkscape:label="backgroud-gradient-gray-200"
+     style="display:inline">
+    <rect
+       style="opacity:1;mix-blend-mode:normal;fill:#e9ecef;fill-opacity:1;fill-rule:nonzero;stroke-width:0.387037"
+       id="rect109"
+       width="256"
+       height="512"
+       x="-256"
+       y="0"
+       transform="scale(-1,1)" />
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer2"
+     inkscape:label="JL">
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:40.96px;line-height:1.25;font-family:consolas;-inkscape-font-specification:consolas;letter-spacing:0px;word-spacing:0px;opacity:1;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1.024"
+       x="17.717398"
+       y="393.92041"
+       id="text50"><tspan
+         sodipodi:role="line"
+         id="tspan48"
+         x="17.717398"
+         y="393.92041"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:436.908px;font-family:consolas;-inkscape-font-specification:consolas;stroke-width:1.024">JL</tspan></text>
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer6"
+     inkscape:label="|">
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:39.9229px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#c21807;fill-opacity:1;stroke:none;stroke-width:0.998067"
+       x="139.78557"
+       y="382.34076"
+       id="text128"
+       transform="scale(1.0259743,0.97468328)"><tspan
+         sodipodi:role="line"
+         id="tspan126"
+         x="139.78557"
+         y="382.34076"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:399.229px;font-family:consolas;-inkscape-font-specification:consolas;fill:#07b1c2;fill-opacity:1;stroke-width:0.998067">|</tspan></text>
+  </g>
+</svg>
