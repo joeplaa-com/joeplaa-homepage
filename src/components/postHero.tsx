@@ -5,9 +5,9 @@ import PostImage from './postImage'
 import PostSubtitle from './postSubtitle'
 import PostTitle from './postTitle'
 import currentPage from '../utils/currentPage'
-import { PostBasicProps } from '../types'
+import { PostProps } from '../types'
 
-export default function PostHero({ excerpt, fields, fileAbsolutePath, frontmatter }: PostBasicProps) {
+export default function PostHero({ excerpt, fields, fileAbsolutePath, frontmatter }: PostProps) {
     return (
         <section>
             <Card className='mt-3'>
@@ -15,7 +15,7 @@ export default function PostHero({ excerpt, fields, fileAbsolutePath, frontmatte
                     <PostTitle path={true} slug={fields.slug} title={frontmatter.title} />
                     <PostSubtitle className='mb-2' date={frontmatter.date} page={currentPage(fileAbsolutePath)} tags={frontmatter.tags} />
                 </CardBody>
-                <PostImage title={frontmatter.title} picture={frontmatter.cover.childImageSharp} slug={fields.slug} rounded={true} className='' />
+                <PostImage path={true} title={frontmatter.title} picture={frontmatter.cover.childImageSharp} slug={fields.slug} rounded={true} className='' />
                 <CardBody>
                     <CardText>{frontmatter.excerpt || excerpt}</CardText>
                     <Avatar name={frontmatter.author} />

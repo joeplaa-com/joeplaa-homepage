@@ -122,8 +122,11 @@ export interface PortfolioEntryProps extends PostBasicProps {
     body: string
 }
 
-export type PostBasicProps = {
+export interface PostProps extends PostBasicProps {
     excerpt: string
+}
+
+export type PostBasicProps = {
     fields: {
         slug: string
     }

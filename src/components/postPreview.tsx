@@ -5,9 +5,9 @@ import PostImage from './postImage'
 import PostSubtitle from './postSubtitle'
 import PostTitle from './postTitle'
 import currentPage from '../utils/currentPage'
-import { PostBasicProps } from '../types'
+import { PostProps } from '../types'
 
-export default function PostPreview({ excerpt, fields, fileAbsolutePath, frontmatter }: PostBasicProps) {
+export default function PostPreview({ excerpt, fields, fileAbsolutePath, frontmatter }: PostProps) {
     return (
         <Card>
             <CardBody>

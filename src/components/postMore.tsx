@@ -1,9 +1,9 @@
 import React from 'react'
 import { CardColumns } from 'reactstrap'
 import PostPreview from './postPreview'
-import { PostBasicProps } from '../types'
+import { PostProps } from '../types'
 
-export default function PostStories({ posts }: { posts: Array<PostBasicProps> }) {
+export default function PostStories({ posts }: { posts: Array<PostProps> }) {
     return (
         <section>
             <CardColumns>
