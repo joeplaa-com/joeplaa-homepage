@@ -119,7 +119,7 @@ type FrontMatterProps = {
 }
 
 export type PostBasicProps = {
-    excerpt: string
+    excerpt?: string
     fields: {
         slug: string
     }

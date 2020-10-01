@@ -1,13 +1,29 @@
-import { graphql, Link } from 'gatsby'
-import Img from 'gatsby-image'
-import React from 'react'
+import React, { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { graphql } from 'gatsby'
 import SEO from 'react-seo-component'
 import { Container } from 'reactstrap'
+import Filter from '../components/filter'
 import Layout from '../components/layout'
-import { metaData, navigation } from '../utils/data'
+import PortfolioEntries from '../components/portfolioEntries'
 import { PostQueryData } from '../types'
+import { filterActionCreators } from '../store/actions/filter'
+import currentPage from '../utils/currentPage'
+import { metaData, navigation } from '../utils/data'
+import filterTag from '../utils/filterTag'
+import formatAllTags from '../utils/formatAllTags'
 
 const Portfolio = ({ data }: PostQueryData) => {
+    const page = currentPage(data.allMdx.nodes[0].fileAbsolutePath);
+    const tags = formatAllTags(data.allMdx.group);
+
+    const filter = useSelector((state) => state.filter);
+    const dispatch = useDispatch();
+    useEffect(() => {
+        dispatch(filterActionCreators.addTagsFilter(page, tags));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
+
     return (
         <>
             <Layout>
@@ -22,22 +38,10 @@ const Portfolio = ({ data }: PostQueryData) => {
                     twitterUsername={metaData.TwitterUsername}
                 />
 
-                <section className='section-fill blue-dark' id={metaData.WikiTitle}>
+                <section className='section-fill blue-dark' id={metaData.PortfolioTitle}>
                     <Container className='text-center text-md-left my-auto'>
-                        {data.allMdx.nodes.map(({ id, excerpt, frontmatter, fields }) => (
-                            <div key={id}>
-                                <Link to={fields.slug}>
-                                    {
-                                        frontmatter.cover ? (
-                                            <Img fluid={frontmatter.cover.childImageSharp.fluid} />
-                                        ) : null
-                                    }
-                                    <h1>{frontmatter.title}</h1>
-                                    <p>{frontmatter.date}</p>
-                                    <p>{excerpt}</p>
-                                </Link>
-                            </div>
-                        ))}
+                        <Filter page={page} tags={tags} />
+                        <PortfolioEntries posts={data.allMdx.nodes.filter((post) => (filterTag(post, filter.userFilter[currentPage(post.fileAbsolutePath)])))} />
                     </Container>
                 </section>
             </Layout>
@@ -55,20 +59,28 @@ export const query = graphql`
         id
         excerpt(pruneLength: 250)
         frontmatter {
-          title
-          date(formatString: "YYYY MMMM Do")
+          author
           cover {
             publicURL
             childImageSharp {
-                fluid(maxWidth: 1000, srcSetBreakpoints: [320, 480, 640, 960]) {
+                fluid(maxWidth: 1920, srcSetBreakpoints: [320, 480, 640, 960, 1280, 1600, 1920]) {
                 ...GatsbyImageSharpFluid_withWebp
               }
             }
           }
+          date(formatString: "YYYY MMMM Do")
+          excerpt
+          tags
+          title
         }
+        fileAbsolutePath
         fields {
           slug
         }
+      }
+      group(field: frontmatter___tags) {
+        fieldValue
+        totalCount
       }
     }
   }
