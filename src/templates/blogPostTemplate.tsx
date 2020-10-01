@@ -64,6 +64,7 @@ export const query = graphql`
         cover {
           publicURL
         }
+        author
       }
       body
       excerpt

@@ -1,11 +1,12 @@
 import { MDXProvider } from '@mdx-js/react';
 import React from 'react'
+import { Provider } from 'react-redux';
+import { PersistGate } from 'redux-persist/integration/react'
 import Code from './src/components/code'
+import configureStore from './src/store/configureStore'
 
 const components = {
-    h2: ({ children }) => (
-        <h2 style={{ color: 'rebeccapurple' }}>{children}</h2>
-    ),
+    // eslint-disable-next-line react/display-name
     'p.inlineCode': props => (
         <code style={{ backgroundColor: 'lightgray' }} {...props} />
     ),
@@ -25,5 +26,11 @@ const components = {
 };
 
 export const wrapRootElement = ({ element }) => (
-    <MDXProvider components={components}>{element}</MDXProvider>
+    <Provider store={configureStore().store}>
+        <PersistGate persistor={configureStore().persistor} loading={null}>
+            <MDXProvider components={components}>
+                {element}
+            </MDXProvider>
+        </PersistGate>
+    </Provider>
 );

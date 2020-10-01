@@ -79,7 +79,7 @@ const Howto = ({ data }: PostQueryData) => {
                     twitterUsername={metaData.TwitterUsername}
                 />
 
-                <section className='section-fill wiki' id={metaData.WikiTitle}>
+                <section className='section-fill gray' id={metaData.WikiTitle}>
                     <Container className='text-center text-md-left my-auto'>
                         <ListGroup id={metaData.WikiProcedure}>
                             {wikisProcedure}

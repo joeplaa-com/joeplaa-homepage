@@ -2,6 +2,7 @@ import { graphql, Link } from 'gatsby'
 import Img from 'gatsby-image'
 import React from 'react'
 import SEO from 'react-seo-component'
+import { Container } from 'reactstrap'
 import Layout from '../components/layout'
 import { metaData, navigation } from '../utils/data'
 import { PostQueryData } from '../types'
@@ -20,20 +21,25 @@ const Portfolio = ({ data }: PostQueryData) => {
                     siteLocale={metaData.SiteLocale}
                     twitterUsername={metaData.TwitterUsername}
                 />
-                {data.allMdx.nodes.map(({ id, excerpt, frontmatter, fields }) => (
-                    <div key={id}>
-                        <Link to={fields.slug}>
-                            {
-                                frontmatter.cover ? (
-                                    <Img fluid={frontmatter.cover.childImageSharp.fluid} />
-                                ) : null
-                            }
-                            <h1>{frontmatter.title}</h1>
-                            <p>{frontmatter.date}</p>
-                            <p>{excerpt}</p>
-                        </Link>
-                    </div>
-                ))}
+
+                <section className='section-fill blue-dark' id={metaData.WikiTitle}>
+                    <Container className='text-center text-md-left my-auto'>
+                        {data.allMdx.nodes.map(({ id, excerpt, frontmatter, fields }) => (
+                            <div key={id}>
+                                <Link to={fields.slug}>
+                                    {
+                                        frontmatter.cover ? (
+                                            <Img fluid={frontmatter.cover.childImageSharp.fluid} />
+                                        ) : null
+                                    }
+                                    <h1>{frontmatter.title}</h1>
+                                    <p>{frontmatter.date}</p>
+                                    <p>{excerpt}</p>
+                                </Link>
+                            </div>
+                        ))}
+                    </Container>
+                </section>
             </Layout>
         </>
     );

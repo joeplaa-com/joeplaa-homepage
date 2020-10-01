@@ -1,6 +1,10 @@
-import { ReactNode } from 'react'
+import { ReactElement, ReactNode } from 'react'
 import { FixedObject, FluidObject } from 'gatsby-image'
 import { Language } from 'prism-react-renderer'
+
+export type AuthorProps = {
+    name: string
+}
 
 export type BannerProps = {
     alt: string
@@ -62,11 +66,22 @@ export type CustomNavLinkProps = {
     to: string
 }
 
+export type FilterProps = {
+    page: string
+    tags: Array<LabelProps>
+}
+
 export type ImageProps = {
     alt: string
     className?: string
     to?: string
     src: string
+}
+
+export type LabelProps = {
+    value: string
+    label: string
+    count: number
 }
 
 export type LayoutProps = {
@@ -92,6 +107,7 @@ export type PageProps = {
 
 // === Begin Posts ===
 type FrontMatterProps = {
+    author: string
     cover?: {
         childImageSharp: ChildImageSharpFluid
         publicURL: string
@@ -102,10 +118,12 @@ type FrontMatterProps = {
     title: string
 }
 
-type PostBasicProps = {
+export type PostBasicProps = {
+    excerpt: string
     fields: {
         slug: string
     }
+    fileAbsolutePath: string
     frontmatter: FrontMatterProps
 }
 
@@ -135,6 +153,7 @@ export interface PostQueryNode extends PostBasicProps {
 export type PostTemplateProps = {
     data: {
         mdx: {
+            author: string
             body: string
             edges: Array<{ node: PostBasicProps }>
             excerpt: string
@@ -151,6 +170,39 @@ export type PostTemplateProps = {
         tag: string
     }
 }
+
+export type PostHeaderProps = {
+    author?: string
+    cover: string
+    date: string
+    path: string
+    slug?: string
+    title: string
+}
+
+export type PostImageProps = {
+    className?: string
+    onClick?: () => void
+    path?: string
+    picture: ChildImageSharpFluid
+    rounded?: boolean
+    slug?: string
+    title: string
+}
+
+export type PostSubtitleProps = {
+    className?: string
+    date: string
+    page: string
+    tags: Array<string>
+}
+
+export type PostTitleProps = {
+    onClick?: () => void
+    path?: true
+    slug: string
+    title: string
+}
 // === End Posts ===
 
 export type SectionProps = {
@@ -160,4 +212,10 @@ export type SectionProps = {
 export type SocialLinkProps = {
     color: 'dark' | 'light' | 'navbar'
     size: string
+}
+
+export type TagProps = {
+    icon?: ReactElement
+    page: string
+    tag?: LabelProps
 }

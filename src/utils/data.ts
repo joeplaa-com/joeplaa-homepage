@@ -84,7 +84,6 @@ export const navigation = {
     contact: '/home#Contact',
     home: '/home#Banner',
     howto: '/howto',
-    howtos: '/howtos',
     portfolio: '/portfolio',
     pricing: '/home#Pricing',
     recommended: process.env.GATSBY_BLOG_URL + '/recommended',

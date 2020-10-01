@@ -94,8 +94,15 @@ module.exports = {
         {
             resolve: `gatsby-source-filesystem`,
             options: {
-                path: `${__dirname}/content/howtos`,
-                name: `howtos`,
+                path: `${__dirname}/content/authors`,
+                name: `authors`,
+            },
+        },
+        {
+            resolve: `gatsby-source-filesystem`,
+            options: {
+                path: `${__dirname}/content/howto`,
+                name: `howto`,
             },
         },
         {

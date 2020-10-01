@@ -168,14 +168,16 @@ $link-dark-active-color:    darken($link-dark-color, 10%);
     display: flex;
     padding-top: 4.5rem;
 }
-    .section-fill.landing {
+    .section-fill.blue-dark {
         background: linear-gradient($blue-800, $gray-400);
     }
-    .section-fill.page-not-found {
-        color: $light;
-        background: linear-gradient($gray-800, $gray-400);
+    .section-fill.blue-medium {
+        background: linear-gradient($blue-500, $gray-400);
     }
-    .section-fill.wiki {
+    .section-fill.blue-light {
+        background: linear-gradient($blue-200, $gray-400);
+    }
+    .section-fill.gray {
         background: linear-gradient($gray-800, $gray-400);
     }
 /* -------end Layout-------- */
