@@ -20,7 +20,7 @@ const PageNotFound = () => {
                     twitterUsername={metaData.TwitterUsername}
                 />
 
-                <section className='section-fill page-not-found' id={content["404Title"]}>
+                <section className='section-fill gray-dark' id={content["404Title"]}>
                     <Container className='text-center text-md-left my-auto'>
                         <Row>
                             <Col xs='12' sm='10' md='7' lg='5' xl='4' className='mx-auto'>

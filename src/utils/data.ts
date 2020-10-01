@@ -73,6 +73,9 @@ export const metaData = {
     TwitterUsername: ``,
     WikiDescription: 'How I work and what tools I use.',
     WikiImage: '/images/banner-www-com-white.png',
+    WikiPricing: 'Pricing',
+    WikiProcedure: 'Procedure',
+    WikiTechnologies: 'Technologies',
     WikiTitle: 'Wiki'
 }
 export const navigation = {
@@ -81,7 +84,6 @@ export const navigation = {
     contact: '/home#Contact',
     home: '/home#Banner',
     howto: '/howto',
-    howtos: '/howtos',
     portfolio: '/portfolio',
     pricing: '/home#Pricing',
     recommended: process.env.GATSBY_BLOG_URL + '/recommended',

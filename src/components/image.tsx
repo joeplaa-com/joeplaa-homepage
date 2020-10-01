@@ -1,13 +1,13 @@
-import React, { useMemo } from 'react';
-import { graphql, Link, useStaticQuery } from 'gatsby';
-import Img from 'gatsby-image';
+import React, { useMemo } from 'react'
+import { graphql, Link, useStaticQuery } from 'gatsby'
+import Img from 'gatsby-image'
 import { ImageProps, ImageFluidNodeProps } from '../types'
 
 const Image = ({ src, to, ...rest }: ImageProps) => {
     const data = useStaticQuery(graphql`
     query {
       images: allFile(
-        filter: { internal: { mediaType: { regex: "/image/" } } }
+        filter: { internal: { mediaType: { regex: "/image/" } }, absolutePath: { regex: "/^((?!/authors/).)*$/" } }
       ) {
         edges {
           node {

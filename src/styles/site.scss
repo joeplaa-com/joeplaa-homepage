@@ -90,6 +90,7 @@ $link-dark-active-color:    darken($link-dark-color, 10%);
 /* -------begin markdown additions-------- */
 .markdown {
     font-size: 1.125rem;
+    font-family: 'Ubuntu Mono', 'Roboto Mono';
 }
 
     .markdown p,
@@ -166,15 +167,22 @@ $link-dark-active-color:    darken($link-dark-color, 10%);
 .section-fill {
     height: 100%;
     display: flex;
+    padding-top: 4.5rem;
 }
-
-    .section-fill.landing {
+    .section-fill.blue-dark {
         background: linear-gradient($blue-800, $gray-400);
     }
-
-    .section-fill.page-not-found {
-        color: $light;
+    .section-fill.blue-medium {
+        background: linear-gradient($blue-500, $gray-400);
+    }
+    .section-fill.blue-light {
+        background: linear-gradient($blue-200, $gray-400);
+    }
+    .section-fill.gray-dark {
         background: linear-gradient($gray-800, $gray-400);
+    }
+    .section-fill.gray-medium {
+        background: linear-gradient($gray-400, $gray-400);
     }
 /* -------end Layout-------- */
 
@@ -265,7 +273,6 @@ $card-column-sizes: (
     lg: 3
 );
 
-/* Cards */
 @each $breakpoint-size, $column-count in $card-column-sizes {
     @include media-breakpoint-up($breakpoint-size) {
         div.card-columns {
@@ -350,12 +357,39 @@ a.tag {
         color: $link-dark-hover-color;
     }
 
+.list-group {
+    margin-bottom: 0.5rem;
+    margin-top: 0.5rem;
+}
+
+    .list-group-item.list-group-item-wiki {
+        text-align: left;
+        cursor: pointer;
+    }
+
 .modal-background {
     background-color: $gray-200;
 }
 
 a.nav-padding-social {
     padding: 0.5rem 0.5rem;
+}
+
+$post-container-padding: (
+    xs: 1rem,
+    md: 2rem
+);
+
+@each $breakpoint-size, $padding in $post-container-padding {
+    @include media-breakpoint-up($breakpoint-size) {
+        div.post-container {
+            background-color: $white;
+            margin-bottom: 2rem;
+            margin-top: 2rem;
+            padding: $padding $padding;
+            box-shadow: $box-shadow;
+        }
+    }
 }
 
 /* -------end custom additions-------- */

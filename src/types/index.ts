@@ -1,6 +1,10 @@
-import { ReactNode } from 'react'
+import { ReactElement, ReactNode } from 'react'
 import { FixedObject, FluidObject } from 'gatsby-image'
 import { Language } from 'prism-react-renderer'
+
+export type AuthorProps = {
+    name: string
+}
 
 export type BannerProps = {
     alt: string
@@ -43,7 +47,6 @@ interface ImageFluidNode extends ImageNode {
 export type ImageFluidNodeProps = {
     node: ImageFluidNode
 }
-
 // === End Gatsby images ===
 
 export type CodeProps = {
@@ -63,11 +66,22 @@ export type CustomNavLinkProps = {
     to: string
 }
 
+export type FilterProps = {
+    page: string
+    tags: Array<LabelProps>
+}
+
 export type ImageProps = {
     alt: string
     className?: string
     to?: string
     src: string
+}
+
+export type LabelProps = {
+    value: string
+    label: string
+    count: number
 }
 
 export type LayoutProps = {
@@ -91,58 +105,127 @@ export type PageProps = {
     }
 }
 
-type PostBasicProps = {
-    fields: {
-        slug: string
-    }
-    frontmatter: FrontMatterProps
-}
-
-type FrontMatterProps = { 
+// === Begin Posts ===
+type FrontMatterProps = {
+    author: string
     cover: {
         childImageSharp: ChildImageSharpFluid
         publicURL: string
     }
     date: string
+    excerpt: string
+    tags: Array<string>
     title: string
 }
 
-export type PostQueryData = {
+export interface PortfolioEntryProps extends PostBasicProps {
+    body: string
+}
+
+export interface PostProps extends PostBasicProps {
+    excerpt: string
+}
+
+export type PostBasicProps = {
+    fields: {
+        slug: string
+    }
+    fileAbsolutePath: string
+    frontmatter: FrontMatterProps
+}
+
+export type PostBodyProps = {
+    content: string
+}
+
+interface PostQueryNode extends PostProps {
+    body: string
+    id: string
+}
+
+export type PostQueryProps = {
     data: {
         allMdx: {
             nodes: Array<PostQueryNode>
+            group: Array<{
+                fieldValue: string
+                totalCount: number
+            }>
+        },
+        site: {
+            siteMetadata: { 
+                title: string
+            },
         }
     }
-}
-
-export interface PostQueryNode extends PostBasicProps {
-    excerpt: string
-    id: string
 }
 
 export type PostTemplateProps = {
     data: {
         mdx: {
+            author: string
             body: string
+            edges: Array<{ node: PostBasicProps }>
             excerpt: string
             fields: {
                 slug: string
             }
             frontmatter: FrontMatterProps
+            totalCount: number
         }
     }
     pageContext: {
         next: PostBasicProps,
         previous: PostBasicProps
+        tag: string
     }
 }
+
+export type PostHeaderProps = {
+    author?: string
+    cover: string
+    date: string
+    path: string
+    slug?: string
+    title: string
+}
+
+export type PostImageProps = {
+    className?: string
+    onClick?: () => void
+    path: boolean
+    picture: ChildImageSharpFluid
+    rounded?: boolean
+    slug?: string
+    title: string
+}
+
+export type PostSubtitleProps = {
+    className?: string
+    date: string
+    page: string
+    tags: Array<string>
+}
+
+export type PostTitleProps = {
+    onClick?: () => void
+    path: boolean
+    slug: string
+    title: string
+}
+// === End Posts ===
 
 export type SectionProps = {
     className: string
 }
 
 export type SocialLinkProps = {
-    className?: string
     color: 'dark' | 'light' | 'navbar'
     size: string
+}
+
+export type TagProps = {
+    icon?: ReactElement
+    page: string
+    tag?: LabelProps
 }

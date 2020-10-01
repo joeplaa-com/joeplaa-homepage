@@ -1,6 +1,7 @@
 import { graphql, Link } from 'gatsby'
 import { MDXRenderer } from 'gatsby-plugin-mdx'
 import React from 'react'
+import { Container } from 'reactstrap'
 import SEO from 'react-seo-component'
 import Layout from '../components/layout'
 import { metaData } from '../utils/data'
@@ -30,27 +31,34 @@ const PostTemplate = ({ data, pageContext }: PostTemplateProps) => {
                 datePublished={date}
                 dateModified={new Date(Date.now()).toISOString()}
             />
-            <h1>{frontmatter.title}</h1>
-            <p>{frontmatter.date}</p>
-            <MDXRenderer>{body}</MDXRenderer>
-            {!previous ? null : (
-                <>
-                    {previous && (
-                        <Link to={previous.fields.slug}>
-                            <p>{previous.frontmatter.title}</p>
-                        </Link>
+
+            <section className='section-fill gray-medium' id={metaData.WikiTitle}>
+                <Container className='text-center text-md-left my-auto post-container'>
+                    <h1>{frontmatter.title}</h1>
+                    <p>{frontmatter.date}</p>
+                    <div className='markdown'>
+                        <MDXRenderer>{body}</MDXRenderer>
+                    </div>
+                    {!previous ? null : (
+                        <>
+                            {previous && (
+                                <Link to={previous.fields.slug}>
+                                    <p>{previous.frontmatter.title}</p>
+                                </Link>
+                            )}
+                        </>
                     )}
-                </>
-            )}
-            {!next ? null : (
-                <>
-                    {next && (
-                        <Link to={next.fields.slug}>
-                            <p>{next.frontmatter.title}</p>
-                        </Link>
+                    {!next ? null : (
+                        <>
+                            {next && (
+                                <Link to={next.fields.slug}>
+                                    <p>{next.frontmatter.title}</p>
+                                </Link>
+                            )}
+                        </>
                     )}
-                </>
-            )}
+                </Container>
+            </section>
         </Layout>
     );
 };
@@ -64,6 +72,7 @@ export const query = graphql`
         cover {
           publicURL
         }
+        author
       }
       body
       excerpt

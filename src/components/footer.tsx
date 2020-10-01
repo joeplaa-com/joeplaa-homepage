@@ -9,7 +9,7 @@ export default function Footer({ className }: SectionProps) {
         <footer className={className + ' ' + 'footer'}>
             <Container>
                 <Copyright color='light' />
-                <Social className='justify-content-center' color='light' size='1.25rem' />
+                <Social color='light' size='2rem' />
             </Container>
         </footer>
     );

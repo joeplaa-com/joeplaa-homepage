@@ -1,12 +1,32 @@
-import { graphql, Link } from 'gatsby'
-import Img from 'gatsby-image'
-import React from 'react'
+import React, { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { graphql } from 'gatsby'
 import SEO from 'react-seo-component'
+import { Container } from 'reactstrap'
+import Filter from '../components/filter'
 import Layout from '../components/layout'
-import { PostQueryData } from '../types'
+import PostHero from '../components/postHero'
+import PostMore from '../components/postMore'
+import { PostQueryProps } from '../types'
+import { filterActionCreators } from '../store/actions/filter'
+import currentPage from '../utils/currentPage'
 import { metaData, navigation } from '../utils/data'
+import filterTag from '../utils/filterTag'
+import formatAllTags from '../utils/formatAllTags'
 
-const Howto = ({ data }: PostQueryData) => {
+const Howto = ({ data }: PostQueryProps) => {
+    const heroPost = data.allMdx.nodes[0];
+    const morePosts = data.allMdx.nodes.slice(1);
+    const page = currentPage(heroPost.fileAbsolutePath);
+    const tags = formatAllTags(data.allMdx.group);
+
+    const filter = useSelector((state) => state.filter);
+    const dispatch = useDispatch();
+    useEffect(() => {
+        dispatch(filterActionCreators.addTagsFilter(page, tags));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
+
     return (
         <>
             <Layout>
@@ -20,20 +40,17 @@ const Howto = ({ data }: PostQueryData) => {
                     siteLocale={metaData.SiteLocale}
                     twitterUsername={metaData.TwitterUsername}
                 />
-                {data.allMdx.nodes.map(({ id, excerpt, frontmatter, fields }) => (
-                    <div key={id}>
-                        <Link to={fields.slug}>
-                            {
-                                frontmatter.cover ? (
-                                    <Img fluid={frontmatter.cover.childImageSharp.fluid} />
-                                ) : null
-                            }
-                            <h1>{frontmatter.title}</h1>
-                            <p>{frontmatter.date}</p>
-                            <p>{excerpt}</p>
-                        </Link>
-                    </div>
-                ))}
+
+                <section className='section-fill blue-medium' id={metaData.WikiTitle}>
+                    <Container className='text-center text-md-left my-auto'>
+                        <Filter page={page} tags={tags} />
+                        {heroPost && filterTag(heroPost, filter.userFilter[page]) && (
+                            <PostHero excerpt={heroPost.excerpt} fields={heroPost.fields} fileAbsolutePath={heroPost.fileAbsolutePath} frontmatter={heroPost.frontmatter} />
+                        )}
+
+                        {morePosts.length > 0 && <PostMore posts={morePosts.filter((post) => (filterTag(post, filter.userFilter[currentPage(post.fileAbsolutePath)])))} />}
+                    </Container>
+                </section>
             </Layout>
         </>
     );
@@ -43,26 +60,34 @@ export const query = graphql`
   query SITE_HOWTO_QUERY {
     allMdx(
       sort: { fields: [frontmatter___date], order: DESC }
-      filter: { frontmatter: { published: { eq: true } }, fileAbsolutePath: {regex: "/howtos/"} }
+      filter: { frontmatter: { published: { eq: true } }, fileAbsolutePath: {regex: "/howto/"} }
     ) {
       nodes {
         id
         excerpt(pruneLength: 250)
         frontmatter {
-          title
-          date(formatString: "YYYY MMMM Do")
+          author
           cover {
             publicURL
             childImageSharp {
-                fluid(maxWidth: 1000, srcSetBreakpoints: [320, 480, 640, 960]) {
+                fluid(maxWidth: 1920, srcSetBreakpoints: [320, 480, 640, 960, 1280, 1600, 1920]) {
                 ...GatsbyImageSharpFluid_withWebp
               }
             }
           }
+          date(formatString: "YYYY MMMM Do")
+          excerpt
+          tags
+          title
         }
+        fileAbsolutePath
         fields {
           slug
         }
+      }
+      group(field: frontmatter___tags) {
+        fieldValue
+        totalCount
       }
     }
   }
