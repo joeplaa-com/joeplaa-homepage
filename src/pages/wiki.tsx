@@ -8,25 +8,61 @@ import { PostQueryData } from '../types'
 import { metaData, navigation } from '../utils/data'
 
 const Howto = ({ data }: PostQueryData) => {
-    const wikis = [];
+    const wikisPricing = [];
+    const wikisProcedure = [];
+    const wikisTechnologies = [];
     const [isOpen, setIsOpen] = useState({})
 
     data.allMdx.nodes.map(({ id, body, excerpt, frontmatter }) => {
-        wikis.push(<>
-            <ListGroupItem tag="button" href="#" onClick={() => {
-                const newIsOpen = {
-                    ...isOpen
-                }
-                newIsOpen[id] = !isOpen[id];
-                setIsOpen(newIsOpen)
-            }} className='wiki-card' key={id}>
-                <h1>{frontmatter.title}</h1>
-                <p>{frontmatter.excerpt || excerpt}</p>
-                <Collapse isOpen={isOpen[id]}>
-                    <MDXRenderer key={id}>{body}</MDXRenderer>
-                </Collapse>
-            </ListGroupItem>
-        </>)
+        if (frontmatter.tags.includes(metaData.WikiPricing.toLowerCase())) {
+            wikisPricing.push(<>
+                <ListGroupItem className='list-group-item-wiki' key={id} onClick={() => {
+                    const newIsOpen = {
+                        ...isOpen
+                    }
+                    newIsOpen[id] = !isOpen[id];
+                    setIsOpen(newIsOpen)
+                }}>
+                    <h1>{frontmatter.title}</h1>
+                    <p>{frontmatter.excerpt || excerpt}</p>
+                    <Collapse isOpen={isOpen[id]}>
+                        <MDXRenderer key={id}>{body}</MDXRenderer>
+                    </Collapse>
+                </ListGroupItem>
+            </>)
+        } else if (frontmatter.tags.includes(metaData.WikiProcedure.toLowerCase())) {
+            wikisProcedure.push(<>
+                <ListGroupItem className='list-group-item-wiki' key={id} onClick={() => {
+                    const newIsOpen = {
+                        ...isOpen
+                    }
+                    newIsOpen[id] = !isOpen[id];
+                    setIsOpen(newIsOpen)
+                }}>
+                    <h1>{frontmatter.title}</h1>
+                    <p>{frontmatter.excerpt || excerpt}</p>
+                    <Collapse isOpen={isOpen[id]}>
+                        <MDXRenderer key={id}>{body}</MDXRenderer>
+                    </Collapse>
+                </ListGroupItem>
+            </>)
+        } if (frontmatter.tags.includes(metaData.WikiTechnologies.toLowerCase())) {
+            wikisTechnologies.push(<>
+                <ListGroupItem className='list-group-item-wiki' key={id} onClick={() => {
+                    const newIsOpen = {
+                        ...isOpen
+                    }
+                    newIsOpen[id] = !isOpen[id];
+                    setIsOpen(newIsOpen)
+                }}>
+                    <h1>{frontmatter.title}</h1>
+                    <p>{frontmatter.excerpt || excerpt}</p>
+                    <Collapse isOpen={isOpen[id]}>
+                        <MDXRenderer key={id}>{body}</MDXRenderer>
+                    </Collapse>
+                </ListGroupItem>
+            </>)
+        }
     })
 
     return (
@@ -45,8 +81,14 @@ const Howto = ({ data }: PostQueryData) => {
 
                 <section className='section-fill wiki' id={metaData.WikiTitle}>
                     <Container className='text-center text-md-left my-auto'>
-                        <ListGroup>
-                            {wikis}
+                        <ListGroup id={metaData.WikiProcedure}>
+                            {wikisProcedure}
+                        </ListGroup>
+                        <ListGroup id={metaData.WikiPricing}>
+                            {wikisPricing}
+                        </ListGroup>
+                        <ListGroup id={metaData.WikiTechnologies}>
+                            {wikisTechnologies}
                         </ListGroup>
                     </Container>
                 </section>
@@ -66,9 +108,10 @@ export const query = graphql`
         body
         excerpt(pruneLength: 250)
         frontmatter {
-          title
           date(formatString: "YYYY MMMM Do")
           excerpt
+          tags
+          title
         }
       }
     }

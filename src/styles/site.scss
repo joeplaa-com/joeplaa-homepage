@@ -351,6 +351,16 @@ a.tag {
         color: $link-dark-hover-color;
     }
 
+.list-group {
+    margin-bottom: 0.5rem;
+    margin-top: 0.5rem;
+}
+
+    .list-group-item.list-group-item-wiki {
+        text-align: left;
+        cursor: pointer;
+    }
+
 .modal-background {
     background-color: $gray-200;
 }

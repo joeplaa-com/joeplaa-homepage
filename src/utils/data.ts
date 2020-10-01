@@ -73,6 +73,9 @@ export const metaData = {
     TwitterUsername: ``,
     WikiDescription: 'How I work and what tools I use.',
     WikiImage: '/images/banner-www-com-white.png',
+    WikiPricing: 'Pricing',
+    WikiProcedure: 'Procedure',
+    WikiTechnologies: 'Technologies',
     WikiTitle: 'Wiki'
 }
 export const navigation = {

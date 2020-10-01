@@ -43,7 +43,6 @@ interface ImageFluidNode extends ImageNode {
 export type ImageFluidNodeProps = {
     node: ImageFluidNode
 }
-
 // === End Gatsby images ===
 
 export type CodeProps = {
@@ -91,6 +90,7 @@ export type PageProps = {
     }
 }
 
+// === Begin Posts ===
 type FrontMatterProps = {
     cover?: {
         childImageSharp: ChildImageSharpFluid
@@ -98,6 +98,7 @@ type FrontMatterProps = {
     }
     date: string
     excerpt: string
+    tags: Array<string>
     title: string
 }
 
@@ -150,6 +151,7 @@ export type PostTemplateProps = {
         tag: string
     }
 }
+// === End Posts ===
 
 export type SectionProps = {
     className: string
