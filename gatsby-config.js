@@ -85,6 +85,33 @@ module.exports = {
             },
         },
         {
+            resolve: `gatsby-plugin-webfonts`,
+            options: {
+                fonts: {
+                    google: [
+                        {
+                            family: "Roboto Mono",
+                            variants: ["300","400","500","600","700"],
+                        },
+                        {
+                            family: "Roboto",
+                            variants: ["300","400","500","600","700"],
+                        },
+                        {
+                            family: "Ubuntu Mono",
+                            variants: ["300","400","500","600","700"],
+                        },
+                        {
+                            family: "Ubuntu",
+                            variants: ["300","400","500","600","700"],
+                        },
+                    ],
+                },
+                useMinify: true,
+                usePreload: true,
+            },
+        },
+        {
             resolve: `gatsby-source-filesystem`,
             options: {
                 path: `${__dirname}/src/images`,

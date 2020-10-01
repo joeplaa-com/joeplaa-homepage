@@ -138,7 +138,7 @@ export type PostBodyProps = {
     content: string
 }
 
-interface PostQueryNode extends PostBasicProps {
+interface PostQueryNode extends PostProps {
     body: string
     id: string
 }

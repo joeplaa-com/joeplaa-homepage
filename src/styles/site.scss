@@ -90,6 +90,7 @@ $link-dark-active-color:    darken($link-dark-color, 10%);
 /* -------begin markdown additions-------- */
 .markdown {
     font-size: 1.125rem;
+    font-family: 'Ubuntu Mono', 'Roboto Mono';
 }
 
     .markdown p,
@@ -177,8 +178,11 @@ $link-dark-active-color:    darken($link-dark-color, 10%);
     .section-fill.blue-light {
         background: linear-gradient($blue-200, $gray-400);
     }
-    .section-fill.gray {
+    .section-fill.gray-dark {
         background: linear-gradient($gray-800, $gray-400);
+    }
+    .section-fill.gray-medium {
+        background: linear-gradient($gray-400, $gray-400);
     }
 /* -------end Layout-------- */
 
@@ -369,6 +373,23 @@ a.tag {
 
 a.nav-padding-social {
     padding: 0.5rem 0.5rem;
+}
+
+$post-container-padding: (
+    xs: 1rem,
+    md: 2rem
+);
+
+@each $breakpoint-size, $padding in $post-container-padding {
+    @include media-breakpoint-up($breakpoint-size) {
+        div.post-container {
+            background-color: $white;
+            margin-bottom: 2rem;
+            margin-top: 2rem;
+            padding: $padding $padding;
+            box-shadow: $box-shadow;
+        }
+    }
 }
 
 /* -------end custom additions-------- */
