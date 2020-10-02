@@ -22,13 +22,15 @@ module.exports = {
         'plugin:compat/recommended',
         'plugin:jsx-a11y/recommended',
         'plugin:mdx/recommended',
+        'plugin:optimize-regex/recommended',
         'plugin:react/recommended',
         'plugin:react-hooks/recommended',
         "plugin:react-redux/recommended",
         'plugin:@typescript-eslint/recommended',
     ],
     plugins: [
-        '@typescript-eslint'
+        '@typescript-eslint',
+        'promise',
     ],
     rules: {
         indent: ["error", 4],
