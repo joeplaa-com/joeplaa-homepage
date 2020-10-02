@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import Img from 'gatsby-image'
+import Img from 'gatsby-image/withIEPolyfill'
 import { Button, Card, CardBody, Modal, ModalBody, ModalFooter, ModalHeader } from 'reactstrap'
 import { FaTimes } from 'react-icons/fa'
 import PostBody from './postBody'
@@ -27,7 +27,7 @@ export default function PortfolioPreview({ body, fields, fileAbsolutePath, front
                 <ModalHeader className='modal-background' toggle={toggle}>{frontmatter.title}</ModalHeader>
 
                 <ModalBody>
-                    <Img fluid={frontmatter.cover.childImageSharp.fluid} alt={'Cover Image for ' + frontmatter.title} className='img-fluid rounded' />
+                    <Img fluid={frontmatter.cover.childImageSharp.fluid} objectFit="cover" objectPosition="50% 50%" alt={'Cover Image for ' + frontmatter.title} className='img-fluid rounded' />
                 </ModalBody>
 
                 <ModalBody>

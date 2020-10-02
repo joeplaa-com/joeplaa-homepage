@@ -9,10 +9,12 @@
     "private": true,
     "scripts": {
         "dev": "gatsby develop",
-        "build": "gatsby clean && gatsby build",
+        "build": "gatsby build",
         "clean": "gatsby clean",
+        "deploy": "gatsby clean && gatsby deploy",
         "serve": "gatsby serve -p 9500"
     },
+    "browserslist": [">0.25%", "not dead"],
     "dependencies": {
         "@mdx-js/mdx": "^1.6.18",
         "@mdx-js/react": "^1.6.18",
@@ -53,6 +55,7 @@
         "@types/reactstrap": "^8.5.1",
         "@typescript-eslint/eslint-plugin": "^4.2.0",
         "@typescript-eslint/parser": "^4.2.0",
+        "eslint-plugin-compat": "^3.8.0",
         "eslint-plugin-react": "^7.21.0",
         "eslint-plugin-react-hooks": "^4.1.2",
         "redux-devtools-extension": "^2.13.8",

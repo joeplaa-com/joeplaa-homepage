@@ -6,6 +6,15 @@ export type AuthorProps = {
     name: string
 }
 
+export type AvatarImageProps = {
+    node: {
+        relativePath: string
+        extension: string
+        publicURL: string
+        childImageSharp: ChildImageSharpFixed
+    }
+}
+
 export type BannerProps = {
     alt: string
     src: string
@@ -153,11 +162,33 @@ export type PostQueryProps = {
             }>
         },
         site: {
-            siteMetadata: { 
+            siteMetadata: {
                 title: string
             },
         }
     }
+}
+
+export type PostTagsProps = {
+    data: {
+        mdx: {
+            totalCount: number
+            edges: {
+                node: {
+                    fields: {
+                        slug: string
+                    }
+                    frontmatter: {
+                        title: string
+                    }
+                }
+            }
+        }
+    }
+    pageContext: {
+        tag: string
+    }
+    
 }
 
 export type PostTemplateProps = {

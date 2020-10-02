@@ -1,6 +1,6 @@
 import React, { useMemo } from 'react'
 import { graphql, Link, useStaticQuery } from 'gatsby'
-import Img from 'gatsby-image'
+import Img from 'gatsby-image/withIEPolyfill'
 import { ImageProps, ImageFluidNodeProps } from '../types'
 
 const Image = ({ src, to, ...rest }: ImageProps) => {
@@ -40,7 +40,7 @@ const Image = ({ src, to, ...rest }: ImageProps) => {
         return to ? <Link to={to}>{svgImage}</Link> : svgImage;
     }
 
-    const renderedImage = <Img fluid={childImageSharp.fluid} {...rest} />;
+    const renderedImage = <Img fluid={childImageSharp.fluid} objectFit="cover" objectPosition="50% 50%" {...rest} />;
     return to ? <Link to={to}>{renderedImage}</Link> : renderedImage;
 };
 
