@@ -12,6 +12,7 @@ module.exports = {
     },
     plugins: [
         `gatsby-plugin-advanced-sitemap`,
+        `gatsby-plugin-catch-links`,
         `gatsby-plugin-react-helmet`,
         `gatsby-plugin-sass`,
         `gatsby-transformer-sharp`,
