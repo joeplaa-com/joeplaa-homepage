@@ -59,6 +59,8 @@ export const metaData = {
     PortfolioTitle: 'Portfolio',
     PricingDescription: 'If you want a website, here\'s what it costs.',
     PricingTitle: 'Pricing',
+    PrivacyDescription: 'The joeplaa privacy statement',
+    PrivacyTitle: 'Privacy Statement',
     RecommendedDescription: 'I\'ve read a lot of books and watched countless videos on the web. Here you can find a list of my recommended books and videos.',
     RecommendedTitle: 'Recommended',
     ServicesDescription: 'If you want a website, here\'s how I can help.',
@@ -70,7 +72,9 @@ export const metaData = {
     SiteName: 'joeplaa.com',
     SiteTitle: 'joeplaa.com',
     SiteUrl: process.env.GATSBY_URL,
-    TwitterUsername: ``,
+    TermsDescription: 'The joeplaa terms of service',
+    TermsTitle: 'Terms of service',
+    TwitterUsername: '',
     WikiDescription: 'How I work and what tools I use.',
     WikiImage: '/images/banner-www-com-white.png',
     WikiPricing: 'Pricing',
@@ -86,8 +90,10 @@ export const navigation = {
     howto: '/howto',
     portfolio: '/portfolio',
     pricing: '/home#Pricing',
+    ps: '/conditions/ps',
     recommended: process.env.GATSBY_BLOG_URL + '/recommended',
     services: '/home#Services',
+    tos: '/conditions/tos',
     wiki: '/wiki'
 }
 export const settings = {

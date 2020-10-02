@@ -1,8 +1,10 @@
 import { MDXProvider } from '@mdx-js/react';
+import { Link } from "gatsby"
 import React from 'react'
 import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react'
 import Code from './src/components/code'
+import NewTabLink from './src/components/newTabLink'
 import configureStore from './src/store/configureStore'
 
 const components = {
@@ -22,7 +24,9 @@ const components = {
                 />
             );
         }
-    }
+    },
+    Link,
+    NewTabLink
 };
 
 export const wrapRootElement = ({ element }) => (

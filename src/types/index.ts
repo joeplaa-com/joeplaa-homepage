@@ -63,11 +63,6 @@ export type CodeProps = {
     language: Language
 }
 
-export type CopyrightLinkProps = {
-    className?: string
-    color: 'dark' | 'light' | 'navbar'
-}
-
 export type CustomNavLinkProps = {
     children: ReactNode
     href?: string
@@ -78,6 +73,11 @@ export type CustomNavLinkProps = {
 export type FilterProps = {
     page: string
     tags: Array<LabelProps>
+}
+
+export type FooterLinkProps = {
+    className?: string
+    color: 'dark' | 'light' | 'navbar'
 }
 
 export type ImageProps = {
