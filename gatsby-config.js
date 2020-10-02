@@ -1,15 +1,19 @@
+/* eslint-disable compat/compat */
+const siteAddress = new URL("https://www.joeplaa.com");
+const siteMetadata = {
+    title: `joeplaa.com`, //sitetitle
+    titleTemplate: `joeplaa.com`, //sitename
+    description: `Helping people create their digital home.`, //sitedescription
+    image: `/images/banner-www-com-white.png`,
+    siteUrl: siteAddress.href,
+    siteLanguage: `en-US`,
+    siteLocale: `en_us`,
+    twitterUsername: ``,
+    authorName: `Joep van de Laarschot`,
+}
+
 module.exports = {
-    siteMetadata: {
-        title: `joeplaa.com`, //sitetitle
-        titleTemplate: `joeplaa.com`, //sitename
-        description: `Helping people create their digital home.`, //sitedescription
-        image: `/images/banner-www-com-white.png`,
-        siteUrl: `https://www.joeplaa.com`,
-        siteLanguage: `en-US`,
-        siteLocale: `en_us`,
-        twitterUsername: ``,
-        authorName: `Joep van de Laarschot`,
-    },
+    siteMetadata: siteMetadata,
     plugins: [
         `gatsby-plugin-advanced-sitemap`,
         `gatsby-plugin-catch-links`,
@@ -98,6 +102,14 @@ module.exports = {
                     }
                 }
             }
+        },
+        {
+            resolve: `gatsby-plugin-s3`,
+            options: {
+                bucketName: "www-joeplaa-com",
+                protocol: siteAddress.protocol.slice(0, -1),
+                hostname: siteAddress.hostname,
+            },
         },
         {
             resolve: `gatsby-plugin-sharp`,
