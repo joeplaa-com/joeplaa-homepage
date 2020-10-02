@@ -37,7 +37,7 @@ const About = ({ className }: SectionProps) => {
                         </div>
                         <div>
                             <h2>What is Joeplaa</h2>
-                            <p>Joeplaa, pronounce &quot;you-p-laah&quot;, is an abbreviation of my full name: {metaData.FirstName} {metaData.LastName}. Initially I started using it to shorten my e-mail address, but it turned into my &quot;official&quot; handle <code>@joeplaa</code> everywhere on the web. I&apos;ve originally started joeplaa.com as my <a href={navigation.blog}>personal blog</a>, which you can still find <a href={navigation.blog}>here</a>.</p>
+                            <p>Joeplaa, pronounce &quot;you-p-laah&quot;, is an abbreviation of my full name: {metaData.FirstName} {metaData.LastName}. Initially I started using it to shorten my e-mail address, but it turned into my &quot;official&quot; handle <code>@joeplaa</code> everywhere on the web. I&apos;ve originally started joeplaa.com as my <a href={navigation.blog}>personal blog</a>, which you can still find at <a href={navigation.blog}>{navigation.blog}</a>.</p>
                             <p>Now, with this website, joeplaa.com 2.0, I want to show you what I can do. It both is and contains my <Link to={navigation.portfolio}>portfolio</Link>. Have a look around and <Link to={navigation.contact}>let me know</Link> if you like my work.</p>
                         </div>
                     </Col>

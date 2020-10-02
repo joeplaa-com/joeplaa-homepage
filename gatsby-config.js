@@ -83,6 +83,12 @@ module.exports = {
             },
         },
         {
+            resolve: `gatsby-plugin-offline`,
+            options: {
+                precachePages: [`/home/`, `/wiki/`],
+            },
+        },
+        {
             resolve: "gatsby-plugin-react-svg",
             options: {
                 rule: {

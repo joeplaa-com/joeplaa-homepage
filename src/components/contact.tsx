@@ -165,7 +165,7 @@ export default class Contact extends React.Component<SectionProps, ContactState>
                                                 <Input type="text" name="business-name" id="business-name" placeholder="ACME" value={this.state.business} onChange={(e) => (this.setBusiness(e.target.value))} />
                                             </FormGroup>
                                             <FormGroup>
-                                                <Label for="exampleEmail" className='label-bold'>{content.Email}</Label>
+                                                <Label for="email" className='label-bold'>{content.Email}</Label>
                                                 <Input type="email" name="email" id="email" placeholder="name@email.com" value={this.state.email} onChange={(e) => (this.setEmail(e.target.value))} onBlur={this.checkEmailError.bind(this)} invalid={this.state.emailError} />
                                                 <FormFeedback>{content.EmailErrorMessage}</FormFeedback>
                                             </FormGroup>
