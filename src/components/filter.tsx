@@ -36,12 +36,12 @@ export default function Filter({ page, tags }: FilterProps) {
 
     return (
         <section>
-            <Row className={'filter'}>
+            <Row className='filter'>
                 <Col className='mx-auto'>
-                    <Card className='mt-2'>
+                    <Card>
                         <CardBody>
-                            <Row className='d-flex justify-content-between'>
-                                <Col xs='12' sm='auto' className='d-flex align-items-center flex-wrap tags'>
+                            <Row className='d-flex justify-content-between align-items-center'>
+                                <Col xs='12' sm='auto' className='align-items-center flex-wrap tags'>
                                     {filter.userFilter[page].length > 0 && filter.userFilter[page].map(tag => (
                                         <Tag key={tag.value} tag={tag} page={page} />
                                     ))}
