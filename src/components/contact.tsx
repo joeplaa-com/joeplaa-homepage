@@ -174,37 +174,43 @@ export default class Contact extends React.Component<SectionProps, ContactState>
                                             <FormGroup check>
                                                 <Label check>
                                                     <Input type="checkbox" checked={this.state.staticDesign || false}
-                                                        onChange={() => this.setCheck('staticDesign')} />Static website (Next.js or Gatsby.js)
+                                                        onChange={() => this.setCheck('staticDesign')} />
+                                                    <span className="checkbox-placeholder"></span>Static website (Next.js or Gatsby.js)
                                                 </Label>
                                             </FormGroup>
                                             <FormGroup check>
                                                 <Label check>
                                                     <Input type="checkbox" checked={this.state.dynamicDesign || false}
-                                                        onChange={() => this.setCheck('dynamicDesign')} />Dynamic website (WordPress)
+                                                        onChange={() => this.setCheck('dynamicDesign')} />
+                                                    <span className="checkbox-placeholder"></span>Dynamic website (WordPress)
                                                 </Label>
                                             </FormGroup>
                                             <FormGroup check>
                                                 <Label check>
                                                     <Input type="checkbox" checked={this.state.cmsDesign || false}
-                                                        onChange={() => this.setCheck('cmsDesign')} />Static website + CMS
+                                                        onChange={() => this.setCheck('cmsDesign')} />
+                                                    <span className="checkbox-placeholder"></span>Static website + CMS
                                                 </Label>
                                             </FormGroup>
                                             <FormGroup check>
                                                 <Label check>
                                                     <Input type="checkbox" checked={this.state.customDesign || false}
-                                                        onChange={() => this.setCheck('customDesign')} />Custom website
+                                                        onChange={() => this.setCheck('customDesign')} />
+                                                    <span className="checkbox-placeholder"></span>Custom website
                                                 </Label>
                                             </FormGroup>
                                             <FormGroup check>
                                                 <Label check>
                                                     <Input type="checkbox" checked={this.state.staticHosting || false}
-                                                        onChange={() => this.setCheck('staticHosting')} />Static website hosting
+                                                        onChange={() => this.setCheck('staticHosting')} />
+                                                    <span className="checkbox-placeholder"></span>Static website hosting
                                                 </Label>
                                             </FormGroup>
                                             <FormGroup check>
                                                 <Label check>
                                                     <Input type="checkbox" checked={this.state.dynamicHosting || false}
-                                                        onChange={() => this.setCheck('dynamicHosting')} />Dynamic website hosting
+                                                        onChange={() => this.setCheck('dynamicHosting')} />
+                                                    <span className="checkbox-placeholder"></span>Dynamic website hosting
                                                 </Label>
                                             </FormGroup>
                                             <p></p>

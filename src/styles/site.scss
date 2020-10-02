@@ -305,6 +305,25 @@ a.tag {
 /* -------end Tags-------- */
 
 /* -------other-------- */
+@include media-breakpoint-down(sm) {
+    input[type=checkbox] {
+        /* Double-sized Checkboxes */
+        transform: scale(2);
+        -ms-transform: scale(2); /* IE */
+        -moz-transform: scale(2); /* FF */
+        -webkit-transform: scale(2); /* Safari and Chrome */
+        -o-transform: scale(2); /* Opera */
+    }
+    span.checkbox-placeholder {
+        padding-left: .5rem;
+    }
+    div.form-check {
+        padding-left: 1.5rem;
+        margin-bottom: .75rem;
+        margin-top: .75rem;
+    }
+}
+
 .image-container {
     position: relative;
 }
