@@ -15,6 +15,7 @@ module.exports = {
         `gatsby-plugin-catch-links`,
         `gatsby-plugin-react-helmet`,
         `gatsby-plugin-sass`,
+        `gatsby-remark-images`,
         `gatsby-transformer-sharp`,
         {
             resolve: "gatsby-plugin-anchor-links",
@@ -39,23 +40,32 @@ module.exports = {
             resolve: `gatsby-plugin-mdx`,
             options: {
                 extensions: [`.mdx`, `.md`],
+                gatsbyRemarkPlugins: [
+                    {
+                        resolve: `gatsby-remark-copy-linked-files`,
+                        options: {
+                            destinationDir: `downloads`,
+                            ignoreFileExtensions: [`png`, `jpg`, `jpeg`, `bmp`, `tiff`, `webp`],
+                        },
+                    },
+                    {
+                        resolve: "gatsby-remark-external-links",
+                        options: {
+                            target: "_blank",
+                            rel: "nofollow noreferrer"
+                        }
+                    },
+                    {
+                        resolve: `gatsby-remark-images`,
+                        options: {
+                            linkImagesToOriginal: true,
+                            maxWidth: 1200,
+                            srcSetBreakpoints: [320, 480, 640, 960, 1280],
+                            withWebp: true,
+                        },
+                    }
+                ],
             },
-            gatsbyRemarkPlugins: [
-                {
-                    resolve: `gatsby-remark-images`,
-                    options: {
-                        maxWidth: 590,
-                    },
-                },
-            ],
-            plugins: [
-                {
-                    resolve: `gatsby-remark-images`,
-                    options: {
-                        maxWidth: 590,
-                    },
-                },
-            ],
         },
         {
             resolve: "gatsby-plugin-react-svg",
@@ -113,27 +123,6 @@ module.exports = {
             },
         },
         {
-            resolve: `gatsby-transformer-remark`,
-            options: {
-                plugins: [
-                    {
-                        resolve: "gatsby-remark-external-links",
-                        options: {
-                            target: "_blank",
-                            rel: "nofollow noreferrer"
-                        }
-                    }
-                ]
-            }
-        },
-        {
-            resolve: `gatsby-source-filesystem`,
-            options: {
-                path: `${__dirname}/src/images`,
-                name: `images`,
-            },
-        },
-        {
             resolve: `gatsby-source-filesystem`,
             options: {
                 path: `${__dirname}/content/authors`,
@@ -145,6 +134,13 @@ module.exports = {
             options: {
                 path: `${__dirname}/content/howto`,
                 name: `howto`,
+            },
+        },
+        {
+            resolve: `gatsby-source-filesystem`,
+            options: {
+                path: `${__dirname}/src/images`,
+                name: `images`,
             },
         },
         {
