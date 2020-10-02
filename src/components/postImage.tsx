@@ -15,7 +15,7 @@ export default function PostImage({ className, title, picture, slug, rounded, pa
                     ? (<Link to={slug}>
                         {image}
                     </Link>)
-                    : (<a href="#" onClick={onClick} aria-label={title}>{image}</a>)
+                    : (<button onClick={onClick} aria-label={title}>{image}</button>)
                 : (image)
             }
         </div>

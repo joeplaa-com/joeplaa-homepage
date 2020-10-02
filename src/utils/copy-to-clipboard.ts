@@ -1,6 +1,7 @@
 // https://github.com/gatsbyjs/gatsby/blob/master/www/src/utils/copy-to-clipboard.js
 
-export const copyToClipboard = str => {
+export const copyToClipboard = (str: string) => {
+    // eslint-disable-next-line compat/compat
     const clipboard = window.navigator.clipboard;
     /*
      * fallback to older browsers (including Safari)
@@ -9,16 +10,18 @@ export const copyToClipboard = str => {
     if (!clipboard || typeof clipboard.writeText !== `function`) {
         const textarea = document.createElement(`textarea`);
         textarea.value = str;
-        textarea.setAttribute(`readonly`, true);
-        textarea.setAttribute(`contenteditable`, true);
+        textarea.setAttribute(`readonly`, 'true');
+        textarea.setAttribute(`contenteditable`, 'true');
         textarea.style.position = `absolute`;
         textarea.style.left = `-9999px`;
         document.body.appendChild(textarea);
         textarea.select();
         const range = document.createRange();
         const sel = window.getSelection();
-        sel.removeAllRanges();
-        sel.addRange(range);
+        if (sel !== null) {
+            sel.removeAllRanges();
+            sel.addRange(range);
+        }
         textarea.setSelectionRange(0, textarea.value.length);
         document.execCommand(`copy`);
         document.body.removeChild(textarea);
