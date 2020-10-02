@@ -9,16 +9,16 @@ export interface IApplicationState {
 }
 export interface IFilterState {
     userFilter: {
-        'howto': Array<LabelProps>,
-        'portfolio': Array<LabelProps>
+        [howto: string]: Array<LabelProps>,
+        portfolio: Array<LabelProps>
     }
     initialFilter: {
-        'howto': Array<LabelProps>,
-        'portfolio': Array<LabelProps>
+        [howto: string]: Array<LabelProps>,
+        portfolio: Array<LabelProps>
     }
 }
 
 export interface IRootState {
-    application: IApplicationState | undefined;
-    filter: IFilterState | undefined;
+    application: IApplicationState;
+    filter: IFilterState;
 }

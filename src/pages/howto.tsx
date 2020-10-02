@@ -9,6 +9,7 @@ import PostHero from '../components/postHero'
 import PostMore from '../components/postMore'
 import { PostQueryProps } from '../types'
 import { filterActionCreators } from '../store/actions/filter'
+import { IRootState } from '../store/interfaces'
 import currentPage from '../utils/currentPage'
 import { metaData, navigation } from '../utils/data'
 import filterTag from '../utils/filterTag'
@@ -20,7 +21,8 @@ const Howto = ({ data }: PostQueryProps) => {
     const page = currentPage(heroPost.fileAbsolutePath);
     const tags = formatAllTags(data.allMdx.group);
 
-    const filter = useSelector((state) => state.filter);
+    const filterSelector = (state: IRootState) => state.filter;
+    const filter = useSelector(filterSelector);
     const dispatch = useDispatch();
     useEffect(() => {
         dispatch(filterActionCreators.addTagsFilter(page, tags));

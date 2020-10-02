@@ -32,11 +32,11 @@ export const filterReducer: Reducer<IFilterState> = (state: IFilterState | undef
                 ...state,
                 userFilter: {
                     ...state.userFilter,
-                    'howto': sortArrayObject([...action.tags])
+                    howto: sortArrayObject([...action.tags])
                 },
                 initialFilter: {
                     ...state.initialFilter,
-                    'howto': sortArrayObject([...action.tags])
+                    howto: sortArrayObject([...action.tags])
                 }
             };
         case 'portfolio':
@@ -44,11 +44,11 @@ export const filterReducer: Reducer<IFilterState> = (state: IFilterState | undef
                 ...state,
                 userFilter: {
                     ...state.userFilter,
-                    'portfolio': sortArrayObject([...action.tags])
+                    portfolio: sortArrayObject([...action.tags])
                 },
                 initialFilter: {
                     ...state.initialFilter,
-                    'portfolio': sortArrayObject([...action.tags])
+                    portfolio: sortArrayObject([...action.tags])
                 }
             };
         }
@@ -61,7 +61,7 @@ export const filterReducer: Reducer<IFilterState> = (state: IFilterState | undef
                 ...state,
                 userFilter: {
                     ...state.userFilter,
-                    'howto': sortArrayObject(action.tags)
+                    howto: sortArrayObject(action.tags)
                 }
             };
         case 'portfolio':
@@ -69,7 +69,7 @@ export const filterReducer: Reducer<IFilterState> = (state: IFilterState | undef
                 ...state,
                 userFilter: {
                     ...state.userFilter,
-                    'portfolio': sortArrayObject(action.tags)
+                    portfolio: sortArrayObject(action.tags)
                 }
             };
         }

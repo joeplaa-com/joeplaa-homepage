@@ -23,10 +23,10 @@ module.exports = {
         'plugin:jsx-a11y/recommended',
         'plugin:react/recommended',
         'plugin:react-hooks/recommended',
+        "plugin:react-redux/recommended",
         'plugin:@typescript-eslint/recommended',
     ],
     plugins: [
-        'react',
         '@typescript-eslint'
     ],
     rules: {
