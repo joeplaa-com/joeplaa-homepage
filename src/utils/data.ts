@@ -107,7 +107,6 @@ export const urls = {
     github: 'https://github.com/joeplaa',
     instagram: 'https://www.instagram.com/joeplaa/',
     linkedin: 'https://www.linkedin.com/in/joeplaa/',
-    umami: 'https://umami.joeplaa.com/umami.js',
     awsCloudfront: 'https://aws.amazon.com/cloudfront/',
     awsLightsail: 'https://aws.amazon.com/lightsail/',
     gatsbyjs: 'https://www.gatsbyjs.com/',

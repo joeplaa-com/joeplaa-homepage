@@ -107,6 +107,16 @@ module.exports = {
             },
         },
         {
+            resolve: `gatsby-plugin-umami`,
+            options: {
+                websiteId: '418505de-4716-4899-807a-ac8654c93847',
+                srcUrl: 'https://umami.joeplaa.com/umami.js',
+                includeInDevelopment: false,
+                autoTrack: true,
+                respectDoNotTrack: true
+            },
+        },
+        {
             resolve: `gatsby-plugin-webfonts`,
             options: {
                 fonts: {
