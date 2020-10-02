@@ -21,6 +21,7 @@ module.exports = {
         'eslint:recommended',
         'plugin:compat/recommended',
         'plugin:jsx-a11y/recommended',
+        'plugin:mdx/recommended',
         'plugin:react/recommended',
         'plugin:react-hooks/recommended',
         "plugin:react-redux/recommended",
