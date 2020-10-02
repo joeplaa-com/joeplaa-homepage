@@ -11,7 +11,7 @@ export default function PostTitle({ title, slug, path, onClick }: PostTitleProps
                     ? (<Link to={slug}>
                         {title}
                     </Link>)
-                    : (<button onClick={onClick}>{title}</button>)
+                    : (<span onClick={onClick} onKeyPress={onClick} role='button' tabIndex={0}>{title}</span>)
                 }
             </h3>
         </CardTitle>
