@@ -91,25 +91,39 @@ module.exports = {
                     google: [
                         {
                             family: "Roboto Mono",
-                            variants: ["300","400","500","600","700"],
+                            variants: ["300", "400", "500", "600", "700"],
                         },
                         {
                             family: "Roboto",
-                            variants: ["300","400","500","600","700"],
+                            variants: ["300", "400", "500", "600", "700"],
                         },
                         {
                             family: "Ubuntu Mono",
-                            variants: ["300","400","500","600","700"],
+                            variants: ["300", "400", "500", "600", "700"],
                         },
                         {
                             family: "Ubuntu",
-                            variants: ["300","400","500","600","700"],
+                            variants: ["300", "400", "500", "600", "700"],
                         },
                     ],
                 },
                 useMinify: true,
                 usePreload: true,
             },
+        },
+        {
+            resolve: `gatsby-transformer-remark`,
+            options: {
+                plugins: [
+                    {
+                        resolve: "gatsby-remark-external-links",
+                        options: {
+                            target: "_blank",
+                            rel: "nofollow noreferrer"
+                        }
+                    }
+                ]
+            }
         },
         {
             resolve: `gatsby-source-filesystem`,
