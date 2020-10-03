@@ -4,7 +4,7 @@ const siteMetadata = {
     title: `joeplaa.com`, //sitetitle
     titleTemplate: `joeplaa.com`, //sitename
     description: `Helping people create their digital home.`, //sitedescription
-    image: `/images/banner-www-com-white.png`,
+    image: `/images/banner-www-com.png`,
     siteUrl: siteAddress.href,
     siteLanguage: `en-US`,
     siteLocale: `en_us`,
@@ -75,8 +75,8 @@ module.exports = {
                         resolve: `gatsby-remark-images`,
                         options: {
                             linkImagesToOriginal: true,
-                            maxWidth: 1200,
-                            srcSetBreakpoints: [320, 480, 640, 960, 1280],
+                            maxWidth: 1280,
+                            srcSetBreakpoints: [240, 320, 640, 960, 1280],
                             withWebp: true,
                         },
                     }
@@ -123,16 +123,6 @@ module.exports = {
             options: {
                 stripMetadata: true,
                 defaultQuality: 70,
-            },
-        },
-        {
-            resolve: `gatsby-plugin-umami`,
-            options: {
-                websiteId: '418505de-4716-4899-807a-ac8654c93847',
-                srcUrl: 'https://umami.joeplaa.com/umami.js',
-                includeInDevelopment: false,
-                autoTrack: true,
-                respectDoNotTrack: true
             },
         },
         {

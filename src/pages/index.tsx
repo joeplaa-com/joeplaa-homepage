@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { Helmet } from 'react-helmet'
 import SEO from 'react-seo-component'
 import { navigate } from 'gatsby'
-import { metaData, navigation } from '../utils/data'
+import { metaData, navigation, urls } from '../utils/data'
 import { PageProps } from '../types'
 
 const Index = (props: PageProps) => {
@@ -37,6 +37,7 @@ const Index = (props: PageProps) => {
                         </div>
                     </div>}`}
                 </noscript>
+                <link rel="preconnect" href={urls.umami} as="script" data-website-id={process.env.GATSBY_UMAMI_ID} data-auto-track="true" data-do-not-track="true"></link>
             </Helmet>
         </>
     );

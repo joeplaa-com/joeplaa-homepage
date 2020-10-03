@@ -2,6 +2,7 @@ import React from 'react'
 import { Helmet } from 'react-helmet'
 import Footer from './footer'
 import Header from './header'
+import { urls } from '../utils/data'
 import { LayoutProps } from '../types'
 
 // Sticky footer: https://css-tricks.com/couple-takes-sticky-footer/
@@ -18,6 +19,7 @@ export default function Layout({ children }: LayoutProps) {
                         </div>
                     </div>}`}
                 </noscript>
+                <link rel="preconnect" href={urls.umami} as="script" data-website-id={process.env.GATSBY_UMAMI_ID} data-auto-track="true" data-do-not-track="true"></link>
             </Helmet>
             <Header />
             <main className='content'>{children}</main>
