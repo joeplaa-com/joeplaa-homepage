@@ -17,6 +17,7 @@ module.exports = {
     plugins: [
         `gatsby-plugin-advanced-sitemap`,
         `gatsby-plugin-catch-links`,
+        `gatsby-plugin-preact`,
         `gatsby-plugin-react-helmet`,
         `gatsby-plugin-sass`,
         `gatsby-plugin-webpack-bundle-analyser-v2`,

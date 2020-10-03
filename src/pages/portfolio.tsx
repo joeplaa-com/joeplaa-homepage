@@ -1,11 +1,12 @@
-import React, { useEffect } from 'react'
+import React, { lazy, Suspense, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { graphql } from 'gatsby'
 import SEO from 'react-seo-component'
 import { Container } from 'reactstrap'
-import Filter from '../components/filter'
+const Filter = lazy(() => import('../components/filter'));
 import Layout from '../components/layout'
 import PortfolioEntries from '../components/portfolioEntries'
+import RenderLoader from '../components/renderLoader'
 import { PostQueryProps } from '../types'
 import { filterActionCreators } from '../store/actions/filter'
 import { IRootState } from '../store/interfaces'
@@ -17,13 +18,13 @@ import formatAllTags from '../utils/formatAllTags'
 const Portfolio = ({ data }: PostQueryProps) => {
     const page = currentPage(data.allMdx.nodes[0].fileAbsolutePath);
     const tags = formatAllTags(data.allMdx.group);
-    
+
     const filterSelector = (state: IRootState) => state.filter;
     const filter = useSelector(filterSelector);
     const dispatch = useDispatch();
     useEffect(() => {
         dispatch(filterActionCreators.addTagsFilter(page, tags));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     return (
@@ -43,7 +44,9 @@ const Portfolio = ({ data }: PostQueryProps) => {
 
                 <section className='section-fill blue-dark' id={metaData.PortfolioTitle}>
                     <Container className='text-center text-md-left my-auto'>
-                        <Filter page={page} tags={tags} />
+                        <Suspense fallback={<RenderLoader />}>
+                            <Filter page={page} tags={tags} />
+                        </Suspense>
                         <PortfolioEntries posts={data.allMdx.nodes.filter((post) => (filterTag(post, filter.userFilter[currentPage(post.fileAbsolutePath)])))} />
                     </Container>
                 </section>

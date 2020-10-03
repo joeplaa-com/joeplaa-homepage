@@ -1,12 +1,13 @@
-import React, { useEffect } from 'react'
+import React, { lazy, Suspense, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { graphql } from 'gatsby'
 import SEO from 'react-seo-component'
 import { Container } from 'reactstrap'
-import Filter from '../components/filter'
+const Filter = lazy(() => import('../components/filter'));
 import Layout from '../components/layout'
 import PostHero from '../components/postHero'
 import PostMore from '../components/postMore'
+import RenderLoader from '../components/renderLoader'
 import { PostQueryProps } from '../types'
 import { filterActionCreators } from '../store/actions/filter'
 import { IRootState } from '../store/interfaces'
@@ -46,7 +47,9 @@ const Howto = ({ data }: PostQueryProps) => {
 
                 <section className='section-fill blue-medium' id={metaData.WikiTitle}>
                     <Container className='text-center text-md-left my-auto'>
-                        <Filter page={page} tags={tags} />
+                        <Suspense fallback={<RenderLoader />}>
+                            <Filter page={page} tags={tags} />
+                        </Suspense>
                         {heroPost && filterTag(heroPost, filter.userFilter[page]) && (
                             <PostHero excerpt={heroPost.excerpt} fields={heroPost.fields} fileAbsolutePath={heroPost.fileAbsolutePath} frontmatter={heroPost.frontmatter} />
                         )}
