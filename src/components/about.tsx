@@ -18,7 +18,7 @@ const About = ({ className }: SectionProps) => {
                 </Row>
                 <Row>
                     <Col xs='12' md='auto'>
-                        <div className='my-3 my-md-auto mx-auto shadow' style={{ width: '250px' }}>
+                        <div className='my-3 my-md-auto mx-auto shadow' style={{ width: '240px' }}>
                             <Image
                                 src={'joep-in-suit.jpg'}
                                 alt={'Picture of Joep in fitting room, trying on a suit'}

@@ -15,7 +15,7 @@ const Image = ({ src, to, alt, ...rest }: ImageProps) => {
             extension
             publicURL
             childImageSharp {
-              fluid(maxWidth: 1920, srcSetBreakpoints: [320, 480, 640, 960, 1280, 1600, 1920])
+              fluid(maxWidth: 1920, srcSetBreakpoints: [240, 320, 480, 640, 960, 1280, 1600, 1920])
               {
                 ...GatsbyImageSharpFluid_withWebp
               }
