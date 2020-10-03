@@ -14,7 +14,8 @@ const PageNotFound = () => {
                     description={metaData.SiteDescription || `nothin’`}
                     image={`${metaData.SiteUrl}${metaData.SiteImage}`}
                     pathname={`${metaData.SiteUrl}`}
-                    titleTemplate={metaData.PageTitle}
+                    titleSeparator={metaData.TitleSeparator}
+                    titleTemplate={metaData.TitleTemplate}
                     siteLanguage={metaData.SiteLanguage}
                     siteLocale={metaData.SiteLocale}
                     twitterUsername={metaData.TwitterUsername}

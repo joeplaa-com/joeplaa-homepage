@@ -20,7 +20,8 @@ const Landing = () => {
                     description={metaData.HomeDescription || `nothin’`}
                     image={`${metaData.SiteUrl}${metaData.HomeImage}`}
                     pathname={`${metaData.SiteUrl}${navigation.home}`}
-                    titleTemplate={metaData.PageTitle}
+                    titleTemplate={metaData.TitleTemplate}
+                    titleSeparator={metaData.TitleSeparator}
                     siteLanguage={metaData.SiteLanguage}
                     siteLocale={metaData.SiteLocale}
                     twitterUsername={metaData.TwitterUsername}

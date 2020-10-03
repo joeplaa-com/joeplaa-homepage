@@ -73,7 +73,8 @@ const Howto = ({ data }: PostQueryProps) => {
                     description={metaData.WikiDescription || `nothin’`}
                     image={`${metaData.SiteUrl}${metaData.WikiImage}`}
                     pathname={`${metaData.SiteUrl}${navigation.wiki}`}
-                    titleTemplate={metaData.PageTitle}
+                    titleTemplate={metaData.TitleTemplate}
+                    titleSeparator={metaData.TitleSeparator}
                     siteLanguage={metaData.SiteLanguage}
                     siteLocale={metaData.SiteLocale}
                     twitterUsername={metaData.TwitterUsername}

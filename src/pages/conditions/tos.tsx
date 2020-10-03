@@ -14,7 +14,8 @@ const TermsOfService = () => {
                     description={metaData.TermsDescription || `nothin’`}
                     image={`${metaData.SiteUrl}${metaData.SiteImage}`}
                     pathname={`${metaData.SiteUrl}`}
-                    titleTemplate={metaData.PageTitle}
+                    titleTemplate={metaData.TitleTemplate}
+                    titleSeparator={metaData.TitleSeparator}
                     siteLanguage={metaData.SiteLanguage}
                     siteLocale={metaData.SiteLocale}
                     twitterUsername={metaData.TwitterUsername}

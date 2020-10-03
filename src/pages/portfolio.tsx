@@ -34,7 +34,8 @@ const Portfolio = ({ data }: PostQueryProps) => {
                     description={metaData.PortfolioDescription || `nothin’`}
                     image={`${metaData.SiteUrl}${metaData.PortfolioImage}`}
                     pathname={`${metaData.SiteUrl}${navigation.portfolio}`}
-                    titleTemplate={metaData.PageTitle}
+                    titleTemplate={metaData.TitleTemplate}
+                    titleSeparator={metaData.TitleSeparator}
                     siteLanguage={metaData.SiteLanguage}
                     siteLocale={metaData.SiteLocale}
                     twitterUsername={metaData.TwitterUsername}

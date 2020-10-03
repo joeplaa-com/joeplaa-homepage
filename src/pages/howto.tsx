@@ -37,7 +37,8 @@ const Howto = ({ data }: PostQueryProps) => {
                     description={metaData.HowtoDescription || `nothin’`}
                     image={`${metaData.SiteUrl}${metaData.HowtoImage}`}
                     pathname={`${metaData.SiteUrl}${navigation.howto}`}
-                    titleTemplate={metaData.PageTitle}
+                    titleTemplate={metaData.TitleTemplate}
+                    titleSeparator={metaData.TitleSeparator}
                     siteLanguage={metaData.SiteLanguage}
                     siteLocale={metaData.SiteLocale}
                     twitterUsername={metaData.TwitterUsername}

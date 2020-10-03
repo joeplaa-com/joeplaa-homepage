@@ -15,7 +15,8 @@ const PostTemplate = ({ data, pageContext }: PostTemplateProps) => {
         <Layout>
             <SEO
                 title={title}
-                titleTemplate={metaData.PageTitle}
+                titleTemplate={metaData.TitleTemplate}
+                titleSeparator={metaData.TitleSeparator}
                 description={excerpt}
                 image={
                     cover === null
