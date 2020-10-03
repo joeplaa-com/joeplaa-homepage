@@ -6,9 +6,9 @@ import { FooterLinkProps } from '../types'
 
 export default function Copyright({ color }: FooterLinkProps) {
     return (
-        <div className='text-center'>
+        <>
             <Link className={linkColor(color)} to={navigation.tos}>{metaData.TermsTitle}</Link>{' | '}
             <Link className={linkColor(color)} to={navigation.ps}>{metaData.PrivacyTitle}</Link>
-        </div>
+        </>
     );
 }

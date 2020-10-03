@@ -1,5 +1,5 @@
 import React from 'react'
-import { Container } from 'reactstrap'
+import { Container, Col, Row } from 'reactstrap'
 import Conditions from './conditions'
 import Copyright from './copyright'
 import Social from './social'
@@ -9,9 +9,15 @@ export default function Footer({ className }: SectionProps) {
     return (
         <footer className={className + ' ' + 'footer'}>
             <Container>
-                <Copyright color='light' />
+                <Row>
+                    <Col xs='12' md='auto' className='ml-md-auto text-center text-md-right'>
+                        <Copyright color='light' />
+                    </Col>
+                    <Col xs='12' md='auto' className='mr-md-auto text-center text-md-left'>
+                        <Conditions color='light' />
+                    </Col>
+                </Row>
                 <Social color='light' size='2rem' />
-                <Conditions color='light' />
             </Container>
         </footer>
     );
