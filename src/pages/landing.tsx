@@ -3,7 +3,7 @@ import SEO from 'react-seo-component'
 import { Link } from 'gatsby'
 import { Container, Card, CardBody, CardColumns, CardTitle, CardText, Row } from 'reactstrap'
 import Layout from '../components/layout'
-import BannerBlogDefault from '../svg/banner-blog-default.svg'
+import BannerBlog from '../svg/banner-blog.svg'
 import BannerBlogRecommended from '../svg/banner-blog-recommended.svg'
 import BannerWwwCom from '../svg/banner-www-com.svg'
 import BannerWwwHowto from '../svg/banner-www-howto.svg'
@@ -65,16 +65,16 @@ const Landing = () => {
 
                                 <Card>
                                     <CardBody>
-                                        <CardTitle><h5><Link to={navigation.blog}>{content.Blog}</Link></h5></CardTitle>
-                                        <Link to={navigation.blog}><BannerBlogRecommended width='300px' /></Link>
+                                        <CardTitle><h5><a href={navigation.blog}>{content.Blog}</a></h5></CardTitle>
+                                        <a href={navigation.blog}><BannerBlog width='300px' /></a>
                                         <CardText>My blog with subjects from diet to mindset and psychology to sociology and politics.</CardText>
                                     </CardBody>
                                 </Card>
 
                                 <Card>
                                     <CardBody>
-                                        <CardTitle><h5><Link to={navigation.recommended}>{metaData.RecommendedTitle}</Link></h5></CardTitle>
-                                        <Link to={navigation.recommended}><BannerBlogDefault width='300px' /></Link>
+                                        <CardTitle><h5><a href={navigation.recommended}>{metaData.RecommendedTitle}</a></h5></CardTitle>
+                                        <a href={navigation.recommended}><BannerBlogRecommended width='300px' /></a>
                                         <CardText>{metaData.RecommendedDescription}</CardText>
                                     </CardBody>
                                 </Card>
