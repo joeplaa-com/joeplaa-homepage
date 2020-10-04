@@ -51,6 +51,9 @@ module.exports = {
                 theme_color: `#07b1c2`,
                 display: `standalone`,
                 icon: `src/images/icon.png`,
+                icon_options: {
+                    purpose: `any maskable`,
+                }
             },
         },
         {
@@ -86,9 +89,6 @@ module.exports = {
         },
         {
             resolve: `gatsby-plugin-offline`,
-            options: {
-                precachePages: [`/home/`, `/wiki/`],
-            },
         },
         {
             resolve: "gatsby-plugin-react-svg",
@@ -150,7 +150,7 @@ module.exports = {
                     ],
                 },
                 useMinify: true,
-                usePreload: true,
+                usePreload: false,
             },
         },
         {
