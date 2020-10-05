@@ -6,7 +6,6 @@ const _ = require("lodash");
 exports.createPages = ({ actions, graphql }) => {
     const { createPage } = actions;
     const blogPostTemplate = path.resolve('src/templates/blogPostTemplate.tsx');
-    const tagTemplate = path.resolve("src/templates/tags.tsx")
 
     return graphql(`
     {

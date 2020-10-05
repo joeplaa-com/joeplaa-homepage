@@ -1,0 +1,39 @@
+---
+title: jodiBooks smartphone app
+date: 2019-09-14
+tags: ['Android', 'Expo', 'iOS', 'JavaScript', 'React-Native']
+excerpt: 'Although we did a decent job making the jodiBooks dashboard mobile-friendly, it still lacked the native feel of an app.'
+cover: 'cover.png'
+author: 'Joep van de Laarschot'
+published: true
+---
+
+import LazyAppStoreBadge from '../../../src/components/lazyAppStoreBadge'
+import LazyGooglePlayBadge from '../../../src/components/lazyGooglePlayBadge'
+
+Although we did a decent job making the [jodiBooks](https://beauty.jodibooks.com) dashboard mobile-friendly, it still lacked the native feel of an app. We (especially myself) grossly underestimated the amount of work making an app would be, but in the end we managed to get our app in the Apple appstore and the Google Play store.
+
+After a lot of researching mobile-app development frameworks, we opted for React-Native with Expo. Halfway through the process we might have cursed ourselves for not choosing Xamarin, as this might have helped Diana, who is more proficient with C#. But in the end it gave us the experience with React that enabled me to develop the new homepage and future webapp frontends.
+
+**Frameworks**:
+
+* [Expo](https://expo.io/)
+* [React-Native](https://reactnative.dev/)
+
+**Techniques**:
+
+* JavaScript
+
+**Demo**:
+
+* [Android app](https://play.google.com/store/apps/details?id=com.jodiBooks.jodiBeauty)
+* [iOS app](https://apps.apple.com/nl/app/jodibooks-beauty/id1491790173)
+
+<div className="text-center text-sm-left">
+    <a href='https://play.google.com/store/apps/details?id=com.jodiBooks.jodiBeauty' target="_blank" rel="noopener noreferrer">
+        <LazyGooglePlayBadge height="60px" />
+    </a>
+    <a href='https://apps.apple.com/nl/app/jodibooks-beauty/id1491790173' target="_blank" rel="noopener noreferrer">
+        <LazyAppStoreBadge height="55px" />
+    </a>
+</div>

@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { graphql } from 'gatsby'
 import SEO from 'react-seo-component'
 import { Container } from 'reactstrap'
-const Filter = lazy(() => import('../components/filter'));
+const Filter = lazy(() => import('../components/filter'))
 import Layout from '../components/layout'
 import PortfolioEntries from '../components/portfolioEntries'
 import RenderLoader from '../components/renderLoader'
@@ -43,7 +43,7 @@ const Portfolio = ({ data }: PostQueryProps) => {
                 />
 
                 <section className='section-fill blue-dark' id={metaData.PortfolioTitle}>
-                    <Container className='text-center text-md-left my-auto'>
+                    <Container className='text-left my-auto'>
                         <Suspense fallback={<RenderLoader />}>
                             <Filter page={page} tags={tags} />
                         </Suspense>
@@ -69,7 +69,7 @@ export const query = graphql`
           cover {
             publicURL
             childImageSharp {
-                fluid(maxWidth: 1920, srcSetBreakpoints: [240, 360, 640, 960, 1280, 1600, 1920]) {
+                fluid(maxWidth: 960, srcSetBreakpoints: [240, 360, 480, 640, 960]) {
                 ...GatsbyImageSharpFluid_withWebp
               }
             }

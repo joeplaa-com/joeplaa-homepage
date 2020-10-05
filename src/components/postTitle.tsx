@@ -1,19 +1,23 @@
 import React from 'react'
 import { Link } from 'gatsby'
-import { CardTitle } from 'reactstrap'
+import { Button, CardTitle } from 'reactstrap'
 import { PostTitleProps } from '../types'
 
 export default function PostTitle({ title, slug, path, onClick }: PostTitleProps) {
     return (
         <CardTitle>
-            <h3>
-                {path
-                    ? (<Link to={slug}>
+            {path
+                ? (<Link to={slug}>
+                    <h3>
                         {title}
-                    </Link>)
-                    : (<span onClick={onClick} onKeyPress={onClick} role='button' tabIndex={0}>{title}</span>)
-                }
-            </h3>
+                    </h3>
+                </Link>)
+                : (<Button color="link" className='text-left' onClick={onClick} onKeyPress={onClick} tabIndex={0}>
+                    <h3>
+                        {title}
+                    </h3>
+                </Button>)
+            }
         </CardTitle>
     )
 }

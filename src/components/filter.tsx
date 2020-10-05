@@ -7,7 +7,7 @@ import makeAnimated from 'react-select/animated'
 import Tag from '../components/tag'
 import { filterActionCreators } from '../store/actions/filter'
 import { IRootState } from '../store/interfaces'
-import { content, settings } from '../utils/data'
+import { content } from '../utils/data'
 import { FilterProps, LabelProps } from '../types'
 
 export default function Filter({ page, tags }: FilterProps) {
@@ -41,15 +41,15 @@ export default function Filter({ page, tags }: FilterProps) {
                     <Card>
                         <CardBody>
                             <Row className='d-flex justify-content-between align-items-center'>
-                                <Col xs='12' sm='auto' className='align-items-center flex-wrap tags'>
+                                <Col xs='12' sm='10' className='align-items-center flex-wrap tags'>
                                     {filter.userFilter[page].length > 0 && filter.userFilter[page].map(tag => (
                                         <Tag key={tag.value} tag={tag} page={page} />
                                     ))}
                                 </Col>
-                                <Col xs='12' sm='auto'>
+                                <Col xs='12' sm='2' className='mt-2 mt-sm-0 float-right'>
                                     <Button outline color='primary' onClick={toggle} aria-label='filter-button'>
                                         <FaSlidersH />
-                                        <span className={'d-none d-' + settings.breakpoint + '-inline'}>{' '}{content.Filter}</span>
+                                        <span>{' '}{content.Filter}</span>
                                     </Button>
                                 </Col>
                             </Row>
