@@ -46,10 +46,10 @@ export default function Filter({ page, tags }: FilterProps) {
                                         <Tag key={tag.value} tag={tag} page={page} />
                                     ))}
                                 </Col>
-                                <Col xs='12' sm='auto'>
+                                <Col xs='12' sm='auto' className='mt-2 mt-sm-0'>
                                     <Button outline color='primary' onClick={toggle} aria-label='filter-button'>
                                         <FaSlidersH />
-                                        <span className={'d-none d-' + settings.breakpoint + '-inline'}>{' '}{content.Filter}</span>
+                                        <span>{' '}{content.Filter}</span>
                                     </Button>
                                 </Col>
                             </Row>
