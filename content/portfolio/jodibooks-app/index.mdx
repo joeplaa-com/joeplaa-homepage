@@ -8,8 +8,8 @@ author: 'Joep van de Laarschot'
 published: true
 ---
 
-import GooglePlay from './google-play-badge.svg'
-import AppStore from './app-store-badge.svg'
+import LazyAppStoreBadge from '../../../src/components/lazyAppStoreBadge'
+import LazyGooglePlayBadge from '../../../src/components/lazyGooglePlayBadge'
 
 Although we did a decent job making the [jodiBooks](https://beauty.jodibooks.com) dashboard mobile-friendly, it still lacked the native feel of an app. We (especially myself) grossly underestimated the amount of work making an app would be, but in the end we managed to get our app in the Apple appstore and the Google Play store.
 
@@ -31,9 +31,9 @@ After a lot of researching mobile-app development frameworks, we opted for React
 
 <div className="text-center text-sm-left">
     <a href='https://play.google.com/store/apps/details?id=com.jodiBooks.jodiBeauty' target="_blank" rel="noopener noreferrer">
-        <GooglePlay height="60px" />
+        <LazyGooglePlayBadge height="60px" />
     </a>
     <a href='https://apps.apple.com/nl/app/jodibooks-beauty/id1491790173' target="_blank" rel="noopener noreferrer">
-        <AppStore height="55px" />
+        <LazyAppStoreBadge height="55px" />
     </a>
 </div>
