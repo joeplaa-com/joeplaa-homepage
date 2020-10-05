@@ -4,11 +4,12 @@ import React from 'react'
 import { Container } from 'reactstrap'
 import SEO from 'react-seo-component'
 import Layout from '../components/layout'
+import PostImage from '../components/postImage'
 import { metaData } from '../utils/data'
 import { PostTemplateProps } from '../types'
 
 const PostTemplate = ({ data, pageContext }: PostTemplateProps) => {
-    const { frontmatter, body, fields, excerpt } = data.mdx;
+    const { body, excerpt, fields, frontmatter } = data.mdx;
     const { title, date, cover } = frontmatter;
     const { previous, next } = pageContext;
     return (
@@ -33,13 +34,16 @@ const PostTemplate = ({ data, pageContext }: PostTemplateProps) => {
                 dateModified={new Date(Date.now()).toISOString()}
             />
 
-            <section className='section-fill gray-medium' id={metaData.WikiTitle}>
+            <section className='section-fill gray-medium mt-5' id={metaData.WikiTitle}>
                 <Container className='text-center text-md-left my-auto post-container'>
-                    <h1>{frontmatter.title}</h1>
-                    <p>{frontmatter.date}</p>
+                    <h3>{title}</h3>
+                    <em>How-to written and screenshots taken on {date}</em>
+                    <PostImage path={false} title={title} picture={frontmatter.cover.childImageSharp}/>
+
                     <div className='markdown'>
                         <MDXRenderer>{body}</MDXRenderer>
                     </div>
+
                     {!previous ? null : (
                         <>
                             {previous && (
@@ -72,6 +76,11 @@ export const query = graphql`
         date(formatString: "YYYY MMMM Do")
         cover {
           publicURL
+          childImageSharp {
+              fluid(maxWidth: 1280, srcSetBreakpoints: [240, 360, 480, 640, 960, 1280]) {
+              ...GatsbyImageSharpFluid_withWebp
+            }
+          }
         }
         author
       }

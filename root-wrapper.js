@@ -4,11 +4,12 @@ import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react'
 import Code from './src/components/code'
 import configureStore from './src/store/configureStore'
+import "./src/styles/site.scss"
 
 const components = {
     // eslint-disable-next-line react/display-name
     'p.inlineCode': props => (
-        <code style={{ backgroundColor: 'lightgray' }} {...props} />
+        <code style={{ backgroundColor: 'lightgray', borderRadius: '3px', marginLeft: '-4px', marginRight: '-2px', paddingLeft: '4px', paddingRight: '4px' }} {...props} />
     ),
     pre: ({ children: { props } }) => {
         if (props.mdxType === 'code') {

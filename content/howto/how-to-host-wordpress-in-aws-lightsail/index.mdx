@@ -8,15 +8,13 @@ author: 'Joep van de Laarschot'
 published: true
 ---
 
-*How-to written and screenshots taken on March 4 2020*
-
 ## Intro
 
 When I started the previous version of my blog site ([joeplaa.com WordPress blog](/portfolio)), I didn't knew how to host WordPress myself. So I took a subscription to a webhosting service at [TransIP](https://www.transip.nl/). They not only offered hosting, but also a one button WordPress installation. This is not something special, but a great way for people to get started.
 
 Although the speed and the price were good, something was missing. I didn't need it, but I wanted more control. With more control I mean setting up advanced caching (Redis and Nginx) and installing the latest MySQL version (8.0).
 
-That meant getting my own VPS. As I already researched and [implemented this for jodiBooks](/howtos/how-to-host-asp-net-websites-on-aws/), it was a logical choice to also use AWS for my blog. And as I couldn't find a proper guide I created this "How to host WordPress in AWS Lightsail" tutorial. One that is not based on the standard Bitnami image.
+That meant getting my own VPS. As I already researched and [implemented this for jodiBooks](/howto/how-to-host-asp-net-websites-on-aws/), it was a logical choice to also use AWS for my blog. And as I couldn't find a proper guide I created this "How to host WordPress in AWS Lightsail" tutorial. One that is not based on the standard Bitnami image.
 
 ## AWS Lightsail
 
@@ -27,7 +25,7 @@ Looking at pricing comparing Lightsail with a hosting solution is fairer as it i
 In this guide I'll show you how to setup WordPress on a Lightsail instance. I will do that in 3 parts. The first 2 are essential, the last one optional but recommended.
 
 1. [Prepare AWS](#prepare-aws)
-2. [Install LEMP stack](#install-lemp-stack)
+2. [Install LEMP stack](#install-lemp-linux-nginx-mariadb-php-stack)
 3. [Backups](#backups)
 
 <table class="table table-striped">
@@ -177,9 +175,9 @@ Now that the instance is running, we can connect to it through SSH. This will al
 2. Follow [this excellent guide](https://lightsail.aws.amazon.com/ls/docs/en_us/articles/lightsail-how-to-set-up-putty-to-connect-using-ssh) from the AWS docs. It would basically be copy-pasting and a waste of time if I redid it here. I just want to add one thing: instead of using the IP address, you can also use your domain if set up correctly.
 3. Once you're connected start with updating the OS:
 
-```terminal
-sudo apt update && sudo apt upgrade -y
-```
+    ```terminal
+    sudo apt update && sudo apt upgrade -y
+    ```
 
 ### 2. Setup firewall
 

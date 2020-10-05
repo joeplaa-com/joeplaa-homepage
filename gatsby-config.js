@@ -62,6 +62,15 @@ module.exports = {
                 extensions: [`.mdx`, `.md`],
                 gatsbyRemarkPlugins: [
                     {
+                        resolve: `gatsby-remark-autolink-headers`,
+                        options: {
+                            offsetY: `100`,
+                            maintainCase: false,
+                            removeAccents: true,
+                            elements: [`h1`, `h2`, `h3`],
+                        }
+                    },
+                    {
                         resolve: `gatsby-remark-copy-linked-files`,
                         options: {
                             destinationDir: `downloads`,
@@ -148,6 +157,21 @@ module.exports = {
                 },
                 useMinify: true,
                 usePreload: false,
+            },
+        },
+        {
+            resolve: `gatsby-transformer-remark`,
+            options: {
+                plugins: [
+                    {
+                        resolve: `gatsby-remark-autolink-headers`,
+                        options: {
+                            maintainCase: false,
+                            removeAccents: true,
+                            elements: [`h1`, `h2`, `h3`],
+                        }
+                    },
+                ],
             },
         },
         {
