@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'gatsby'
 import { Col, Container, Row } from 'reactstrap'
-import Image from './image'
+import ImageAbout from './imageAbout'
 import NewTabLink from './newTabLink'
 import Social from './social'
 import { metaData, navigation } from '../utils/data'
@@ -19,7 +19,7 @@ const About = ({ className }: SectionProps) => {
                 <Row>
                     <Col xs='12' md='auto'>
                         <div className='my-3 my-md-auto mx-auto shadow' style={{ width: '240px' }}>
-                            <Image
+                            <ImageAbout
                                 src={'joep-in-suit.jpg'}
                                 alt={'Picture of Joep in fitting room, trying on a suit'}
                                 className="mx-auto"
@@ -33,7 +33,7 @@ const About = ({ className }: SectionProps) => {
                             <p>At jodiBooks I have learned how to do front-end design and website hosting. Now I will also help you create your digital home. I&apos;ll design your homepage and take care of hosting it.</p>
                         </div>
                         <div>
-                            <Social className='justify-content-center' color='dark' size='2rem' />
+                            <Social color='dark' size='2rem' />
                         </div>
                         <div>
                             <h2>What is Joeplaa</h2>

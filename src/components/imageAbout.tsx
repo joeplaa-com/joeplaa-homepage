@@ -1,9 +1,9 @@
 import React, { useMemo } from 'react'
 import { graphql, Link, useStaticQuery } from 'gatsby'
 import Img from 'gatsby-image/withIEPolyfill'
-import { ImageProps, ImageFluidNodeProps } from '../types'
+import { ImageProps, ImageFixedNodeProps } from '../types'
 
-const Image = ({ src, to, alt, ...rest }: ImageProps) => {
+const ImageAbout = ({ src, to, alt, ...rest }: ImageProps) => {
     const data = useStaticQuery(graphql`
     query {
       images: allFile(
@@ -15,9 +15,9 @@ const Image = ({ src, to, alt, ...rest }: ImageProps) => {
             extension
             publicURL
             childImageSharp {
-              fluid(srcSetBreakpoints: [320, 640, 960, 1280, 1600, 1920])
+              fixed(width: 240)
               {
-                ...GatsbyImageSharpFluid_withWebp
+                ...GatsbyImageSharpFixed_withWebp
               }
             }
           }
@@ -27,21 +27,21 @@ const Image = ({ src, to, alt, ...rest }: ImageProps) => {
   `);
 
     const match = useMemo(
-        () => data.images.edges.find(({ node }: ImageFluidNodeProps) => src === node.relativePath),
+        () => data.images.edges.find(({ node }: ImageFixedNodeProps) => src === node.relativePath),
         [data, src]
     );
 
     if (!match) return null;
 
-    const { node: { childImageSharp, publicURL, extension } = {} } = match as ImageFluidNodeProps;
+    const { node: { childImageSharp, publicURL, extension } = {} } = match as ImageFixedNodeProps;
 
     if (extension === 'svg' || !childImageSharp) {
         const svgImage = <img src={publicURL} alt={alt} {...rest} />
         return to ? <Link to={to}>{svgImage}</Link> : svgImage;
     }
 
-    const renderedImage = <Img fluid={childImageSharp.fluid} objectFit="cover" objectPosition="50% 50%" alt={alt} {...rest} />;
+    const renderedImage = <Img fixed={childImageSharp.fixed} objectFit="cover" objectPosition="50% 50%" alt={alt} {...rest} />;
     return to ? <Link to={to}>{renderedImage}</Link> : renderedImage;
 };
 
-export default Image;
+export default ImageAbout;

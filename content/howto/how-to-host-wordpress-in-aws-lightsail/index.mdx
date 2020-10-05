@@ -28,44 +28,46 @@ In this guide I'll show you how to setup WordPress on a Lightsail instance. I wi
 2. [Install LEMP stack](#install-lemp-linux-nginx-mariadb-php-stack)
 3. [Backups](#backups)
 
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th scope="col">Option</th>
-      <th scope="col">vCPU</th>
-      <th scope="col">MEM</th>
-      <th scope="col">Cost/month*</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><a href='https://www.transip.nl/webhosting/wordpress/' target='_blank' rel='noopener noreferrer'>Webhosting TransIP</a></td>
-      <td>-</td>
-      <td>-</td>
-      <td>€ 5.99</td>
-    </tr>
-    <tr>
-      <td><a href='https://www.transip.nl/vps/' target='_blank' rel='noopener noreferrer'>VPS TransIP</a></td>
-      <td>1</td>
-      <td>1 GB</td>
-      <td>€ 10.00</td>
-    </tr>
-    <tr>
-      <td><a href='https://aws.amazon.com/lightsail/pricing/' target='_blank' rel='noopener noreferrer'>AWS Lightsail 1GB</a></td>
-      <td>1 (10%)</td>
-      <td>1 GB</td>
-      <td>$ 5.00</td>
-    </tr>
-    <tr>
-      <td><a href='https://calculator.aws/#/estimate?id=e0e44e0ac530355b8999ff8586cf58e8fa7f193e' target='_blank' rel='noopener noreferrer'>AWS EC2 t3a.micro</a></td>
-      <td>2 (10%)</td>
-      <td>1 GB</td>
-      <td>$ 8.31</td>
-    </tr>
-  </tbody>
-</table>
+<div class='col-md-10 col-lg-8'>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">Option</th>
+                <th scope="col">vCPU</th>
+                <th scope="col">MEM</th>
+                <th scope="col">Cost/month*</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><a href='https://www.transip.nl/webhosting/wordpress/' target='_blank' rel='noopener noreferrer'>Webhosting TransIP</a></td>
+                <td>-</td>
+                <td>-</td>
+                <td>€ 5.99</td>
+            </tr>
+            <tr>
+                <td><a href='https://www.transip.nl/vps/' target='_blank' rel='noopener noreferrer'>VPS TransIP</a></td>
+                <td>1</td>
+                <td>1 GB</td>
+                <td>€ 10.00</td>
+            </tr>
+            <tr>
+                <td><a href='https://aws.amazon.com/lightsail/pricing/' target='_blank' rel='noopener noreferrer'>AWS Lightsail 1GB</a></td>
+                <td>1 (10%)</td>
+                <td>1 GB</td>
+                <td>$ 5.00</td>
+            </tr>
+            <tr>
+                <td><a href='https://calculator.aws/#/estimate?id=e0e44e0ac530355b8999ff8586cf58e8fa7f193e' target='_blank' rel='noopener noreferrer'>AWS EC2 t3a.micro</a></td>
+                <td>2 (10%)</td>
+                <td>1 GB</td>
+                <td>$ 8.31</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
 
-*Pricing as of 21 September 2020
+**Pricing as of 21 September 2020*
 * * *
 
 ## Prepare AWS
@@ -80,7 +82,7 @@ Using the root account needs to be avoided and instead a daily admin account sho
 
 Now that we have our account and have logged in with our admin user, we can go to the [Lightsail dashboard](https://lightsail.aws.amazon.com/). Here we click on the **Create instance** button.
 
-<a href='/assets/howto/how-to-host-wordpress-in-aws-lightsail/WP-AWS-Lightsail-01.png'><img src='/assets/howto/how-to-host-wordpress-in-aws-lightsail/WP-AWS-Lightsail-01.png' alt='aws lightsail dashboard with the "create instance" button hightlighted' class='img-fluid'></img></a>
+![aws lightsail dashboard with the "create instance" button hightlighted](WP-AWS-Lightsail-01.png)
 
 I already had an instance running. When first logging in, the dashboard isn't empty though. It shows a big "Create" button.
 

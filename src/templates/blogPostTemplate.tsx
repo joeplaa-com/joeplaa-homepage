@@ -35,7 +35,7 @@ const PostTemplate = ({ data, pageContext }: PostTemplateProps) => {
             />
 
             <section className='section-fill gray-medium mt-5' id={metaData.WikiTitle}>
-                <Container className='text-center text-md-left my-auto post-container'>
+                <Container className='my-auto post-container'>
                     <h3>{title}</h3>
                     <em>How-to written and screenshots taken on {date}</em>
                     <PostImage path={false} title={title} picture={frontmatter.cover.childImageSharp}/>
@@ -77,7 +77,7 @@ export const query = graphql`
         cover {
           publicURL
           childImageSharp {
-              fluid(maxWidth: 1280, srcSetBreakpoints: [240, 360, 480, 640, 960, 1280]) {
+              fluid(srcSetBreakpoints: [320, 640, 960, 1280]) {
               ...GatsbyImageSharpFluid_withWebp
             }
           }
