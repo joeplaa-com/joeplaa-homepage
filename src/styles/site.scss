@@ -90,7 +90,7 @@ $link-dark-active-color:    darken($link-dark-color, 10%);
 /* -------begin markdown additions-------- */
 .markdown {
     font-size: 1.125rem;
-    font-family: 'Ubuntu Mono', 'Roboto Mono';
+    font-family: $font-family-monospace;
 }
 
     .markdown p,

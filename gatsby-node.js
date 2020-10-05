@@ -1,7 +1,6 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 const { createFilePath } = require(`gatsby-source-filesystem`);
 const path = require(`path`);
-const _ = require("lodash");
 
 exports.createPages = ({ actions, graphql }) => {
     const { createPage } = actions;
