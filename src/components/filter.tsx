@@ -7,7 +7,7 @@ import makeAnimated from 'react-select/animated'
 import Tag from '../components/tag'
 import { filterActionCreators } from '../store/actions/filter'
 import { IRootState } from '../store/interfaces'
-import { content, settings } from '../utils/data'
+import { content } from '../utils/data'
 import { FilterProps, LabelProps } from '../types'
 
 export default function Filter({ page, tags }: FilterProps) {
