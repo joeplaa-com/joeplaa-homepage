@@ -1,32 +1,34 @@
 ---
-title: jodiBeauty webshop Best Beauty by Annemieke
-date: 2019-04-13
-tags: ['AWS', 'HTML', 'MariaDB', 'Nginx', 'Passenger', 'Rails', 'Ruby', 'Spree']
-excerpt: "One of our customers mentioned she'd liked to have a webshop someday. She wasn't in any rush, but when Covid hit, we quickly build a webshop for her."
+title: jodiBooks React website
+date: 2020-05-30
+tags: ['AWS', 'Bootstrap', 'CSS', 'HTML', 'JavaScript', 'Next.js', 'React', 'SCSS']
+excerpt: 'I rebuild the homepage with the Next.js framework. I styled the website with React and Bootstrap and used JavaScript to code dynamic parts.'
 cover: 'cover.png'
 author: 'Joep van de Laarschot'
 published: true
 ---
 
-When asked for any special wishes, one of our customers mentioned she'd like to have a webshop someday. She wasn't in any rush back then, but as Covid hit, we quickly build a webshop for her. We plan to integrate this shop further into [jodiBooks](https://jodibooks.com), but for now we could help her out quickly by configuring a Spree Commerce stack.
+Having roughly split our ([jodiBooks](https://jodibooks.com)) software in a front-end and back-end part, I took responsibility for the front-end. Our existing homepage was build in C# with the .NET MVC framework. This meant that I couldn't fully develop and support it, because I have no C# background. Also it made the homepage unnecessarily complex and heavy.
+
+I rebuild the homepage with the Next.js framework. I styled the website with React and Bootstrap and used JavaScript to code dynamic parts (e.g. the efulfillment calculator). The Next.js tooling allowed me to compile the homepage into a static website, which is hosted in AWS CloudFront.
 
 **Frameworks**:
 
-* [Rails](https://rubyonrails.org/)
-* [Spree Commerce](https://spreecommerce.org/)
+* [Bootstrap](https://docusaurus.io/)
+* [Next.js](https://nextjs.org//)
+* [React](https://reactjs.org/)
 
 **Techniques**:
 
+* CSS/SCSS
 * HTML
-* Ruby
+* JavaScript
 
 **Hosting**:
 
-* [AWS EC2](https://aws.amazon.com/ec2/)
-* [MariaDB](https://mariadb.org/)
-* [Nginx](https://www.nginx.com/)
-* [Passenger](https://www.phusionpassenger.com/)
+* [AWS CloudFront](https://aws.amazon.com/cloudfront/)
+* [AWS Lambda](https://aws.amazon.com/lambda/)
 
 **Demo**:
 
-<a href="https://shop.jodibeauty.com/s1" rel="noopener noreferrer" target="_blank">https://shop.jodibeauty.com/s1</a>
+[https://www.jodibooks.com](https://www.jodibooks.com)

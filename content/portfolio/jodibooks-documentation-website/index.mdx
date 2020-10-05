@@ -1,32 +1,33 @@
 ---
-title: jodiBeauty webshop Best Beauty by Annemieke
-date: 2019-04-13
-tags: ['AWS', 'HTML', 'MariaDB', 'Nginx', 'Passenger', 'Rails', 'Ruby', 'Spree']
-excerpt: "One of our customers mentioned she'd liked to have a webshop someday. She wasn't in any rush, but when Covid hit, we quickly build a webshop for her."
+title: jodiBooks documentation website
+date: 2020-04-13
+tags: ['AWS', 'Docusaurus', 'HTML', 'JavaScript', 'Markdown', 'React']
+excerpt: 'Our user manual (application documentation) was put together in WordPress together with our blog. I build a dedicated docs website with Docusaurus.'
 cover: 'cover.png'
 author: 'Joep van de Laarschot'
 published: true
 ---
 
-When asked for any special wishes, one of our customers mentioned she'd like to have a webshop someday. She wasn't in any rush back then, but as Covid hit, we quickly build a webshop for her. We plan to integrate this shop further into [jodiBooks](https://jodibooks.com), but for now we could help her out quickly by configuring a Spree Commerce stack.
+Our ([jodiBooks](https://docs.jodibooks.com)) user manual (application documentation) was put together in WordPress together with our blog. This made it hard to find for our customers and hard to maintain for us.
+
+I build a dedicated docs website with Docusaurus. This tool makes it easy to write documentation using Markdown. It renders a website using React and then compiles the complete website into a static website, which is hosted in AWS CloudFront.
 
 **Frameworks**:
 
-* [Rails](https://rubyonrails.org/)
-* [Spree Commerce](https://spreecommerce.org/)
+* [Docusaurus](https://docusaurus.io/)
+* [React](https://reactjs.org/)
 
 **Techniques**:
 
 * HTML
-* Ruby
+* JavaScript
+* Markdown
 
 **Hosting**:
 
-* [AWS EC2](https://aws.amazon.com/ec2/)
-* [MariaDB](https://mariadb.org/)
-* [Nginx](https://www.nginx.com/)
-* [Passenger](https://www.phusionpassenger.com/)
+* [AWS CloudFront](https://aws.amazon.com/cloudfront/)
+* [AWS Lambda](https://aws.amazon.com/lambda/)
 
 **Demo**:
 
-<a href="https://shop.jodibeauty.com/s1" rel="noopener noreferrer" target="_blank">https://shop.jodibeauty.com/s1</a>
+[https://docs.jodibooks.com](https://docs.jodibooks.com)

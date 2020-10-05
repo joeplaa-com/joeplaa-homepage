@@ -1,32 +1,34 @@
 ---
-title: jodiBeauty webshop Best Beauty by Annemieke
-date: 2019-04-13
-tags: ['AWS', 'HTML', 'MariaDB', 'Nginx', 'Passenger', 'Rails', 'Ruby', 'Spree']
-excerpt: "One of our customers mentioned she'd liked to have a webshop someday. She wasn't in any rush, but when Covid hit, we quickly build a webshop for her."
+title: jodiBooks booking plugin
+date: 2020-09-06
+tags: ['AWS', 'Bootstrap', 'CSS', 'HTML', 'JavaScript', 'Next.js', 'React', 'SCSS']
+excerpt: 'I build the plugin as a webapp with the Next.js framework. I styled the app with React and Bootstrap and used JavaScript to code dynamic parts.'
 cover: 'cover.png'
 author: 'Joep van de Laarschot'
 published: true
 ---
 
-When asked for any special wishes, one of our customers mentioned she'd like to have a webshop someday. She wasn't in any rush back then, but as Covid hit, we quickly build a webshop for her. We plan to integrate this shop further into [jodiBooks](https://jodibooks.com), but for now we could help her out quickly by configuring a Spree Commerce stack.
+Our customers want to have an easy way to schedule appointments with their customers. To help them do that, we are expanding the [jodiBooks](https://beauty.jodibooks.com) Beauty software with a calendar. To make it easier for our customers' customers to make an appointment (and to save our customers time, less manual scheduling) we are offering a booking plugin. This plugin can also be added to their own website.
+
+I build the plugin as a webapp with the Next.js framework. I styled the app with React and Bootstrap and used JavaScript to code dynamic parts (e.g. fetching and posting data from and to our API). The Next.js tooling allowed me to compile the app into a static website, which is hosted in AWS CloudFront.
 
 **Frameworks**:
 
-* [Rails](https://rubyonrails.org/)
-* [Spree Commerce](https://spreecommerce.org/)
+* [Bootstrap](https://docusaurus.io/)
+* [Next.js](https://nextjs.org//)
+* [React](https://reactjs.org/)
 
 **Techniques**:
 
+* CSS/SASS (SCSS)
 * HTML
-* Ruby
+* JavaScript
 
 **Hosting**:
 
-* [AWS EC2](https://aws.amazon.com/ec2/)
-* [MariaDB](https://mariadb.org/)
-* [Nginx](https://www.nginx.com/)
-* [Passenger](https://www.phusionpassenger.com/)
+* [AWS CloudFront](https://aws.amazon.com/cloudfront/)
+* [AWS Lambda](https://aws.amazon.com/lambda/)
 
 **Demo**:
 
-<a href="https://shop.jodibeauty.com/s1" rel="noopener noreferrer" target="_blank">https://shop.jodibeauty.com/s1</a>
+[https://booking.jodibeauty.com?salon=demosalon](https://booking.jodibeauty.com?salon=demosalon)

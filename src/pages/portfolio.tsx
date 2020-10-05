@@ -43,7 +43,7 @@ const Portfolio = ({ data }: PostQueryProps) => {
                 />
 
                 <section className='section-fill blue-dark' id={metaData.PortfolioTitle}>
-                    <Container className='text-center text-md-left my-auto'>
+                    <Container className='text-left my-auto'>
                         <Suspense fallback={<RenderLoader />}>
                             <Filter page={page} tags={tags} />
                         </Suspense>

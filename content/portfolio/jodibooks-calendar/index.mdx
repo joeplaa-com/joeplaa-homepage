@@ -1,32 +1,36 @@
 ---
-title: jodiBeauty webshop Best Beauty by Annemieke
-date: 2019-04-13
-tags: ['AWS', 'HTML', 'MariaDB', 'Nginx', 'Passenger', 'Rails', 'Ruby', 'Spree']
-excerpt: "One of our customers mentioned she'd liked to have a webshop someday. She wasn't in any rush, but when Covid hit, we quickly build a webshop for her."
+title: jodiBooks calendar
+date: 2020-08-07
+tags: ['AWS', 'Bootstrap', 'CSS', 'HTML', 'JavaScript', 'Next.js', 'React', 'SCSS', 'TypeScript']
+excerpt: 'We build the calendar as a webapp with the Next.js framework. The calendar is based on React Big Calendar, which I styled with React and Bootstrap.'
 cover: 'cover.png'
 author: 'Joep van de Laarschot'
 published: true
 ---
 
-When asked for any special wishes, one of our customers mentioned she'd like to have a webshop someday. She wasn't in any rush back then, but as Covid hit, we quickly build a webshop for her. We plan to integrate this shop further into [jodiBooks](https://jodibooks.com), but for now we could help her out quickly by configuring a Spree Commerce stack.
+Our customers want to have an easy way to schedule appointments with their customers. To help them do that, we are expanding the [jodiBooks](https://beauty.jodibooks.com) Beauty software with a calendar.
+
+We build the calendar as a webapp with the Next.js framework. The calendar is based on React Big Calendar, which I styled with React and Bootstrap. We used JavaScript to code dynamic parts (e.g. fetching and posting data from and to our API). The Next.js tooling allowed me to compile the app into a static website, which is hosted in AWS CloudFront.
 
 **Frameworks**:
 
-* [Rails](https://rubyonrails.org/)
-* [Spree Commerce](https://spreecommerce.org/)
+* [Bootstrap](https://docusaurus.io/)
+* [Next.js](https://nextjs.org//)
+* [React](https://reactjs.org/)
+* [React Big Calendar](https://jquense.github.io/react-big-calendar/examples/index.html)
 
 **Techniques**:
 
+* CSS/SCSS
 * HTML
-* Ruby
+* JavaScript
+* TypeScript
 
 **Hosting**:
 
-* [AWS EC2](https://aws.amazon.com/ec2/)
-* [MariaDB](https://mariadb.org/)
-* [Nginx](https://www.nginx.com/)
-* [Passenger](https://www.phusionpassenger.com/)
+* [AWS CloudFront](https://aws.amazon.com/cloudfront/)
+* [AWS Lambda](https://aws.amazon.com/lambda/)
 
 **Demo**:
 
-<a href="https://shop.jodibeauty.com/s1" rel="noopener noreferrer" target="_blank">https://shop.jodibeauty.com/s1</a>
+[https://beauty.jodibooks.com](https://beauty.jodibooks.com)

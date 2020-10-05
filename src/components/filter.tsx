@@ -41,12 +41,12 @@ export default function Filter({ page, tags }: FilterProps) {
                     <Card>
                         <CardBody>
                             <Row className='d-flex justify-content-between align-items-center'>
-                                <Col xs='12' sm='auto' className='align-items-center flex-wrap tags'>
+                                <Col xs='12' sm='10' className='align-items-center flex-wrap tags'>
                                     {filter.userFilter[page].length > 0 && filter.userFilter[page].map(tag => (
                                         <Tag key={tag.value} tag={tag} page={page} />
                                     ))}
                                 </Col>
-                                <Col xs='12' sm='auto' className='mt-2 mt-sm-0'>
+                                <Col xs='12' sm='2' className='mt-2 mt-sm-0 float-right'>
                                     <Button outline color='primary' onClick={toggle} aria-label='filter-button'>
                                         <FaSlidersH />
                                         <span>{' '}{content.Filter}</span>
