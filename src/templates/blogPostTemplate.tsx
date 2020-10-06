@@ -1,9 +1,10 @@
-import { graphql, Link } from 'gatsby'
+import { graphql } from 'gatsby'
 import { MDXRenderer } from 'gatsby-plugin-mdx'
 import React from 'react'
 import { Container } from 'reactstrap'
 import SEO from 'react-seo-component'
 import Layout from '../components/layout'
+import PostBrowseButton from '../components/postBrowseButton'
 import PostImage from '../components/postImage'
 import { metaData } from '../utils/data'
 import { PostTemplateProps } from '../types'
@@ -38,30 +39,25 @@ const PostTemplate = ({ data, pageContext }: PostTemplateProps) => {
                 <Container className='my-auto post-container'>
                     <h3>{title}</h3>
                     <em>How-to written and screenshots taken on {date}</em>
-                    <PostImage path={false} title={title} picture={frontmatter.cover.childImageSharp}/>
+                    <PostImage path={false} title={title} picture={frontmatter.cover.childImageSharp} />
 
                     <div className='markdown'>
                         <MDXRenderer>{body}</MDXRenderer>
+                        <hr />
                     </div>
 
-                    {!previous ? null : (
-                        <>
-                            {previous && (
-                                <Link to={previous.fields.slug}>
-                                    <p>{previous.frontmatter.title}</p>
-                                </Link>
-                            )}
-                        </>
-                    )}
-                    {!next ? null : (
-                        <>
-                            {next && (
-                                <Link to={next.fields.slug}>
-                                    <p>{next.frontmatter.title}</p>
-                                </Link>
-                            )}
-                        </>
-                    )}
+                    <div className='d-flex justify-content-between'>
+                        {!previous ? null : (
+                            previous && (
+                                <PostBrowseButton type='previous' to={previous.fields.slug} title={previous.frontmatter.title} />
+                            )
+                        )}
+                        {!next ? null : (
+                            next && (
+                                <PostBrowseButton type='next' to={next.fields.slug} title={next.frontmatter.title} />
+                            )
+                        )}
+                    </div>
                 </Container>
             </section>
         </Layout>

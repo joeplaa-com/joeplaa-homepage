@@ -81,7 +81,7 @@ const Howto = ({ data }: PostQueryProps) => {
                 />
 
                 <section className='section-fill gray-dark' id={metaData.WikiTitle}>
-                    <Container className='text-center text-md-left my-auto'>
+                    <Container className='my-auto'>
                         <ListGroup id={metaData.WikiProcedure}>
                             {wikisProcedure}
                         </ListGroup>

@@ -11,10 +11,10 @@ import LightSail from '../svg/lightsail.svg'
 const Services = ({ className }: SectionProps) => {
     return (
         <section className={className} id={metaData.ServicesTitle}>
-            <Container className='text-center text-md-left my-md-auto mb-3 mt-3'>
+            <Container className='mb-3 mt-3'>
                 <Row>
                     <Col>
-                        <h1 className='display-1'>{metaData.ServicesTitle}</h1>
+                        <h1 className='display-1 text-center text-md-left'>{metaData.ServicesTitle}</h1>
                     </Col>
                 </Row>
                 <CardDeck>

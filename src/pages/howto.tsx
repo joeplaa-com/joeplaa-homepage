@@ -46,7 +46,7 @@ const Howto = ({ data }: PostQueryProps) => {
                 />
 
                 <section className='section-fill blue-medium' id={metaData.HowtoTitle}>
-                    <Container className='text-center text-md-left my-auto'>
+                    <Container className='my-auto'>
                         <Suspense fallback={<RenderLoader />}>
                             <Filter page={page} tags={tags} />
                         </Suspense>

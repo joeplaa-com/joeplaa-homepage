@@ -19,6 +19,7 @@ exports.createPages = ({ actions, graphql }) => {
           frontmatter {
             title
           }
+          fileAbsolutePath
         }
       }
       tagsGroup: allMdx(limit: 2000) {
@@ -32,13 +33,15 @@ exports.createPages = ({ actions, graphql }) => {
             throw result.errors;
         }
 
-        const posts = result.data.allMdx.nodes;
+        const howtoPosts = result.data.allMdx.nodes.filter(node => node.fileAbsolutePath.includes('/howto/'));
+        const portfolioPosts = result.data.allMdx.nodes.filter(node => node.fileAbsolutePath.includes('/portfolio/'));
+        const wikiPosts = result.data.allMdx.nodes.filter(node => node.fileAbsolutePath.includes('/wiki/'));
 
-        // create page for each mdx node
-        posts.forEach((post, index) => {
+        // create page for each mdx howto node
+        howtoPosts.forEach((post, index) => {
             const previous =
-                index === posts.length - 1 ? null : posts[index + 1];
-            const next = index === 0 ? null : posts[index - 1];
+                index === howtoPosts.length - 1 ? null : howtoPosts[index + 1];
+            const next = index === 0 ? null : howtoPosts[index - 1];
 
             createPage({
                 path: post.fields.slug,
