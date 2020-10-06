@@ -6,7 +6,7 @@ import { PostImageProps } from '../types'
 export default function PostImage({ className, title, picture, slug, rounded, path, onClick }: PostImageProps) {
     const classRounded = rounded ? ' rounded' : '';
     const image = (
-        <Img fluid={picture.fluid} alt={'Cover Image for ' + title} objectFit="cover" objectPosition="50% 50%" className={'img-fluid' + classRounded} />
+        <Img fluid={picture.fluid} alt={'Cover Image for ' + title} objectFit="cover" objectPosition="50% 50%" className={'img-fluid mx-auto' + classRounded} style={{ maxWidth: '1080px', maxHeight: '608px' }} />
     );
     return (
         <div className={className}>
