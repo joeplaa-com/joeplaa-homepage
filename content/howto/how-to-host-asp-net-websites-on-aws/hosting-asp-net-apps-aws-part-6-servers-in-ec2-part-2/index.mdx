@@ -1,0 +1,377 @@
+---
+title: "Hosting ASP.NET apps on AWS Part 6: Servers in EC2 part 2"
+date: "2020-01-31"
+---
+
+## Linux EC2
+
+### Launch instance
+
+1. Click the big orange button on the dashboard that says **Launch instance** and choose **Launch instance** or go to **Instances** through the menu on the left and click a blue **Launch instance** button on the top of the page.
+
+[![launch instance button](images/ec2-7-1024x553.png)](https://blog.jodibooks.com/wp-content/uploads/2020/01/ec2-7.png)
+
+Left: the launch instance button on the EC2 dashboard. Right: the launch instance button in the Instances screen
+
+2. **Step 1:** Type `ubuntu 18.04` in the search bar, select **AWS Marketplace** and now select search result **Ubuntu 18.04 LTS - Bionic**.
+
+[![select ubuntu 18.04 LTS - Bionic AMI](images/ec2-42-1024x554.png)](https://blog.jodibooks.com/wp-content/uploads/2020/02/ec2-42.png)
+
+3. Read the product details and optionally check pricing per instance type and click **Continue**.
+
+[![check AMI info](images/ec2-43-1024x554.png)](https://blog.jodibooks.com/wp-content/uploads/2020/02/ec2-43.png)
+
+4. **Step 2:** Choose the instance type. We've taken a `t3.micro` for our WordPress blog. More on this choice in [Appendix D](https://blog.jodibooks.com/2020/02/hosting-asp-net-apps-aws-appendix-d-ec2-instance-type-selection/). Click **Next...** and resist the inviting blue button.
+
+[![choose t3.micro type](images/ec2-44-1024x554.png)](https://blog.jodibooks.com/wp-content/uploads/2020/02/ec2-44.png)
+
+5. **Step 3:** you can basically ignore all settings again, except the subnet and T2/T3 Unlimited.
+    1. **Subnet:** As shown we have 3 availability zones and each has it's own subnet. We can let AWS decide where to create this instance, but we can also select a specific zone here. In the architecture we had this one in zone `c`.
+    2. **T2/T3 Unlimited:** `Disable` this option. With a t-type instance you get a certain amount of CPU credits per day. When you need more, you pay an additional fee. This option enables you to use an unlimited amount of addition credits.
+
+Source CPU credits: [https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/burstable-performance-instances-unlimited-mode-concepts.html#when-to-use-unlimited-mode](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/burstable-performance-instances-unlimited-mode-concepts.html#when-to-use-unlimited-mode)
+
+[![choose the subnet and disable unlimited mode](images/ec2-12-1024x553.png)](https://blog.jodibooks.com/wp-content/uploads/2020/01/ec2-12.png)
+
+6. **Step 4:** the default volume is fine. Just disable **Delete on Termination** and enable **Encryption** `(default) aws/ebs`. Again resist the blue button and click **Next...** instead.  
+    **Update Feb 27:** I had to increase the size, as the logging and WordPress folders were consuming more than I expected. I now increased it to 16 GB, which can be done without restarting Ubuntu and the instance, cool.
+
+Increasing the volume size: [https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/recognize-expanded-volume-linux.html](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/recognize-expanded-volume-linux.html)
+
+[![uncheck delete on termination and select default encryption](images/ec2-45-1024x555.png)](https://s3-eu-central-1.amazonaws.com/jodibooks-public-cdn/blog/wp-content/uploads/2020/02/10143035/ec2-45.png)
+
+7. **Step 5:** add some tags (optional). Resist the blue button again when you're done. I added 4 tags:
+    1. Name: `jodibooks-server-w01`
+    2. Applications: `WordPress blog`
+    3. Database: _database name_
+    4. Tools: `MySQL, NGINX, PHP, PostFix, Redis, WordPress`
+
+[![add some tags, at least a name](images/ec2-46-1024x555.png)](https://blog.jodibooks.com/wp-content/uploads/2020/02/ec2-46.png)
+
+8. **Step 6:** add or configure your security group. As we already made one earlier, we can select the `Webserver` and `Remote server management` security group. And finally we can click the blue **Review** button.
+
+[![select Linux security group](images/ec2-47-1024x555.png)](https://blog.jodibooks.com/wp-content/uploads/2020/02/ec2-47.png)
+
+9. **Step 7:** review all the details and click **Launch**. You can ignore the "Your instance configuration is not eligible for the free usage tier" remark.
+    1. AMI Details: `Ubuntu 18.04 LTS - Bionic`
+    2. Instance Type: `t3.micro`
+    3. Security Group: `Webserver` and `Remote server management`
+    4. Instance details: `T2/T3 Unlimited Disabled`
+    5. Storage: `Encrypted` and `Delete on Termination: No`
+    6. Tags: `Name, apps, databases and tools`
+
+[![review details](images/ec2-48-1024x555.png)](https://blog.jodibooks.com/wp-content/uploads/2020/02/ec2-48.png)
+
+This screenshot doesn't show all details. Just scroll down to find the others.
+
+10. After pressing **Launch** you have to select a key pair. We already made one for our _Linux instance_, so let's select that one, **acknowledge** that you have the private key and press **Launch Instance**.
+
+[![select the linux key pair](images/ec2-49-1024x553.png)](https://blog.jodibooks.com/wp-content/uploads/2020/02/ec2-49.png)
+
+After a few minutes, the instance will be in running state and we can continue with adding the IAM role.
+
+### Attach IAM role
+
+An IAM role allows the EC2 to communicate with other AWS services on your behalf. Our Linux instance will send log data to CloudWatch, static files for our blog (mostly images) to an S3 bucket and backups of our database to another S3 bucket.
+
+1. Select the Windows instance, click **Actions**, **Instance Settings** and **Attach/Replace IAM Role**.
+
+[![replace IAM role](images/ec2-50-1024x554.png)](https://s3-eu-central-1.amazonaws.com/jodibooks-public-cdn/blog/wp-content/uploads/2020/02/10145321/ec2-50.png)
+
+2. Select the IAM role we made for _WordPress_ and click **Apply**.
+
+[![select wordpress iam role](images/ec2-51-1024x553.png)](https://blog.jodibooks.com/wp-content/uploads/2020/02/ec2-51.png)
+
+### Logging into Ubuntu
+
+The Ubuntu instance is up an running, so we can connect to it through SSH. This will all be command line, so no GUI like the Windows instance.
+
+1. Download [PuTTY](https://www.putty.org/) and install.
+2. Follow the excellent guide from the AWS docs. It would basically be copy-pasting and a waste of time if I redid it here.
+
+[https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/putty.html](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/putty.html)
+
+3. Once you're connected start with updating the OS:
+
+```
+sudo apt update && sudo apt upgrade -y
+```
+
+### Firewall settings
+
+I'm not a firewall guru. To be honest, I know very little about firewalls, especially how to configure them in Linux. I used the sources below to setup mine.
+
+1\. [https://www.digitalocean.com/community/tutorials/how-to-set-up-a-firewall-with-ufw-on-ubuntu-16-04](https://www.digitalocean.com/community/tutorials/how-to-set-up-a-firewall-with-ufw-on-ubuntu-16-04)  
+2\. [https://www.digitalocean.com/community/tutorials/ufw-essentials-common-firewall-rules-and-commands](https://www.digitalocean.com/community/tutorials/ufw-essentials-common-firewall-rules-and-commands)  
+3\. [https://linuxize.com/post/how-to-setup-a-firewall-with-ufw-on-ubuntu-18-04/](https://linuxize.com/post/how-to-setup-a-firewall-with-ufw-on-ubuntu-18-04/)  
+4\. [https://www.linode.com/docs/security/firewalls/configure-firewall-with-ufw/](https://www.linode.com/docs/security/firewalls/configure-firewall-with-ufw/)
+
+1. We start with installing the firewall. In Ubuntu this is UFW, UncomplicatedFireWall.
+
+```
+sudo apt update
+sudo apt install ufw
+```
+
+2. Now the first thing we do is configure the default settings. We want to **allow** all outgoing traffic and **deny** all incoming traffic.
+
+```
+sudo ufw default allow outgoing
+sudo ufw default deny incoming
+```
+
+3. All incoming ports are closed now, but we want to be able to SSH (PuTTY) into the instance. To do that we need to configure that in the firewall. We do that by **allowing port 22** to accept traffic. Remember that we only allow SSH from our IP through the [security group rules](https://blog.jodibooks.com/2020/01/hosting-asp-net-apps-aws-part-5-ec2-instances/#Security-Groups).
+
+```
+sudo ufw allow ssh
+```
+
+4. We also want our WordPress page to be accessible. To do that we have to **allow traffic on port 80 and 443**. There are multiple ways to do that, but we'll take the easy route.
+
+```
+sudo ufw allow 'Nginx Full'
+```
+
+Port
+
+In/out
+
+TCP/UDP
+
+Allow/Deny
+
+Application
+
+`All`
+
+`In`
+
+`Deny`
+
+Default setting
+
+`All`
+
+`Out`
+
+`Allow`
+
+Default setting
+
+`22`
+
+`In`
+
+`TCP`
+
+`Allow`
+
+SSH
+
+`80`
+
+`In`
+
+`TCP`
+
+`Allow`
+
+HTTP traffic
+
+`443`
+
+`In`
+
+`TCP`
+
+`Allow`
+
+HTTPS traffic
+
+5. Lastly we enable the firewall. You will be warned that enabling the firewall may disrupt existing ssh connections, just type `y` and hit `Enter`.
+
+```
+sudo ufw enable
+```
+
+6. Check with the following command:
+
+```
+sudo ufw status verbose
+```
+
+[![enabled ufw rules ufw](images/ec2-55.png)](https://blog.jodibooks.com/wp-content/uploads/2020/02/ec2-55.png)
+
+### Enable Swap
+
+This one has bothered me for weeks. After I setup the instance and installed all the software, I had a blazingly fast blog. But every night the instance would freeze up and would be unreachable. I tweaked memory settings of MySQL, PHP and Redis, but nothing worked. Eventually I figured out that the instance had no reserved swap space. After configuring that, it runs beautifully.
+
+Now, preferably you only use the RAM of your instance, because that is the fastest option. As we only have 1 GB, this is not enough. So the second option would be to create swap space on the local SSD, ephemeral storage in AWS terms. A t3 instance however doesn't have that, so we are forced to forgo on best-practices and use an EBS volume.
+
+AWS best practices regarding swap space: [https://aws.amazon.com/premiumsupport/knowledge-center/ec2-memory-swap-file/](https://aws.amazon.com/premiumsupport/knowledge-center/ec2-memory-swap-file/)
+
+AWS recommends creating swap space that is "_2x the amount of RAM but never less than 32 MB_". You can create a new volume specifically for swap, but I've added it to the main volume.
+
+1. We will create a 2 GB swap space (**64** blocks of **32 M**B). In the command line type:
+
+```
+sudo dd if=/dev/zero of=/swapfile bs=32M count=64
+```
+
+2. Update the **read and write** permissions for the swap file:
+
+```
+sudo chmod 600 /swapfile
+```
+
+3. Set up a Linux swap area:
+
+```
+sudo mkswap /swapfile
+```
+
+4. Make the swap file available for immediate use by adding the swap file to swap space:
+
+```
+sudo swapon /swapfile
+```
+
+5. Verify that the procedure was successful:
+
+```
+sudo swapon -s
+```
+
+6. Enable the swap file at boot time by editing the `/etc/fstab` file. Open the file in the editor:
+
+```
+sudo nano /etc/fstab
+```
+
+7. Add the following new line at the end of the file (use arrow keys and paste the line with right-mouse button), save the file (`ctrl+x`), and then exit (`y` and hit `Enter`):
+
+```
+/swapfile swap swap defaults 0 0
+```
+
+[![add line to /etc/fstab using nano editor](images/ec2-54.png)](https://blog.jodibooks.com/wp-content/uploads/2020/02/ec2-54.png)
+
+8. When starting a new SSH session, Ubuntu will display the amount of used memory, but you can also see it by using top or htop. These can be opened by simply typing `top` or `htop` in the command line.
+
+[![memory info at start of session](images/ec2-52.png)](https://blog.jodibooks.com/wp-content/uploads/2020/02/ec2-52.png)
+
+Memory usage info when starting an SSH session
+
+[![top information](images/ec2-53.png)](https://blog.jodibooks.com/wp-content/uploads/2020/02/ec2-53.png)
+
+System information and memory usage as displayed in top. Sort on memory (%MEM): `shift+M`
+
+* * *
+
+## Data storage
+
+With that we have our two instances up and running. Before we continue we're going to make a backup and discuss the link between volumes, snapshots and AMI's.
+
+### Volumes
+
+A volume is the actual data (virtual drive) connected to the instance. In the **Volumes** screen you can see a list of your volumes and their state. We first have to give them a name, so we know to which server they belong. What's further interesting to see in this screen:
+
+- **State:** is the volume in-use? Every volume costs money, so you might want to delete non-used volumes.
+- **Attachment information:** to which instance is this volume attached?
+- **Snapshot:** on which AWS snapshot is it based? This is not your snapshot.
+
+[![EC2 volume information](images/ec2-56-1024x553.png)](https://blog.jodibooks.com/wp-content/uploads/2020/02/ec2-56.png)
+
+Volume vol-jodibooks-server-u01 is attached to jodibooks-server-u01 and has state "in-use".
+
+### Snapshots
+
+A snapshot is a recording of the volume at a certain point in time. You can use them as backups to go back to that point in time when something goes wrong. You can make as many snapshots as you want, but as with volumes you pay for storage.
+
+At least you should create a snapshot before and after each reconfiguration of you OS or applications, for example when you release a new application, install new software or update the OS. I have to admit that I often forget to make a snapshot before the last two. In the end I only keep a snapshot of the latest known working configuration.
+
+[![snapshots overview](images/ec2-57-1024x553.png)](https://s3-eu-central-1.amazonaws.com/jodibooks-public-cdn/blog/wp-content/uploads/2020/02/11121341/ec2-57.png)
+
+### Create a snapshot
+
+1. You can start creating a snapshot in two ways:
+    1. Click on **Volumes** in the menu on the left, select the volume you want a snapshot of and click **Actions** followed by **Create Snapshot**.
+    2. Click on **Snapshots** in the menu and click **Create Snapshot**.
+
+[![two ways to start creating a snapshot](images/ec2-58-1024x554.png)](https://blog.jodibooks.com/wp-content/uploads/2020/02/ec2-58.png)
+
+2. Select the volume you want to take a snapshot of. If an instance has multiple volumes, you can also select the instance and AWS will make a snapshot for all attached volumes. Enter a description for example the data or the specific configuration (application version, OS update, etc.) and add tags; `Name`:`snap-jodibooks-server-u01`.
+
+[![create a snapshot](images/ec2-59-1024x554.png)](https://blog.jodibooks.com/wp-content/uploads/2020/02/ec2-59.png)
+
+If you gave your volumes names, it's easier to select them.
+
+3. Click **Create Snapshot** and you'll see a screen which shows the snapshot ID. Click **Close**.
+
+[![](images/ec2-60-1024x554.png)](https://blog.jodibooks.com/wp-content/uploads/2020/02/ec2-60.png)
+
+4. The snapshot is being created: Status is **pending**. Depending on the amount of changes since the last snapshot and the size of the volume this can take some time.
+
+[![pending and completed snapshot status](images/ec2-61-1024x616.png)](https://blog.jodibooks.com/wp-content/uploads/2020/02/ec2-61.png)
+
+### AMI
+
+To restore your instance from a snapshot, we need to make an image or AMI.
+
+1. In the Snapshots screen select the snapshot, click **Actions** followed by **Create Image**.
+
+[![create image from snapshot](images/ec2-62-1024x554.png)](https://s3-eu-central-1.amazonaws.com/jodibooks-public-cdn/blog/wp-content/uploads/2020/02/11131827/ec2-62.png)
+
+2. Add a _name_ and a _description_. Leave everything else as is and click **Create**.
+
+[![add image name and description](images/ec2-63-1024x554.png)](https://s3-eu-central-1.amazonaws.com/jodibooks-public-cdn/blog/wp-content/uploads/2020/02/11132159/ec2-63.png)
+
+3. When we now go to the AMI screen, we can see our image. The AMI doesn't need any storage as it links to the snapshot.
+
+[![the image is created](images/ec2-64-1024x554.png)](https://s3-eu-central-1.amazonaws.com/jodibooks-public-cdn/blog/wp-content/uploads/2020/02/11132638/ec2-64.png)
+
+4. The image can be used to _Launch_ an instance. This can be a replacement instance for an unhealthy one or a second instance in an auto-scaling group. Simply press **Launch** and you will see the familiar EC2 launch steps as discussed earlier.
+
+[![launch the image](images/ec2-65-1024x553.png)](https://blog.jodibooks.com/wp-content/uploads/2020/02/ec2-65.png)
+
+* * *
+
+## Change instance type
+
+Should you ever want to change the instance type, you want a smaller and cheaper one, you need a bigger one or a completely [different type](https://blog.jodibooks.com/2020/02/hosting-asp-net-apps-aws-appendix-d-ec2-instance-type-selection/), you could use an image to setup the new instance.
+
+1. Create a snapshot of the current state
+2. Create an image of that snapshot
+3. Launch the image and choose a different instance type
+4. Change the Elastic IP or DNS record
+5. Stop and terminate the old instance
+
+This seems like a lot of steps and it is. If your database and user data is not stored on the instance, this however is the best way to do it. It minimizes or even eliminates downtime for your users or visitors.
+
+If you have a database or user data on your instance (not recommended, but I'm guilty too), you have to prevent your users from entering new data while you move the data(base).
+
+If you're OK with a few minutes of downtime, you don't have to go through the 5 steps mentioned above.
+
+Source: [https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-resize.html](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-resize.html)
+
+1. Select the instance in the **Instances** screen and stop it. Click **Actions**, **Instance State** and **Stop**.
+
+[![stop the instance](images/ec2-66-1024x554.png)](https://blog.jodibooks.com/wp-content/uploads/2020/02/ec2-66.png)
+
+2. When the "Instance state" is _stopped_ click **Actions**, **Instance Settings** and **Change Instance Type**.
+
+[![change instance type](images/ec2-67-1024x554.png)](https://s3-eu-central-1.amazonaws.com/jodibooks-public-cdn/blog/wp-content/uploads/2020/02/11134831/ec2-67.png)
+
+I can't stop the instance as it is in production, but you get the idea.
+
+3. Select the new instance type and _restart_ the instance and that's it.
+
+## Future improvements (optional)
+
+It would be safe to say that a lot could be improved, but as I don't know what I don't know for now we're done configuring our EC2 instances. There are however two things I do know that I want to use in the future.
+
+The first thing will be auto scaling and load balancing to be prepared for peaks in user demand. More on that in Appendix E. The second thing is to use the lifecycle manager to automatically make snapshots and remove old ones.
+
+## Next: Route53
+
+In the [next part](https://blog.jodibooks.com/2020/01/hosting-asp-net-apps-aws-part-7-domains-and-dns-with-route-53/) we're going to setup our domain names and DNS settings. For that we will use the AWS Route 53 service.

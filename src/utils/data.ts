@@ -10,6 +10,7 @@ export const content = {
     Blog: 'Blog',
     Business: 'Business name',
     Continue: 'Continue',
+    Copy: 'Copy',
     Email: 'Email',
     EmailErrorMessage: 'Enter a valid email address',
     Filter: 'Filter',

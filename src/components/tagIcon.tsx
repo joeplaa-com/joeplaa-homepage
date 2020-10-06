@@ -1,6 +1,6 @@
 import React from 'react'
 import { FaHashtag } from 'react-icons/fa'
-import { SiAmazonaws, SiAndroid, SiBootstrap, SiCss3, SiDotNet, SiExpo, SiGatsby, SiHtml5, SiIos, SiJavascript, SiMariadb, SiMarkdown, SiMysql, SiNextDotJs, SiNginx, SiRails, SiReact, SiRedis, SiRuby, SiSass, SiTypescript, SiUbuntu, SiWordpress } from 'react-icons/si'
+import { SiAmazonaws, SiAndroid, SiBootstrap, SiCss3, SiDotNet, SiExpo, SiGatsby, SiGhost, SiHtml5, SiIos, SiJavascript, SiMariadb, SiMarkdown, SiMysql, SiNextDotJs, SiNginx, SiRails, SiReact, SiRedis, SiRuby, SiSass, SiTypescript, SiUbuntu, SiWordpress } from 'react-icons/si'
 
 export default function TagIcon(tag: string) {
     switch (tag) {
@@ -10,10 +10,11 @@ export default function TagIcon(tag: string) {
     case 'Bootstrap': return <SiBootstrap />;
     case 'CSS': return <SiCss3 />;
     case 'Expo': return <SiExpo />;
-    case 'JavaScript': return <SiJavascript />;
+    case 'Gatsby.js': return <SiGatsby />;
+    case 'Ghost': return <SiGhost />;
     case 'HTML': return <SiHtml5 />;
     case 'iOS': return <SiIos />;
-    case 'Gatsby.js': return <SiGatsby />;
+    case 'JavaScript': return <SiJavascript />;
     case 'MariaDB': return <SiMariadb />;
     case 'Markdown': return <SiMarkdown />;
     case 'MDX': return <SiMarkdown />;

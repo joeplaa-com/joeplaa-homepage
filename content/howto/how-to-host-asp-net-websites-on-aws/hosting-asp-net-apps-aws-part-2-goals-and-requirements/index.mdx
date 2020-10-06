@@ -1,0 +1,60 @@
+---
+title: "Hosting ASP.NET apps on AWS Part 2: Goals and requirements"
+date: "2020-01-31"
+---
+
+## Basic setup
+
+The main goal is to host [ASP.NET applications](https://blog.jodibooks.com/2020/01/hosting-asp-net-apps-aws-part-10-asp-net-sites-in-iis/) with a [MS SQL server](https://blog.jodibooks.com/2020/01/hosting-asp-net-apps-aws-part-11-database-in-ms-sql/) database. But we'll make it more interesting by adding a [WordPress blog](https://blog.jodibooks.com/2020/01/hosting-asp-net-apps-on-aws-part-12-wordpress-hosting-on-lemp-ssl-s3/) and requiring that all of that needs to be done with [AWS services](https://blog.jodibooks.com/2020/01/hosting-asp-net-apps-aws-appendix-a-aws-services/).
+
+All of the ASP.NET applications (we have 8) will be run in IIS. IIS is the software that will run our applications and make them available on the internet. As our applications are currently build in ASP.NET we don't have a choice for the operating system. We have to use Windows.
+
+- IIS 10
+- Windows Server 2019
+- Microsoft SQL Server Express 2017
+- [EC2](https://aws.amazon.com/ec2/) [T3 small](https://aws.amazon.com/ec2/instance-types/) instance (2vCPU, 2GB)
+
+Our WordPress blog will be hosted on [a separate Ubuntu instance](https://blog.jodibooks.com/2020/02/hosting-asp-net-apps-aws-part-6-servers-in-ec2-part-2/) with a [LEMP stack](https://lemp.io/). We tried running it in IIS on Windows as well, but we needed the memory for our ASP.NET applications (and WordPress is much faster on Linux).
+
+- Ubuntu 18.04 LTS
+- Nginx 1.14
+- MySQL 8.0
+- PHP 7.3
+- EC2 [T3 micro](https://aws.amazon.com/ec2/instance-types/) instance (2vCPU, 1GB)
+
+## Public website
+
+A few of our applications need to be publicly accessible through the internet. We have a homepage, user dashboard and some services that send out email for example.
+
+We want to give these applications their own subdomain and thus also need to get each one an [SSL certificate](https://blog.jodibooks.com/2020/01/hosting-asp-net-apps-aws-part-12-ssl-certificates-in-iis/). We can do that by getting a wildcard certificate through [Let's Encrypt](https://letsencrypt.org/).
+
+Some of these applications don't need internet access, so we also want to restrict that. This also makes it harder for people to hack them.
+
+## Email
+
+Our application [sends emails to our customers](https://blog.jodibooks.com/2020/01/hosting-asp-net-apps-aws-part-8-email-with-workmail-and-ses/). To do that we at least need an SMTP server or service, with AWS that is [SES](https://aws.amazon.com/ses/) or simple email service. We also want to [receive email](https://blog.jodibooks.com/2020/01/hosting-asp-net-apps-aws-part-8-email-with-workmail-and-ses/), and we prefer not to host an email service ourselves. AWS also has an email service called [WorkMail](https://aws.amazon.com/workmail/), which we will use to receive email and send our "handwritten" mail.
+
+## Storage
+
+Static data like documents (PDF's), images and downloads are normally placed on the hard drive of the server or a nearby NAS. AWS has a "sort of" NAS equivalent: [S3](https://aws.amazon.com/s3/). We will [store static data on S3](https://blog.jodibooks.com/2020/01/hosting-asp-net-apps-aws-part-9-file-storage-on-s3/) as much as possible. Also backups of our setups and databases will be stored in S3.
+
+## Monitoring and backups
+
+When something goes wrong, you want to know. Especially if your service is down for whatever reason. We are going to use [CloudWatch](https://aws.amazon.com/cloudwatch/) monitoring to [monitor the state of our application](https://blog.jodibooks.com/2020/01/hosting-asp-net-apps-aws-part-14-monitoring-with-cloudwatch/) through their log files and by checking if the application is alive.
+
+Another thing we shouldn't forget is to [backup our data regularly](https://blog.jodibooks.com/2020/01/hosting-asp-net-apps-aws-part-15-backup-scripting/). As our static data is relatively safe in S3, we'll only focus on the databases here.
+
+## Summary
+
+This is a very brief overview of what we want to build. Let's sum it up and get into the details with [the architecture](https://blog.jodibooks.com/2020/01/hosting-asp-net-apps-aws-part-3-architecture/) of the cloud environment.
+
+- 2 EC2 instances, Windows Server 2019 and Ubuntu 18.04 LTS
+- 8 ASP.NET applications and 1 WordPress blog
+- IIS 10 to host ASP.NET applications
+- Nginx to host the blog
+- MS SQL Server Express for our applications database
+- MySQL 8.0 for the WordPress database
+- SSL (wildcard) certificate(s) for HTTPS traffic
+- SES for sending mail, WorkMail for receiving
+- S3 for static file storage
+- CloudWatch for monitoring

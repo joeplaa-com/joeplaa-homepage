@@ -88,7 +88,7 @@ module.exports = {
                         resolve: `gatsby-remark-images`,
                         options: {
                             linkImagesToOriginal: true,
-                            srcSetBreakpoints: [320, 640, 960, 1280],
+                            srcSetBreakpoints: [320, 640, 960],
                             withWebp: true,
                         },
                     }

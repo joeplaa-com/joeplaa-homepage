@@ -34,7 +34,7 @@ const PostTemplate = ({ data, pageContext }: PostTemplateProps) => {
                 dateModified={new Date(Date.now()).toISOString()}
             />
 
-            <section className='section-fill gray-medium mt-5' id={metaData.WikiTitle}>
+            <section className='section-fill gray-medium' id={metaData.WikiTitle}>
                 <Container className='my-auto post-container'>
                     <h3>{title}</h3>
                     <em>How-to written and screenshots taken on {date}</em>
@@ -77,7 +77,7 @@ export const query = graphql`
         cover {
           publicURL
           childImageSharp {
-              fluid(srcSetBreakpoints: [320, 640, 960, 1280]) {
+              fluid(srcSetBreakpoints: [320, 640, 960, 1080]) {
               ...GatsbyImageSharpFluid_withWebp
             }
           }

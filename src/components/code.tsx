@@ -3,6 +3,7 @@ import theme from 'prism-react-renderer/themes/nightOwl'
 import React from 'react'
 import { Button } from 'reactstrap'
 import { CodeProps } from '../types'
+import { content } from '../utils/data'
 import { copyToClipboard } from '../utils/copy-to-clipboard'
 
 const Code = ({ codeString, language }: CodeProps) => {
@@ -23,17 +24,15 @@ const Code = ({ codeString, language }: CodeProps) => {
                 tokens,
                 getLineProps,
                 getTokenProps,
-            }) => (<pre className={className + ' d-flex justify-content-between align-items-center'} style={style}>
-                <span>
-                    {tokens.map((line, i) => (
-                        <div key={i} {...getLineProps({ line, key: i })}>
-                            {line.map((token, key) => (
-                                <span key={key} {...getTokenProps({ token, key })} />
-                            ))}
-                        </div>
-                    ))}
-                </span>
-                <Button outline size='sm' color='primary' onClick={handleClick}>Copy</Button>
+            }) => (<pre className={className} style={style}>
+                <Button outline size='sm' color='primary' className='float-right' onClick={handleClick}>{content.Copy}</Button>
+                {tokens.map((line, i) => (
+                    <div key={i} {...getLineProps({ line, key: i })}>
+                        {line.map((token, key) => (
+                            <span key={key} {...getTokenProps({ token, key })} />
+                        ))}
+                    </div>
+                ))}
             </pre>)}
         </Highlight>
     );
