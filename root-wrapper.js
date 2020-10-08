@@ -5,6 +5,7 @@ import { PersistGate } from 'redux-persist/integration/react'
 import Code from './src/components/code'
 import configureStore from './src/store/configureStore'
 import "./src/styles/site.scss"
+import "katex/dist/katex.min.css"
 
 const components = {
     // eslint-disable-next-line react/display-name

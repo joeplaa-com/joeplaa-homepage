@@ -1,6 +1,12 @@
 ---
-title: "Hosting ASP.NET apps on AWS Appendix A: AWS services"
-date: "2020-01-31"
+title: Hosting ASP.NET apps on AWS Appendix A - AWS services
+date: '2020-01-31 10:16'
+tags: ['AWS', 'CloudWatch', 'EC2', 'EBS', 'Route 53', 'SES', 'SNS', 'S3', 'WorkMail']
+excerpt: "Hosting our own ASP.NET apps on AWS taught us this is not a side project. This appendix lists the AWS services used and other interesting ones (future)."
+cover: '../hosting-aspdotnet-on-aws.png'
+author: 'Joep van de Laarschot'
+published: true
+series: true
 ---
 
 ## AWS services used in this series
@@ -24,6 +30,8 @@ The AWS "virtual server" solution. With EC2 you create instances that run an OS 
 One of the things that make EC2 instances cool is the auto-scaling feature. We didn't use that yet as our application design is not compatible. We need to move out the databases and configuration files.
 
 #### EBS
+
+[https://aws.amazon.com/ebs/](https://aws.amazon.com/ebs/)
 
 The OS is stored on Elastic Block Storage. EBS is roughly analogous with virtual disks in a virtual server environment. Files stored on an EBS volume can only be read by a single instance. If you need to share files between instances, you need EFS.
 
@@ -111,9 +119,7 @@ When using the auto-scaling function for EC2 instances or containers in ECS, you
 
 The ALB (Application Load Balancer) type has another cool feature. It can route traffic based on the URL. It can do this by host-based routing and path-based routing. The former is used for routing traffic based on the subdomain. The latter when you want to route traffic based on the the folder.
 
-[![](images/image-2.png)](https://aws.amazon.com/blogs/devops/introducing-application-load-balancer-unlocking-and-optimizing-architectures/)
-
-Load balancing with path-based routing
+![Load balancing with path-based routing](image-2.png "Load balancing with path-based routing")
 
 Load balancers come with free SSL certificates, which you manage with the [Certificate Manager](https://aws.amazon.com/certificate-manager/). So you don't need [Let's Encrypt and Certify](../hosting-asp-net-apps-aws-part-12-ssl-certificates-in-iis/).
 

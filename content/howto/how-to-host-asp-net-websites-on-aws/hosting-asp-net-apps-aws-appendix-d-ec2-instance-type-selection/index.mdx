@@ -1,6 +1,12 @@
 ---
-title: "Hosting ASP.NET apps on AWS Appendix D: EC2 instance type selection"
-date: "2020-02-09"
+title: Hosting ASP.NET apps on AWS Appendix D - EC2 instance type selection
+date: '2020-01-31 10:19'
+tags: ['AWS']
+excerpt: "Hosting our own ASP.NET apps on AWS taught us this is not a side project. This appendix tries to help you determine the right EC2 instance type for you."
+cover: '../hosting-aspdotnet-on-aws.png'
+author: 'Joep van de Laarschot'
+published: true
+series: true
 ---
 
 ## General purpose instances
@@ -33,7 +39,7 @@ Currently there are 3 T-types to choose from: T2, T3a and T3. The main differenc
 
 As these are burstable instances, these benchmarks are only valid when unlimited mode is enabled or for short burst periods.
 
-[![comparison of cpu performance m-types](images/appD-02.png)](https://blog.jodibooks.com/wp-content/uploads/2020/02/appD-02.png)
+![comparison of cpu performance m-types](appD-02.png)
 
 Source: https://www.cpubenchmark.net/
 
@@ -45,7 +51,7 @@ Currently there are 4 t-types to choose from: M4, M5a, M5 and M5(d)n. The main d
 - M5a: 2.5 GHz AMD EPYC 7000 series processor ([7261](https://en.wikipedia.org/wiki/Epyc#First_generation_Epyc_(Naples))? [7502](https://en.wikipedia.org/wiki/Epyc#Second_generation_Epyc_(Rome))(P)?)
 - M4: 2.3 GHz Intel Xeon® E5-2686 v4 (Broadwell) processors or 2.4 GHz Intel Xeon® E5-2676 v3 (Haswell) processors
 
-[![comparison of cpu performance m-types](images/appD-02.png)](https://blog.jodibooks.com/wp-content/uploads/2020/02/appD-02.png)
+![comparison of cpu performance m-types](appD-02.png)
 
 Source: https://www.cpubenchmark.net/
 
@@ -61,95 +67,90 @@ Every application, however small, has a baseline resource commitment. If that ma
 
 Because additional "surplus" credits are so expensive, the costs of an unlimited T3 will grow quickly. So quickly in fact that sometimes they can easily become more expensive than an M5. This break-even point (the average CPU percentage) can be calculated with the following formula:
 
-K=F+\\frac{D-C}{BG}
+$$
+K=F+\frac{D-C}{BG}
+$$
 
-In which \[katex\]F\[/katex\] is the baseline performance percentage per vCPU, \[katex\]D\[/katex\] is the M5 price per hour and \[katex\]C\[/katex\] is the T3 price per hour, \[katex\]B\[/katex\] the number of vCPU's and \[katex\]G\[/katex\] the costs for surplus credits per vCPU.
+In which $F$ is the baseline performance percentage per vCPU, $D$ is the M5 price per hour and $C$ is the T3 price per hour, $B$ the number of vCPU's and $G$ the costs for surplus credits per vCPU.
 
 In case of a Linux, on-demand t3.large and m5.large in Frankfurt, these numbers are:
 
-K=30\\%+\\frac{\\$0.115-\\$0.096}{2\*\\$0.05}=49\\%
+$$
+K=30\%+\frac{\$0.115-\$0.096}{2*\$0.05}=49\%
+$$
 
 So, let's assume you really need a t3.large, because you've already optimized the crap out of your application(s) or you don't want to and you have lots of visitors. If the CPU-usage of this t3.large instance is on average more than 49%, you can better switch to an m5.large.
 
 - Note 1: This series was on hosting ASP.NET applications, which only run on Windows. In that case the break-even point is much higher: 73.4%.
 - Note 2: If you reserve instances the break-even point comes down. So beware of that when reserving an instance.
 
-Instance type
+<div class='col-md-10 col-lg-8 mx-auto'>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">Instance type</th>
+                <th scope="col">OS</th>
+                <th scope="col">On-demand / Reserved</th>
+                <th scope="col">CPU [%]</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>t3.medium vs c5.large</td>
+                <td>Linux</td>
+                <td>On-demand</td>
+                <td>79</td>
+            </tr>
+            <tr>
+                <td>t3.medium vs c5.large</td>
+                <td>Windows</td>
+                <td>On-demand</td>
+                <td>93.9</td>
+            </tr>
+            <tr>
+                <td>t3.large vs m5.large</td>
+                <td>Linux</td>
+                <td>On-demand</td>
+                <td>49</td>
+            </tr>
+            <tr>
+                <td>t3.large vs m5.large</td>
+                <td>Windows</td>
+                <td>On-demand</td>
+                <td>73.4</td>
+            </tr>
+            <tr>
+                <td>t3.medium vs c5.large</td>
+                <td>Linux</td>
+                <td>Std 1 yr, Partial Upfront</td>
+                <td>61</td>
+            </tr>
+            <tr>
+                <td>t3.medium vs c5.large</td>
+                <td>Windows</td>
+                <td>Std 1 yr, Partial Upfront</td>
+                <td>84.7</td>
+            </tr>
+            <tr>
+                <td>t3.large vs m5.large</td>
+                <td>Linux</td>
+                <td>Std 1 yr, Partial Upfront</td>
+                <td>42</td>
+            </tr>
+            <tr>
+                <td>t3.large vs m5.large</td>
+                <td>Windows</td>
+                <td>Std 1 yr, Partial Upfront</td>
+                <td>69.6</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
 
-OS
+> Break-even point calculation: [https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/burstable-performance-instances-unlimited-mode-concepts.html#when-to-use-unlimited-mode](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/burstable-performance-instances-unlimited-mode-concepts.html#when-to-use-unlimited-mode)
 
-On-demand / Reserved
-
-CPU \[%\]
-
-t3.medium vs c5.large
-
-Linux
-
-On-demand
-
-79
-
-t3.medium vs c5.large
-
-Windows
-
-On-demand
-
-93.9
-
-**t3.large vs m5.large**
-
-**Linux**
-
-**On-demand**
-
-**49**
-
-t3.large vs m5.large
-
-Windows
-
-On-demand
-
-73.4
-
-t3.medium vs c5.large
-
-Linux
-
-Std 1 yr, Partial Upfront
-
-61
-
-t3.medium vs c5.large
-
-Windows
-
-Std 1 yr, Partial Upfront
-
-84.7
-
-t3.large vs m5.large
-
-Linux
-
-Std 1 yr, Partial Upfront
-
-42
-
-t3.large vs m5.large
-
-Windows
-
-Std 1 yr, Partial Upfront
-
-69.6
-
-Break-even point calculation: [https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/burstable-performance-instances-unlimited-mode-concepts.html#when-to-use-unlimited-mode](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/burstable-performance-instances-unlimited-mode-concepts.html#when-to-use-unlimited-mode)
-
-To read more about instance credits and baselines: [https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/burstable-credits-baseline-concepts.html](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/burstable-credits-baseline-concepts.html)  
-This page also lists the baselines and CPU credits earned per hour needed for the calculation.
+> To read more about instance credits and baselines: [https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/burstable-credits-baseline-concepts.html](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/burstable-credits-baseline-concepts.html)  
+> This page also lists the baselines and CPU credits earned per hour needed for the calculation.
 
 ## Optimized types
 

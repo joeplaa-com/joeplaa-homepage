@@ -1,7 +1,15 @@
 ---
-title: "Hosting ASP.NET apps on AWS Appendix B: AWS pricing"
-date: "2020-01-31"
+title: Hosting ASP.NET apps on AWS Appendix B - AWS pricing
+date: '2020-01-31 10:17'
+tags: ['AWS']
+excerpt: "Hosting our own ASP.NET apps on AWS taught us this is not a side project. In this appendix we show a few pricing examples an estimate of our current costs."
+cover: '../hosting-aspdotnet-on-aws.png'
+author: 'Joep van de Laarschot'
+published: true
+series: true
 ---
+
+import NewTabLink from '../../../../src/components/newTabLink';
 
 Aaah, Amazon pricing, what a joy. Although the basics are pretty self explanatory, it gets complicated really quickly. How do I determine how many GET requests my bucket will get? Or how many DNS-queries are realistically to be expected? How many emails are you going to send?
 
@@ -23,7 +31,7 @@ AWS has a pay-as-you-go pricing model. Meaning you pay for the resources you use
 
 ### EC2
 
-[![Simple pricing calculator?](images/appB-01.png)](https://blog.jodibooks.com/wp-content/uploads/2020/01/appB-01.png)
+![Simple pricing calculator?](appB-01.png)
 
 The thing I wanted to know, but took me a long time to find: what does Amazon mean with "Usage". Do you use you EC2 when it's running, but CPU idle? Do you pay 20% if your average CPU usage is 20%? Or are you using it when it is stopped or are you only not using it when it's terminated?
 
@@ -37,29 +45,34 @@ After a few months of using it and with this quote, I now know it has nothing to
 
 Let's look at our 2 instances. We have a Linux t3.micro with 8 GB EBS and a Windows t3.small with 50 + 4 GB EBS. I have bought standard reserved instances for a year for both.
 
-Calculation
-
-Amount/month
-
-Amount upfront
-
-[Simple Monthly Calculator](https://calculator.s3.amazonaws.com/index.html#r=FRA&s=EC2&key=files/calc-49511952b7f4aeea9161b234d5f4eabe88849546&v=ver20200219tB)
-
-$ 23.18
-
-$ 189
-
-[Pricing Calculator](https://calculator.aws/#/estimate?id=7ca4c8f8e24df3f979eeb2d9d266e42640694a1a)
-
-$ 23.07
-
-$ 189
-
-Bill February 2020
-
-$ 25.28
-
-$ 189
+<div class='col-md-10 col-lg-8 mx-auto'>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">Calculation</th>
+                <th scope="col">Amount/month</th>
+                <th scope="col">Amount upfront</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><NewTabLink href='https://calculator.s3.amazonaws.com/index.html#r=FRA&s=EC2&key=files/calc-49511952b7f4aeea9161b234d5f4eabe88849546&v=ver20200219tB'>Simple Monthly Calculator</NewTabLink></td>
+                <td>$ 23.18</td>
+                <td>$ 189</td>
+            </tr>
+            <tr>
+                <td><NewTabLink href='https://calculator.aws/#/estimate?id=7ca4c8f8e24df3f979eeb2d9d266e42640694a1a'>Pricing Calculator</NewTabLink></td>
+                <td>$ 23.07</td>
+                <td>$ 189</td>
+            </tr>
+            <tr>
+                <td>Bill February 2020</td>
+                <td>$ 25.28</td>
+                <td>$ 189</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
 
 ## Current Bill
 
@@ -75,61 +88,56 @@ We don't use RDS for our database yet and for "good" reason. It's quite expensiv
 
 Let's see what an MSSQL, MySQL and Aurora (AWS MySQL) database instance costs. We'll take a t3.small instance (smallest MSSQL and Aurora) and compare the on-demand pricing with a standard 1 year reservation.
 
-Engine
-
-Pricing
-
-Amount/month
-
-Amount upfront
-
-[MSSQL](https://calculator.s3.amazonaws.com/index.html#r=FRA&s=RDS&key=files/calc-31595d720a1c435e8f11bee28f0cd4572f2251ef&v=ver20200219tB)
-
-On-demand
-
-$ 39.34
-
-$ 0
-
-MSSQL
-
-Reserved
-
-$ 13.69
-
-$ 131
-
-[MySQL](https://calculator.aws/#/estimate?id=2f153c975cdc5184894f5ad166cafabf17bbdcaa)
-
-On-demand
-
-$ 31.94
-
-$ 0
-
-MySQL
-
-Reserved
-
-$ 12.67
-
-$ 119
-
-[Aurora](https://calculator.aws/#/estimate?id=2f153c975cdc5184894f5ad166cafabf17bbdcaa)
-
-On-demand
-
-$ 37.42
-
-$ 0
-
-Aurora
-
-Reserved
-
-$ 13.33
-
-$ 135
+<div class='col-md-10 col-lg-8 mx-auto'>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">Engine</th>
+                <th scope="col">Pricing</th>
+                <th scope="col">Amount/month</th>
+                <th scope="col">Amount upfront</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><NewTabLink href='https://calculator.s3.amazonaws.com/index.html#r=FRA&s=RDS&key=files/calc-31595d720a1c435e8f11bee28f0cd4572f2251ef&v=ver20200219tB'>MSSQL</NewTabLink></td>
+                <td>On-demand</td>
+                <td>$ 39.34</td>
+                <td>$ 0</td>
+            </tr>
+            <tr>
+                <td>MSSQL</td>
+                <td>Reserved</td>
+                <td>$ 13.69</td>
+                <td>$ 131</td>
+            </tr>
+            <tr>
+                <td><NewTabLink href='https://calculator.aws/#/estimate?id=2f153c975cdc5184894f5ad166cafabf17bbdcaa'>MySQL</NewTabLink></td>
+                <td>On-demand</td>
+                <td>$ 31.94</td>
+                <td>$ 0</td>
+            </tr>
+            <tr>
+                <td>MySQL</td>
+                <td>Reserved</td>
+                <td>$ 12.67</td>
+                <td>$ 119</td>
+            </tr>
+            <tr>
+                <td><NewTabLink href='https://calculator.aws/#/estimate?id=2f153c975cdc5184894f5ad166cafabf17bbdcaa'>Aurora</NewTabLink></td>
+                <td>On-demand</td>
+                <td>$ 37.42</td>
+                <td>$ 0</td>
+            </tr>
+            <tr>
+                <td>MySQL</td>
+                <td>Reserved</td>
+                <td>$ 13.33</td>
+                <td>$ 135</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
 
 ### ELB
 

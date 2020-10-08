@@ -93,6 +93,13 @@ module.exports = {
                             withWebp: true,
                             showCaptions: ['title'],
                         },
+                    },
+                    {
+                        resolve: `gatsby-remark-katex`,
+                        options: {
+                            // Add any KaTeX options from https://github.com/KaTeX/KaTeX/blob/master/docs/options.md here
+                            strict: `ignore`
+                        }
                     }
                 ],
             },
@@ -171,7 +178,7 @@ module.exports = {
                             removeAccents: true,
                             elements: [`h1`, `h2`, `h3`],
                         }
-                    },
+                    }
                 ],
             },
         },
