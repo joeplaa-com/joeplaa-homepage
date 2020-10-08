@@ -1,14 +1,16 @@
-import { graphql, Link } from 'gatsby'
+import { graphql } from 'gatsby'
 import { MDXRenderer } from 'gatsby-plugin-mdx'
 import React from 'react'
-import { Container } from 'reactstrap'
+import { Container, Col, Row } from 'reactstrap'
 import SEO from 'react-seo-component'
 import Layout from '../components/layout'
-import { metaData } from '../utils/data'
+import PostBrowseButton from '../components/postBrowseButton'
+import PostImage from '../components/postImage'
+import { content, metaData } from '../utils/data'
 import { PostTemplateProps } from '../types'
 
 const PostTemplate = ({ data, pageContext }: PostTemplateProps) => {
-    const { frontmatter, body, fields, excerpt } = data.mdx;
+    const { body, excerpt, fields, frontmatter } = data.mdx;
     const { title, date, cover } = frontmatter;
     const { previous, next } = pageContext;
     return (
@@ -34,30 +36,32 @@ const PostTemplate = ({ data, pageContext }: PostTemplateProps) => {
             />
 
             <section className='section-fill gray-medium' id={metaData.WikiTitle}>
-                <Container className='text-center text-md-left my-auto post-container'>
-                    <h1>{frontmatter.title}</h1>
-                    <p>{frontmatter.date}</p>
+                <Container className='my-auto post-container'>
+                    <h3>{title}</h3>
+                    <em>{content.HowtoDisclaimer}{' '}{date}</em>
+                    <PostImage path={false} title={title} picture={frontmatter.cover.childImageSharp} />
+
                     <div className='markdown'>
                         <MDXRenderer>{body}</MDXRenderer>
+                        <hr />
                     </div>
-                    {!previous ? null : (
-                        <>
-                            {previous && (
-                                <Link to={previous.fields.slug}>
-                                    <p>{previous.frontmatter.title}</p>
-                                </Link>
-                            )}
-                        </>
-                    )}
-                    {!next ? null : (
-                        <>
-                            {next && (
-                                <Link to={next.fields.slug}>
-                                    <p>{next.frontmatter.title}</p>
-                                </Link>
-                            )}
-                        </>
-                    )}
+
+                    <Row className='d-flex justify-content-between align-items-center'>
+                        {!previous ? null : (
+                            previous && (
+                                <Col xs='12' sm='6' lg='5' xl='4'>
+                                    <PostBrowseButton type='previous' to={previous.fields.slug} title={previous.frontmatter.title} />
+                                </Col>
+                            )
+                        )}
+                        {!next ? null : (
+                            next && (
+                                <Col xs='12' sm='6' lg='5' xl='4' className='mt-2 mt-sm-0'>
+                                    <PostBrowseButton type='next' to={next.fields.slug} title={next.frontmatter.title} />
+                                </Col>
+                            )
+                        )}
+                    </Row>
                 </Container>
             </section>
         </Layout>
@@ -69,9 +73,14 @@ export const query = graphql`
     mdx(fields: { slug: { eq: $slug } }) {
       frontmatter {
         title
-        date(formatString: "YYYY MMMM Do")
+        date(formatString: "YYYY DD MMMM")
         cover {
           publicURL
+          childImageSharp {
+              fluid(srcSetBreakpoints: [320, 640, 960]) {
+              ...GatsbyImageSharpFluid_withWebp
+            }
+          }
         }
         author
       }

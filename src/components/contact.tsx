@@ -145,7 +145,7 @@ export default class Contact extends React.Component<SectionProps, ContactState>
                 <Container className='my-md-auto mb-3 mt-3'>
                     <Row>
                         <Col>
-                            <h1 className='text-center text-md-left display-1'>{metaData.ContactTitle}</h1>
+                            <h1 className='display-1 text-center text-md-left'>{metaData.ContactTitle}</h1>
                         </Col>
                     </Row>
                     <Row className='mt-3 d-flex flex-column justify-content-between align-items-center'>

@@ -1,0 +1,157 @@
+---
+title: Hosting ASP.NET apps on AWS Appendix D - EC2 instance type selection
+date: '2020-01-31 10:19'
+tags: ['AWS']
+excerpt: "Hosting our own ASP.NET apps on AWS taught us this is not a side project. This appendix tries to help you determine the right EC2 instance type for you."
+cover: '../hosting-aspdotnet-on-aws.png'
+author: 'Joep van de Laarschot'
+published: true
+series: true
+---
+
+## General purpose instances
+
+Most applications don't need a lot of CPU or memory, a GPU or access to physical drives. For this group of applications, AWS has _[general purpose](https://aws.amazon.com/ec2/instance-types/#General_Purpose)_ instances.
+
+### General purpose instance types
+
+There are 3 types of general purpose instances:
+
+- [A-type](https://aws.amazon.com/ec2/instance-types/a1/): for running ARM applications
+- [T-type](https://aws.amazon.com/ec2/instance-types/#Burstable_Performance_Instances): Burstable instances
+- [M-type](https://aws.amazon.com/ec2/instance-types/m5/): Fixed Performance
+
+### Burstable?
+
+T-type instance are _burstable_. This means they have a certain [baseline performance](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/burstable-credits-baseline-concepts.html) level, but can burst above that for limited amounts of time. To determine how long this limited time is, they build up credits when under this baseline. When more performance is needed, they'll exchange those credits for additional CPU performance. When those credits are spend, the instance stops bursting and throttles to the baseline.
+
+Burstable instance are perfect for applications that don't have continuous CPU usage. For example when customers visit your site infrequently or not at night. If however your average usage becomes more than the baseline, the instance will effectively start throttling your application. That's where _unlimited_ mode comes in.
+
+Instance in [unlimited mode](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/burstable-performance-instances-unlimited-mode.html) can buy additional credits when the average usage is greater than the baseline of the instance. This however can become expensive. Our Windows t3.small currently costs $0.0424 per hour in the Frankfurt region. Buying one vCPU hour costs you $0.096. We'll come back to what that means below in [T3 vs M5](#t3-vs-m5).
+
+### T-types
+
+Currently there are 3 T-types to choose from: T2, T3a and T3. The main difference is the CPU used and lower network performance on a T2.
+
+- A T3 is build on an Intel Xeon Platinum 8180M @ 2.50 GHz. [Source and benchmark](https://browser.geekbench.com/v4/cpu/13000395).
+- A T3a uses an AMD EPYC 7571 @ 2.2 GHz. [Source and benchmark](https://browser.geekbench.com/v4/cpu/13000157).
+- A T2 uses an Intel Xeon E5-2686 v4 @ 2.50 GHz. [Source and benchmark](https://browser.geekbench.com/v4/cpu/13000213).
+
+As these are burstable instances, these benchmarks are only valid when unlimited mode is enabled or for short burst periods.
+
+![comparison of cpu performance m-types](appD-02.png)
+
+Source: https://www.cpubenchmark.net/
+
+### M-types
+
+Currently there are 4 t-types to choose from: M4, M5a, M5 and M5(d)n. The main difference between M4, M5a and M5 is the CPU used. M5n instances have higher network performance and M5d instances expose an NVMe SSD you can use directly (M5dn both).
+
+- M5(dn): Up to 3.1 GHz Intel Xeon® Platinum 8175 processors
+- M5a: 2.5 GHz AMD EPYC 7000 series processor ([7261](https://en.wikipedia.org/wiki/Epyc#First_generation_Epyc_(Naples))? [7502](https://en.wikipedia.org/wiki/Epyc#Second_generation_Epyc_(Rome))(P)?)
+- M4: 2.3 GHz Intel Xeon® E5-2686 v4 (Broadwell) processors or 2.4 GHz Intel Xeon® E5-2676 v3 (Haswell) processors
+
+![comparison of cpu performance m-types](appD-02.png)
+
+Source: https://www.cpubenchmark.net/
+
+### T3 vs M5
+
+If a T3 can't sustain 100% CPU constantly (technically: average > baseline) why not take an M5 (or c5.large)? Well, a T3 is much cheaper, if used correctly.
+
+For starters, the smallest M5 has 2 vCPU's and 8 GB of memory. There are four T3 instance types that are smaller and cheaper. If your application is properly designed: independent, stateless applications, you can use multiple small T3 instances in scaling-groups. This allows you to use the minimum amount of CPU minutes, thus reducing your costs.
+
+Every application, however small, has a baseline resource commitment. If that makes the default CPU usage larger than the T-type baseline, you start adding costs. This can be because unlimited mode is enabled and you start buying vCPU credits, or because your auto-scaling group starts adding instances.
+
+### Break-even point
+
+Because additional "surplus" credits are so expensive, the costs of an unlimited T3 will grow quickly. So quickly in fact that sometimes they can easily become more expensive than an M5. This break-even point (the average CPU percentage) can be calculated with the following formula:
+
+$$
+K=F+\frac{D-C}{BG}
+$$
+
+In which $F$ is the baseline performance percentage per vCPU, $D$ is the M5 price per hour and $C$ is the T3 price per hour, $B$ the number of vCPU's and $G$ the costs for surplus credits per vCPU.
+
+In case of a Linux, on-demand t3.large and m5.large in Frankfurt, these numbers are:
+
+$$
+K=30\%+\frac{\$0.115-\$0.096}{2*\$0.05}=49\%
+$$
+
+So, let's assume you really need a t3.large, because you've already optimized the crap out of your application(s) or you don't want to and you have lots of visitors. If the CPU-usage of this t3.large instance is on average more than 49%, you can better switch to an m5.large.
+
+- Note 1: This series was on hosting ASP.NET applications, which only run on Windows. In that case the break-even point is much higher: 73.4%.
+- Note 2: If you reserve instances the break-even point comes down. So beware of that when reserving an instance.
+
+<div class='col-md-10 col-lg-8 mx-auto'>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">Instance type</th>
+                <th scope="col">OS</th>
+                <th scope="col">On-demand / Reserved</th>
+                <th scope="col">CPU [%]</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>t3.medium vs c5.large</td>
+                <td>Linux</td>
+                <td>On-demand</td>
+                <td>79</td>
+            </tr>
+            <tr>
+                <td>t3.medium vs c5.large</td>
+                <td>Windows</td>
+                <td>On-demand</td>
+                <td>93.9</td>
+            </tr>
+            <tr>
+                <td>t3.large vs m5.large</td>
+                <td>Linux</td>
+                <td>On-demand</td>
+                <td>49</td>
+            </tr>
+            <tr>
+                <td>t3.large vs m5.large</td>
+                <td>Windows</td>
+                <td>On-demand</td>
+                <td>73.4</td>
+            </tr>
+            <tr>
+                <td>t3.medium vs c5.large</td>
+                <td>Linux</td>
+                <td>Std 1 yr, Partial Upfront</td>
+                <td>61</td>
+            </tr>
+            <tr>
+                <td>t3.medium vs c5.large</td>
+                <td>Windows</td>
+                <td>Std 1 yr, Partial Upfront</td>
+                <td>84.7</td>
+            </tr>
+            <tr>
+                <td>t3.large vs m5.large</td>
+                <td>Linux</td>
+                <td>Std 1 yr, Partial Upfront</td>
+                <td>42</td>
+            </tr>
+            <tr>
+                <td>t3.large vs m5.large</td>
+                <td>Windows</td>
+                <td>Std 1 yr, Partial Upfront</td>
+                <td>69.6</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+> Break-even point calculation: [https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/burstable-performance-instances-unlimited-mode-concepts.html#when-to-use-unlimited-mode](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/burstable-performance-instances-unlimited-mode-concepts.html#when-to-use-unlimited-mode)
+
+> To read more about instance credits and baselines: [https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/burstable-credits-baseline-concepts.html](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/burstable-credits-baseline-concepts.html)  
+> This page also lists the baselines and CPU credits earned per hour needed for the calculation.
+
+## Optimized types
+
+For our applications general purpose instances will be sufficient. However, if you have specific needs, like more [compute](https://aws.amazon.com/ec2/instance-types/#Compute_Optimized) power, lot's of [memory](https://aws.amazon.com/ec2/instance-types/#Memory_Optimized), [GPU or FPGA](https://aws.amazon.com/ec2/instance-types/#Accelerated_Computing) acceleration or direct-connected fast [storage](https://aws.amazon.com/ec2/instance-types/#Storage_Optimized), you can use optimized instance types.

@@ -62,6 +62,15 @@ module.exports = {
                 extensions: [`.mdx`, `.md`],
                 gatsbyRemarkPlugins: [
                     {
+                        resolve: `gatsby-remark-autolink-headers`,
+                        options: {
+                            offsetY: `100`,
+                            maintainCase: false,
+                            removeAccents: true,
+                            elements: [`h1`, `h2`, `h3`],
+                        }
+                    },
+                    {
                         resolve: `gatsby-remark-copy-linked-files`,
                         options: {
                             destinationDir: `downloads`,
@@ -79,10 +88,18 @@ module.exports = {
                         resolve: `gatsby-remark-images`,
                         options: {
                             linkImagesToOriginal: true,
-                            maxWidth: 1280,
-                            srcSetBreakpoints: [240, 320, 640, 960, 1280],
+                            maxWidth: 960,
+                            srcSetBreakpoints: [320, 640, 960],
                             withWebp: true,
+                            showCaptions: ['title'],
                         },
+                    },
+                    {
+                        resolve: `gatsby-remark-katex`,
+                        options: {
+                            // Add any KaTeX options from https://github.com/KaTeX/KaTeX/blob/master/docs/options.md here
+                            strict: `ignore`
+                        }
                     }
                 ],
             },
@@ -148,6 +165,21 @@ module.exports = {
                 },
                 useMinify: true,
                 usePreload: false,
+            },
+        },
+        {
+            resolve: `gatsby-transformer-remark`,
+            options: {
+                plugins: [
+                    {
+                        resolve: `gatsby-remark-autolink-headers`,
+                        options: {
+                            maintainCase: false,
+                            removeAccents: true,
+                            elements: [`h1`, `h2`, `h3`],
+                        }
+                    }
+                ],
             },
         },
         {

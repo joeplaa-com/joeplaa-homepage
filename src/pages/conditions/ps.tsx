@@ -22,7 +22,7 @@ const PrivacyStatement = () => {
                 />
 
                 <section className='section-fill gray-dark' id={metaData.PrivacyTitle}>
-                    <Container className='text-center text-md-left my-auto'>
+                    <Container className='my-auto'>
                         <Row>
                             <Col xs='12' sm='10' md='7' lg='5' xl='4' className='mx-auto'>
                                 <h1 className='display-1'>{metaData.PrivacyTitle}</h1>

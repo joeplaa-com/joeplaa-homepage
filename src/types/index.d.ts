@@ -123,6 +123,7 @@ type FrontMatterProps = {
     }
     date: string
     excerpt: string
+    series?: boolean
     tags: Array<string>
     title: string
 }

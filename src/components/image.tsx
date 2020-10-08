@@ -7,7 +7,7 @@ const Image = ({ src, to, alt, ...rest }: ImageProps) => {
     const data = useStaticQuery(graphql`
     query {
       images: allFile(
-        filter: { internal: { mediaType: { regex: "/image/" } }, absolutePath: { regex: "/^((?!/authors/).)*$/" } }
+        filter: { internal: { mediaType: { regex: "/image/" } }, absolutePath: { regex: "/src/images/" } }
       ) {
         edges {
           node {
@@ -15,7 +15,7 @@ const Image = ({ src, to, alt, ...rest }: ImageProps) => {
             extension
             publicURL
             childImageSharp {
-              fluid(maxWidth: 1920, srcSetBreakpoints: [240, 360, 640, 960, 1280, 1600, 1920])
+              fluid(srcSetBreakpoints: [320, 640, 960])
               {
                 ...GatsbyImageSharpFluid_withWebp
               }

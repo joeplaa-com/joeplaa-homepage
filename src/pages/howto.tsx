@@ -45,8 +45,8 @@ const Howto = ({ data }: PostQueryProps) => {
                     twitterUsername={metaData.TwitterUsername}
                 />
 
-                <section className='section-fill blue-medium' id={metaData.WikiTitle}>
-                    <Container className='text-center text-md-left my-auto'>
+                <section className='section-fill blue-medium' id={metaData.HowtoTitle}>
+                    <Container className='my-auto'>
                         <Suspense fallback={<RenderLoader />}>
                             <Filter page={page} tags={tags} />
                         </Suspense>
@@ -66,7 +66,7 @@ export const query = graphql`
   query SITE_HOWTO_QUERY {
     allMdx(
       sort: { fields: [frontmatter___date], order: DESC }
-      filter: { frontmatter: { published: { eq: true } }, fileAbsolutePath: {regex: "/howto/"} }
+      filter: { frontmatter: { published: { eq: true }, series: { ne: true } }, fileAbsolutePath: {regex: "/howto/"} }
     ) {
       nodes {
         id
@@ -76,13 +76,14 @@ export const query = graphql`
           cover {
             publicURL
             childImageSharp {
-                fluid(maxWidth: 1280, srcSetBreakpoints: [240, 360, 480, 640, 960, 1280]) {
+                fluid(srcSetBreakpoints: [320, 640, 960]) {
                 ...GatsbyImageSharpFluid_withWebp
               }
             }
           }
-          date(formatString: "YYYY MMMM Do")
+          date(formatString: "YYYY DD MMMM")
           excerpt
+          series
           tags
           title
         }

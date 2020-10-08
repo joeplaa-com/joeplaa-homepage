@@ -69,12 +69,12 @@ export const query = graphql`
           cover {
             publicURL
             childImageSharp {
-                fluid(maxWidth: 960, srcSetBreakpoints: [240, 360, 480, 640, 960]) {
+                fluid(srcSetBreakpoints: [320, 480, 640]) {
                 ...GatsbyImageSharpFluid_withWebp
               }
             }
           }
-          date(formatString: "YYYY MMMM Do")
+          date(formatString: "YYYY DD MMMM")
           excerpt
           tags
           title

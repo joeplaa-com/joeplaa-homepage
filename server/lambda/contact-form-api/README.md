@@ -14,13 +14,13 @@
 
 * Add your personal AWS credentials:
 
-    ```bash
+    ```ini
     serverless config credentials --provider aws --key xxxxxxxxxxxxxx --secret xxxxxxxxxxxxxx
     ```
 
     Or add them manually (better if you want multiple profiles):
 
-    ```bash
+    ```ini
     nano ~/.aws/credentials
     ```
 
@@ -52,7 +52,7 @@
 * Region must be set to the region where the receiver (email address) is verified by SES.
 * Run:
 
-    ```bash
+    ```ini
     serverless deploy --aws-profile joeplaa.com
     ```
 
@@ -88,7 +88,7 @@
 
 ### Create a new service
 
-```bash
+```ini
 serverless create --template aws-nodejs --path contact-form-api
 ```
 

@@ -6,7 +6,7 @@ import { PostTitleProps } from '../types'
 export default function PostTitle({ title, slug, path, onClick }: PostTitleProps) {
     return (
         <CardTitle>
-            {path
+            {path && slug
                 ? (<Link to={slug}>
                     <h3>
                         {title}
