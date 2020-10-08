@@ -1,7 +1,7 @@
 import React from 'react'
 import { FaHashtag } from 'react-icons/fa'
 import { GrCli, GrMonitor } from 'react-icons/gr'
-import { SiAmazonaws, SiAndroid, SiBootstrap, SiCss3, SiDocker, SiDotNet, SiExpo, SiGatsby, SiGhost, SiHtml5, SiIos, SiJavascript, SiLetsencrypt, SiLinux, SiMariadb, SiMarkdown, SiMicrosoft, SiMicrosoftsqlserver, SiMysql, SiNextDotJs, SiNginx, SiRails, SiReact, SiRedis, SiRuby, SiSass, SiTypescript, SiUbuntu, SiWindows, SiWordpress } from 'react-icons/si'
+import { SiAmazonaws, SiAndroid, SiBootstrap, SiCss3, SiDocker, SiDotNet, SiExpo, SiGatsby, SiGhost, SiHtml5, SiIos, SiJavascript, SiLetsencrypt, SiLinux, SiMariadb, SiMarkdown, SiMicrosoft, SiMicrosoftsqlserver, SiMysql, SiNextDotJs, SiNginx, SiPhp, SiRails, SiReact, SiRedis, SiRuby, SiSass, SiTypescript, SiUbuntu, SiWindows, SiWordpress } from 'react-icons/si'
 
 export default function TagIcon(tag: string) {
     switch (tag) {
@@ -26,6 +26,7 @@ export default function TagIcon(tag: string) {
     case 'MySQL': return <SiMysql />;
     case 'Next.js': return <SiNextDotJs />;
     case 'Nginx': return <SiNginx />;
+    case 'PHP': return <SiPhp />;
     case 'Rails': return <SiRails />;
     case 'React': return <SiReact />;
     case 'React-Native': return <SiReact />;

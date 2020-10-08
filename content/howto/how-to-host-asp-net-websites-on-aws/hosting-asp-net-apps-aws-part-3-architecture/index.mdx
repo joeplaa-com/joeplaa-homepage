@@ -1,20 +1,25 @@
 ---
-title: "Hosting ASP.NET apps on AWS Part 3: Architecture"
-date: "2020-01-31"
+title: Hosting ASP.NET apps on AWS Part 3 - Architecture
+date: '2020-01-31 10:03'
+tags: ['AWS', 'CloudWatch', 'EC2', 'EBS', 'Route 53', 'S3', 'SES', 'SNS', 'WorkMail']
+excerpt: "Hosting our own ASP.NET apps on AWS taught us this is not a side project. In part 3 we'll discuss the basic architecture of our AWS EC2 environment."
+cover: '../hosting-aspdotnet-on-aws.png'
+author: 'Joep van de Laarschot'
+published: true
+series: true
 ---
 
 To run your applications you need hardware in some form. You can buy and maintain your own server, rent a physical server in a data center or run virtual private servers. You can also build your environment in the cloud. In this case the cloud basically is a collection of servers that you can use for a variety of use cases. Be it to run a VPS or use one of it's shared services.
 
 There are just a few major players in this space like Microsoft Azure ($3.4B), Google Cloud ($2.3B) or a size smaller ($250M) DigitalOcean. We're building our architecture in the biggest one ($7.8B): the AWS cloud.
 
-_Sources:_
-
-- _[https://medium.com/@jaychapel/aws-vs-azure-vs-google-cloud-market-share-2019-what-the-latest-data-shows-dc21f137ff1c](https://medium.com/@jaychapel/aws-vs-azure-vs-google-cloud-market-share-2019-what-the-latest-data-shows-dc21f137ff1c)_
-- _[https://www.digitalocean.com/press/releases/digitalocean-named-to-forbes-2019-cloud-100-list/](https://www.digitalocean.com/press/releases/digitalocean-named-to-forbes-2019-cloud-100-list/)_
+> Sources:
+> - [https://medium.com/@jaychapel/aws-vs-azure-vs-google-cloud-market-share-2019-what-the-latest-data-shows-dc21f137ff1c](https://medium.com/@jaychapel/aws-vs-azure-vs-google-cloud-market-share-2019-what-the-latest-data-shows-dc21f137ff1c)
+> - [https://www.digitalocean.com/press/releases/digitalocean-named-to-forbes-2019-cloud-100-list/](https://www.digitalocean.com/press/releases/digitalocean-named-to-forbes-2019-cloud-100-list/)
 
 ## AWS basics
 
-To understand which parts to use when building your environment in AWS and how to use them, we need to start with learning some basic concepts. I used the free [training courses](https://www.aws.training/), which I can recommend, to get a basic understanding. Check out [appendix C](https://blog.jodibooks.com/2020/02/hosting-asp-net-apps-aws-appendix-c-aws-training/) for more info on training and which ones to start with.
+To understand which parts to use when building your environment in AWS and how to use them, we need to start with learning some basic concepts. I used the free [training courses](https://www.aws.training/), which I can recommend, to get a basic understanding. Check out [appendix C](../hosting-asp-net-apps-aws-appendix-c-aws-training/) for more info on training and which ones to start with.
 
 The main disadvantage of all these courses and videos is that they only show the basic building blocks and how to use them in a very simple example. They all lack videos and information on how to integrate them all into a full architecture. So, we'll try to do that in this series.
 
@@ -26,7 +31,7 @@ The first choice we'll have to make is in what location we want to build our clo
 
 In our case we chose `eu-central-1` (blue), which is Frankfurt, Germany. This is the closest location to our customers in The Netherlands. We also use a second region, `eu-west-1`, in Ireland, because that's the only region in Europe that has the WorkMail service. We'll ignore that for now.
 
-[![Architecture: AWS Regions, Availability Zones and VPC](images/AWS-architecture-Region-AZ-VPC-1024x435.png)](https://blog.jodibooks.com/wp-content/uploads/2020/01/AWS-architecture-Region-AZ-VPC.png)
+![Architecture: AWS Regions, Availability Zones and VPC](AWS-architecture-Region-AZ-VPC.png)
 
 The basic AWS architecture we're going to use
 
@@ -46,7 +51,7 @@ Now that we have a basic understanding of the basic architecture, we can zoom in
 
 These instances are placed inside a security group. A security group is a virtual firewall which enables you to open ports to your instances. All ports are closed by default, but we will allow web traffic and remote management later.
 
-[![Basic EC2 architecture: AWS security groups, route table and internet gateway](images/AWS-architecture-Subnet-SG.png)](https://blog.jodibooks.com/wp-content/uploads/2020/01/AWS-architecture-Subnet-SG.png)
+![Basic EC2 architecture: AWS security groups, route table and internet gateway](AWS-architecture-Subnet-SG.png)
 
 In AWS you place all your instances within a security group
 
@@ -67,7 +72,7 @@ To make it easier to identify them we have to use a consistent naming scheme. I 
 5. Number if duplicates are possible: `01` = first instance, `02` = second instance, etc.
 6. Add additional information if needed. This can also be done with additional tags.
 
-[![Naming of EC2 instances with tags for applications, databases and tools](images/AWS-naming.png)](https://s3-eu-central-1.amazonaws.com/jodibooks-public-cdn/blog/wp-content/uploads/2020/01/06171450/AWS-naming.png)
+![Naming of EC2 instances with tags for applications, databases and tools](AWS-naming.png)
 
 Example of naming and tags for applications, databases and tools
 
@@ -121,7 +126,7 @@ Files are stored as objects in S3 buckets. Buckets are a way of grouping objects
 
 To reach our application we need a public IP. An EC2 instance gets a public IP but also a DNS name by default. These names are really long and ugly though and as they contain the IP, they are notoriously hard to remember.
 
-![Our ugly long Public DNS name ec2-18-195-19-249.eu-central-1.compute.amazonaws.com](images/AWS-public-DNS.png)
+![Our ugly long Public DNS name ec2-18-195-19-249.eu-central-1.compute.amazonaws.com](AWS-public-DNS.png)
 
 Our Public DNS name is way too long
 
@@ -177,4 +182,4 @@ We also want to know if our customers can actually open our website. To check th
 
 ## Let's build
 
-This was a long read with much information and yet we still haven't built anything. Let's start with actually configuring something in the [next part](https://blog.jodibooks.com/2020/01/hosting-asp-net-apps-aws-part-4-iam-users-and-roles/).
+This was a long read with much information and yet we still haven't built anything. Let's start with actually configuring something in the [next part](../hosting-asp-net-apps-aws-part-4-iam-users-and-roles/).

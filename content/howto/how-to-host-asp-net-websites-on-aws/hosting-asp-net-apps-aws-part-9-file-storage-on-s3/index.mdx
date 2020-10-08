@@ -13,7 +13,7 @@ For me, I use EBS as the storage for the OS'es. I don't use EFS, but can image t
 
 S3 is the option we use for bulk storing data that goes out into the world. Objects like images, documents, videos that are send to your user or site visitor.
 
-We already discussed the EBS for the instance OS'es in [part 5](https://blog.jodibooks.com/2020/01/hosting-asp-net-apps-aws-part-5-ec2-instances/) and [6](https://blog.jodibooks.com/2020/02/hosting-asp-net-apps-aws-part-6-servers-in-ec2-part-2/). In this part we'll focus on configuring S3.
+We already discussed the EBS for the instance OS'es in [part 5](../hosting-asp-net-apps-aws-part-5-ec2-instances/) and [6](../hosting-asp-net-apps-aws-part-6-servers-in-ec2-part-2/). In this part we'll focus on configuring S3.
 
 ## S3 basics
 
@@ -23,7 +23,7 @@ Choosing to use S3 is not the end though. S3 is subdivided into multiple classes
 
 [https://aws.amazon.com/s3](https://aws.amazon.com/s3/storage-classes)[/](https://aws.amazon.com/s3/storage-classes)[storage-classes](https://aws.amazon.com/s3/storage-classes)
 
-As explained in [part 3 about the architecture](https://blog.jodibooks.com/2020/01/hosting-asp-net-apps-aws-part-3-architecture/), we will be using three classes:
+As explained in [part 3 about the architecture](../hosting-asp-net-apps-aws-part-3-architecture/), we will be using three classes:
 
 1. **S3 Standard** for user and website files. And for recent backups.
 2. **S3 Standard-IA** for backups that are older than 6 months or 2 application versions.
@@ -234,4 +234,4 @@ Yes
 
 With that we have configured our AWS environment. We will need to add and edit some small things, like specific policies and roles, but we'll get to that when configuring the software that needs it.
 
-In the [next part](https://blog.jodibooks.com/2020/01/hosting-asp-net-apps-aws-part-10-asp-net-sites-in-iis/), we'll be setting up the tools and applications needed to run our ASP.NET apps and our WordPress blog. We'll also make sure the apps are actually running.
+In the [next part](../hosting-asp-net-apps-aws-part-10-asp-net-sites-in-iis/), we'll be setting up the tools and applications needed to run our ASP.NET apps and our WordPress blog. We'll also make sure the apps are actually running.

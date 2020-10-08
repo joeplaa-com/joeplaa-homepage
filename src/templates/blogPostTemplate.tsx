@@ -6,7 +6,7 @@ import SEO from 'react-seo-component'
 import Layout from '../components/layout'
 import PostBrowseButton from '../components/postBrowseButton'
 import PostImage from '../components/postImage'
-import { metaData } from '../utils/data'
+import { content, metaData } from '../utils/data'
 import { PostTemplateProps } from '../types'
 
 const PostTemplate = ({ data, pageContext }: PostTemplateProps) => {
@@ -38,7 +38,7 @@ const PostTemplate = ({ data, pageContext }: PostTemplateProps) => {
             <section className='section-fill gray-medium' id={metaData.WikiTitle}>
                 <Container className='my-auto post-container'>
                     <h3>{title}</h3>
-                    <em>How-to written and screenshots taken on {date}</em>
+                    <em>{content.HowtoDisclaimer}{' '}{date}</em>
                     <PostImage path={false} title={title} picture={frontmatter.cover.childImageSharp} />
 
                     <div className='markdown'>
@@ -73,11 +73,11 @@ export const query = graphql`
     mdx(fields: { slug: { eq: $slug } }) {
       frontmatter {
         title
-        date(formatString: "YYYY MMMM Do")
+        date(formatString: "YYYY DD MMMM")
         cover {
           publicURL
           childImageSharp {
-              fluid(srcSetBreakpoints: [320, 640, 960, 1080]) {
+              fluid(srcSetBreakpoints: [320, 640, 960]) {
               ...GatsbyImageSharpFluid_withWebp
             }
           }

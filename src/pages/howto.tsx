@@ -66,7 +66,7 @@ export const query = graphql`
   query SITE_HOWTO_QUERY {
     allMdx(
       sort: { fields: [frontmatter___date], order: DESC }
-      filter: { frontmatter: { published: { eq: true } }, fileAbsolutePath: {regex: "/howto/"} }
+      filter: { frontmatter: { published: { eq: true }, series: { ne: true } }, fileAbsolutePath: {regex: "/howto/"} }
     ) {
       nodes {
         id
@@ -76,13 +76,14 @@ export const query = graphql`
           cover {
             publicURL
             childImageSharp {
-                fluid(srcSetBreakpoints: [320, 640, 960, 1080]) {
+                fluid(srcSetBreakpoints: [320, 640, 960]) {
                 ...GatsbyImageSharpFluid_withWebp
               }
             }
           }
-          date(formatString: "YYYY MMMM Do")
+          date(formatString: "YYYY DD MMMM")
           excerpt
+          series
           tags
           title
         }

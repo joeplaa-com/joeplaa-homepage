@@ -289,13 +289,9 @@ AWS recommends creating swap space that is "_2x the amount of RAM but never less
 
 8. When starting a new SSH session, Ubuntu will display the amount of used memory, but you can also see it by using top or htop. These can be opened by simply typing `top` or `htop` in the terminal.
 
-    ![memory info at start of session](../how-to-host-asp-net-websites-on-aws/hosting-asp-net-apps-aws-part-6-servers-in-ec2-part-2/ec2-52.png)
+    ![memory info at start of session](../how-to-host-asp-net-websites-on-aws/hosting-asp-net-apps-aws-part-6-servers-in-ec2-part-2/ec2-52.png "Memory usage info when starting an SSH session")
 
-    Memory usage info when starting an SSH session
-
-    ![top information](../how-to-host-asp-net-websites-on-aws/hosting-asp-net-apps-aws-part-6-servers-in-ec2-part-2/ec2-53.png)
-
-    System information and memory usage as displayed in top. Sort on memory (%MEM): `shift+M`
+    ![top information](../how-to-host-asp-net-websites-on-aws/hosting-asp-net-apps-aws-part-6-servers-in-ec2-part-2/ec2-53.png "System information and memory usage as displayed in top. Sort on memory (%MEM): `shift+M`")
 
 ### 4. Install Redis, Nginx, PHP, MySQL
 
@@ -387,7 +383,7 @@ In Lightsail snapshots can be made automatically every day (last 7 days are stor
 
 We could have used snapshots to make backups of our posts, images and WP settings, but it's cheaper to store data in S3. A GB of snapshot storage costs 5 cents per month, where data storage in S3 costs 2.45 cents (Frankfurt).
 
-S3 is known as object storage. I wrote about that in more detail in [this post](https://blog.jodibooks.com/2020/01/hosting-asp-net-apps-aws-part-9-file-storage-on-s3/). For now it's enough to know all objects (files) are stored in buckets. Every bucket can be configured to be accessible by certain users that have been given certain credentials (read, write, delete, etc.).
+S3 is known as object storage. I wrote about that in more detail in [this post](../hosting-asp-net-apps-aws-part-9-file-storage-on-s3/). For now it's enough to know all objects (files) are stored in buckets. Every bucket can be configured to be accessible by certain users that have been given certain credentials (read, write, delete, etc.).
 
 I found a plugin, UpdraftPlus, which makes a backup of the database, plugins, themes, uploads (images) and other files. To do that, we have to create an S3 bucket for these objects and a user with access to this bucket.
 

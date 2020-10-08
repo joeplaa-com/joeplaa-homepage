@@ -26,7 +26,7 @@ https://spinupwp.com/hosting-wordpress-yourself-nginx-php-mysql/
 
 ## Install stack
 
-1. Login to the Ubuntu EC2 instance with PuTTY as described in [part 6](https://blog.jodibooks.com/2020/02/hosting-asp-net-apps-aws-part-6-servers-in-ec2-part-2/).
+1. Login to the Ubuntu EC2 instance with PuTTY as described in [part 6](../hosting-asp-net-apps-aws-part-6-servers-in-ec2-part-2/).
 2. Run the following commands one by one to install **MySQL**. Copy a single line and right-click in PuTTY to paste.
 
 **NOTE**: Do not choose the default for the authentication mechanism when installing MySQL, use the `LEGACY` authentication mechanism to remain WordPress compatible.
@@ -270,7 +270,7 @@ sudo service nginx restart
 sudo mysql -u root -p
 ```
 
-2. Create the database by running the following SQL one line at a time, including the ";". Again choose a strong password, this time for the WordPress database. I.e. WordPress only has access to this database, not to other MySQL databases on this instance. For now that doesn't matter as we only run the WP database, but it might come in handy in the future: [Appendix E](https://blog.jodibooks.com/2020/02/hosting-asp-net-apps-aws-appendix-e-improved-architectures/).
+2. Create the database by running the following SQL one line at a time, including the ";". Again choose a strong password, this time for the WordPress database. I.e. WordPress only has access to this database, not to other MySQL databases on this instance. For now that doesn't matter as we only run the WP database, but it might come in handy in the future: [Appendix E](../hosting-asp-net-apps-aws-appendix-e-improved-architectures/).
 
 - Database: `wordpress`
 - Database User: `jodibooksWP`
@@ -662,4 +662,4 @@ With your blog running, we need to install some plugins to make the most out of 
 
 ## End of installation part
 
-With that we have a fully working environment. What we still need to do is make sure everything will be backed up and monitored. That will be the topic of the [next parts](https://blog.jodibooks.com/2020/01/hosting-asp-net-apps-aws-part-14-monitoring-with-cloudwatch/).
+With that we have a fully working environment. What we still need to do is make sure everything will be backed up and monitored. That will be the topic of the [next parts](../hosting-asp-net-apps-aws-part-14-monitoring-with-cloudwatch/).

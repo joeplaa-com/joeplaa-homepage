@@ -94,7 +94,7 @@ On the D-drive we're going to create some folders for our applications. This is 
 - `logs`
 - `scripts`
 
-Obviously `apps` are our published ASP.NET applications. `databases` is used as a temp folder for database exports and backups. `download` to upload new files to, like a new application release or installer. Exports from the Task Scheduler ([Part 15](https://blog.jodibooks.com/2020/01/hosting-asp-net-apps-aws-part-15-backup-scripting/)) are put in `jobs` and `scripts` contains the scripts (also [Part 15](https://blog.jodibooks.com/2020/01/hosting-asp-net-apps-aws-part-15-backup-scripting/)) to backup the database and log files. The script logs are stored in `logs`.
+Obviously `apps` are our published ASP.NET applications. `databases` is used as a temp folder for database exports and backups. `download` to upload new files to, like a new application release or installer. Exports from the Task Scheduler ([Part 15](../hosting-asp-net-apps-aws-part-15-backup-scripting/)) are put in `jobs` and `scripts` contains the scripts (also [Part 15](../hosting-asp-net-apps-aws-part-15-backup-scripting/)) to backup the database and log files. The script logs are stored in `logs`.
 
 I assume you have published your application(s) and are ready to go, so let's do this.
 
@@ -186,4 +186,4 @@ Note: we needed to add PutObjectTagging, GetObjectTagging and DeleteObjectTaggin
 
 ## Next: MS SQL
 
-That's it for the applications. With the configuration of Route 53 in [part 7](https://blog.jodibooks.com/2020/01/hosting-asp-net-apps-aws-part-7-domains-and-dns-with-route-53/), they should be reachable over an unencrypted HTTP connection. Before we add the SSL certificate, we need to [configure our database first](https://blog.jodibooks.com/2020/01/hosting-asp-net-apps-aws-part-11-database-in-ms-sql/).
+That's it for the applications. With the configuration of Route 53 in [part 7](../hosting-asp-net-apps-aws-part-7-domains-and-dns-with-route-53/), they should be reachable over an unencrypted HTTP connection. Before we add the SSL certificate, we need to [configure our database first](../hosting-asp-net-apps-aws-part-11-database-in-ms-sql/).

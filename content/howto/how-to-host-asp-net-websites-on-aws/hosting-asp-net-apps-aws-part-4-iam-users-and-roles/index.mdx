@@ -1,6 +1,12 @@
 ---
-title: "Hosting ASP.NET apps on AWS Part 4: Users and roles with IAM"
-date: "2020-01-31"
+title: Hosting ASP.NET apps on AWS Part 4 - Users and roles with IAM
+date: '2020-01-31 10:04'
+tags: ['AWS', 'IAM', 'Security']
+excerpt: "Hosting our own ASP.NET apps on AWS taught us this is not a side project. On AWS we start with securing our root account and adding users and roles in IAM."
+cover: '../hosting-aspdotnet-on-aws.png'
+author: 'Joep van de Laarschot'
+published: true
+series: true
 ---
 
 In the last part we raced through the basic architecture and the basic AWS building blocks we need to host our applications. What we didn't discuss was how to secure all of these services and make sure no one unauthorized can access or use them.
@@ -17,49 +23,47 @@ In this part we will make sure that our account is setup in a safe and secure wa
 
 You can always go back to your console by Googling for `AWS console` and logging in or by clicking the AWS logo in the top left corner.
 
-[![IAM dashboard with 5 best practice advice](images/iam-0-1-1024x553.png)](https://blog.jodibooks.com/wp-content/uploads/2020/01/iam-0-1.png)
+    ![IAM dashboard with 5 best practice advice](iam-0-1.png)
 
-### 1\. Enable MFA
+### 1. Enable MFA
 
 We don't want anybody else then ourselves ever accessing this account, so we're using a very strong password and enable multi-factor authentication (MFA). To help me store and "remember" these passwords I use a password manager: [Bitwarden](https://bitwarden.com/).
 
 1. To get to the [IAM](https://aws.amazon.com/iam/) dashboard, search for `IAM` in the AWS console (the page you get right after logging in). Click on your user name in the top right corner and select **My Security Credentials**.
 
-[![Click on your user name and select "My Security Credentials"](images/iam-1-1024x553.png)](https://blog.jodibooks.com/wp-content/uploads/2020/01/iam-1.png)
+    ![Click on your user name and select "My Security Credentials"](iam-1.png)
 
 2. Click on **Manage MFA**
 
-[![Manage MFA button on IAM dashboard](images/iam-2-1024x553.png)](https://s3-eu-central-1.amazonaws.com/jodibooks-public-cdn/blog/wp-content/uploads/2020/01/13143625/iam-2.png)
+    ![Manage MFA button on IAM dashboard](iam-2.png)
 
 3. Click **Activate MFA**
 
-[![Activate MFA button](images/iam-3-1024x499.png)](https://blog.jodibooks.com/wp-content/uploads/2020/01/iam-3.png)
+    ![Activate MFA button](iam-3.png)
 
 4. Choose **Virtual MFA device**
 
-[![Choose MFA device type](images/iam-4-1024x552.png)](https://blog.jodibooks.com/wp-content/uploads/2020/01/iam-4.png)
+    ![Choose MFA device type](iam-4.png)
 
 5. **Scan QR code** and enter two consecutive codes. You can use any MFA or 2FA authenticator you like. There are multiple apps from, for example Google, Microsoft, LastPass, and more. Recently I discovered [Authy](https://authy.com/).
 
-[![qr code](images/iam-5-1024x555.png)](https://blog.jodibooks.com/wp-content/uploads/2020/01/iam-5.png)
+    ![qr code](iam-5.png)
 
-### 2\. Enable password policy
+### 2. Enable password policy
 
 1. When you are first asked you can click a link on the IAM dashboard to change your password policy. Alternatively you can click **Account settings** in the menu on the left.
 
-[![account settings screen](images/iam-6-1024x553.png)](https://blog.jodibooks.com/wp-content/uploads/2020/01/iam-6.png)
+    ![account settings screen](iam-6.png)
 
 2. Click the **Change password policy** button
 
-[![password policy settings](images/iam-7-1024x553.png)](https://blog.jodibooks.com/wp-content/uploads/2020/01/iam-7.png)
+    ![password policy settings](iam-7.png)
 
-3. Click **Save changes**.
+3. Click **Save changes**. And while we're in the "Account settings" screen, we'll also deactivate all endpoints we're not using.
 
-While we're in the "Account settings" screen, we'll also deactivate all endpoints we're not using.
+    ![active and deactivated endpoints](iam-8.png)
 
-[![active and deactivated endpoints](images/iam-8-1024x553.png)](https://blog.jodibooks.com/wp-content/uploads/2020/01/iam-8.png)
-
-### 3\. Creating groups
+### 3. Creating groups
 
 If you're working on your own and don't plan to add other people, you can skip making groups. We however did make a start with creating some groups. I have no idea what groups you'd normally have, but we'll learn. For now I created:
 
@@ -72,21 +76,21 @@ Creating a group is really straight forward, but let's do one.
 
 1. Click **Create New Group** on the top of the screen
 
-[![Groups in IAM](images/iam-9-1024x554.png)](https://blog.jodibooks.com/wp-content/uploads/2020/01/iam-9.png)
+    ![Groups in IAM](iam-9.png)
 
 2. Give the group a name
 
-[![Add a group name](images/iam-10-1024x553.png)](https://blog.jodibooks.com/wp-content/uploads/2020/01/iam-10.png)
+    ![Add a group name](iam-10.png)
 
 3. Add one or multiple policies
 
-[![Add policies](images/iam-11-1024x554.png)](https://blog.jodibooks.com/wp-content/uploads/2020/01/iam-11.png)
+    ![Add policies](iam-11.png)
 
 4. Click **Create Group**
 
-[![review group](images/iam-12-1024x554.png)](https://blog.jodibooks.com/wp-content/uploads/2020/01/iam-12.png)
+    ![review group](iam-12.png)
 
-### 4\. Creating users
+### 4. Creating users
 
 Users can be real people or programmatic entities like computers or applications. AWS also has roles. I still can't put the difference into my own words, so for now I'll point you to this [Stack Overflow topic](https://stackoverflow.com/questions/46199680/difference-between-iam-role-and-iam-user-in-aws/46200171).
 
@@ -94,24 +98,24 @@ We need to make at least one "real" or console user. This user gets admin rights
 
 1. Click **Add user**
 
-[![users overview screen](images/iam-13-1024x554.png)](https://blog.jodibooks.com/wp-content/uploads/2020/01/iam-13.png)
+    ![users overview screen](iam-13.png)
 
 2. Enter the User name and choose **AWS Management Console access** as the access type.
 
-[![enter user name and type](images/iam-14-1024x553.png)](https://blog.jodibooks.com/wp-content/uploads/2020/01/iam-14.png)
+    ![enter user name and type](iam-14.png)
 
 3. Add user to a group or, if you don't have groups, choose to attach policies directly. We choose our `admins` group.
 
-[![choose group or policies](images/iam-15-1024x554.png)](https://blog.jodibooks.com/wp-content/uploads/2020/01/iam-15.png)
+    ![choose group or policies](iam-15.png)
 
 4. Add tags if you want (I don't)
 5. Review and **Create user**
 
-[![review and create user](images/iam-16-1024x554.png)](https://blog.jodibooks.com/wp-content/uploads/2020/01/iam-16.png)
+    ![review and create user](iam-16.png)
 
 6. AWS will create the initial credentials for this user. Store them somewhere safe.
 
-[![download credentials](images/iam-17-1024x554.png)](https://s3-eu-central-1.amazonaws.com/jodibooks-public-cdn/blog/wp-content/uploads/2020/01/13150900/iam-17.png)
+    ![download credentials](iam-17.png)
 
 7. When you're logging in as a non-root user, AWS needs to know to which account the user belongs. So you have to add the **Account ID** of your root account. As this is a 12 digit number, I'd write it down somewhere. You can find it by clicking your user/business name in the top right corner. Log out of your root account and log back in with your Account ID as login and your admin account credentials. Change your password and enable MFA. Once successful you can delete the auto-generated credentials.
 
@@ -121,26 +125,27 @@ Now that we have secured our account, we need to do one more thing in the IAM da
 
 1. Click **Roles** in the menu on the left and click **Create role**.
 
-[![Roles in IAM](images/iam-18-1024x554.png)](https://blog.jodibooks.com/wp-content/uploads/2020/01/iam-18.png)
+    ![Roles in IAM](iam-18.png)
 
 2. As we are going to use this role for EC2, we can choose the common use case **EC2**. Who would've guessed.
 
-[![Choose the EC2 use case](images/iam-19-1024x554.png)](https://blog.jodibooks.com/wp-content/uploads/2020/01/iam-19.png)
+    ![Choose the EC2 use case](iam-19.png)
 
 3. Now we're going to add permissions. For the .NET role, we need three policies:
+
     1. `AmazonEC2ReadOnlyAccess`
     2. `AmazonSSMManagedInstanceCore`
     3. `CloudWatchAgentServerPolicy`
 
-[![Create a policy first](images/iam-20-1024x554.png)](https://blog.jodibooks.com/wp-content/uploads/2020/01/iam-20.png)
+    ![Create a policy first](iam-20.png)
 
 4. Click **Next: Tags** and add tags if you like. I didn't add any tags.
 5. Click **Next: Review** and give your role a name. E.g. `EC2-jodibooks-dotnetapps`.
 
-[![Choose a role name](images/iam-21-1024x554.png)](https://blog.jodibooks.com/wp-content/uploads/2020/01/iam-21.png)
+    ![Choose a role name](iam-21.png)
 
 6. Now create another role, but name it `EC2-jodibooks-WordPress`.
 
 ## Next: EC2
 
-That's it for the user part. In the [next part](https://blog.jodibooks.com/2020/01/hosting-asp-net-apps-aws-part-5-ec2-instances/) we will setup our EC2 instances.
+That's it for the user part. In the [next part](../hosting-asp-net-apps-aws-part-5-ec2-instances/) we will setup our EC2 instances.

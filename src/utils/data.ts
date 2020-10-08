@@ -15,6 +15,7 @@ export const content = {
     EmailErrorMessage: 'Enter a valid email address',
     Filter: 'Filter',
     FilterTags: 'Select tags to show',
+    HowtoDisclaimer: 'How-to written and screenshots taken on',
     InterestedIn: 'I\'m interested in:',
     Loading: 'Loading...',
     MailSendFailed: 'Something went wrong, please try again or email me directly at ',

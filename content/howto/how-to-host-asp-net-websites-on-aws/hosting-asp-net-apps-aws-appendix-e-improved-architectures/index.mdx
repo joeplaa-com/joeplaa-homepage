@@ -3,7 +3,7 @@ title: "Hosting ASP.NET apps on AWS Appendix E: Improved architectures"
 date: "2020-02-17"
 ---
 
-Currently we run one instance of each "machine". Every instance has a "maximum" number of users and visitors it can serve, before the average CPU usage gets [bigger than the baseline](https://blog.jodibooks.com/2020/02/hosting-asp-net-apps-on-aws-appendix-d-ec2-instance-type-selection/). When we get more users than one instance can support, their experience will suffer, by longer load times or increased latencies.
+Currently we run one instance of each "machine". Every instance has a "maximum" number of users and visitors it can serve, before the average CPU usage gets [bigger than the baseline](../hosting-asp-net-apps-on-aws-appendix-d-ec2-instance-type-selection/). When we get more users than one instance can support, their experience will suffer, by longer load times or increased latencies.
 
 [![current architecture](images/AWS-architecture-jodiBooks-current.png)](https://blog.jodibooks.com/wp-content/uploads/2020/02/AWS-architecture-jodiBooks-current.png)
 
@@ -13,7 +13,7 @@ Our current architecture
 
 Before we get into increasing computational power, we have to move the databases to a separate instance. The SQL server database on the Windows machine is struggling with the amount of memory and by having the databases inside of the instances, they're not stateless.
 
-This database instance can be a self-managed EC2 instance or a managed [RDS](https://aws.amazon.com/rds/) instance. The latter is preferred obviously. However, SQL server RDS instances are [pricey](https://blog.jodibooks.com/2020/01/hosting-asp-net-apps-aws-appendix-b-aws-pricing/), so we also want to migrate the application database to MySQL. With that we can move both databases (application and WordPress) to the [MySQL RDS instance](https://aws.amazon.com/rds/mysql/).
+This database instance can be a self-managed EC2 instance or a managed [RDS](https://aws.amazon.com/rds/) instance. The latter is preferred obviously. However, SQL server RDS instances are [pricey](../hosting-asp-net-apps-aws-appendix-b-aws-pricing/), so we also want to migrate the application database to MySQL. With that we can move both databases (application and WordPress) to the [MySQL RDS instance](https://aws.amazon.com/rds/mysql/).
 
 This RDS instance will be placed in a private subnet, preventing external entrance. The databases can only be accessed through the applications, not directly. The `sg-rds-mysql` security group will only allow the IP-addresses of our servers.
 

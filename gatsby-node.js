@@ -34,8 +34,8 @@ exports.createPages = ({ actions, graphql }) => {
         }
 
         const howtoPosts = result.data.allMdx.nodes.filter(node => node.fileAbsolutePath.includes('/howto/'));
-        const portfolioPosts = result.data.allMdx.nodes.filter(node => node.fileAbsolutePath.includes('/portfolio/'));
-        const wikiPosts = result.data.allMdx.nodes.filter(node => node.fileAbsolutePath.includes('/wiki/'));
+        //const portfolioPosts = result.data.allMdx.nodes.filter(node => node.fileAbsolutePath.includes('/portfolio/'));
+        //const wikiPosts = result.data.allMdx.nodes.filter(node => node.fileAbsolutePath.includes('/wiki/'));
 
         // create page for each mdx howto node
         howtoPosts.forEach((post, index) => {

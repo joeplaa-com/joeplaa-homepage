@@ -74,7 +74,7 @@ export const query = graphql`
               }
             }
           }
-          date(formatString: "YYYY MMMM Do")
+          date(formatString: "YYYY DD MMMM")
           excerpt
           tags
           title

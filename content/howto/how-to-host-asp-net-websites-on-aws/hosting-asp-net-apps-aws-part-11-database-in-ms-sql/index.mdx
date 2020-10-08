@@ -7,7 +7,7 @@ For our application we chose to use the Microsoft SQL server engine. The reason?
 
 As we have chosen an EC2 instance with limited memory, we have noticed some memory issues. The SQL engine is constantly using 10-20% CPU which seems to be [related to insufficient memory](https://dba.stackexchange.com/questions/157226/ms-sql-server-2016-constant-cpu-usage-of-10-all-db-offline). And after importing a database the instance is almost unusable while creating the indexes, which takes up 45 minutes to an hour.
 
-To limit the issues as much as possible we have to run as little programs as possible. A better solution would be to move the database to a separate instance, but that will cost extra money. We will be moving to a MySQL/Aurora/MariaDB solution soon though, more on that in [appendix E](https://blog.jodibooks.com/2020/02/hosting-asp-net-apps-aws-appendix-e-improved-architectures/).
+To limit the issues as much as possible we have to run as little programs as possible. A better solution would be to move the database to a separate instance, but that will cost extra money. We will be moving to a MySQL/Aurora/MariaDB solution soon though, more on that in [appendix E](../hosting-asp-net-apps-aws-appendix-e-improved-architectures/).
 
 ### SSMS
 
@@ -37,7 +37,7 @@ Before we do that we are going to use it one last time to add a remote user.
 
 [![system admin user settings](images/mssql-05-1024x464.png)](https://blog.jodibooks.com/wp-content/uploads/2020/01/mssql-05.png)
 
-6. We already opened the firewall port `1433` during setup of the EC2 in [part 5](https://blog.jodibooks.com/2020/01/hosting-asp-net-apps-on-aws-part-5-ec2-instances/). There we also already attached a security group `sg-ms-sql`.
+6. We already opened the firewall port `1433` during setup of the EC2 in [part 5](../hosting-asp-net-apps-on-aws-part-5-ec2-instances/). There we also already attached a security group `sg-ms-sql`.
     1. Open SSMS on your local machine and enter your _**domain**_ (awesome!) or the _**Public DNS**_ as _Server name_. Select **SQL Server Authentication** and enter the login credentials: _Login:_ **sa**, _Password:_ **as entered in step 5**. You can only login from your office/home IP.
 
 [![login to remote SQL server database](images/mssql-06-1024x616.png)](https://blog.jodibooks.com/wp-content/uploads/2020/01/mssql-06.png)
@@ -123,7 +123,7 @@ To allow the website (app pool) to connect to and manipulate the database, we ha
 
 2. Type the application pool name `IIS APPPOOL\jodibooks-test` in the _Login name:_ field.
 
-Note 1: You need to have inbound port 445 opened to allow searching for users. I added that in [part 5](https://blog.jodibooks.com/2020/01/hosting-asp-net-apps-aws-part-5-ec2-instances/). [https://harvarinder.blogspot.com/2019/03/the-program-cannot-open-required-dialog.html](https://harvarinder.blogspot.com/2019/03/the-program-cannot-open-required-dialog.html)
+Note 1: You need to have inbound port 445 opened to allow searching for users. I added that in [part 5](../hosting-asp-net-apps-aws-part-5-ec2-instances/). [https://harvarinder.blogspot.com/2019/03/the-program-cannot-open-required-dialog.html](https://harvarinder.blogspot.com/2019/03/the-program-cannot-open-required-dialog.html)
 
 Note 2: to get this to work, I had to login with the Windows EC2 admin credentials first. Then I got a screen where I could search for users. Click the **Object types** button and select **Groups**. After that it works. [http://www.mssqldestination.com/blog/manjunathcbhat/2014/object-user-group-or-built-security-proncipal-following-name-cannot-be-found](http://www.mssqldestination.com/blog/manjunathcbhat/2014/object-user-group-or-built-security-proncipal-following-name-cannot-be-found)
 
@@ -135,4 +135,4 @@ Note 2: to get this to work, I had to login with the Windows EC2 admin credentia
 
 ## Next: SSL
 
-With the database configured, the application should be fully functional. However, we do want to offer secure connections to our website, so in the [next part](https://blog.jodibooks.com/2020/01/hosting-asp-net-apps-aws-part-12-ssl-certificates-in-iis/) we'll generate our SSL certificate and configure it in IIS.
+With the database configured, the application should be fully functional. However, we do want to offer secure connections to our website, so in the [next part](../hosting-asp-net-apps-aws-part-12-ssl-certificates-in-iis/) we'll generate our SSL certificate and configure it in IIS.

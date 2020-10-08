@@ -1,241 +1,224 @@
 ---
-title: "Hosting ASP.NET apps on AWS Part 5: Servers in EC2 part 1"
-date: "2020-01-31"
+title: Hosting ASP.NET apps on AWS Part 5 - Servers in EC2 part 1
+date: '2020-01-31 10:05'
+tags: ['AWS', 'EC2', 'Windows']
+excerpt: "Hosting our own ASP.NET apps on AWS taught us this is not a side project. In this part we configure EC2 and launch a Windows 2019 instance."
+cover: '../hosting-aspdotnet-on-aws.png'
+author: 'Joep van de Laarschot'
+published: true
+series: true
 ---
 
 EC2 stands for elastic compute cloud, where AWS really focuses on the _elastic_ part. EC2 basically is a big "cloud" of CPU's and memory. You use just the amount of those that your application needs at every moment. If used correctly it will scale _elastically_ with your needs.
 
 Although the premise of elasticity is awesome, we are not going to use that part yet. That will be something for another series. Now we'll keep it relatively simple and only run two "fixed" EC2 instances.
 
-In this part we'll setup the basics for the instance and configure the Windows instance. In [Part 6 – Servers in EC2 part 2](https://blog.jodibooks.com/2020/02/hosting-asp-net-apps-aws-part-6-servers-in-ec2-part-2/) the Linux (Ubuntu) instance will be configured as well, we'll make snapshots and discuss some optional or future improvements.
+In this part we'll setup the basics for the instance and configure the Windows instance. In [Part 6 – Servers in EC2 part 2](../hosting-asp-net-apps-aws-part-6-servers-in-ec2-part-2/) the Linux (Ubuntu) instance will be configured as well, we'll make snapshots and discuss some optional or future improvements.
 
-## Security features
+## 1. Security features
 
 Before we launch these instances, we'll first setup two security features: Security Groups and Key Pairs. You can also do it during the launch of the instance, but I found it easier to have them prepared in advance.
 
-### Security Groups
+### 1.1 Security Groups
 
 A security group can be seen as a virtual firewall. It will block all ports, except the ones you explicitly open. We're going to setup four security groups; one for webserver access, one for the MS SQL engine, one for remote management and one for our applications.
 
-Name
+<div class='col-md-10 col-lg-8 mx-auto'>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Group Name</th>
+                <th scope="col">Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><code>sg-jodibooks-apps-mgmt</code></td>
+                <td><code>jodiBooks apps</code></td>
+                <td><code>Allow private connections to API and management apps</code></td>
+            </tr>
+            <tr>
+                <td><code>sg-ms-sql</code></td>
+                <td><code>MS SQL engine</code></td>
+                <td><code>Access MS SQL engine</code></td>
+            </tr>
+            <tr>
+                <td><code>sg-server-management</code></td>
+                <td><code>Remote server management</code></td>
+                <td><code>Server management (SSH and RDP) from private IP</code></td>
+            </tr>
+            <tr>
+                <td><code>sg-webserver</code></td>
+                <td><code>Webserver</code></td>
+                <td><code>Webserver ports (80 and 443)</code></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
 
-Group Name
-
-Description
-
-`sg-jodibooks-apps-mgmt`
-
-`jodiBooks apps`
-
-`Allow private connections to API and management apps`
-
-`sg-ms-sql`
-
-`MS SQL engine`
-
-`Access MS SQL engine`
-
-`sg-server-management`
-
-`Remote server management`
-
-`Server management (SSH and RDP) from private IP`
-
-`sg-webserver`
-
-`Webserver`
-
-`Webserver ports (80 and 443)`
-
-1. From the main console got to **EC2** by searching for `EC2`.
+1. From the main console get to **EC2** by searching for `EC2`.
 2. Check if you're in the correct region. You can change it in the top right corner. I'm in Frankfurt (`eu-central-1`).
 3. In the EC2 dashboard go to **Security Groups** in the menu on the left.
 
-[![security groups](images/ec2-1-1024x553.png)](https://blog.jodibooks.com/wp-content/uploads/2020/01/ec2-1.png)
+    ![security groups](ec2-1.png)
 
-3. Click the **Create Security Group** button and add the Group name and description. We only have the default VPC, so we can't change this setting.
+4. Click the **Create Security Group** button and add the Group name and description. We only have the default VPC, so we can't change this setting.
 
-[![add a name and description for the security group](images/ec2-2-1024x553.png)](https://blog.jodibooks.com/wp-content/uploads/2020/01/ec2-2.png)
+    ![add a name and description for the security group](ec2-2.png)
 
-4. Next we add a rule for each port we want to open. For example, when creating the `Webserver` group, click **Add Rule** and select the `HTTP` as type. The Protocol and port will be automatically entered. Choose `anywhere` when you want people to see your website. Choose `My IP` when only you want to have access.
+5. Next we add a rule for each port we want to open. For example, when creating the `Webserver` group, click **Add Rule** and select the `HTTP` as type. The Protocol and port will be automatically entered. Choose `anywhere` when you want people to see your website. Choose `My IP` when only you want to have access.
 
-Security group
+    <div class='col-md-10 col-lg-8 mx-auto'>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">Security group</th>
+                    <th scope="col">Type</th>
+                    <th scope="col">Protocol</th>
+                    <th scope="col">Port Range</th>
+                    <th scope="col">Source</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>sg-ms-sql</code></td>
+                    <td><code>Custom TCP</code></td>
+                    <td><code>TCP</code></td>
+                    <td><code>445</code></td>
+                    <td><code>My IP</code></td>
+                    <td><code>MSSQL Express Management</code></td>
+                </tr>
+                <tr>
+                    <td><code>sg-ms-sql</code></td>
+                    <td><code>MS SQL</code></td>
+                    <td><code>TCP</code></td>
+                    <td><code>1433</code></td>
+                    <td><code>My IP</code></td>
+                    <td><code>MSSQL Express Management</code></td>
+                </tr>
+                <tr>
+                    <td><code>sg-server-management</code></td>
+                    <td><code>SSH</code></td>
+                    <td><code>TCP</code></td>
+                    <td><code>22</code></td>
+                    <td><code>My IP</code></td>
+                    <td><code>SSH from the office</code></td>
+                </tr>
+                <tr>
+                    <td><code>sg-server-management</code></td>
+                    <td><code>RDP</code></td>
+                    <td><code>TCP</code></td>
+                    <td><code>3389</code></td>
+                    <td><code>My IP</code></td>
+                    <td><code>RDP from the office</code></td>
+                </tr>
+                <tr>
+                    <td><code>sg-webserver</code></td>
+                    <td><code>HTTP</code></td>
+                    <td><code>TCP</code></td>
+                    <td><code>80</code></td>
+                    <td><code>anywhere</code></td>
+                    <td><code>HTTP website traffic</code></td>
+                </tr>
+                <tr>
+                    <td><code>sg-webserver</code></td>
+                    <td><code>HTTPS</code></td>
+                    <td><code>TCP</code></td>
+                    <td><code>443</code></td>
+                    <td><code>anywhere</code></td>
+                    <td><code>HTTPS website traffic</code></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 
-Type
+    ![add inbound rules to the security group](ec2-3.png)
 
-Protocol
+6. Click on the **Outbound** tab and notice that there is a rule for `All traffic`. This means _all ports_ are open to _anywhere_. We'll leave it like it is and click **Create** to create the security group.
 
-Port Range
+    ![outbound rule for security group](ec2-4.png)
 
-Source
-
-Description
-
-`sg-webserver`
-
-`HTTP`
-
-`TCP`
-
-`80`
-
-`anywhere`
-
-`HTTP website traffic`
-
-`sg-webserver`
-
-`HTTPS`
-
-`TCP`
-
-`443`
-
-`anywhere`
-
-`HTTPS website traffic`
-
-`sg-ms-sql`
-
-`MS SQL`
-
-`TCP`
-
-`1433`
-
-`My IP`
-
-`MSSQL Express Management`
-
-`sg-ms-sql`
-
-`Custom TCP`
-
-`TCP`
-
-`445`
-
-`My IP`
-
-`MSSQL Express Management`
-
-`sg-server-management`
-
-`RDP`
-
-`TCP`
-
-`3389`
-
-`My IP`
-
-`RDP from the office`
-
-`sg-server-management`
-
-`SSH`
-
-`TCP`
-
-`22`
-
-`My IP`
-
-`SSH from the office`
-
-[![add inbound rules to the security group](images/ec2-3-1024x553.png)](https://blog.jodibooks.com/wp-content/uploads/2020/01/ec2-3.png)
-
-5. Click on the **Outbound** tab and notice that there is a rule for `All traffic`. This means _all ports_ are open to _anywhere_. We'll leave it like it is and click **Create** to create the security group.
-
-[![outbound rule for security group](images/ec2-4-1024x553.png)](https://blog.jodibooks.com/wp-content/uploads/2020/01/ec2-4.png)
-
-6. We'll repeat this for every group.
+7. We'll repeat this for every group.
 
 * * *
 
-### Key Pairs
+### 1.2 Key Pairs
 
 Next we need to make a key pair. We'll actually make two, one for each instance, but you can also choose to use the same one twice.
 
-A key pair consists of a public and a matching private key. The public key will be used by AWS and added to your instances. If you want to access an instance it is only possible if you supply the private key that matches the public key. As only you have that private key, nobody else, also AWS, has no access to your data. So if you lose it, it's gone and you lose access to your instances. I've stored mine in [Bitwarden](https://bitwarden.com/).
+A [key pair](https://en.wikipedia.org/wiki/Public-key_cryptography) consists of a public and a matching private key. The public key will be used by AWS and added to your instances. If you want to access an instance it is only possible if you supply the private key that matches the public key. As only you have that private key, nobody else, even AWS, has no access to your data. So if you lose it, it's gone and you lose access to your instances. To prevent that I've stored mine in [Bitwarden](https://bitwarden.com/).
 
-You can create key pairs yourself and import the public key, but we'll let AWS do it for us.
+> More info on key pairs in AWS: [https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html)
 
-More info on key pairs in AWS: [https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html)
+1. You can create key pairs yourself and import the public key, but we'll let AWS do it for us. Go to **Key Pairs** in the menu on the left and click **Create key pair**. We'll give it a name with prefix `kp` for key pair and for which server/application: `kp-jodibooks-windows-server`.
 
-1. Go to **Key Pairs** in the menu on the left and click **Create key pair**. We'll give it a name with prefix `kp` for key pair and for which server/application: `kp-jodibooks-windows-server`.
-
-[![create a key pair](images/ec2-6-1024x553.png)](https://blog.jodibooks.com/wp-content/uploads/2020/01/ec2-6.png)
+    ![create a key pair](ec2-6.png)
 
 2. Because we want to use this key in Windows, we choose `ppk` as the file format. You can always change the file type later.
 
-Source .pem to .ppk: [https://aws.amazon.com/premiumsupport/knowledge-center/convert-pem-file-into-ppk/](https://aws.amazon.com/premiumsupport/knowledge-center/convert-pem-file-into-ppk/.)
+> Source of .pem to .ppk instructions: [https://aws.amazon.com/premiumsupport/knowledge-center/convert-pem-file-into-ppk/](https://aws.amazon.com/premiumsupport/knowledge-center/convert-pem-file-into-ppk/.)
 
 2. Click **Create key pair** and save the private key. As said, I've stored mine in a password manager.
 3. We'll create another key, but this time we give it the name `kp-jodibooks-linux-server`. Again we choose `ppk` as type, because we'll use [PuTTY](https://www.putty.org/) to access it later. Also store this private key somewhere safe.
 
 * * *
 
-## Windows EC2
+## 2. Windows EC2
 
 We're ready to launch an instance. Yeah, finally!
 
-### Launch instance
+### 2.1 Launch instance
 
 1. You can start the process from the main EC2 dashboard. There is a big orange button on the dashboard that says **Launch instance**. Click it and choose **Launch instance**. Alternatively you can go to **Instances** through the menu on the left and click a blue **Launch instance** button on the top of the page.
 
-[![launch instance button](images/ec2-7-1024x553.png)](https://s3-eu-central-1.amazonaws.com/jodibooks-public-cdn/blog/wp-content/uploads/2020/01/09121232/ec2-7.png)
-
-Left: the launch instance button on the EC2 dashboard. Right: the launch instance button in the Instances screen
+    ![launch instance button](ec2-7.png "Left: the launch instance button on the EC2 dashboard. Right: the launch instance button in the Instances screen)"
 
 2. In **step 1** we choose an AMI (Amazon Machine Image). Click **AWS Marketplace** on the left. These are AMI's maintained by AWS. Then search for `Windows 2019 sql express`. Currently it returns 4 results from which we'll select **Microsoft Windows Server 2019 with SQL Server 2017 Express**.
 
-[![4 results for windows 2019 sql express](images/ec2-8-1024x553.png)](https://blog.jodibooks.com/wp-content/uploads/2020/01/ec2-8.png)
-
-You can also select SQL Server 2019, but we only tested our application with 2017.
+    ![4 results for windows 2019 sql express](ec2-8.png "You can also select SQL Server 2019, but we only tested our application with 2017.")
 
 3. After we press the **Select** button, we get a summary of the chosen AMI and link to the _license agreement_. Also we get a list of _Instance Types_ and their pricing. You don't have to choose anything yet and click **Continue**.
 
-[![Product (AMI) details and instance types with fees](images/ec2-10-1024x553.png)](https://blog.jodibooks.com/wp-content/uploads/2020/01/ec2-10.png)
+    ![Product (AMI) details and instance types with fees](ec2-10.png)
 
-4. In **step 2** we choose the instance type. This will be the Windows instance with MS SQL, so we need at least 2 GB of memory. To get started with a t-type instance is best. It's the cheapest option and has sufficient computing power for webhosting. We choose the `t3.small` instance (more on instance selection in [Appendix D](https://blog.jodibooks.com/2020/02/hosting-asp-net-apps-aws-appendix-d-ec2-instance-type-selection/)).  
+4. In **step 2** we choose the instance type. This will be the Windows instance with MS SQL, so we need at least 2 GB of memory. To get started with a t-type instance is best. It's the cheapest option and has sufficient computing power for webhosting. We choose the `t3.small` instance (more on instance selection in [Appendix D](../hosting-asp-net-apps-aws-appendix-d-ec2-instance-type-selection/)).  
     Mind that we will click on **Next: Configure Instance Details** not the shiny blue _Review and Launch_ button.
 
-[![selection of t3.small instance](images/ec2-11-1024x553.png)](https://blog.jodibooks.com/wp-content/uploads/2020/01/ec2-11.png)
-
-We want a "General purpose" instance type with 2 GiB of memory.
+    ![selection of t3.small instance](ec2-11.png "We want a "General purpose" instance type with 2 GiB of memory.")
 
 5. **Step 3** let's you configure the instance. Most of the default values are fine, but we'll change a few.
+
     1. **Subnet:** As shown we have 3 availability zones and each has it's own subnet. We can let AWS decide where to create this instance, but we can also select a specific zone here. In the architecture we had this one in zone `b`.
     2. **T2/T3 Unlimited:** `Disable` this option. With a t-type instance you get a certain amount of CPU credits per day. When you need more, you pay an additional fee. This option enables you to use an unlimited amount of addition credits.
 
-Source CPU credits: [https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/burstable-performance-instances-unlimited-mode-concepts.html#when-to-use-unlimited-mode](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/burstable-performance-instances-unlimited-mode-concepts.html#when-to-use-unlimited-mode)
+    > Source CPU credits: [https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/burstable-performance-instances-unlimited-mode-concepts.html#when-to-use-unlimited-mode](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/burstable-performance-instances-unlimited-mode-concepts.html#when-to-use-unlimited-mode)
 
-[![choose the subnet and disable unlimited mode](images/ec2-12-1024x553.png)](https://blog.jodibooks.com/wp-content/uploads/2020/01/ec2-12.png)
+    ![choose the subnet and disable unlimited mode](ec2-12.png)
 
 6. After we press **Next: Add Storage** we can add the EBS volumes in **Step 4**. These are the "virtual hard disks" for your instance. The volumes exist separate from the instance, so if the instance is terminated, the volumes (and your data) are still there (if configured).
+
     1. The root (OS) volume is automatically added. We uncheck **Delete on Termination** and select **(default) aws/ebs** encryption.
     2. Next we add a new (second) volume for our application data and logs. Again we select **(default) aws/ebs** encryption. You can also store your data on the OS drive, but I like to keep it separate.
 
-[![select encryption and add a second volume](images/ec2-13-1024x554.png)](https://blog.jodibooks.com/wp-content/uploads/2020/01/ec2-13.png)
+    ![select encryption and add a second volume](ec2-13.png)
 
 7. In **Step 5** we can add tags. I added 4 tags:
+
     1. Name: `jodibooks-server-w01`
     2. Applications: _our applications_
     3. Database: _database name_
     4. Tools: _installed software_
 
-[![add tags: name, applications, databases and tools](images/ec2-14-1024x553.png)](https://blog.jodibooks.com/wp-content/uploads/2020/01/ec2-14.png)
-
-Obviously you can add whatever tags you want.
+    ![add tags: name, applications, databases and tools](ec2-14.png "Obviously you can add whatever tags you want.")
 
 8. **Step 6** is adding or configuring your security group. As said, you can create a new group here, but we already made one earlier, so we can select the `Webserver`, `MS SQL engine` and `Remote server management` security groups. Here you can see why it is important to add a good name and description, because _sg-00fe53048d876aa05_ isn't really descriptive.
 
-[![select our existing security group](images/ec2-15-1024x554.png)](https://blog.jodibooks.com/wp-content/uploads/2020/01/ec2-15.png)
-
-This screenshot shows a single security group with all rules. I later learned you can apply multiple groups, which I like better for clarity.
+    ![select our existing security group](ec2-15.png "This screenshot shows a single security group with all rules. I later learned you can apply multiple groups, which I like better for clarity.")
 
 9. Almost there, just **step 7** to go. Review all the details and click **Launch**. You can ignore the "Your instance configuration is not eligible for the free usage tier" remark.
+
     1. AMI Details: `Microsoft Windows Server 2019 with SQL Server 2017 Express`
     2. Instance Type: `t3.small`
     3. Security Group: `Webserver`, `MS SQL engine`, `Remote server management`
@@ -243,188 +226,182 @@ This screenshot shows a single security group with all rules. I later learned yo
     5. Storage: `Encrypted` and Delete on Termination: `No`
     6. Tags: `Name, apps, databases and tools`
 
-[![review all details](images/ec2-16-1024x554.png)](https://blog.jodibooks.com/wp-content/uploads/2020/01/ec2-16.png)
-
-This screenshot doesn't show all details. Just scroll down to find the others.
+    ![review all details](ec2-16.png "This screenshot doesn't show all details. Just scroll down to find the others.")
 
 10. After pressing **Launch** you have to select a key pair. We already made one for our Windows instance, so let's select that one, **acknowledge** that you have the private key and press **Launch Instance**.
 
-[![choose your key pair](images/ec2-17-1024x554.png)](https://blog.jodibooks.com/wp-content/uploads/2020/01/ec2-17.png)
-
-After a few minutes, the instance will be in running state and we can continue with adding the Elastic IP and IAM role.
+    ![choose your key pair](ec2-17.png "After a few minutes, the instance will be in running state and we can continue with adding the Elastic IP and IAM role.")
 
 * * *
 
-### Elastic IP
+### 2.2 Elastic IP
 
 1. Go to the Elastic IP addresses screen by clicking on **Elastic IP** in the menu on the left. Now click **Allocate Elastic IP address**.
 
-[![elastic ip addresses screen](images/ec2-18-1024x555.png)](https://blog.jodibooks.com/wp-content/uploads/2020/01/ec2-18.png)
+    ![elastic ip addresses screen](ec2-18.png)
 
 2. There's nothing much to do in the next screen, but to click **Allocate**.
 
-[![allocate an elastic ip address](images/ec2-19-1024x555.png)](https://blog.jodibooks.com/wp-content/uploads/2020/01/ec2-19.png)
+    ![allocate an elastic ip address](ec2-19.png)
 
 3. Now we click **Actions** and choose **Associate Elastic IP address**.
 
-[![associate elastic ip address](images/ec2-20-1024x555.png)](https://blog.jodibooks.com/wp-content/uploads/2020/01/ec2-20.png)
+    ![associate elastic ip address](ec2-20.png)
 
 4. Click in the **Choose an instance** search bar and select the Windows instance. Now click **Associate**. Select the **Allow this Elastic IP address to be reassociated** option.
 
-[![choose windows instance](images/ec2-21-1024x553.png)](https://blog.jodibooks.com/wp-content/uploads/2020/01/ec2-21.png)
+    ![choose windows instance](ec2-21.png)
 
 5. Now that the IP address is associated with the instance we can select it, click on the **Tags** tab and click **Manage tags**.
 
-[![manage tags](images/ec2-22-1024x553.png)](https://blog.jodibooks.com/wp-content/uploads/2020/01/ec2-22.png)
+    ![manage tags](ec2-22.png)
 
 6. Now we can add a name by adding `Name` as **Key** and `eip-jodibooks-windows-server` as **value**. Finish by clicking the **Save** button.
 
-[![add name to elastic ip tags](images/ec2-23-1024x554.png)](https://blog.jodibooks.com/wp-content/uploads/2020/01/ec2-23.png)
+    ![add name to elastic ip tags](ec2-23.png)
 
-### Attach IAM role
+### 2.3 Attach IAM role
 
 An IAM role allows the EC2 to communicate with other AWS services on your behalf. Our Windows instance will send log data to CloudWatch, user data (PDF's) to an S3 bucket and backups of our database to another S3 bucket.
 
 1. Select the _Windows instance_, click **Actions**, **Instance Settings** and **Attach/Replace IAM Role**.
 
-[![attach an IAM role](images/ec2-24-1024x554.png)](https://s3-eu-central-1.amazonaws.com/jodibooks-public-cdn/blog/wp-content/uploads/2020/01/09173006/ec2-24.png)
+    ![attach an IAM role](ec2-24.png)
 
 2. Select the IAM role we made for _dotnetapp_ and click **Apply**.
 
-[![select the dotnetapps role](images/ec2-25-1024x553.png)](https://blog.jodibooks.com/wp-content/uploads/2020/01/ec2-25.png)
+    ![select the dotnetapps role](ec2-25.png)
 
 * * *
 
-### Logging into Windows
+### 2.4 Logging into Windows
 
 Now that we have a running Windows instance with a fixed IP public address, let's connect through the RDP (remote desktop). You can read the full guide here:
 
-[https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/connecting\_to\_windows\_instance.html](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/connecting_to_windows_instance.html).
+> [https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/connecting\_to\_windows\_instance.html](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/connecting_to_windows_instance.html).
 
 1. Open the remote desktop tool in Windows. Copy the _Public DNS_ from your instance and past it as the **Computer** address. Click **connect**.
 
-[![use the public dns to connect through the remote desktop tool](images/ec2-26-1024x552.png)](https://blog.jodibooks.com/wp-content/uploads/2020/01/ec2-26.png)
+    ![use the public dns to connect through the remote desktop tool](ec2-26.png)](
 
 2. If you are connecting from the IP address you've allowed, you're now asked to enter your credentials. Your user name is `administrator` to find your password, we have to decode the private key. Click **Actions** and then **Get Windows Password**.
 
-[![get windows password](images/ec2-27-1024x553.png)](https://s3-eu-central-1.amazonaws.com/jodibooks-public-cdn/blog/wp-content/uploads/2020/01/09175259/ec2-27.png)
+    ![get windows password](ec2-27.png)
 
 3. Now browse to your private key file or **paste** the key in the text area.
 
-[![add your private key](images/ec2-28-1024x553.png)](https://blog.jodibooks.com/wp-content/uploads/2020/01/ec2-28.png)
+    ![add your private key](ec2-28.png)
 
 4. After clicking the **Decrypt Password** button you will get your login password.
 
-[![windows login credentials](images/ec2-29-1024x553.png)](https://blog.jodibooks.com/wp-content/uploads/2020/01/ec2-29.png)
-
-I see I have to change my admin password soon
+    ![windows login credentials](ec2-29.png "I see I have to change my admin password soon")
 
 * * *
 
-### Initialize Data volume
+### 2.5 Initialize Data volume
 
 The second volume we added to our instance needs to be initialized and formatted, before it's usable in Windows. Start the _Server Manager_ if it hasn't automatically started. Search for **Server Manager** in the start menu.
 
 1. Go to **File and Storage Services**.
 
-[![main screen server manager](images/ec2-79-1024x616.png)](https://blog.jodibooks.com/wp-content/uploads/2020/01/ec2-79.png)
+    ![main screen server manager](ec2-79.png)
 
 2. Click **Disks**, select the volume with 4GB _unallocated_ space and click **To create a volume, start the New Volume Wizard** link.
 
-[![start create volume wizard](images/ec2-80-1024x616.png)](https://blog.jodibooks.com/wp-content/uploads/2020/01/ec2-80.png)
+    ![start create volume wizard](ec2-80.png)
 
 3. _Before You Begin_: Click **Next**.
 
-[![start of create volume wizard](images/ec2-81.png)](https://blog.jodibooks.com/wp-content/uploads/2020/01/ec2-81.png)
+    ![start of create volume wizard](ec2-81.png)
 
 4. _Server and Disk_: select the server and disk and click **Next**.
 
-[![select server and disk](images/ec2-82.png)](https://blog.jodibooks.com/wp-content/uploads/2020/01/ec2-82.png)
+    ![select server and disk](ec2-82.png)
 
 5. Yes, we want the disk to be brought online and initialized as a GPT disk.
 
-[![confirm to initialize as GPT](images/ec2-83.png)](https://blog.jodibooks.com/wp-content/uploads/2020/01/ec2-83.png)
+    ![confirm to initialize as GPT](ec2-83.png)
 
 6. Select the full capacity: `3.97` `GB` and press **Next**.
 
-[![Set volume size](images/ec2-84.png)](https://blog.jodibooks.com/wp-content/uploads/2020/01/ec2-84.png)
+    ![Set volume size](ec2-84.png)
 
 7. Select a _Drive letter_, we I chose `D`. Press **Next**.
 
-[![set drive letter](images/ec2-85.png)](https://blog.jodibooks.com/wp-content/uploads/2020/01/ec2-85.png)
+    ![set drive letter](ec2-85.png)
 
 8. Set _File system_ to `NTFS`, _Allocation unit size_ to `default` and _Volume label_ to `Data`. Press **Next** again.
 
-[![set file system and drive label](images/ec2-86.png)](https://blog.jodibooks.com/wp-content/uploads/2020/01/ec2-86.png)
+    ![set file system and drive label](ec2-86.png)
 
 9. Verify the settings and press **Create**.
 
-[![verify and create](images/ec2-87.png)](https://blog.jodibooks.com/wp-content/uploads/2020/01/ec2-87.png)
+    ![verify and create](ec2-87.png)
 
 * * *
 
-### Windows firewall
+### 2.6 Windows firewall
 
 When connected to the instance through the remote desktop, we can open the Windows Firewall. We are going to open the ports for a remote connection to the MS SQL database.
 
 1. Click on the "**Windows flag**" and type `firewall` to search for it.
 
-[![search for firewall in Windows](images/ec2-30-1024x640.png)](https://blog.jodibooks.com/wp-content/uploads/2020/01/ec2-30.png)
+    ![search for firewall in Windows](ec2-30.png)
 
 2. Click **Advanced settings**.
 
-[![go to advanced settings](images/ec2-31-1024x616.png)](https://blog.jodibooks.com/wp-content/uploads/2020/01/ec2-31.png)
+    ![go to advanced settings](ec2-31.png)
 
 3. Click **Inbound Rules** on the left and than **New Rule** on the right. In the screen that pops up select **Port** as the rule type and click **Next**.
 
-[![select new port rule](images/ec2-32-1024x615.png)](https://blog.jodibooks.com/wp-content/uploads/2020/01/ec2-32.png)
+    ![select new port rule](ec2-32.png)
 
 4. Select **TCP** and type `1433, 445` in the **Specific local ports** box.
 
-[![type TCP port numbers 1433, 1434](images/ec2-33-1024x616.png)](https://blog.jodibooks.com/wp-content/uploads/2020/01/ec2-33.png)
+    ![type TCP port numbers 1433, 1434](ec2-33.png)
 
 5. In the action part choose **Allow the connection**.
 
-[![allow the connection](images/ec2-34-1024x616.png)](https://blog.jodibooks.com/wp-content/uploads/2020/01/ec2-34.png)
+    ![allow the connection](ec2-34.png)
 
 6. Check if every box is checked and click **next**.
 
-[![check all the boxes](images/ec2-35-1024x616.png)](https://blog.jodibooks.com/wp-content/uploads/2020/01/ec2-35.png)
+    ![check all the boxes](ec2-35.png)
 
 7. Type a name like `Remote MS SQL access` and click **Finish**. A description is optional.
 
-[![add a name for the rule](images/ec2-36-1024x616.png)](https://blog.jodibooks.com/wp-content/uploads/2020/01/ec2-36.png)
+    ![add a name for the rule](ec2-36.png)
 
 8. Now select the rule you just created and click on **properties**. Go to the **Scope** tab and change to **These IP addresses** for _remote_ IP address. Then click **Add**.
 
-[![add office ip address](images/ec2-37-1024x616.png)](https://blog.jodibooks.com/wp-content/uploads/2020/01/ec2-37.png)
+    ![add office ip address](ec2-37.png)
 
 9. Add the IP address of the office or your home address and press **OK** twice. Now close the firewall.
 
-[![add your office ip address](images/ec2-38-1024x616.png)](https://blog.jodibooks.com/wp-content/uploads/2020/01/ec2-38.png)
+    ![add your office ip address](ec2-38.png)
 
 * * *
 
-### System settings
+### 2.7 System settings
 
 Just one more thing before we move on to the Linux instance. We are going to change the computer name and workgroup.
 
 1. **Right click** on the "**Windows flag**" and click on **System**.
 
-[![go to system](images/ec2-39-1024x640.png)](https://blog.jodibooks.com/wp-content/uploads/2020/01/ec2-39.png)
+    ![go to system](ec2-39.png)
 
 2. Now go to **System info**.
 
-[![go to system info](images/ec2-40-1024x421.png)](https://blog.jodibooks.com/wp-content/uploads/2020/01/ec2-40.png)
+    ![go to system info](ec2-40.png)
 
 3. Now click **Change settings** and **Change** and in the new windows change your _Computer name_ and _Workgroup_.
 
-[![set a computer name and workgroup](images/ec2-41-1024x500.png)](https://blog.jodibooks.com/wp-content/uploads/2020/01/ec2-41.png)
+    ![set a computer name and workgroup](ec2-41.png)
 
 4. Now check for **Windows updates**, install them and **restart** Windows.
 
 * * *
 
-## Next Ubuntu
+## 3. Next Ubuntu
 
-This part has gotten way longer than I thought, so I split it in two. The Linux instance will be configured in the [next part](https://blog.jodibooks.com/2020/02/hosting-asp-net-apps-aws-part-6-servers-in-ec2-part-2/).
+This part has gotten way longer than I thought, so I split it in two. The Linux instance will be configured in the [next part](../hosting-asp-net-apps-aws-part-6-servers-in-ec2-part-2/).
