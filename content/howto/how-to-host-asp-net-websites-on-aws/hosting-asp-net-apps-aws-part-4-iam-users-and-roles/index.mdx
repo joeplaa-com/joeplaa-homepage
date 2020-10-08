@@ -11,13 +11,13 @@ series: true
 
 In the last part we raced through the basic architecture and the basic AWS building blocks we need to host our applications. What we didn't discuss was how to secure all of these services and make sure no one unauthorized can access or use them.
 
-## Responsibility model
+## 1. Responsibility model
 
 In the AWS cloud [responsibility for the security](https://aws.amazon.com/compliance/shared-responsibility-model/) is shared between AWS and you as a user. AWS will take full responsibility for security **of** the cloud. That means they secure the building (data center), the physical hardware and the hypervisors.
 
 As a user you have **full** responsibility of security **in** the cloud; your account, applications and user data. AWS will assist wherever possible by providing services, tools, documentation and training, but they will take zero responsibility for that part.
 
-## Securing your account
+## 2. Securing your account
 
 In this part we will make sure that our account is setup in a safe and secure way. When opening your AWS account, by default you're logged in as the _root_ user. This means you can access and delete everything. To secure your root account, just follow the steps AWS recommends on the IAM dashboard. We'll highlight a few below.
 
@@ -25,7 +25,7 @@ You can always go back to your console by Googling for `AWS console` and logging
 
     ![IAM dashboard with 5 best practice advice](iam-0-1.png)
 
-### 1. Enable MFA
+### 2.1 Enable MFA
 
 We don't want anybody else then ourselves ever accessing this account, so we're using a very strong password and enable multi-factor authentication (MFA). To help me store and "remember" these passwords I use a password manager: [Bitwarden](https://bitwarden.com/).
 
@@ -49,7 +49,7 @@ We don't want anybody else then ourselves ever accessing this account, so we're 
 
     ![qr code](iam-5.png)
 
-### 2. Enable password policy
+### 2.2 Enable password policy
 
 1. When you are first asked you can click a link on the IAM dashboard to change your password policy. Alternatively you can click **Account settings** in the menu on the left.
 
@@ -63,7 +63,7 @@ We don't want anybody else then ourselves ever accessing this account, so we're 
 
     ![active and deactivated endpoints](iam-8.png)
 
-### 3. Creating groups
+### 2.3 Creating groups
 
 If you're working on your own and don't plan to add other people, you can skip making groups. We however did make a start with creating some groups. I have no idea what groups you'd normally have, but we'll learn. For now I created:
 
@@ -90,7 +90,7 @@ Creating a group is really straight forward, but let's do one.
 
     ![review group](iam-12.png)
 
-### 4. Creating users
+### 2.4 Creating users
 
 Users can be real people or programmatic entities like computers or applications. AWS also has roles. I still can't put the difference into my own words, so for now I'll point you to this [Stack Overflow topic](https://stackoverflow.com/questions/46199680/difference-between-iam-role-and-iam-user-in-aws/46200171).
 
@@ -119,7 +119,7 @@ We need to make at least one "real" or console user. This user gets admin rights
 
 7. When you're logging in as a non-root user, AWS needs to know to which account the user belongs. So you have to add the **Account ID** of your root account. As this is a 12 digit number, I'd write it down somewhere. You can find it by clicking your user/business name in the top right corner. Log out of your root account and log back in with your Account ID as login and your admin account credentials. Change your password and enable MFA. Once successful you can delete the auto-generated credentials.
 
-## Roles
+## 3. Roles
 
 Now that we have secured our account, we need to do one more thing in the IAM dashboard. In the next part we want our EC2 instances to be able to communicate with other AWS services. We do that by attaching a role to the EC2. Let's create those roles; one for our .NET applications and one for WordPress.
 
@@ -146,6 +146,6 @@ Now that we have secured our account, we need to do one more thing in the IAM da
 
 6. Now create another role, but name it `EC2-jodibooks-WordPress`.
 
-## Next: EC2
+## 4. Next: EC2
 
 That's it for the user part. In the [next part](../hosting-asp-net-apps-aws-part-5-ec2-instances/) we will setup our EC2 instances.

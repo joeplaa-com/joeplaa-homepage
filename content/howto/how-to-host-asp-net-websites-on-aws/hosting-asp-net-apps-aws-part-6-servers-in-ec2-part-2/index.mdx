@@ -150,7 +150,7 @@ I'm not a firewall guru. To be honest, I know very little about firewalls, espec
 
     ![enabled ufw rules ufw](ec2-55.png)
 
-### Enable Swap
+### 1.5 Enable Swap
 
 This one has bothered me for weeks. After I setup the instance and installed all the software, I had a blazingly fast blog. But every night the instance would freeze up and would be unreachable. I tweaked memory settings of MySQL, PHP and Redis, but nothing worked. Eventually I figured out that the instance had no reserved swap space. After configuring that, it runs beautifully.
 
@@ -311,6 +311,6 @@ It would be safe to say that a lot could be improved, but as I don't know what I
 
 The first thing will be auto scaling and load balancing to be prepared for peaks in user demand. More on that in Appendix E. The second thing is to use the lifecycle manager to automatically make snapshots and remove old ones.
 
-## Next: Route53
+## 3. Next: Route53
 
 In the [next part](../hosting-asp-net-apps-aws-part-7-domains-and-dns-with-route-53/) we're going to setup our domain names and DNS settings. For that we will use the AWS Route 53 service.
