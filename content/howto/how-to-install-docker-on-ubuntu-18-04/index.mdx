@@ -51,7 +51,7 @@ The VM will use the iso to boot into the Ubuntu installer. Follow this guide to 
 1. To install Docker we have to open a terminal to the VM. We did that at the end of the installation.
 2. Once in the terminal type and execute the following commands:
 
-    ```console
+    ```shellsession
     sudo apt update
     sudo apt install apt-transport-https ca-certificates curl software-properties-common
     curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
@@ -64,7 +64,7 @@ The VM will use the iso to boot into the Ubuntu installer. Follow this guide to 
 
 3. That's it. Check if Docker has been installed and if you are able to run it:
 
-    ```console
+    ```shellsession
     docker -v
     ```
 

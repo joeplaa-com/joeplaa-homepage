@@ -133,7 +133,7 @@ In this example we have the server user `joediapna`, two actual people `diana` a
 
 1. Mount the volumes you want to share. To mount volumes at least you should make the mount points (folders) and mount the volume. I have ZFS volumes which should mount automatically after every reboot. I haven't tested that yet. If you are mounting other folders, you have to add them to `/etc/fstab`. Please Google for that.
 
-    ```console
+    ```shellsession
     sudo mkdir /mnt/Data
     sudo mount Data /mnt/Data
 
@@ -143,14 +143,14 @@ In this example we have the server user `joediapna`, two actual people `diana` a
 
 2. Check with `ls -l` for current owner and permissions.
 
-    ```console
+    ```shellsession
     cd /mnt/Data
     ls -l
     ```
 
 3. `Data`: The owner should be `joediapna:joediapna` and the permissions should be `drwxrwxr-x` (`775`). With these permissions the owner (the user `joediapna`) can do everything, the group `joediapna` can read and write. All other users can only read. We are going to apply these permissions on all the files and folders.
 
-    ```console
+    ```shellsession
     sudo chown -R joediapna:joediapna /mnt/Data/data
     sudo chmod -R 775 /mnt/Data/data
     ```
@@ -159,7 +159,7 @@ In this example we have the server user `joediapna`, two actual people `diana` a
 
 4. `Workspace`: The owner should again be `joediapna:joediapna` and the permissions should also be `drwxrwxr-x` (`775`). We are not going to apply these permissions on all the files and folders.
 
-    ```console
+    ```shellsession
     cd /mnt/Workspace
     ls -l
     sudo chown joediapna:joediapna /mnt/Workspace/workspace
@@ -170,7 +170,7 @@ In this example we have the server user `joediapna`, two actual people `diana` a
 
 5. Now go in one level deeper and check for each folder what the permissions should be. Apply them for each folder recursively.
 
-    ```console
+    ```shellsession
     cd /mnt/Workspace/workspace
     ls -l
     sudo chown -R joediapna:sambashare /mnt/Workspace/workspace/download
@@ -186,13 +186,13 @@ In this example we have the server user `joediapna`, two actual people `diana` a
 
 1. Create groups. The `joediapna` group already exist as it was made with the initial user during setup of Ubuntu. We only have to make the sambashare group.
 
-    ```console
+    ```shellsession
     sudo groupadd sambashare
     ```
 
 2. Create users. We do have to create 3 users: `diana`, `discobal` and `joep`. This is the example for the first.
 
-    ```console
+    ```shellsession
     sudo useradd -m diana -p PASSWORD
     sudo usermod -L diana
     sudo usermod -a -G joediapna diana
@@ -203,27 +203,27 @@ In this example we have the server user `joediapna`, two actual people `diana` a
 
 1. Install Samba:
 
-    ```console
+    ```shellsession
     sudo apt update
     sudo apt install samba
     ```
 
 2. Open the file Samba configuration file:
 
-    ```console
+    ```shellsession
     sudo nano /etc/samba/smb.conf
     ```
 
 3. Change the workgroup to your Windows workgroup if you have one. I have called it `BALZAAL`.
 
-    ```bash
+    ```ini
     # Change this to the workgroup/NT-domain name your Samba server will part of
             workgroup = balzaal
     ```
 
 4. Scroll all the way to the bottom and add the shares.
 
-    ```bash
+    ```ini
     [Data]
             path = /mnt/Data/data
             browseable = yes
@@ -243,13 +243,13 @@ In this example we have the server user `joediapna`, two actual people `diana` a
 
 5. Save and close by pressing `Ctrl-O` to save and `Ctrl-X` to close. Now restart Samba.
 
-    ```console
+    ```shellsession
     sudo service smbd restart
     ```
 
 6. Add a rule in the firewall to allow Samba traffic.
 
-    ```console
+    ```shellsession
     sudo ufw allow samba
     ```
 
@@ -257,7 +257,7 @@ In this example we have the server user `joediapna`, two actual people `diana` a
 
 * The Samba user passwords aren't the same as the system users we just created. I always forget that. We have to add that password to Samba too. So for each user:
 
-    ```console
+    ```shellsession
     sudo smbpasswd -a diana
     ```
 
@@ -266,7 +266,7 @@ In this example we have the server user `joediapna`, two actual people `diana` a
 1. If everything went right, which it never does in my experience, you should now be able to browse these shares. From a Unix machine (Mac or Linux) type `smb://xxx.xxx.xxx.xxx/Data` or from Windows: `\\xxx.xxx.xxx.xxx\Data`.
 2. If it doesn't work... First check if Samba is installed and running:
 
-    ```console
+    ```shellsession
     smbd --version
     systemctl status smbd
     systemctl status nmbd
@@ -274,14 +274,14 @@ In this example we have the server user `joediapna`, two actual people `diana` a
 
 3. If yes, try to restart the Samba service:
 
-    ```console
+    ```shellsession
     sudo systemctl restart smbd
     sudo systemctl restart nmbd
     ```
 
 4. Then install a small Samba GUI. It's a GUI, so you can only [run it through VNC](/how-to-enable-screen-sharing-between-ubuntu-and-realvnc/). See if you see anything strange there.
 
-    ```console
+    ```shellsession
     sudo apt install system-config-samba
     sudo system-config-samba
     sudo touch /etc/libuser.conf

@@ -97,7 +97,7 @@ The Ubuntu instance is up an running, so we can connect to it through SSH. This 
 
 3. Once you're connected start with updating the OS:
 
-    ```console
+    ```shellsession
     sudo apt update && sudo apt upgrade -y
     ```
 
@@ -112,39 +112,39 @@ I'm not a firewall guru. To be honest, I know very little about firewalls, espec
 
 1. We start with installing the firewall. In Ubuntu this is UFW, **U**ncomplicated**F**ire**W**all.
 
-    ```console
+    ```shellsession
     sudo apt update
     sudo apt install ufw
     ```
 
 2. Now the first thing we do is configure the default settings. We want to **allow** all outgoing traffic and **deny** all incoming traffic.
 
-    ```console
+    ```shellsession
     sudo ufw default allow outgoing
     sudo ufw default deny incoming
     ```
 
 3. All incoming ports are closed now, but we want to be able to SSH (PuTTY) into the instance. To do that we need to configure that in the firewall. We do that by **allowing port 22** to accept traffic. Remember that we only allow SSH from our IP through the [security group rules](../hosting-asp-net-apps-aws-part-5-ec2-instances/#Security-Groups).
 
-    ```console
+    ```shellsession
     sudo ufw allow ssh
     ```
 
 4. We also want our WordPress page to be accessible. To do that we have to **allow traffic on port 80 and 443**. There are multiple ways to do that, but we'll take the easy route.
 
-    ```console
+    ```shellsession
     sudo ufw allow 'Nginx Full'
     ```
 
 5. Lastly we enable the firewall. You will be warned that enabling the firewall may disrupt existing ssh connections, just type `y` and hit `Enter`.
 
-    ```console
+    ```shellsession
     sudo ufw enable
     ```
 
 6. Check with the following command:
 
-    ```console
+    ```shellsession
     sudo ufw status verbose
     ```
 
@@ -162,43 +162,43 @@ AWS recommends creating swap space that is "_2x the amount of RAM but never less
 
 1. We will create a 2 GB swap space (**64** blocks of **32 M**B). In the command line type:
 
-    ```console
+    ```shellsession
     sudo dd if=/dev/zero of=/swapfile bs=32M count=64
     ```
 
 2. Update the **read and write** permissions for the swap file:
 
-    ```console
+    ```shellsession
     sudo chmod 600 /swapfile
     ```
 
 3. Set up a Linux swap area:
 
-    ```console
+    ```shellsession
     sudo mkswap /swapfile
     ```
 
 4. Make the swap file available for immediate use by adding the swap file to swap space:
 
-    ```console
+    ```shellsession
     sudo swapon /swapfile
     ```
 
 5. Verify that the procedure was successful:
 
-    ```console
+    ```shellsession
     sudo swapon -s
     ```
 
 6. Enable the swap file at boot time by editing the `/etc/fstab` file. Open the file in the editor:
 
-    ```console
+    ```shellsession
     sudo nano /etc/fstab
     ```
 
 7. Add the following new line at the end of the file (use arrow keys and paste the line with right-mouse button), save the file (`ctrl+x`), and then exit (`y` and hit `Enter`):
 
-    ```console
+    ```shellsession
     /swapfile swap swap defaults 0 0
     ```
 

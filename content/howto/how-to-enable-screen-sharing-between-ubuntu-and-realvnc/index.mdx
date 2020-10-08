@@ -18,7 +18,7 @@ But I think there is an easier way to view the Ubuntu GUI. The current default U
 
 1. On the server check if `Vino` is installed and do install if not. You can run the next command to do either one.
 
-    ```console
+    ```shellsession
     sudo apt install vino
     ```
 
@@ -32,7 +32,7 @@ But I think there is an easier way to view the Ubuntu GUI. The current default U
 
     Don't forget to select a network. If no networks are selectable try this:
 
-    ```console
+    ```shellsession
     sudo touch /etc/NetworkManager/conf.d/10-globally-managed-devices.conf
     ```
 
@@ -40,13 +40,13 @@ But I think there is an easier way to view the Ubuntu GUI. The current default U
 
     As Ubuntu requires encryption by default, we have to specifically allow unencrypted connections. Open a terminal to the Ubuntu server or on the server and enter the following command.
 
-    ```console
+    ```shellsession
     gsettings set org.gnome.Vino require-encryption false
     ```
 
     Alternatively you can install the dconf-editor and disable this visually.
 
-    ```console
+    ```shellsession
     sudo apt-get install dconf-editor
     dconf-editor
     ```

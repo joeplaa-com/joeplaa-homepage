@@ -19,6 +19,7 @@ export default function TagIcon(tag: string) {
     case 'HTML': return <SiHtml5 />;
     case 'iOS': return <SiIos />;
     case 'JavaScript': return <SiJavascript />;
+    case "Let's Encrypt": return <SiLetsencrypt />;
     case 'Linux': return <SiLinux />;
     case 'MariaDB': return <SiMariadb />;
     case 'Markdown': return <SiMarkdown />;
