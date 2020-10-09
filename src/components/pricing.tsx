@@ -96,8 +96,8 @@ const Pricing = ({ className }: SectionProps) => {
                                         </tr>
                                         <tr>
                                             <th scope="row">3</th>
-                                            <td>Option three is currently only possible if you host the site yourself. I&apos;ll share the data through <NewTabLink href={urls.github}>Github</NewTabLink>.</td>
-                                            <td>Not available</td>
+                                            <td>Pricing is dependent on the type of CMS you want: Ghost and WordPress &euro;15, Strapi &euro;20. NetlifyCMS hosting is currently not possible.</td>
+                                            <td>&euro;15+</td>
                                         </tr>
                                     </tbody>
                                 </Table>
