@@ -1,11 +1,19 @@
 ---
-title: What do you get hosting
-date: 2019-07-01
+title: Hosting - What do you get
+date: 2020-10-09
 tags: ["pricing"]
 published: true
 excerpt: 'What do you get hosting'
 ---
 
-### Static page:
+#### Static page
 
-### Dynamic page:
+* Static websites will be hosted through [AWS CloudFront](https://aws.amazon.com/cloudfront/).
+* Every website gets its own SSL certificate from AWS.
+
+#### Dynamic page
+
+* Dynamic websites will be hosted on [AWS LightSail](https://aws.amazon.com/lightsail/).
+* Every website will get its own SSL certificate from Let's Encrypt.
+* WordPress and Ghost will be hosted on single instance with a [MariaDB](https://mariadb.org/) database, [Nginx](https://www.nginx.com/) web server and [Redis](https://redis.io/) database caching.
+* For WordPress I'll use the latest stable version of [PHP](https://www.php.net/), Ghost will run in the latest LTS version of [Node.js](https://nodejs.org/en/).
