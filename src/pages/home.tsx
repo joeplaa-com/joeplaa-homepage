@@ -5,7 +5,6 @@ import Banner from '../components/banner'
 import Contact from '../components/contact'
 import Layout from '../components/layout'
 import Pricing from '../components/pricing'
-import Services from '../components/Services'
 import { metaData, navigation } from '../utils/data'
 
 const Home = () => {

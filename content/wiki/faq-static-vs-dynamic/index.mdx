@@ -1,15 +1,64 @@
 ---
 title: What is the difference between static and dynamic websites?
-date: 2019-07-01
+date: 2020-10-09
 tags: ["faq"]
 published: true
 excerpt: 'What is the difference between static and dynamic websites'
 ---
+import { urls } from '../../../src/utils/data'
 
-### Types
+There are countless ways to build and design a website, but there are basically two main types:
 
-#### Static websites
+1. Static websites
+2. Dynamic websites
 
-#### Dynamic websites
+#### 1. Static websites
+
+The first type of website is called static because it doesn't need to render or calculate which data has to be send to whoever opens the website. Everyone downloads the same data and the website is rendered 'client-side' in the browser. This means you don't need to have a complicated server to host your website.
+
+#### 2. Dynamic websites
+
+The second type of website is called dynamic because it does need to calculate what data it should send to the browser. Most of the data is processed server-side. This means you need a server that is capable of doing that.
 
 ### Pros and cons
+
+Obviously both types have pros and cons. And both have specific use-cases. Let's try to list them below (based on the websites I build):
+
+<div class='col-12 mx-auto'>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col"></th>
+                <th scope="col">Static</th>
+                <th scope="col">Dynamic</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Rendering speed</td>
+                <td>Fully dependent on the client. Independent on the number of users</td>
+                <td>Mostly dependent on the server. Slower with more users</td>
+            </tr>
+            <tr>
+                <td>Download delay</td>
+                <td>Virtually none</td>
+                <td>Need to wait for the rendering to finish</td>
+            </tr>
+            <tr>
+                <td>User login</td>
+                <td>Only with a separate back-end</td>
+                <td>Possible</td>
+            </tr>
+            <tr>
+                <td>Online data entry (after login)</td>
+                <td>Data or content can only be added offline</td>
+                <td>Data can be added to a running website</td>
+            </tr>
+            <tr>
+                <td>Example frameworks</td>
+                <td><NewTabLink href={urls.nextjs}>Next.js</NewTabLink>, <NewTabLink href={urls.gatsbyjs}>Gatsby.js</NewTabLink></td>
+                <td><NewTabLink href={urls.wordpress}>WordPress</NewTabLink>, <NewTabLink href={urls.ghost}>Ghost</NewTabLink></td>
+            </tr>
+        </tbody>
+    </table>
+</div>

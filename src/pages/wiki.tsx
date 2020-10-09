@@ -14,67 +14,32 @@ const Howto = ({ data }: PostQueryProps) => {
     const wikisTechnologies = [];
     const [isOpen, setIsOpen] = useState({})
 
+    function createListItem(id, body, frontmatter) {
+        return (
+            <ListGroupItem className='list-group-item-wiki markdown' tag="button" key={id} onClick={() => {
+                const newIsOpen = {
+                    ...isOpen
+                }
+                newIsOpen[id] = !isOpen[id];
+                setIsOpen(newIsOpen)
+            }}>
+                <h3>{frontmatter.title}</h3>
+                <Collapse isOpen={isOpen[id]}>
+                    <MDXRenderer key={id}>{body}</MDXRenderer>
+                </Collapse>
+            </ListGroupItem>
+        )
+    }
+
     data.allMdx.nodes.map(({ id, body, frontmatter }) => {
         if (frontmatter.tags.includes(metaData.WikiFaq.toLowerCase())) {
-            wikisFaq.push(<>
-                <ListGroupItem className='list-group-item-wiki' key={id} onClick={() => {
-                    const newIsOpen = {
-                        ...isOpen
-                    }
-                    newIsOpen[id] = !isOpen[id];
-                    setIsOpen(newIsOpen)
-                }}>
-                    <h3>{frontmatter.title}</h3>
-                    <Collapse isOpen={isOpen[id]}>
-                        <MDXRenderer key={id}>{body}</MDXRenderer>
-                    </Collapse>
-                </ListGroupItem>
-            </>)
+            wikisFaq.push(createListItem(id, body, frontmatter))
         } else if (frontmatter.tags.includes(metaData.WikiPricing.toLowerCase())) {
-            wikisPricing.push(<>
-                <ListGroupItem className='list-group-item-wiki' key={id} onClick={() => {
-                    const newIsOpen = {
-                        ...isOpen
-                    }
-                    newIsOpen[id] = !isOpen[id];
-                    setIsOpen(newIsOpen)
-                }}>
-                    <h3>{frontmatter.title}</h3>
-                    <Collapse isOpen={isOpen[id]}>
-                        <MDXRenderer key={id}>{body}</MDXRenderer>
-                    </Collapse>
-                </ListGroupItem>
-            </>)
+            wikisPricing.push(createListItem(id, body, frontmatter))
         } else if (frontmatter.tags.includes(metaData.WikiProcedure.toLowerCase())) {
-            wikisProcedure.push(<>
-                <ListGroupItem className='list-group-item-wiki' key={id} onClick={() => {
-                    const newIsOpen = {
-                        ...isOpen
-                    }
-                    newIsOpen[id] = !isOpen[id];
-                    setIsOpen(newIsOpen)
-                }}>
-                    <h3>{frontmatter.title}</h3>
-                    <Collapse isOpen={isOpen[id]}>
-                        <MDXRenderer key={id}>{body}</MDXRenderer>
-                    </Collapse>
-                </ListGroupItem>
-            </>)
-        } if (frontmatter.tags.includes(metaData.WikiTechnologies.toLowerCase())) {
-            wikisTechnologies.push(<>
-                <ListGroupItem className='list-group-item-wiki' key={id} onClick={() => {
-                    const newIsOpen = {
-                        ...isOpen
-                    }
-                    newIsOpen[id] = !isOpen[id];
-                    setIsOpen(newIsOpen)
-                }}>
-                    <h3>{frontmatter.title}</h3>
-                    <Collapse isOpen={isOpen[id]}>
-                        <MDXRenderer key={id}>{body}</MDXRenderer>
-                    </Collapse>
-                </ListGroupItem>
-            </>)
+            wikisProcedure.push(createListItem(id, body, frontmatter))
+        } else if (frontmatter.tags.includes(metaData.WikiTechnologies.toLowerCase())) {
+            wikisTechnologies.push(createListItem(id, body, frontmatter))
         }
     })
 
