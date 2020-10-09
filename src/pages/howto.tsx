@@ -45,7 +45,7 @@ const Howto = ({ data }: PostQueryProps) => {
                     twitterUsername={metaData.TwitterUsername}
                 />
 
-                <section className='section-fill blue-medium' id={metaData.HowtoTitle}>
+                <section className='section-fill blue-light' id={metaData.HowtoTitle}>
                     <Container className='my-auto'>
                         <Suspense fallback={<RenderLoader />}>
                             <Filter page={page} tags={tags} />

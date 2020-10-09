@@ -82,6 +82,7 @@ export const metaData = {
     TitleTemplate: 'joeplaa.com',
     TwitterUsername: '',
     WikiDescription: 'How I work and what tools I use.',
+    WikiFaq: 'Faq',
     WikiImage: '/images/banner-www-com.png',
     WikiPricing: 'Pricing',
     WikiProcedure: 'Procedure',
