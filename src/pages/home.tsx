@@ -30,13 +30,11 @@ const Home = () => {
                     src="home-banner-code.jpg"
                     alt="beach banner" />
 
-                <About className='section-home background1' />
+                <About className='section-home home-background1' />
 
-                <Services className='section-home background2' />
+                <Pricing className='section-home home-background2' />
 
-                <Pricing className='section-home background3' />
-
-                <Contact className='section-home background4' />
+                <Contact className='section-home home-background3' />
             </Layout>
         </>
     );

@@ -81,12 +81,6 @@ $link-dark-color:           $gray-900;
 $link-dark-hover-color:     lighten($link-dark-color, 15%);
 $link-dark-active-color:    darken($link-dark-color, 10%);
 
-.background1 {background: linear-gradient($gray-400, $blue-100);}
-.background2 {background: linear-gradient($blue-100, $blue-800);}
-.background3 {background: linear-gradient($blue-800, $blue-400);}
-.background4 {background: linear-gradient($blue-400, $gray-400);}
-.background5 {background: linear-gradient($gray-400, $gray-500);}
-
 /* -------begin Cards-------- */
 div.card {
     box-shadow: $box-shadow;
@@ -186,6 +180,11 @@ $card-column-sizes: (
     flex-direction: column;
     justify-content: center;
 }
+    .section-home.home-background1 {background: linear-gradient($gray-400, $blue-100);}
+    .section-home.home-background2 {background: linear-gradient($blue-100, $blue-400);}
+    .section-home.home-background3 {background: linear-gradient($blue-400, $gray-400);}
+
+.footer-background {background: linear-gradient($gray-400, $gray-500);}
 
 .section-fill {
     height: 100%;

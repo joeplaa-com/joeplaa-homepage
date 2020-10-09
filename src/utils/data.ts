@@ -118,6 +118,8 @@ export const urls = {
     awsLightsail: 'https://aws.amazon.com/lightsail/',
     gatsbyjs: 'https://www.gatsbyjs.com/',
     ghost: 'https://ghost.org/',
+    netlifycms: 'https://www.netlifycms.org/',
     nextjs: 'https://nextjs.org/',
+    strapi: 'https://strapi.io/',
     wordpress: 'https://wordpress.org/'
 }

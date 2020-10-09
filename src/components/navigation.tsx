@@ -12,19 +12,16 @@ export default function Navigation({ className }: NavigationProps) {
                 <CustomNavLink to={navigation.about}>{metaData.AboutTitle}</CustomNavLink>
             </NavItem>
             <NavItem>
-                <CustomNavLink to={navigation.services}>{metaData.ServicesTitle}</CustomNavLink>
-            </NavItem>
-            <NavItem>
                 <CustomNavLink to={navigation.pricing}>{metaData.PricingTitle}</CustomNavLink>
             </NavItem>
             <NavItem>
                 <CustomNavLink to={navigation.contact}>{metaData.ContactTitle}</CustomNavLink>
             </NavItem>
             <NavItem>
-                <CustomNavLink to={navigation.portfolio}>{metaData.PortfolioTitle}</CustomNavLink>
+                <CustomNavLink to={navigation.wiki}>{metaData.WikiTitle}</CustomNavLink>
             </NavItem>
             <NavItem>
-                <CustomNavLink to={navigation.wiki}>{metaData.WikiTitle}</CustomNavLink>
+                <CustomNavLink to={navigation.portfolio}>{metaData.PortfolioTitle}</CustomNavLink>
             </NavItem>
             <NavItem>
                 <CustomNavLink to={navigation.howto}>{metaData.HowtoTitle}</CustomNavLink>
