@@ -86,7 +86,6 @@ export const metaData = {
     WikiImage: '/images/banner-www-com.png',
     WikiPricing: 'Pricing',
     WikiProcedure: 'Procedure',
-    WikiTechnologies: 'Technologies',
     WikiTitle: 'Wiki'
 }
 export const navigation = {

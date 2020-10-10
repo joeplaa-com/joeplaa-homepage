@@ -38,8 +38,6 @@ const Howto = ({ data }: PostQueryProps) => {
             wikisPricing.push(createListItem(id, body, frontmatter))
         } else if (frontmatter.tags.includes(metaData.WikiProcedure.toLowerCase())) {
             wikisProcedure.push(createListItem(id, body, frontmatter))
-        } else if (frontmatter.tags.includes(metaData.WikiTechnologies.toLowerCase())) {
-            wikisTechnologies.push(createListItem(id, body, frontmatter))
         }
     })
 
@@ -71,10 +69,6 @@ const Howto = ({ data }: PostQueryProps) => {
                         <ListGroup id={metaData.WikiPricing}>
                             <ListGroupItem color='primary'><h2>Pricing details</h2></ListGroupItem>
                             {wikisPricing}
-                        </ListGroup>
-                        <ListGroup id={metaData.WikiTechnologies}>
-                            <ListGroupItem color='primary'><h2>Technologies I use</h2></ListGroupItem>
-                            {wikisTechnologies}
                         </ListGroup>
                     </Container>
                 </section>
