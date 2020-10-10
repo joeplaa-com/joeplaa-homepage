@@ -8,60 +8,36 @@ import { PostQueryProps } from '../types'
 import { metaData, navigation } from '../utils/data'
 
 const Howto = ({ data }: PostQueryProps) => {
+    const wikisFaq = [];
     const wikisPricing = [];
     const wikisProcedure = [];
     const wikisTechnologies = [];
     const [isOpen, setIsOpen] = useState({})
 
-    data.allMdx.nodes.map(({ id, body, excerpt, frontmatter }) => {
-        if (frontmatter.tags.includes(metaData.WikiPricing.toLowerCase())) {
-            wikisPricing.push(<>
-                <ListGroupItem className='list-group-item-wiki' key={id} onClick={() => {
-                    const newIsOpen = {
-                        ...isOpen
-                    }
-                    newIsOpen[id] = !isOpen[id];
-                    setIsOpen(newIsOpen)
-                }}>
-                    <h1>{frontmatter.title}</h1>
-                    <p>{frontmatter.excerpt || excerpt}</p>
-                    <Collapse isOpen={isOpen[id]}>
-                        <MDXRenderer key={id}>{body}</MDXRenderer>
-                    </Collapse>
-                </ListGroupItem>
-            </>)
+    function createListItem(id, body, frontmatter) {
+        return (
+            <ListGroupItem className='list-group-item-wiki markdown' tag="button" key={id} onClick={() => {
+                const newIsOpen = {
+                    ...isOpen
+                }
+                newIsOpen[id] = !isOpen[id];
+                setIsOpen(newIsOpen)
+            }}>
+                <h3>{frontmatter.title}</h3>
+                <Collapse isOpen={isOpen[id]}>
+                    <MDXRenderer key={id}>{body}</MDXRenderer>
+                </Collapse>
+            </ListGroupItem>
+        )
+    }
+
+    data.allMdx.nodes.map(({ id, body, frontmatter }) => {
+        if (frontmatter.tags.includes(metaData.WikiFaq.toLowerCase())) {
+            wikisFaq.push(createListItem(id, body, frontmatter))
+        } else if (frontmatter.tags.includes(metaData.WikiPricing.toLowerCase())) {
+            wikisPricing.push(createListItem(id, body, frontmatter))
         } else if (frontmatter.tags.includes(metaData.WikiProcedure.toLowerCase())) {
-            wikisProcedure.push(<>
-                <ListGroupItem className='list-group-item-wiki' key={id} onClick={() => {
-                    const newIsOpen = {
-                        ...isOpen
-                    }
-                    newIsOpen[id] = !isOpen[id];
-                    setIsOpen(newIsOpen)
-                }}>
-                    <h1>{frontmatter.title}</h1>
-                    <p>{frontmatter.excerpt || excerpt}</p>
-                    <Collapse isOpen={isOpen[id]}>
-                        <MDXRenderer key={id}>{body}</MDXRenderer>
-                    </Collapse>
-                </ListGroupItem>
-            </>)
-        } if (frontmatter.tags.includes(metaData.WikiTechnologies.toLowerCase())) {
-            wikisTechnologies.push(<>
-                <ListGroupItem className='list-group-item-wiki' key={id} onClick={() => {
-                    const newIsOpen = {
-                        ...isOpen
-                    }
-                    newIsOpen[id] = !isOpen[id];
-                    setIsOpen(newIsOpen)
-                }}>
-                    <h1>{frontmatter.title}</h1>
-                    <p>{frontmatter.excerpt || excerpt}</p>
-                    <Collapse isOpen={isOpen[id]}>
-                        <MDXRenderer key={id}>{body}</MDXRenderer>
-                    </Collapse>
-                </ListGroupItem>
-            </>)
+            wikisProcedure.push(createListItem(id, body, frontmatter))
         }
     })
 
@@ -80,16 +56,19 @@ const Howto = ({ data }: PostQueryProps) => {
                     twitterUsername={metaData.TwitterUsername}
                 />
 
-                <section className='section-fill gray-dark' id={metaData.WikiTitle}>
+                <section className='section-fill blue-dark' id={metaData.WikiTitle}>
                     <Container className='my-auto'>
+                        <ListGroup id={metaData.WikiFaq}>
+                            <ListGroupItem color='primary'><h2>General questions</h2></ListGroupItem>
+                            {wikisFaq}
+                        </ListGroup>
                         <ListGroup id={metaData.WikiProcedure}>
+                            <ListGroupItem color='primary'><h2>What can you expect</h2></ListGroupItem>
                             {wikisProcedure}
                         </ListGroup>
                         <ListGroup id={metaData.WikiPricing}>
+                            <ListGroupItem color='primary'><h2>Pricing details</h2></ListGroupItem>
                             {wikisPricing}
-                        </ListGroup>
-                        <ListGroup id={metaData.WikiTechnologies}>
-                            {wikisTechnologies}
                         </ListGroup>
                     </Container>
                 </section>

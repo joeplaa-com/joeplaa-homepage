@@ -23,7 +23,7 @@ export default function Layout({ children }: LayoutProps) {
             </Helmet>
             <Header />
             <main className='content'>{children}</main>
-            <Footer className='background5' />
+            <Footer className='footer-background' />
         </div>
     );
 }

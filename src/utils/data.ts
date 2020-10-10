@@ -82,10 +82,10 @@ export const metaData = {
     TitleTemplate: 'joeplaa.com',
     TwitterUsername: '',
     WikiDescription: 'How I work and what tools I use.',
+    WikiFaq: 'Faq',
     WikiImage: '/images/banner-www-com.png',
     WikiPricing: 'Pricing',
     WikiProcedure: 'Procedure',
-    WikiTechnologies: 'Technologies',
     WikiTitle: 'Wiki'
 }
 export const navigation = {
@@ -118,6 +118,8 @@ export const urls = {
     awsLightsail: 'https://aws.amazon.com/lightsail/',
     gatsbyjs: 'https://www.gatsbyjs.com/',
     ghost: 'https://ghost.org/',
+    netlifycms: 'https://www.netlifycms.org/',
     nextjs: 'https://nextjs.org/',
+    strapi: 'https://strapi.io/',
     wordpress: 'https://wordpress.org/'
 }

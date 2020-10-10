@@ -42,7 +42,7 @@ const Portfolio = ({ data }: PostQueryProps) => {
                     twitterUsername={metaData.TwitterUsername}
                 />
 
-                <section className='section-fill blue-dark' id={metaData.PortfolioTitle}>
+                <section className='section-fill blue-medium' id={metaData.PortfolioTitle}>
                     <Container className='text-left my-auto'>
                         <Suspense fallback={<RenderLoader />}>
                             <Filter page={page} tags={tags} />
