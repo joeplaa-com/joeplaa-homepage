@@ -19,7 +19,7 @@ export default function Layout({ children }: LayoutProps) {
                         </div>
                     </div>}`}
                 </noscript>
-                <link rel="preconnect" href={urls.umami} as="script" data-website-id={process.env.GATSBY_UMAMI_ID} data-auto-track="true" data-do-not-track="true"></link>
+                <link rel="preconnect" href={urls.umami} as="script" data-website-id={process.env.GATSBY_UMAMI_WWW_ID} data-auto-track="true" data-do-not-track="true"></link>
             </Helmet>
             <Header />
             <main className='content'>{children}</main>

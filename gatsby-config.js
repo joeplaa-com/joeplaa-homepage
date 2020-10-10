@@ -146,14 +146,6 @@ module.exports = {
                 fonts: {
                     google: [
                         {
-                            family: "Roboto Mono",
-                            variants: ["300", "400", "500", "600", "700"],
-                        },
-                        {
-                            family: "Roboto",
-                            variants: ["300", "400", "500", "600", "700"],
-                        },
-                        {
                             family: "Ubuntu Mono",
                             variants: ["300", "400", "500", "600", "700"],
                         },
