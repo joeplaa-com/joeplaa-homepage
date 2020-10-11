@@ -9,6 +9,9 @@ export default function Navigation({ className }: NavigationProps) {
     return (
         <Nav className={className} navbar>
             <NavItem>
+                <CustomNavLink to={navigation.home}>{metaData.HomeTitle}</CustomNavLink>
+            </NavItem>
+            <NavItem>
                 <CustomNavLink to={navigation.about}>{metaData.AboutTitle}</CustomNavLink>
             </NavItem>
             <NavItem>
