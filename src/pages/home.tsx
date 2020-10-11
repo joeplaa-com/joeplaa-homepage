@@ -5,7 +5,7 @@ import Banner from '../components/banner'
 import Contact from '../components/contact'
 import Layout from '../components/layout'
 import Pricing from '../components/pricing'
-import { metaData, navigation } from '../utils/data'
+import { content, metaData, navigation } from '../utils/data'
 
 const Home = () => {
     return (
@@ -24,7 +24,7 @@ const Home = () => {
                 />
 
                 <Banner
-                    title={metaData.HomeTitle + ' ' + metaData.SiteName}
+                    title={content.WelcomeTo + ' ' + metaData.SiteName}
                     subtitle={metaData.HomeSubtitle}
                     src="home-banner-code.jpg"
                     alt="beach banner" />

@@ -11,7 +11,6 @@ const Howto = ({ data }: PostQueryProps) => {
     const wikisFaq = [];
     const wikisPricing = [];
     const wikisProcedure = [];
-    const wikisTechnologies = [];
     const [isOpen, setIsOpen] = useState({})
 
     function createListItem(id, body, frontmatter) {

@@ -39,7 +39,8 @@ export const content = {
     UnsupportedMessage: 'This website does not work properly in your current browser. Use one of the browser below for the best experience.',
     UnsupportedTitle: 'Browser not supported',
     WebDesign: 'Website design',
-    WebHosting: 'Website hosting'
+    WebHosting: 'Website hosting',
+    WelcomeTo: 'Welcome to'
 };
 export const metaData = {
     AboutTitle: 'About',
@@ -50,7 +51,7 @@ export const metaData = {
     LastName: 'van de Laarschot',
     HomeDescription: 'Who is Joep and what is Joeplaa?',
     HomeImage: '/images/banner-www-com.png',
-    HomeTitle: 'Welcome to',
+    HomeTitle: 'Home',
     HomeSubtitle: 'Website design | Website hosting',
     HowtoDescription: 'How-to\'s and tutorials on subjects like Ubuntu, file-sharing, virtual machines and website hosting.',
     HowtoImage: '/images/banner-www-howto.png',

@@ -2,7 +2,7 @@ import React from 'react'
 import { Button, Col, Container, Row } from 'reactstrap'
 import SEO from 'react-seo-component'
 import Layout from '../components/layout'
-import { content, metaData } from '../utils/data'
+import { content, metaData, navigation } from '../utils/data'
 import { navigate } from '@reach/router'
 
 const PageNotFound = () => {
@@ -28,7 +28,12 @@ const PageNotFound = () => {
                                 <h1 className='display-1'>{content['404Header']}</h1>
                                 <h1>{content['404Title']}</h1>
                                 <p>{content['404Message']}</p>
-                                <Button onClick={() => navigate(-1)}>{content.Back}</Button>
+                            </Col>
+                        </Row>
+                        <Row>
+                            <Col xs='12' sm='10' md='7' lg='5' xl='4' className='mx-auto d-flex justify-content-between'>
+                                <Button color='secondary' onClick={() => navigate(-1)}>{content.Back}</Button>
+                                <Button color='secondary' href={navigation.home}>{metaData.HomeTitle}</Button>
                             </Col>
                         </Row>
                     </Container>

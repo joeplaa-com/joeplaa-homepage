@@ -1,11 +1,12 @@
 import React from 'react'
+import { Link } from 'gatsby'
 import { Container, Col, Row, Card, CardBody, CardDeck, Table } from 'reactstrap'
 import { IconContext } from 'react-icons'
 import { SiGatsby, SiGhost, SiGithub, SiNetlify, SiNextDotJs, SiStrapi, SiWordpress } from 'react-icons/si'
 import NewTabLink from './newTabLink'
 import CloudFront from '../svg/cloudfront.svg'
 import LightSail from '../svg/lightsail.svg'
-import { content, metaData, settings, urls } from '../utils/data'
+import { content, metaData, navigation, settings, urls } from '../utils/data'
 import { SectionProps } from '../types'
 
 const Pricing = ({ className }: SectionProps) => {
@@ -27,7 +28,7 @@ const Pricing = ({ className }: SectionProps) => {
                                         <tr>
                                             <th>Option</th>
                                             <th>Website type</th>
-                                            <th>Cost<sup>1</sup></th>
+                                            <th>Cost</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -55,7 +56,7 @@ const Pricing = ({ className }: SectionProps) => {
                                 </Table>
                             </div>
                             <div>
-                                <em><sup>1</sup>Ex. Dutch VAT (21%)</em>
+                                <p>More information in the <Link to={navigation.wiki}>Wiki</Link> section</p>
                                 <hr />
                                 <div className='text-center'>
                                     <IconContext.Provider value={{ size: settings.iconSize }}>
@@ -80,7 +81,7 @@ const Pricing = ({ className }: SectionProps) => {
                                         <tr>
                                             <th>Option</th>
                                             <th>Website type</th>
-                                            <th>Cost<sup>2</sup></th>
+                                            <th>Cost</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -103,7 +104,7 @@ const Pricing = ({ className }: SectionProps) => {
                                 </Table>
                             </div>
                             <div>
-                                <em><sup>2</sup>Per month, ex. Dutch VAT (21%)</em>
+                                <p>More information in the <Link to={navigation.wiki}>Wiki</Link> section</p>
                                 <hr />
                                 <div className='text-center'>
                                     <IconContext.Provider value={{ size: settings.iconSize }}>
