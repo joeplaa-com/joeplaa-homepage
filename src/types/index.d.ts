@@ -224,6 +224,7 @@ export type PostHeaderProps = {
 
 export type PostImageProps = {
     className?: string
+    height: number
     onClick?: () => void
     path: boolean
     picture: ChildImageSharpFluid
