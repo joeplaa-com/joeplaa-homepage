@@ -66,7 +66,7 @@ export const query = graphql`
   query SITE_HOWTO_QUERY {
     allMdx(
       sort: { fields: [frontmatter___date], order: DESC }
-      filter: { frontmatter: { published: { eq: true }, series: { ne: true } }, fileAbsolutePath: {regex: "/howto/"} }
+      filter: { frontmatter: { published: { eq: true }, series: { ne: true } }, fileAbsolutePath: {regex: "/content/howto/"} }
     ) {
       nodes {
         id

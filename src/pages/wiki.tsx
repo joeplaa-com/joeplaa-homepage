@@ -80,7 +80,7 @@ export const query = graphql`
   query SITE_WIKI_QUERY {
     allMdx(
       sort: { fields: [frontmatter___title], order: ASC }
-      filter: { frontmatter: { published: { eq: true } }, fileAbsolutePath: {regex: "/wiki/"} }
+      filter: { frontmatter: { published: { eq: true } }, fileAbsolutePath: {regex: "/content/wiki/"} }
     ) {
       nodes {
         id

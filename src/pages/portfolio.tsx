@@ -59,7 +59,7 @@ export const query = graphql`
   query SITE_PORTFOLIO_QUERY {
     allMdx(
       sort: { fields: [frontmatter___date], order: DESC }
-      filter: { frontmatter: { published: { eq: true } }, fileAbsolutePath: {regex: "/portfolio/"} }
+      filter: { frontmatter: { published: { eq: true } }, fileAbsolutePath: {regex: "/content/portfolio/"} }
     ) {
       nodes {
         id

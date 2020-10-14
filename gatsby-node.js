@@ -8,9 +8,47 @@ exports.createPages = ({ actions, graphql }) => {
 
     return graphql(`
     {
-      allMdx(
+      howto: allMdx(
+        filter: { frontmatter: { published: { eq: true } }, fileAbsolutePath: { glob: "**/content/howto/**/*.mdx" } }
+        sort: { fields: [frontmatter___title], order: ASC }
+      ) {
+        nodes {
+          fields {
+            slug
+          }
+          frontmatter {
+            title
+          }
+          fileAbsolutePath
+        }
+      }
+      tagsGroup: allMdx(limit: 2000) {
+        group(field: frontmatter___tags) {
+          fieldValue
+        }
+      }
+      portfolio: allMdx(
+        filter: { frontmatter: { published: { eq: true } }, fileAbsolutePath: { glob: "**/content/portfolio/**/*.mdx" } }
         sort: { fields: [frontmatter___date], order: DESC }
-        filter: { frontmatter: { published: { eq: true } } }
+      ) {
+        nodes {
+          fields {
+            slug
+          }
+          frontmatter {
+            title
+          }
+          fileAbsolutePath
+        }
+      }
+      tagsGroup: allMdx(limit: 2000) {
+        group(field: frontmatter___tags) {
+          fieldValue
+        }
+      }
+      wiki: allMdx(
+        filter: { frontmatter: { published: { eq: true } }, fileAbsolutePath: { glob: "**/content/wiki/**/*.mdx" } }
+        sort: { fields: [frontmatter___title], order: ASC }
       ) {
         nodes {
           fields {
@@ -33,15 +71,15 @@ exports.createPages = ({ actions, graphql }) => {
             throw result.errors;
         }
 
-        const howtoPosts = result.data.allMdx.nodes.filter(node => node.fileAbsolutePath.includes('/howto/'));
-        //const portfolioPosts = result.data.allMdx.nodes.filter(node => node.fileAbsolutePath.includes('/portfolio/'));
-        //const wikiPosts = result.data.allMdx.nodes.filter(node => node.fileAbsolutePath.includes('/wiki/'));
+        const howto = result.data.howto.nodes;
+        //const portfolio = result.data.portfolio.nodes;
+        //const wiki = result.data.wiki.nodes;
 
         // create page for each mdx howto node
-        howtoPosts.forEach((post, index) => {
+        howto.forEach((post, index) => {
             const previous =
-                index === howtoPosts.length - 1 ? null : howtoPosts[index + 1];
-            const next = index === 0 ? null : howtoPosts[index - 1];
+                index === howto.length - 1 ? null : howto[index + 1];
+            const next = index === 0 ? null : howto[index - 1];
 
             createPage({
                 path: post.fields.slug,
