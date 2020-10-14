@@ -19,7 +19,7 @@ export default function PortfolioPreview({ body, fields, fileAbsolutePath, front
             <Card>
                 <CardBody>
                     <PostTitle path={false} onClick={toggle} slug={fields.slug} title={frontmatter.title} />
-                    <PostImage path={false} onClick={toggle} className='mb-2' slug={fields.slug} title={frontmatter.title} picture={frontmatter.cover.childImageSharp} rounded={true} />
+                    <PostImage path={false} onClick={toggle} className='mb-2' slug={fields.slug} title={frontmatter.title} picture={frontmatter.cover.childImageSharp} rounded={true} height={180} />
                     <PostSubtitle className='mt-3' date={frontmatter.date} page={currentPage(fileAbsolutePath)} tags={frontmatter.tags} />
                 </CardBody>
             </Card>

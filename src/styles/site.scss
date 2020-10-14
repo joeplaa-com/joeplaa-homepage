@@ -99,11 +99,6 @@ div.card {
     }
 }
 
-.card.contact-form {
-    background-color: $blue-800;
-    border-color: $blue-800;
-}
-
 $card-column-sizes: (
     xs: 1,
     md: 2,
@@ -180,9 +175,9 @@ $card-column-sizes: (
     flex-direction: column;
     justify-content: center;
 }
-    .section-home.home-background1 {background: linear-gradient($gray-400, $blue-100);}
-    .section-home.home-background2 {background: linear-gradient($blue-100, $blue-400);}
-    .section-home.home-background3 {background: linear-gradient($blue-400, $gray-400);}
+    .section-home.background1 {background: linear-gradient($gray-400, $blue-100);}
+    .section-home.background2 {background: linear-gradient($blue-100, $blue-400);}
+    .section-home.background3 {background: linear-gradient($blue-400, $gray-400);}
 
 .footer-background {background: linear-gradient($gray-400, $gray-500);}
 
