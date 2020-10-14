@@ -35,7 +35,7 @@ const PostTemplate = ({ data, pageContext }: PostTemplateProps) => {
                 dateModified={new Date(Date.now()).toISOString()}
             />
 
-            <section className='section-fill gray-medium' id={metaData.WikiTitle}>
+            <section className='section-fill gray-medium' id={metaData.HowtoTitle}>
                 <Container className='my-auto post-container'>
                     <h3>{title}</h3>
                     <em>{content.HowtoDisclaimer}{' '}{date}</em>
@@ -69,7 +69,7 @@ const PostTemplate = ({ data, pageContext }: PostTemplateProps) => {
 };
 
 export const query = graphql`
-  query PostBySlug($slug: String!) {
+  query blogPostBySlug($slug: String!) {
     mdx(fields: { slug: { eq: $slug } }) {
       frontmatter {
         title

@@ -214,6 +214,11 @@ $card-column-sizes: (
     font-family: $font-family-monospace;
 }
 
+.markdown.conditions {
+    font-size: 1.125rem;
+    font-family: $font-family-base;
+}
+
     .markdown p,
     .markdown ul,
     .markdown ol,

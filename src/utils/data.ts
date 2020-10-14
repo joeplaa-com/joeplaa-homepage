@@ -97,10 +97,10 @@ export const navigation = {
     howto: '/howto',
     portfolio: '/portfolio',
     pricing: '/home#Pricing',
-    ps: '/conditions/ps',
+    ps: '/privacy-statement',
     recommended: process.env.GATSBY_BLOG_URL + '/recommended',
     services: '/home#Services',
-    tos: '/conditions/tos',
+    tos: '/terms-of-service',
     wiki: '/wiki'
 }
 export const settings = {

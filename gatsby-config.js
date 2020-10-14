@@ -169,15 +169,15 @@ module.exports = {
         {
             resolve: `gatsby-source-filesystem`,
             options: {
-                path: `${__dirname}/content/howto`,
-                name: `howto`,
+                path: `${__dirname}/content/conditions`,
+                name: `conditions`,
             },
         },
         {
             resolve: `gatsby-source-filesystem`,
             options: {
-                path: `${__dirname}/src/images`,
-                name: `images`,
+                path: `${__dirname}/content/howto`,
+                name: `howto`,
             },
         },
         {
@@ -192,6 +192,13 @@ module.exports = {
             options: {
                 path: `${__dirname}/content/wiki`,
                 name: `wiki`,
+            },
+        },
+        {
+            resolve: `gatsby-source-filesystem`,
+            options: {
+                path: `${__dirname}/src/images`,
+                name: `images`,
             },
         },
     ],
