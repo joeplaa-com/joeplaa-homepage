@@ -24,8 +24,10 @@ const Howto = ({ data }: PostQueryProps) => {
     const dispatch = useDispatch();
     useEffect(() => {
         dispatch(filterActionCreators.addTagsFilter(page, tags));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
+
+    const isSSR = typeof window === "undefined";
 
     return (
         <>
@@ -44,9 +46,11 @@ const Howto = ({ data }: PostQueryProps) => {
 
                 <section className='section-fill blue-light' id={metaData.HowtoTitle}>
                     <Container className='my-auto'>
-                        <Suspense fallback={<RenderLoader />}>
-                            <Filter page={page} tags={tags} />
-                        </Suspense>
+                        {!isSSR && (
+                            <Suspense fallback={<RenderLoader />}>
+                                <Filter page={page} tags={tags} />
+                            </Suspense>
+                        )}
                         {data.allMdx.nodes.length > 0 && <PostMore posts={data.allMdx.nodes.filter((post) => (filterTag(post, filter.userFilter[currentPage(post.fileAbsolutePath)])))} />}
                     </Container>
                 </section>
