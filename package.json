@@ -60,8 +60,7 @@
         "react-select": "^3.1.0",
         "react-seo-component": "^2.0.2",
         "reactstrap": "^8.6.0",
-        "redux": "^4.0.5",
-        "redux-persist": "^6.0.0"
+        "redux": "^4.0.5"
     },
     "devDependencies": {
         "@types/node": "^14.11.2",
