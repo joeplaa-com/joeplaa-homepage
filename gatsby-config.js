@@ -126,25 +126,6 @@ module.exports = {
             },
         },
         {
-            resolve: `gatsby-plugin-webfonts`,
-            options: {
-                fonts: {
-                    google: [
-                        {
-                            family: "Ubuntu Mono",
-                            variants: ["300", "400", "500", "600", "700"],
-                        },
-                        {
-                            family: "Ubuntu",
-                            variants: ["300", "400", "500", "600", "700"],
-                        },
-                    ],
-                },
-                useMinify: true,
-                usePreload: false,
-            },
-        },
-        {
             resolve: `gatsby-transformer-remark`,
             options: {
                 plugins: [
