@@ -5,43 +5,74 @@ const path = require(`path`);
 exports.createPages = ({ actions, graphql }) => {
     const { createPage } = actions;
     const blogPostTemplate = path.resolve('src/templates/blogPostTemplate.tsx');
+    const conditionsTemplate = path.resolve('src/templates/conditionsTemplate.tsx');
 
     return graphql(`
     {
-      allMdx(
-        sort: { fields: [frontmatter___date], order: DESC }
-        filter: { frontmatter: { published: { eq: true } } }
-      ) {
-        nodes {
-          fields {
-            slug
-          }
-          frontmatter {
-            title
-          }
-          fileAbsolutePath
+        conditions: allMdx(
+            filter: { frontmatter: { published: { eq: true } }, fileAbsolutePath: { glob: "**/content/conditions/**/*.mdx" } }
+            sort: { fields: [frontmatter___title], order: ASC }
+        ) {
+            nodes {
+                fields {
+                    slug
+                }
+                frontmatter {
+                    title
+                }
+            }
         }
-      }
-      tagsGroup: allMdx(limit: 2000) {
-        group(field: frontmatter___tags) {
-          fieldValue
+        tagsGroup: allMdx(limit: 2000) {
+            group(field: frontmatter___tags) {
+                fieldValue
+            }
         }
-      }
+        howto: allMdx(
+            filter: { frontmatter: { published: { eq: true } }, fileAbsolutePath: { glob: "**/content/howto/**/*.mdx" } }
+            sort: { fields: [frontmatter___title], order: ASC }
+        ) {
+            nodes {
+                fields {
+                    slug
+                }
+                frontmatter {
+                    title
+                }
+                fileAbsolutePath
+            }
+        }
+        tagsGroup: allMdx(limit: 2000) {
+            group(field: frontmatter___tags) {
+                fieldValue
+            }
+        }
     }
-  `).then(result => {
+    `).then(result => {
         if (result.errors) {
             throw result.errors;
         }
 
-        const howtoPosts = result.data.allMdx.nodes.filter(node => node.fileAbsolutePath.includes('/howto/'));
-        //const portfolioPosts = result.data.allMdx.nodes.filter(node => node.fileAbsolutePath.includes('/portfolio/'));
-        //const wikiPosts = result.data.allMdx.nodes.filter(node => node.fileAbsolutePath.includes('/wiki/'));
+        const conditions = result.data.conditions.nodes;
+        const howto = result.data.howto.nodes;
+        //const portfolio = result.data.portfolio.nodes;
+        //const wiki = result.data.wiki.nodes;
 
-        // create page for each mdx howto node
-        howtoPosts.forEach((post, index) => {
+        // create page for each conditions node
+        conditions.forEach((post) => {
+            createPage({
+                path: post.fields.slug,
+                component: conditionsTemplate,
+                context: {
+                    slug: post.fields.slug,
+                },
+            });
+        });
+
+        // create page for each howto node
+        howto.forEach((post, index) => {
             const previous =
-                index === howtoPosts.length - 1 ? null : howtoPosts[index + 1];
-            const next = index === 0 ? null : howtoPosts[index - 1];
+                index === howto.length - 1 ? null : howto[index + 1];
+            const next = index === 0 ? null : howto[index - 1];
 
             createPage({
                 path: post.fields.slug,

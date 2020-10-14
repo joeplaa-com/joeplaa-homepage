@@ -5,7 +5,6 @@ import SEO from 'react-seo-component'
 import { Container } from 'reactstrap'
 const Filter = lazy(() => import('../components/filter'));
 import Layout from '../components/layout'
-import PostHero from '../components/postHero'
 import PostMore from '../components/postMore'
 import RenderLoader from '../components/renderLoader'
 import { PostQueryProps } from '../types'
@@ -17,9 +16,7 @@ import filterTag from '../utils/filterTag'
 import formatAllTags from '../utils/formatAllTags'
 
 const Howto = ({ data }: PostQueryProps) => {
-    const heroPost = data.allMdx.nodes[0];
-    const morePosts = data.allMdx.nodes.slice(1);
-    const page = currentPage(heroPost.fileAbsolutePath);
+    const page = currentPage(data.allMdx.nodes[0].fileAbsolutePath);
     const tags = formatAllTags(data.allMdx.group);
 
     const filterSelector = (state: IRootState) => state.filter;
@@ -50,11 +47,7 @@ const Howto = ({ data }: PostQueryProps) => {
                         <Suspense fallback={<RenderLoader />}>
                             <Filter page={page} tags={tags} />
                         </Suspense>
-                        {heroPost && filterTag(heroPost, filter.userFilter[page]) && (
-                            <PostHero excerpt={heroPost.excerpt} fields={heroPost.fields} fileAbsolutePath={heroPost.fileAbsolutePath} frontmatter={heroPost.frontmatter} />
-                        )}
-
-                        {morePosts.length > 0 && <PostMore posts={morePosts.filter((post) => (filterTag(post, filter.userFilter[currentPage(post.fileAbsolutePath)])))} />}
+                        {data.allMdx.nodes.length > 0 && <PostMore posts={data.allMdx.nodes.filter((post) => (filterTag(post, filter.userFilter[currentPage(post.fileAbsolutePath)])))} />}
                     </Container>
                 </section>
             </Layout>
@@ -66,7 +59,7 @@ export const query = graphql`
   query SITE_HOWTO_QUERY {
     allMdx(
       sort: { fields: [frontmatter___date], order: DESC }
-      filter: { frontmatter: { published: { eq: true }, series: { ne: true } }, fileAbsolutePath: {regex: "/howto/"} }
+      filter: { frontmatter: { published: { eq: true }, series: { ne: true } }, fileAbsolutePath: {regex: "/content/howto/"} }
     ) {
       nodes {
         id
