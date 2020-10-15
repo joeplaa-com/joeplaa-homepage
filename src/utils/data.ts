@@ -91,6 +91,17 @@ export const navigation = {
     tos: '/terms-of-service',
     wiki: '/wiki'
 }
+export const pricing = {
+    staticDesign: '€ 750',
+    dynamicDesign: '€ 950',
+    cmsDesign: '€ 1250',
+    customDesign: 'tbd',
+    staticHosting: '€ 5',
+    dynamicHosting: '€ 10',
+    cmsHosting: '€ 15',
+    cmsPlusHosting: '€ 20',
+    domainHosting: '€ 0.50'
+}
 export const settings = {
     breakpoint: 'lg',
     iconSize: '40px'

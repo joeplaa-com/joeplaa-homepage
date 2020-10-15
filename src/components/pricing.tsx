@@ -6,7 +6,7 @@ import { SiGatsby, SiGhost, SiGithub, SiNetlify, SiNextDotJs, SiStrapi, SiWordpr
 import NewTabLink from './newTabLink'
 import CloudFront from '../svg/cloudfront.svg'
 import LightSail from '../svg/lightsail.svg'
-import { content, metaData, navigation, settings, urls } from '../utils/data'
+import { content, metaData, navigation, pricing, settings, urls } from '../utils/data'
 import { SectionProps } from '../types'
 
 const Pricing = ({ className }: SectionProps) => {
@@ -24,6 +24,11 @@ const Pricing = ({ className }: SectionProps) => {
                             <div>
                                 <h2>{content.WebDesign}</h2>
                                 <Table striped hover>
+                                    <colgroup>
+                                        <col span={1} style={{ width: "10%" }} />
+                                        <col span={1} style={{ width: "65%" }} />
+                                        <col span={1} style={{ width: "25%" }} />
+                                    </colgroup>
                                     <thead className='thead-dark'>
                                         <tr>
                                             <th>Option</th>
@@ -35,22 +40,22 @@ const Pricing = ({ className }: SectionProps) => {
                                         <tr>
                                             <th scope="row">1</th>
                                             <td>Static website build with either <NewTabLink href={urls.nextjs}>Next.js</NewTabLink> or <NewTabLink href={urls.gatsbyjs}>Gatsby.js</NewTabLink>.</td>
-                                            <td>&euro;500</td>
+                                            <td>{pricing.staticDesign}</td>
                                         </tr>
                                         <tr>
                                             <th scope="row">2</th>
                                             <td>Dynamic website based on <NewTabLink href={urls.wordpress}>WordPress</NewTabLink> or a simple <NewTabLink href={urls.ghost}>Ghost</NewTabLink> blog.</td>
-                                            <td>&euro;750</td>
+                                            <td>{pricing.dynamicDesign}</td>
                                         </tr>
                                         <tr>
                                             <th scope="row">3</th>
                                             <td>Static front-end (<NewTabLink href={urls.gatsbyjs}>Gatsby.js</NewTabLink> or <NewTabLink href={urls.nextjs}>Next.js</NewTabLink>) with a CMS back-end (<NewTabLink href={urls.ghost}>Ghost</NewTabLink>, <NewTabLink href={urls.netlifycms}>NetlifyCMS</NewTabLink>, <NewTabLink href={urls.strapi}>Strapi</NewTabLink>, <NewTabLink href={urls.wordpress}>WordPress</NewTabLink>).</td>
-                                            <td>&euro;750</td>
+                                            <td>{pricing.cmsDesign}</td>
                                         </tr>
                                         <tr>
                                             <th scope="row">4</th>
                                             <td>Custom</td>
-                                            <td>TBD</td>
+                                            <td>{pricing.customDesign}</td>
                                         </tr>
                                     </tbody>
                                 </Table>
@@ -77,6 +82,11 @@ const Pricing = ({ className }: SectionProps) => {
                             <div>
                                 <h2>{content.WebHosting}</h2>
                                 <Table striped hover>
+                                    <colgroup>
+                                        <col span={1} style={{ width: "10%" }} />
+                                        <col span={1} style={{ width: "65%" }} />
+                                        <col span={1} style={{ width: "25%" }} />
+                                    </colgroup>
                                     <thead className='thead-dark'>
                                         <tr>
                                             <th>Option</th>
@@ -88,17 +98,22 @@ const Pricing = ({ className }: SectionProps) => {
                                         <tr>
                                             <th scope="row">1</th>
                                             <td>Static websites hosted through <NewTabLink href={urls.awsCloudfront}>AWS CloudFront</NewTabLink>.</td>
-                                            <td>&euro;5</td>
+                                            <td>{pricing.staticHosting}</td>
                                         </tr>
                                         <tr>
                                             <th scope="row">2</th>
                                             <td>Dynamic websites hosted on <NewTabLink href={urls.awsLightsail}>AWS LightSail</NewTabLink>.</td>
-                                            <td>&euro;10</td>
+                                            <td>{pricing.dynamicHosting}</td>
                                         </tr>
                                         <tr>
                                             <th scope="row">3</th>
-                                            <td>Pricing is dependent on the type of CMS you want: Ghost and WordPress &euro;15, Strapi &euro;20. NetlifyCMS hosting is currently not possible.</td>
-                                            <td>&euro;15+</td>
+                                            <td>Pricing is dependent on the type of CMS you want: Ghost and WordPress {pricing.cmsHosting}, Strapi {pricing.cmsPlusHosting}. NetlifyCMS hosting is currently not possible.</td>
+                                            <td>{pricing.cmsHosting}<br/>-<br/>{pricing.cmsPlusHosting}</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">4</th>
+                                            <td>Domain hosting/manage service.</td>
+                                            <td>{pricing.domainHosting}</td>
                                         </tr>
                                     </tbody>
                                 </Table>
