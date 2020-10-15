@@ -192,7 +192,6 @@ export type PostTemplateProps = {
 }
 
 export type PostImageProps = {
-    className?: string
     height: number
     onClick?: () => void
     path: boolean

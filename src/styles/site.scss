@@ -125,19 +125,40 @@ $card-column-sizes: (
 .image-container {
     position: relative;
 }
+.image-container .overlay-blur {
+    position: absolute;
+    bottom: 0;
+    top: 0;
+    width: 100%;
+    -webkit-backdrop-filter: blur(3px);
+    backdrop-filter: blur(3px);
+}
+.image-container .overlay-image {
+    position: absolute;
+    bottom: 0;
+    top: 0;
+    -webkit-backdrop-filter: blur(1.5px);
+    backdrop-filter: blur(1.5px);
+    width: 100%;
+}
 
-    .image-container .overlay {
-        position: absolute;
-        bottom: 0; /* At the bottom. Use top:0 to append it to the top */
-        top: 0;
-        background: rgba($gray-800, 0.2); /* Background with 0.5 opacity */
-        color: $white;
-        width: 100%;
-        padding: 2rem;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
+.image-container .overlay-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba($gray-800, 0.4);
+    -webkit-backdrop-filter: blur(3px);
+    backdrop-filter: blur(3px);
+    border-radius: .5rem;
+    color: $white;
+    width: 80%;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
 
 .image-position {
     background-size: cover;

@@ -30,8 +30,8 @@ const components = {
 
 export const wrapRootElement = ({ element }) => (
     <Provider store={configureStore().store}>
-            <MDXProvider components={components}>
-                {element}
-            </MDXProvider>
+        <MDXProvider components={components}>
+            {element}
+        </MDXProvider>
     </Provider>
 );
