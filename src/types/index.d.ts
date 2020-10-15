@@ -222,6 +222,7 @@ export type SectionProps = {
 
 export type SocialLinkProps = {
     color: 'dark' | 'light' | 'navbar'
+    key: string | number
     size: string
 }
 

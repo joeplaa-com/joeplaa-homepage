@@ -17,7 +17,7 @@ export default function Footer({ className }: SectionProps) {
                         <Conditions color='light' />
                     </Col>
                 </Row>
-                <Social color='light' size='2rem' />
+                <Social color='light' key='footer' size='2rem' />
             </Container>
         </footer>
     );
