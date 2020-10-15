@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { graphql } from 'gatsby'
 import SEO from 'react-seo-component'
 import { Container } from 'reactstrap'
-const Filter = lazy(() => import('../components/filter'));
+const Filter = lazy(() => import('../components/filter'))
 import Layout from '../components/layout'
 import PostMore from '../components/postMore'
 import RenderLoader from '../components/renderLoader'
