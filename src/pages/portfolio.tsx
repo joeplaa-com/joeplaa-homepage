@@ -16,7 +16,8 @@ import filterTag from '../utils/filterTag'
 import formatAllTags from '../utils/formatAllTags'
 
 const Portfolio = ({ data }: PostQueryProps) => {
-    const page = currentPage(data.allMdx.nodes[0].fileAbsolutePath);
+    const entries = data.allMdx.nodes;
+    const page = currentPage(entries[0].fileAbsolutePath);
     const tags = formatAllTags(data.allMdx.group);
 
     const filterSelector = (state: IRootState) => state.filter;
@@ -51,7 +52,8 @@ const Portfolio = ({ data }: PostQueryProps) => {
                                 <Filter page={page} tags={tags} />
                             </Suspense>
                         )}
-                        <PortfolioEntries posts={data.allMdx.nodes.filter((post) => (filterTag(post, filter.userFilter[currentPage(post.fileAbsolutePath)])))} />
+
+                        {entries.length > 0 && <PortfolioEntries posts={entries.filter((post) => (filterTag(post, filter.userFilter[currentPage(post.fileAbsolutePath)])))} />}
                     </Container>
                 </section>
             </Layout>
@@ -78,7 +80,7 @@ export const query = graphql`
               }
             }
           }
-          date(formatString: "YYYY DD MMMM")
+          date(formatString: "YYYY MMMM D")
           excerpt
           tags
           title

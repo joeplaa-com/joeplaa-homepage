@@ -6,13 +6,13 @@ import TagIcon from './tagIcon'
 import { filterActionCreators } from '../store/actions/filter'
 import { TagProps } from '../types'
 
-export default function Tag({ tag, page }: TagProps) {
-    const dispatch = useDispatch();
-
+const Tag = ({ tag, setFilter }: TagProps) => {
     return (
-        <Badge color='primary' className='tag' href='#' onClick={() => dispatch(filterActionCreators.setTagsFilter(page, [tag]))}>
+        <Badge color='primary' className='tag' href='#' onClick={() => setFilter([tag])}>
             <IconContext.Provider value={{ size: '1.5rem', className: 'mr-1' }}>{TagIcon(tag.value)}</IconContext.Provider>
             <span>{tag.value.toUpperCase()}</span>
         </Badge>
     );
 }
+
+export default Tag;

@@ -10,7 +10,7 @@ import { IRootState } from '../store/interfaces'
 import { content } from '../utils/data'
 import { FilterProps, LabelProps } from '../types'
 
-export default function Filter({ page, tags }: FilterProps) {
+const Filter = ({ page, tags }: FilterProps) => {
     const dispatch = useDispatch();
     const filterSelector = (state: IRootState) => state.filter;
     const filter = useSelector(filterSelector);
@@ -79,3 +79,5 @@ export default function Filter({ page, tags }: FilterProps) {
         </section>
     );
 }
+
+export default Filter;

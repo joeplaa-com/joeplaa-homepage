@@ -7,16 +7,17 @@ const Filter = lazy(() => import('../components/filter'))
 import Layout from '../components/layout'
 import PostMore from '../components/postMore'
 import RenderLoader from '../components/renderLoader'
-import { PostQueryProps } from '../types'
 import { filterActionCreators } from '../store/actions/filter'
 import { IRootState } from '../store/interfaces'
+import { PostQueryProps } from '../types'
 import currentPage from '../utils/currentPage'
 import { metaData, navigation } from '../utils/data'
 import filterTag from '../utils/filterTag'
 import formatAllTags from '../utils/formatAllTags'
 
 const Howto = ({ data }: PostQueryProps) => {
-    const page = currentPage(data.allMdx.nodes[0].fileAbsolutePath);
+    const posts = data.allMdx.nodes;
+    const page = currentPage(posts[0].fileAbsolutePath);
     const tags = formatAllTags(data.allMdx.group);
 
     const filterSelector = (state: IRootState) => state.filter;
@@ -51,7 +52,8 @@ const Howto = ({ data }: PostQueryProps) => {
                                 <Filter page={page} tags={tags} />
                             </Suspense>
                         )}
-                        {data.allMdx.nodes.length > 0 && <PostMore posts={data.allMdx.nodes.filter((post) => (filterTag(post, filter.userFilter[currentPage(post.fileAbsolutePath)])))} />}
+
+                        {posts.length > 0 && <PostMore posts={posts.filter((post) => (filterTag(post, filter.userFilter[currentPage(post.fileAbsolutePath)])))} />}
                     </Container>
                 </section>
             </Layout>
@@ -67,7 +69,6 @@ export const query = graphql`
     ) {
       nodes {
         id
-        excerpt(pruneLength: 250)
         frontmatter {
           author
           cover {
@@ -78,7 +79,7 @@ export const query = graphql`
               }
             }
           }
-          date(formatString: "YYYY DD MMMM")
+          date(formatString: "YYYY MMMM D")
           excerpt
           series
           tags

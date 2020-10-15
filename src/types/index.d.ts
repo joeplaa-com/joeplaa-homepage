@@ -65,7 +65,6 @@ export type CodeProps = {
 
 export type CustomNavLinkProps = {
     children: ReactNode
-    href?: string
     title?: string
     to: string
 }
@@ -132,23 +131,20 @@ export interface PortfolioEntryProps extends PostBasicProps {
     body: string
 }
 
-export interface PostProps extends PostBasicProps {
-    excerpt: string
-}
-
 type PostBasicProps = {
     fields: {
         slug: string
     }
     fileAbsolutePath: string
     frontmatter: FrontMatterProps
+    key?: string | number
 }
 
 export type PostBodyProps = {
     content: string
 }
 
-interface PostQueryNode extends PostProps {
+interface PostQueryNode extends PostBasicProps {
     body: string
     id: string
 }
@@ -229,5 +225,5 @@ export type SocialLinkProps = {
 export type TagProps = {
     icon?: ReactElement
     page: string
-    tag?: LabelProps
+    tag: LabelProps
 }
