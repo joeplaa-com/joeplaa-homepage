@@ -1,18 +1,8 @@
-/* Public domain project by Cloud Under (https://cloudunder.io).
- * Repository: https://github.com/CloudUnder/lambda-edge-nice-urls
- */
+// Attached to ORIGIN REQUEST
 
 /* For event object example: https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/lambda-event-structure.html
  * Or see the copy below
  */
-
-const config = {
-    appendToDirs: 'index.html',
-    removeTrailingSlash: false
-};
-
-const regexSuffixless = /\/[^/.]+$/; // e.g. "/some/page" but not "/", "/some/" or "/some.jpg"
-const regexTrailingSlash = /.+\/$/; // e.g. "/some/" or "/some/page/" but not root "/"
 
 const redirects = [
     '/the-news',
@@ -50,8 +40,6 @@ const redirects = [
 
 exports.handler = function handler (event, context, callback) {
     const { request } = event.Records[0].cf;
-    const { uri } = request;
-    const { appendToDirs, removeTrailingSlash } = config;
 
     // Check for blog redirects first
     if (redirects.includes(request.headers.host[0].value)) {
@@ -69,38 +57,15 @@ exports.handler = function handler (event, context, callback) {
         return;
     }
 
-    // Append "index.html" to origin request
-    if (appendToDirs && uri.match(regexTrailingSlash)) {
-        request.uri = uri + appendToDirs;
-        callback(null, request);
-        return;
+    // If no "." in URI, assume document request and append index.html to request.uri
+    if (request.uri.match(/^[^.]*$/)) {
+        if (request.uri[request.uri.length - 1] === '/') {
+            request.uri += 'index.html';
+        } else {
+            request.uri += '/index.html';
+        }
     }
 
-    // Append "/index.html" to origin request
-    if (appendToDirs && uri.match(regexSuffixless)) {
-        request.uri = uri + '/' + appendToDirs;
-        callback(null, request);
-        return;
-    }
-
-    // Redirect (301) non-root requests ending in "/" to URI without trailing slash
-    if (removeTrailingSlash && uri.match(regexTrailingSlash)) {
-        const response = {
-            // body: '',
-            // bodyEncoding: 'text',
-            headers: {
-                location: [{
-                    key: 'Location',
-                    value: uri.slice(0, -1)
-                }]
-            },
-            status: '301',
-            statusDescription: 'Moved Permanently'
-        };
-        callback(null, response);
-        return;
-    }
-
-    // If nothing matches, return request unchanged
-    callback(null, request);
+    // Return to CloudFront Origin Request
+    return callback(null, request);
 };
