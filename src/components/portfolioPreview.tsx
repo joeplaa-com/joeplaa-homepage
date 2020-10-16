@@ -38,7 +38,11 @@ export default function PortfolioPreview({ body, fields, fileAbsolutePath, front
                 </ModalBody>
 
                 <ModalBody>
-                    <PostBody content={body} />
+                    {!isSSR && (
+                        <Suspense fallback={<RenderLoader />}>
+                            <PostBody content={body} />
+                        </Suspense>
+                    )}
                 </ModalBody>
 
                 <ModalFooter className='modal-background'>

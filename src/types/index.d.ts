@@ -188,7 +188,7 @@ export type PostTemplateProps = {
 }
 
 export type PostImageProps = {
-    height: number
+    height?: number
     onClick?: () => void
     path: boolean
     picture: ChildImageSharpFluid
