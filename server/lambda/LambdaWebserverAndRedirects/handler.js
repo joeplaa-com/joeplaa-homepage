@@ -38,7 +38,7 @@ const redirects = [
     '/i-love-the-beach'
 ]
 
-exports.handler = function handler (event, context, callback) {
+exports.handler = (event, context, callback) => {
     const { request } = event.Records[0].cf;
 
     // Check for blog redirects first
@@ -67,5 +67,5 @@ exports.handler = function handler (event, context, callback) {
     }
 
     // Return to CloudFront Origin Request
-    return callback(null, request);
+    callback(null, request);
 };
