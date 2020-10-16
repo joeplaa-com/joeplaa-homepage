@@ -33,7 +33,7 @@ const About = ({ className }: SectionProps) => {
                             <p>At jodiBooks I have learned how to do front-end design and website hosting. Now I will also help you create your digital home. I&apos;ll design your homepage and take care of hosting it.</p>
                         </div>
                         <div>
-                            <Social color='dark' size='2rem' />
+                            <Social color='dark' key='about' size='2rem' />
                         </div>
                         <div>
                             <h2>What is Joeplaa</h2>

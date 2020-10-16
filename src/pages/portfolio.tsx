@@ -1,5 +1,5 @@
-import React, { lazy, Suspense, useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import React, { lazy, Suspense } from 'react'
+import { useSelector } from 'react-redux'
 import { graphql } from 'gatsby'
 import SEO from 'react-seo-component'
 import { Container } from 'reactstrap'
@@ -8,7 +8,6 @@ import Layout from '../components/layout'
 import PortfolioEntries from '../components/portfolioEntries'
 import RenderLoader from '../components/renderLoader'
 import { PostQueryProps } from '../types'
-import { filterActionCreators } from '../store/actions/filter'
 import { IRootState } from '../store/interfaces'
 import currentPage from '../utils/currentPage'
 import { metaData, navigation } from '../utils/data'
@@ -16,19 +15,14 @@ import filterTag from '../utils/filterTag'
 import formatAllTags from '../utils/formatAllTags'
 
 const Portfolio = ({ data }: PostQueryProps) => {
-    const page = currentPage(data.allMdx.nodes[0].fileAbsolutePath);
+    const entries = data.allMdx.nodes;
+    const page = currentPage(entries[0].fileAbsolutePath);
     const tags = formatAllTags(data.allMdx.group);
 
     const filterSelector = (state: IRootState) => state.filter;
     const filter = useSelector(filterSelector);
-    const dispatch = useDispatch();
-    useEffect(() => {
-        dispatch(filterActionCreators.addTagsFilter(page, tags));
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
 
     const isSSR = typeof window === "undefined";
-
     return (
         <>
             <Layout>
@@ -51,7 +45,8 @@ const Portfolio = ({ data }: PostQueryProps) => {
                                 <Filter page={page} tags={tags} />
                             </Suspense>
                         )}
-                        <PortfolioEntries posts={data.allMdx.nodes.filter((post) => (filterTag(post, filter.userFilter[currentPage(post.fileAbsolutePath)])))} />
+
+                        {entries.length > 0 && <PortfolioEntries posts={entries.filter((post) => (filterTag(post, filter.selectedTags[page])))} />}
                     </Container>
                 </section>
             </Layout>
@@ -78,7 +73,7 @@ export const query = graphql`
               }
             }
           }
-          date(formatString: "YYYY DD MMMM")
+          date(formatString: "YYYY MMMM D")
           excerpt
           tags
           title

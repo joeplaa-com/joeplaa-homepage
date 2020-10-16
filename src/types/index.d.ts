@@ -65,7 +65,6 @@ export type CodeProps = {
 
 export type CustomNavLinkProps = {
     children: ReactNode
-    href?: string
     title?: string
     to: string
 }
@@ -132,23 +131,20 @@ export interface PortfolioEntryProps extends PostBasicProps {
     body: string
 }
 
-export interface PostProps extends PostBasicProps {
-    excerpt: string
-}
-
 type PostBasicProps = {
     fields: {
         slug: string
     }
     fileAbsolutePath: string
     frontmatter: FrontMatterProps
+    key?: string | number
 }
 
 export type PostBodyProps = {
     content: string
 }
 
-interface PostQueryNode extends PostProps {
+interface PostQueryNode extends PostBasicProps {
     body: string
     id: string
 }
@@ -192,8 +188,7 @@ export type PostTemplateProps = {
 }
 
 export type PostImageProps = {
-    className?: string
-    height: number
+    height?: number
     onClick?: () => void
     path: boolean
     picture: ChildImageSharpFluid
@@ -223,11 +218,12 @@ export type SectionProps = {
 
 export type SocialLinkProps = {
     color: 'dark' | 'light' | 'navbar'
+    key: string | number
     size: string
 }
 
 export type TagProps = {
     icon?: ReactElement
     page: string
-    tag?: LabelProps
+    tag: LabelProps
 }

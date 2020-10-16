@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { Helmet } from 'react-helmet'
 import SEO from 'react-seo-component'
 import { navigate } from 'gatsby'
-import { metaData, navigation, urls } from '../utils/data'
+import { metaData, urls } from '../utils/data'
 import { PageProps } from '../types'
 
 const Index = (props: PageProps) => {
@@ -10,7 +10,7 @@ const Index = (props: PageProps) => {
     const pathname = location.pathname;
     useEffect(() => {
         if (pathname === '/') {
-            navigate(navigation.home);
+            navigate('/home');
         }
     }, [pathname]);
 

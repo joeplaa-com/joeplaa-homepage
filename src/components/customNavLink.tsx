@@ -4,7 +4,7 @@ import { NavLink } from 'reactstrap'
 import { CustomNavLinkProps } from '../types'
 
 const CustomNavLink = (props: CustomNavLinkProps) => {
-    if (!props.href) {
+    if (props.to.includes("#")) {
         return (
             <AnchorLink {...props} className={'nav-link'} title={props.title ? props.title : undefined}>
                 {props.children ? props.children : null}
@@ -12,7 +12,7 @@ const CustomNavLink = (props: CustomNavLinkProps) => {
         )
     } else {
         return (
-            <NavLink href={props.href}>
+            <NavLink href={props.to}>
                 {props.children}
             </NavLink>
         )

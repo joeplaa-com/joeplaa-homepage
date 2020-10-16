@@ -24,10 +24,12 @@ export const content = {
     NoOptionsSelect: 'No further tags available',
     Ok: 'Ok',
     PreviousPost: 'Previous post: ',
+    PrivacyStatement: 'Privacy Statement',
     SendEmail: 'Send me an email',
     SendEmailDone: 'Thank you for your enquiry',
     ShowAll: 'Show all',
     Submit: 'Submit',
+    TermsOfService: 'Terms of service',
     TextBox: 'Questions / other',
     TryAgain: 'Try again',
     WebDesign: 'Website design',
@@ -90,6 +92,17 @@ export const navigation = {
     services: '/home#Services',
     tos: '/terms-of-service',
     wiki: '/wiki'
+}
+export const pricing = {
+    staticDesign: '€ 750',
+    dynamicDesign: '€ 950',
+    cmsDesign: '€ 1250',
+    customDesign: 'tbd',
+    staticHosting: '€ 5',
+    dynamicHosting: '€ 10',
+    cmsHosting: '€ 15',
+    cmsPlusHosting: '€ 20',
+    domainHosting: '€ 0.50'
 }
 export const settings = {
     breakpoint: 'lg',

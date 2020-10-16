@@ -6,7 +6,7 @@ import TagIcon from './tagIcon'
 import { filterActionCreators } from '../store/actions/filter'
 import { TagProps } from '../types'
 
-export default function Tag({ tag, page }: TagProps) {
+const Tag = ({ tag, page }: TagProps) => {
     const dispatch = useDispatch();
 
     return (
@@ -16,3 +16,5 @@ export default function Tag({ tag, page }: TagProps) {
         </Badge>
     );
 }
+
+export default Tag;

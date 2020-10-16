@@ -1,12 +1,12 @@
 import React from 'react'
-import { CardColumns } from 'reactstrap'
+import { CardDeck } from 'reactstrap'
 import PortfolioPreview from './portfolioPreview'
 import { PortfolioEntryProps } from '../types'
 
 export default function PortfolioEntries({ posts }: { posts: Array<PortfolioEntryProps> }) {
     return (
         <section>
-            <CardColumns>
+            <CardDeck>
                 {posts.map((post) => (
                     <PortfolioPreview
                         body={post.body}
@@ -16,7 +16,7 @@ export default function PortfolioEntries({ posts }: { posts: Array<PortfolioEntr
                         key={post.fields.slug}
                     />
                 ))}
-            </CardColumns>
+            </CardDeck>
         </section>
     );
 }

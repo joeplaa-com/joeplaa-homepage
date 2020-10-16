@@ -30,7 +30,8 @@ export default function Navigation({ className }: NavigationProps) {
                 <CustomNavLink to={navigation.howto}>{metaData.HowtoTitle}</CustomNavLink>
             </NavItem>
             <NavItem>
-                <CustomNavLink to='empty' href={navigation.blog}>{content.Blog}</CustomNavLink>
+                {/* eslint-disable-next-line @typescript-eslint/no-non-null-assertion*/}
+                <CustomNavLink to={navigation.blog!}>{content.Blog}</CustomNavLink>
             </NavItem>
         </Nav>
     );
