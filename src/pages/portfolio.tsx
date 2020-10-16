@@ -1,5 +1,5 @@
-import React, { lazy, Suspense, useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import React, { lazy, Suspense } from 'react'
+import { useSelector } from 'react-redux'
 import { graphql } from 'gatsby'
 import SEO from 'react-seo-component'
 import { Container } from 'reactstrap'
@@ -8,7 +8,6 @@ import Layout from '../components/layout'
 import PortfolioEntries from '../components/portfolioEntries'
 import RenderLoader from '../components/renderLoader'
 import { PostQueryProps } from '../types'
-import { filterActionCreators } from '../store/actions/filter'
 import { IRootState } from '../store/interfaces'
 import currentPage from '../utils/currentPage'
 import { metaData, navigation } from '../utils/data'
@@ -22,15 +21,8 @@ const Portfolio = ({ data }: PostQueryProps) => {
 
     const filterSelector = (state: IRootState) => state.filter;
     const filter = useSelector(filterSelector);
-    const dispatch = useDispatch();
-    
-    useEffect(() => {
-        dispatch(filterActionCreators.addTagsFilter(page, tags));
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [data.allMdx.group]);
 
     const isSSR = typeof window === "undefined";
-
     return (
         <>
             <Layout>
@@ -54,7 +46,7 @@ const Portfolio = ({ data }: PostQueryProps) => {
                             </Suspense>
                         )}
 
-                        {entries.length > 0 && <PortfolioEntries posts={entries.filter((post) => (filterTag(post, filter.userFilter[currentPage(post.fileAbsolutePath)])))} />}
+                        {entries.length > 0 && <PortfolioEntries posts={entries.filter((post) => (filterTag(post, filter.selectedTags[page])))} />}
                     </Container>
                 </section>
             </Layout>

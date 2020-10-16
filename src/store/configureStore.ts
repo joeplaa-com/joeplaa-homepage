@@ -16,7 +16,7 @@ const configureStore = () => {
         bindMiddleware([])
     );
 
-    return { store };
+    return store;
 };
 
 export default configureStore;

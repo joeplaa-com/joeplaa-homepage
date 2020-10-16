@@ -10,10 +10,11 @@ import { IRootState } from '../store/interfaces'
 import { content } from '../utils/data'
 import { FilterProps, LabelProps } from '../types'
 
-const Filter = ({ page, tags }: FilterProps) => {
+export default function Filter({ page, tags }: FilterProps) {
     const dispatch = useDispatch();
     const filterSelector = (state: IRootState) => state.filter;
     const filter = useSelector(filterSelector);
+    const selectedTags = filter.selectedTags[page].length > 0 ? filter.selectedTags[page] : tags;
 
     const [modal, setModal] = useState(false);
     function toggle() {
@@ -29,11 +30,10 @@ const Filter = ({ page, tags }: FilterProps) => {
     }
 
     function resetFilter() {
-        dispatch(filterActionCreators.resetTagFilter());
+        dispatch(filterActionCreators.setTagsFilter(page, tags));
     }
 
     const animatedComponents = makeAnimated();
-
     return (
         <section>
             <Row className='filter'>
@@ -42,7 +42,7 @@ const Filter = ({ page, tags }: FilterProps) => {
                         <CardBody>
                             <Row className='d-flex justify-content-between align-items-center'>
                                 <Col className='align-items-center flex-wrap tags'>
-                                    {filter.userFilter[page].length > 0 && filter.userFilter[page].map(tag => (
+                                    {selectedTags.map(tag => (
                                         <Tag key={tag.value} tag={tag} page={page} />
                                     ))}
                                 </Col>
@@ -63,10 +63,10 @@ const Filter = ({ page, tags }: FilterProps) => {
                     <Select
                         closeMenuOnSelect={false}
                         components={animatedComponents}
-                        value={filter.userFilter[page]}
+                        value={selectedTags}
+                        isClearable={false}
                         isMulti
                         name='tags'
-                        noOptionsMessage={() => <p>{content.NoOptionsSelect}</p>}
                         options={tags}
                         onChange={setFilter}
                     />
@@ -79,5 +79,3 @@ const Filter = ({ page, tags }: FilterProps) => {
         </section>
     );
 }
-
-export default Filter;

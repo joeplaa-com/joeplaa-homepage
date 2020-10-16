@@ -29,7 +29,7 @@ const components = {
 };
 
 export const wrapRootElement = ({ element }) => (
-    <Provider store={configureStore().store}>
+    <Provider store={configureStore()}>
         <MDXProvider components={components}>
             {element}
         </MDXProvider>
