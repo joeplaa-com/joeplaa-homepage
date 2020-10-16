@@ -1,0 +1,911 @@
+---
+title: Hosting ASP.NET apps on AWS Part 14 - Monitoring with Cloudwatch
+date: '2020-01-31 10:14'
+tags: ['AWS', 'CloudWatch', 'Logging']
+excerpt: "Hosting our own ASP.NET apps on AWS taught us this is not a side project. In this part we'll configure CloudWatch to monitor our servers and applications."
+cover: '../hosting-aspdotnet-on-aws.png'
+author: 'Joep van de Laarschot'
+published: true
+series: true
+---
+
+Now that we basically have our applications running and available to our customers, we want to know that they are running properly. More specifically we want to know if they don't work properly and spot any problems before they cause more serious problems. We thus want to monitor our applications and the servers they are running on.
+
+Enter Amazon CloudWatch. With this service you can send any log file and operating system metric to a centralized console. In this console you can create log groups, metrics, alarms and visualize them on (custom) dashboards.
+
+![main cloudwatch dashboard](mon-01.png)
+
+## 1. AWS CloudWatch Agent
+
+To send your logs to CloudWatch AWS created the CloudWatch Agent. This doesn't come preinstalled on your AMI, so you have to do that yourself. Installing the agent consists of 3 steps:
+
+1. Creating an IAM user.
+2. Downloading and installing the agent.
+3. Creating the agent config file.
+
+### 1.1 Creating the IAM user and role
+
+1. Go to the IAM console and click **Roles**. Now open the EC2 roles we made for our instances (one at a time).
+
+    ![open ec2 roles in iam](mon-02.png)
+
+2. Click **Attach policies** and search for `AmazonSSMManagedInstanceCore`. Click **Attach policy**. The policy is now attached to the IAM role. Repeat for `CloudWatchAgentAdminPolicy`.
+
+    ![policy added to role](mon-03.png)
+
+3. Repeat for second EC2 role.
+
+> See this guide by AWS for more information: [Create IAM Roles to Use with the CloudWatch Agent on Amazon EC2 Instances](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/create-iam-roles-for-cloudwatch-agent.html).
+
+4. Create user with _User name_ `CloudWatchParameterStoreAccess` and `Programmatic access`.
+
+    ![add cloudwatch parameter store user](mon-09.png)
+
+5. Add permissions `CloudWatchAgentAdminPolicy` and `AmazonSSMManagedInstanceCore`: click **Attach existing policies** and search.
+
+    ![add permissions](mon-10.png)
+
+6. Optionally add tags and create the user. Copy and store the credentials!
+
+### 1.2 Install agent
+
+You can install the CloudWatch agent in multiple ways. You can do it manually and through the Systems Manager (SSM). Installing through the Systems Manager has some other advantages. Because you have to add your instances, you can now check and apply updates through the manager.
+
+1. Open the AWS System Manager console by searching for `SSM` service. Click **Run Command** in the menu.
+
+    ![run command in systems manager](mon-04.png)
+
+2. In the first pane _Command document_ select `AWS-ConfigureAWSPackage`.
+
+    ![select the configureawspackage command](mon-05.png)
+
+3. Scroll down and in the _Actions_ pane choose `Install` as _Action_ and enter `AmazonCloudWatchAgent` as name.
+
+    ![set command parameters](mon-07.png)
+
+4. Scroll down further and in the _Targets_ pane select the instances you want to install the CloudWatch agent on.
+
+    ![select the instances as targets](mon-06.png)
+
+5. Optionally if you want to store and view the installation logs you can send them to an S3 bucket. We'll choose the `jodibooks-backups` bucket and enter `logs/SystemsManager` as prefix to store the log in a separate folder.
+
+    ![set log output to s3](mon-08.png)
+
+6. Scroll all the way down and click **Run**.
+
+> More info in this guide by AWS: [Installing the CloudWatch Agent Using AWS Systems Manager](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/installing-cloudwatch-agent-ssm.html).
+
+### 1.3 Create config file
+
+#### Windows
+
+1. Login to your instance with Remote Desktop. Open a command window to run the configuration wizard.
+
+    ```shellsession
+    cd "C:\Program Files\Amazon\AmazonCloudWatchAgent"
+    amazon-cloudwatch-agent-config-wizard.exe
+    ```
+
+2. Accept all the defaults until you get the question: `Do you want to monitor cpu metrics per core?`
+
+    ```shellsession
+    Microsoft Windows [Version 10.0.17763.1039]
+    (c) 2018 Microsoft Corporation. All rights reserved.
+
+    C:\Users\Administrator>cd "C:\Program Files\Amazon\AmazonCloudWatchAgent"
+
+    C:\Program Files\Amazon\AmazonCloudWatchAgent>amazon-cloudwatch-agent-config-wizard.exe
+    =============================================================
+    = Welcome to the AWS CloudWatch Agent Configuration Manager =
+    =============================================================
+    On which OS are you planning to use the agent?
+    1. linux
+    2. windows
+    default choice: [2]:
+
+    Trying to fetch the default region based on ec2 metadata...
+    Are you using EC2 or On-Premises hosts?
+    1. EC2
+    2. On-Premises
+    default choice: [1]:
+
+    Do you want to turn on StatsD daemon?
+    1. yes
+    2. no
+    default choice: [1]:
+
+    Which port do you want StatsD daemon to listen to?
+    default choice: [8125]
+
+    What is the collect interval for StatsD daemon?
+    1. 10s
+    2. 30s
+    3. 60s
+    default choice: [1]:
+
+    What is the aggregation interval for metrics collected by StatsD daemon?
+    1. Do not aggregate
+    2. 10s
+    3. 30s
+    4. 60s
+    default choice: [4]:
+
+    Do you have any existing CloudWatch Log Agent configuration file to import for migration?
+    1. yes
+    2. no
+    default choice: [2]:
+
+    Do you want to monitor any host metrics? e.g. CPU, memory, etc.
+    1. yes
+    2. no
+    default choice: [1]:
+
+    Do you want to monitor cpu metrics per core? Additional CloudWatch charges may apply.
+    1. yes
+    2. no
+    default choice: [1]:
+    ```
+
+3. Enter `2` for no and continue accepting all defaults.
+
+    ```shellsession
+    2
+    Do you want to add ec2 dimensions (ImageId, InstanceId, InstanceType, AutoScalingGroupName) into all of your metrics if the info is available?
+    1. yes
+    2. no
+    default choice: [1]:
+
+    Would you like to collect your metrics at high resolution (sub-minute resolution)? This enables sub-minute resolution for all metrics, but you can customize for specific metrics in the output json file.
+    1. 1s
+    2. 10s
+    3. 30s
+    4. 60s
+    default choice: [4]:
+
+    Which default metrics config do you want?
+    1. Basic
+    2. Standard
+    3. Advanced
+    4. None
+    default choice: [1]:
+
+    Current config as follows:
+    {
+            "metrics": {
+                    "append_dimensions": {
+                            "AutoScalingGroupName": "${aws:AutoScalingGroupName}",
+                            "ImageId": "${aws:ImageId}",
+                            "InstanceId": "${aws:InstanceId}",
+                            "InstanceType": "${aws:InstanceType}"
+                    },
+                    "metrics_collected": {
+                            "LogicalDisk": {
+                                    "measurement": [
+                                            "% Free Space"
+                                    ],
+                                    "metrics_collection_interval": 60,
+                                    "resources": [
+                                            "*"
+                                    ]
+                            },
+                            "Memory": {
+                                    "measurement": [
+                                            "% Committed Bytes In Use"
+                                    ],
+                                    "metrics_collection_interval": 60
+                            },
+                            "statsd": {
+                                    "metrics_aggregation_interval": 60,
+                                    "metrics_collection_interval": 10,
+                                    "service_address": ":8125"
+                            }
+                    }
+            }
+    }
+    Are you satisfied with the above config? Note: it can be manually customized after the wizard completes to add additional items.
+    1. yes
+    2. no
+    default choice: [1]:
+
+    Do you want to monitor any customized log files?
+    1. yes
+    2. no
+    default choice: [1]:
+
+    Log file path:
+    ```
+
+4. `C:\Windows\System32\LogFiles\HTTPERR\*.log`
+
+    ```shellsession
+    C:\Windows\System32\LogFiles\HTTPERR\*.log
+    Log group name:
+    default choice: [HTTPERR]
+    ```
+
+5. `HttpErrLogs`
+
+    ```shellsession
+    HttpErrLogs
+    Log stream name:
+    default choice: [{instance_id}]
+    ```
+
+6. `{instance_id}-httpErr`
+
+    ```shellsession
+    {instance_id}-httpErr
+    Do you want to specify any additional log files to monitor?
+    1. yes
+    2. no
+    default choice: [1]:
+    ```
+
+7. Repeat adding _additional log files_ for as mentioned in the table. I didn't add all of them, but this should give you a good example of how to export IIS logs (one for each website) and custom logs by your own applications and scripts.
+
+<div class='col-md-10 col-lg-8 mx-auto'>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">File path</th>
+                <th scope="col">Group name</th>
+                <th scope="col">Stream name</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><code>C:\inetpub\logs\LogFiles\W3SVC1\*.log</code></td>
+                <td><code>IISLogsBeauty</code></td>
+                <td><code>&lcub;instance_id&rcub;-iisAPI</code></td>
+            </tr>
+            <tr>
+                <td><code>C:\inetpub\logs\LogFiles\W3SVC3\*.log</code></td>
+                <td><code>IISLogsBeauty</code></td>
+                <td><code>&lcub;instance_id&rcub;-iisWWW</code></td>
+            </tr>
+            <tr>
+                <td><code>D:\apps\www\logs\PublicWebsite\*log</code></td>
+                <td><code>jodiBooksLogsBeauty</code></td>
+                <td><code>&lcub;instance_id&rcub;-jodibooksWWW</code></td>
+            </tr>
+            <tr>
+                <td><code>D:\logs\*.log</code></td>
+                <td><code>ScriptLogsBeauty</code></td>
+                <td><code>&lcub;instance_id&rcub;-scriptsLOG</code></td>
+            </tr>
+            <tr>
+                <td><code>D:\logs\*.txt</code></td>
+                <td><code>ScriptLogsBeauty</code></td>
+                <td><code>&lcub;instance_id&rcub;-scriptsTXT</code></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+> Note: You can only send one log file per stream. So the _Stream name_ should be unique. By adding the **instance\_id** tag, we allow multiple instances to send the "same" log file.
+
+8. Set the Windows events to log: `WARNING`, `ERROR` and `CRITICAL`. Accept defaults after.
+
+    ```shellsession
+    Do you want to specify any additional log files to monitor?
+    1. yes
+    2. no
+    default choice: [1]:
+    2
+    Do you want to monitor any Windows event log?
+    1. yes
+    2. no
+    default choice: [1]:
+
+    Windows event log name:
+    default choice: [System]
+
+    Do you want to monitor VERBOSE level events for Windows event log System ?
+    1. yes
+    2. no
+    default choice: [1]:
+    2
+    Do you want to monitor INFORMATION level events for Windows event log System ?
+    1. yes
+    2. no
+    default choice: [1]:
+    2
+    Do you want to monitor WARNING level events for Windows event log System ?
+    1. yes
+    2. no
+    default choice: [1]:
+    1
+    Do you want to monitor ERROR level events for Windows event log System ?
+    1. yes
+    2. no
+    default choice: [1]:
+    1
+    Do you want to monitor CRITICAL level events for Windows event log System ?
+    1. yes
+    2. no
+    default choice: [1]:
+    1
+    Log group name:
+    default choice: [System]
+
+    Log stream name:
+    default choice: [{instance_id}]
+
+    In which format do you want to store windows event to CloudWatch Logs?
+    1. XML: XML format in Windows Event Viewer
+    2. Plain Text: Legacy CloudWatch Windows Agent (SSM Plugin) Format
+    default choice: [1]:
+    ```
+
+9. We don't want more Windows events:
+
+    ```shellsession
+    Do you want to specify any additional Windows event log to monitor?
+    1. yes
+    2. no
+    default choice: [1]:
+    2
+    Saved config file to config.json successfully.
+    Current config as follows:
+    {
+            "logs": {
+                    "logs_collected": {
+                            "files": {
+                                    "collect_list": [
+                                            {
+                            "file_path": "C:\\Windows\\System32\\LogFiles\\HTTPERR\\*.log",
+                            "log_group_name": "HttpErrLogs",
+                            "log_stream_name": "{instance_id}-httpErr"
+                        },
+                        {
+                            "file_path": "C:\\inetpub\\logs\\LogFiles\\W3SVC1\\*.log",
+                            "log_group_name": "IISLogsAPI",
+                            "log_stream_name": "{instance_id}-iis"
+                        },
+                        {
+                            "file_path": "C:\\inetpub\\logs\\LogFiles\\W3SVC2\\*.log",
+                            "log_group_name": "IISLogsBeauty",
+                            "log_stream_name": "{instance_id}-iis"
+                        },
+                        {
+                            "file_path": "C:\\inetpub\\logs\\LogFiles\\W3SVC3\\*.log",
+                            "log_group_name": "IISLogsWWW",
+                            "log_stream_name": "{instance_id}-iis"
+                        },
+                        {
+                            "file_path": "C:\\inetpub\\logs\\LogFiles\\W3SVC4\\*.log",
+                            "log_group_name": "IISLogsMGMT",
+                            "log_stream_name": "{instance_id}-iis"
+                        },
+                        {
+                            "file_path": "C:\\inetpub\\logs\\LogFiles\\W3SVC5\\*.log",
+                            "log_group_name": "IISLogsPayments",
+                            "log_stream_name": "{instance_id}-iis"
+                        },
+                        {
+                            "file_path": "D:\\apps\\logs\\Beauty\\*.log",
+                            "log_group_name": "jodiBooksLogsBeauty",
+                            "log_stream_name": "{instance_id}-jodibooksBeauty"
+                        },
+                        {
+                            "file_path": "D:\\apps\\api\\logs\\BillingAPI\\*.log",
+                            "log_group_name": "jodiBooksLogsBeauty",
+                            "log_stream_name": "{instance_id}-jodibooksBLNG"
+                        },
+                        {
+                            "file_path": "D:\\apps\\api\\logs\\FileServer\\*.log",
+                            "log_group_name": "jodiBooksLogsBeauty",
+                            "log_stream_name": "{instance_id}-jodibooksFSRV"
+                        },
+                        {
+                            "file_path": "D:\\apps\\logs\\ManagementDashboard\\*.log",
+                            "log_group_name": "jodiBooksLogsBeauty",
+                            "log_stream_name": "{instance_id}-jodibooksMGMT"
+                        },
+                        {
+                            "file_path": "D:\\apps\\api\\logs\\MessagingAPI\\*.log",
+                            "log_group_name": "jodiBooksLogsBeauty",
+                            "log_stream_name": "{instance_id}-jodibooksMSSG"
+                        },
+                        {
+                            "file_path": "D:\\apps\\payments\\logs\\PaymentsAPI\\*.log",
+                            "log_group_name": "jodiBooksLogsBeauty",
+                            "log_stream_name": "{instance_id}-jodibooksPMNTS"
+                        },
+                        {
+                            "file_path": "D:\\apps\\www\\logs\\PublicWebsite\\*.log",
+                            "log_group_name": "jodiBooksLogsBeauty",
+                            "log_stream_name": "{instance_id}-jodibooksWWW"
+                        },
+                        {
+                            "file_path": "D:\\apps\\api\\logs\\WebAPI\\*.log",
+                            "log_group_name": "jodiBooksLogsBeauty",
+                            "log_stream_name": "{instance_id}-jodibooksAPI"
+                        },
+                        {
+                            "file_path": "D:\\logs\\*.log",
+                            "log_group_name": "ScriptLogs",
+                            "log_stream_name": "{instance_id}-scripts"
+                        },
+                        {
+                            "file_path": "D:\\logs\\*.txt",
+                            "log_group_name": "ScriptLogs",
+                            "log_stream_name": "{instance_id}-scripts"
+                        }
+                                    ]
+                            },
+                            "windows_events": {
+                                    "collect_list": [
+                                            {
+                                                    "event_format": "xml",
+                                                    "event_levels": [
+                                                            "WARNING",
+                                                            "ERROR",
+                                                            "CRITICAL"
+                                                    ],
+                                                    "event_name": "System",
+                                                    "log_group_name": "System",
+                                                    "log_stream_name": "{instance_id}"
+                                            }
+                                    ]
+                            }
+                    }
+            },
+            "metrics": {
+                    "append_dimensions": {
+                            "AutoScalingGroupName": "${aws:AutoScalingGroupName}",
+                            "ImageId": "${aws:ImageId}",
+                            "InstanceId": "${aws:InstanceId}",
+                            "InstanceType": "${aws:InstanceType}"
+                    },
+                    "metrics_collected": {
+                            "LogicalDisk": {
+                                    "measurement": [
+                                            "% Free Space"
+                                    ],
+                                    "metrics_collection_interval": 60,
+                                    "resources": [
+                                            "*"
+                                    ]
+                            },
+                            "Memory": {
+                                    "measurement": [
+                                            "% Committed Bytes In Use"
+                                    ],
+                                    "metrics_collection_interval": 60
+                            },
+                            "statsd": {
+                                    "metrics_aggregation_interval": 60,
+                                    "metrics_collection_interval": 10,
+                                    "service_address": ":8125"
+                            }
+                    }
+            }
+    }
+    Please check the above content of the config.
+    The config file is also located at config.json.
+    Edit it manually if needed.
+    Do you want to store the config in the SSM parameter store?
+    1. yes
+    2. no
+    default choice: [1]:
+    ```
+
+10. We want to store it in the parameter store and we can do that by using the credentials created for the `CloudWatchParameterStoreAccess` user. Call the parameter store name `AmazonCloudWatch-windows-ASPDOTNET`.
+
+    ```shellsession
+    What parameter store name do you want to use to store your config? (Use 'AmazonCloudWatch-' prefix if you use our managed AWS policy)
+    default choice: [AmazonCloudWatch-windows]
+    AmazonCloudWatch-windows-ASPDOTNET
+    Trying to fetch the default region based on ec2 metadata...
+    Which region do you want to store the config in the parameter store?
+    default choice: [eu-central-1]
+
+    Which AWS credential should be used to send json config to parameter store?
+    1. ASIARXJ4FFTMYJCLROMV(From SDK)
+    2. Other
+    default choice: [1]:
+    2
+    Please provide credentials to upload the json config file to parameter store.
+    AWS Access Key:
+    ********************
+    AWS Secret Key:
+    ****************************************
+    Successfully put config to parameter store AmazonCloudWatch-windows-ASPDOTNET.
+    Please press Enter to exit...
+    ```
+
+11. Next time we can download the configuration, saving us a lot of time.
+12. Start the agent by running the command in Windows PowerShell:
+
+    ```powershell
+    & "C:\Program Files\Amazon\AmazonCloudWatchAgent\amazon-cloudwatch-agent-ctl.ps1" -a fetch-config -m ec2 -c ssm:AmazonCloudWatch-windows-ASPDOTNET -s
+    ```
+
+* * *
+
+#### Linux
+
+1. Open an SSH session to the instance to install `collectd` and start the configuration wizard.
+
+    ```shellsession
+    sudo /opt/aws/amazon-cloudwatch-agent/bin/amazon-cloudwatch-agent-config-wizard
+    ```
+
+2. Accept all the defaults until you get the question: `Do you want to monitor cpu metrics per core?`
+
+    ```shellsession
+    ubuntu@jodibooks-server-u01:/$ sudo /opt/aws/amazon-cloudwatch-agent/bin/amazon-cloudwatch-agent-config-wizard
+    =============================================================
+    = Welcome to the AWS CloudWatch Agent Configuration Manager =
+    =============================================================
+    On which OS are you planning to use the agent?
+    1. linux
+    2. windows
+    default choice: [1]:
+
+    Trying to fetch the default region based on ec2 metadata...
+    Are you using EC2 or On-Premises hosts?
+    1. EC2
+    2. On-Premises
+    default choice: [1]:
+
+    Which user are you planning to run the agent?
+    1. root
+    2. cwagent
+    3. others
+    default choice: [1]:
+
+    Do you want to turn on StatsD daemon?
+    1. yes
+    2. no
+    default choice: [1]:
+
+    Which port do you want StatsD daemon to listen to?
+    default choice: [8125]
+
+    What is the collect interval for StatsD daemon?
+    1. 10s
+    2. 30s
+    3. 60s
+    default choice: [1]:
+
+    What is the aggregation interval for metrics collected by StatsD daemon?
+    1. Do not aggregate
+    2. 10s
+    3. 30s
+    4. 60s
+    default choice: [4]:
+
+    Do you want to monitor metrics from CollectD?
+    1. yes
+    2. no
+    default choice: [1]:
+    2
+    Do you want to monitor any host metrics? e.g. CPU, memory, etc.
+    1. yes
+    2. no
+    default choice: [1]:
+    ```
+
+3. Enter `2` for no and continue accepting all defaults.
+
+    ```shellsession
+    Do you want to monitor cpu metrics per core? Additional CloudWatch charges may apply.
+    1. yes
+    2. no
+    default choice: [1]:
+    2
+    Do you want to add ec2 dimensions (ImageId, InstanceId, InstanceType, AutoScalingGroupName) into all of your metrics if the info is available?
+    1. yes
+    2. no
+    default choice: [1]:
+
+    Would you like to collect your metrics at high resolution (sub-minute resolution)? This enables sub-minute resolution for all metrics, but you can customize for specific metrics in the output json file.
+    1. 1s
+    2. 10s
+    3. 30s
+    4. 60s
+    default choice: [4]:
+
+    Which default metrics config do you want?
+    1. Basic
+    2. Standard
+    3. Advanced
+    4. None
+    default choice: [1]:
+
+    Current config as follows:
+    {
+            "agent": {
+                    "metrics_collection_interval": 60,
+                    "run_as_user": "root"
+            },
+            "metrics": {
+                    "append_dimensions": {
+                            "AutoScalingGroupName": "${aws:AutoScalingGroupName}",
+                            "ImageId": "${aws:ImageId}",
+                            "InstanceId": "${aws:InstanceId}",
+                            "InstanceType": "${aws:InstanceType}"
+                    },
+                    "metrics_collected": {
+                            "collectd": {
+                                    "metrics_aggregation_interval": 60
+                            },
+                            "disk": {
+                                    "measurement": [
+                                            "used_percent"
+                                    ],
+                                    "metrics_collection_interval": 60,
+                                    "resources": [
+                                            "*"
+                                    ]
+                            },
+                            "mem": {
+                                    "measurement": [
+                                            "mem_used_percent"
+                                    ],
+                                    "metrics_collection_interval": 60
+                            },
+                            "statsd": {
+                                    "metrics_aggregation_interval": 60,
+                                    "metrics_collection_interval": 10,
+                                    "service_address": ":8125"
+                            }
+                    }
+            }
+    }
+    Are you satisfied with the above config? Note: it can be manually customized after the wizard completes to add additional items.
+    1. yes
+    2. no
+    default choice: [1]:
+
+    Do you have any existing CloudWatch Log Agent (http://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/AgentReference.html) configuration file to import for migration?
+    1. yes
+    2. no
+    default choice: [2]:
+
+    Do you want to monitor any log files?
+    1. yes
+    2. no
+    default choice: [1]:
+
+    Log file path:
+    ```
+
+4. `/var/log/mysql`
+
+    ```shellsession
+    /var/log/mysql
+    Log group name:
+    default choice: [mysql]
+
+    Log stream name:
+    default choice: [{instance_id}]
+    ```
+
+5. `{instance_id}-MySQLErrors`
+
+    ```shellsession
+    {instance_id}-MySQLErrors
+    Do you want to specify any additional log files to monitor?
+    1. yes
+    2. no
+    default choice: [1]:
+    ```
+
+6. Repeat adding _additional log files_ for the Nginx: `/var/log/nginx`, `nginx`, `{instance_id}-NGINXLogsBlog`.
+
+    ```shellsession
+    Log file path:
+    /var/log/nginx
+    Log group name:
+    default choice: [nginx]
+
+    Log stream name:
+    default choice: [{instance_id}]
+    {instance_id}-NGINXLogsBlog
+    Do you want to specify any additional log files to monitor?
+    1. yes
+    2. no
+    default choice: [1]:
+    2
+    ```
+
+7. The file will be saved and you will get the question if you want to store it in the parameter store.
+
+    ```shellsession
+    Saved config file to /opt/aws/amazon-cloudwatch-agent/bin/config.json successfully.
+    Current config as follows:
+    {
+            "agent": {
+                    "metrics_collection_interval": 60,
+                    "run_as_user": "root"
+            },
+            "logs": {
+                    "logs_collected": {
+                            "files": {
+                                    "collect_list": [
+                                            {
+                                                    "file_path": "/var/log/mysql",
+                                                    "log_group_name": "mysql",
+                                                    "log_stream_name": "{instance_id}-MySQLErrors"
+                                            },
+                                            {
+                                                    "file_path": "/var/log/nginx",
+                                                    "log_group_name": "nginx",
+                                                    "log_stream_name": "{instance_id}-NGINXLogsBlog"
+                                            }
+                                    ]
+                            }
+                    }
+            },
+            "metrics": {
+                    "append_dimensions": {
+                            "AutoScalingGroupName": "${aws:AutoScalingGroupName}",
+                            "ImageId": "${aws:ImageId}",
+                            "InstanceId": "${aws:InstanceId}",
+                            "InstanceType": "${aws:InstanceType}"
+                    },
+                    "metrics_collected": {
+                            "disk": {
+                                    "measurement": [
+                                            "used_percent"
+                                    ],
+                                    "metrics_collection_interval": 60,
+                                    "resources": [
+                                            "*"
+                                    ]
+                            },
+                            "mem": {
+                                    "measurement": [
+                                            "mem_used_percent"
+                                    ],
+                                    "metrics_collection_interval": 60
+                            },
+                            "statsd": {
+                                    "metrics_aggregation_interval": 60,
+                                    "metrics_collection_interval": 10,
+                                    "service_address": ":8125"
+                            }
+                    }
+            }
+    }
+    Please check the above content of the config.
+    The config file is also located at /opt/aws/amazon-cloudwatch-agent/bin/config.json.
+    Edit it manually if needed.
+    Do you want to store the config in the SSM parameter store?
+    1. yes
+    2. no
+    default choice: [1]:
+    ```
+
+8. We would like that and we enter the store name: `AmazonCloudWatch-linux-WordPress`. Next we approve the default region and enter **Other** credentials, the ones we made for the `CloudWatchParameterStoreAccess` user.
+
+    ```shellsession
+    What parameter store name do you want to use to store your config? (Use 'AmazonCloudWatch-' prefix if you use our managed AWS policy)
+    default choice: [AmazonCloudWatch-linux]
+    AmazonCloudWatch-linux-WordPress
+    Trying to fetch the default region based on ec2 metadata...
+    Which region do you want to store the config in the parameter store?
+    default choice: [eu-central-1]
+
+    Which AWS credential should be used to send json config to parameter store?
+    1. ASIARXJ4FFTM5KJPLBPW(From SDK)
+    2. Other
+    default choice: [1]:
+    2
+    Please provide credentials to upload the json config file to parameter store.
+    AWS Access Key:
+    ********************
+    AWS Secret Key:
+    ****************************************
+    Successfully put config to parameter store AmazonCloudWatch-linux-WordPress.
+    Program exits now.
+    ubuntu@jodibooks-server-u01:/$
+    ```
+
+9. Next time we can download the configuration, saving us a lot of time.
+10. Start the agent.
+
+    ```shellsession
+    sudo /opt/aws/amazon-cloudwatch-agent/bin/amazon-cloudwatch-agent-ctl -a fetch-config -m ec2 -c ssm:AmazonCloudWatch-linux-WordPress -s
+    ```
+
+* * *
+
+## 2. Creating CloudWatch alarms
+
+After some time, the log data should be streaming in. At default the agent will aggregate all metric and logs for 60 seconds before sending it to your _Log groups_ in CloudWatch.
+
+This is a nice first step, but we're not going to check the logs every few minutes. We're going to let CloudWatch scan the logs and send us a message when something is wrong. This is done in two steps: create a custom metric and create an alarm (for that metric).
+
+### 2.1 Create a custom metric and alarm
+
+As an example let's design a metric for 404 errors. If you get them a lot, this might mean somebody is trying to find weak spots or you have a broken link somewhere.
+
+1. Go to **Log groups** and click the `HttpErrLogs` group.
+
+    ![log groups overview](mon-11.png)
+
+2. Click the **Metric filters** tab and click **Create metric filter**.
+
+    ![instances per stream](mon-12.png)
+
+3. Now we have to enter a filter pattern: `[Date, Timestamp, IP1, Port1, IP2, Port2, Info=*404*]`. Each value represents a column in the log file. In the last column we search for `*404*`. In the _Test pattern_ select the _Log stream_ to test the pattern to.
+
+    ![add filter pattern](mon-13.png)
+
+4. In the next screen enter _Filter name:_ `HttpError 404`, _Metric namespace:_ `StatusCodeErrors`, _Metric name:_ `Status404`, _Metric value:_ `1`, _Default value:_ `0`. With that we have created a metric that will return **1** when a row contains a 404 error and 0 when not.
+
+    ![enter metric details](mon-14.png)
+
+5. Check all values and create the metric
+
+    ![review and create metric](mon-15.png)
+
+6. Back in the _Metric filters_ tab, select the newly created `HttpError404` metric and click the **Create alarm** button.
+
+    ![Create alarm for metric](mon-17.png)
+
+7. I have been gathering data for some time now, so I get a nice blue graph. This might not be visible immediately, but that's okay.  
+    We leave the _Statistic_ at `Sum` but change the _Period_ to `1 hour`. This means the alarm will sum all rows with a 404 (metric = 1) within a 1 hour rolling window. In my history I can see **10** is the current maximum, so to get an alarm when that's exceeded, we set the _conditions_ to **Greater/equal** _than_ `10`.
+
+    ![set alarm conditions](mon-16.png)
+
+    You might get too much notifications at first, so the first few weeks you might need to increase this value multiple times. But it's better to start to low and increase than to miss something important. I ended up putting the limit for the alarm at 50. All of these spikes where robots or crawlers, some more persistent than others, but they all quickly gave up.
+
+    ![4 week history for 404](mon-18.png "Four week history of 404 error metric.")
+
+8. In the next step we can configure the notification we want to get and when. We want it only when the alarm is **In alarm** and we are going to send ourselves an email through [SNS](https://aws.amazon.com/sns/). You can also configure SNS to send push notifications to mobile.  
+    **Create new topic** with _name_ `CloudWatchAlarms` and enter the email address (this can be multiple). You will receive an email to confirm your subscription to this SNS topic. When creating a new alarm we can select this topic again as an existing topic. Scroll down and click **Next**.
+
+    ![create an sns topic](mon-19.png)
+
+9. Repeat for other status codes like 403, 500, etc. or particular errors you want to catch in your application logs. We check for instance how often our internal API's are being called. That way we can check if someone is trying to gain unsolicited access.
+
+### 2.2 Create a default metric alarm
+
+AWS will collect some 57 default system metrics of your instances. For example CPU utilization, disk reads and writes, network in and out, etc.
+
+1. To make an alarm for that, you can go to _Metric --> EC2 --> Per-Instance Metrics_. Now you can select one and click the **Graphed metrics** tab. All the way to the right you can click a **Bell icon**, which will bring you to the screen as shown in the previous step 7.
+
+    ![Per instance metrics](mon-20.png)
+
+2. If you just want an alarm for the most basic metrics, there is an easier way. Go to the EC2 dashboard and go to **Instances**. Now in the column _Alarm status_ click the **Bell icon**. A _Create Alarm_ popup will appear where you can easily set an alarm.
+
+    ![Simple metric alarm](mon-21.png)
+
+## 3. SNS
+
+We briefly touched SNS, but let's dive a little deeper into it.
+
+1. Open the SNS dashboard and click **Topics**. You'll see your `CloudWatchAlarms` topic in the list. Click it.
+
+    ![Cloudwatch alarm topic details. One subscription to our email.](mon-22.png)
+
+2. When clicking the **Edit** in red, we can change the Display name (as seen in the email) and some optional settings.
+3. In blue we see that I have confirmed my subscription. When selecting a subscriber, you can **Edit** or **Delete** that subscriber. Not much to edit though.
+4. On the left you can also see **Push notifications**. Here you can configure sending push notifications to mobile phones.
+
+## 4. Data retention
+
+CloudWatch is cool once you know how to use it. I just scratched to surface and will learn more while using it in the coming months and years. If you setup some basic alarms, you already get a lot of value out of it. By the way, you get 10 alarms for free.
+
+However, data retention is not free if you exceed 5 GB. That sounds like a lot for log files, but they grow more rapidly than you might expect.
+
+1. Click **Log groups** in the menu, click the **Wheel icon** on the right and enable **Stored bytes**. This will show how much data is stored in each group. Annoyingly you have to repeat this in every group.
+
+    ![enable stored bytes column](mon-23.png)
+
+2. Open a group and click **Actions**. In the menu popping out click **Edit retention settings**.
+
+    ![group actions menu](mon-24.png)
+
+3. Now select the time you want to store the log data.
+
+    ![set retention time](mon-25.png)
+
+## 5. Next: backup scripts
+
+In the [next part](../hosting-asp-net-apps-aws-part-15-backup-scripting/) we're going to build some scripts to backup our databases and log files to S3.
