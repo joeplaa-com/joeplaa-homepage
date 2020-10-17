@@ -49,7 +49,7 @@ module.exports = {
                 start_url: `/`,
                 background_color: `#fff`,
                 theme_color: `#07b1c2`,
-                display: `standalone`,
+                display: `browser`,
                 icon: `src/images/icon.png`,
                 icon_options: {
                     purpose: `any maskable`,
