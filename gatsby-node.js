@@ -6,6 +6,7 @@ const kebabCase = require("lodash").kebabCase;
 exports.createPages = ({ actions, graphql }) => {
     const { createPage } = actions;
     const howtoTemplate = path.resolve('src/templates/howtoTemplate.tsx');
+    const portfolioTemplate = path.resolve('src/templates/portfolioTemplate.tsx');
     const conditionsTemplate = path.resolve('src/templates/conditionsTemplate.tsx');
     const tagsTemplate = path.resolve('src/templates/tagsTemplate.tsx');
 
@@ -37,6 +38,19 @@ exports.createPages = ({ actions, graphql }) => {
                 }
             }
         }
+        portfolio: allMdx(
+            filter: { frontmatter: { published: { eq: true } }, fileAbsolutePath: { glob: "**/content/portfolio/**/*.mdx" } }
+            sort: { fields: [frontmatter___date], order: DESC }
+        ) {
+            nodes {
+                fields {
+                    slug
+                }
+                frontmatter {
+                    title
+                }
+            }
+        }
         tagsGroup: allMdx(limit: 2000, 
             filter: { frontmatter: { published: { eq: true } } }) {
             group(field: frontmatter___tags) {
@@ -51,34 +65,46 @@ exports.createPages = ({ actions, graphql }) => {
 
         const conditions = result.data.conditions.nodes;
         const howto = result.data.howto.nodes;
-        //const portfolio = result.data.portfolio.nodes;
+        const portfolio = result.data.portfolio.nodes;
         //const wiki = result.data.wiki.nodes;
         const tags = result.data.tagsGroup.group;
 
         // create page for each conditions node
         conditions.forEach((post) => {
+            const slug = post.fields.slug;
             createPage({
-                path: post.fields.slug,
+                path: `/conditions/${slug}/`,
                 component: conditionsTemplate,
                 context: {
-                    slug: post.fields.slug,
+                    slug,
                 },
             });
         });
 
         // create page for each howto node
         howto.forEach((post, index) => {
-            const previous =
-                index === howto.length - 1 ? null : howto[index + 1];
-            const next = index === 0 ? null : howto[index - 1];
-
+            const slug = post.fields.slug;
             createPage({
-                path: post.fields.slug,
+                path: slug,
                 component: howtoTemplate,
                 context: {
-                    slug: post.fields.slug,
-                    previous,
-                    next,
+                    slug,
+                    previous: index === howto.length - 1 ? null : howto[index + 1],
+                    next: index === 0 ? null : howto[index - 1],
+                },
+            });
+        });
+
+        // create page for each howto node
+        portfolio.forEach((post, index) => {
+            const slug = post.fields.slug;
+            createPage({
+                path: slug,
+                component: portfolioTemplate,
+                context: {
+                    slug,
+                    previous: index === howto.length - 1 ? null : howto[index + 1],
+                    next: index === 0 ? null : howto[index - 1],
                 },
             });
         });
@@ -90,9 +116,9 @@ exports.createPages = ({ actions, graphql }) => {
                 path: `/tags/${slug}/`,
                 component: tagsTemplate,
                 context: {
-                    slug: slug,
-                    tag: tag.fieldValue,
-                    tagRaw: tag
+                    slug: `/tags/${slug}/`,
+                    tag: tag,
+                    tagValue: tag.fieldValue
                 },
             });
         });

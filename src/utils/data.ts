@@ -87,10 +87,10 @@ export const navigation = {
     howto: '/howto',
     portfolio: '/portfolio',
     pricing: '/home#Pricing',
-    ps: '/privacy-statement',
+    ps: '/conditions/privacy-statement',
     recommended: process.env.GATSBY_BLOG_URL + '/recommended',
     services: '/home#Services',
-    tos: '/terms-of-service',
+    tos: '/conditions/terms-of-service',
     wiki: '/wiki'
 }
 export const pricing = {

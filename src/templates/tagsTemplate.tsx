@@ -12,7 +12,7 @@ import formatAllTags from '../utils/formatAllTags'
 
 const Tag = ({ data, location, pageContext }: PostQueryProps) => {
     const posts = data.allMdx.nodes;
-    const tags = formatAllTags([pageContext.tagRaw]);
+    const tags = formatAllTags([pageContext.tag]);
 
     const isSSR = typeof window === "undefined";
     return (
@@ -22,7 +22,7 @@ const Tag = ({ data, location, pageContext }: PostQueryProps) => {
                     title={metaData.SiteTitle}
                     description={metaData.SiteDescription || `nothin’`}
                     image={`${metaData.SiteUrl}${metaData.SiteImage}`}
-                    pathname={`${metaData.SiteUrl}/tags/${pageContext.slug}`}
+                    pathname={`${metaData.SiteUrl}${pageContext.slug}`}
                     titleTemplate={metaData.TitleTemplate}
                     titleSeparator={metaData.TitleSeparator}
                     siteLanguage={metaData.SiteLanguage}
@@ -46,10 +46,10 @@ const Tag = ({ data, location, pageContext }: PostQueryProps) => {
 };
 
 export const query = graphql`
-  query SITE_TAG_QUERY ($tag: String) {
+  query tagsBySlug($tagValue: String) {
     allMdx(
       sort: { fields: [frontmatter___date], order: DESC }
-      filter: { frontmatter: { published: { eq: true }, tags: { in: [$tag] } } }
+      filter: { frontmatter: { published: { eq: true }, tags: { in: [$tagValue] } } }
     ) {
       nodes {
         id
