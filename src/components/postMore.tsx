@@ -10,7 +10,6 @@ export default function PostStories({ posts }: { posts: Array<PostBasicProps> })
                 {posts.map((post) => (
                     <PostPreview
                         fields={post.fields}
-                        fileAbsolutePath={post.fileAbsolutePath}
                         frontmatter={post.frontmatter}
                         key={post.fields.slug}
                     />

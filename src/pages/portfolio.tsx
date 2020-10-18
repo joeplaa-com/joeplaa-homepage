@@ -1,5 +1,4 @@
 import React, { lazy, Suspense } from 'react'
-import { useSelector } from 'react-redux'
 import { graphql } from 'gatsby'
 import SEO from 'react-seo-component'
 import { Container } from 'reactstrap'
@@ -8,19 +7,12 @@ import Layout from '../components/layout'
 import PortfolioEntries from '../components/portfolioEntries'
 import RenderLoader from '../components/renderLoader'
 import { PostQueryProps } from '../types'
-import { IRootState } from '../store/interfaces'
-import currentPage from '../utils/currentPage'
 import { metaData, navigation } from '../utils/data'
-import filterTag from '../utils/filterTag'
 import formatAllTags from '../utils/formatAllTags'
 
 const Portfolio = ({ data }: PostQueryProps) => {
     const entries = data.allMdx.nodes;
-    const page = currentPage(entries[0].fileAbsolutePath);
     const tags = formatAllTags(data.allMdx.group);
-
-    const filterSelector = (state: IRootState) => state.filter;
-    const filter = useSelector(filterSelector);
 
     const isSSR = typeof window === "undefined";
     return (
@@ -40,13 +32,12 @@ const Portfolio = ({ data }: PostQueryProps) => {
 
                 <section className='section-fill blue-medium' id={metaData.PortfolioTitle}>
                     <Container className='text-left my-auto'>
+                        {entries.length > 0 && <PortfolioEntries posts={entries} />}
                         {!isSSR && (
                             <Suspense fallback={<RenderLoader />}>
-                                <Filter page={page} tags={tags} />
+                                <Filter tags={tags} />
                             </Suspense>
                         )}
-
-                        {entries.length > 0 && <PortfolioEntries posts={entries.filter((post) => (filterTag(post, filter.selectedTags[page])))} />}
                     </Container>
                 </section>
             </Layout>
@@ -79,7 +70,6 @@ export const query = graphql`
           title
         }
         body
-        fileAbsolutePath
         fields {
           slug
         }

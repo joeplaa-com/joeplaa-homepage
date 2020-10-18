@@ -11,7 +11,6 @@ export default function PortfolioEntries({ posts }: { posts: Array<PortfolioEntr
                     <PortfolioPreview
                         body={post.body}
                         fields={post.fields}
-                        fileAbsolutePath={post.fileAbsolutePath}
                         frontmatter={post.frontmatter}
                         key={post.fields.slug}
                     />

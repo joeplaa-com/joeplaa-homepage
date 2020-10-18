@@ -7,11 +7,10 @@ const PostImage = lazy(() => import('./postImage'))
 const PostSubtitle = lazy(() => import('./postSubtitle'))
 const PostTitle = lazy(() => import('./postTitle'))
 import RenderLoader from './renderLoader'
-import currentPage from '../utils/currentPage'
 import { content } from '../utils/data'
 import { PortfolioEntryProps } from '../types'
 
-export default function PortfolioPreview({ body, fields, fileAbsolutePath, frontmatter }: PortfolioEntryProps) {
+export default function PortfolioPreview({ body, fields, frontmatter }: PortfolioEntryProps) {
     const [modal, setModal] = useState(false);
     const toggle = () => setModal(!modal);
 
@@ -25,7 +24,7 @@ export default function PortfolioPreview({ body, fields, fileAbsolutePath, front
                         <CardBody>
                             <PostTitle path={false} onClick={toggle} slug={fields.slug} title={frontmatter.title} />
                             <PostImage path={false} onClick={toggle} slug={fields.slug} title={frontmatter.title} picture={frontmatter.cover.childImageSharp} rounded={true} height={180} />
-                            <PostSubtitle className='mt-3' date={frontmatter.date} page={currentPage(fileAbsolutePath)} tags={frontmatter.tags} />
+                            <PostSubtitle className='mt-3' date={frontmatter.date} tags={frontmatter.tags} />
                         </CardBody>
                     </Suspense>
                 )}
