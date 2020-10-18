@@ -44,7 +44,7 @@ function generateEmailParams(body) {
                         Name: ${name}\n
                         Business: ${business}\n
                         Email: ${email}\n
-                        Subjects: \n- staticDesign: ${staticDesign ? staticDesign + ', ' : ''}\n- dynamicDesign: ${dynamicDesign ? dynamicDesign + ', ' : ''}\n- cmsDesign ${cmsDesign ? cmsDesign + ', ' : ''}\n- customDesign ${customDesign ? customDesign + ', ' : ''}\n- staticHosting ${staticHosting ? staticHosting + ', ' : ''}\n- dynamicHosting ${dynamicHosting ? dynamicHosting + ', ' : ''}\n
+                        Subjects: \n- ${staticDesign ? 'staticDesign' : ''}\n- ${dynamicDesign ? 'dynamicDesign' : ''}\n- ${cmsDesign ? 'cmsDesign' : ''}\n- ${customDesign ? 'customDesign' : ''}\n- ${staticHosting ? 'staticHosting' : ''}\n- ${dynamicHosting ? 'dynamicHosting' : ''}\n
                         Message: \n${message}`
                 }
             },

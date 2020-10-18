@@ -88,15 +88,15 @@ export default class Contact extends React.Component<SectionProps, ContactState>
             }
         };
         if (!this.state.captcha) {
-            fetch(`${process.env.GATSBY_MAIL_URL}`, requestOptions)
-                .then((response) => {
-                    if (response.ok) {
-                        this.setState({ sendSuccess: true });
-                    } else {
-                        this.setState({ sendFailed: true });
-                        alert(content.MailSendFailed + urls.email)
-                    }
-                });
+            fetch(`${process.env.GATSBY_MAIL_URL}`, requestOptions
+            ).then((response) => {
+                if (response.ok) {
+                    this.setState({ sendSuccess: true });
+                } else {
+                    this.setState({ sendFailed: true });
+                    alert(content.MailSendFailed + urls.email)
+                }
+            });
         }
     }
 

@@ -1,6 +1,6 @@
 export const content = {
     '404Header': '404',
-    '404Message': 'The page you\'re looking for does not exist (anymore).',
+    '404Message': "The page you're looking for does not exist (anymore).",
     '404Title': 'Page not found',
     AllRightsReserved: 'All rights reserved.',
     Back: 'Back',
@@ -17,7 +17,7 @@ export const content = {
     InterestedIn: "I'm interested in:",
     Loading: 'Loading...',
     MailSendFailed: 'Something went wrong, please try again or email me directly at ',
-    MailSendSuccess: 'Thank you for sending this message. I\'ll get back to you as soon as I can.',
+    MailSendSuccess: "Thank you for sending this message. I'll get back to you as soon as I can.",
     Name: 'Name',
     NameErrorMessage: 'Please enter a name',
     NextPost: 'Next post: ',
