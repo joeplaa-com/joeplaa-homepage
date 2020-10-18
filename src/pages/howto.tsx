@@ -10,7 +10,7 @@ import { PostQueryProps } from '../types'
 import { metaData, navigation } from '../utils/data'
 import formatAllTags from '../utils/formatAllTags'
 
-const Howto = ({ data }: PostQueryProps) => {
+const Howto = ({ data, location }: PostQueryProps) => {
     const posts = data.allMdx.nodes;
     const tags = formatAllTags(data.allMdx.group);
 
@@ -32,12 +32,12 @@ const Howto = ({ data }: PostQueryProps) => {
 
                 <section className='section-fill blue-light' id={metaData.HowtoTitle}>
                     <Container className='my-auto'>
-                        {posts.length > 0 && <PostMore posts={posts} />}
                         {!isSSR && (
                             <Suspense fallback={<RenderLoader />}>
-                                <Filter tags={tags} />
+                                <Filter pathname={location.pathname} tags={tags} />
                             </Suspense>
                         )}
+                        {posts.length > 0 && <PostMore posts={posts} />}
                     </Container>
                 </section>
             </Layout>

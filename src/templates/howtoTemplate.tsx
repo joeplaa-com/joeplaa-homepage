@@ -10,7 +10,7 @@ import { content, metaData } from '../utils/data'
 import { PostTemplateProps } from '../types'
 
 const PostTemplate = ({ data, pageContext }: PostTemplateProps) => {
-    const { body, excerpt, fields, frontmatter } = data.mdx;
+    const { body, fields, frontmatter } = data.mdx;
     const { title, date, cover } = frontmatter;
     const { previous, next } = pageContext;
     return (
@@ -19,7 +19,7 @@ const PostTemplate = ({ data, pageContext }: PostTemplateProps) => {
                 title={title}
                 titleTemplate={metaData.TitleTemplate}
                 titleSeparator={metaData.TitleSeparator}
-                description={excerpt}
+                description={frontmatter.excerpt}
                 image={
                     cover === null
                         ? `${metaData.SiteUrl}${metaData.SiteImage}`
@@ -89,7 +89,6 @@ export const query = graphql`
         author
       }
       body
-      excerpt
       fields {
         slug
       }

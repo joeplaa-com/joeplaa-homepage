@@ -70,6 +70,7 @@ export type CustomNavLinkProps = {
 }
 
 export type FilterProps = {
+    pathname: string
     tags: Array<LabelProps>
 }
 
@@ -160,6 +161,14 @@ export type PostQueryProps = {
             siteMetadata: {
                 title: string
             },
+        }
+    },
+    location: Location
+    pageContext?: {
+        slug: string
+        tag: string
+        tagRaw: {
+            fieldValue: string
         }
     }
 }

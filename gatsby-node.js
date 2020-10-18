@@ -1,11 +1,13 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 const { createFilePath } = require(`gatsby-source-filesystem`);
 const path = require(`path`);
+const kebabCase = require("lodash").kebabCase;
 
 exports.createPages = ({ actions, graphql }) => {
     const { createPage } = actions;
-    const blogPostTemplate = path.resolve('src/templates/blogPostTemplate.tsx');
+    const howtoTemplate = path.resolve('src/templates/howtoTemplate.tsx');
     const conditionsTemplate = path.resolve('src/templates/conditionsTemplate.tsx');
+    const tagsTemplate = path.resolve('src/templates/tagsTemplate.tsx');
 
     return graphql(`
     {
@@ -22,11 +24,6 @@ exports.createPages = ({ actions, graphql }) => {
                 }
             }
         }
-        tagsGroup: allMdx(limit: 2000) {
-            group(field: frontmatter___tags) {
-                fieldValue
-            }
-        }
         howto: allMdx(
             filter: { frontmatter: { published: { eq: true } }, fileAbsolutePath: { glob: "**/content/howto/**/*.mdx" } }
             sort: { fields: [frontmatter___title], order: ASC }
@@ -38,10 +35,10 @@ exports.createPages = ({ actions, graphql }) => {
                 frontmatter {
                     title
                 }
-                fileAbsolutePath
             }
         }
-        tagsGroup: allMdx(limit: 2000) {
+        tagsGroup: allMdx(limit: 2000, 
+            filter: { frontmatter: { published: { eq: true } } }) {
             group(field: frontmatter___tags) {
                 fieldValue
             }
@@ -56,6 +53,7 @@ exports.createPages = ({ actions, graphql }) => {
         const howto = result.data.howto.nodes;
         //const portfolio = result.data.portfolio.nodes;
         //const wiki = result.data.wiki.nodes;
+        const tags = result.data.tagsGroup.group;
 
         // create page for each conditions node
         conditions.forEach((post) => {
@@ -76,11 +74,25 @@ exports.createPages = ({ actions, graphql }) => {
 
             createPage({
                 path: post.fields.slug,
-                component: blogPostTemplate,
+                component: howtoTemplate,
                 context: {
                     slug: post.fields.slug,
                     previous,
                     next,
+                },
+            });
+        });
+
+        // create page for each tag
+        tags.forEach(tag => {
+            const slug = kebabCase(tag.fieldValue);
+            createPage({
+                path: `/tags/${slug}/`,
+                component: tagsTemplate,
+                context: {
+                    slug: slug,
+                    tag: tag.fieldValue,
+                    tagRaw: tag
                 },
             });
         });
