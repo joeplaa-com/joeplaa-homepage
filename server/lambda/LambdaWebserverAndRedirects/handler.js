@@ -40,11 +40,12 @@ const redirects = [
 
 exports.handler = (event, context, callback) => {
     const { request } = event.Records[0].cf;
-    const { uri } = request;
-    const baseURI = `https://blog.joeplaa.com`;
+    const { headers, uri } = request;
+    const domain = `blog.joeplaa.com`;
+    const baseURI = `https://${domain}`;
 
     // Check for blog redirects first
-    if (redirects.includes(uri)) {
+    if (redirects.includes(uri) && !baseURI.includes(headers.host[0].value)) {
         const response = {
             status: '301',
             statusDescription: `Redirecting to new blog domain`,
