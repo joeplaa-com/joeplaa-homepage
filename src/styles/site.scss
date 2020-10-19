@@ -353,6 +353,10 @@ div.card {
     }
 }
 
+button.close {
+    text-shadow: none;
+}
+
 .label-bold {
     font-weight: 600;
 }
@@ -395,7 +399,7 @@ div.card {
 }
 
 .modal-background {
-    background-color: $gray-200;
+    background-color: $blue-800;
 }
 
 a.nav-padding-social {
