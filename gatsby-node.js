@@ -5,11 +5,6 @@ const kebabCase = require("lodash").kebabCase;
 
 exports.createPages = ({ actions, graphql }) => {
     const { createPage } = actions;
-    const howtoTemplate = path.resolve('src/templates/howtoTemplate.tsx');
-    const portfolioTemplate = path.resolve('src/templates/portfolioTemplate.tsx');
-    const conditionsTemplate = path.resolve('src/templates/conditionsTemplate.tsx');
-    const tagsTemplate = path.resolve('src/templates/tagsTemplate.tsx');
-
     return graphql(`
     {
         conditions: allMdx(
@@ -28,12 +23,14 @@ exports.createPages = ({ actions, graphql }) => {
         howto: allMdx(
             filter: { frontmatter: { published: { eq: true } }, fileAbsolutePath: { glob: "**/content/howto/**/*.mdx" } }
             sort: { fields: [frontmatter___title], order: ASC }
+            limit: 1000
         ) {
             nodes {
                 fields {
                     slug
                 }
                 frontmatter {
+                    series
                     title
                 }
             }
@@ -41,6 +38,7 @@ exports.createPages = ({ actions, graphql }) => {
         portfolio: allMdx(
             filter: { frontmatter: { published: { eq: true } }, fileAbsolutePath: { glob: "**/content/portfolio/**/*.mdx" } }
             sort: { fields: [frontmatter___date], order: DESC }
+            limit: 1000
         ) {
             nodes {
                 fields {
@@ -63,11 +61,53 @@ exports.createPages = ({ actions, graphql }) => {
             throw result.errors;
         }
 
+        // templates
+        const howtoTemplate = path.resolve('src/templates/howtoTemplate.tsx');
+        const howtoPostTemplate = path.resolve('src/templates/howtoPostTemplate.tsx');
+        const portfolioTemplate = path.resolve('src/templates/portfolioTemplate.tsx');
+        const portfolioPostTemplate = path.resolve('src/templates/portfolioPostTemplate.tsx');
+        const conditionsTemplate = path.resolve('src/templates/conditionsTemplate.tsx');
+        const tagsTemplate = path.resolve('src/templates/tagsTemplate.tsx');
+
+        // data
         const conditions = result.data.conditions.nodes;
         const howto = result.data.howto.nodes;
         const portfolio = result.data.portfolio.nodes;
         //const wiki = result.data.wiki.nodes;
         const tags = result.data.tagsGroup.group;
+
+        // pagination
+        const postsPerPage = 6;
+        const numHowtoPages = Math.ceil(howto.filter(post => post.frontmatter.series !== true).length / postsPerPage);
+        const numPortfolioPages = Math.ceil(portfolio.length / postsPerPage);
+
+        // create pagination pages for howto
+        Array.from({ length: numHowtoPages }).forEach((_, i) => {
+            createPage({
+                path: i === 0 ? `/howto` : `/howto/${i + 1}`,
+                component: howtoTemplate,
+                context: {
+                    limit: postsPerPage,
+                    skip: i * postsPerPage,
+                    numPages: numHowtoPages,
+                    currentPage: i + 1,
+                },
+            })
+        })
+
+        // create pagination pages for portolio
+        Array.from({ length: numPortfolioPages }).forEach((_, i) => {
+            createPage({
+                path: i === 0 ? `/portfolio` : `/portfolio/${i + 1}`,
+                component: portfolioTemplate,
+                context: {
+                    limit: postsPerPage,
+                    skip: i * postsPerPage,
+                    numPages: numPortfolioPages,
+                    currentPage: i + 1,
+                },
+            })
+        })
 
         // create page for each conditions node
         conditions.forEach((post) => {
@@ -86,7 +126,7 @@ exports.createPages = ({ actions, graphql }) => {
             const slug = post.fields.slug;
             createPage({
                 path: slug,
-                component: howtoTemplate,
+                component: howtoPostTemplate,
                 context: {
                     slug,
                     previous: index === howto.length - 1 ? null : howto[index + 1],
@@ -95,12 +135,12 @@ exports.createPages = ({ actions, graphql }) => {
             });
         });
 
-        // create page for each howto node
+        // create page for each portfolio node
         portfolio.forEach((post, index) => {
             const slug = post.fields.slug;
             createPage({
                 path: slug,
-                component: portfolioTemplate,
+                component: portfolioPostTemplate,
                 context: {
                     slug,
                     previous: index === howto.length - 1 ? null : howto[index + 1],
