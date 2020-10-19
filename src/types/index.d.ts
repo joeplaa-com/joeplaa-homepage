@@ -230,5 +230,6 @@ export type SocialLinkProps = {
 
 export type TagProps = {
     icon?: ReactElement
+    quantity?: boolean
     tag: LabelProps
 }
