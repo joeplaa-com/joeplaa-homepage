@@ -1,6 +1,6 @@
+import React from 'react'
 import { graphql } from 'gatsby'
 import { MDXRenderer } from 'gatsby-plugin-mdx'
-import React from 'react'
 import { Container } from 'reactstrap'
 import SEO from 'react-seo-component'
 import Layout from '../components/layout'

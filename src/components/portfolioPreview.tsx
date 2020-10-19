@@ -13,9 +13,9 @@ import { PortfolioEntryProps } from '../types'
 export default function PortfolioPreview({ body, fields, frontmatter }: PortfolioEntryProps) {
     const [modal, setModal] = useState(false);
     const toggle = () => setModal(!modal);
+    const closeBtn = <button className="close" onClick={toggle}>&times;</button>;
 
     const isSSR = typeof window === "undefined";
-
     return (
         <>
             <Card>
@@ -30,7 +30,7 @@ export default function PortfolioPreview({ body, fields, frontmatter }: Portfoli
                 )}
             </Card>
             <Modal isOpen={modal} toggle={toggle} size='lg'>
-                <ModalHeader className='modal-background' toggle={toggle}>{frontmatter.title}</ModalHeader>
+                <ModalHeader className='modal-background' toggle={toggle} close={closeBtn}>{frontmatter.title}</ModalHeader>
 
                 <ModalBody>
                     <Img fluid={frontmatter.cover.childImageSharp.fluid} objectFit="cover" objectPosition="50% 50%" alt={'Cover Image for ' + frontmatter.title} className='img-fluid rounded' />
@@ -44,7 +44,7 @@ export default function PortfolioPreview({ body, fields, frontmatter }: Portfoli
                     )}
                 </ModalBody>
 
-                <ModalFooter className='modal-background'>
+                <ModalFooter>
                     <Button color="primary" outline onClick={toggle}>
                         <FaTimes />
                         <span>{' '}{content.BacktoPortfolio}</span>

@@ -70,7 +70,10 @@ export type CustomNavLinkProps = {
 }
 
 export type FilterProps = {
+    back?: boolean
+    className?: string
     pathname: string
+    quantity?: boolean
     tags: Array<LabelProps>
 }
 
