@@ -186,7 +186,7 @@ div.card-footer {
 .footer-background {background: linear-gradient($gray-400, $gray-500);}
 
 .section-fill {
-    height: 100%;
+    min-height: 100%;
     display: flex;
     padding-top: 4.5rem;
 }
