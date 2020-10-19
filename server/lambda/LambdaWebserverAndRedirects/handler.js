@@ -40,16 +40,18 @@ const redirects = [
 
 exports.handler = (event, context, callback) => {
     const { request } = event.Records[0].cf;
+    const { uri } = request;
+    const baseURI = `https://blog.joeplaa.com`;
 
     // Check for blog redirects first
-    if (redirects.includes(request.headers.host[0].value)) {
+    if (redirects.includes(uri)) {
         const response = {
             status: '301',
-            statusDescription: `Redirecting to blog domain`,
+            statusDescription: `Redirecting to new blog domain`,
             headers: {
                 location: [{
                     key: 'Location',
-                    value: `https://blog.joeplaa.com${request.uri}`
+                    value: baseURI + uri
                 }]
             }
         };
