@@ -6,12 +6,12 @@ import SEO from 'react-seo-component'
 import Layout from '../components/layout'
 import PostBrowseButton from '../components/postBrowseButton'
 import PostImage from '../components/postImage'
-import { content, metaData } from '../utils/data'
+import { metaData } from '../utils/data'
 import { PostTemplateProps } from '../types'
 
-const PostTemplate = ({ data, pageContext }: PostTemplateProps) => {
-    const { body, excerpt, fields, frontmatter } = data.mdx;
-    const { title, date, cover } = frontmatter;
+const PortfolioTemplate = ({ data, pageContext }: PostTemplateProps) => {
+    const { body, fields, frontmatter } = data.mdx;
+    const { title, excerpt, date, cover } = frontmatter;
     const { previous, next } = pageContext;
     return (
         <Layout>
@@ -35,13 +35,13 @@ const PostTemplate = ({ data, pageContext }: PostTemplateProps) => {
                 dateModified={new Date(Date.now()).toISOString()}
             />
 
-            <section className='section-fill gray-medium' id={metaData.HowtoTitle}>
+            <section className='section-fill gray-medium' id={metaData.PortfolioTitle}>
                 <Container className='my-auto post-container'>
                     <div className='image-container'>
                         <PostImage path={false} title={title} picture={frontmatter.cover.childImageSharp} rounded={true} />
                         <div className='overlay-text rounded'>
                             <h1 className='display-3 text-center'>{title}</h1>
-                            <h3><em>{content.HowtoDisclaimer}{' '}{date}</em></h3>
+                            <h3><em>{date}</em></h3>
                         </div>
                     </div>
 
@@ -73,11 +73,12 @@ const PostTemplate = ({ data, pageContext }: PostTemplateProps) => {
 };
 
 export const query = graphql`
-  query blogPostBySlug($slug: String!) {
+  query portfolioEntryBySlug($slug: String!) {
     mdx(fields: { slug: { eq: $slug } }) {
       frontmatter {
         title
-        date(formatString: "YYYY DD MMMM")
+        excerpt
+        date(formatString: "YYYY MMMM D")
         cover {
           publicURL
           childImageSharp {
@@ -86,10 +87,8 @@ export const query = graphql`
             }
           }
         }
-        author
       }
       body
-      excerpt
       fields {
         slug
       }
@@ -97,4 +96,4 @@ export const query = graphql`
   }
 `;
 
-export default PostTemplate;
+export default PortfolioTemplate;

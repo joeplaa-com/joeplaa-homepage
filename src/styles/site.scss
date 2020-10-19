@@ -320,12 +320,7 @@ div.card {
 /* -------end Navbar-------- */
 
 /* -------begin Tags-------- */
-.filter {
-    margin-bottom: .5rem;
-    margin-top: .5rem;
-}
-
-a.tag {
+.tag.badge {
     display: inline-flex;
     justify-content: center;
     align-items: center;

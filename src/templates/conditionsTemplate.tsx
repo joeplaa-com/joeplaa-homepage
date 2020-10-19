@@ -18,7 +18,7 @@ const ConditionsTemplate = ({ data }: PostTemplateProps) => {
                 titleSeparator={metaData.TitleSeparator}
                 description={title + ' ' + date}
                 image={`${metaData.SiteUrl}${metaData.SiteImage}`}
-                pathname={`${metaData.SiteUrl}${fields.slug}`}
+                pathname={`${metaData.SiteUrl}/conditions/${fields.slug}`}
                 siteLanguage={metaData.SiteLanguage}
                 siteLocale={metaData.SiteLocale}
                 twitterUsername={metaData.TwitterUsername}
@@ -42,11 +42,11 @@ const ConditionsTemplate = ({ data }: PostTemplateProps) => {
 };
 
 export const query = graphql`
-  query ConditionsBySlug($slug: String!) {
+  query conditionsBySlug($slug: String!) {
     mdx(fields: { slug: { eq: $slug } }) {
       frontmatter {
         title
-        date(formatString: "YYYY DD MMMM")
+        date(formatString: "YYYY MMMM D")
       }
       body
       fields {
