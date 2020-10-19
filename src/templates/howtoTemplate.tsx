@@ -11,7 +11,7 @@ import { PostQueryProps } from '../types'
 import { metaData, navigation } from '../utils/data'
 import formatAllTags from '../utils/formatAllTags'
 
-const Howto = ({ data, location, pageContext }: PostQueryProps) => {
+const HowtoTemplate = ({ data, location, pageContext }: PostQueryProps) => {
     const posts = data.allMdx.nodes;
     const tags = formatAllTags(data.allMdx.group);
     const { currentPage, numPages } = pageContext;
@@ -34,13 +34,13 @@ const Howto = ({ data, location, pageContext }: PostQueryProps) => {
 
                 <section className='section-fill blue-light' id={metaData.HowtoTitle}>
                     <Container className='my-auto'>
-                        {!isSSR && (
+                        {!isSSR && 
                             <Suspense fallback={<RenderLoader />}>
                                 <FilterCard pathname={location.pathname} tags={tags} />
                             </Suspense>
-                        )}
+                        }
                         {posts.length > 0 && <PostMore posts={posts} />}
-                        <Pagination currentPage={currentPage} numPages={numPages} path={navigation.howto} />
+                        {!isSSR && <Pagination currentPage={currentPage} numPages={numPages} path={navigation.howto} />}
                     </Container>
                 </section>
             </Layout>
@@ -86,4 +86,4 @@ export const query = graphql`
   }
 `;
 
-export default Howto;
+export default HowtoTemplate;

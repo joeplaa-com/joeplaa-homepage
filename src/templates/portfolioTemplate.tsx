@@ -1,5 +1,5 @@
 import React, { lazy, Suspense } from 'react'
-import { graphql, Link } from 'gatsby'
+import { graphql } from 'gatsby'
 import SEO from 'react-seo-component'
 import { Container } from 'reactstrap'
 const FilterCard = lazy(() => import('../components/filterCard'))
@@ -11,7 +11,7 @@ import { PostQueryProps } from '../types'
 import { metaData, navigation } from '../utils/data'
 import formatAllTags from '../utils/formatAllTags'
 
-const Portfolio = ({ data, location, pageContext }: PostQueryProps) => {
+const PortfolioTemplate = ({ data, location, pageContext }: PostQueryProps) => {
     const entries = data.allMdx.nodes;
     const tags = formatAllTags(data.allMdx.group);
     const { currentPage, numPages } = pageContext;
@@ -40,7 +40,7 @@ const Portfolio = ({ data, location, pageContext }: PostQueryProps) => {
                             </Suspense>
                         )}
                         {entries.length > 0 && <PortfolioEntries posts={entries} />}
-                        <Pagination currentPage={currentPage} numPages={numPages} path={navigation.portfolio} />
+                        {!isSSR && <Pagination currentPage={currentPage} numPages={numPages} path={navigation.portfolio} />}
                     </Container>
                 </section>
             </Layout>
@@ -58,7 +58,6 @@ export const query = graphql`
     ) {
       nodes {
         id
-        excerpt(pruneLength: 250)
         frontmatter {
           author
           cover {
@@ -87,4 +86,4 @@ export const query = graphql`
   }
 `;
 
-export default Portfolio; 
+export default PortfolioTemplate; 

@@ -16,6 +16,8 @@ const PortfolioTemplate = ({ data, location, pageContext }: PostTemplateProps) =
     const { title, excerpt, date, cover } = frontmatter;
     const { previous, next } = pageContext;
     const tags = formatPostTags(frontmatter.tags);
+
+    const isSSR = typeof window === "undefined";
     return (
         <Layout>
             <SEO
@@ -40,7 +42,7 @@ const PortfolioTemplate = ({ data, location, pageContext }: PostTemplateProps) =
 
             <section className='section-fill gray-medium' id={metaData.PortfolioTitle}>
                 <Container className='my-auto post-container'>
-                    <Filter back={true} pathname={location.pathname} className='mb-3' tags={tags} />
+                    {!isSSR && <Filter back={true} pathname={location.pathname} className='mb-3' tags={tags} />}
                     <div className='image-container'>
                         <PostImage path={false} title={title} picture={frontmatter.cover.childImageSharp} rounded={true} />
                         <div className='overlay-text rounded'>
