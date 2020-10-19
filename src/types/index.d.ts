@@ -116,6 +116,12 @@ export type PageProps = {
     }
 }
 
+export type PaginationProps ={
+    currentPage: number
+    numPages: number
+    path: string
+}
+
 // === Begin Posts ===
 type FrontMatterProps = {
     author: string
@@ -168,6 +174,8 @@ export type PostQueryProps = {
     },
     location: Location
     pageContext?: {
+        currentPage: number
+        numPages: number
         slug: string
         tag: string
         tagRaw: {
@@ -190,6 +198,7 @@ export type PostTemplateProps = {
             totalCount: number
         }
     }
+    location: Location
     pageContext: {
         next: PostBasicProps,
         previous: PostBasicProps

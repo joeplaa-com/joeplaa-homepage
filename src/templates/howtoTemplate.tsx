@@ -1,105 +1,89 @@
-import React from 'react'
+import React, { lazy, Suspense } from 'react'
 import { graphql } from 'gatsby'
-import { MDXRenderer } from 'gatsby-plugin-mdx'
-import { Container, Col, Row } from 'reactstrap'
 import SEO from 'react-seo-component'
-import Filter from '../components/filter'
+import { Container } from 'reactstrap'
+const FilterCard = lazy(() => import('../components/filterCard'))
 import Layout from '../components/layout'
-import PostBrowseButton from '../components/postBrowseButton'
-import PostImage from '../components/postImage'
-import { content, metaData } from '../utils/data'
-import formatPostTags from '../utils/formatPostTags'
-import { PostTemplateProps } from '../types'
+import Pagination from '../components/pagination'
+import PostMore from '../components/postMore'
+import RenderLoader from '../components/renderLoader'
+import { PostQueryProps } from '../types'
+import { metaData, navigation } from '../utils/data'
+import formatAllTags from '../utils/formatAllTags'
 
-const PostTemplate = ({ data, location, pageContext }: PostTemplateProps) => {
-    const { body, fields, frontmatter } = data.mdx;
-    const { title, excerpt, date, cover } = frontmatter;
-    const { previous, next } = pageContext;
-    const tags = formatPostTags(frontmatter.tags);
+const Howto = ({ data, location, pageContext }: PostQueryProps) => {
+    const posts = data.allMdx.nodes;
+    const tags = formatAllTags(data.allMdx.group);
+    const { currentPage, numPages } = pageContext;
+
+    const isSSR = typeof window === "undefined";
     return (
-        <Layout>
-            <SEO
-                title={title}
-                titleTemplate={metaData.TitleTemplate}
-                titleSeparator={metaData.TitleSeparator}
-                description={excerpt}
-                image={
-                    cover === null
-                        ? `${metaData.SiteUrl}${metaData.SiteImage}`
-                        : `${metaData.SiteUrl}${cover.publicURL}`
-                }
-                pathname={`${metaData.SiteUrl}${fields.slug}`}
-                siteLanguage={metaData.SiteLanguage}
-                siteLocale={metaData.SiteLocale}
-                twitterUsername={metaData.TwitterUsername}
-                author={metaData.AuthorName}
-                article={true}
-                datePublished={date}
-                dateModified={new Date(Date.now()).toISOString()}
-            />
+        <>
+            <Layout>
+                <SEO
+                    title={metaData.HowtoTitle}
+                    description={metaData.HowtoDescription || `nothin’`}
+                    image={`${metaData.SiteUrl}${metaData.HowtoImage}`}
+                    pathname={`${metaData.SiteUrl}${navigation.howto}`}
+                    titleTemplate={metaData.TitleTemplate}
+                    titleSeparator={metaData.TitleSeparator}
+                    siteLanguage={metaData.SiteLanguage}
+                    siteLocale={metaData.SiteLocale}
+                    twitterUsername={metaData.TwitterUsername}
+                />
 
-            <section className='section-fill gray-medium' id={metaData.HowtoTitle}>
-                <Container className='my-auto post-container'>
-                    <Filter back={true} pathname={location.pathname} className='mb-3' tags={tags} />
-                    <div className='image-container'>
-                        <PostImage path={false} title={title} picture={frontmatter.cover.childImageSharp} rounded={true} />
-                        <div className='overlay-text rounded'>
-                            <h1 className='display-3 text-center'>{title}</h1>
-                            <h3><em>{content.HowtoDisclaimer}{' '}{date}</em></h3>
-                        </div>
-                    </div>
-
-                    <div className='markdown'>
-                        <MDXRenderer>{body}</MDXRenderer>
-                        <hr />
-                    </div>
-
-                    <Row className='d-flex justify-content-between align-items-center'>
-                        {!previous ? null : (
-                            previous && (
-                                <Col xs='12' sm='6' lg='5' xl='4'>
-                                    <PostBrowseButton type='previous' to={previous.fields.slug} title={previous.frontmatter.title} />
-                                </Col>
-                            )
+                <section className='section-fill blue-light' id={metaData.HowtoTitle}>
+                    <Container className='my-auto'>
+                        {!isSSR && (
+                            <Suspense fallback={<RenderLoader />}>
+                                <FilterCard pathname={location.pathname} tags={tags} />
+                            </Suspense>
                         )}
-                        {!next ? null : (
-                            next && (
-                                <Col xs='12' sm='6' lg='5' xl='4' className='d-flex justify-content-end mt-2 mt-sm-0'>
-                                    <PostBrowseButton type='next' to={next.fields.slug} title={next.frontmatter.title} />
-                                </Col>
-                            )
-                        )}
-                    </Row>
-                </Container>
-            </section>
-        </Layout>
+                        {posts.length > 0 && <PostMore posts={posts} />}
+                        <Pagination currentPage={currentPage} numPages={numPages} path={navigation.howto} />
+                    </Container>
+                </section>
+            </Layout>
+        </>
     );
 };
 
 export const query = graphql`
-  query howtoPostBySlug($slug: String!) {
-    mdx(fields: { slug: { eq: $slug } }) {
-      frontmatter {
-        title
-        tags
-        excerpt
-        date(formatString: "YYYY MMMM D")
-        cover {
-          publicURL
-          childImageSharp {
-              fluid(srcSetBreakpoints: [320, 640, 960]) {
-              ...GatsbyImageSharpFluid_withWebp
+  query howtoTemplate($skip: Int!, $limit: Int!) {
+    allMdx(
+      sort: { fields: [frontmatter___date], order: DESC }
+      filter: { frontmatter: { published: { eq: true }, series: { ne: true } }, fileAbsolutePath: {regex: "/content/howto/"} }
+      limit: $limit
+      skip: $skip
+    ) {
+      nodes {
+        id
+        frontmatter {
+          author
+          cover {
+            publicURL
+            childImageSharp {
+                fluid(srcSetBreakpoints: [320, 640, 960]) {
+                ...GatsbyImageSharpFluid_withWebp
+              }
             }
           }
+          date(formatString: "YYYY MMMM D")
+          excerpt
+          series
+          tags
+          title
         }
-        author
+        fields {
+          slug
+        }
       }
-      body
-      fields {
-        slug
+      group(field: frontmatter___tags) {
+        fieldValue
+        totalCount
       }
     }
   }
 `;
 
-export default PostTemplate;
+export default Howto;
