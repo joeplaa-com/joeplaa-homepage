@@ -1,12 +1,11 @@
-import React, { lazy, Suspense } from 'react'
+import React from 'react'
 import { graphql } from 'gatsby'
 import SEO from 'react-seo-component'
 import { Container } from 'reactstrap'
-const FilterCard = lazy(() => import('../components/filterCard'))
+import FilterCard from '../components/filterCard'
 import Layout from '../components/layout'
 import Pagination from '../components/pagination'
 import PortfolioEntries from '../components/portfolioEntries'
-import RenderLoader from '../components/renderLoader'
 import { PostQueryProps } from '../types'
 import { metaData, navigation } from '../utils/data'
 import formatAllTags from '../utils/formatAllTags'
@@ -16,7 +15,6 @@ const PortfolioTemplate = ({ data, location, pageContext }: PostQueryProps) => {
     const tags = formatAllTags(data.allMdx.group);
     const { currentPage, numPages } = pageContext;
 
-    const isSSR = typeof window === "undefined";
     return (
         <>
             <Layout>
@@ -34,13 +32,9 @@ const PortfolioTemplate = ({ data, location, pageContext }: PostQueryProps) => {
 
                 <section className='section-fill blue-medium' id={metaData.PortfolioTitle}>
                     <Container className='text-left my-auto'>
-                        {!isSSR && (
-                            <Suspense fallback={<RenderLoader />}>
-                                <FilterCard pathname={location.pathname} tags={tags} />
-                            </Suspense>
-                        )}
+                        <FilterCard pathname={location.pathname} tags={tags} />
                         {entries.length > 0 && <PortfolioEntries posts={entries} />}
-                        {!isSSR && <Pagination currentPage={currentPage} numPages={numPages} path={navigation.portfolio} />}
+                        <Pagination currentPage={currentPage} numPages={numPages} path={navigation.portfolio} />
                     </Container>
                 </section>
             </Layout>

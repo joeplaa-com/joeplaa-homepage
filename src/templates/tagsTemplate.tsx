@@ -1,5 +1,5 @@
 import React from 'react'
-import { graphql, Link } from 'gatsby'
+import { graphql } from 'gatsby'
 import SEO from 'react-seo-component'
 import { Container } from 'reactstrap'
 import FilterCard from '../components/filterCard'
@@ -12,7 +12,6 @@ import formatAllTags from '../utils/formatAllTags'
 const Tag = ({ data, location, pageContext }: PostQueryProps) => {
     const posts = data.allMdx.nodes;
     const tags = formatAllTags([pageContext.tag]);
-    const { currentPage, numPages } = pageContext;
     return (
         <>
             <Layout>
@@ -32,12 +31,6 @@ const Tag = ({ data, location, pageContext }: PostQueryProps) => {
                     <Container className='my-auto'>
                         <FilterCard pathname={location.pathname} tags={tags} />
                         {posts.length > 0 && <PostMore posts={posts} />}
-                        <hr />
-                        {Array.from({ length: numPages }, (_, i) => (
-                            <Link key={`pagination-number${i + 1}`} to={`/portfolio/${i === 0 ? "" : i + 1}`}>
-                                {i + 1}
-                            </Link>
-                        ))}
                     </Container>
                 </section>
             </Layout>
