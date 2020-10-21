@@ -31,11 +31,11 @@ const Howto = ({ data }: PostQueryProps) => {
     }
 
     data.allMdx.nodes.map(({ id, body, frontmatter }) => {
-        if (frontmatter.tags.includes(metaData.WikiFaq.toLowerCase())) {
+        if (frontmatter.category.includes(metaData.WikiFaq.toLowerCase())) {
             wikisFaq.push(createListItem(id, body, frontmatter))
-        } else if (frontmatter.tags.includes(metaData.WikiPricing.toLowerCase())) {
+        } else if (frontmatter.category.includes(metaData.WikiPricing.toLowerCase())) {
             wikisPricing.push(createListItem(id, body, frontmatter))
-        } else if (frontmatter.tags.includes(metaData.WikiProcedure.toLowerCase())) {
+        } else if (frontmatter.category.includes(metaData.WikiProcedure.toLowerCase())) {
             wikisProcedure.push(createListItem(id, body, frontmatter))
         }
     })
@@ -86,9 +86,9 @@ export const query = graphql`
         id
         body
         frontmatter {
+          category
           date(formatString: "YYYY MMMM D")
           excerpt
-          tags
           title
         }
       }

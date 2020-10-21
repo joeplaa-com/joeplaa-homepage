@@ -125,6 +125,7 @@ export type PaginationProps ={
 // === Begin Posts ===
 type FrontMatterProps = {
     author: string
+    category?: string
     cover: {
         childImageSharp: ChildImageSharpFluid
         publicURL: string
@@ -174,11 +175,11 @@ export type PostQueryProps = {
     },
     location: Location
     pageContext?: {
-        currentPage: number
-        numPages: number
-        slug: string
-        tag: string
-        tagRaw: {
+        currentPage?: number
+        numPages?: number
+        slug?: string
+        tag?: string
+        tagRaw?: {
             fieldValue: string
         }
     }

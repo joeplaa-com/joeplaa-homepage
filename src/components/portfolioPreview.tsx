@@ -1,12 +1,11 @@
-import React, { lazy, Suspense, useState } from 'react'
+import React, { useState } from 'react'
 import Img from 'gatsby-image/withIEPolyfill'
 import { Button, Card, CardBody, Modal, ModalBody, ModalFooter, ModalHeader } from 'reactstrap'
 import { FaTimes } from 'react-icons/fa'
-const PostBody = lazy(() => import('./postBody'))
-const PostImage = lazy(() => import('./postImage'))
-const PostSubtitle = lazy(() => import('./postSubtitle'))
-const PostTitle = lazy(() => import('./postTitle'))
-import RenderLoader from './renderLoader'
+import PostBody from './postBody'
+import PostImage from './postImage'
+import PostSubtitle from './postSubtitle'
+import PostTitle from './postTitle'
 import { content } from '../utils/data'
 import { PortfolioEntryProps } from '../types'
 
@@ -15,19 +14,14 @@ export default function PortfolioPreview({ body, fields, frontmatter }: Portfoli
     const toggle = () => setModal(!modal);
     const closeBtn = <button className="close" onClick={toggle}>&times;</button>;
 
-    const isSSR = typeof window === "undefined";
     return (
         <>
             <Card>
-                {!isSSR && (
-                    <Suspense fallback={<RenderLoader />}>
-                        <CardBody>
-                            <PostTitle path={false} onClick={toggle} slug={fields.slug} title={frontmatter.title} />
-                            <PostImage path={false} onClick={toggle} slug={fields.slug} title={frontmatter.title} picture={frontmatter.cover.childImageSharp} rounded={true} height={180} />
-                            <PostSubtitle className='mt-3' date={frontmatter.date} tags={frontmatter.tags} />
-                        </CardBody>
-                    </Suspense>
-                )}
+                <CardBody>
+                    <PostTitle path={false} onClick={toggle} slug={fields.slug} title={frontmatter.title} />
+                    <PostImage path={false} onClick={toggle} slug={fields.slug} title={frontmatter.title} picture={frontmatter.cover.childImageSharp} rounded={true} height={180} />
+                    <PostSubtitle className='mt-3' date={frontmatter.date} tags={frontmatter.tags} />
+                </CardBody>
             </Card>
             <Modal isOpen={modal} toggle={toggle} size='lg'>
                 <ModalHeader className='modal-background' toggle={toggle} close={closeBtn}>{frontmatter.title}</ModalHeader>
@@ -37,11 +31,7 @@ export default function PortfolioPreview({ body, fields, frontmatter }: Portfoli
                 </ModalBody>
 
                 <ModalBody>
-                    {!isSSR && (
-                        <Suspense fallback={<RenderLoader />}>
-                            <PostBody content={body} />
-                        </Suspense>
-                    )}
+                    <PostBody content={body} />
                 </ModalBody>
 
                 <ModalFooter>
