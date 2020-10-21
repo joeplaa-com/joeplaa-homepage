@@ -40,24 +40,27 @@ const redirects = [
 
 exports.handler = (event, context, callback) => {
     const { request } = event.Records[0].cf;
-    const { headers, uri } = request;
-    const domain = `blog.joeplaa.com`;
-    const baseURI = `https://${domain}`;
+    const { uri } = request;
+    const redirectDomain = `blog.joeplaa.com`;
+    const baseURI = `https://${redirectDomain}`;
 
     // Check for blog redirects first
-    if (redirects.includes(uri) && !baseURI.includes(headers.host[0].value)) {
-        const response = {
+    if (redirects.includes(uri)) {
+        const redirectResponse = {
             status: '301',
-            statusDescription: `Redirecting to new blog domain`,
+            statusDescription: `Moved permanently`,
             headers: {
-                location: [{
-                    key: 'Location',
-                    value: baseURI + uri
-                }]
+                "location": [{
+                    "key": "Location",
+                    "value": `${baseURI}${uri}/index.html`
+                }],
+                'cache-control': [{
+                    key: 'Cache-Control',
+                    value: "max-age=86.400" // 60 * 60 * 24
+                }],
             }
         };
-        callback(null, response);
-        return;
+        callback(null, redirectResponse);
     }
 
     // If no "." in URI, assume document request and append index.html to request.uri
