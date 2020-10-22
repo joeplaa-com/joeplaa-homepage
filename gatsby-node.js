@@ -113,7 +113,7 @@ exports.createPages = ({ actions, graphql }) => {
         conditions.forEach((post) => {
             const slug = post.fields.slug;
             createPage({
-                path: `/conditions/${slug}/`,
+                path: `/conditions${slug}`,
                 component: conditionsTemplate,
                 context: {
                     slug,

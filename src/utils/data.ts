@@ -60,7 +60,7 @@ export const metaData = {
     PricingTitle: 'Pricing',
     RecommendedDescription: "I've read a lot of books and watched countless videos on the web. Here you can find a list of my recommended books and videos.",
     RecommendedTitle: 'Recommended',
-    ServicesDescription: 'If you want a website, here\'s how I can help.',
+    ServicesDescription: "If you want a website, here's how I can help.",
     ServicesTitle: 'Services',
     SiteDescription: 'Helping people create their digital home.',
     SiteImage: `/images/banner-www-default.png`,
