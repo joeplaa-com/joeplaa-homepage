@@ -42,7 +42,6 @@ exports.handler = (event, context, callback) => {
     const { request } = event.Records[0].cf;
     const { uri } = request;
     const mainDomain = `joeplaa.com`;
-    const allowedSubDomain = `*.`;
     const redirectDomain = `blog.${mainDomain}`;
     const baseURI = `https://${redirectDomain}`;
 
@@ -59,10 +58,6 @@ exports.handler = (event, context, callback) => {
                 'cache-control': [{
                     key: 'Cache-Control',
                     value: "max-age=86.400" // 60 * 60 * 24
-                }],
-                "access-control-allow-origin": [{
-                    "key": "Access-Control-Allow-Origin",
-                    "value": `https://${allowedSubDomain}${mainDomain}`
                 }]
             }
         };

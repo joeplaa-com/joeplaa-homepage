@@ -39,11 +39,7 @@ const result1 = {
         'cache-control': [{
             key: 'Cache-Control',
             value: "max-age=86.400"
-        }],
-        "access-control-allow-origin": [{
-            "key": "Access-Control-Allow-Origin",
-            "value": `https://*.joeplaa.com`
-        }],
+        }]
     }
 }
 test('matching redirect', (done) => {
