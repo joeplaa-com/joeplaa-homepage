@@ -53,11 +53,11 @@ exports.handler = (event, context, callback) => {
             headers: {
                 "location": [{
                     "key": "Location",
-                    "value": `${baseURI}${uri}/index.html`
+                    "value": `${baseURI}${uri}`
                 }],
                 'cache-control': [{
                     key: 'Cache-Control',
-                    value: "max-age=86.400" // 60 * 60 * 24
+                    value: "max-age=86400" // 60 * 60 * 24
                 }]
             }
         };

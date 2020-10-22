@@ -34,11 +34,11 @@ const result1 = {
     headers: {
         "location": [{
             "key": "Location",
-            "value": `https://blog.joeplaa.com/the-news/index.html`
+            "value": `https://blog.joeplaa.com/the-news`
         }],
         'cache-control': [{
             key: 'Cache-Control',
-            value: "max-age=86.400"
+            value: "max-age=86400"
         }]
     }
 }
