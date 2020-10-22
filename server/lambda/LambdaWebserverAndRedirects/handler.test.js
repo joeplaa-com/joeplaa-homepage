@@ -12,7 +12,7 @@ function callbackCreator(done, result) {
 }
 
 // Matching redirect from '*.joeplaa.com' => 'blog.joeplaa.com'
-const event1 = {
+const event1a = {
     "Records": [
         {
             cf: {
@@ -28,7 +28,7 @@ const event1 = {
         }
     ]
 };
-const result1 = {
+const result1a = {
     status: '301',
     statusDescription: `Moved permanently`,
     headers: {
@@ -41,9 +41,40 @@ const result1 = {
             value: "max-age=86400"
         }]
     }
+};
+const event1b = {
+    "Records": [
+        {
+            cf: {
+                request: {
+                    headers: {
+                        host: {
+                            value: 'blog.joeplaa.com'
+                        }
+                    },
+                    uri: "/the-news/"
+                }
+            }
+        }
+    ]
+};
+const result1b = {
+    status: '301',
+    statusDescription: `Moved permanently`,
+    headers: {
+        "location": [{
+            "key": "Location",
+            "value": `https://blog.joeplaa.com/the-news/`
+        }],
+        'cache-control': [{
+            key: 'Cache-Control',
+            value: "max-age=86400"
+        }]
+    }
 }
 test('matching redirect', (done) => {
-    redirect.handler(event1, null, callbackCreator(done, result1));
+    redirect.handler(event1a, null, callbackCreator(done, result1a));
+    redirect.handler(event1b, null, callbackCreator(done, result1b));
 });
 
 // Non-matching redirect '*.joeplaa.com' => '*.joeplaa.com'
