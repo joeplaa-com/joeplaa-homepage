@@ -63,7 +63,7 @@ export const metaData = {
     ServicesDescription: "If you want a website, here's how I can help.",
     ServicesTitle: 'Services',
     SiteDescription: 'Helping people create their digital home.',
-    SiteImage: `/images/banner-www-default.png`,
+    SiteImage: `/images/banner-www-default-fb.png`,
     SiteLanguage: `en-US`,
     SiteLocale: `en_us`,
     SiteName: 'joeplaa.com',

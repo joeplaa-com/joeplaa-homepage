@@ -4,7 +4,7 @@ const siteMetadata = {
     title: `joeplaa.com`, //sitetitle
     titleTemplate: `joeplaa.com`, //sitename
     description: `Helping people create their digital home.`, //sitedescription
-    image: `/images/banner-www-com.png`,
+    siteImage: `/images/banner-www-default-fb.png`,
     siteUrl: siteAddress.href,
     siteLanguage: `en-US`,
     siteLocale: `en_us`,

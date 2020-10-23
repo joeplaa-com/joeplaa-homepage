@@ -9,7 +9,7 @@ export const useSiteMetadata = () => {
             description
             title
             titleTemplate
-            image
+            siteImage
             siteUrl
             siteLanguage
             siteLocale
