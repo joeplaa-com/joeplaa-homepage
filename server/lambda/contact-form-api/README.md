@@ -8,7 +8,7 @@
 
 ### Install dependencies
 
-* yarn global add serverless
+* `yarn global add serverless`
 
 ### Configure serverless
 
@@ -23,6 +23,10 @@
     ```console
     nano ~/.aws/credentials
     ```
+
+    Or use the VScode AWS plugin:
+
+    `View` => `Command Palette...` => `AWS: Create Credentials Profile`
 
     *Example file:*
 
@@ -40,63 +44,11 @@
     output=json
     ```
 
-## Deploy
-
-* Open `serverless.yml` and change the secrets to the applicable environment (dev or prod)
-
-    ```yaml
-    custom:
-    secrets: ${file(secrets-dev.json)}
-    ```
-
-* Region must be set to the region where the receiver (email address) is verified by SES.
-* Run:
-
-    ```console
-    serverless deploy --aws-profile joeplaa.com
-    ```
-
-* Only allow your IP for dev access: <https://aws.amazon.com/premiumsupport/knowledge-center/api-gateway-resource-policy-access/>
-* Deploy the API to DEV environment (Actions -> Deploy API)
-* Copy the link to the API
-
-## Customization
-
-[https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/routing-to-api-gateway.html](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/routing-to-api-gateway.html)
-
-* Enable VPC peerings: [https://lightsail.aws.amazon.com/ls/docs/en_us/articles/lightsail-how-to-set-up-vpc-peering-with-aws-resources](https://lightsail.aws.amazon.com/ls/docs/en_us/articles/lightsail-how-to-set-up-vpc-peering-with-aws-resources)
-* Open [AWS Certificate Manager](https://console.aws.amazon.com/acm/home?region=us-east-1#/privatewizard/)
-  * Create an SSL certificate for `mail-api.joeplaa.com` in region `us-east-1`
-  * Choose DNS validation, add tag `website` - `joeplaa.com` and add the record(s) to the Route 53 hosted zone or Lightsail DNS
-* Open [API Gateway](https://eu-central-1.console.aws.amazon.com/apigateway/main/apis?region=eu-central-1)
-  * Click the API and go to "Custom Domain Names"
-  * Create a Custom domain name in API gateway for `mail-api.joeplaa.com`, add tag `website` - `joeplaa.com` and choose "Edge-optimized" as Endpoint configuration
-  * Add SSL certificate
-* Add API mappings:
-
-    |API                    |Stage|Path|
-    |-----------------------|-----|----|
-    |dev-contact-form-api   |dev  |dev |
-    |prod-contact-form-api  |prod |prod|
-
-* Add A alias for `mail-api.joeplaa.com` to API in the Route 53 hosted zone or Lightsail DNS
-
-* * *
-
-## New service
-
-### Create a new service
-
-```ini
-serverless create --template aws-nodejs --path contact-form-api
-```
-
-### Add secrets file
+### Add secrets files
 
 This is not a secrets file. It's the config file. Weird choice of words.
 
-* Create `secrets-dev.json` and `secrets-prod.json`
-* Add config
+* Create `secrets-dev.json`:
 
     ```json
     {
@@ -106,6 +58,8 @@ This is not a secrets file. It's the config file. Weird choice of words.
     }
     ```
 
+* Create `secrets-prod.json`:
+
     ```json
     {
         "NODE_ENV":"prod",
@@ -113,3 +67,58 @@ This is not a secrets file. It's the config file. Weird choice of words.
         "DOMAIN":"joeplaa.com"
     }
     ```
+
+### AWS SES
+
+* Verify your domain with SES: <https://eu-central-1.console.aws.amazon.com/ses/home?region=eu-central-1#verified-senders-domain:>. Double check that you are in the correct region (this link goes to Frankfurt).
+* Verify your email address: <https://eu-central-1.console.aws.amazon.com/ses/home?region=eu-central-1#verified-senders-email:>. Double check again that you are in the correct region (this link goes to Frankfurt).
+
+## Deploy
+
+* Open `serverless.yml` and change the secrets to the applicable environment (`dev` or `prod`)
+
+    ```yaml
+    custom:
+      secrets: ${file(secrets-dev.json)}
+    ```
+
+* Region must be set to the region where the receiver (email address) is verified by SES.
+
+    ```yaml
+    provider:
+      name: aws
+      runtime: nodejs12.x
+      stage: ${self:custom.secrets.NODE_ENV}
+      region: eu-central-1
+    ```
+
+* Run:
+
+    ```console
+    serverless deploy --aws-profile joeplaa.com
+    ```
+
+* Configure and deploy the Gateway:
+  * Only allow your IP for dev access: <https://aws.amazon.com/premiumsupport/knowledge-center/api-gateway-resource-policy-access/>
+  * Deploy the API to DEV (or PROD) environment (Actions -> Deploy API)
+  * Copy the link to the API
+
+* Create a more friendly address:
+
+  > [https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/routing-to-api-gateway.html](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/routing-to-api-gateway.html)
+
+  * Open a new tab to the [AWS Certificate Manager](https://console.aws.amazon.com/acm/home?region=us-east-1#/privatewizard/)
+    * Create an SSL certificate for `mail-api.joeplaa.com` in region `us-east-1`
+    * Choose DNS validation, add tag `website` - `joeplaa.com` and add the record(s) to the Route 53 hosted zone
+  * Go back to the [API Gateway](https://eu-central-1.console.aws.amazon.com/apigateway/main/apis?region=eu-central-1) tab
+    * Click the API and go to "Custom Domain Names"
+    * Create a Custom domain name in API gateway for `mail-api.joeplaa.com`, add tag `website` - `joeplaa.com` and choose "Edge-optimized" as Endpoint configuration
+    * Add the recently created SSL certificate
+    * Add API mappings:
+
+    |API                    |Stage|Path|
+    |-----------------------|-----|----|
+    |dev-contact-form-api   |dev  |dev |
+    |prod-contact-form-api  |prod |prod|
+
+  * Add an A-type alias for `mail-api.joeplaa.com` to the "API Gateway domain name" in the Route 53 hosted zone. The API Gateway domain name can be found in the Configurations tab of the Custom domain names section of the API Gateway.
