@@ -238,6 +238,18 @@ These steps are probably not enough to get it all running. I will undoubtly forg
   * Go to your DNS server/service and add an entry to your (test) website.
   * Make sure ports 80 and 443 are open (and forwarded) to your Nginx server.
 
+* Add SSL certificate
+  * Install [certbot](https://certbot.eff.org/lets-encrypt/ubuntubionic-nginx)
+
+  ```console
+  sudo snap install core; sudo snap refresh core
+  sudo snap install --classic certbot
+  sudo ln -s /snap/bin/certbot /usr/bin/certbot
+  sudo certbot --nginx
+  ```
+
+  Follow the steps and certbot will create a certificate and configure Nginx for you.
+
 * Build the website and copy files to the server (or run script `./release-test.sh`):
 
   ```bash
