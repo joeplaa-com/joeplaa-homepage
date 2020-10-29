@@ -56,8 +56,7 @@
     serverless deploy --aws-profile joeplaa.com
     ```
 
-* Empty created S3 bucket
-* Remove the created S3 bucket
+* Only allow your IP for dev access: <https://aws.amazon.com/premiumsupport/knowledge-center/api-gateway-resource-policy-access/>
 * Deploy the API to DEV environment (Actions -> Deploy API)
 * Copy the link to the API
 
