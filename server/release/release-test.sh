@@ -16,8 +16,7 @@ cp .env.test .env.production
 yarn install
 
 # Build website
-yarn clean
-yarn build
+yarn deploy
 
 # Publish website to Nginx
 # TEST (test.www.joeplaa.com):
