@@ -28,7 +28,7 @@ export const content = {
     Ok: 'Ok',
     PreviousPost: 'Previous post: ',
     PrivacyStatement: 'Privacy Statement',
-    SendEmail: 'Send me an email',
+    SendEmail: 'Or send me an email',
     SendEmailDone: 'Thank you for your enquiry',
     ShowAll: 'Show all',
     Submit: 'Submit',
@@ -119,6 +119,8 @@ export const settings = {
 }
 export const urls = {
     email: 'info@joeplaa.com',
+    messenger: 'https://m.me/joeplaacom/',
+    whatsapp: 'https://api.whatsapp.com/send?phone=31610520633',
     facebook: 'https://www.facebook.com/joeplaadotcom',
     github: 'https://github.com/joeplaa',
     instagram: 'https://www.instagram.com/joeplaa/',

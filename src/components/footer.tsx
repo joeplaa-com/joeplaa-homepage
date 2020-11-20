@@ -18,9 +18,9 @@ export default function Footer ({ className }: SectionProps) {
                     <Col xs='12' md='4' className='ml-md-auto mb-2 mt-2'>
                         <h4 className="mb-2 mt-4">{content.CompanyAddress}</h4>
                         <NewTabLink className={colorClassName} href='https://www.google.com/maps/place/Ingenieur+Kalffstraat+43,+5617+BK+Eindhoven'>
-                            <span className='text-light'>{metaData.BusinessAddress1}</span><br />
-                            <span className='text-light'>{metaData.BusinessAddress2}</span><br />
-                            <span className='text-light'>{metaData.BusinessCountry}</span>
+                            <span>{metaData.BusinessAddress1}</span><br />
+                            <span>{metaData.BusinessAddress2}</span><br />
+                            <span>{metaData.BusinessCountry}</span>
                         </NewTabLink>
                     </Col>
                     <Col xs='12' md='4' className='mb-2 mt-2'>

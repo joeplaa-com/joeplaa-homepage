@@ -23,7 +23,7 @@ const Pricing = ({ className }: SectionProps) => {
                         <CardBody className='d-flex flex-column justify-content-between'>
                             <div>
                                 <h2>{content.WebDesign}</h2>
-                                <Table striped hover>
+                                <Table striped responsive hover>
                                     <colgroup>
                                         <col span={1} style={{ width: "10%" }} />
                                         <col span={1} style={{ width: "65%" }} />
@@ -31,7 +31,7 @@ const Pricing = ({ className }: SectionProps) => {
                                     </colgroup>
                                     <thead className='thead-dark'>
                                         <tr>
-                                            <th>Option</th>
+                                            <th>#</th>
                                             <th>Website type</th>
                                             <th>Cost</th>
                                         </tr>
@@ -81,7 +81,7 @@ const Pricing = ({ className }: SectionProps) => {
                         <CardBody className='d-flex flex-column justify-content-between'>
                             <div>
                                 <h2>{content.WebHosting}</h2>
-                                <Table striped hover>
+                                <Table striped responsive hover>
                                     <colgroup>
                                         <col span={1} style={{ width: "10%" }} />
                                         <col span={1} style={{ width: "65%" }} />
@@ -89,7 +89,7 @@ const Pricing = ({ className }: SectionProps) => {
                                     </colgroup>
                                     <thead className='thead-dark'>
                                         <tr>
-                                            <th>Option</th>
+                                            <th>#</th>
                                             <th>Website type</th>
                                             <th>Cost</th>
                                         </tr>
