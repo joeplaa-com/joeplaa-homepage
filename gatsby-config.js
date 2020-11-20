@@ -86,13 +86,11 @@ module.exports = {
                             withWebp: true,
                             showCaptions: ['title'],
                         },
-                    },
-                    {
-                        resolve: `gatsby-remark-katex`,
-                        options: {
-                            strict: `ignore`
-                        }
                     }
+                ],
+                remarkPlugins: [
+                    require('remark-math'),
+                    require('remark-html-katex'),
                 ],
             },
         },

@@ -41,7 +41,6 @@
         "gatsby-remark-autolink-headers": "^2.3.14",
         "gatsby-remark-external-links": "^0.0.4",
         "gatsby-remark-images": "^3.3.30",
-        "gatsby-remark-katex": "^3.3.14",
         "gatsby-source-filesystem": "^2.3.30",
         "gatsby-transformer-remark": "^2.8.37",
         "gatsby-transformer-sharp": "^2.5.15",
@@ -57,7 +56,9 @@
         "react-helmet": "^6.1.0",
         "react-icons": "^3.11.0",
         "react-seo-component": "^2.0.2",
-        "reactstrap": "^8.6.0"
+        "reactstrap": "^8.6.0",
+        "remark-html-katex": "^3.0.0",
+        "remark-math": "^3.0.0"
     },
     "devDependencies": {
         "@types/lodash": "^4.14.162",
