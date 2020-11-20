@@ -97,6 +97,11 @@ export type LabelProps = {
 
 export type LayoutProps = {
     children?: string | ReactNode
+    navbarLightText?: boolean
+}
+
+export type NavbarProps = {
+    navbarLightText?: boolean
 }
 
 export type NavigationProps = {

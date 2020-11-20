@@ -10,7 +10,7 @@ import { content, metaData, navigation } from '../utils/data'
 const Home = () => {
     return (
         <>
-            <Layout>
+            <Layout navbarLightText={true}>
                 <SEO
                     title={metaData.HomeTitle}
                     description={metaData.HomeDescription || `nothin’`}
