@@ -46,11 +46,11 @@ const PostTemplate = ({ data, location, pageContext }: PostTemplateProps) => {
                         <PostImage path={false} title={title} picture={frontmatter.cover.childImageSharp} rounded={true} />
                         <div className='overlay-text rounded'>
                             <h1 className='display-3 text-center'>{title}</h1>
-                            <h3><em>{content.HowtoDisclaimer}{' '}{date}</em></h3>
                         </div>
                     </div>
 
                     <div className='markdown'>
+                        <em>{content.HowtoDisclaimer}{' '}{date}</em>
                         <MDXRenderer>{body}</MDXRenderer>
                         <hr />
                     </div>
