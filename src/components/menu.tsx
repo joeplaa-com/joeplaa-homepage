@@ -3,9 +3,10 @@ import { Collapse, Navbar, NavbarToggler } from 'reactstrap'
 import { AnchorLink } from 'gatsby-plugin-anchor-links'
 import Navigation from './navigation'
 import BannerWwwCom from '../svg/banner-www-com.svg'
+import { NavbarProps } from '../types'
 import { navigation, settings } from '../utils/data'
 
-export default function Menu() {
+export default function Menu({ navbarLightText }: NavbarProps) {
     const [isOpen, setIsOpen] = useState(false);
     const toggle = () => setIsOpen(!isOpen);
 
@@ -24,7 +25,8 @@ export default function Menu() {
         };
     }, []);
 
-    const navbarActive = scrollPosition > 10 ? 'active shadow navbar-light' : isOpen ? 'active navbar-light' : 'navbar-dark';
+    const navbarTop = navbarLightText ? 'top light-text' : 'top dark-text'
+    const navbarActive = scrollPosition > 10 ? 'active shadow navbar-light' : isOpen ? 'active navbar-light' : navbarTop;
     // ***
 
     return (
