@@ -42,9 +42,12 @@ const PostTemplate = ({ data, location, pageContext }: PostTemplateProps) => {
             <section className='section-fill gray-medium' id={metaData.HowtoTitle}>
                 <Container className='my-auto post-container'>
                     <Filter back={true} pathname={location.pathname} className='mb-3' tags={tags} />
+                    <div className='d-md-none post-header'>
+                        <h1 className='display-3 text-center'>{title}</h1>
+                    </div>
                     <div className='image-container'>
                         <PostImage path={false} title={title} picture={frontmatter.cover.childImageSharp} rounded={true} />
-                        <div className='overlay-text rounded'>
+                        <div className='d-none d-md-block image-overlay-text rounded'>
                             <h1 className='display-3 text-center'>{title}</h1>
                         </div>
                     </div>

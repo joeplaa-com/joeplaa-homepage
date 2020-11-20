@@ -7,7 +7,7 @@ export default function PostImage({ title, picture, slug, rounded, path, onClick
     const classRounded = rounded ? ' rounded' : '';
     const imageStyle = { maxWidth: '1080px', maxHeight: height ? height + 'px' : '540px' };
     const image = (
-        <Img fluid={picture.fluid} alt={'Cover Image for ' + title} objectFit="cover" objectPosition="50% 50%" className={'img-fluid mx-auto' + classRounded} style={imageStyle} />
+        <Img fluid={picture.fluid} alt={'Cover Image for ' + title} objectFit="cover" objectPosition="50% 50%" className={'mx-auto' + classRounded} style={imageStyle} />
     );
     return (
         <>
@@ -19,7 +19,7 @@ export default function PostImage({ title, picture, slug, rounded, path, onClick
                     : (<span onClick={onClick} onKeyPress={onClick} role='button' tabIndex={0}>{image}</span>)
                 : (image)
             }
-            <div className="overlay-blur"></div>
+            <div className="d-none d-md-block image-overlay-blur"></div>
         </>
     );
 }
