@@ -1,6 +1,11 @@
 import React from 'react'
 import { Button, Card, CardBody, Container, Col, Row, Form, FormFeedback, FormGroup, Label, Input } from 'reactstrap'
+import { IconContext } from 'react-icons'
+import { FaFacebookMessenger, FaWhatsapp } from 'react-icons/fa'
+import { MdMail } from 'react-icons/md'
+import NewTabLink from './newTabLink'
 import { content, metaData, urls } from '../utils/data'
+import linkColor from '../utils/linkColor'
 import validateEmail from '../utils/validateEmail'
 import { SectionProps } from '../types'
 
@@ -47,19 +52,19 @@ export default class Contact extends React.Component<SectionProps, ContactState>
     }
 
     // reset form after sending email
-    resetForm() {
+    resetForm () {
         this.setState(initialState)
     }
 
     // form validation errors
-    checkNameError() {
+    checkNameError () {
         if (this.state.name.length === 0) {
             this.setState({ nameError: true });
         } else {
             this.setState({ nameError: false });
         }
     }
-    checkEmailError() {
+    checkEmailError () {
         if (!validateEmail(this.state.email)) {
             this.setState({ emailError: true });
         } else {
@@ -68,7 +73,7 @@ export default class Contact extends React.Component<SectionProps, ContactState>
     }
 
     // check form and send form as email
-    checkForm() {
+    checkForm () {
         this.checkNameError();
         this.checkEmailError();
         if (this.state.name.length !== 0 && validateEmail(this.state.email)) {
@@ -76,7 +81,7 @@ export default class Contact extends React.Component<SectionProps, ContactState>
         }
     }
 
-    submit() {
+    submit () {
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
         const { nameError, emailError, captcha, sendSuccess, sendFailed, ...sendState } = this.state;
         const requestOptions = {
@@ -101,16 +106,16 @@ export default class Contact extends React.Component<SectionProps, ContactState>
     }
 
     // change / update state
-    setName(value: string) {
+    setName (value: string) {
         this.setState({ name: value });
     }
-    setBusiness(value: string) {
+    setBusiness (value: string) {
         this.setState({ business: value });
     }
-    setEmail(value: string) {
+    setEmail (value: string) {
         this.setState({ email: value });
     }
-    setCheck(value: string) {
+    setCheck (value: string) {
         switch (value) {
         case 'staticDesign': {
             this.setState({ staticDesign: !this.state.staticDesign }); break;
@@ -135,17 +140,24 @@ export default class Contact extends React.Component<SectionProps, ContactState>
         }
         }
     }
-    setMessage(value: string) {
+    setMessage (value: string) {
         this.setState({ message: value });
     }
 
-    render() {
+    render () {
         return (
             <section className={this.props.className} id={metaData.ContactTitle}>
                 <Container className='my-md-auto mb-3 mt-3'>
-                    <Row>
-                        <Col>
+                    <Row className='d-flex align-items-center'>
+                        <Col xs='12' md='auto'>
                             <h1 className='display-1 text-center text-md-left'>{metaData.ContactTitle}</h1>
+                        </Col>
+                        <Col xs='12' md='auto' className='text-center mx-md-auto'>
+                            <IconContext.Provider value={{ size: '3rem', style: { margin: '.5rem' } }}>
+                                <NewTabLink className={linkColor('dark') + ' nav-padding-social'} href={urls.whatsapp} ><FaWhatsapp /></NewTabLink>
+                                <NewTabLink className={linkColor('dark') + ' nav-padding-social'} href={urls.messenger}><FaFacebookMessenger /></NewTabLink>
+                                <NewTabLink className={linkColor('dark') + ' nav-padding-social'} href={'mailto:' + urls.email}><MdMail /></NewTabLink>
+                            </IconContext.Provider>
                         </Col>
                     </Row>
                     <Row className='mt-3 d-flex flex-column justify-content-between align-items-center'>
