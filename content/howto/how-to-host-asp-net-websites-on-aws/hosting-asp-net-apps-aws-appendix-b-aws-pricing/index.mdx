@@ -23,7 +23,7 @@ AWS knows their pricing model is complex, so they build the ["Simple" Monthly Ca
 
 AWS has a pay-as-you-go pricing model. Meaning you pay for the resources you use per second/minute/hour or per request/query/action. When you know what you need, you can save money by reserving capacity.
 
-[https://aws.amazon.com/pricing/](https://aws.amazon.com/pricing/?)
+<https://aws.amazon.com/pricing/>
 
 ## Examples
 
@@ -35,7 +35,7 @@ The thing I wanted to know, but took me a long time to find: what does Amazon me
 
 > Pricing is per instance-hour consumed for each instance, from the time an instance is launched until it is terminated or stopped. Each partial instance-hour consumed will be billed per-second for Linux Instances and as a full hour for all other instance types.
 > 
-> [https://aws.amazon.com/ec2/pricing/on-demand/](https://aws.amazon.com/ec2/pricing/on-demand/)
+> <https://aws.amazon.com/ec2/pricing/on-demand/>
 
 After a few months of using it and with this quote, I now know it has nothing to do with CPU utilization. If you run your instance 24/7 every day of the month, that's 100% utilization. If you stop your instance, those hours don't count. You do however pay for the EBS volumes. So only when you terminate an instance and delete the associated volumes, you stop paying.
 
@@ -44,7 +44,7 @@ After a few months of using it and with this quote, I now know it has nothing to
 Let's look at our 2 instances. We have a Linux t3.micro with 8 GB EBS and a Windows t3.small with 50 + 4 GB EBS. I have bought standard reserved instances for a year for both.
 
 <div class='col-md-10 col-lg-8 mx-auto'>
-    <table class="table table-striped">
+    <table class="table table-striped table-responsive">
         <thead>
             <tr>
                 <th scope="col">Calculation</th>
@@ -87,7 +87,7 @@ We don't use RDS for our database yet and for "good" reason. It's quite expensiv
 Let's see what an MSSQL, MySQL and Aurora (AWS MySQL) database instance costs. We'll take a t3.small instance (smallest MSSQL and Aurora) and compare the on-demand pricing with a standard 1 year reservation.
 
 <div class='col-md-10 col-lg-8 mx-auto'>
-    <table class="table table-striped">
+    <table class="table table-striped table-responsive">
         <thead>
             <tr>
                 <th scope="col">Engine</th>
@@ -141,7 +141,7 @@ Let's see what an MSSQL, MySQL and Aurora (AWS MySQL) database instance costs. W
 
 We want to use load balancer in our improved architecture. The numbers it needs for the calculation are totally unknown though.
 
-[https://calculator.aws/#/estimate?id=0499ef3ad1b5faec26169d6963777bfdbe56b5b1](https://calculator.aws/#/estimate?id=0499ef3ad1b5faec26169d6963777bfdbe56b5b1)
+<https://calculator.aws/#/estimate?id=0499ef3ad1b5faec26169d6963777bfdbe56b5b1>
 
 * * *
 

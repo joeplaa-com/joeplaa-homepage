@@ -34,7 +34,7 @@ series: true
     1. **Subnet:** As shown we have 3 availability zones and each has it's own subnet. We can let AWS decide where to create this instance, but we can also select a specific zone here. In the architecture we had this one in zone `c`.
     2. **T2/T3 Unlimited:** `Disable` this option. With a t-type instance you get a certain amount of CPU credits per day. When you need more, you pay an additional fee. This option enables you to use an unlimited amount of addition credits.
 
-    > Source CPU credits: [https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/burstable-performance-instances-unlimited-mode-concepts.html#when-to-use-unlimited-mode](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/burstable-performance-instances-unlimited-mode-concepts.html#when-to-use-unlimited-mode)
+    > Source CPU credits: <https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/burstable-performance-instances-unlimited-mode-concepts.html#when-to-use-unlimited-mode>
 
     ![choose the subnet and disable unlimited mode](../hosting-asp-net-apps-aws-part-5-ec2-instances/ec2-12.png)
 
@@ -42,7 +42,7 @@ series: true
 
     **Update Feb 27:** I had to increase the size, as the logging and WordPress folders were consuming more than I expected. I now increased it to 16 GB, which can be done without restarting Ubuntu and the instance, cool.
 
-    > Increasing the volume size: [https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/recognize-expanded-volume-linux.html](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/recognize-expanded-volume-linux.html)
+    > Increasing the volume size: <https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/recognize-expanded-volume-linux.html>
 
     ![uncheck delete on termination and select default encryption](ec2-45.png)
 
@@ -93,7 +93,7 @@ The Ubuntu instance is up an running, so we can connect to it through SSH. This 
 1. Download [PuTTY](https://www.putty.org/) and install.
 2. Follow the excellent guide from the AWS docs. It would basically be copy-pasting and a waste of time if I redid it here.
 
-> [https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/putty.html](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/putty.html)
+> <https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/putty.html>
 
 3. Once you're connected start with updating the OS:
 
@@ -105,10 +105,10 @@ The Ubuntu instance is up an running, so we can connect to it through SSH. This 
 
 I'm not a firewall guru. To be honest, I know very little about firewalls, especially how to configure them in Linux. I used the sources below to setup mine.
 
-> 1. [https://www.digitalocean.com/community/tutorials/how-to-set-up-a-firewall-with-ufw-on-ubuntu-16-04](https://www.digitalocean.com/community/tutorials/how-to-set-up-a-firewall-with-ufw-on-ubuntu-16-04)  
-> 2. [https://www.digitalocean.com/community/tutorials/ufw-essentials-common-firewall-rules-and-commands](https://www.digitalocean.com/community/tutorials/ufw-essentials-common-firewall-rules-and-commands)  
-> 3. [https://linuxize.com/post/how-to-setup-a-firewall-with-ufw-on-ubuntu-18-04/](https://linuxize.com/post/how-to-setup-a-firewall-with-ufw-on-ubuntu-18-04/)  
-> 4. [https://www.linode.com/docs/security/firewalls/configure-firewall-with-ufw/](https://www.linode.com/docs/security/firewalls/configure-firewall-with-ufw/)
+> 1. <https://www.digitalocean.com/community/tutorials/how-to-set-up-a-firewall-with-ufw-on-ubuntu-16-04>
+> 2. <https://www.digitalocean.com/community/tutorials/ufw-essentials-common-firewall-rules-and-commands>
+> 3. <https://linuxize.com/post/how-to-setup-a-firewall-with-ufw-on-ubuntu-18-04/>
+> 4. <https://www.linode.com/docs/security/firewalls/configure-firewall-with-ufw/>
 
 1. We start with installing the firewall. In Ubuntu this is UFW, **U**ncomplicated**F**ire**W**all.
 
@@ -156,7 +156,7 @@ This one has bothered me for weeks. After I setup the instance and installed all
 
 Now, preferably you only use the RAM of your instance, because that is the fastest option. As we only have 1 GB, this is not enough. So the second option would be to create swap space on the local SSD, ephemeral storage in AWS terms. A t3 instance however doesn't have that, so we are forced to forgo on best-practices and use an EBS volume.
 
-> AWS best practices regarding swap space: [https://aws.amazon.com/premiumsupport/knowledge-center/ec2-memory-swap-file/](https://aws.amazon.com/premiumsupport/knowledge-center/ec2-memory-swap-file/)
+> AWS best practices regarding swap space: <https://aws.amazon.com/premiumsupport/knowledge-center/ec2-memory-swap-file/>
 
 AWS recommends creating swap space that is "_2x the amount of RAM but never less than 32 MB_". You can create a new volume specifically for swap, but I've added it to the main volume.
 
@@ -291,7 +291,7 @@ This seems like a lot of steps and it is. If your database and user data is not 
 
 If however you have a database or user data on your instance (not recommended, but I'm guilty too), you have to prevent your users from entering new data while you move the data(base).
 
-> Source: [https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-resize.html](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-resize.html)
+> Source: <https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-resize.html>
 
 Anyway, if you're OK with a few minutes of downtime, you don't have to go through the 5 steps mentioned above, but can do the following:
 

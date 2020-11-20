@@ -15,7 +15,7 @@ In this series we've used AWS services to build our cloud-infrastructure. This i
 
 ### Amazon CloudWatch
 
-[https://aws.amazon.com/cloudwatch/](https://aws.amazon.com/cloudwatch/)
+<https://aws.amazon.com/cloudwatch/>
 
 Monitoring service for AWS resources. It is used to collect data about your services and applications and act according to rules you specify. We used it to scan and monitor log files and send an alarm or notification.
 
@@ -23,7 +23,7 @@ However, it can also actively fix a problem. It can for example trigger an auto-
 
 ### Amazon EC2
 
-[https://aws.amazon.com/ec2/](https://aws.amazon.com/ec2/)
+<https://aws.amazon.com/ec2/>
 
 The AWS "virtual server" solution. With EC2 you create instances that run an OS on which you run your applications. You can easily change the instance type if you need more or less computing resources. EC2 is also used to create instances that run your containers through ECS (more below).
 
@@ -31,13 +31,13 @@ One of the things that make EC2 instances cool is the auto-scaling feature. We d
 
 #### EBS
 
-[https://aws.amazon.com/ebs/](https://aws.amazon.com/ebs/)
+<https://aws.amazon.com/ebs/>
 
 The OS is stored on Elastic Block Storage. EBS is roughly analogous with virtual disks in a virtual server environment. Files stored on an EBS volume can only be read by a single instance. If you need to share files between instances, you need EFS.
 
 ### Amazon Route 53
 
-[https://aws.amazon.com/route53/](https://aws.amazon.com/route53/)
+<https://aws.amazon.com/route53/>
 
 Route 53 is the service that takes care of your domain names, DNS management and traffic management. We didn't use the last one.
 
@@ -45,19 +45,19 @@ You can register your domains directly with AWS through Route 53, which allows y
 
 ### Amazon Simple Email Service (SES)
 
-[https://aws.amazon.com/ses/](https://aws.amazon.com/ses/)
+<https://aws.amazon.com/ses/>
 
 Service to send emails from your applications to the world. It gives you an SMTP address or you can use it directly. The latter can be done by sending variables to an SES template. We didn't touch that yet.
 
 ### Amazon Simple Notification Service (SNS)
 
-[https://aws.amazon.com/sns/](https://aws.amazon.com/sns/)
+<https://aws.amazon.com/sns/>
 
 SNS sends notifications to email, phone or other applications. It is triggered by CloudWatch or another AWS service. It differs from SES in that it can only send plain text, where SES can send styled HTML emails.
 
 ### Amazon S3
 
-[https://aws.amazon.com/s3/](https://aws.amazon.com/s3/)
+<https://aws.amazon.com/s3/>
 
 S3 stands for simple storage service. It is an object storage solution with high durability. It is used to store static files that can be downloaded through an http(s) connection.
 
@@ -69,7 +69,7 @@ S3 can be even cheaper if you have archive files. The Glacier class for example 
 
 ### Amazon WorkMail
 
-[https://aws.amazon.com/workmail/](https://aws.amazon.com/workmail/)
+<https://aws.amazon.com/workmail/>
 
 Email application to send and receive emails. Outlook, Exchange, Gmail equivalent.
 
@@ -79,25 +79,25 @@ Email application to send and receive emails. Outlook, Exchange, Gmail equivalen
 
 ### Amazon API Gateway
 
-[https://aws.amazon.com/api-gateway/](https://aws.amazon.com/api-gateway/)
+<https://aws.amazon.com/api-gateway/>
 
 We now build our own API in ASP.NET and run it in an EC2 instance. Maybe this service can offload that work. We do use it currently as a gateway to DynamoDB, where we store log data from our app.
 
 ### Amazon CloudFront
 
-[https://aws.amazon.com/cloudfront/](https://aws.amazon.com/cloudfront/)
+<https://aws.amazon.com/cloudfront/>
 
 CloudFront is the AWS CDN service. It caches your website/application files on edge locations near your customers. This reduces latency and makes your website load faster. You also get free SSL certificates with CloudFront.
 
 ### Amazon DynamoDB
 
-[https://aws.amazon.com/dynamodb/](https://aws.amazon.com/dynamodb/)
+<https://aws.amazon.com/dynamodb/>
 
 NoSQL solution from AWS. I lnow very little about databases, so I don't know when and why you would use this. What I mean by that is that I'm not the person who can explain when to use SQL or NoSQL databases.
 
 ### Amazon Elastic Container Service (ECS)
 
-[https://aws.amazon.com/ecs/](https://aws.amazon.com/ecs/)
+<https://aws.amazon.com/ecs/>
 
 If you have containerized you applications, you should check this out. It basically manages your containers, so you don't have to do that. You do have to manage the EC2 instances ECS uses to run the containers on.
 
@@ -107,13 +107,13 @@ We're seriously considering moving all our new applications to containers from t
 
 ### Amazon Elastic File System (EFS)
 
-[https://aws.amazon.com/efs/](https://aws.amazon.com/efs/)
+<https://aws.amazon.com/efs/>
 
 EFS is a shared NFS file system. If you need to share a file system between instances or containers?, this is the one to explore.
 
 ### Elastic Load Balancing (ELB)
 
-[https://aws.amazon.com/elasticloadbalancing/](https://aws.amazon.com/elasticloadbalancing/)
+<https://aws.amazon.com/elasticloadbalancing/>
 
 When using the auto-scaling function for EC2 instances or containers in ECS, you probably want to balance traffic or users between them. That is done with a load balancer.
 
@@ -125,7 +125,7 @@ Load balancers come with free SSL certificates, which you manage with the [Certi
 
 ### AWS Lambda
 
-[https://aws.amazon.com/lambda/](https://aws.amazon.com/lambda/)
+<https://aws.amazon.com/lambda/>
 
 If you use a lot of self-contained functions, you should definitely check out Lambda. It's a "serverless" calculation service, meaning you don't have to manage any underlying hardware like EC2 instances. You select the runtime, Java, Go, PowerShell, Node.js, C#, Python, Ruby, and upload your code. You then trigger the code by an external event: e.g. send an SNS, change a file in S3 or update a table in DynamoDB.
 
@@ -135,7 +135,7 @@ The main gain here is that all of the calculations are not done on your instance
 
 ### Amazon Relational Database Service (RDS)
 
-[https://aws.amazon.com/rds/](https://aws.amazon.com/rds/)
+<https://aws.amazon.com/rds/>
 
 Currently we run our databases on the EC2 compute instances next to the applications. Although this gives us full control, we also have to manage them. Updates, backups and performance are our responsibility.
 
@@ -147,7 +147,7 @@ With Aurora AWS build their own database engine that is optimized for cloud usag
 
 ### Amazon Simple Queue Service (SQS)
 
-[https://aws.amazon.com/sqs/](https://aws.amazon.com/sqs/)
+<https://aws.amazon.com/sqs/>
 
 We have build a queue in our application. This queue holds things like emails to be send, all pdf's to be made and payment requests to be send. We run cron jobs to regularly check if something is in the queue and process it.
 
@@ -155,7 +155,7 @@ With SQS, we could offload user requests, which now end up in our queue. By stor
 
 ### AWS Step Functions
 
-[https://aws.amazon.com/step-functions/](https://aws.amazon.com/step-functions/)
+<https://aws.amazon.com/step-functions/>
 
 I'm not sure how I would use them, but they seem to be perfect to create a workflow between different services and multiple Lambda functions. I'd image something like this:
 

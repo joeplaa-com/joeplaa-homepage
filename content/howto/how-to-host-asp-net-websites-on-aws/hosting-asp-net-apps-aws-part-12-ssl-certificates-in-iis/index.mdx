@@ -16,11 +16,11 @@ To enable https connections to our websites we need an SSL certificate. You can 
 We're running on the cheap, and without a load balancer we cannot get a free SSL certificate through AWS.
 
 > _"Public SSL/TLS certificates provisioned through AWS Certificate Manager are free. You pay only for the AWS resources you create to run your application."_
-> [https://aws.amazon.com/certificate-manager/pricing](https://aws.amazon.com/certificate-manager/pricing)
+> <https://aws.amazon.com/certificate-manager/pricing>
 
 That leaves us with the option to generate them manually through [Let's Encrypt](https://letsencrypt.org/). I found an application that does make creating certificates really easy by providing a GUI.
 
-1. Go to [https://certifytheweb.com/](https://certifytheweb.com/) and download the Certify SSL Manager.
+1. Go to <https://certifytheweb.com/> and download the Certify SSL Manager.
 2. Run the installer and install.
 3. When you first open the program you're asked to fill in some basic information, like your name and contact information.
 4. Click the **New Certificate** button in the top left corner of the screen. Give you certificate a name. We'll take `*.jodibooks.nl` for this example. The asterisk shows us it's a wildcard certificate.  
@@ -72,7 +72,7 @@ Certify will have automatically created https-bindings to all your website in II
 
 2. **Enable** it obviously, set a _Max-Age_ to at least `10368000` seconds (120 days) and ideally to `31536000` (one year). Now also enable the other options: **IncludeSubDomains**, **Preload** and **Redirect Http to Https**. Repeat for all your websites.
 
-    > Source for HSTS Max-Age on Qualys security labs blog: https://blog.qualys.com/securitylabs/2016/03/28/the-importance-of-a-proper-http-strict-transport-security-implementation-on-your-web-server
+    > Source for HSTS Max-Age on Qualys security labs blog: <https://blog.qualys.com/securitylabs/2016/03/28/the-importance-of-a-proper-http-strict-transport-security-implementation-on-your-web-server>
 
     ![edit hsts settings](ssl-11.png)
 

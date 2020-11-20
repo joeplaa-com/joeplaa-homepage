@@ -1,7 +1,7 @@
 # Readme
 
-* Based on: [https://github.com/adnanrahic/lambda-mailer](https://github.com/adnanrahic/lambda-mailer)
-* Tutorial: [https://dev.to/adnanrahic/building-a-serverless-contact-form-with-aws-lambda-and-aws-ses-4jm0](https://dev.to/adnanrahic/building-a-serverless-contact-form-with-aws-lambda-and-aws-ses-4jm0)
+* Based on: <https://github.com/adnanrahic/lambda-mailer>
+* Tutorial: <https://dev.to/adnanrahic/building-a-serverless-contact-form-with-aws-lambda-and-aws-ses-4jm0>
 * Using the serverless framework
 
 ## Development
@@ -105,7 +105,7 @@ This is not a secrets file. It's the config file. Weird choice of words.
 
 * Create a more friendly address:
 
-  > [https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/routing-to-api-gateway.html](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/routing-to-api-gateway.html)
+  > <https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/routing-to-api-gateway.html>
 
   * Open a new tab to the [AWS Certificate Manager](https://console.aws.amazon.com/acm/home?region=us-east-1#/privatewizard/)
     * Create an SSL certificate for `mail-api.joeplaa.com` in region `us-east-1`

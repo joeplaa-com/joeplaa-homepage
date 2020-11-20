@@ -85,8 +85,8 @@ Add address details, phone number, title and company
 
 Read the AWS docs for configuration of your email client. At the moment of writing they have a manual for Microsoft Outlook (exchange), Mobile Devices (Android and iOS), Windows 10 Mail App, macOS Apps and IMAP clients.
 
-> [https://docs.aws.amazon.com/workmail/latest/userguide/clients.html](https://docs.aws.amazon.com/workmail/latest/userguide/clients.html)
-> [https://www.howtogeek.com/367955/how-to-create-server-side-rules-in-outlook/](https://www.howtogeek.com/367955/how-to-create-server-side-rules-in-outlook/)
+> * <https://docs.aws.amazon.com/workmail/latest/userguide/clients.html>
+> * <https://www.howtogeek.com/367955/how-to-create-server-side-rules-in-outlook/>
 
 ## 2. SES
 
@@ -174,13 +174,13 @@ For now we only created a single WorkMail user with aliases. In the future we ar
 
 SES has an **email template** option. I haven't looked into it in detail, but it looks interesting. At this moment we have an application that "builds" our emails and sends them. Building the emails could probably be offloaded to SES by using these templates. In that scenario our application only has to send the variables.
 
-> [https://docs.aws.amazon.com/ses/latest/DeveloperGuide/send-personalized-email-api.html](https://docs.aws.amazon.com/ses/latest/DeveloperGuide/send-personalized-email-api.html)
+> <https://docs.aws.amazon.com/ses/latest/DeveloperGuide/send-personalized-email-api.html>
 
 I had set up SMTP and sending in the `eu-west-1` region. The same region that offers the WorkMail service. However, our main region, `eu-central-1`, also has the SMTP/SES service. Should we use that? The service is "only" sending email, so latency is no issue. We can use both sites in parallel to effectively double the sending rate. You have to verify your domains and email (sending) addresses in each region separately.
 
 If you are concerned about your sending reputation, you can set alarms in CloudWatch. This can only be done when at least one complaint or bounce is received.
 
-> [https://docs.aws.amazon.com/ses/latest/DeveloperGuide/reputationdashboard-cloudwatch-alarm.html](https://docs.aws.amazon.com/ses/latest/DeveloperGuide/reputationdashboard-cloudwatch-alarm.html)
+> <https://docs.aws.amazon.com/ses/latest/DeveloperGuide/reputationdashboard-cloudwatch-alarm.html>
 
 ## 4. Next: storage
 
