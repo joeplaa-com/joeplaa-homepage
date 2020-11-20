@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { Helmet } from 'react-helmet'
 import SEO from 'react-seo-component'
 import { navigate } from 'gatsby'
-import { metaData, urls } from '../utils/data'
+import { metaData } from '../utils/data'
 import { PageProps } from '../types'
 
 const Index = (props: PageProps) => {
