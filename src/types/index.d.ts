@@ -70,9 +70,9 @@ export type CustomNavLinkProps = {
 }
 
 export type FilterProps = {
-    back?: boolean
+    buttonType?: 'back' | 'more'
     className?: string
-    pathname: string
+    page: string
     quantity?: boolean
     tags: Array<LabelProps>
 }
@@ -158,6 +158,13 @@ export type PostBodyProps = {
     content: string
 }
 
+interface PostLocation extends Location {
+    state: {
+        key: string
+        referrer: string
+    }
+}
+
 interface PostQueryNode extends PostBasicProps {
     body: string
     id: string
@@ -178,7 +185,7 @@ export type PostQueryProps = {
             },
         }
     },
-    location: Location
+    location: PostLocation
     pageContext?: {
         currentPage?: number
         numPages?: number
@@ -204,7 +211,7 @@ export type PostTemplateProps = {
             totalCount: number
         }
     }
-    location: Location
+    location: PostLocation
     pageContext: {
         next: PostBasicProps,
         previous: PostBasicProps

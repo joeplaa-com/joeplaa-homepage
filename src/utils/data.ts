@@ -21,6 +21,7 @@ export const content = {
     Loading: 'Loading...',
     MailSendFailed: 'Something went wrong, please try again or email me directly at ',
     MailSendSuccess: "Thank you for sending this message. I'll get back to you as soon as I can.",
+    More: 'More',
     Name: 'Name',
     NameErrorMessage: 'Please enter a name',
     NextPost: 'Next post: ',
@@ -99,6 +100,7 @@ export const navigation = {
     ps: '/conditions/privacy-statement',
     recommended: process.env.GATSBY_BLOG_URL + '/recommended',
     services: '/home#Services',
+    tags: '/tags',
     tos: '/conditions/terms-of-service',
     wiki: '/wiki'
 }

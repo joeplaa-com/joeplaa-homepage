@@ -7,7 +7,7 @@ import Filter from '../components/filter'
 import Layout from '../components/layout'
 import PostBrowseButton from '../components/postBrowseButton'
 import PostImage from '../components/postImage'
-import { metaData } from '../utils/data'
+import { metaData, navigation } from '../utils/data'
 import formatPostTags from '../utils/formatPostTags'
 import { PostTemplateProps } from '../types'
 
@@ -16,7 +16,7 @@ const PortfolioTemplate = ({ data, location, pageContext }: PostTemplateProps) =
     const { title, excerpt, date, cover } = frontmatter;
     const { previous, next } = pageContext;
     const tags = formatPostTags(frontmatter.tags);
-
+    console.log('location.state.referrer: ', location.state.referrer)
     return (
         <Layout>
             <SEO
@@ -41,7 +41,7 @@ const PortfolioTemplate = ({ data, location, pageContext }: PostTemplateProps) =
 
             <section className='section-fill gray-medium' id={metaData.PortfolioTitle}>
                 <Container className='my-auto post-container'>
-                    <Filter back={true} pathname={location.pathname} className='mb-3' tags={tags} />
+                    <Filter buttonType={location.state.referrer !== '' ? 'back' : 'more'} page={navigation.portfolio} className='mb-3' tags={tags} />
                     <div className='image-container'>
                         <PostImage path={false} title={title} picture={frontmatter.cover.childImageSharp} rounded={true} />
                         <div className='overlay-text rounded'>
