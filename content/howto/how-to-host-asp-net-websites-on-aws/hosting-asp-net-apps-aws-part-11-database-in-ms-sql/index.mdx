@@ -93,7 +93,7 @@ Alright, our database server is setup so we can finally import the actual databa
 
 5. If you get an error, try this solution:
 
-    > [https://stackoverflow.com/questions/3960257/cannot-open-backup-device-operating-system-error-5](https://stackoverflow.com/questions/3960257/cannot-open-backup-device-operating-system-error-5)
+    > <https://stackoverflow.com/questions/3960257/cannot-open-backup-device-operating-system-error-5>
 
     ![database export error 5](mssql-13.png "Operating system error 5.")
 
@@ -131,10 +131,10 @@ To allow the website (app pool) to connect to and manipulate the database, we ha
 2. Type the application pool name `IIS APPPOOL\jodibooks-test` in the _Login name:_ field.
 
     > Note 1: You need to have inbound port 445 opened to allow searching for users. I added that in [part 5](../hosting-asp-net-apps-aws-part-5-ec2-instances/).
-    > [https://harvarinder.blogspot.com/2019/03/the-program-cannot-open-required-dialog.html](https://harvarinder.blogspot.com/2019/03/the-program-cannot-open-required-dialog.html)
+    > <https://harvarinder.blogspot.com/2019/03/the-program-cannot-open-required-dialog.html>
 
     > Note 2: to get this to work, I had to login with the Windows EC2 admin credentials first. Then I got a screen where I could search for users. Click the **Object types** button and select **Groups**. After that it works.
-    > [http://www.mssqldestination.com/blog/manjunathcbhat/2014/object-user-group-or-built-security-proncipal-following-name-cannot-be-found](http://www.mssqldestination.com/blog/manjunathcbhat/2014/object-user-group-or-built-security-proncipal-following-name-cannot-be-found)
+    > <http://www.mssqldestination.com/blog/manjunathcbhat/2014/object-user-group-or-built-security-proncipal-following-name-cannot-be-found>
 
     ![enter the application name](mssql-20.png)
 

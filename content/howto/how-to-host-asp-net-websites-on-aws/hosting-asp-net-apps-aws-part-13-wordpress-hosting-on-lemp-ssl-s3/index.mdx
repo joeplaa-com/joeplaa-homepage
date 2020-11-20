@@ -24,11 +24,11 @@ To run WordPress we're going to need a hosting stack. In this case we're going t
 
 I based my complete installation on an excellent post by [Dave Hilditch](https://www.wpintense.com/author/davehilditch/). If you need or want to know more details on the choice of software and what it does exactly, please go to his original post (link below). He did a lot of testing and actually has the in-depth knowledge I lack.
 
-> [https://www.wpintense.com/2018/10/20/installing-the-fastest-wordpress-stack-ubuntu-18-mysql-8/](https://www.wpintense.com/2018/10/20/installing-the-fastest-wordpress-stack-ubuntu-18-mysql-8/)
+> <https://www.wpintense.com/2018/10/20/installing-the-fastest-wordpress-stack-ubuntu-18-mysql-8/>
 
 I did however modified some parameters because my server has less memory. For more information on those settings go to [Ashley Rich](https://ashleyrich.com/)' tutorial on SpinupWP:
 
-> https://spinupwp.com/hosting-wordpress-yourself-nginx-php-mysql/
+> <https://spinupwp.com/hosting-wordpress-yourself-nginx-php-mysql/>
 
 ## 2. Install stack
 
@@ -306,8 +306,8 @@ I did however modified some parameters because my server has less memory. For mo
     ```
 
     > I based mine on these two posts, the first uses a server with 4 GB the second 2 GB, where we have 1 GB:
-    > 1. [https://www.wpintense.com/2018/10/20/installing-the-fastest-wordpress-stack-ubuntu-18-mysql-8/](https://www.wpintense.com/2018/10/20/installing-the-fastest-wordpress-stack-ubuntu-18-mysql-8/)  
-    > 2. [https://www.lisenet.com/2015/optimise-mysql-configuration-for-wordpress/](https://www.lisenet.com/2015/optimise-mysql-configuration-for-wordpress/)
+    > 1. <https://www.wpintense.com/2018/10/20/installing-the-fastest-wordpress-stack-ubuntu-18-mysql-8/>
+    > 2. <https://www.lisenet.com/2015/optimise-mysql-configuration-for-wordpress/>
 
 4. Now press `ctrl+x`, `y` and `enter` to save and close.
 5. Restart MySQL:
@@ -316,7 +316,7 @@ I did however modified some parameters because my server has less memory. For mo
     sudo service mysql restart
     ```
 
-6. Now we're going to create a hidden file with our credentials, so we don't have to enter them every time ([https://easyengine.io/tutorials/mysql/mycnf-preference/](https://easyengine.io/tutorials/mysql/mycnf-preference/)). Open the file in the nano editor.
+6. Now we're going to create a hidden file with our credentials, so we don't have to enter them every time (<https://easyengine.io/tutorials/mysql/mycnf-preference/>). Open the file in the nano editor.
 
     ```shellsession
     sudo nano ~/.my.cnf
@@ -452,13 +452,13 @@ We already had a WordPress blog running, so we wanted to migrate the files and d
 
     You should obviously change ‘_CHOOSEASTRONGPASSWORD_’, although with this config, and because we ran the secure mysql scripts, remote login to your MySQL server will be disallowed.
 
-    "_For some weird reason, the WordPress installer fails miserably if your site starts out HTTPS. So, you have to install over HTTP and then convert to HTTPS._" As I haven't done a new install, I'll advise you to head over to the original post here: [https://www.wpintense.com/2018/10/20/installing-the-fastest-wordpress-stack-ubuntu-18-mysql-8/](https://www.wpintense.com/2018/10/20/installing-the-fastest-wordpress-stack-ubuntu-18-mysql-8/) and browse to the "Changing your site to use SSL" section.
+    "_For some weird reason, the WordPress installer fails miserably if your site starts out HTTPS. So, you have to install over HTTP and then convert to HTTPS._" As I haven't done a new install, I'll advise you to head over to the original post here: <https://www.wpintense.com/2018/10/20/installing-the-fastest-wordpress-stack-ubuntu-18-mysql-8/> and browse to the "Changing your site to use SSL" section.
 
 ### 4.2 Import existing site
 
 Again this is nothing new. I found an excellent guide here:
 
-> [https://www.wpbeginner.com/wp-tutorials/how-to-move-wordpress-to-a-new-host-or-server-with-no-downtime/](https://www.wpbeginner.com/wp-tutorials/how-to-move-wordpress-to-a-new-host-or-server-with-no-downtime/)
+> <https://www.wpbeginner.com/wp-tutorials/how-to-move-wordpress-to-a-new-host-or-server-with-no-downtime/>
 
 My migration was a little bit different though, so I'll summarize to only show the parts of the guide I used and what I needed to change.
 
@@ -613,7 +613,7 @@ With your blog running, we need to install some plugins to make the most out of 
 
     ![attach policies](wp-13.png)
 
-7. In the newly opened tab click **JSON** and paste the code below. Change the _Resource_ to your own bucket. [https://deliciousbrains.com/wp-offload-media/doc/custom-iam-policy-for-amazon-s3/](https://deliciousbrains.com/wp-offload-media/doc/custom-iam-policy-for-amazon-s3/)
+7. In the newly opened tab click **JSON** and paste the code below. Change the _Resource_ to your own bucket. <https://deliciousbrains.com/wp-offload-media/doc/custom-iam-policy-for-amazon-s3/>
 
     ```json
     {

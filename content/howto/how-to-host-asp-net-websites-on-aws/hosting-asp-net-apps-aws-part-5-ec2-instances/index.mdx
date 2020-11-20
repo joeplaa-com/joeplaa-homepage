@@ -24,7 +24,7 @@ Before we launch these instances, we'll first setup two security features: Secur
 A security group can be seen as a virtual firewall. It will block all ports, except the ones you explicitly open. We're going to setup four security groups; one for webserver access, one for the MS SQL engine, one for remote management and one for our applications.
 
 <div class='col-md-10 col-lg-8 mx-auto'>
-    <table class="table table-striped">
+    <table class="table table-striped table-responsive">
         <thead>
             <tr>
                 <th scope="col">Name</th>
@@ -70,7 +70,7 @@ A security group can be seen as a virtual firewall. It will block all ports, exc
 5. Next we add a rule for each port we want to open. For example, when creating the `Webserver` group, click **Add Rule** and select the `HTTP` as type. The Protocol and port will be automatically entered. Choose `anywhere` when you want people to see your website. Choose `My IP` when only you want to have access.
 
     <div class='col-md-10 col-lg-8 mx-auto'>
-        <table class="table table-striped">
+        <table class="table table-striped table-responsive">
             <thead>
                 <tr>
                     <th scope="col">Security group</th>
@@ -150,7 +150,7 @@ Next we need to make a key pair. We'll actually make two, one for each instance,
 
 A [key pair](https://en.wikipedia.org/wiki/Public-key_cryptography) consists of a public and a matching private key. The public key will be used by AWS and added to your instances. If you want to access an instance it is only possible if you supply the private key that matches the public key. As only you have that private key, nobody else, even AWS, has no access to your data. So if you lose it, it's gone and you lose access to your instances. To prevent that I've stored mine in [Bitwarden](https://bitwarden.com/).
 
-> More info on key pairs in AWS: [https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html)
+> More info on key pairs in AWS: <https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html>
 
 1. You can create key pairs yourself and import the public key, but we'll let AWS do it for us. Go to **Key Pairs** in the menu on the left and click **Create key pair**. We'll give it a name with prefix `kp` for key pair and for which server/application: `kp-jodibooks-windows-server`.
 
@@ -158,7 +158,7 @@ A [key pair](https://en.wikipedia.org/wiki/Public-key_cryptography) consists of 
 
 2. Because we want to use this key in Windows, we choose `ppk` as the file format. You can always change the file type later.
 
-> Source of .pem to .ppk instructions: [https://aws.amazon.com/premiumsupport/knowledge-center/convert-pem-file-into-ppk/](https://aws.amazon.com/premiumsupport/knowledge-center/convert-pem-file-into-ppk/.)
+> Source of .pem to .ppk instructions: <https://aws.amazon.com/premiumsupport/knowledge-center/convert-pem-file-into-ppk/>
 
 2. Click **Create key pair** and save the private key. As said, I've stored mine in a password manager.
 3. We'll create another key, but this time we give it the name `kp-jodibooks-linux-server`. Again we choose `ppk` as type, because we'll use [PuTTY](https://www.putty.org/) to access it later. Also store this private key somewhere safe.
@@ -193,7 +193,7 @@ We're ready to launch an instance. Yeah, finally!
     1. **Subnet:** As shown we have 3 availability zones and each has it's own subnet. We can let AWS decide where to create this instance, but we can also select a specific zone here. In the architecture we had this one in zone `b`.
     2. **T2/T3 Unlimited:** `Disable` this option. With a t-type instance you get a certain amount of CPU credits per day. When you need more, you pay an additional fee. This option enables you to use an unlimited amount of addition credits.
 
-    > Source CPU credits: [https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/burstable-performance-instances-unlimited-mode-concepts.html#when-to-use-unlimited-mode](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/burstable-performance-instances-unlimited-mode-concepts.html#when-to-use-unlimited-mode)
+    > Source CPU credits: <https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/burstable-performance-instances-unlimited-mode-concepts.html#when-to-use-unlimited-mode>
 
     ![choose the subnet and disable unlimited mode](ec2-12.png)
 
@@ -278,7 +278,7 @@ An IAM role allows the EC2 to communicate with other AWS services on your behalf
 
 Now that we have a running Windows instance with a fixed IP public address, let's connect through the RDP (remote desktop). You can read the full guide here:
 
-> [https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/connecting\_to\_windows\_instance.html](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/connecting_to_windows_instance.html).
+> <https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/connecting_to_windows_instance.html>
 
 1. Open the remote desktop tool in Windows. Copy the _Public DNS_ from your instance and past it as the **Computer** address. Click **connect**.
 

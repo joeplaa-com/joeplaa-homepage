@@ -17,11 +17,11 @@ Obviously we don't want to be continually be logging in and making backups. We h
 
 To send files to S3 we are going to use the AWS CLI. This tool allows us to script the transfer of files to and from S3.
 
-> [https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2.html](https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2.html)
+> <https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2.html>
 
 ### 1.1 Install Windows
 
-1. Download the installer and run it: [https://awscli.amazonaws.com/AWSCLIV2.msi](https://awscli.amazonaws.com/AWSCLIV2.msi)
+1. Download the installer and run it: <https://awscli.amazonaws.com/AWSCLIV2.msi>
 
 ### 1.2 Install Ubuntu
 
@@ -102,7 +102,7 @@ The EC2 that will make the backup needs to have access to our S3 backup bucket.
 
 ### 3.2 Add 7-zip to encrypt and compress
 
-1. Download 7-zip: [https://www.7-zip.org/download.html](https://www.7-zip.org/download.html).
+1. Download 7-zip: <https://www.7-zip.org/download.html>
 2. Open the server instance and copy the installer.
 3. Run the installer.
 
@@ -517,7 +517,7 @@ The EC2 that will make the backup needs to have access to our S3 backup bucket.
     0 3 * * 1 /home/ubuntu/scripts/backup_logs.sh > /home/ubuntu/logs/backup_logs.log
     ```
 
-Should you want to have a different schedule, try this site to generate it: [https://crontab-generator.org/](https://crontab-generator.org/)
+Should you want to have a different schedule, try this site to generate it: <https://crontab-generator.org/>
 
 ## 9. Next...
 
