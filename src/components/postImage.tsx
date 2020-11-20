@@ -19,7 +19,6 @@ export default function PostImage({ title, picture, slug, rounded, path, onClick
                     : (<span onClick={onClick} onKeyPress={onClick} role='button' tabIndex={0}>{image}</span>)
                 : (image)
             }
-            <div className="d-none d-md-block image-overlay-blur"></div>
         </>
     );
 }
