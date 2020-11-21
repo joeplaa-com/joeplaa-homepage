@@ -8,7 +8,6 @@ export const Link = ({ children, to, activeClassName, partiallyActive, state, ..
     // This example assumes that any internal link (intended for Gatsby)
     // will start with exactly one slash, and that anything else is external.
     const internal = /^\/(?!\/)/.test(to)
-    console.log('state: ', state)
 
     // Use Gatsby Link for internal links, and <a> for others
     if (internal) {

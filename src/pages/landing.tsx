@@ -63,16 +63,16 @@ const Landing = () => {
 
                             <Card>
                                 <CardBody>
-                                    <CardTitle><h5><a href={navigation.blog}>{content.Blog}</a></h5></CardTitle>
-                                    <a href={navigation.blog}><BannerBlog width='300px' /></a>
+                                    <CardTitle><h5><Link to={navigation.blog}>{content.Blog}</Link></h5></CardTitle>
+                                    <Link to={navigation.blog}><BannerBlog width='300px' /></Link>
                                     <CardText>My blog with subjects from diet to mindset and psychology to sociology and politics.</CardText>
                                 </CardBody>
                             </Card>
 
                             <Card>
                                 <CardBody>
-                                    <CardTitle><h5><a href={navigation.recommended}>{metaData.RecommendedTitle}</a></h5></CardTitle>
-                                    <a href={navigation.recommended}><BannerBlogRecommended width='300px' /></a>
+                                    <CardTitle><h5><Link to={navigation.recommended}>{metaData.RecommendedTitle}</Link></h5></CardTitle>
+                                    <Link to={navigation.recommended}><BannerBlogRecommended width='300px' /></Link>
                                     <CardText>{metaData.RecommendedDescription}</CardText>
                                 </CardBody>
                             </Card>

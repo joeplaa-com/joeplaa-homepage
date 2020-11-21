@@ -103,7 +103,7 @@ export type LayoutProps = {
 
 // https://github.com/gatsbyjs/gatsby/issues/16682#issuecomment-718155902
 export interface LinkProps extends Omit<GatsbyLinkProps<Record<string, unknown>>, 'ref'> {
-    state: PageState
+    state?: PageState
 }
 
 export type NavbarProps = {
