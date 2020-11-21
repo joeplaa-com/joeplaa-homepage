@@ -3,7 +3,6 @@ import { MDXRenderer } from 'gatsby-plugin-mdx'
 import React, { useState } from 'react'
 import SEO from 'react-seo-component'
 import { Collapse, Container, ListGroup, ListGroupItem } from 'reactstrap'
-import Layout from '../components/layout'
 import { PostQueryProps } from '../types'
 import { metaData, navigation } from '../utils/data'
 
@@ -13,7 +12,7 @@ const Howto = ({ data }: PostQueryProps) => {
     const wikisProcedure = [];
     const [isOpen, setIsOpen] = useState({})
 
-    function createListItem(id, body, frontmatter) {
+    function createListItem (id, body, frontmatter) {
         return (
             <ListGroupItem className='list-group-item-wiki markdown' tag="button" key={id} onClick={() => {
                 const newIsOpen = {
@@ -42,36 +41,34 @@ const Howto = ({ data }: PostQueryProps) => {
 
     return (
         <>
-            <Layout>
-                <SEO
-                    title={metaData.WikiTitle}
-                    description={metaData.WikiDescription || `nothin’`}
-                    image={`${metaData.SiteUrl}${metaData.WikiImage}`}
-                    pathname={`${metaData.SiteUrl}${navigation.wiki}`}
-                    titleTemplate={metaData.TitleTemplate}
-                    titleSeparator={metaData.TitleSeparator}
-                    siteLanguage={metaData.SiteLanguage}
-                    siteLocale={metaData.SiteLocale}
-                    twitterUsername={metaData.TwitterUsername}
-                />
+            <SEO
+                title={metaData.WikiTitle}
+                description={metaData.WikiDescription || `nothin’`}
+                image={`${metaData.SiteUrl}${metaData.WikiImage}`}
+                pathname={`${metaData.SiteUrl}${navigation.wiki}`}
+                titleTemplate={metaData.TitleTemplate}
+                titleSeparator={metaData.TitleSeparator}
+                siteLanguage={metaData.SiteLanguage}
+                siteLocale={metaData.SiteLocale}
+                twitterUsername={metaData.TwitterUsername}
+            />
 
-                <section className='section-fill blue-dark' id={metaData.WikiTitle}>
-                    <Container className='my-auto'>
-                        <ListGroup id={metaData.WikiFaq}>
-                            <ListGroupItem color='primary'><h2>General questions</h2></ListGroupItem>
-                            {wikisFaq}
-                        </ListGroup>
-                        <ListGroup id={metaData.WikiProcedure}>
-                            <ListGroupItem color='primary'><h2>What can you expect</h2></ListGroupItem>
-                            {wikisProcedure}
-                        </ListGroup>
-                        <ListGroup id={metaData.WikiPricing}>
-                            <ListGroupItem color='primary'><h2>Pricing details</h2></ListGroupItem>
-                            {wikisPricing}
-                        </ListGroup>
-                    </Container>
-                </section>
-            </Layout>
+            <section className='section-fill blue-dark' id={metaData.WikiTitle}>
+                <Container className='my-auto'>
+                    <ListGroup id={metaData.WikiFaq}>
+                        <ListGroupItem color='primary'><h2>General questions</h2></ListGroupItem>
+                        {wikisFaq}
+                    </ListGroup>
+                    <ListGroup id={metaData.WikiProcedure}>
+                        <ListGroupItem color='primary'><h2>What can you expect</h2></ListGroupItem>
+                        {wikisProcedure}
+                    </ListGroup>
+                    <ListGroup id={metaData.WikiPricing}>
+                        <ListGroupItem color='primary'><h2>Pricing details</h2></ListGroupItem>
+                        {wikisPricing}
+                    </ListGroup>
+                </Container>
+            </section>
         </>
     );
 };

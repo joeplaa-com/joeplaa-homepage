@@ -6,10 +6,10 @@ import FilterCard from '../components/filterCard'
 import Layout from '../components/layout'
 import PostMore from '../components/postMore'
 import { PostQueryProps } from '../types'
-import { metaData } from '../utils/data'
+import { metaData, navigation } from '../utils/data'
 import formatAllTags from '../utils/formatAllTags'
 
-const Tag = ({ data, location, pageContext }: PostQueryProps) => {
+const Tag = ({ data, pageContext }: PostQueryProps) => {
     const posts = data.allMdx.nodes;
     const tags = formatAllTags([pageContext.tag]);
     return (
@@ -29,7 +29,7 @@ const Tag = ({ data, location, pageContext }: PostQueryProps) => {
 
                 <section className='section-fill blue-light' id={metaData.SiteTitle}>
                     <Container className='my-auto'>
-                        <FilterCard pathname={location.pathname} tags={tags} />
+                        <FilterCard page={navigation.tags} tags={tags} />
                         {posts.length > 0 && <PostMore posts={posts} />}
                     </Container>
                 </section>

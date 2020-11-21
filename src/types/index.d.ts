@@ -1,4 +1,5 @@
 import { ReactElement, ReactNode } from 'react'
+import { GatsbyLinkProps } from 'gatsby-link'
 import { FixedObject, FluidObject } from 'gatsby-image'
 import { Language } from 'prism-react-renderer'
 
@@ -70,9 +71,9 @@ export type CustomNavLinkProps = {
 }
 
 export type FilterProps = {
-    back?: boolean
+    buttonType?: 'back' | 'more'
     className?: string
-    pathname: string
+    page: string
     quantity?: boolean
     tags: Array<LabelProps>
 }
@@ -96,8 +97,15 @@ export type LabelProps = {
 }
 
 export type LayoutProps = {
-    children?: string | ReactNode
-    navbarLightText?: boolean
+    children: string | ReactNode
+}
+
+// https://github.com/gatsbyjs/gatsby/issues/16682#issuecomment-718155902
+export interface LinkProps extends Omit<GatsbyLinkProps<Record<string, unknown>>, 'ref'> {
+    state?: {
+        key?: string
+        prevPathname?: string
+    }
 }
 
 export type NavbarProps = {
@@ -115,13 +123,29 @@ export type NewTabProps = {
     text?: string
 }
 
-export type PageProps = {
-    location: {
-        pathname: string
+export type PageTemplateProps = {
+    data: {
+        mdx: {
+            author: string
+            body: string
+            edges: Array<{ node: PostBasicProps }>
+            excerpt: string
+            fields: {
+                slug: string
+            }
+            frontmatter: FrontMatterProps
+            totalCount: number
+        }
+    }
+    location: Location
+    pageContext: {
+        next: PostBasicProps,
+        previous: PostBasicProps
+        tag: string
     }
 }
 
-export type PaginationProps ={
+export type PaginationProps = {
     currentPage: number
     numPages: number
     path: string
@@ -187,28 +211,6 @@ export type PostQueryProps = {
         tagRaw?: {
             fieldValue: string
         }
-    }
-}
-
-export type PostTemplateProps = {
-    data: {
-        mdx: {
-            author: string
-            body: string
-            edges: Array<{ node: PostBasicProps }>
-            excerpt: string
-            fields: {
-                slug: string
-            }
-            frontmatter: FrontMatterProps
-            totalCount: number
-        }
-    }
-    location: Location
-    pageContext: {
-        next: PostBasicProps,
-        previous: PostBasicProps
-        tag: string
     }
 }
 

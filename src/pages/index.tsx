@@ -1,46 +1,39 @@
-import React, { useEffect } from 'react'
-import { Helmet } from 'react-helmet'
+import React from 'react'
 import SEO from 'react-seo-component'
-import { navigate } from 'gatsby'
-import { metaData } from '../utils/data'
-import { PageProps } from '../types'
+import About from '../components/about'
+import Banner from '../components/banner'
+import Contact from '../components/contact'
+import Pricing from '../components/pricing'
+import { content, metaData, navigation } from '../utils/data'
 
-const Index = (props: PageProps) => {
-    const { location } = props;
-    const pathname = location.pathname;
-    useEffect(() => {
-        if (pathname === '/') {
-            navigate('/home');
-        }
-    }, [pathname]);
-
+const Home = () => {
     return (
         <>
             <SEO
-                title={metaData.SiteTitle}
-                description={metaData.SiteDescription || `nothin’`}
-                image={`${metaData.SiteUrl}${metaData.SiteImage}`}
-                pathname={`${metaData.SiteUrl}`}
+                title={metaData.HomeTitle}
+                description={metaData.HomeDescription || `nothin’`}
+                image={`${metaData.SiteUrl}${metaData.HomeImage}`}
+                pathname={`${metaData.SiteUrl}${navigation.home}`}
                 titleTemplate={metaData.TitleTemplate}
                 titleSeparator={metaData.TitleSeparator}
                 siteLanguage={metaData.SiteLanguage}
                 siteLocale={metaData.SiteLocale}
                 twitterUsername={metaData.TwitterUsername}
             />
-            <Helmet>
-                <noscript>
-                    {`<div style={{ height: '100vw', width: '100%' }}>
-                        <div style={{ padding: '20px', position: 'absolute', left: '50%', top: '50%', transform: 'translate(-50%, -50%)' }}>
-                            <h1>Oops!!!!</h1>
-                            <p>This website only works with JavaScript enabled.</p>
-                            <p>This website explains <a href="https://www.enable-javascript.com/nl/">how to enable JavaScript in your browser.</a></p>
-                        </div>
-                    </div>`}
-                </noscript>
-                <meta httpEquiv="X-Clacks-Overhead" content="GNU Terry Pratchett" />
-            </Helmet>
+
+            <Banner
+                title={content.WelcomeTo + ' ' + metaData.SiteName}
+                subtitle={metaData.HomeSubtitle}
+                src="home-banner-code.jpg"
+                alt="beach banner" />
+
+            <About className='section-home background1' />
+
+            <Pricing className='section-home background2' />
+
+            <Contact className='section-home background3' />
         </>
     );
 };
 
-export default Index;
+export default Home;

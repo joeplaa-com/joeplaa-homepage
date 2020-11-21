@@ -1,6 +1,6 @@
 import React from 'react'
-import { Link } from 'gatsby'
 import { Col, Container, Row } from 'reactstrap'
+import { Link } from './customLink'
 import ImageAbout from './imageAbout'
 import NewTabLink from './newTabLink'
 import Social from './social'
@@ -37,7 +37,7 @@ const About = ({ className }: SectionProps) => {
                         </div>
                         <div>
                             <h2>What is Joeplaa</h2>
-                            <p>Joeplaa, pronounce &quot;you-p-laah&quot;, is an abbreviation of my full name: {metaData.FirstName} {metaData.LastName}. Initially I started using it to shorten my e-mail address, but it turned into my &quot;official&quot; handle <code>@joeplaa</code> everywhere on the web. I&apos;ve originally started joeplaa.com as my <a href={navigation.blog}>personal blog</a>, which you can still find at <a href={navigation.blog}>{navigation.blog}</a>.</p>
+                            <p>Joeplaa, pronounce &quot;you-p-laah&quot;, is an abbreviation of my full name: {metaData.FirstName} {metaData.LastName}. Initially I started using it to shorten my e-mail address, but it turned into my &quot;official&quot; handle <code>@joeplaa</code> everywhere on the web. I&apos;ve originally started joeplaa.com as my <Link to={navigation.blog}>personal blog</Link>, which you can still find at <Link to={navigation.blog}>{navigation.blog}</Link>.</p>
                             <p>Now, with this website, joeplaa.com 2.0, I want to show you what I can do. It both is and contains my <Link to={navigation.portfolio}>portfolio</Link>. Have a look around and <Link to={navigation.contact}>let me know</Link> if you like my work.</p>
                         </div>
                     </Col>

@@ -4,21 +4,19 @@ import { MDXRenderer } from 'gatsby-plugin-mdx'
 import { Container, Col, Row } from 'reactstrap'
 import SEO from 'react-seo-component'
 import Filter from '../components/filter'
-import Layout from '../components/layout'
 import PostBrowseButton from '../components/postBrowseButton'
 import PostImage from '../components/postImage'
-import { content, metaData } from '../utils/data'
+import { content, metaData, navigation } from '../utils/data'
 import formatPostTags from '../utils/formatPostTags'
-import { PostTemplateProps } from '../types'
+import { PageTemplateProps } from '../types'
 
-const PostTemplate = ({ data, location, pageContext }: PostTemplateProps) => {
+const PostTemplate = ({ data, location, pageContext }: PageTemplateProps) => {
     const { body, fields, frontmatter } = data.mdx;
     const { title, excerpt, date, cover } = frontmatter;
     const { previous, next } = pageContext;
     const tags = formatPostTags(frontmatter.tags);
-
     return (
-        <Layout>
+        <>
             <SEO
                 title={title}
                 titleTemplate={metaData.TitleTemplate}
@@ -41,7 +39,7 @@ const PostTemplate = ({ data, location, pageContext }: PostTemplateProps) => {
 
             <section className='section-fill gray-medium' id={metaData.HowtoTitle}>
                 <Container className='my-auto post-container'>
-                    <Filter back={true} pathname={location.pathname} className='mb-3' tags={tags} />
+                    <Filter buttonType={location.state?.prevPathname ? 'back' : 'more'} page={navigation.howto} className='mb-3' tags={tags} />
                     <div className='d-md-none post-header'>
                         <h1 className='display-3 text-center'>{title}</h1>
                     </div>
@@ -77,7 +75,7 @@ const PostTemplate = ({ data, location, pageContext }: PostTemplateProps) => {
                     </Row>
                 </Container>
             </section>
-        </Layout>
+        </>
     );
 };
 

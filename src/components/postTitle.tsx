@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from 'gatsby'
+import { Link } from './customLink'
 import { Button, CardTitle } from 'reactstrap'
 import { PostTitleProps } from '../types'
 

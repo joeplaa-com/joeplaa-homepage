@@ -1,5 +1,6 @@
 import React, { useMemo } from 'react'
-import { graphql, Link, useStaticQuery } from 'gatsby'
+import { graphql, useStaticQuery } from 'gatsby'
+import { Link } from './customLink'
 import Img from 'gatsby-image/withIEPolyfill'
 import { ImageProps, ImageFluidNodeProps } from '../types'
 
