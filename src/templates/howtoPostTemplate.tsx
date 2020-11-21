@@ -8,9 +8,9 @@ import PostBrowseButton from '../components/postBrowseButton'
 import PostImage from '../components/postImage'
 import { content, metaData, navigation } from '../utils/data'
 import formatPostTags from '../utils/formatPostTags'
-import { PostTemplateProps } from '../types'
+import { PageTemplateProps } from '../types'
 
-const PostTemplate = ({ data, location, pageContext }: PostTemplateProps) => {
+const PostTemplate = ({ data, location, pageContext }: PageTemplateProps) => {
     const { body, fields, frontmatter } = data.mdx;
     const { title, excerpt, date, cover } = frontmatter;
     const { previous, next } = pageContext;
@@ -39,7 +39,7 @@ const PostTemplate = ({ data, location, pageContext }: PostTemplateProps) => {
 
             <section className='section-fill gray-medium' id={metaData.HowtoTitle}>
                 <Container className='my-auto post-container'>
-                    <Filter buttonType={location.state?.prevUrl ? 'back' : 'more'} page={navigation.howto} className='mb-3' tags={tags} />
+                    <Filter buttonType={location.state?.prevPathname ? 'back' : 'more'} page={navigation.howto} className='mb-3' tags={tags} />
                     <div className='d-md-none post-header'>
                         <h1 className='display-3 text-center'>{title}</h1>
                     </div>
