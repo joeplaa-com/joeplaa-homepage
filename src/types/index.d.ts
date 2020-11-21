@@ -97,13 +97,15 @@ export type LabelProps = {
 }
 
 export type LayoutProps = {
-    children?: string | ReactNode
-    navbarLightText?: boolean
+    children: string | ReactNode
 }
 
 // https://github.com/gatsbyjs/gatsby/issues/16682#issuecomment-718155902
 export interface LinkProps extends Omit<GatsbyLinkProps<Record<string, unknown>>, 'ref'> {
-    state?: PageState
+    state?: {
+        key?: string
+        prevPathname?: string
+    }
 }
 
 export type NavbarProps = {
@@ -121,11 +123,6 @@ export type NewTabProps = {
     text?: string
 }
 
-type PageState = {
-    key?: string
-    prevPathname?: string
-}
-
 export type PageTemplateProps = {
     data: {
         mdx: {
@@ -140,7 +137,7 @@ export type PageTemplateProps = {
             totalCount: number
         }
     }
-    location: PostLocation
+    location: Location
     pageContext: {
         next: PostBasicProps,
         previous: PostBasicProps
@@ -185,10 +182,6 @@ export type PostBodyProps = {
     content: string
 }
 
-interface PostLocation extends Location {
-    state: PageState
-}
-
 interface PostQueryNode extends PostBasicProps {
     body: string
     id: string
@@ -209,7 +202,7 @@ export type PostQueryProps = {
             },
         }
     },
-    location: PostLocation
+    location: Location
     pageContext?: {
         currentPage?: number
         numPages?: number
