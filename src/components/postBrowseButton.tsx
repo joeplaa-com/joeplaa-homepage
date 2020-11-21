@@ -1,4 +1,4 @@
-import { Link } from 'gatsby'
+import { Link } from './customLink'
 import React from 'react'
 import { Button } from 'reactstrap'
 import { IconContext } from 'react-icons'

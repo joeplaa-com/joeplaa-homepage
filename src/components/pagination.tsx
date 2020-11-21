@@ -1,6 +1,6 @@
 
 import React from 'react'
-import { Link } from 'gatsby'
+import { Link } from './customLink'
 import { Button } from 'reactstrap'
 import { PaginationProps } from '../types'
 import { IconContext } from 'react-icons'

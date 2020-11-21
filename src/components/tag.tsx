@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from 'gatsby'
+import { Link } from './customLink'
 import { Badge } from 'reactstrap'
 import { IconContext } from 'react-icons'
 import kebabCase from 'lodash/kebabCase'

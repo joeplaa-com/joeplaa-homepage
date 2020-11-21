@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from 'gatsby'
+import { Link } from './customLink'
 import { Col, Container, Row } from 'reactstrap'
 import ImageAbout from './imageAbout'
 import NewTabLink from './newTabLink'

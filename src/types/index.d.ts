@@ -161,7 +161,7 @@ export type PostBodyProps = {
 interface PostLocation extends Location {
     state: {
         key: string
-        referrer: string
+        prevUrl: string
     }
 }
 
@@ -212,6 +212,7 @@ export type PostTemplateProps = {
         }
     }
     location: PostLocation
+    prevLocation: PostLocation
     pageContext: {
         next: PostBasicProps,
         previous: PostBasicProps

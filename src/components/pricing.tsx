@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from 'gatsby'
+import { Link } from './customLink'
 import { Container, Col, Row, Card, CardBody, CardDeck, Table } from 'reactstrap'
 import { IconContext } from 'react-icons'
 import { SiGatsby, SiGhost, SiGithub, SiNetlify, SiNextDotJs, SiStrapi, SiWordpress } from 'react-icons/si'

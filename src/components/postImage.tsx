@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from 'gatsby'
+import { Link } from './customLink'
 import Img from 'gatsby-image/withIEPolyfill'
 import { PostImageProps } from '../types'
 
