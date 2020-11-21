@@ -90,16 +90,16 @@ export const metaData = {
     WikiTitle: 'Wiki'
 }
 export const navigation = {
-    about: '/home#About',
+    about: '/#About',
     blog: process.env.GATSBY_BLOG_URL,
-    contact: '/home#Contact',
-    home: '/home#Banner',
+    contact: '/#Contact',
+    home: '/#Banner',
     howto: '/howto',
     portfolio: '/portfolio',
-    pricing: '/home#Pricing',
+    pricing: '/#Pricing',
     ps: '/conditions/privacy-statement',
     recommended: process.env.GATSBY_BLOG_URL + '/recommended',
-    services: '/home#Services',
+    services: '/#Services',
     tags: '/tags',
     tos: '/conditions/terms-of-service',
     wiki: '/wiki'
