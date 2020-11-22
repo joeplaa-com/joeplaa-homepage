@@ -1,16 +1,109 @@
 /* eslint-disable compat/compat */
-const siteAddress = new URL("https://www.joeplaa.com");
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+require("dotenv").config({
+    path: `.env.${process.env.NODE_ENV}`,
+})
+
 const siteMetadata = {
-    title: `joeplaa.com`, //sitetitle
-    titleTemplate: `joeplaa.com`, //sitename
-    description: `Helping people create their digital home.`, //sitedescription
-    siteImage: `/images/banner-www-default-fb.png`,
-    siteUrl: siteAddress.href,
-    siteLanguage: `en-US`,
-    siteLocale: `en_us`,
-    twitterUsername: ``,
-    authorName: `Joep van de Laarschot`,
-}
+    metadata: {
+        authorName: `Joep van de Laarschot`,
+        authorFirstName: `Joep`,
+        authorLastName: `van de Laarschot`,
+        businessAddress1: `Ir. Kalffstraat 43`,
+        businessAddress2: `5617BK Eindhoven`,
+        businessCountry: `The Netherlands`,
+        businessCoC: `Work in progress`,
+        businessIBAN: `Work in progress`,
+        businessName: `Joeplaa`,
+        businessVAT: `Work in progress`,
+        componentAboutTitle: `About`,
+        componentContactTitle: `Contact`,
+        componentPricingDescription: `If you want a website, here's what it costs.`,
+        componentPricingTitle: `Pricing`,
+        componentServicesDescription: `If you want a website, here's how I can help.`,
+        componentServicesTitle: `Services`,
+        componentWikiFaq: `Faq`,
+        componentWikiPricing: `Pricing`,
+        componentWikiProcedure: `Procedure`,
+        pageHomeDescription: `Who is Joep and what is Joeplaa?`,
+        pageHomeImage: `/images/banner-www-com.png`,
+        pageHomeSubtitle: `Website design | Website hosting`,
+        pageHomeTitle: `Home`,
+        pageHowtoTitle: `How-to`,
+        pageLandingDescription: `Welcome on joeplaa.com. Click on the links to explore further.`,
+        pageLandingTitle: `Landing`,
+        pagePortfolioDescription: `Examples of my work and skills in front-end development. If you like my work, let me know!`,
+        pagePortfolioTitle: `Portfolio`,
+        pageRecommendedDescription: `I've read a lot of books and watched countless videos on the web. Here you can find a list of my recommended books and videos.`,
+        pageRecommendedTitle: `Recommended`,
+        pageWikiDescription: `How I work and what tools I use.`,
+        pageWikiImage: `/images/banner-www-com.png`,
+        pageWikiTitle: `Wiki`,
+        siteDescription: `Helping people create their digital home.`,
+        siteImage: `/images/banner-www-default-fb.png`,
+        siteLanguage: `en-US`,
+        siteLocale: `en_us`,
+        siteName: `joeplaa.com`,
+        siteUrl: process.env.GATSBY_URL,
+        siteTitle: `joeplaa.com`,
+        titleSeparator: `|`,
+        titleTemplate: `joeplaa.com`,
+        twitterUsername: ``,
+    },
+    navigation: {
+        about: `/#About`,
+        blog: process.env.GATSBY_BLOG_URL,
+        contact: `/#Contact`,
+        home: `/#Banner`,
+        howto: `/howto`,
+        portfolio: `/portfolio`,
+        pricing: `/#Pricing`,
+        ps: `/conditions/privacy-statement`,
+        recommended: process.env.GATSBY_BLOG_URL + `/recommended`,
+        services: `/#Services`,
+        tagsNav: `/tags`,
+        tos: `/conditions/terms-of-service`,
+        wiki: `/wiki`
+    },
+    pricing: {
+        staticDesign: '€ 750',
+        dynamicDesign: '€ 950',
+        cmsDesign: '€ 1250',
+        customDesign: 'tbd',
+        staticHosting: '€ 5',
+        dynamicHosting: '€ 10',
+        cmsHosting: '€ 15',
+        cmsPlusHosting: '€ 20',
+        domainHosting: '€ 0.50'
+    },
+    settings: {
+        breakpoint: `md`,
+        designedBy: `Website design by`,
+        designerName: `Joeplaa`,
+        designerUrl: `https://github.com/joeplaa/joeplaa.com`,
+        iconSize: `40px`,
+    },
+    siteUrl: process.env.GATSBY_URL, // needed for gatsby-plugin-advanced-sitemap
+    urls: {
+        mailForm: process.env.GATSBY_MAIL_URL,
+        siteUrl: process.env.GATSBY_URL,
+        email: `info@joeplaa.com`,
+        messenger: `https://m.me/joeplaacom/`,
+        whatsapp: `https://api.whatsapp.com/send?phone=31610520633`,
+        facebook: `https://www.facebook.com/joeplaadotcom`,
+        github: `https://github.com/joeplaa`,
+        instagram: `https://www.instagram.com/joeplaa/`,
+        linkedin: `https://www.linkedin.com/in/joeplaa/`,
+        awsCloudfront: `https://aws.amazon.com/cloudfront/`,
+        awsLightsail: `https://aws.amazon.com/lightsail/`,
+        gatsbyjs: `https://www.gatsbyjs.com/`,
+        ghost: `https://ghost.org/`,
+        netlifycms: `https://www.netlifycms.org/`,
+        nextjs: `https://nextjs.org/`,
+        strapi: `https://strapi.io/`,
+        wordpress: `https://wordpress.org/`
+    }
+};
 
 module.exports = {
     siteMetadata: siteMetadata,
@@ -24,13 +117,13 @@ module.exports = {
         `gatsby-remark-images`,
         `gatsby-transformer-sharp`,
         {
-            resolve: "gatsby-plugin-anchor-links",
+            resolve: `gatsby-plugin-anchor-links`,
             options: {
                 offset: -64
             }
         },
         {
-            resolve: 'gatsby-plugin-eslint',
+            resolve: `gatsby-plugin-eslint`,
             options: {
                 test: /\.js$|\.jsx$|\.ts$|\.tsx$/,
                 exclude: /(node_modules|.cache|public)/,
@@ -71,10 +164,10 @@ module.exports = {
                         }
                     },
                     {
-                        resolve: "gatsby-remark-external-links",
+                        resolve: `gatsby-remark-external-links`,
                         options: {
-                            target: "_blank",
-                            rel: "nofollow noreferrer"
+                            target: `_blank`,
+                            rel: `nofollow noreferrer`
                         }
                     },
                     {
@@ -84,18 +177,18 @@ module.exports = {
                             maxWidth: 960,
                             srcSetBreakpoints: [320, 640, 960],
                             withWebp: true,
-                            showCaptions: ['title'],
+                            showCaptions: [`title`],
                         },
                     }
                 ],
                 remarkPlugins: [
-                    require('remark-math'),
-                    require('remark-html-katex'),
+                    require(`remark-math`),
+                    require(`remark-html-katex`),
                 ],
             },
         },
         {
-            resolve: "gatsby-plugin-react-svg",
+            resolve: `gatsby-plugin-react-svg`,
             options: {
                 rule: {
                     include: /svg/
@@ -103,14 +196,14 @@ module.exports = {
             }
         },
         {
-            resolve: 'gatsby-plugin-robots-txt',
+            resolve: `gatsby-plugin-robots-txt`,
             options: {
                 env: {
                     development: {
-                        policy: [{ userAgent: '*', disallow: ['/'] }]
+                        policy: [{ userAgent: `*`, disallow: [`/`] }]
                     },
                     production: {
-                        policy: [{ userAgent: '*', allow: '/' }]
+                        policy: [{ userAgent: `*`, allow: `/` }]
                     }
                 }
             }

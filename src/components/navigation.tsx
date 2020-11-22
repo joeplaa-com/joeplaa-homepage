@@ -1,37 +1,39 @@
 import React from 'react'
 import { Nav, NavItem } from 'reactstrap'
 import CustomNavLink from './customNavLink'
-import { content, metaData, navigation } from '../utils/data'
+import useSiteMetadata from '../hooks/useSiteMetadata'
+import useSiteNavigation from '../hooks/useSiteNavigation'
+import { content } from '../utils/content'
 import { NavigationProps } from '../types'
 
 export default function Navigation({ className }: NavigationProps) {
-
+    const { componentAboutTitle, componentContactTitle, componentPricingTitle, pageHomeTitle, pageHowtoTitle, pagePortfolioTitle, pageWikiTitle } = useSiteMetadata();
+    const { about, blog, contact, home, howto, portfolio, pricing, wiki } = useSiteNavigation();
     return (
         <Nav className={className} navbar>
             <NavItem>
-                <CustomNavLink to={navigation.home}>{metaData.HomeTitle}</CustomNavLink>
+                <CustomNavLink to={home}>{pageHomeTitle}</CustomNavLink>
             </NavItem>
             <NavItem>
-                <CustomNavLink to={navigation.about}>{metaData.AboutTitle}</CustomNavLink>
+                <CustomNavLink to={about}>{componentAboutTitle}</CustomNavLink>
             </NavItem>
             <NavItem>
-                <CustomNavLink to={navigation.pricing}>{metaData.PricingTitle}</CustomNavLink>
+                <CustomNavLink to={pricing}>{componentPricingTitle}</CustomNavLink>
             </NavItem>
             <NavItem>
-                <CustomNavLink to={navigation.contact}>{metaData.ContactTitle}</CustomNavLink>
+                <CustomNavLink to={contact}>{componentContactTitle}</CustomNavLink>
             </NavItem>
             <NavItem>
-                <CustomNavLink to={navigation.wiki}>{metaData.WikiTitle}</CustomNavLink>
+                <CustomNavLink to={wiki}>{pageWikiTitle}</CustomNavLink>
             </NavItem>
             <NavItem>
-                <CustomNavLink to={navigation.portfolio}>{metaData.PortfolioTitle}</CustomNavLink>
+                <CustomNavLink to={portfolio}>{pagePortfolioTitle}</CustomNavLink>
             </NavItem>
             <NavItem>
-                <CustomNavLink to={navigation.howto}>{metaData.HowtoTitle}</CustomNavLink>
+                <CustomNavLink to={howto}>{pageHowtoTitle}</CustomNavLink>
             </NavItem>
             <NavItem>
-                {/* eslint-disable-next-line @typescript-eslint/no-non-null-assertion*/}
-                <CustomNavLink to={navigation.blog!}>{content.Blog}</CustomNavLink>
+                <CustomNavLink to={blog}>{content.Blog}</CustomNavLink>
             </NavItem>
         </Nav>
     );

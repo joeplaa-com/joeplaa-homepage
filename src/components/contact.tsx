@@ -4,7 +4,10 @@ import { IconContext } from 'react-icons'
 import { FaFacebookMessenger, FaWhatsapp } from 'react-icons/fa'
 import { MdMail } from 'react-icons/md'
 import NewTabLink from './newTabLink'
-import { content, metaData, urls } from '../utils/data'
+import useSiteMetadata from '../hooks/useSiteMetadata'
+import useSiteSettings from '../hooks/useSiteSettings'
+import useSiteUrls from '../hooks/useSiteUrls'
+import { content } from '../utils/content'
 import linkColor from '../utils/linkColor'
 import validateEmail from '../utils/validateEmail'
 import { SectionProps } from '../types'
@@ -45,8 +48,18 @@ const initialState = {
     sendFailed: false
 }
 
-export default class Contact extends React.Component<SectionProps, ContactState> {
-    constructor(props: SectionProps) {
+interface ContactProps extends SectionProps {
+    componentContactTitle: string
+    breakpoint: string
+    urls: {
+        email: string
+        mailForm: string
+        messenger: string
+        whatsapp: string
+    }
+}
+class Contact extends React.Component<ContactProps, ContactState> {
+    constructor(props: ContactProps) {
         super(props);
         this.state = initialState;
     }
@@ -93,13 +106,13 @@ export default class Contact extends React.Component<SectionProps, ContactState>
             }
         };
         if (!this.state.captcha) {
-            fetch(`${process.env.GATSBY_MAIL_URL}`, requestOptions
+            fetch(`${this.props.urls.mailForm}`, requestOptions
             ).then((response) => {
                 if (response.ok) {
                     this.setState({ sendSuccess: true });
                 } else {
                     this.setState({ sendFailed: true });
-                    alert(content.MailSendFailed + urls.email)
+                    alert(content.MailSendFailed + this.props.urls.email)
                 }
             });
         }
@@ -145,18 +158,19 @@ export default class Contact extends React.Component<SectionProps, ContactState>
     }
 
     render () {
+        const { breakpoint, componentContactTitle } = this.props;
         return (
-            <section className={this.props.className} id={metaData.ContactTitle}>
-                <Container className='my-md-auto mb-3 mt-3'>
+            <section className={this.props.className} id={componentContactTitle}>
+                <Container className={`my-${breakpoint}-auto mb-3 mt-3`}>
                     <Row className='d-flex align-items-center'>
-                        <Col xs='12' md='auto'>
-                            <h1 className='display-1 text-center text-md-left'>{metaData.ContactTitle}</h1>
+                        <Col xs='12' classNmae={`col-${breakpoint}-auto`}>
+                            <h1 className={`display-1 text-center text-${breakpoint}-left`}>{componentContactTitle}</h1>
                         </Col>
-                        <Col xs='12' md='auto' className='text-center mx-md-auto'>
+                        <Col xs='12' className={`col-${breakpoint}-auto text-center mx-${breakpoint}-auto`}>
                             <IconContext.Provider value={{ size: '3rem', style: { margin: '.5rem' } }}>
-                                <NewTabLink className={linkColor('dark') + ' nav-padding-social'} href={urls.whatsapp} ><FaWhatsapp /></NewTabLink>
-                                <NewTabLink className={linkColor('dark') + ' nav-padding-social'} href={urls.messenger}><FaFacebookMessenger /></NewTabLink>
-                                <NewTabLink className={linkColor('dark') + ' nav-padding-social'} href={'mailto:' + urls.email}><MdMail /></NewTabLink>
+                                <NewTabLink className={linkColor('dark') + ' nav-padding-social'} href={this.props.urls.whatsapp} ><FaWhatsapp /></NewTabLink>
+                                <NewTabLink className={linkColor('dark') + ' nav-padding-social'} href={this.props.urls.messenger}><FaFacebookMessenger /></NewTabLink>
+                                <NewTabLink className={linkColor('dark') + ' nav-padding-social'} href={'mailto:' + this.props.urls.email}><MdMail /></NewTabLink>
                             </IconContext.Provider>
                         </Col>
                     </Row>
@@ -250,4 +264,22 @@ export default class Contact extends React.Component<SectionProps, ContactState>
             </section >
         );
     }
+}
+
+export default function ContactComponent (props: SectionProps) {
+    const { componentContactTitle } = useSiteMetadata();
+    const { breakpoint } = useSiteSettings();
+    const { email, mailForm, messenger, whatsapp } = useSiteUrls();
+    const urls = {
+        email: email,
+        mailForm: mailForm,
+        messenger: messenger,
+        whatsapp: whatsapp
+    }
+    // https://stackoverflow.com/questions/52781291/how-to-use-graphql-queries-in-a-container-class-component
+    // https://spectrum.chat/gatsby-js/general/is-this-a-good-way-of-using-gatsby-v2s-staticquery-with-react-component-class~d9db7af2-f594-4199-9640-8756f39876d5
+
+    return (
+        <Contact componentContactTitle={componentContactTitle} breakpoint={breakpoint} urls={urls} {...props} />
+    )
 }

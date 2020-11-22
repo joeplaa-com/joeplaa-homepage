@@ -6,11 +6,17 @@ import SEO from 'react-seo-component'
 import Filter from '../components/filter'
 import PostBrowseButton from '../components/postBrowseButton'
 import PostImage from '../components/postImage'
-import { content, metaData, navigation } from '../utils/data'
+import useSiteMetadata from '../hooks/useSiteMetadata'
+import useSiteNavigation from '../hooks/useSiteNavigation'
+import useSiteSettings from '../hooks/useSiteSettings'
+import { content } from '../utils/content'
 import formatPostTags from '../utils/formatPostTags'
 import { PageTemplateProps } from '../types'
 
 const PostTemplate = ({ data, location, pageContext }: PageTemplateProps) => {
+    const { authorName, pageHowtoTitle, siteImage, siteLanguage, siteLocale, siteUrl, titleSeparator, titleTemplate, twitterUsername } = useSiteMetadata();
+    const { howto } = useSiteNavigation();
+    const { breakpoint } = useSiteSettings();
     const { body, fields, frontmatter } = data.mdx;
     const { title, excerpt, date, cover } = frontmatter;
     const { previous, next } = pageContext;
@@ -19,34 +25,34 @@ const PostTemplate = ({ data, location, pageContext }: PageTemplateProps) => {
         <>
             <SEO
                 title={title}
-                titleTemplate={metaData.TitleTemplate}
-                titleSeparator={metaData.TitleSeparator}
+                titleTemplate={titleTemplate}
+                titleSeparator={titleSeparator}
                 description={excerpt}
                 image={
                     cover === null
-                        ? `${metaData.SiteUrl}${metaData.SiteImage}`
-                        : `${metaData.SiteUrl}${cover.publicURL}`
+                        ? `${siteUrl}${siteImage}`
+                        : `${siteUrl}${cover.publicURL}`
                 }
-                pathname={`${metaData.SiteUrl}${fields.slug}`}
-                siteLanguage={metaData.SiteLanguage}
-                siteLocale={metaData.SiteLocale}
-                twitterUsername={metaData.TwitterUsername}
-                author={metaData.AuthorName}
+                pathname={`${siteUrl}${fields.slug}`}
+                siteLanguage={siteLanguage}
+                siteLocale={siteLocale}
+                twitterUsername={twitterUsername}
+                author={authorName}
                 article={true}
                 datePublished={date}
                 dateModified={new Date(Date.now()).toISOString()}
             />
 
-            <section className='section-fill gray-medium' id={metaData.HowtoTitle}>
+            <section className='section-fill gray-medium' id={pageHowtoTitle}>
                 <Container className='my-auto post-container'>
-                    <Filter buttonType={location.state?.prevPathname ? 'back' : 'more'} page={navigation.howto} className='mb-3' tags={tags} />
-                    <div className='d-md-none post-header'>
+                    <Filter buttonType={location.state?.prevPathname ? 'back' : 'more'} page={howto} className='mb-3' tags={tags} />
+                    <div className={`d-${breakpoint}-none post-header`}>
                         <h1 className='display-3 text-center'>{title}</h1>
                     </div>
                     <div className='image-container'>
                         <PostImage path={false} title={title} picture={frontmatter.cover.childImageSharp} rounded={true} />
-                        <div className="d-none d-md-block image-overlay-blur"></div>
-                        <div className='d-none d-md-block image-overlay-text rounded'>
+                        <div className={`d-none d-${breakpoint}-block image-overlay-blur`}></div>
+                        <div className={`d-none d-${breakpoint}-block image-overlay-text rounded`}>
                             <h1 className='display-3 text-center'>{title}</h1>
                         </div>
                     </div>
