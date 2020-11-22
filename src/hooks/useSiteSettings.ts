@@ -12,7 +12,6 @@ export default function useSiteSettings () {
                             designerName
                             designerUrl
                             iconSize
-                            license
                         }
                     }
                 }

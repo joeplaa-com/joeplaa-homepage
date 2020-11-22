@@ -82,10 +82,11 @@ const siteMetadata = {
         designerName: `Joeplaa`,
         designerUrl: `https://github.com/joeplaa/joeplaa.com`,
         iconSize: `40px`,
-        license: `MIT`,
     },
     siteUrl: process.env.GATSBY_URL, // needed for gatsby-plugin-advanced-sitemap
     urls: {
+        mailForm: process.env.GATSBY_MAIL_URL,
+        siteUrl: process.env.GATSBY_URL,
         email: `info@joeplaa.com`,
         messenger: `https://m.me/joeplaacom/`,
         whatsapp: `https://api.whatsapp.com/send?phone=31610520633`,

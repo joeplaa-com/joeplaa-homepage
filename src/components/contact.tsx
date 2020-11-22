@@ -53,6 +53,7 @@ interface ContactProps extends SectionProps {
     breakpoint: string
     urls: {
         email: string
+        mailForm: string
         messenger: string
         whatsapp: string
     }
@@ -105,7 +106,7 @@ class Contact extends React.Component<ContactProps, ContactState> {
             }
         };
         if (!this.state.captcha) {
-            fetch(`${process.env.GATSBY_MAIL_URL}`, requestOptions
+            fetch(`${this.props.urls.mailForm}`, requestOptions
             ).then((response) => {
                 if (response.ok) {
                     this.setState({ sendSuccess: true });
@@ -268,10 +269,11 @@ class Contact extends React.Component<ContactProps, ContactState> {
 export default function ContactComponent (props: SectionProps) {
     const { componentContactTitle } = useSiteMetadata();
     const { breakpoint } = useSiteSettings();
-    const { email, messenger, whatsapp } = useSiteUrls();
+    const { email, mailForm, messenger, whatsapp } = useSiteUrls();
     const urls = {
         email: email,
-        messenger: messenger, 
+        mailForm: mailForm,
+        messenger: messenger,
         whatsapp: whatsapp
     }
     // https://stackoverflow.com/questions/52781291/how-to-use-graphql-queries-in-a-container-class-component
