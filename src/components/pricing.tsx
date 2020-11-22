@@ -11,7 +11,7 @@ import useSiteSettings from '../hooks/useSiteSettings'
 import useSiteUrls from '../hooks/useSiteUrls'
 import CloudFront from '../svg/cloudfront.svg'
 import LightSail from '../svg/lightsail.svg'
-import { content } from '../utils/data'
+import { content } from '../utils/content'
 import { SectionProps } from '../types'
 
 const Pricing = ({ className }: SectionProps) => {

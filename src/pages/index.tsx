@@ -6,7 +6,7 @@ import Contact from '../components/contact'
 import Pricing from '../components/pricing'
 import useSiteMetadata from '../hooks/useSiteMetadata'
 import useSiteNavigation from '../hooks/useSiteNavigation'
-import { content } from '../utils/data'
+import { content } from '../utils/content'
 
 const Home = () => {
     const { pageHomeDescription, pageHomeImage, pageHomeSubtitle, pageHomeTitle, siteLanguage, siteLocale, siteName, siteUrl, titleSeparator, titleTemplate, twitterUsername } = useSiteMetadata();

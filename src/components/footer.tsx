@@ -8,7 +8,7 @@ import useSiteMetadata from '../hooks/useSiteMetadata'
 import useSiteNavigation from '../hooks/useSiteNavigation'
 import useSiteSettings from '../hooks/useSiteSettings'
 import { SectionProps } from '../types'
-import { content } from '../utils/data'
+import { content } from '../utils/content'
 import linkColor from '../utils/linkColor'
 
 export default function Footer ({ className }: SectionProps) {

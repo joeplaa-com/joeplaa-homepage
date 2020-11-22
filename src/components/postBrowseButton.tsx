@@ -3,7 +3,7 @@ import React from 'react'
 import { Button } from 'reactstrap'
 import { IconContext } from 'react-icons'
 import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from 'react-icons/md'
-import { content } from '../utils/data'
+import { content } from '../utils/content'
 
 const PostBrowseButton = ({ title, to, type }: { title: string, to: string, type: string }) => {
 

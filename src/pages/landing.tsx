@@ -11,7 +11,7 @@ import BannerWwwCom from '../svg/banner-www-com.svg'
 import BannerWwwHowto from '../svg/banner-www-howto.svg'
 import BannerWwwPortfolio from '../svg/banner-www-portfolio.svg'
 import BannerWwwWebsites from '../svg/banner-www-websites.svg'
-import { content } from '../utils/data'
+import { content } from '../utils/content'
 
 const Landing = () => {
     const { componentPricingDescription, componentPricingTitle, componentServicesDescription, componentServicesTitle, pageHowtoDescription, pageHomeImage, pageHowtoTitle, pageLandingDescription, pageLandingTitle, pagePortfolioDescription, pagePortfolioTitle, pageRecommendedDescription, pageRecommendedTitle, siteLanguage, siteLocale, siteUrl, titleSeparator, titleTemplate, twitterUsername } = useSiteMetadata();

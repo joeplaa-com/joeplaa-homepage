@@ -3,7 +3,7 @@ import { Nav, NavItem } from 'reactstrap'
 import CustomNavLink from './customNavLink'
 import useSiteMetadata from '../hooks/useSiteMetadata'
 import useSiteNavigation from '../hooks/useSiteNavigation'
-import { content } from '../utils/data'
+import { content } from '../utils/content'
 import { NavigationProps } from '../types'
 
 export default function Navigation({ className }: NavigationProps) {

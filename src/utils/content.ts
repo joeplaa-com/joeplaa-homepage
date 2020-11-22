@@ -40,14 +40,3 @@ export const content = {
     WebHosting: 'Website hosting',
     WelcomeTo: 'Welcome to'
 }
-export const pricing = {
-    staticDesign: '€ 750',
-    dynamicDesign: '€ 950',
-    cmsDesign: '€ 1250',
-    customDesign: 'tbd',
-    staticHosting: '€ 5',
-    dynamicHosting: '€ 10',
-    cmsHosting: '€ 15',
-    cmsPlusHosting: '€ 20',
-    domainHosting: '€ 0.50'
-}

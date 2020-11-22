@@ -9,7 +9,7 @@ import PostImage from '../components/postImage'
 import useSiteMetadata from '../hooks/useSiteMetadata'
 import useSiteNavigation from '../hooks/useSiteNavigation'
 import useSiteSettings from '../hooks/useSiteSettings'
-import { content } from '../utils/data'
+import { content } from '../utils/content'
 import formatPostTags from '../utils/formatPostTags'
 import { PageTemplateProps } from '../types'
 
