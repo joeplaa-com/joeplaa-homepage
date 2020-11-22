@@ -51,20 +51,3 @@ export const pricing = {
     cmsPlusHosting: '€ 20',
     domainHosting: '€ 0.50'
 }
-export const urls = {
-    email: 'info@joeplaa.com',
-    messenger: 'https://m.me/joeplaacom/',
-    whatsapp: 'https://api.whatsapp.com/send?phone=31610520633',
-    facebook: 'https://www.facebook.com/joeplaadotcom',
-    github: 'https://github.com/joeplaa',
-    instagram: 'https://www.instagram.com/joeplaa/',
-    linkedin: 'https://www.linkedin.com/in/joeplaa/',
-    awsCloudfront: 'https://aws.amazon.com/cloudfront/',
-    awsLightsail: 'https://aws.amazon.com/lightsail/',
-    gatsbyjs: 'https://www.gatsbyjs.com/',
-    ghost: 'https://ghost.org/',
-    netlifycms: 'https://www.netlifycms.org/',
-    nextjs: 'https://nextjs.org/',
-    strapi: 'https://strapi.io/',
-    wordpress: 'https://wordpress.org/'
-}

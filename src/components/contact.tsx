@@ -6,7 +6,8 @@ import { MdMail } from 'react-icons/md'
 import NewTabLink from './newTabLink'
 import useSiteMetadata from '../hooks/useSiteMetadata'
 import useSiteSettings from '../hooks/useSiteSettings'
-import { content, urls } from '../utils/data'
+import useSiteUrls from '../hooks/useSiteUrls'
+import { content } from '../utils/data'
 import linkColor from '../utils/linkColor'
 import validateEmail from '../utils/validateEmail'
 import { SectionProps } from '../types'
@@ -50,6 +51,11 @@ const initialState = {
 interface ContactProps extends SectionProps {
     componentContactTitle: string
     breakpoint: string
+    urls: {
+        email: string
+        messenger: string
+        whatsapp: string
+    }
 }
 class Contact extends React.Component<ContactProps, ContactState> {
     constructor(props: ContactProps) {
@@ -105,7 +111,7 @@ class Contact extends React.Component<ContactProps, ContactState> {
                     this.setState({ sendSuccess: true });
                 } else {
                     this.setState({ sendFailed: true });
-                    alert(content.MailSendFailed + urls.email)
+                    alert(content.MailSendFailed + this.props.urls.email)
                 }
             });
         }
@@ -161,9 +167,9 @@ class Contact extends React.Component<ContactProps, ContactState> {
                         </Col>
                         <Col xs='12' className={`col-${breakpoint}-auto text-center mx-${breakpoint}-auto`}>
                             <IconContext.Provider value={{ size: '3rem', style: { margin: '.5rem' } }}>
-                                <NewTabLink className={linkColor('dark') + ' nav-padding-social'} href={urls.whatsapp} ><FaWhatsapp /></NewTabLink>
-                                <NewTabLink className={linkColor('dark') + ' nav-padding-social'} href={urls.messenger}><FaFacebookMessenger /></NewTabLink>
-                                <NewTabLink className={linkColor('dark') + ' nav-padding-social'} href={'mailto:' + urls.email}><MdMail /></NewTabLink>
+                                <NewTabLink className={linkColor('dark') + ' nav-padding-social'} href={this.props.urls.whatsapp} ><FaWhatsapp /></NewTabLink>
+                                <NewTabLink className={linkColor('dark') + ' nav-padding-social'} href={this.props.urls.messenger}><FaFacebookMessenger /></NewTabLink>
+                                <NewTabLink className={linkColor('dark') + ' nav-padding-social'} href={'mailto:' + this.props.urls.email}><MdMail /></NewTabLink>
                             </IconContext.Provider>
                         </Col>
                     </Row>
@@ -262,10 +268,16 @@ class Contact extends React.Component<ContactProps, ContactState> {
 export default function ContactComponent (props: SectionProps) {
     const { componentContactTitle } = useSiteMetadata();
     const { breakpoint } = useSiteSettings();
+    const { email, messenger, whatsapp } = useSiteUrls();
+    const urls = {
+        email: email,
+        messenger: messenger, 
+        whatsapp: whatsapp
+    }
     // https://stackoverflow.com/questions/52781291/how-to-use-graphql-queries-in-a-container-class-component
     // https://spectrum.chat/gatsby-js/general/is-this-a-good-way-of-using-gatsby-v2s-staticquery-with-react-component-class~d9db7af2-f594-4199-9640-8756f39876d5
 
     return (
-        <Contact breakpoint={breakpoint} componentContactTitle={componentContactTitle} {...props} />
+        <Contact componentContactTitle={componentContactTitle} breakpoint={breakpoint} urls={urls} {...props} />
     )
 }
