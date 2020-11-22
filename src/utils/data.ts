@@ -66,10 +66,6 @@ export const pricing = {
     cmsPlusHosting: '€ 20',
     domainHosting: '€ 0.50'
 }
-export const settings = {
-    breakpoint: 'lg',
-    iconSize: '40px'
-}
 export const urls = {
     email: 'info@joeplaa.com',
     messenger: 'https://m.me/joeplaacom/',
