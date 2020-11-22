@@ -39,21 +39,6 @@ export const content = {
     WebDesign: 'Website design',
     WebHosting: 'Website hosting',
     WelcomeTo: 'Welcome to'
-};
-export const navigation = {
-    about: '/#About',
-    blog: process.env.GATSBY_BLOG_URL,
-    contact: '/#Contact',
-    home: '/#Banner',
-    howto: '/howto',
-    portfolio: '/portfolio',
-    pricing: '/#Pricing',
-    ps: '/conditions/privacy-statement',
-    recommended: process.env.GATSBY_BLOG_URL + '/recommended',
-    services: '/#Services',
-    tags: '/tags',
-    tos: '/conditions/terms-of-service',
-    wiki: '/wiki'
 }
 export const pricing = {
     staticDesign: '€ 750',

@@ -4,11 +4,12 @@ import React, { useState } from 'react'
 import SEO from 'react-seo-component'
 import { Collapse, Container, ListGroup, ListGroupItem } from 'reactstrap'
 import useSiteMetadata from '../hooks/useSiteMetadata'
+import useSiteNavigation from '../hooks/useSiteNavigation'
 import { PostQueryProps } from '../types'
-import { navigation } from '../utils/data'
 
 const Howto = ({ data }: PostQueryProps) => {
     const { componentWikiFaq, componentWikiPricing, componentWikiProcedure, pageWikiDescription, pageWikiImage, pageWikiTitle, siteLanguage, siteLocale, siteUrl, titleSeparator, titleTemplate, twitterUsername } = useSiteMetadata();
+    const { wiki } = useSiteNavigation();
 
     const wikisFaq = [];
     const wikisPricing = [];
@@ -48,7 +49,7 @@ const Howto = ({ data }: PostQueryProps) => {
                 title={pageWikiTitle}
                 description={pageWikiDescription || `nothin’`}
                 image={`${siteUrl}${pageWikiImage}`}
-                pathname={`${siteUrl}${navigation.wiki}`}
+                pathname={`${siteUrl}${wiki}`}
                 titleTemplate={titleTemplate}
                 titleSeparator={titleSeparator}
                 siteLanguage={siteLanguage}

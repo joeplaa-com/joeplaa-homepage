@@ -7,12 +7,13 @@ import Filter from '../components/filter'
 import PostBrowseButton from '../components/postBrowseButton'
 import PostImage from '../components/postImage'
 import useSiteMetadata from '../hooks/useSiteMetadata'
-import { navigation } from '../utils/data'
+import useSiteNavigation from '../hooks/useSiteNavigation'
 import formatPostTags from '../utils/formatPostTags'
 import { PageTemplateProps } from '../types'
 
 const PortfolioTemplate = ({ data, location, pageContext }: PageTemplateProps) => {
     const { authorName, pagePortfolioTitle, siteImage, siteLanguage, siteLocale, siteUrl, titleSeparator, titleTemplate, twitterUsername } = useSiteMetadata();
+    const { portfolio } = useSiteNavigation();
     const { body, fields, frontmatter } = data.mdx;
     const { title, excerpt, date, cover } = frontmatter;
     const { previous, next } = pageContext;
@@ -41,7 +42,7 @@ const PortfolioTemplate = ({ data, location, pageContext }: PageTemplateProps) =
 
             <section className='section-fill gray-medium' id={pagePortfolioTitle}>
                 <Container className='my-auto post-container'>
-                    <Filter buttonType={location.state?.prevPathname ? 'back' : 'more'} page={navigation.portfolio} className='mb-3' tags={tags} />
+                    <Filter buttonType={location.state?.prevPathname ? 'back' : 'more'} page={portfolio} className='mb-3' tags={tags} />
                     <div className='image-container'>
                         <PostImage path={false} title={title} picture={frontmatter.cover.childImageSharp} rounded={true} />
                         <div className='overlay-text rounded'>

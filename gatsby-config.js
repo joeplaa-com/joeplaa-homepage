@@ -1,7 +1,10 @@
 /* eslint-disable compat/compat */
-const siteAddress = new URL("https://www.joeplaa.com");
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+require("dotenv").config({
+    path: `.env.${process.env.NODE_ENV}`,
+})
+
 const siteMetadata = {
-    siteUrl: siteAddress.href, // needed for gatsby-plugin-advanced-sitemap
     metadata: {
         authorName: `Joep van de Laarschot`,
         authorFirstName: `Joep`,
@@ -41,11 +44,26 @@ const siteMetadata = {
         siteLanguage: `en-US`,
         siteLocale: `en_us`,
         siteName: `joeplaa.com`,
-        siteUrl: siteAddress.href,
+        siteUrl: process.env.GATSBY_URL,
         siteTitle: `joeplaa.com`,
         titleSeparator: `|`,
         titleTemplate: `joeplaa.com`,
         twitterUsername: ``,
+    },
+    navigation: {
+        about: `/#About`,
+        blog: process.env.GATSBY_BLOG_URL,
+        contact: `/#Contact`,
+        home: `/#Banner`,
+        howto: `/howto`,
+        portfolio: `/portfolio`,
+        pricing: `/#Pricing`,
+        ps: `/conditions/privacy-statement`,
+        recommended: process.env.GATSBY_BLOG_URL + `/recommended`,
+        services: `/#Services`,
+        tagsNav: `/tags`,
+        tos: `/conditions/terms-of-service`,
+        wiki: `/wiki`
     },
     settings: {
         breakpoint: `md`,
@@ -54,7 +72,8 @@ const siteMetadata = {
         designerUrl: `https://github.com/joeplaa/joeplaa.com`,
         iconSize: `40px`,
         license: `MIT`,
-    }
+    },
+    siteUrl: process.env.GATSBY_URL, // needed for gatsby-plugin-advanced-sitemap
 };
 
 module.exports = {

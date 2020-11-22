@@ -6,7 +6,6 @@ import Layout from './src/components/layout'
 export const wrapRootElement = wrap;
 
 export const wrapPageElement = ({ element, ...restProps }) => {
-    console.log('browser: ', restProps)
     return (
         <Layout
             props={restProps}

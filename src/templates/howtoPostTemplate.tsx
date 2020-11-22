@@ -7,13 +7,15 @@ import Filter from '../components/filter'
 import PostBrowseButton from '../components/postBrowseButton'
 import PostImage from '../components/postImage'
 import useSiteMetadata from '../hooks/useSiteMetadata'
+import useSiteNavigation from '../hooks/useSiteNavigation'
 import useSiteSettings from '../hooks/useSiteSettings'
-import { content, navigation } from '../utils/data'
+import { content } from '../utils/data'
 import formatPostTags from '../utils/formatPostTags'
 import { PageTemplateProps } from '../types'
 
 const PostTemplate = ({ data, location, pageContext }: PageTemplateProps) => {
     const { authorName, pageHowtoTitle, siteImage, siteLanguage, siteLocale, siteUrl, titleSeparator, titleTemplate, twitterUsername } = useSiteMetadata();
+    const { howto } = useSiteNavigation();
     const { breakpoint } = useSiteSettings();
     const { body, fields, frontmatter } = data.mdx;
     const { title, excerpt, date, cover } = frontmatter;
@@ -43,7 +45,7 @@ const PostTemplate = ({ data, location, pageContext }: PageTemplateProps) => {
 
             <section className='section-fill gray-medium' id={pageHowtoTitle}>
                 <Container className='my-auto post-container'>
-                    <Filter buttonType={location.state?.prevPathname ? 'back' : 'more'} page={navigation.howto} className='mb-3' tags={tags} />
+                    <Filter buttonType={location.state?.prevPathname ? 'back' : 'more'} page={howto} className='mb-3' tags={tags} />
                     <div className={`d-${breakpoint}-none post-header`}>
                         <h1 className='display-3 text-center'>{title}</h1>
                     </div>

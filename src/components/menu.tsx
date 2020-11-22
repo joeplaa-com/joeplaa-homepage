@@ -2,12 +2,13 @@ import React, { useState, useEffect } from 'react';
 import { Collapse, Navbar, NavbarToggler } from 'reactstrap'
 import { AnchorLink } from 'gatsby-plugin-anchor-links'
 import Navigation from './navigation'
+import useSiteNavigation from '../hooks/useSiteNavigation'
 import useSiteSettings from '../hooks/useSiteSettings'
 import BannerWwwCom from '../svg/banner-www-com.svg'
 import { NavbarProps } from '../types'
-import { navigation } from '../utils/data'
 
 export default function Menu({ navbarLightText }: NavbarProps) {
+    const { home } = useSiteNavigation();
     const { breakpoint } = useSiteSettings();
 
     const [isOpen, setIsOpen] = useState(false);
@@ -35,7 +36,7 @@ export default function Menu({ navbarLightText }: NavbarProps) {
     return (
         <Navbar className={navbarActive + ' ' + 'fixed-top'} expand={breakpoint}>
             <div className='d-flex align-items-center p-0'>
-                <AnchorLink to={navigation.home}>
+                <AnchorLink to={home}>
                     <div className="mr-2"><BannerWwwCom height="55px" /></div>
                 </AnchorLink>
             </div>

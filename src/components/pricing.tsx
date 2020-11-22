@@ -5,14 +5,16 @@ import { IconContext } from 'react-icons'
 import { SiGatsby, SiGhost, SiGithub, SiNetlify, SiNextDotJs, SiStrapi, SiWordpress } from 'react-icons/si'
 import NewTabLink from './newTabLink'
 import useSiteMetadata from '../hooks/useSiteMetadata'
+import useSiteNavigation from '../hooks/useSiteNavigation'
 import useSiteSettings from '../hooks/useSiteSettings'
 import CloudFront from '../svg/cloudfront.svg'
 import LightSail from '../svg/lightsail.svg'
-import { content, navigation, pricing, urls } from '../utils/data'
+import { content, pricing, urls } from '../utils/data'
 import { SectionProps } from '../types'
 
 const Pricing = ({ className }: SectionProps) => {
     const { componentPricingTitle } = useSiteMetadata();
+    const { wiki } = useSiteNavigation();
     const { breakpoint, iconSize } = useSiteSettings();
     return (
         <section className={className} id={componentPricingTitle}>
@@ -65,7 +67,7 @@ const Pricing = ({ className }: SectionProps) => {
                                 </Table>
                             </div>
                             <div>
-                                <p>More information in the <Link to={navigation.wiki}>Wiki</Link> section</p>
+                                <p>More information in the <Link to={wiki}>Wiki</Link> section</p>
                                 <hr />
                                 <div className='text-center'>
                                     <IconContext.Provider value={{ size: iconSize }}>
@@ -123,7 +125,7 @@ const Pricing = ({ className }: SectionProps) => {
                                 </Table>
                             </div>
                             <div>
-                                <p>More information in the <Link to={navigation.wiki}>Wiki</Link> section</p>
+                                <p>More information in the <Link to={wiki}>Wiki</Link> section</p>
                                 <hr />
                                 <div className='text-center'>
                                     <IconContext.Provider value={{ size: iconSize }}>

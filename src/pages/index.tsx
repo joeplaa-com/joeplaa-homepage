@@ -5,17 +5,19 @@ import Banner from '../components/banner'
 import Contact from '../components/contact'
 import Pricing from '../components/pricing'
 import useSiteMetadata from '../hooks/useSiteMetadata'
-import { content, navigation } from '../utils/data'
+import useSiteNavigation from '../hooks/useSiteNavigation'
+import { content } from '../utils/data'
 
 const Home = () => {
     const { pageHomeDescription, pageHomeImage, pageHomeSubtitle, pageHomeTitle, siteLanguage, siteLocale, siteName, siteUrl, titleSeparator, titleTemplate, twitterUsername } = useSiteMetadata();
+    const { home } = useSiteNavigation();
     return (
         <>
             <SEO
                 title={pageHomeTitle}
                 description={pageHomeDescription || `nothin’`}
                 image={`${siteUrl}${pageHomeImage}`}
-                pathname={`${siteUrl}${navigation.home}`}
+                pathname={`${siteUrl}${home}`}
                 titleSeparator={titleSeparator}
                 titleTemplate={titleTemplate}
                 siteLanguage={siteLanguage}

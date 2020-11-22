@@ -6,12 +6,13 @@ import FilterCard from '../components/filterCard'
 import Pagination from '../components/pagination'
 import PostMore from '../components/postMore'
 import useSiteMetadata from '../hooks/useSiteMetadata'
+import useSiteNavigation from '../hooks/useSiteNavigation'
 import { PostQueryProps } from '../types'
-import { navigation } from '../utils/data'
 import formatAllTags from '../utils/formatAllTags'
 
 const HowtoTemplate = ({ data, pageContext }: PostQueryProps) => {
     const { pageHowtoDescription, pageHowtoImage, pageHowtoTitle, siteLanguage, siteLocale, siteUrl, titleSeparator, titleTemplate, twitterUsername } = useSiteMetadata();
+    const { howto } = useSiteNavigation();
     const posts = data.allMdx.nodes;
     const tags = formatAllTags(data.allMdx.group);
     const { currentPage, numPages } = pageContext;
@@ -22,7 +23,7 @@ const HowtoTemplate = ({ data, pageContext }: PostQueryProps) => {
                 title={pageHowtoTitle}
                 description={pageHowtoDescription || `nothin’`}
                 image={`${siteUrl}${pageHowtoImage}`}
-                pathname={`${siteUrl}${navigation.howto}`}
+                pathname={`${siteUrl}${howto}`}
                 titleTemplate={titleTemplate}
                 titleSeparator={titleSeparator}
                 siteLanguage={siteLanguage}
@@ -32,9 +33,9 @@ const HowtoTemplate = ({ data, pageContext }: PostQueryProps) => {
 
             <section className='section-fill blue-light' id={pageHowtoTitle}>
                 <Container className='my-auto'>
-                    <FilterCard page={navigation.howto} tags={tags} />
+                    <FilterCard page={howto} tags={tags} />
                     {posts.length > 0 && <PostMore posts={posts} />}
-                    <Pagination currentPage={currentPage} numPages={numPages} path={navigation.howto} />
+                    <Pagination currentPage={currentPage} numPages={numPages} path={howto} />
                 </Container>
             </section>
         </>

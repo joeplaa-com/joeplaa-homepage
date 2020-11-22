@@ -2,12 +2,14 @@ import React from 'react'
 import { Button, Col, Container, Row } from 'reactstrap'
 import SEO from 'react-seo-component'
 import useSiteMetadata from '../hooks/useSiteMetadata'
+import useSiteNavigation from '../hooks/useSiteNavigation'
 import useSiteSettings from '../hooks/useSiteSettings'
-import { content, navigation } from '../utils/data'
+import { content } from '../utils/data'
 import { navigate } from '@reach/router'
 
 const PageNotFound = () => {
     const { pageHomeTitle, siteDescription, siteImage, siteLanguage, siteLocale, siteTitle, siteUrl, titleSeparator, titleTemplate, twitterUsername } = useSiteMetadata();
+    const { home } = useSiteNavigation();
     const { breakpoint } = useSiteSettings();
     return (
         <>
@@ -35,7 +37,7 @@ const PageNotFound = () => {
                     <Row>
                         <Col xs='12' sm='10' md='7' lg='5' xl='4' className='mx-auto d-flex justify-content-between'>
                             <Button color='secondary' onClick={() => navigate(-1)}>{content.Back}</Button>
-                            <Button color='secondary' href={navigation.home}>{pageHomeTitle}</Button>
+                            <Button color='secondary' href={home}>{pageHomeTitle}</Button>
                         </Col>
                     </Row>
                 </Container>

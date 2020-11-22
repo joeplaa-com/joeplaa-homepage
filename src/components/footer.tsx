@@ -5,13 +5,15 @@ import Copyright from './copyright'
 import NewTabLink from './newTabLink'
 import Social from './social'
 import useSiteMetadata from '../hooks/useSiteMetadata'
+import useSiteNavigation from '../hooks/useSiteNavigation'
 import useSiteSettings from '../hooks/useSiteSettings'
 import { SectionProps } from '../types'
-import { content, navigation } from '../utils/data'
+import { content } from '../utils/data'
 import linkColor from '../utils/linkColor'
 
 export default function Footer ({ className }: SectionProps) {
     const { businessAddress1, businessAddress2, businessCoC, businessCountry, businessIBAN, businessName, businessVAT } = useSiteMetadata();
+    const { ps, tos } = useSiteNavigation();
     const { breakpoint } = useSiteSettings();
     const color = 'light';
     const colorClassName = linkColor(color);
@@ -29,8 +31,8 @@ export default function Footer ({ className }: SectionProps) {
                     </Col>
                     <Col xs='12' className={`col-${breakpoint}-4 mb-2 mt-2`}>
                         <h4 className="mb-2 mt-4">{content.Conditions}</h4>
-                        <Link className={colorClassName} to={navigation.tos}>{content.TermsOfService}</Link><br />
-                        <Link className={colorClassName} to={navigation.ps}>{content.PrivacyStatement}</Link>
+                        <Link className={colorClassName} to={tos}>{content.TermsOfService}</Link><br />
+                        <Link className={colorClassName} to={ps}>{content.PrivacyStatement}</Link>
                         <span className={`d-none d-${breakpoint}-block`}>
                             <Social color={color} key='footer' size='2rem' />
                         </span>

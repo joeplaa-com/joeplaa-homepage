@@ -5,12 +5,13 @@ import { Container } from 'reactstrap'
 import FilterCard from '../components/filterCard'
 import PostMore from '../components/postMore'
 import useSiteMetadata from '../hooks/useSiteMetadata'
+import useSiteNavigation from '../hooks/useSiteNavigation'
 import { PostQueryProps } from '../types'
-import { navigation } from '../utils/data'
 import formatAllTags from '../utils/formatAllTags'
 
 const Tag = ({ data, pageContext }: PostQueryProps) => {
     const { siteDescription, siteImage, siteLanguage, siteLocale, siteTitle, siteUrl, titleSeparator, titleTemplate, twitterUsername } = useSiteMetadata();
+    const { tagsNav } = useSiteNavigation();
     const posts = data.allMdx.nodes;
     const tags = formatAllTags([pageContext.tag]);
     return (
@@ -29,7 +30,7 @@ const Tag = ({ data, pageContext }: PostQueryProps) => {
 
             <section className='section-fill blue-light' id={siteTitle}>
                 <Container className='my-auto'>
-                    <FilterCard page={navigation.tags} tags={tags} />
+                    <FilterCard page={tagsNav} tags={tags} />
                     {posts.length > 0 && <PostMore posts={posts} />}
                 </Container>
             </section>
