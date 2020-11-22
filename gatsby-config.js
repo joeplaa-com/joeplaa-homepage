@@ -65,6 +65,17 @@ const siteMetadata = {
         tos: `/conditions/terms-of-service`,
         wiki: `/wiki`
     },
+    pricing: {
+        staticDesign: '€ 750',
+        dynamicDesign: '€ 950',
+        cmsDesign: '€ 1250',
+        customDesign: 'tbd',
+        staticHosting: '€ 5',
+        dynamicHosting: '€ 10',
+        cmsHosting: '€ 15',
+        cmsPlusHosting: '€ 20',
+        domainHosting: '€ 0.50'
+    },
     settings: {
         breakpoint: `md`,
         designedBy: `Website design by`,

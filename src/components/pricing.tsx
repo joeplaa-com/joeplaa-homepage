@@ -6,16 +6,18 @@ import { SiGatsby, SiGhost, SiGithub, SiNetlify, SiNextDotJs, SiStrapi, SiWordpr
 import NewTabLink from './newTabLink'
 import useSiteMetadata from '../hooks/useSiteMetadata'
 import useSiteNavigation from '../hooks/useSiteNavigation'
+import useSitePricing from '../hooks/useSitePricing'
 import useSiteSettings from '../hooks/useSiteSettings'
 import useSiteUrls from '../hooks/useSiteUrls'
 import CloudFront from '../svg/cloudfront.svg'
 import LightSail from '../svg/lightsail.svg'
-import { content, pricing } from '../utils/data'
+import { content } from '../utils/data'
 import { SectionProps } from '../types'
 
 const Pricing = ({ className }: SectionProps) => {
     const { componentPricingTitle } = useSiteMetadata();
     const { wiki } = useSiteNavigation();
+    const { staticDesign, dynamicDesign, cmsDesign, customDesign, staticHosting, dynamicHosting, cmsHosting, cmsPlusHosting, domainHosting } = useSitePricing();
     const { breakpoint, iconSize } = useSiteSettings();
     const { awsCloudfront, awsLightsail, gatsbyjs, ghost, github, netlifycms, nextjs, strapi, wordpress } = useSiteUrls();
     return (
@@ -48,22 +50,22 @@ const Pricing = ({ className }: SectionProps) => {
                                         <tr>
                                             <th scope="row">1</th>
                                             <td>Static website build with either <NewTabLink href={nextjs}>Next.js</NewTabLink> or <NewTabLink href={gatsbyjs}>Gatsby.js</NewTabLink>.</td>
-                                            <td>{pricing.staticDesign}</td>
+                                            <td>{staticDesign}</td>
                                         </tr>
                                         <tr>
                                             <th scope="row">2</th>
                                             <td>Dynamic website based on <NewTabLink href={wordpress}>WordPress</NewTabLink> or a simple <NewTabLink href={ghost}>Ghost</NewTabLink> blog.</td>
-                                            <td>{pricing.dynamicDesign}</td>
+                                            <td>{dynamicDesign}</td>
                                         </tr>
                                         <tr>
                                             <th scope="row">3</th>
                                             <td>Static front-end (<NewTabLink href={gatsbyjs}>Gatsby.js</NewTabLink> or <NewTabLink href={nextjs}>Next.js</NewTabLink>) with a CMS back-end (<NewTabLink href={ghost}>Ghost</NewTabLink>, <NewTabLink href={netlifycms}>NetlifyCMS</NewTabLink>, <NewTabLink href={strapi}>Strapi</NewTabLink>, <NewTabLink href={wordpress}>WordPress</NewTabLink>).</td>
-                                            <td>{pricing.cmsDesign}</td>
+                                            <td>{cmsDesign}</td>
                                         </tr>
                                         <tr>
                                             <th scope="row">4</th>
                                             <td>Custom</td>
-                                            <td>{pricing.customDesign}</td>
+                                            <td>{customDesign}</td>
                                         </tr>
                                     </tbody>
                                 </Table>
@@ -106,22 +108,22 @@ const Pricing = ({ className }: SectionProps) => {
                                         <tr>
                                             <th scope="row">1</th>
                                             <td>Static websites hosted through <NewTabLink href={awsCloudfront}>AWS CloudFront</NewTabLink>.</td>
-                                            <td>{pricing.staticHosting}</td>
+                                            <td>{staticHosting}</td>
                                         </tr>
                                         <tr>
                                             <th scope="row">2</th>
                                             <td>Dynamic websites hosted on <NewTabLink href={awsLightsail}>AWS LightSail</NewTabLink>.</td>
-                                            <td>{pricing.dynamicHosting}</td>
+                                            <td>{dynamicHosting}</td>
                                         </tr>
                                         <tr>
                                             <th scope="row">3</th>
-                                            <td>Pricing is dependent on the type of CMS you want: Ghost and WordPress {pricing.cmsHosting}, Strapi {pricing.cmsPlusHosting}. NetlifyCMS hosting is currently not possible.</td>
-                                            <td>{pricing.cmsHosting}<br />-<br />{pricing.cmsPlusHosting}</td>
+                                            <td>Pricing is dependent on the type of CMS you want: Ghost and WordPress {cmsHosting}, Strapi {cmsPlusHosting}. NetlifyCMS hosting is currently not possible.</td>
+                                            <td>{cmsHosting}<br />-<br />{cmsPlusHosting}</td>
                                         </tr>
                                         <tr>
                                             <th scope="row">4</th>
                                             <td>Domain hosting/manage service.</td>
-                                            <td>{pricing.domainHosting}</td>
+                                            <td>{domainHosting}</td>
                                         </tr>
                                     </tbody>
                                 </Table>
