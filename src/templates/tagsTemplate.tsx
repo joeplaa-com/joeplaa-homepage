@@ -5,29 +5,31 @@ import { Container } from 'reactstrap'
 import FilterCard from '../components/filterCard'
 import Layout from '../components/layout'
 import PostMore from '../components/postMore'
+import useSiteMetadata from '../hooks/useSiteMetadata'
 import { PostQueryProps } from '../types'
-import { metaData, navigation } from '../utils/data'
+import { navigation } from '../utils/data'
 import formatAllTags from '../utils/formatAllTags'
 
 const Tag = ({ data, pageContext }: PostQueryProps) => {
+    const { siteDescription, siteImage, siteLanguage, siteLocale, siteTitle, siteUrl, titleSeparator, titleTemplate, twitterUsername } = useSiteMetadata(); 
     const posts = data.allMdx.nodes;
     const tags = formatAllTags([pageContext.tag]);
     return (
         <>
             <Layout>
                 <SEO
-                    title={metaData.SiteTitle}
-                    description={metaData.SiteDescription || `nothin’`}
-                    image={`${metaData.SiteUrl}${metaData.SiteImage}`}
-                    pathname={`${metaData.SiteUrl}${pageContext.slug}`}
-                    titleTemplate={metaData.TitleTemplate}
-                    titleSeparator={metaData.TitleSeparator}
-                    siteLanguage={metaData.SiteLanguage}
-                    siteLocale={metaData.SiteLocale}
-                    twitterUsername={metaData.TwitterUsername}
+                    title={siteTitle}
+                    description={siteDescription || `nothin’`}
+                    image={`${siteUrl}${siteImage}`}
+                    pathname={`${siteUrl}${pageContext.slug}`}
+                    titleTemplate={titleTemplate}
+                    titleSeparator={titleSeparator}
+                    siteLanguage={siteLanguage}
+                    siteLocale={siteLocale}
+                    twitterUsername={twitterUsername}
                 />
 
-                <section className='section-fill blue-light' id={metaData.SiteTitle}>
+                <section className='section-fill blue-light' id={siteTitle}>
                     <Container className='my-auto'>
                         <FilterCard page={navigation.tags} tags={tags} />
                         {posts.length > 0 && <PostMore posts={posts} />}

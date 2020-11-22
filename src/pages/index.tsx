@@ -4,26 +4,28 @@ import About from '../components/about'
 import Banner from '../components/banner'
 import Contact from '../components/contact'
 import Pricing from '../components/pricing'
-import { content, metaData, navigation } from '../utils/data'
+import useSiteMetadata from '../hooks/useSiteMetadata'
+import { content, navigation } from '../utils/data'
 
 const Home = () => {
+    const { pageHomeDescription, pageHomeImage, pageHomeSubtitle, pageHomeTitle, siteLanguage, siteLocale, siteName, siteUrl, titleSeparator, titleTemplate, twitterUsername } = useSiteMetadata();
     return (
         <>
             <SEO
-                title={metaData.HomeTitle}
-                description={metaData.HomeDescription || `nothin’`}
-                image={`${metaData.SiteUrl}${metaData.HomeImage}`}
-                pathname={`${metaData.SiteUrl}${navigation.home}`}
-                titleTemplate={metaData.TitleTemplate}
-                titleSeparator={metaData.TitleSeparator}
-                siteLanguage={metaData.SiteLanguage}
-                siteLocale={metaData.SiteLocale}
-                twitterUsername={metaData.TwitterUsername}
+                title={pageHomeTitle}
+                description={pageHomeDescription || `nothin’`}
+                image={`${siteUrl}${pageHomeImage}`}
+                pathname={`${siteUrl}${navigation.home}`}
+                titleSeparator={titleSeparator}
+                titleTemplate={titleTemplate}
+                siteLanguage={siteLanguage}
+                siteLocale={siteLocale}
+                twitterUsername={twitterUsername}
             />
 
             <Banner
-                title={content.WelcomeTo + ' ' + metaData.SiteName}
-                subtitle={metaData.HomeSubtitle}
+                title={content.WelcomeTo + ' ' + siteName}
+                subtitle={pageHomeSubtitle}
                 src="home-banner-code.jpg"
                 alt="beach banner" />
 

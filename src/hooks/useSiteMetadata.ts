@@ -1,24 +1,58 @@
 import { graphql, useStaticQuery } from 'gatsby';
 
-export const useSiteMetadata = () => {
+export default function useSiteMetadata () {
     const { site } = useStaticQuery(
         graphql`
       query SITE_METADATA_QUERY {
         site {
           siteMetadata {
-            description
-            title
-            titleTemplate
+            authorName
+            authorFirstName
+            authorLastName
+            businessAddress1
+            businessAddress2
+            businessCountry
+            businessCoC
+            businessIBAN
+            businessName
+            businessVAT
+            componentAboutTitle
+            componentContactTitle
+            componentPricingDescription
+            componentPricingTitle
+            componentServicesDescription
+            componentServicesTitle
+            componentWikiFaq
+            componentWikiPricing
+            componentWikiProcedure
+            pageHomeDescription
+            pageHomeImage
+            pageHomeSubtitle
+            pageHomeTitle
+            pageHowtoTitle
+            pageLandingDescription
+            pageLandingTitle
+            pagePortfolioDescription
+            pagePortfolioTitle
+            pageRecommendedDescription
+            pageRecommendedTitle
+            pageWikiDescription
+            pageWikiImage
+            pageWikiTitle
+            siteDescription
             siteImage
-            siteUrl
             siteLanguage
             siteLocale
+            siteName
+            siteUrl
+            siteTitle
+            titleSeparator
+            titleTemplate
             twitterUsername
-            authorName
           }
         }
       }
     `
     );
     return site.siteMetadata;
-};
+}

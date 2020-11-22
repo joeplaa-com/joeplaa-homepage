@@ -4,18 +4,20 @@ import { Container, Col, Row, Card, CardBody, CardDeck, Table } from 'reactstrap
 import { IconContext } from 'react-icons'
 import { SiGatsby, SiGhost, SiGithub, SiNetlify, SiNextDotJs, SiStrapi, SiWordpress } from 'react-icons/si'
 import NewTabLink from './newTabLink'
+import useSiteMetadata from '../hooks/useSiteMetadata'
 import CloudFront from '../svg/cloudfront.svg'
 import LightSail from '../svg/lightsail.svg'
-import { content, metaData, navigation, pricing, settings, urls } from '../utils/data'
+import { content, navigation, pricing, settings, urls } from '../utils/data'
 import { SectionProps } from '../types'
 
 const Pricing = ({ className }: SectionProps) => {
+    const { componentPricingTitle } = useSiteMetadata();
     return (
-        <section className={className} id={metaData.PricingTitle}>
+        <section className={className} id={componentPricingTitle}>
             <Container className='mb-3 mt-3'>
                 <Row>
                     <Col>
-                        <h1 className='display-1 text-center text-md-left'>{metaData.PricingTitle}</h1>
+                        <h1 className='display-1 text-center text-md-left'>{componentPricingTitle}</h1>
                     </Col>
                 </Row>
                 <CardDeck>

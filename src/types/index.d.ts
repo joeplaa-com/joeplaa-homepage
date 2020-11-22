@@ -98,14 +98,12 @@ export type LabelProps = {
 
 export type LayoutProps = {
     children: string | ReactNode
+    location: PageLocation
 }
 
 // https://github.com/gatsbyjs/gatsby/issues/16682#issuecomment-718155902
 export interface LinkProps extends Omit<GatsbyLinkProps<Record<string, unknown>>, 'ref'> {
-    state?: {
-        key?: string
-        prevPathname?: string
-    }
+    state?: PageState
 }
 
 export type NavbarProps = {
@@ -123,6 +121,15 @@ export type NewTabProps = {
     text?: string
 }
 
+type PageState = {
+    key?: string
+    prevPathname?: string
+}
+
+interface PageLocation extends Location {
+    state?: PageState
+}
+
 export type PageTemplateProps = {
     data: {
         mdx: {
@@ -137,7 +144,7 @@ export type PageTemplateProps = {
             totalCount: number
         }
     }
-    location: Location
+    location: PageLocation
     pageContext: {
         next: PostBasicProps,
         previous: PostBasicProps
@@ -202,7 +209,7 @@ export type PostQueryProps = {
             },
         }
     },
-    location: Location
+    location: PageLocation
     pageContext?: {
         currentPage?: number
         numPages?: number

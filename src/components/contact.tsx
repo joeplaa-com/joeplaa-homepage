@@ -4,7 +4,7 @@ import { IconContext } from 'react-icons'
 import { FaFacebookMessenger, FaWhatsapp } from 'react-icons/fa'
 import { MdMail } from 'react-icons/md'
 import NewTabLink from './newTabLink'
-import { content, metaData, urls } from '../utils/data'
+import { content, urls } from '../utils/data'
 import linkColor from '../utils/linkColor'
 import validateEmail from '../utils/validateEmail'
 import { SectionProps } from '../types'
@@ -146,11 +146,11 @@ export default class Contact extends React.Component<SectionProps, ContactState>
 
     render () {
         return (
-            <section className={this.props.className} id={metaData.ContactTitle}>
+            <section className={this.props.className} id={'Contact'}>
                 <Container className='my-md-auto mb-3 mt-3'>
                     <Row className='d-flex align-items-center'>
                         <Col xs='12' md='auto'>
-                            <h1 className='display-1 text-center text-md-left'>{metaData.ContactTitle}</h1>
+                            <h1 className='display-1 text-center text-md-left'>{'Contact'}</h1>
                         </Col>
                         <Col xs='12' md='auto' className='text-center mx-md-auto'>
                             <IconContext.Provider value={{ size: '3rem', style: { margin: '.5rem' } }}>

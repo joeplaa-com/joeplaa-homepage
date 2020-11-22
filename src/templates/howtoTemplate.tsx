@@ -6,11 +6,13 @@ import FilterCard from '../components/filterCard'
 import Layout from '../components/layout'
 import Pagination from '../components/pagination'
 import PostMore from '../components/postMore'
+import useSiteMetadata from '../hooks/useSiteMetadata'
 import { PostQueryProps } from '../types'
-import { metaData, navigation } from '../utils/data'
+import { navigation } from '../utils/data'
 import formatAllTags from '../utils/formatAllTags'
 
-const HowtoTemplate = ({ data, location, pageContext }: PostQueryProps) => {
+const HowtoTemplate = ({ data, pageContext }: PostQueryProps) => {
+    const { pageHowtoDescription, pageHowtoImage, pageHowtoTitle, siteLanguage, siteLocale, siteUrl, titleSeparator, titleTemplate, twitterUsername } = useSiteMetadata();
     const posts = data.allMdx.nodes;
     const tags = formatAllTags(data.allMdx.group);
     const { currentPage, numPages } = pageContext;
@@ -19,20 +21,20 @@ const HowtoTemplate = ({ data, location, pageContext }: PostQueryProps) => {
         <>
             <Layout>
                 <SEO
-                    title={metaData.HowtoTitle}
-                    description={metaData.HowtoDescription || `nothin’`}
-                    image={`${metaData.SiteUrl}${metaData.HowtoImage}`}
-                    pathname={`${metaData.SiteUrl}${navigation.howto}`}
-                    titleTemplate={metaData.TitleTemplate}
-                    titleSeparator={metaData.TitleSeparator}
-                    siteLanguage={metaData.SiteLanguage}
-                    siteLocale={metaData.SiteLocale}
-                    twitterUsername={metaData.TwitterUsername}
+                    title={pageHowtoTitle}
+                    description={pageHowtoDescription || `nothin’`}
+                    image={`${siteUrl}${pageHowtoImage}`}
+                    pathname={`${siteUrl}${navigation.howto}`}
+                    titleTemplate={titleTemplate}
+                    titleSeparator={titleSeparator}
+                    siteLanguage={siteLanguage}
+                    siteLocale={siteLocale}
+                    twitterUsername={twitterUsername}
                 />
 
-                <section className='section-fill blue-light' id={metaData.HowtoTitle}>
+                <section className='section-fill blue-light' id={pageHowtoTitle}>
                     <Container className='my-auto'>
-                        <FilterCard pathname={location.pathname} tags={tags} />
+                        <FilterCard page={navigation.howto} tags={tags} />
                         {posts.length > 0 && <PostMore posts={posts} />}
                         <Pagination currentPage={currentPage} numPages={numPages} path={navigation.howto} />
                     </Container>

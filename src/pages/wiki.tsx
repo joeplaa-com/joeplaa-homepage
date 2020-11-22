@@ -3,10 +3,13 @@ import { MDXRenderer } from 'gatsby-plugin-mdx'
 import React, { useState } from 'react'
 import SEO from 'react-seo-component'
 import { Collapse, Container, ListGroup, ListGroupItem } from 'reactstrap'
+import useSiteMetadata from '../hooks/useSiteMetadata'
 import { PostQueryProps } from '../types'
-import { metaData, navigation } from '../utils/data'
+import { navigation } from '../utils/data'
 
 const Howto = ({ data }: PostQueryProps) => {
+    const { componentWikiFaq, componentWikiPricing, componentWikiProcedure, pageWikiDescription, pageWikiImage, pageWikiTitle, siteLanguage, siteLocale, siteUrl, titleSeparator, titleTemplate, twitterUsername } = useSiteMetadata();
+
     const wikisFaq = [];
     const wikisPricing = [];
     const wikisProcedure = [];
@@ -30,11 +33,11 @@ const Howto = ({ data }: PostQueryProps) => {
     }
 
     data.allMdx.nodes.map(({ id, body, frontmatter }) => {
-        if (frontmatter.category.includes(metaData.WikiFaq.toLowerCase())) {
+        if (frontmatter.category.includes(componentWikiFaq.toLowerCase())) {
             wikisFaq.push(createListItem(id, body, frontmatter))
-        } else if (frontmatter.category.includes(metaData.WikiPricing.toLowerCase())) {
+        } else if (frontmatter.category.includes(componentWikiPricing.toLowerCase())) {
             wikisPricing.push(createListItem(id, body, frontmatter))
-        } else if (frontmatter.category.includes(metaData.WikiProcedure.toLowerCase())) {
+        } else if (frontmatter.category.includes(componentWikiProcedure.toLowerCase())) {
             wikisProcedure.push(createListItem(id, body, frontmatter))
         }
     })
@@ -42,28 +45,28 @@ const Howto = ({ data }: PostQueryProps) => {
     return (
         <>
             <SEO
-                title={metaData.WikiTitle}
-                description={metaData.WikiDescription || `nothin’`}
-                image={`${metaData.SiteUrl}${metaData.WikiImage}`}
-                pathname={`${metaData.SiteUrl}${navigation.wiki}`}
-                titleTemplate={metaData.TitleTemplate}
-                titleSeparator={metaData.TitleSeparator}
-                siteLanguage={metaData.SiteLanguage}
-                siteLocale={metaData.SiteLocale}
-                twitterUsername={metaData.TwitterUsername}
+                title={pageWikiTitle}
+                description={pageWikiDescription || `nothin’`}
+                image={`${siteUrl}${pageWikiImage}`}
+                pathname={`${siteUrl}${navigation.wiki}`}
+                titleTemplate={titleTemplate}
+                titleSeparator={titleSeparator}
+                siteLanguage={siteLanguage}
+                siteLocale={siteLocale}
+                twitterUsername={twitterUsername}
             />
 
-            <section className='section-fill blue-dark' id={metaData.WikiTitle}>
+            <section className='section-fill blue-dark' id={pageWikiTitle}>
                 <Container className='my-auto'>
-                    <ListGroup id={metaData.WikiFaq}>
+                    <ListGroup id={componentWikiFaq}>
                         <ListGroupItem color='primary'><h2>General questions</h2></ListGroupItem>
                         {wikisFaq}
                     </ListGroup>
-                    <ListGroup id={metaData.WikiProcedure}>
+                    <ListGroup id={componentWikiProcedure}>
                         <ListGroupItem color='primary'><h2>What can you expect</h2></ListGroupItem>
                         {wikisProcedure}
                     </ListGroup>
-                    <ListGroup id={metaData.WikiPricing}>
+                    <ListGroup id={componentWikiPricing}>
                         <ListGroupItem color='primary'><h2>Pricing details</h2></ListGroupItem>
                         {wikisPricing}
                     </ListGroup>

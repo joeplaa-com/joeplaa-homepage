@@ -6,11 +6,13 @@ import SEO from 'react-seo-component'
 import Filter from '../components/filter'
 import PostBrowseButton from '../components/postBrowseButton'
 import PostImage from '../components/postImage'
-import { metaData, navigation } from '../utils/data'
+import useSiteMetadata from '../hooks/useSiteMetadata'
+import { navigation } from '../utils/data'
 import formatPostTags from '../utils/formatPostTags'
 import { PageTemplateProps } from '../types'
 
 const PortfolioTemplate = ({ data, location, pageContext }: PageTemplateProps) => {
+    const { authorName, pagePortfolioTitle, siteImage, siteLanguage, siteLocale, siteUrl, titleSeparator, titleTemplate, twitterUsername } = useSiteMetadata();
     const { body, fields, frontmatter } = data.mdx;
     const { title, excerpt, date, cover } = frontmatter;
     const { previous, next } = pageContext;
@@ -19,25 +21,25 @@ const PortfolioTemplate = ({ data, location, pageContext }: PageTemplateProps) =
         <>
             <SEO
                 title={title}
-                titleTemplate={metaData.TitleTemplate}
-                titleSeparator={metaData.TitleSeparator}
+                titleTemplate={titleTemplate}
+                titleSeparator={titleSeparator}
                 description={excerpt}
                 image={
                     cover === null
-                        ? `${metaData.SiteUrl}${metaData.SiteImage}`
-                        : `${metaData.SiteUrl}${cover.publicURL}`
+                        ? `${siteUrl}${siteImage}`
+                        : `${siteUrl}${cover.publicURL}`
                 }
-                pathname={`${metaData.SiteUrl}${fields.slug}`}
-                siteLanguage={metaData.SiteLanguage}
-                siteLocale={metaData.SiteLocale}
-                twitterUsername={metaData.TwitterUsername}
-                author={metaData.AuthorName}
+                pathname={`${siteUrl}${fields.slug}`}
+                siteLanguage={siteLanguage}
+                siteLocale={siteLocale}
+                twitterUsername={twitterUsername}
+                author={authorName}
                 article={true}
                 datePublished={date}
                 dateModified={new Date(Date.now()).toISOString()}
             />
 
-            <section className='section-fill gray-medium' id={metaData.PortfolioTitle}>
+            <section className='section-fill gray-medium' id={pagePortfolioTitle}>
                 <Container className='my-auto post-container'>
                     <Filter buttonType={location.state?.prevPathname ? 'back' : 'more'} page={navigation.portfolio} className='mb-3' tags={tags} />
                     <div className='image-container'>
