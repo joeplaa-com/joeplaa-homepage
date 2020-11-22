@@ -3,7 +3,6 @@ import { MDXProvider } from '@mdx-js/react'
 import Code from './src/components/code'
 import NewTabLink from './src/components/newTabLink'
 import "./src/styles/site.scss"
-import "katex/dist/katex.min.css"
 
 const components = {
     // eslint-disable-next-line react/display-name

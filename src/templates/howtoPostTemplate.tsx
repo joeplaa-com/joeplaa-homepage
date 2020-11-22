@@ -2,6 +2,7 @@ import React from 'react'
 import { graphql } from 'gatsby'
 import { MDXRenderer } from 'gatsby-plugin-mdx'
 import { Container, Col, Row } from 'reactstrap'
+import { Helmet } from 'react-helmet'
 import SEO from 'react-seo-component'
 import Filter from '../components/filter'
 import PostBrowseButton from '../components/postBrowseButton'
@@ -42,6 +43,9 @@ const PostTemplate = ({ data, location, pageContext }: PageTemplateProps) => {
                 datePublished={date}
                 dateModified={new Date(Date.now()).toISOString()}
             />
+            <Helmet>
+                <link rel="stylesheet" type="text/css" href="/css/katex.min.css" />
+            </Helmet>
 
             <section className='section-fill gray-medium' id={pageHowtoTitle}>
                 <Container className='my-auto post-container'>
