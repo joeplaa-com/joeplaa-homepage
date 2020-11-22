@@ -13,13 +13,13 @@ import { SectionProps } from '../types'
 
 const Pricing = ({ className }: SectionProps) => {
     const { componentPricingTitle } = useSiteMetadata();
-    const { iconSize } = useSiteSettings();
+    const { breakpoint, iconSize } = useSiteSettings();
     return (
         <section className={className} id={componentPricingTitle}>
             <Container className='mb-3 mt-3'>
                 <Row>
                     <Col>
-                        <h1 className='display-1 text-center text-md-left'>{componentPricingTitle}</h1>
+                        <h1 className={`display-1 text-center text-${breakpoint}-left`}>{componentPricingTitle}</h1>
                     </Col>
                 </Row>
                 <CardDeck>

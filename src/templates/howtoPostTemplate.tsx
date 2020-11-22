@@ -7,12 +7,14 @@ import Filter from '../components/filter'
 import PostBrowseButton from '../components/postBrowseButton'
 import PostImage from '../components/postImage'
 import useSiteMetadata from '../hooks/useSiteMetadata'
+import useSiteSettings from '../hooks/useSiteSettings'
 import { content, navigation } from '../utils/data'
 import formatPostTags from '../utils/formatPostTags'
 import { PageTemplateProps } from '../types'
 
 const PostTemplate = ({ data, location, pageContext }: PageTemplateProps) => {
     const { authorName, pageHowtoTitle, siteImage, siteLanguage, siteLocale, siteUrl, titleSeparator, titleTemplate, twitterUsername } = useSiteMetadata();
+    const { breakpoint } = useSiteSettings();
     const { body, fields, frontmatter } = data.mdx;
     const { title, excerpt, date, cover } = frontmatter;
     const { previous, next } = pageContext;
@@ -42,13 +44,13 @@ const PostTemplate = ({ data, location, pageContext }: PageTemplateProps) => {
             <section className='section-fill gray-medium' id={pageHowtoTitle}>
                 <Container className='my-auto post-container'>
                     <Filter buttonType={location.state?.prevPathname ? 'back' : 'more'} page={navigation.howto} className='mb-3' tags={tags} />
-                    <div className='d-md-none post-header'>
+                    <div className={`d-${breakpoint}-none post-header`}>
                         <h1 className='display-3 text-center'>{title}</h1>
                     </div>
                     <div className='image-container'>
                         <PostImage path={false} title={title} picture={frontmatter.cover.childImageSharp} rounded={true} />
-                        <div className="d-none d-md-block image-overlay-blur"></div>
-                        <div className='d-none d-md-block image-overlay-text rounded'>
+                        <div className={`d-none d-${breakpoint}-block image-overlay-blur`}></div>
+                        <div className={`d-none d-${breakpoint}-block image-overlay-text rounded`}>
                             <h1 className='display-3 text-center'>{title}</h1>
                         </div>
                     </div>

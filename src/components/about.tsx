@@ -5,22 +5,24 @@ import ImageAbout from './imageAbout'
 import NewTabLink from './newTabLink'
 import Social from './social'
 import useSiteMetadata from '../hooks/useSiteMetadata'
+import useSiteSettings from '../hooks/useSiteSettings'
 import { navigation } from '../utils/data'
 import { SectionProps } from '../types'
 
 const About = ({ className }: SectionProps) => {
     const { authorFirstName, authorLastName, componentAboutTitle } = useSiteMetadata();
+    const { breakpoint } = useSiteSettings();
     return (
         <section className={className} id="About">
             <Container className='mb-3 mt-3'>
                 <Row>
                     <Col>
-                        <h1 className='display-1 text-center text-md-left'>{componentAboutTitle}</h1>
+                        <h1 className={`display-1 text-center text-${breakpoint}-left`}>{componentAboutTitle}</h1>
                     </Col>
                 </Row>
                 <Row>
-                    <Col xs='12' md='auto'>
-                        <div className='my-3 my-md-auto mx-auto shadow' style={{ width: '240px' }}>
+                    <Col xs='12' className={`col-${breakpoint}-auto`}>
+                        <div className={`my-3 my-${breakpoint}-auto mx-auto shadow`} style={{ width: '240px' }}>
                             <ImageAbout
                                 src={'joep-in-suit.jpg'}
                                 alt={'Picture of Joep in fitting room, trying on a suit'}

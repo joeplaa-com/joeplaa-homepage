@@ -3,6 +3,7 @@ import SEO from 'react-seo-component'
 import { Link } from '../components/customLink'
 import { Container, Card, CardBody, CardColumns, CardTitle, CardText, Row } from 'reactstrap'
 import useSiteMetadata from '../hooks/useSiteMetadata'
+import useSiteSettings from '../hooks/useSiteSettings'
 import BannerBlog from '../svg/banner-blog.svg'
 import BannerBlogRecommended from '../svg/banner-blog-recommended.svg'
 import BannerWwwCom from '../svg/banner-www-com.svg'
@@ -13,6 +14,7 @@ import { content, navigation } from '../utils/data'
 
 const Landing = () => {
     const { componentPricingDescription, componentPricingTitle, componentServicesDescription, componentServicesTitle, pageHowtoDescription, pageHomeImage, pageHowtoTitle, pageLandingDescription, pageLandingTitle, pagePortfolioDescription, pagePortfolioTitle, pageRecommendedDescription, pageRecommendedTitle, siteLanguage, siteLocale, siteUrl, titleSeparator, titleTemplate, twitterUsername } = useSiteMetadata();
+    const { breakpoint } = useSiteSettings();
     return (
         <>
             <SEO
@@ -28,7 +30,7 @@ const Landing = () => {
             />
 
             <section className='section-fill blue-dark' id={pageLandingTitle}>
-                <Container className='text-center text-md-left my-auto'>
+                <Container className={`text-center text-${breakpoint}-left my-auto`}>
                     <Row>
                         <CardColumns>
                             <Card>

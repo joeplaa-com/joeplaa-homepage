@@ -19,5 +19,5 @@ export default function useSiteSettings () {
             }
         `
     );
-    return site.siteSettings.settings;
+    return site.siteMetadata.settings;
 }

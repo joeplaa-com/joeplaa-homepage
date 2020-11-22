@@ -4,6 +4,8 @@ import { IconContext } from 'react-icons'
 import { FaFacebookMessenger, FaWhatsapp } from 'react-icons/fa'
 import { MdMail } from 'react-icons/md'
 import NewTabLink from './newTabLink'
+import useSiteMetadata from '../hooks/useSiteMetadata'
+import useSiteSettings from '../hooks/useSiteSettings'
 import { content, urls } from '../utils/data'
 import linkColor from '../utils/linkColor'
 import validateEmail from '../utils/validateEmail'
@@ -45,8 +47,12 @@ const initialState = {
     sendFailed: false
 }
 
-export default class Contact extends React.Component<SectionProps, ContactState> {
-    constructor(props: SectionProps) {
+interface ContactProps extends SectionProps {
+    componentContactTitle: string
+    breakpoint: string
+}
+class Contact extends React.Component<ContactProps, ContactState> {
+    constructor(props: ContactProps) {
         super(props);
         this.state = initialState;
     }
@@ -145,14 +151,15 @@ export default class Contact extends React.Component<SectionProps, ContactState>
     }
 
     render () {
+        const { breakpoint, componentContactTitle } = this.props;
         return (
-            <section className={this.props.className} id={'Contact'}>
-                <Container className='my-md-auto mb-3 mt-3'>
+            <section className={this.props.className} id={componentContactTitle}>
+                <Container className={`my-${breakpoint}-auto mb-3 mt-3`}>
                     <Row className='d-flex align-items-center'>
-                        <Col xs='12' md='auto'>
-                            <h1 className='display-1 text-center text-md-left'>{'Contact'}</h1>
+                        <Col xs='12' classNmae={`col-${breakpoint}-auto`}>
+                            <h1 className={`display-1 text-center text-${breakpoint}-left`}>{componentContactTitle}</h1>
                         </Col>
-                        <Col xs='12' md='auto' className='text-center mx-md-auto'>
+                        <Col xs='12' className={`col-${breakpoint}-auto text-center mx-${breakpoint}-auto`}>
                             <IconContext.Provider value={{ size: '3rem', style: { margin: '.5rem' } }}>
                                 <NewTabLink className={linkColor('dark') + ' nav-padding-social'} href={urls.whatsapp} ><FaWhatsapp /></NewTabLink>
                                 <NewTabLink className={linkColor('dark') + ' nav-padding-social'} href={urls.messenger}><FaFacebookMessenger /></NewTabLink>
@@ -250,4 +257,15 @@ export default class Contact extends React.Component<SectionProps, ContactState>
             </section >
         );
     }
+}
+
+export default function ContactComponent (props: SectionProps) {
+    const { componentContactTitle } = useSiteMetadata();
+    const { breakpoint } = useSiteSettings();
+    // https://stackoverflow.com/questions/52781291/how-to-use-graphql-queries-in-a-container-class-component
+    // https://spectrum.chat/gatsby-js/general/is-this-a-good-way-of-using-gatsby-v2s-staticquery-with-react-component-class~d9db7af2-f594-4199-9640-8756f39876d5
+
+    return (
+        <Contact breakpoint={breakpoint} componentContactTitle={componentContactTitle} {...props} />
+    )
 }
