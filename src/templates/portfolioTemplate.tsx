@@ -3,7 +3,6 @@ import { graphql } from 'gatsby'
 import SEO from 'react-seo-component'
 import { Container } from 'reactstrap'
 import FilterCard from '../components/filterCard'
-import Layout from '../components/layout'
 import Pagination from '../components/pagination'
 import PortfolioEntries from '../components/portfolioEntries'
 import useSiteMetadata from '../hooks/useSiteMetadata'
@@ -19,27 +18,25 @@ const PortfolioTemplate = ({ data, pageContext }: PostQueryProps) => {
 
     return (
         <>
-            <Layout>
-                <SEO
-                    title={pagePortfolioTitle}
-                    description={pagePortfolioDescription || `nothin’`}
-                    image={`${siteUrl}${pagePortfolioImage}`}
-                    pathname={`${siteUrl}${navigation.portfolio}`}
-                    titleTemplate={titleTemplate}
-                    titleSeparator={titleSeparator}
-                    siteLanguage={siteLanguage}
-                    siteLocale={siteLocale}
-                    twitterUsername={twitterUsername}
-                />
+            <SEO
+                title={pagePortfolioTitle}
+                description={pagePortfolioDescription || `nothin’`}
+                image={`${siteUrl}${pagePortfolioImage}`}
+                pathname={`${siteUrl}${navigation.portfolio}`}
+                titleTemplate={titleTemplate}
+                titleSeparator={titleSeparator}
+                siteLanguage={siteLanguage}
+                siteLocale={siteLocale}
+                twitterUsername={twitterUsername}
+            />
 
-                <section className='section-fill blue-medium' id={pagePortfolioTitle}>
-                    <Container className='text-left my-auto'>
-                        <FilterCard page={navigation.portfolio} tags={tags} />
-                        {entries.length > 0 && <PortfolioEntries posts={entries} />}
-                        <Pagination currentPage={currentPage} numPages={numPages} path={navigation.portfolio} />
-                    </Container>
-                </section>
-            </Layout>
+            <section className='section-fill blue-medium' id={pagePortfolioTitle}>
+                <Container className='text-left my-auto'>
+                    <FilterCard page={navigation.portfolio} tags={tags} />
+                    {entries.length > 0 && <PortfolioEntries posts={entries} />}
+                    <Pagination currentPage={currentPage} numPages={numPages} path={navigation.portfolio} />
+                </Container>
+            </section>
         </>
     );
 };

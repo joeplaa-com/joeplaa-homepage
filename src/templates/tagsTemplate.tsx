@@ -3,7 +3,6 @@ import { graphql } from 'gatsby'
 import SEO from 'react-seo-component'
 import { Container } from 'reactstrap'
 import FilterCard from '../components/filterCard'
-import Layout from '../components/layout'
 import PostMore from '../components/postMore'
 import useSiteMetadata from '../hooks/useSiteMetadata'
 import { PostQueryProps } from '../types'
@@ -11,31 +10,29 @@ import { navigation } from '../utils/data'
 import formatAllTags from '../utils/formatAllTags'
 
 const Tag = ({ data, pageContext }: PostQueryProps) => {
-    const { siteDescription, siteImage, siteLanguage, siteLocale, siteTitle, siteUrl, titleSeparator, titleTemplate, twitterUsername } = useSiteMetadata(); 
+    const { siteDescription, siteImage, siteLanguage, siteLocale, siteTitle, siteUrl, titleSeparator, titleTemplate, twitterUsername } = useSiteMetadata();
     const posts = data.allMdx.nodes;
     const tags = formatAllTags([pageContext.tag]);
     return (
         <>
-            <Layout>
-                <SEO
-                    title={siteTitle}
-                    description={siteDescription || `nothin’`}
-                    image={`${siteUrl}${siteImage}`}
-                    pathname={`${siteUrl}${pageContext.slug}`}
-                    titleTemplate={titleTemplate}
-                    titleSeparator={titleSeparator}
-                    siteLanguage={siteLanguage}
-                    siteLocale={siteLocale}
-                    twitterUsername={twitterUsername}
-                />
+            <SEO
+                title={siteTitle}
+                description={siteDescription || `nothin’`}
+                image={`${siteUrl}${siteImage}`}
+                pathname={`${siteUrl}${pageContext.slug}`}
+                titleTemplate={titleTemplate}
+                titleSeparator={titleSeparator}
+                siteLanguage={siteLanguage}
+                siteLocale={siteLocale}
+                twitterUsername={twitterUsername}
+            />
 
-                <section className='section-fill blue-light' id={siteTitle}>
-                    <Container className='my-auto'>
-                        <FilterCard page={navigation.tags} tags={tags} />
-                        {posts.length > 0 && <PostMore posts={posts} />}
-                    </Container>
-                </section>
-            </Layout>
+            <section className='section-fill blue-light' id={siteTitle}>
+                <Container className='my-auto'>
+                    <FilterCard page={navigation.tags} tags={tags} />
+                    {posts.length > 0 && <PostMore posts={posts} />}
+                </Container>
+            </section>
         </>
     );
 };

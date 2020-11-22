@@ -3,7 +3,6 @@ import { graphql } from 'gatsby'
 import { MDXRenderer } from 'gatsby-plugin-mdx'
 import { Container } from 'reactstrap'
 import SEO from 'react-seo-component'
-import Layout from '../components/layout'
 import useSiteMetadata from '../hooks/useSiteMetadata'
 import { PageTemplateProps } from '../types'
 
@@ -12,7 +11,7 @@ const ConditionsTemplate = ({ data }: PageTemplateProps) => {
     const { body, fields, frontmatter } = data.mdx;
     const { title, date } = frontmatter;
     return (
-        <Layout>
+        <>
             <SEO
                 title={title}
                 titleTemplate={titleTemplate}
@@ -38,7 +37,7 @@ const ConditionsTemplate = ({ data }: PageTemplateProps) => {
                     </div>
                 </Container>
             </section>
-        </Layout>
+        </>
     );
 };
 

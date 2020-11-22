@@ -73,7 +73,6 @@ exports.createPages = ({ actions, graphql }) => {
         const conditions = result.data.conditions.nodes;
         const howto = result.data.howto.nodes;
         const portfolio = result.data.portfolio.nodes;
-        //const wiki = result.data.wiki.nodes;
         const tags = result.data.tagsGroup.group;
 
         // pagination

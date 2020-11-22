@@ -77,23 +77,41 @@ const Howto = ({ data }: PostQueryProps) => {
 };
 
 export const query = graphql`
-  query SITE_WIKI_QUERY {
-    allMdx(
-      sort: { fields: [frontmatter___title], order: ASC }
-      filter: { frontmatter: { published: { eq: true } }, fileAbsolutePath: {regex: "/content/wiki/"} }
-    ) {
-      nodes {
-        id
-        body
-        frontmatter {
-          category
-          date(formatString: "YYYY MMMM D")
-          excerpt
-          title
+    query SITE_WIKI_QUERY {
+        allMdx(
+            sort: { fields: [frontmatter___title], order: ASC }
+            filter: { frontmatter: { published: { eq: true } }, fileAbsolutePath: {regex: "/content/wiki/"} }
+        ) {
+            nodes {
+                id
+                body
+                frontmatter {
+                    category
+                    date(formatString: "YYYY MMMM D")
+                    excerpt
+                    title
+                }
+            }
         }
-      }
+        site {
+            siteMetadata {
+                metadata {
+                    componentWikiFaq
+                    componentWikiPricing
+                    componentWikiProcedure
+                    pageWikiDescription
+                    pageWikiImage
+                    pageWikiTitle
+                    siteLanguage
+                    siteLocale
+                    siteUrl
+                    titleSeparator
+                    titleTemplate
+                    twitterUsername
+                }
+            }
+        }
     }
-  }
 `;
 
 export default Howto;

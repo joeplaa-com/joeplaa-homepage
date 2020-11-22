@@ -5,13 +5,15 @@ import { IconContext } from 'react-icons'
 import { SiGatsby, SiGhost, SiGithub, SiNetlify, SiNextDotJs, SiStrapi, SiWordpress } from 'react-icons/si'
 import NewTabLink from './newTabLink'
 import useSiteMetadata from '../hooks/useSiteMetadata'
+import useSiteSettings from '../hooks/useSiteSettings'
 import CloudFront from '../svg/cloudfront.svg'
 import LightSail from '../svg/lightsail.svg'
-import { content, navigation, pricing, settings, urls } from '../utils/data'
+import { content, navigation, pricing, urls } from '../utils/data'
 import { SectionProps } from '../types'
 
 const Pricing = ({ className }: SectionProps) => {
     const { componentPricingTitle } = useSiteMetadata();
+    const { iconSize } = useSiteSettings();
     return (
         <section className={className} id={componentPricingTitle}>
             <Container className='mb-3 mt-3'>
@@ -66,7 +68,7 @@ const Pricing = ({ className }: SectionProps) => {
                                 <p>More information in the <Link to={navigation.wiki}>Wiki</Link> section</p>
                                 <hr />
                                 <div className='text-center'>
-                                    <IconContext.Provider value={{ size: settings.iconSize }}>
+                                    <IconContext.Provider value={{ size: iconSize }}>
                                         <NewTabLink href={urls.gatsbyjs} className='nav-padding-social'><SiGatsby /></NewTabLink>
                                         <NewTabLink href={urls.nextjs} className='nav-padding-social'><SiNextDotJs /></NewTabLink>
                                         <NewTabLink href={urls.ghost} className='nav-padding-social'><SiGhost /></NewTabLink>
@@ -124,10 +126,10 @@ const Pricing = ({ className }: SectionProps) => {
                                 <p>More information in the <Link to={navigation.wiki}>Wiki</Link> section</p>
                                 <hr />
                                 <div className='text-center'>
-                                    <IconContext.Provider value={{ size: settings.iconSize }}>
+                                    <IconContext.Provider value={{ size: iconSize }}>
                                         <NewTabLink href={urls.github} className='nav-padding-social'><SiGithub /></NewTabLink>
-                                        <NewTabLink href={urls.awsCloudfront} className='nav-padding-social'><CloudFront height={settings.iconSize} width={settings.iconSize} /></NewTabLink>
-                                        <NewTabLink href={urls.awsLightsail} className='nav-padding-social'><LightSail height={settings.iconSize} width={(parseInt(settings.iconSize) + 6).toString()} /></NewTabLink>
+                                        <NewTabLink href={urls.awsCloudfront} className='nav-padding-social'><CloudFront height={iconSize} width={iconSize} /></NewTabLink>
+                                        <NewTabLink href={urls.awsLightsail} className='nav-padding-social'><LightSail height={iconSize} width={(parseInt(iconSize) + 6).toString()} /></NewTabLink>
                                     </IconContext.Provider>
                                 </div>
                             </div>
