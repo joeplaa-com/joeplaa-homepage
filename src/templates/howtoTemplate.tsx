@@ -70,6 +70,9 @@ export const query = graphql`
         }
         fields {
           slug
+          readingTime {
+              text
+          }
         }
       }
       group(field: frontmatter___tags) {

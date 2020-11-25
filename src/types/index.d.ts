@@ -139,6 +139,9 @@ export type PageTemplateProps = {
             excerpt: string
             fields: {
                 slug: string
+                readingTime?: {
+                    text: string
+                }
             }
             frontmatter: FrontMatterProps
             totalCount: number
@@ -180,6 +183,9 @@ export interface PortfolioEntryProps extends PostBasicProps {
 type PostBasicProps = {
     fields: {
         slug: string
+        readingTime?: {
+            text: string
+        }
     }
     frontmatter: FrontMatterProps
     key?: string | number
@@ -234,6 +240,7 @@ export type PostImageProps = {
 export type PostSubtitleProps = {
     className?: string
     date: string
+    readingTime?: string
     tags: Array<string>
 }
 

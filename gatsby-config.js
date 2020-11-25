@@ -115,6 +115,7 @@ module.exports = {
         `gatsby-plugin-sass`,
         `gatsby-plugin-webpack-bundle-analyser-v2`,
         `gatsby-remark-images`,
+        `gatsby-remark-reading-time`,
         `gatsby-transformer-sharp`,
         {
             resolve: `gatsby-plugin-anchor-links`,
@@ -186,6 +187,17 @@ module.exports = {
                     require(`remark-html-katex`),
                 ],
             },
+        },
+        {
+            resolve: "gatsby-plugin-page-progress",
+            options: {
+                includePaths: [],
+                excludePaths: [{ regex: "^/howto" }, { regex: "^/portfolio" }, { regex: "^/wiki" }],
+                height: 3,
+                prependToBody: false,
+                color: `#07b1c2`,
+                footerHeight: 244,
+            }
         },
         {
             resolve: `gatsby-plugin-react-svg`,

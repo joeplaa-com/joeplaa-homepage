@@ -61,10 +61,14 @@ const PostTemplate = ({ data, location, pageContext }: PageTemplateProps) => {
                         </div>
                     </div>
 
-                    <div className='markdown'>
-                        <em>{content.HowtoDisclaimer}{' '}{date}</em>
-                        <MDXRenderer>{body}</MDXRenderer>
-                        <hr />
+                    <div className='markdown mt-3'>
+                        <Col xs='12' className='d-inline-flex align-items-center'>
+                            <em>{content.HowtoDisclaimer}{' '}{date}</em><span className='ml-auto'>{fields.readingTime?.text}</span>
+                        </Col>
+                        <Col>
+                            <MDXRenderer>{body}</MDXRenderer>
+                            <hr />
+                        </Col>
                     </div>
 
                     <Row className='d-flex justify-content-between align-items-center'>
@@ -110,6 +114,9 @@ export const query = graphql`
       body
       fields {
         slug
+        readingTime {
+            text
+        }
       }
     }
   }
