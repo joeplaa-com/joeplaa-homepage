@@ -22,6 +22,7 @@ export default function useSiteUrls () {
                             nextjs
                             strapi
                             wordpress
+                            plausible
                         }
                     }
                 }
