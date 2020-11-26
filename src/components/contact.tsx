@@ -1,7 +1,7 @@
 import React, { FormEvent, SyntheticEvent } from 'react'
 import { Button, Card, CardBody, Container, Col, Row, Form, FormFeedback, FormGroup, Label, Input, ListGroup, ListGroupItem } from 'reactstrap'
 import { IconContext } from 'react-icons'
-import { FaFacebookMessenger, FaWhatsapp } from 'react-icons/fa'
+import { FaCheck, FaFacebookMessenger, FaWhatsapp } from 'react-icons/fa'
 import { MdMail } from 'react-icons/md'
 import NewTabLink from './newTabLink'
 import useSiteMetadata from '../hooks/useSiteMetadata'
@@ -164,7 +164,6 @@ class Contact extends React.Component<ContactProps, ContactState> {
 
     render () {
         const { breakpoint, componentContactTitle } = this.props;
-        console.log(this.state)
         return (
             <section className={this.props.className} id={componentContactTitle}>
                 <Container className={`my-${breakpoint}-auto mb-3 mt-3`}>
@@ -205,22 +204,22 @@ class Contact extends React.Component<ContactProps, ContactState> {
                                             <Label className='label-bold'>{content.InterestedIn}</Label>
                                             <ListGroup className='mb-2'>
                                                 <ListGroupItem tag='button' className='listgroup-item-contact' action active={this.state.staticDesign} onClick={(e) => this.setCheck(e, 'staticDesign')}>
-                                                    <span>Static website (Next.js or Gatsby.js)</span>
+                                                    {this.state.staticDesign ? <span className='mr-2'><FaCheck /></span> : null}<span>Static website (Next.js or Gatsby.js)</span>
                                                 </ListGroupItem>
                                                 <ListGroupItem tag='button' className='listgroup-item-contact' action active={this.state.dynamicDesign} onClick={(e) => this.setCheck(e, 'dynamicDesign')}>
-                                                    <span>Dynamic website (WordPress)</span>
+                                                    {this.state.dynamicDesign ? <span className='mr-2'><FaCheck /></span> : null}<span>Dynamic website (WordPress)</span>
                                                 </ListGroupItem>
                                                 <ListGroupItem tag='button' className='listgroup-item-contact' action active={this.state.cmsDesign} onClick={(e) => this.setCheck(e, 'cmsDesign')}>
-                                                    <span>Static website + CMS</span>
+                                                    {this.state.cmsDesign ? <span className='mr-2'><FaCheck /></span> : null}<span>Static website + CMS</span>
                                                 </ListGroupItem>
                                                 <ListGroupItem tag='button' className='listgroup-item-contact' action active={this.state.customDesign} onClick={(e) => this.setCheck(e, 'customDesign')}>
-                                                    <span>Custom website</span>
+                                                    {this.state.customDesign ? <span className='mr-2'><FaCheck /></span> : null}<span>Custom website</span>
                                                 </ListGroupItem>
                                                 <ListGroupItem tag='button' className='listgroup-item-contact' action active={this.state.staticHosting} onClick={(e) => this.setCheck(e, 'staticHosting')}>
-                                                    <span>Static website hosting</span>
+                                                    {this.state.staticHosting ? <span className='mr-2'><FaCheck /></span> : null}<span>Static website hosting</span>
                                                 </ListGroupItem>
                                                 <ListGroupItem tag='button' className='listgroup-item-contact' action active={this.state.dynamicHosting} onClick={(e) => this.setCheck(e, 'dynamicHosting')}>
-                                                    <span>Dynamic website hosting</span>
+                                                    {this.state.dynamicHosting ? <span className='mr-2'><FaCheck /></span> : null}<span>Dynamic website hosting</span>
                                                 </ListGroupItem>
                                             </ListGroup>
 
