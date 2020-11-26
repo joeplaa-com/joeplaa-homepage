@@ -7,12 +7,12 @@ import useSiteSettings from '../hooks/useSiteSettings'
 import BannerWwwCom from '../svg/banner-www-com.svg'
 import { NavbarProps } from '../types'
 
-export default function Menu({ navbarLightText }: NavbarProps) {
+export default function Menu ({ navbarLightText }: NavbarProps) {
     const { home } = useSiteNavigation();
     const { breakpoint } = useSiteSettings();
 
-    const [isOpen, setIsOpen] = useState(false);
-    const toggle = () => setIsOpen(!isOpen);
+    const [collapsed, setCollapsed] = useState(false);
+    const toggleNavbar = () => setCollapsed(!collapsed);
 
     // *** Get scroll position and change navbar styling accordingly
     const [scrollPosition, setSrollPosition] = useState(0);
@@ -29,19 +29,20 @@ export default function Menu({ navbarLightText }: NavbarProps) {
         };
     }, []);
 
-    const navbarTop = navbarLightText ? 'top light-text' : 'top dark-text'
-    const navbarActive = scrollPosition > 10 ? 'active shadow navbar-light' : isOpen ? 'active navbar-light' : navbarTop;
+    const navbarTop = navbarLightText ? 'navbar-dark top light-text' : 'navbar-light top dark-text'
+    const navbarActive = scrollPosition > 10 ? 'active shadow navbar-light' : collapsed ? 'active navbar-light' : navbarTop;
+    const navbarToggle = scrollPosition > 10 ? 'navbar-light top dark-text' : collapsed ? 'navbar-light top dark-text' : navbarTop;
     // ***
 
     return (
         <Navbar className={navbarActive + ' ' + 'fixed-top'} expand={breakpoint}>
-            <div className='d-flex align-items-center p-0'>
+            <div className={navbarTop + ' ' + 'd-flex align-items-center p-0 navbar-brand'}>
                 <AnchorLink to={home}>
-                    <div className="mr-2"><BannerWwwCom height="55px" /></div>
+                    <BannerWwwCom height="55px" />
                 </AnchorLink>
             </div>
-            <NavbarToggler onClick={toggle} />
-            <Collapse isOpen={isOpen} navbar>
+            <NavbarToggler onClick={toggleNavbar} className={navbarToggle} />
+            <Collapse isOpen={collapsed} navbar>
                 <Navigation className='ml-auto' />
             </Collapse>
         </Navbar>
