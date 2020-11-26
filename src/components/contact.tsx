@@ -1,5 +1,5 @@
-import React from 'react'
-import { Button, Card, CardBody, Container, Col, Row, Form, FormFeedback, FormGroup, Label, Input } from 'reactstrap'
+import React, { FormEvent, SyntheticEvent } from 'react'
+import { Button, Card, CardBody, Container, Col, Row, Form, FormFeedback, FormGroup, Label, Input, ListGroup, ListGroupItem } from 'reactstrap'
 import { IconContext } from 'react-icons'
 import { FaFacebookMessenger, FaWhatsapp } from 'react-icons/fa'
 import { MdMail } from 'react-icons/md'
@@ -86,15 +86,16 @@ class Contact extends React.Component<ContactProps, ContactState> {
     }
 
     // check form and send form as email
-    checkForm () {
+    checkForm (e: FormEvent) {
         this.checkNameError();
         this.checkEmailError();
         if (this.state.name.length !== 0 && validateEmail(this.state.email)) {
-            this.submit();
+            this.submit(e);
         }
     }
 
-    submit () {
+    submit (e: FormEvent) {
+        e.preventDefault();
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
         const { nameError, emailError, captcha, sendSuccess, sendFailed, ...sendState } = this.state;
         const requestOptions = {
@@ -119,16 +120,20 @@ class Contact extends React.Component<ContactProps, ContactState> {
     }
 
     // change / update state
-    setName (value: string) {
-        this.setState({ name: value });
+    setName (e: FormEvent<HTMLInputElement>) {
+        e.preventDefault();
+        this.setState({ name: e.currentTarget.value });
     }
-    setBusiness (value: string) {
-        this.setState({ business: value });
+    setBusiness (e: FormEvent<HTMLInputElement>) {
+        e.preventDefault();
+        this.setState({ business: e.currentTarget.value });
     }
-    setEmail (value: string) {
-        this.setState({ email: value });
+    setEmail (e: FormEvent<HTMLInputElement>) {
+        e.preventDefault();
+        this.setState({ email: e.currentTarget.value });
     }
-    setCheck (value: string) {
+    setCheck (e: SyntheticEvent, value: string) {
+        e.preventDefault();
         switch (value) {
         case 'staticDesign': {
             this.setState({ staticDesign: !this.state.staticDesign }); break;
@@ -153,12 +158,13 @@ class Contact extends React.Component<ContactProps, ContactState> {
         }
         }
     }
-    setMessage (value: string) {
-        this.setState({ message: value });
+    setMessage (e: FormEvent<HTMLInputElement>) {
+        this.setState({ message: e.currentTarget.value });
     }
 
     render () {
         const { breakpoint, componentContactTitle } = this.props;
+        console.log(this.state)
         return (
             <section className={this.props.className} id={componentContactTitle}>
                 <Container className={`my-${breakpoint}-auto mb-3 mt-3`}>
@@ -183,74 +189,52 @@ class Contact extends React.Component<ContactProps, ContactState> {
                                         <Form id="contact-form">
                                             <FormGroup>
                                                 <Label for="name" className='label-bold'>{content.Name}</Label>
-                                                <Input type="text" name="name" id="name" placeholder="John Doe" value={this.state.name} onChange={(e) => (this.setName(e.target.value))} onBlur={this.checkNameError.bind(this)} invalid={this.state.nameError} />
+                                                <Input type="text" name="name" id="name" placeholder="John Doe" value={this.state.name} onChange={(e) => (this.setName(e))} onBlur={this.checkNameError.bind(this)} invalid={this.state.nameError} />
                                                 <FormFeedback>{content.NameErrorMessage}</FormFeedback>
                                             </FormGroup>
                                             <FormGroup>
                                                 <Label for="business-name" className='label-bold'>{content.Business}</Label>
-                                                <Input type="text" name="business-name" id="business-name" placeholder="ACME" value={this.state.business} onChange={(e) => (this.setBusiness(e.target.value))} />
+                                                <Input type="text" name="business-name" id="business-name" placeholder="ACME" value={this.state.business} onChange={(e) => (this.setBusiness(e))} />
                                             </FormGroup>
                                             <FormGroup>
                                                 <Label for="email" className='label-bold'>{content.Email}</Label>
-                                                <Input type="email" name="email" id="email" placeholder="name@email.com" value={this.state.email} onChange={(e) => (this.setEmail(e.target.value))} onBlur={this.checkEmailError.bind(this)} invalid={this.state.emailError} />
+                                                <Input type="email" name="email" id="email" placeholder="name@email.com" value={this.state.email} onChange={(e) => (this.setEmail(e))} onBlur={this.checkEmailError.bind(this)} invalid={this.state.emailError} />
                                                 <FormFeedback>{content.EmailErrorMessage}</FormFeedback>
                                             </FormGroup>
 
                                             <Label className='label-bold'>{content.InterestedIn}</Label>
-                                            <FormGroup check>
-                                                <Label check>
-                                                    <Input type="checkbox" checked={this.state.staticDesign || false}
-                                                        onChange={() => this.setCheck('staticDesign')} />
-                                                    <span className="checkbox-placeholder"></span>Static website (Next.js or Gatsby.js)
-                                                </Label>
-                                            </FormGroup>
-                                            <FormGroup check>
-                                                <Label check>
-                                                    <Input type="checkbox" checked={this.state.dynamicDesign || false}
-                                                        onChange={() => this.setCheck('dynamicDesign')} />
-                                                    <span className="checkbox-placeholder"></span>Dynamic website (WordPress)
-                                                </Label>
-                                            </FormGroup>
-                                            <FormGroup check>
-                                                <Label check>
-                                                    <Input type="checkbox" checked={this.state.cmsDesign || false}
-                                                        onChange={() => this.setCheck('cmsDesign')} />
-                                                    <span className="checkbox-placeholder"></span>Static website + CMS
-                                                </Label>
-                                            </FormGroup>
-                                            <FormGroup check>
-                                                <Label check>
-                                                    <Input type="checkbox" checked={this.state.customDesign || false}
-                                                        onChange={() => this.setCheck('customDesign')} />
-                                                    <span className="checkbox-placeholder"></span>Custom website
-                                                </Label>
-                                            </FormGroup>
-                                            <FormGroup check>
-                                                <Label check>
-                                                    <Input type="checkbox" checked={this.state.staticHosting || false}
-                                                        onChange={() => this.setCheck('staticHosting')} />
-                                                    <span className="checkbox-placeholder"></span>Static website hosting
-                                                </Label>
-                                            </FormGroup>
-                                            <FormGroup check>
-                                                <Label check>
-                                                    <Input type="checkbox" checked={this.state.dynamicHosting || false}
-                                                        onChange={() => this.setCheck('dynamicHosting')} />
-                                                    <span className="checkbox-placeholder"></span>Dynamic website hosting
-                                                </Label>
-                                            </FormGroup>
-                                            <p></p>
+                                            <ListGroup className='mb-2'>
+                                                <ListGroupItem tag='button' className='listgroup-item-contact' action active={this.state.staticDesign} onClick={(e) => this.setCheck(e, 'staticDesign')}>
+                                                    <span>Static website (Next.js or Gatsby.js)</span>
+                                                </ListGroupItem>
+                                                <ListGroupItem tag='button' className='listgroup-item-contact' action active={this.state.dynamicDesign} onClick={(e) => this.setCheck(e, 'dynamicDesign')}>
+                                                    <span>Dynamic website (WordPress)</span>
+                                                </ListGroupItem>
+                                                <ListGroupItem tag='button' className='listgroup-item-contact' action active={this.state.cmsDesign} onClick={(e) => this.setCheck(e, 'cmsDesign')}>
+                                                    <span>Static website + CMS</span>
+                                                </ListGroupItem>
+                                                <ListGroupItem tag='button' className='listgroup-item-contact' action active={this.state.customDesign} onClick={(e) => this.setCheck(e, 'customDesign')}>
+                                                    <span>Custom website</span>
+                                                </ListGroupItem>
+                                                <ListGroupItem tag='button' className='listgroup-item-contact' action active={this.state.staticHosting} onClick={(e) => this.setCheck(e, 'staticHosting')}>
+                                                    <span>Static website hosting</span>
+                                                </ListGroupItem>
+                                                <ListGroupItem tag='button' className='listgroup-item-contact' action active={this.state.dynamicHosting} onClick={(e) => this.setCheck(e, 'dynamicHosting')}>
+                                                    <span>Dynamic website hosting</span>
+                                                </ListGroupItem>
+                                            </ListGroup>
+
                                             <FormGroup>
                                                 <Label for="other" className='label-bold'>{content.TextBox}</Label>
-                                                <Input type="textarea" name="text" id="other" placeholder="I like your website and I want to know more about..." style={{ height: '120px' }} value={this.state.message} onChange={(e) => (this.setMessage(e.target.value))} />
+                                                <Input type="textarea" name="text" id="other" placeholder="I like your website and I want to know more about..." style={{ height: '120px' }} value={this.state.message} onChange={(e) => (this.setMessage(e))} />
                                             </FormGroup>
                                             <FormGroup check hidden>
                                                 <Label check>
                                                     <Input type="checkbox" checked={this.state.captcha || false}
-                                                        onChange={() => this.setCheck('captcha')} />
+                                                        onChange={(e) => this.setCheck(e, 'captcha')} />
                                                 </Label>
                                             </FormGroup>
-                                            <Button color='secondary' onClick={() => this.checkForm()}>{this.state.sendFailed ? content.TryAgain : content.Submit}</Button>
+                                            <Button color='secondary' onClick={(e) => this.checkForm(e)}>{this.state.sendFailed ? content.TryAgain : content.Submit}</Button>
                                         </Form>
                                     </div>)
                                     : (<div>

@@ -437,6 +437,24 @@ button.close {
         cursor: pointer;
     }
 
+    .list-group-item.listgroup-item-contact {
+        &:hover { 
+            color: $component-active-color !important;
+            background-color: $ana-secondary !important;
+            border-color: $ana-secondary !important;
+        }
+    }
+    .list-group-item.active.listgroup-item-contact {
+        color: $component-active-color !important;
+        background-color: $component-active-bg !important;
+        border-color: $component-active-bg !important;
+        &:hover { 
+            color: $component-active-color !important;
+            background-color: $ana-secondary !important;
+            border-color: $ana-secondary !important;
+        }
+    }
+
 .loader {
     display: flex;
     justify-content: center;
