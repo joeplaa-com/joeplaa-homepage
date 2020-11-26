@@ -86,7 +86,7 @@ class Contact extends React.Component<ContactProps, ContactState> {
     }
 
     // check form and send form as email
-    checkForm (e: SyntheticEvent) {
+    checkForm (e: FormEvent) {
         this.checkNameError();
         this.checkEmailError();
         if (this.state.name.length !== 0 && validateEmail(this.state.email)) {
@@ -94,7 +94,7 @@ class Contact extends React.Component<ContactProps, ContactState> {
         }
     }
 
-    submit (e: SyntheticEvent) {
+    submit (e: FormEvent) {
         e.preventDefault();
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
         const { nameError, emailError, captcha, sendSuccess, sendFailed, ...sendState } = this.state;
@@ -202,29 +202,27 @@ class Contact extends React.Component<ContactProps, ContactState> {
                                                 <FormFeedback>{content.EmailErrorMessage}</FormFeedback>
                                             </FormGroup>
 
-                                            <FormGroup>
-                                                <Label className='label-bold'>{content.InterestedIn}</Label>
-                                                <ListGroup className='mb-2'>
-                                                    <ListGroupItem tag='button' className='listgroup-item-contact' action active={this.state.staticDesign} onClick={(e) => this.setCheck(e, 'staticDesign')}>
-                                                        <span>Static website (Next.js or Gatsby.js)</span>
-                                                    </ListGroupItem>
-                                                    <ListGroupItem tag='button' className='listgroup-item-contact' action active={this.state.dynamicDesign} onClick={(e) => this.setCheck(e, 'dynamicDesign')}>
-                                                        <span>Dynamic website (WordPress)</span>
-                                                    </ListGroupItem>
-                                                    <ListGroupItem tag='button' className='listgroup-item-contact' action active={this.state.cmsDesign} onClick={(e) => this.setCheck(e, 'cmsDesign')}>
-                                                        <span>Static website + CMS</span>
-                                                    </ListGroupItem>
-                                                    <ListGroupItem tag='button' className='listgroup-item-contact' action active={this.state.customDesign} onClick={(e) => this.setCheck(e, 'customDesign')}>
-                                                        <span>Custom website</span>
-                                                    </ListGroupItem>
-                                                    <ListGroupItem tag='button' className='listgroup-item-contact' action active={this.state.staticHosting} onClick={(e) => this.setCheck(e, 'staticHosting')}>
-                                                        <span>Static website hosting</span>
-                                                    </ListGroupItem>
-                                                    <ListGroupItem tag='button' className='listgroup-item-contact' action active={this.state.dynamicHosting} onClick={(e) => this.setCheck(e, 'dynamicHosting')}>
-                                                        <span>Dynamic website hosting</span>
-                                                    </ListGroupItem>
-                                                </ListGroup>
-                                            </FormGroup>
+                                            <Label className='label-bold'>{content.InterestedIn}</Label>
+                                            <ListGroup className='mb-2'>
+                                                <ListGroupItem tag='button' className='listgroup-item-contact' action active={this.state.staticDesign} onClick={(e) => this.setCheck(e, 'staticDesign')}>
+                                                    <span>Static website (Next.js or Gatsby.js)</span>
+                                                </ListGroupItem>
+                                                <ListGroupItem tag='button' className='listgroup-item-contact' action active={this.state.dynamicDesign} onClick={(e) => this.setCheck(e, 'dynamicDesign')}>
+                                                    <span>Dynamic website (WordPress)</span>
+                                                </ListGroupItem>
+                                                <ListGroupItem tag='button' className='listgroup-item-contact' action active={this.state.cmsDesign} onClick={(e) => this.setCheck(e, 'cmsDesign')}>
+                                                    <span>Static website + CMS</span>
+                                                </ListGroupItem>
+                                                <ListGroupItem tag='button' className='listgroup-item-contact' action active={this.state.customDesign} onClick={(e) => this.setCheck(e, 'customDesign')}>
+                                                    <span>Custom website</span>
+                                                </ListGroupItem>
+                                                <ListGroupItem tag='button' className='listgroup-item-contact' action active={this.state.staticHosting} onClick={(e) => this.setCheck(e, 'staticHosting')}>
+                                                    <span>Static website hosting</span>
+                                                </ListGroupItem>
+                                                <ListGroupItem tag='button' className='listgroup-item-contact' action active={this.state.dynamicHosting} onClick={(e) => this.setCheck(e, 'dynamicHosting')}>
+                                                    <span>Dynamic website hosting</span>
+                                                </ListGroupItem>
+                                            </ListGroup>
 
                                             <FormGroup>
                                                 <Label for="other" className='label-bold'>{content.TextBox}</Label>

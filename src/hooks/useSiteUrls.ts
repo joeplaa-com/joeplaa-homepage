@@ -7,6 +7,9 @@ export default function useSiteUrls () {
                 site {
                     siteMetadata {
                         urls {
+                            mailForm
+                            plausible
+                            siteUrl
                             email
                             messenger
                             whatsapp
@@ -22,7 +25,6 @@ export default function useSiteUrls () {
                             nextjs
                             strapi
                             wordpress
-                            plausible
                         }
                     }
                 }
