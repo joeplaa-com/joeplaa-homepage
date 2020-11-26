@@ -299,8 +299,12 @@ div.card-footer {
     border-bottom: 2px solid $navbar-top-dark-text-active-color;
 }
 
-.navbar.top.dark-text .navbar-brand {
+.navbar .top.dark-text.navbar-brand {
     color: $navbar-top-dark-text-color;
+}
+
+.navbar .top.dark-text.navbar-toggler {
+    border-color: $navbar-top-dark-text-color;
 }
 
 .navbar.top.light-text .nav-link {
@@ -320,8 +324,12 @@ div.card-footer {
     border-bottom: 2px solid $navbar-light-active-color;
 }
 
-.navbar.top.light-text .navbar-brand {
+.navbar .top.light-text.navbar-brand {
     color: $navbar-light-color;
+}
+
+.navbar .top.light-text.navbar-toggler {
+    border-color: $navbar-top-light-text-color;
 }
 
 /* Change navbar styling on scroll */
