@@ -14,8 +14,8 @@ const Banner = (props: BannerProps) => {
                     alt={alt}
                     className="mx-auto image-position"
                 />
-                <div className="overlay-image"></div>
-                <div className='overlay-text flex-column text-center'>
+                <div className="image-overlay-image"></div>
+                <div className='image-overlay-text flex-column text-center'>
                     <h1 className='display-1'>{title}</h1>
                     <h2>{subtitle}</h2>
                     <Social key='banner' color='light' size='2rem' />
