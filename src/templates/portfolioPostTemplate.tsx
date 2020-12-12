@@ -89,7 +89,7 @@ export const query = graphql`
         cover {
           publicURL
           childImageSharp {
-              fluid(srcSetBreakpoints: [320, 640, 960]) {
+              fluid(maxWidth: 960, srcSetBreakpoints: [320, 640]) {
               ...GatsbyImageSharpFluid_withWebp
             }
           }
