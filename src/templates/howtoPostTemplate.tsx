@@ -55,7 +55,7 @@ const PostTemplate = ({ data, location, pageContext }: PageTemplateProps) => {
                     </div>
                     <div className='image-container'>
                         <PostImage path={false} title={title} picture={frontmatter.cover.childImageSharp} rounded={true} />
-                        <div className={`d-none d-${breakpoint}-block image-overlay-blur`}></div>
+                        <div className={`d-none d-${breakpoint}-block image-overlay-blur rounded`}></div>
                         <div className={`d-none d-${breakpoint}-block image-overlay-text rounded`}>
                             <h1 className='display-3 text-center'>{title}</h1>
                         </div>
