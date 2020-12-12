@@ -76,7 +76,7 @@ exports.createPages = ({ actions, graphql }) => {
         const tags = result.data.tagsGroup.group;
 
         // pagination
-        const postsPerPage = 6;
+        const postsPerPage = 12;
         const numHowtoPages = Math.ceil(howto.filter(post => post.frontmatter.series !== true).length / postsPerPage);
         const numPortfolioPages = Math.ceil(portfolio.length / postsPerPage);
 
