@@ -16,7 +16,7 @@ cp .env.test .env.production
 yarn install
 
 # Build website
-#yarn clean
+yarn clean
 yarn build
 
 # Publish website to Nginx
