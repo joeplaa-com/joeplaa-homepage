@@ -11,8 +11,8 @@ export default function PostPreview({ fields, frontmatter }: PostBasicProps) {
     return (
         <Card>
             <CardBody>
-                <PostImage path={true} slug={fields.slug} title={frontmatter.title} picture={frontmatter.cover.childImageSharp} rounded={true} height={180} />
                 <PostTitle path={true} slug={fields.slug} title={frontmatter.title} />
+                <PostImage path={true} slug={fields.slug} title={frontmatter.title} picture={frontmatter.cover.childImageSharp} rounded={true} height={180} />
                 <PostSubtitle className='mb-2' date={frontmatter.date} readingTime={fields.readingTime?.text} tags={frontmatter.tags} />
                 <CardText>{truncateText(frontmatter.excerpt, 150)}</CardText>
             </CardBody>
