@@ -22,7 +22,7 @@ yarn build
 
 # Publish website to Nginx
 # TEST (test.www.joeplaa.com):
-scp -r public/* jodibooks@192.168.178.156:/var/www/test-www-joeplaa-com
+scp -r public/* jodibooks@192.168.178.159:/home/jodibooks/volumes/nginx/data/test-www-joeplaa-com
 
 # Restore environment variables
 mv .env.production.backup .env.production
