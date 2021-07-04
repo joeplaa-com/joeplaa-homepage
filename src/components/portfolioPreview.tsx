@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import Img from 'gatsby-image/withIEPolyfill'
+import { GatsbyImage } from "gatsby-plugin-image";
 import { Button, Card, CardBody, Modal, ModalBody, ModalFooter, ModalHeader } from 'reactstrap'
 import { FaTimes } from 'react-icons/fa'
 import PostBody from './postBody'
@@ -14,33 +14,36 @@ export default function PortfolioPreview({ body, fields, frontmatter }: Portfoli
     const toggle = () => setModal(!modal);
     const closeBtn = <button className="close" onClick={toggle}>&times;</button>;
 
-    return (
-        <>
-            <Card>
-                <CardBody>
-                    <PostTitle path={false} onClick={toggle} slug={fields.slug} title={frontmatter.title} />
-                    <PostImage path={false} onClick={toggle} slug={fields.slug} title={frontmatter.title} picture={frontmatter.cover.childImageSharp} rounded={true} height={180} />
-                    <PostSubtitle className='mt-3' date={frontmatter.date} tags={frontmatter.tags} />
-                </CardBody>
-            </Card>
-            <Modal isOpen={modal} toggle={toggle} size='lg'>
-                <ModalHeader className='modal-background' toggle={toggle} close={closeBtn}>{frontmatter.title}</ModalHeader>
+    return <>
+        <Card>
+            <CardBody>
+                <PostTitle path={false} onClick={toggle} slug={fields.slug} title={frontmatter.title} />
+                <PostImage path={false} onClick={toggle} slug={fields.slug} title={frontmatter.title} picture={frontmatter.cover.childImageSharp} rounded={true} height={180} />
+                <PostSubtitle className='mt-3' date={frontmatter.date} tags={frontmatter.tags} />
+            </CardBody>
+        </Card>
+        <Modal isOpen={modal} toggle={toggle} size='lg'>
+            <ModalHeader className='modal-background' toggle={toggle} close={closeBtn}>{frontmatter.title}</ModalHeader>
 
-                <ModalBody>
-                    <Img fluid={frontmatter.cover.childImageSharp.fluid} objectFit="cover" objectPosition="50% 50%" alt={'Cover Image for ' + frontmatter.title} className='img-fluid rounded' />
-                </ModalBody>
+            <ModalBody>
+                <GatsbyImage
+                    image={frontmatter.cover.childImageSharp.gatsbyImageData}
+                    objectFit="cover"
+                    objectPosition="50% 50%"
+                    alt={'Cover Image for ' + frontmatter.title}
+                    className='img-fluid rounded' />
+            </ModalBody>
 
-                <ModalBody>
-                    <PostBody content={body} />
-                </ModalBody>
+            <ModalBody>
+                <PostBody content={body} />
+            </ModalBody>
 
-                <ModalFooter>
-                    <Button color="primary" outline onClick={toggle}>
-                        <FaTimes />
-                        <span>{' '}{content.BacktoPortfolio}</span>
-                    </Button>
-                </ModalFooter>
-            </Modal>
-        </>
-    );
+            <ModalFooter>
+                <Button color="primary" outline onClick={toggle}>
+                    <FaTimes />
+                    <span>{' '}{content.BacktoPortfolio}</span>
+                </Button>
+            </ModalFooter>
+        </Modal>
+    </>;
 }

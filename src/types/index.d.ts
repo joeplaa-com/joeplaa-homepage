@@ -1,6 +1,6 @@
 import { ReactElement, ReactNode } from 'react'
 import { GatsbyLinkProps } from 'gatsby-link'
-import { FixedObject, FluidObject } from 'gatsby-image'
+import { IGatsbyImageData } from "gatsby-plugin-image";
 import { Language } from 'prism-react-renderer'
 
 export type AuthorProps = {
@@ -12,7 +12,7 @@ export type AvatarImageProps = {
         relativePath: string
         extension: string
         publicURL: string
-        childImageSharp: ChildImageSharpFixed
+        childImageSharp: ChildImageSharp
     }
 }
 
@@ -26,36 +26,16 @@ export type BannerProps = {
 // === Begin Gatsby images ===
 type ChildImageSharp = {
     publicURL: string
+    gatsbyImageData: IGatsbyImageData
 }
 
-interface ChildImageSharpFixed extends ChildImageSharp {
-    fixed: FixedObject
-}
-
-interface ChildImageSharpFluid extends ChildImageSharp {
-    fluid: FluidObject
-}
-
-type ImageNode = {
-    extension?: 'jpg' | 'jpeg' | 'png' | 'webp' | 'svg'
-    publicURL: string
-    relativePath?: string
-}
-
-interface ImageFixedNode extends ImageNode {
-    childImageSharp: ChildImageSharpFixed
-}
-
-export type ImageFixedNodeProps = {
-    node: ImageFixedNode
-}
-
-interface ImageFluidNode extends ImageNode {
-    childImageSharp: ChildImageSharpFluid
-}
-
-export type ImageFluidNodeProps = {
-    node: ImageFluidNode
+export type ImageNodeProps = {
+    node: {
+        extension?: 'jpg' | 'jpeg' | 'png' | 'webp' | 'svg'
+        publicURL: string
+        relativePath?: string
+        childImageSharp: ChildImageSharp
+    }
 }
 // === End Gatsby images ===
 
@@ -166,7 +146,7 @@ type FrontMatterProps = {
     author: string
     category?: string
     cover: {
-        childImageSharp: ChildImageSharpFluid
+        childImageSharp: ChildImageSharp
         publicURL: string
     }
     date: string
@@ -231,7 +211,7 @@ export type PostImageProps = {
     height?: number
     onClick?: () => void
     path: boolean
-    picture: ChildImageSharpFluid
+    picture: ChildImageSharp
     rounded?: boolean
     slug?: string
     title: string

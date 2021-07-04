@@ -42,45 +42,41 @@ const HowtoTemplate = ({ data, pageContext }: PostQueryProps) => {
     );
 };
 
-export const query = graphql`
-  query howtoTemplate($skip: Int!, $limit: Int!) {
+export const query = graphql`query howtoTemplate($skip: Int!, $limit: Int!) {
     allMdx(
-      sort: { fields: [frontmatter___date], order: DESC }
-      filter: { frontmatter: { published: { eq: true }, series: { ne: true } }, fileAbsolutePath: {regex: "/content/howto/"} }
-      limit: $limit
-      skip: $skip
+        sort: {fields: [frontmatter___date], order: DESC}
+        filter: {frontmatter: {published: {eq: true}, series: {ne: true}}, fileAbsolutePath: {regex: "/content/howto/"}}
+        limit: $limit
+        skip: $skip
     ) {
-      nodes {
-        id
-        frontmatter {
-          author
-          cover {
-            publicURL
-            childImageSharp {
-                fluid(maxWidth: 960, srcSetBreakpoints: [320, 640]) {
-                ...GatsbyImageSharpFluid_withWebp
-              }
+        nodes {
+            id
+            frontmatter {
+                author
+                cover {
+                    publicURL
+                    childImageSharp {
+                        gatsbyImageData(width: 960, breakpoints: [320, 640], layout: CONSTRAINED)
+                    }
+                }
+                date(formatString: "YYYY MMMM D")
+                excerpt
+                series
+                tags
+                title
             }
-          }
-          date(formatString: "YYYY MMMM D")
-          excerpt
-          series
-          tags
-          title
+            fields {
+                slug
+                readingTime {
+                    text
+                }
+            }
         }
-        fields {
-          slug
-          readingTime {
-              text
-          }
+        group(field: frontmatter___tags) {
+            fieldValue
+            totalCount
         }
-      }
-      group(field: frontmatter___tags) {
-        fieldValue
-        totalCount
-      }
     }
-  }
-`;
+}`;
 
 export default HowtoTemplate;

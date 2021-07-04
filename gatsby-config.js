@@ -112,6 +112,7 @@ module.exports = {
     plugins: [
         `gatsby-plugin-advanced-sitemap`,
         `gatsby-plugin-catch-links`,
+        `gatsby-plugin-image`,
         `gatsby-plugin-preact`,
         `gatsby-plugin-react-helmet`,
         `gatsby-plugin-sass`,

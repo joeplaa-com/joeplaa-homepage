@@ -42,42 +42,38 @@ const PortfolioTemplate = ({ data, pageContext }: PostQueryProps) => {
     );
 };
 
-export const query = graphql`
-  query portfolioTemplate($skip: Int!, $limit: Int!) {
+export const query = graphql`query portfolioTemplate($skip: Int!, $limit: Int!) {
     allMdx(
-      sort: { fields: [frontmatter___date], order: DESC }
-      filter: { frontmatter: { published: { eq: true } }, fileAbsolutePath: {regex: "/content/portfolio/"} }
-      limit: $limit
-      skip: $skip
+        sort: {fields: [frontmatter___date], order: DESC}
+        filter: {frontmatter: {published: {eq: true}}, fileAbsolutePath: {regex: "/content/portfolio/"}}
+        limit: $limit
+        skip: $skip
     ) {
-      nodes {
-        id
-        frontmatter {
-          author
-          cover {
-            publicURL
-            childImageSharp {
-                fluid(maxWidth: 640, srcSetBreakpoints: [320, 480]) {
-                ...GatsbyImageSharpFluid_withWebp
-              }
+        nodes {
+            id
+            frontmatter {
+                author
+                cover {
+                    publicURL
+                    childImageSharp {
+                        gatsbyImageData(width: 640, breakpoints: [320, 480], layout: CONSTRAINED)
+                    }
+                }
+                date(formatString: "YYYY MMMM D")
+                excerpt
+                tags
+                title
             }
-          }
-          date(formatString: "YYYY MMMM D")
-          excerpt
-          tags
-          title
+            body
+            fields {
+                slug
+            }
         }
-        body
-        fields {
-          slug
+        group(field: frontmatter___tags) {
+            fieldValue
+            totalCount
         }
-      }
-      group(field: frontmatter___tags) {
-        fieldValue
-        totalCount
-      }
     }
-  }
-`;
+}`;
 
 export default PortfolioTemplate; 
