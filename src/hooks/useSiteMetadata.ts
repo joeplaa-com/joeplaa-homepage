@@ -37,9 +37,9 @@ export default function useSiteMetadata () {
                             pagePortfolioTitle
                             pageRecommendedDescription
                             pageRecommendedTitle
-                            pageWikiDescription
-                            pageWikiImage
-                            pageWikiTitle
+                            pageServicesDescription
+                            pageServicesImage
+                            pageServicesTitle
                             siteDescription
                             siteImage
                             siteLanguage

@@ -14,7 +14,7 @@ import LightSail from '../svg/lightsail.svg'
 import { content } from '../utils/content'
 import { SectionProps } from '../types'
 
-const Pricing = ({ className }: SectionProps) => {
+const ServicesComponent = ({ className }: SectionProps) => {
     const { componentPricingTitle } = useSiteMetadata();
     const { services } = useSiteNavigation();
     const { staticDesign, dynamicDesign, cmsDesign, customDesign, staticHosting, dynamicHosting, cmsHosting, cmsPlusHosting, domainHosting } = useSitePricing();
@@ -147,4 +147,4 @@ const Pricing = ({ className }: SectionProps) => {
     );
 }
 
-export default Pricing;
+export default ServicesComponent;

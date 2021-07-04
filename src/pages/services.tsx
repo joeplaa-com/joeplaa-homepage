@@ -3,20 +3,23 @@ import { MDXRenderer } from 'gatsby-plugin-mdx'
 import React, { useState } from 'react'
 import SEO from 'react-seo-component'
 import { Collapse, Container, ListGroup, ListGroupItem } from 'reactstrap'
+import ContactComponent from '../components/contact'
+import Pricing from '../components/pricing'
+import ServicesComponent from '../components/services'
 import useSiteMetadata from '../hooks/useSiteMetadata'
 import useSiteNavigation from '../hooks/useSiteNavigation'
 import { PostQueryProps } from '../types'
 
-const Howto = ({ data }: PostQueryProps) => {
-    const { componentWikiFaq, componentWikiPricing, componentWikiProcedure, pageWikiDescription, pageWikiImage, pageWikiTitle, siteLanguage, siteLocale, siteUrl, titleSeparator, titleTemplate, twitterUsername } = useSiteMetadata();
-    const { wiki } = useSiteNavigation();
+const Services = ({ data }: PostQueryProps) => {
+    const { componentWikiFaq, componentWikiPricing, componentWikiProcedure, pageServicesDescription, pageServicesImage, pageServicesTitle, componentWikiTitle, siteLanguage, siteLocale, siteUrl, titleSeparator, titleTemplate, twitterUsername } = useSiteMetadata();
+    const { Services } = useSiteNavigation();
 
     const wikisFaq = [];
     const wikisPricing = [];
     const wikisProcedure = [];
     const [isOpen, setIsOpen] = useState({})
 
-    function createListItem (id, body, frontmatter) {
+    function createListItem(id, body, frontmatter) {
         return (
             <ListGroupItem className='list-group-item-wiki markdown' tag="button" key={id} onClick={() => {
                 const newIsOpen = {
@@ -46,10 +49,10 @@ const Howto = ({ data }: PostQueryProps) => {
     return (
         <>
             <SEO
-                title={pageWikiTitle}
-                description={pageWikiDescription || `nothin’`}
-                image={`${siteUrl}${pageWikiImage}`}
-                pathname={`${siteUrl}${wiki}`}
+                title={pageServicesTitle}
+                description={pageServicesDescription || `nothin’`}
+                image={`${siteUrl}${pageServicesImage}`}
+                pathname={`${siteUrl}${Services}`}
                 titleTemplate={titleTemplate}
                 titleSeparator={titleSeparator}
                 siteLanguage={siteLanguage}
@@ -57,7 +60,15 @@ const Howto = ({ data }: PostQueryProps) => {
                 twitterUsername={twitterUsername}
             />
 
-            <section className='section-fill blue-dark' id={pageWikiTitle}>
+            <section className='section-fill blue-dark' id={pageServicesTitle}>
+                <ServicesComponent className='section-home' />
+
+                <Pricing className='section-home' />
+
+                <ContactComponent className='section-home' />
+            </section>
+
+            <section className='section-fill blue-dark' id={componentWikiTitle}>
                 <Container className='my-auto'>
                     <ListGroup id={componentWikiFaq}>
                         <ListGroupItem color='primary'><h2>General questions</h2></ListGroupItem>
@@ -100,9 +111,10 @@ export const query = graphql`
                     componentWikiFaq
                     componentWikiPricing
                     componentWikiProcedure
-                    pageWikiDescription
-                    pageWikiImage
-                    pageWikiTitle
+                    componentWikiTitle
+                    pageServicesDescription
+                    pageServicesImage
+                    pageServicesTitle
                     siteLanguage
                     siteLocale
                     siteUrl
@@ -115,4 +127,4 @@ export const query = graphql`
     }
 `;
 
-export default Howto;
+export default Services;

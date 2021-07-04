@@ -19,7 +19,6 @@ export default function useSiteNavigation () {
                             services
                             tagsNav
                             tos
-                            wiki
                         }
                     }
                 }

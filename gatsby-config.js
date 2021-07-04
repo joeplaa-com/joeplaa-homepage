@@ -25,6 +25,7 @@ const siteMetadata = {
         componentWikiFaq: `Faq`,
         componentWikiPricing: `Pricing`,
         componentWikiProcedure: `Procedure`,
+        componentWikiTitle: `Wiki`,
         pageHomeDescription: `Who is Joep and what is Joeplaa?`,
         pageHomeImage: `/images/banner-www-com.png`,
         pageHomeSubtitle: `Website design | Website hosting`,
@@ -36,9 +37,9 @@ const siteMetadata = {
         pagePortfolioTitle: `Portfolio`,
         pageRecommendedDescription: `I've read a lot of books and watched countless videos on the web. Here you can find a list of my recommended books and videos.`,
         pageRecommendedTitle: `Recommended`,
-        pageWikiDescription: `How I work and what tools I use.`,
-        pageWikiImage: `/images/banner-www-com.png`,
-        pageWikiTitle: `Wiki`,
+        pageServicesDescription: `How I work and what tools I use.`,
+        pageServicesImage: `/images/banner-www-com.png`,
+        pageServicesTitle: `Services`,
         siteDescription: `Helping people create their digital home.`,
         siteImage: `/images/banner-www-default-fb.png`,
         siteLanguage: `en-US`,
@@ -60,10 +61,9 @@ const siteMetadata = {
         pricing: `/#Pricing`,
         ps: `/conditions/privacy-statement`,
         recommended: process.env.GATSBY_BLOG_URL + `/recommended`,
-        services: `/#Services`,
+        services: `/services`,
         tagsNav: `/tags`,
-        tos: `/conditions/terms-of-service`,
-        wiki: `/wiki`
+        tos: `/conditions/terms-of-service`
     },
     pricing: {
         staticDesign: '€ 750',
