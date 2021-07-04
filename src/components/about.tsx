@@ -8,6 +8,7 @@ import useSiteMetadata from '../hooks/useSiteMetadata'
 import useSiteNavigation from '../hooks/useSiteNavigation'
 import useSiteSettings from '../hooks/useSiteSettings'
 import { SectionProps } from '../types'
+import { getAge } from '../utils/getAge'
 
 const About = ({ className }: SectionProps) => {
     const { authorFirstName, authorLastName, componentAboutTitle } = useSiteMetadata();
@@ -34,7 +35,7 @@ const About = ({ className }: SectionProps) => {
                     <Col className='d-flex flex-column justify-content-between'>
                         <div>
                             <h2>Who is Joeplaa</h2>
-                            <p>I&apos;m {authorFirstName}, 35 years old and currently living in <NewTabLink href='https://en.wikipedia.org/wiki/Eindhoven'>Eindhoven in The Netherlands</NewTabLink>. I went to Eindhoven to study mechanical engineering at <NewTabLink href='https://www.tue.nl/'>TU/e</NewTabLink> university. After working as a mechanical engineer for 7.5 years, I quit my &quot;dayjob&quot; and started working full time on my own company: <NewTabLink href='https://www.jodibooks.com'>jodiBooks</NewTabLink>.</p>
+                            <p>I&apos;m {authorFirstName}, {getAge('1985/01/14')} years old and currently living in <NewTabLink href='https://en.wikipedia.org/wiki/Eindhoven'>Eindhoven in The Netherlands</NewTabLink>. I went to Eindhoven to study mechanical engineering at <NewTabLink href='https://www.tue.nl/'>TU/e</NewTabLink> university. After working as a mechanical engineer for 7.5 years, I quit my &quot;dayjob&quot; and started working full time on my own company: <NewTabLink href='https://www.jodibooks.com'>jodiBooks</NewTabLink>.</p>
                             <p>At jodiBooks I have learned how to do front-end design and website hosting. Now I will also help you create your digital home. I&apos;ll design your homepage and take care of hosting it.</p>
                         </div>
                         <div>
