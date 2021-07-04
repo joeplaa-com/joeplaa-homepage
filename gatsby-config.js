@@ -68,13 +68,12 @@ const siteMetadata = {
     pricing: {
         staticDesign: '€ 750',
         dynamicDesign: '€ 950',
-        cmsDesign: '€ 1250',
-        customDesign: 'tbd',
         staticHosting: '€ 5',
         dynamicHosting: '€ 10',
-        cmsHosting: '€ 15',
-        cmsPlusHosting: '€ 20',
-        domainHosting: '€ 0.50'
+        computeCPU: '€ 0.0060',
+        computeRAM: '€ 0.0065',
+        computeNetworkOut: '€ 0.85',
+        computeStorage: '€ 0.0090'
     },
     settings: {
         breakpoint: `md`,
@@ -100,9 +99,7 @@ const siteMetadata = {
         awsLightsail: `https://aws.amazon.com/lightsail/`,
         gatsbyjs: `https://www.gatsbyjs.com/`,
         ghost: `https://ghost.org/`,
-        netlifycms: `https://www.netlifycms.org/`,
         nextjs: `https://nextjs.org/`,
-        strapi: `https://strapi.io/`,
         wordpress: `https://wordpress.org/`
     }
 };

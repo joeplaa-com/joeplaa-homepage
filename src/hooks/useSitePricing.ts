@@ -9,13 +9,12 @@ export default function useSitePricing () {
                         pricing {
                             staticDesign
                             dynamicDesign
-                            cmsDesign
-                            customDesign
                             staticHosting
                             dynamicHosting
-                            cmsHosting
-                            cmsPlusHosting
-                            domainHosting
+                            computeCPU
+                            computeRAM
+                            computeNetworkOut
+                            computeStorage
                         }
                     }
                 }

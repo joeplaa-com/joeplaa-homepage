@@ -21,9 +21,7 @@ export default function useSiteUrls () {
                             awsLightsail
                             gatsbyjs
                             ghost
-                            netlifycms
                             nextjs
-                            strapi
                             wordpress
                         }
                     }

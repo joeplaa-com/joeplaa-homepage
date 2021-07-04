@@ -10,6 +10,7 @@ export const content = {
     Business: 'Business name',
     CompanyAddress: 'Address',
     CompanyInfo: 'Company Info',
+    ComputeHosting: 'Compute',
     Conditions: 'Conditions',
     Copy: 'Copy',
     Email: 'Email',
