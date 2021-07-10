@@ -1,16 +1,17 @@
-import React from 'react'
-import { Col, Container, Row } from 'reactstrap'
-import { Link } from './customLink'
-import ImageAbout from './imageAbout'
-import NewTabLink from './newTabLink'
-import Social from './social'
-import useSiteMetadata from '../hooks/useSiteMetadata'
-import useSiteNavigation from '../hooks/useSiteNavigation'
-import useSiteSettings from '../hooks/useSiteSettings'
-import { SectionProps } from '../types'
-import { getAge } from '../utils/getAge'
+import React from 'react';
+import { Col, Container, Row } from 'reactstrap';
+import { Link } from './customLink';
+import ImageAbout from './imageAbout';
+import NewTabLink from './newTabLink';
+import Social from './social';
+import useSiteMetadata from '../hooks/useSiteMetadata';
+import useSiteNavigation from '../hooks/useSiteNavigation';
+import useSiteSettings from '../hooks/useSiteSettings';
+import { SectionProps } from '../types';
+import { getAge } from '../utils/getAge';
+import { ReactElement } from 'react';
 
-const About = ({ className }: SectionProps) => {
+const About = ({ className }: SectionProps): ReactElement => {
     const { authorFirstName, authorLastName, componentAboutTitle } = useSiteMetadata();
     const { blog, contact, portfolio, services } = useSiteNavigation();
     const { breakpoint } = useSiteSettings();
@@ -51,6 +52,6 @@ const About = ({ className }: SectionProps) => {
             </Container>
         </section>
     );
-}
+};
 
 export default About;

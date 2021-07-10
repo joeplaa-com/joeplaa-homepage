@@ -1,10 +1,10 @@
-import Highlight, { defaultProps } from 'prism-react-renderer'
-import theme from 'prism-react-renderer/themes/nightOwl'
-import React from 'react'
-import { Button } from 'reactstrap'
-import { CodeProps } from '../types'
-import { content } from '../utils/content'
-import { copyToClipboard } from '../utils/copy-to-clipboard'
+import Highlight, { defaultProps } from 'prism-react-renderer';
+import theme from 'prism-react-renderer/themes/nightOwl';
+import React from 'react';
+import { Button } from 'reactstrap';
+import { CodeProps } from '../types';
+import { content } from '../utils/content';
+import { copyToClipboard } from '../utils/copy-to-clipboard';
 
 const Code = ({ codeString, language }: CodeProps) => {
 

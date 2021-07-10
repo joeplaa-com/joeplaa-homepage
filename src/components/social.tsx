@@ -1,13 +1,13 @@
-import React from 'react'
-import { IconContext } from 'react-icons'
-import { FaFacebook, FaInstagram, FaLinkedin, FaGithub } from 'react-icons/fa'
-import { MdMail } from 'react-icons/md'
-import NewTabLink from './newTabLink'
-import useSiteUrls from '../hooks/useSiteUrls'
-import linkColor from '../utils/linkColor'
-import { SocialLinkProps } from '../types'
+import React from 'react';
+import { IconContext } from 'react-icons';
+import { FaFacebook, FaInstagram, FaLinkedin, FaGithub } from 'react-icons/fa';
+import { MdMail } from 'react-icons/md';
+import NewTabLink from './newTabLink';
+import useSiteUrls from '../hooks/useSiteUrls';
+import linkColor from '../utils/linkColor';
+import { SocialLinkProps } from '../types';
 
-export default function Header ({ color, key, size }: SocialLinkProps) {
+export default function Header({ color, key, size }: SocialLinkProps) {
     const { email, facebook, github, instagram, linkedin } = useSiteUrls();
     return (
         <div className='d-flex justify-content-center'>

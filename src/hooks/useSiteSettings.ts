@@ -1,6 +1,6 @@
 import { graphql, useStaticQuery } from 'gatsby';
 
-export default function useSiteSettings () {
+export default function useSiteSettings() {
     const { site } = useStaticQuery(
         graphql`
             query SITE_SETTINGS_QUERY {

@@ -1,56 +1,56 @@
-import { graphql } from 'gatsby'
-import { MDXRenderer } from 'gatsby-plugin-mdx'
-import React, { useState } from 'react'
-import SEO from 'react-seo-component'
-import { Collapse, Container, ListGroup, ListGroupItem } from 'reactstrap'
-import ContactComponent from '../components/contact'
-import Pricing from '../components/pricing'
-import ServicesComponent from '../components/services'
-import useSiteMetadata from '../hooks/useSiteMetadata'
-import useSiteNavigation from '../hooks/useSiteNavigation'
-import { PostQueryProps } from '../types'
+import { graphql } from 'gatsby';
+import { MDXRenderer } from 'gatsby-plugin-mdx';
+import React, { ReactElement, useState } from 'react';
+import SEO from 'react-seo-component';
+import { Collapse, Container, ListGroup, ListGroupItem } from 'reactstrap';
+import ContactComponent from '../components/contact';
+import Pricing from '../components/pricing';
+import ServicesComponent from '../components/services';
+import useSiteMetadata from '../hooks/useSiteMetadata';
+import useSiteNavigation from '../hooks/useSiteNavigation';
+import { PostQueryProps } from '../types';
 
-const Services = ({ data }: PostQueryProps) => {
+const Services = ({ data }: PostQueryProps): ReactElement => {
     const { componentWikiFaq, componentWikiPricing, componentWikiProcedure, pageServicesDescription, pageServicesImage, pageServicesTitle, componentWikiTitle, siteLanguage, siteLocale, siteUrl, titleSeparator, titleTemplate, twitterUsername } = useSiteMetadata();
     const { Services } = useSiteNavigation();
 
     const wikisFaq = [];
     const wikisPricing = [];
     const wikisProcedure = [];
-    const [isOpen, setIsOpen] = useState({})
+    const [isOpen, setIsOpen] = useState({});
 
-    function createListItem(id, body, frontmatter) {
+    function createListItem(id, body, frontmatter): ReactElement {
         return (
-            <ListGroupItem className='list-group-item-wiki markdown' tag="button" key={id} onClick={() => {
+            <ListGroupItem className='list-group-item-wiki markdown' tag="button" key={id} onClick={(): void => {
                 const newIsOpen = {
                     ...isOpen
-                }
+                };
                 newIsOpen[id] = !isOpen[id];
-                setIsOpen(newIsOpen)
+                setIsOpen(newIsOpen);
             }}>
                 <h3>{frontmatter.title}</h3>
                 <Collapse isOpen={isOpen[id]}>
                     <MDXRenderer key={id}>{body}</MDXRenderer>
                 </Collapse>
             </ListGroupItem>
-        )
+        );
     }
 
     data.allMdx.nodes.map(({ id, body, frontmatter }) => {
         if (frontmatter.category.includes(componentWikiFaq.toLowerCase())) {
-            wikisFaq.push(createListItem(id, body, frontmatter))
+            wikisFaq.push(createListItem(id, body, frontmatter));
         } else if (frontmatter.category.includes(componentWikiPricing.toLowerCase())) {
-            wikisPricing.push(createListItem(id, body, frontmatter))
+            wikisPricing.push(createListItem(id, body, frontmatter));
         } else if (frontmatter.category.includes(componentWikiProcedure.toLowerCase())) {
-            wikisProcedure.push(createListItem(id, body, frontmatter))
+            wikisProcedure.push(createListItem(id, body, frontmatter));
         }
-    })
+    });
 
     return (
         <>
             <SEO
                 title={pageServicesTitle}
-                description={pageServicesDescription || `nothin’`}
+                description={pageServicesDescription || 'nothin’'}
                 image={`${siteUrl}${pageServicesImage}`}
                 pathname={`${siteUrl}${Services}`}
                 titleTemplate={titleTemplate}

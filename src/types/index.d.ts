@@ -1,7 +1,7 @@
-import { ReactElement, ReactNode } from 'react'
-import { GatsbyLinkProps } from 'gatsby-link'
-import { IGatsbyImageData } from "gatsby-plugin-image";
-import { Language } from 'prism-react-renderer'
+import { ReactElement, ReactNode } from 'react';
+import { GatsbyLinkProps } from 'gatsby-link';
+import { IGatsbyImageData } from 'gatsby-plugin-image';
+import { Language } from 'prism-react-renderer';
 
 export type AuthorProps = {
     name: string

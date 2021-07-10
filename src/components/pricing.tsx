@@ -1,20 +1,22 @@
-import React from 'react'
-import { Link } from './customLink'
-import { Container, Col, Row, Card, CardBody, CardDeck, Table } from 'reactstrap'
-import { IconContext } from 'react-icons'
-import { SiGatsby, SiGhost, SiGithub, SiNextDotJs, SiWordpress } from 'react-icons/si'
-import NewTabLink from './newTabLink'
-import useSiteMetadata from '../hooks/useSiteMetadata'
-import useSiteNavigation from '../hooks/useSiteNavigation'
-import useSitePricing from '../hooks/useSitePricing'
-import useSiteSettings from '../hooks/useSiteSettings'
-import useSiteUrls from '../hooks/useSiteUrls'
-import CloudFront from '../svg/cloudfront.svg'
-import LightSail from '../svg/lightsail.svg'
-import { content } from '../utils/content'
-import { SectionProps } from '../types'
+import React, { ReactElement } from 'react';
+import { Link } from './customLink';
+import { Container, Col, Row, Card, CardBody, CardDeck, Table } from 'reactstrap';
+import { IconContext } from 'react-icons';
+import { FaDownload, FaMemory, FaServer } from 'react-icons/fa';
+import { FiCpu } from 'react-icons/fi';
+import { SiGatsby, SiGhost, SiGithub, SiNextDotJs, SiWordpress } from 'react-icons/si';
+import NewTabLink from './newTabLink';
+import useSiteMetadata from '../hooks/useSiteMetadata';
+import useSiteNavigation from '../hooks/useSiteNavigation';
+import useSitePricing from '../hooks/useSitePricing';
+import useSiteSettings from '../hooks/useSiteSettings';
+import useSiteUrls from '../hooks/useSiteUrls';
+import CloudFront from '../svg/cloudfront.svg';
+import LightSail from '../svg/lightsail.svg';
+import { content } from '../utils/content';
+import { SectionProps } from '../types';
 
-const Pricing = ({ className }: SectionProps) => {
+const Pricing = ({ className }: SectionProps): ReactElement => {
     const { componentPricingTitle } = useSiteMetadata();
     const { services } = useSiteNavigation();
     const { staticDesign, dynamicDesign, staticHosting, dynamicHosting, computeCPU, computeRAM, computeNetworkOut, computeStorage } = useSitePricing();
@@ -36,9 +38,9 @@ const Pricing = ({ className }: SectionProps) => {
                                 <h2>{content.WebDesign}</h2>
                                 <Table striped responsive hover>
                                     <colgroup>
-                                        <col span={1} style={{ width: "10%" }} />
-                                        <col span={1} style={{ width: "65%" }} />
-                                        <col span={1} style={{ width: "25%" }} />
+                                        <col span={1} style={{ width: '10%' }} />
+                                        <col span={1} style={{ width: '65%' }} />
+                                        <col span={1} style={{ width: '25%' }} />
                                     </colgroup>
                                     <thead className='thead-dark'>
                                         <tr>
@@ -50,12 +52,12 @@ const Pricing = ({ className }: SectionProps) => {
                                     <tbody>
                                         <tr>
                                             <th scope="row">1</th>
-                                            <td>Static website build with either <NewTabLink href={nextjs}>Next.js</NewTabLink> or <NewTabLink href={gatsbyjs}>Gatsby.js</NewTabLink>.</td>
+                                            <td>Website build with <NewTabLink href={nextjs}>Next.js</NewTabLink> or <NewTabLink href={gatsbyjs}>Gatsby.js</NewTabLink>.</td>
                                             <td>{staticDesign}</td>
                                         </tr>
                                         <tr>
                                             <th scope="row">2</th>
-                                            <td>Dynamic website with <NewTabLink href={wordpress}>WordPress</NewTabLink> or a simple <NewTabLink href={ghost}>Ghost</NewTabLink> blog.</td>
+                                            <td>Website build with <NewTabLink href={wordpress}>WordPress</NewTabLink> or <NewTabLink href={ghost}>Ghost</NewTabLink> blog.</td>
                                             <td>{dynamicDesign}</td>
                                         </tr>
                                     </tbody>
@@ -81,9 +83,9 @@ const Pricing = ({ className }: SectionProps) => {
                                 <h2>{content.WebHosting}</h2>
                                 <Table striped responsive hover>
                                     <colgroup>
-                                        <col span={1} style={{ width: "10%" }} />
-                                        <col span={1} style={{ width: "65%" }} />
-                                        <col span={1} style={{ width: "25%" }} />
+                                        <col span={1} style={{ width: '10%' }} />
+                                        <col span={1} style={{ width: '65%' }} />
+                                        <col span={1} style={{ width: '25%' }} />
                                     </colgroup>
                                     <thead className='thead-dark'>
                                         <tr>
@@ -95,12 +97,12 @@ const Pricing = ({ className }: SectionProps) => {
                                     <tbody>
                                         <tr>
                                             <th scope="row">1</th>
-                                            <td>Next.js or Gatsby.js website hosted through <NewTabLink href={awsCloudfront}>AWS CloudFront</NewTabLink>.</td>
+                                            <td>Next.js or Gatsby.js website hosted on AWS.</td>
                                             <td>{staticHosting}</td>
                                         </tr>
                                         <tr>
                                             <th scope="row">2</th>
-                                            <td>WordPress or Ghost website hosted on <NewTabLink href={awsLightsail}>AWS LightSail</NewTabLink>.</td>
+                                            <td>WordPress or Ghost website hosted on AWS.</td>
                                             <td>{dynamicHosting}</td>
                                         </tr>
                                     </tbody>
@@ -125,9 +127,9 @@ const Pricing = ({ className }: SectionProps) => {
                                 <h2>{content.ComputeHosting}</h2>
                                 <Table striped responsive hover>
                                     <colgroup>
-                                        <col span={1} style={{ width: "10%" }} />
-                                        <col span={1} style={{ width: "65%" }} />
-                                        <col span={1} style={{ width: "25%" }} />
+                                        <col span={1} style={{ width: '10%' }} />
+                                        <col span={1} style={{ width: '60%' }} />
+                                        <col span={1} style={{ width: '30%' }} />
                                     </colgroup>
                                     <thead className='thead-dark'>
                                         <tr>
@@ -156,9 +158,9 @@ const Pricing = ({ className }: SectionProps) => {
                                 </Table>
                                 <Table striped responsive hover>
                                     <colgroup>
-                                        <col span={1} style={{ width: "10%" }} />
-                                        <col span={1} style={{ width: "65%" }} />
-                                        <col span={1} style={{ width: "25%" }} />
+                                        <col span={1} style={{ width: '10%' }} />
+                                        <col span={1} style={{ width: '60%' }} />
+                                        <col span={1} style={{ width: '30%' }} />
                                     </colgroup>
                                     <thead className='thead-dark'>
                                         <tr>
@@ -180,9 +182,10 @@ const Pricing = ({ className }: SectionProps) => {
                                 <hr />
                                 <div className='text-center'>
                                     <IconContext.Provider value={{ size: iconSize }}>
-                                        <NewTabLink href={github} className='nav-padding-social'><SiGithub /></NewTabLink>
-                                        <NewTabLink href={awsCloudfront} className='nav-padding-social'><CloudFront height={iconSize} width={iconSize} /></NewTabLink>
-                                        <NewTabLink href={awsLightsail} className='nav-padding-social'><LightSail height={iconSize} width={(parseInt(iconSize) + 6).toString()} /></NewTabLink>
+                                        <Link to={services} className='nav-padding-social'><FiCpu /></Link>
+                                        <Link to={services} className='nav-padding-social'><FaMemory /></Link>
+                                        <Link to={services} className='nav-padding-social'><FaServer /></Link>
+                                        <Link to={services} className='nav-padding-social'><FaDownload /></Link>
                                     </IconContext.Provider>
                                 </div>
                             </div>
@@ -192,6 +195,6 @@ const Pricing = ({ className }: SectionProps) => {
             </Container>
         </section >
     );
-}
+};
 
 export default Pricing;

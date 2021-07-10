@@ -1,7 +1,7 @@
-import React from 'react'
-import { CardDeck } from 'reactstrap'
-import PostPreview from './postPreview'
-import { PostBasicProps } from '../types'
+import React from 'react';
+import { CardDeck } from 'reactstrap';
+import PostPreview from './postPreview';
+import { PostBasicProps } from '../types';
 
 export default function PostStories({ posts }: { posts: Array<PostBasicProps> }) {
     return (

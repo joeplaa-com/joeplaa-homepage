@@ -1,7 +1,7 @@
-import React from 'react'
-import { Link } from './customLink'
-import { Button, CardTitle } from 'reactstrap'
-import { PostTitleProps } from '../types'
+import React from 'react';
+import { Link } from './customLink';
+import { Button, CardTitle } from 'reactstrap';
+import { PostTitleProps } from '../types';
 
 export default function PostTitle({ title, slug, path, onClick }: PostTitleProps) {
     return (
@@ -19,5 +19,5 @@ export default function PostTitle({ title, slug, path, onClick }: PostTitleProps
                 </Button>)
             }
         </CardTitle>
-    )
+    );
 }

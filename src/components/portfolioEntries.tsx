@@ -1,7 +1,7 @@
-import React from 'react'
-import { CardDeck } from 'reactstrap'
-import PortfolioPreview from './portfolioPreview'
-import { PortfolioEntryProps } from '../types'
+import React from 'react';
+import { CardDeck } from 'reactstrap';
+import PortfolioPreview from './portfolioPreview';
+import { PortfolioEntryProps } from '../types';
 
 export default function PortfolioEntries({ posts }: { posts: Array<PortfolioEntryProps> }) {
     return (

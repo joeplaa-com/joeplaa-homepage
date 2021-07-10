@@ -1,10 +1,10 @@
-import React from 'react'
-import { Link } from './customLink'
-import useSiteMetadata from '../hooks/useSiteMetadata'
-import useSiteSettings from '../hooks/useSiteSettings'
-import useSiteUrls from '../hooks/useSiteUrls'
-import linkColor from '../utils/linkColor'
-import { FooterLinkProps } from '../types'
+import React from 'react';
+import { Link } from './customLink';
+import useSiteMetadata from '../hooks/useSiteMetadata';
+import useSiteSettings from '../hooks/useSiteSettings';
+import useSiteUrls from '../hooks/useSiteUrls';
+import linkColor from '../utils/linkColor';
+import { FooterLinkProps } from '../types';
 
 export default function Copyright({ color }: FooterLinkProps) {
     const { businessName } = useSiteMetadata();

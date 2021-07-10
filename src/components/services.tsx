@@ -1,20 +1,20 @@
-import React from 'react'
-import { Link } from './customLink'
-import { Container, Col, Row, Card, CardBody, CardDeck, Table } from 'reactstrap'
-import { IconContext } from 'react-icons'
-import { SiGatsby, SiGhost, SiGithub, SiNetlify, SiNextDotJs, SiStrapi, SiWordpress } from 'react-icons/si'
-import NewTabLink from './newTabLink'
-import useSiteMetadata from '../hooks/useSiteMetadata'
-import useSiteNavigation from '../hooks/useSiteNavigation'
-import useSitePricing from '../hooks/useSitePricing'
-import useSiteSettings from '../hooks/useSiteSettings'
-import useSiteUrls from '../hooks/useSiteUrls'
-import CloudFront from '../svg/cloudfront.svg'
-import LightSail from '../svg/lightsail.svg'
-import { content } from '../utils/content'
-import { SectionProps } from '../types'
+import React, { ReactElement } from 'react';
+import { Link } from './customLink';
+import { Container, Col, Row, Card, CardBody, CardDeck, Table } from 'reactstrap';
+import { IconContext } from 'react-icons';
+import { SiGatsby, SiGhost, SiGithub, SiNetlify, SiNextDotJs, SiStrapi, SiWordpress } from 'react-icons/si';
+import NewTabLink from './newTabLink';
+import useSiteMetadata from '../hooks/useSiteMetadata';
+import useSiteNavigation from '../hooks/useSiteNavigation';
+import useSitePricing from '../hooks/useSitePricing';
+import useSiteSettings from '../hooks/useSiteSettings';
+import useSiteUrls from '../hooks/useSiteUrls';
+import CloudFront from '../svg/cloudfront.svg';
+import LightSail from '../svg/lightsail.svg';
+import { content } from '../utils/content';
+import { SectionProps } from '../types';
 
-const ServicesComponent = ({ className }: SectionProps) => {
+const ServicesComponent = ({ className }: SectionProps): ReactElement => {
     const { componentPricingTitle } = useSiteMetadata();
     const { services } = useSiteNavigation();
     const { staticDesign, dynamicDesign, cmsDesign, customDesign, staticHosting, dynamicHosting, cmsHosting, cmsPlusHosting, domainHosting } = useSitePricing();
@@ -35,9 +35,9 @@ const ServicesComponent = ({ className }: SectionProps) => {
                                 <h2>{content.WebDesign}</h2>
                                 <Table striped responsive hover>
                                     <colgroup>
-                                        <col span={1} style={{ width: "10%" }} />
-                                        <col span={1} style={{ width: "65%" }} />
-                                        <col span={1} style={{ width: "25%" }} />
+                                        <col span={1} style={{ width: '10%' }} />
+                                        <col span={1} style={{ width: '65%' }} />
+                                        <col span={1} style={{ width: '25%' }} />
                                     </colgroup>
                                     <thead className='thead-dark'>
                                         <tr>
@@ -93,9 +93,9 @@ const ServicesComponent = ({ className }: SectionProps) => {
                                 <h2>{content.WebHosting}</h2>
                                 <Table striped responsive hover>
                                     <colgroup>
-                                        <col span={1} style={{ width: "10%" }} />
-                                        <col span={1} style={{ width: "65%" }} />
-                                        <col span={1} style={{ width: "25%" }} />
+                                        <col span={1} style={{ width: '10%' }} />
+                                        <col span={1} style={{ width: '65%' }} />
+                                        <col span={1} style={{ width: '25%' }} />
                                     </colgroup>
                                     <thead className='thead-dark'>
                                         <tr>
@@ -145,6 +145,6 @@ const ServicesComponent = ({ className }: SectionProps) => {
             </Container>
         </section >
     );
-}
+};
 
 export default ServicesComponent;

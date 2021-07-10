@@ -1,18 +1,18 @@
-import React from 'react'
-import { graphql } from 'gatsby'
-import { MDXRenderer } from 'gatsby-plugin-mdx'
-import { Container, Col, Row } from 'reactstrap'
-import { Helmet } from 'react-helmet'
-import SEO from 'react-seo-component'
-import Filter from '../components/filter'
-import PostBrowseButton from '../components/postBrowseButton'
-import PostImage from '../components/postImage'
-import useSiteMetadata from '../hooks/useSiteMetadata'
-import useSiteNavigation from '../hooks/useSiteNavigation'
-import useSiteSettings from '../hooks/useSiteSettings'
-import { content } from '../utils/content'
-import formatPostTags from '../utils/formatPostTags'
-import { PageTemplateProps } from '../types'
+import React from 'react';
+import { graphql } from 'gatsby';
+import { MDXRenderer } from 'gatsby-plugin-mdx';
+import { Container, Col, Row } from 'reactstrap';
+import { Helmet } from 'react-helmet';
+import SEO from 'react-seo-component';
+import Filter from '../components/filter';
+import PostBrowseButton from '../components/postBrowseButton';
+import PostImage from '../components/postImage';
+import useSiteMetadata from '../hooks/useSiteMetadata';
+import useSiteNavigation from '../hooks/useSiteNavigation';
+import useSiteSettings from '../hooks/useSiteSettings';
+import { content } from '../utils/content';
+import formatPostTags from '../utils/formatPostTags';
+import { PageTemplateProps } from '../types';
 
 const PostTemplate = ({ data, location, pageContext }: PageTemplateProps) => {
     const { authorName, pageHowtoTitle, siteImage, siteLanguage, siteLocale, siteUrl, titleSeparator, titleTemplate, twitterUsername } = useSiteMetadata();

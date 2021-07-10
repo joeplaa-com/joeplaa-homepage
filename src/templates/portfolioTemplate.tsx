@@ -1,14 +1,14 @@
-import React from 'react'
-import { graphql } from 'gatsby'
-import SEO from 'react-seo-component'
-import { Container } from 'reactstrap'
-import FilterCard from '../components/filterCard'
-import Pagination from '../components/pagination'
-import PortfolioEntries from '../components/portfolioEntries'
-import useSiteMetadata from '../hooks/useSiteMetadata'
-import useSiteNavigation from '../hooks/useSiteNavigation'
-import { PostQueryProps } from '../types'
-import formatAllTags from '../utils/formatAllTags'
+import React from 'react';
+import { graphql } from 'gatsby';
+import SEO from 'react-seo-component';
+import { Container } from 'reactstrap';
+import FilterCard from '../components/filterCard';
+import Pagination from '../components/pagination';
+import PortfolioEntries from '../components/portfolioEntries';
+import useSiteMetadata from '../hooks/useSiteMetadata';
+import useSiteNavigation from '../hooks/useSiteNavigation';
+import { PostQueryProps } from '../types';
+import formatAllTags from '../utils/formatAllTags';
 
 const PortfolioTemplate = ({ data, pageContext }: PostQueryProps) => {
     const { pagePortfolioDescription, pagePortfolioImage, pagePortfolioTitle, siteLanguage, siteLocale, siteUrl, titleSeparator, titleTemplate, twitterUsername } = useSiteMetadata();
@@ -21,7 +21,7 @@ const PortfolioTemplate = ({ data, pageContext }: PostQueryProps) => {
         <>
             <SEO
                 title={pagePortfolioTitle}
-                description={pagePortfolioDescription || `nothin’`}
+                description={pagePortfolioDescription || 'nothin’'}
                 image={`${siteUrl}${pagePortfolioImage}`}
                 pathname={`${siteUrl}${portfolio}`}
                 titleTemplate={titleTemplate}

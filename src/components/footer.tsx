@@ -1,17 +1,17 @@
-import React from 'react'
-import { Link } from './customLink'
-import { Container, Col, Row } from 'reactstrap'
-import Copyright from './copyright'
-import NewTabLink from './newTabLink'
-import Social from './social'
-import useSiteMetadata from '../hooks/useSiteMetadata'
-import useSiteNavigation from '../hooks/useSiteNavigation'
-import useSiteSettings from '../hooks/useSiteSettings'
-import { SectionProps } from '../types'
-import { content } from '../utils/content'
-import linkColor from '../utils/linkColor'
+import React from 'react';
+import { Link } from './customLink';
+import { Container, Col, Row } from 'reactstrap';
+import Copyright from './copyright';
+import NewTabLink from './newTabLink';
+import Social from './social';
+import useSiteMetadata from '../hooks/useSiteMetadata';
+import useSiteNavigation from '../hooks/useSiteNavigation';
+import useSiteSettings from '../hooks/useSiteSettings';
+import { SectionProps } from '../types';
+import { content } from '../utils/content';
+import linkColor from '../utils/linkColor';
 
-export default function Footer ({ className }: SectionProps) {
+export default function Footer({ className }: SectionProps) {
     const { businessAddress1, businessAddress2, businessCoC, businessCountry, businessIBAN, businessName, businessVAT } = useSiteMetadata();
     const { ps, tos } = useSiteNavigation();
     const { breakpoint } = useSiteSettings();

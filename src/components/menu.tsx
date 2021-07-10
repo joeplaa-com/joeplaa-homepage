@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { Collapse, Navbar, NavbarToggler } from 'reactstrap'
-import { AnchorLink } from 'gatsby-plugin-anchor-links'
-import Navigation from './navigation'
-import useSiteNavigation from '../hooks/useSiteNavigation'
-import useSiteSettings from '../hooks/useSiteSettings'
-import BannerWwwCom from '../svg/banner-www-com.svg'
-import { NavbarProps } from '../types'
+import { Collapse, Navbar, NavbarToggler } from 'reactstrap';
+import { AnchorLink } from 'gatsby-plugin-anchor-links';
+import Navigation from './navigation';
+import useSiteNavigation from '../hooks/useSiteNavigation';
+import useSiteSettings from '../hooks/useSiteSettings';
+import BannerWwwCom from '../svg/banner-www-com.svg';
+import { NavbarProps } from '../types';
 
-export default function Menu ({ navbarLightText }: NavbarProps) {
+export default function Menu({ navbarLightText }: NavbarProps) {
     const { home } = useSiteNavigation();
     const { breakpoint } = useSiteSettings();
 
@@ -29,7 +29,7 @@ export default function Menu ({ navbarLightText }: NavbarProps) {
         };
     }, []);
 
-    const navbarTop = navbarLightText ? 'navbar-dark top light-text' : 'navbar-light top dark-text'
+    const navbarTop = navbarLightText ? 'navbar-dark top light-text' : 'navbar-light top dark-text';
     const navbarActive = scrollPosition > 10 ? 'active shadow navbar-light' : collapsed ? 'active navbar-light' : navbarTop;
     const navbarToggle = scrollPosition > 10 ? 'navbar-light top dark-text' : collapsed ? 'navbar-light top dark-text' : navbarTop;
     // ***

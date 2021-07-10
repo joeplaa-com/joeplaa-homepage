@@ -1,7 +1,7 @@
-import React from 'react'
-import { Link } from './customLink'
-import { GatsbyImage } from "gatsby-plugin-image";
-import { PostImageProps } from '../types'
+import React from 'react';
+import { Link } from './customLink';
+import { GatsbyImage } from 'gatsby-plugin-image';
+import { PostImageProps } from '../types';
 
 export default function PostImage({ title, picture, slug, rounded, path, onClick, height }: PostImageProps) {
     const classRounded = rounded ? 'rounded' : '';

@@ -1,13 +1,13 @@
-import React from 'react'
-import { Helmet } from 'react-helmet'
-import Footer from './footer'
-import Header from './header'
-import useSiteSettings from '../hooks/useSiteSettings'
-import useSiteUrls from '../hooks/useSiteUrls'
-import { LayoutProps } from '../types'
+import React from 'react';
+import { Helmet } from 'react-helmet';
+import Footer from './footer';
+import Header from './header';
+import useSiteSettings from '../hooks/useSiteSettings';
+import useSiteUrls from '../hooks/useSiteUrls';
+import { LayoutProps } from '../types';
 
 // Sticky footer: https://css-tricks.com/couple-takes-sticky-footer/
-export default function Layout (props: LayoutProps) {
+export default function Layout(props: LayoutProps) {
     const { plausibleID } = useSiteSettings();
     const { plausible } = useSiteUrls();
     return (

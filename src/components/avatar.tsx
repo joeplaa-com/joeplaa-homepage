@@ -1,9 +1,9 @@
-import React from 'react'
-import { graphql, useStaticQuery } from 'gatsby'
-import { GatsbyImage } from "gatsby-plugin-image";
-import { AuthorProps, AvatarImageProps } from '../types'
+import React, { ReactElement } from 'react';
+import { graphql, useStaticQuery } from 'gatsby';
+import { GatsbyImage } from 'gatsby-plugin-image';
+import { AuthorProps, AvatarImageProps } from '../types';
 
-export default function Avatar({ name }: AuthorProps) {
+export default function Avatar({ name }: AuthorProps): ReactElement {
     const data = useStaticQuery(graphql`{
         images: allFile(
             filter: {internal: {mediaType: {regex: "/image/"}}, absolutePath: {regex: "/authors/"}}

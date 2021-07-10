@@ -1,10 +1,10 @@
-import React from 'react'
-import { Link } from './customLink'
-import { Badge } from 'reactstrap'
-import { IconContext } from 'react-icons'
-import kebabCase from 'lodash/kebabCase'
-import TagIcon from './tagIcon'
-import { TagProps } from '../types'
+import React from 'react';
+import { Link } from './customLink';
+import { Badge } from 'reactstrap';
+import { IconContext } from 'react-icons';
+import kebabCase from 'lodash/kebabCase';
+import TagIcon from './tagIcon';
+import { TagProps } from '../types';
 
 const Tag = ({ quantity, tag }: TagProps) => {
     return (
@@ -14,6 +14,6 @@ const Tag = ({ quantity, tag }: TagProps) => {
             {quantity ? <Badge color="dark" className='tag-count' pill>{tag.count}</Badge> : null}
         </Link>
     );
-}
+};
 
 export default Tag;

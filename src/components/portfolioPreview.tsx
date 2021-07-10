@@ -1,13 +1,13 @@
-import React, { useState } from 'react'
-import { GatsbyImage } from "gatsby-plugin-image";
-import { Button, Card, CardBody, Modal, ModalBody, ModalFooter, ModalHeader } from 'reactstrap'
-import { FaTimes } from 'react-icons/fa'
-import PostBody from './postBody'
-import PostImage from './postImage'
-import PostSubtitle from './postSubtitle'
-import PostTitle from './postTitle'
-import { content } from '../utils/content'
-import { PortfolioEntryProps } from '../types'
+import React, { useState } from 'react';
+import { GatsbyImage } from 'gatsby-plugin-image';
+import { Button, Card, CardBody, Modal, ModalBody, ModalFooter, ModalHeader } from 'reactstrap';
+import { FaTimes } from 'react-icons/fa';
+import PostBody from './postBody';
+import PostImage from './postImage';
+import PostSubtitle from './postSubtitle';
+import PostTitle from './postTitle';
+import { content } from '../utils/content';
+import { PortfolioEntryProps } from '../types';
 
 export default function PortfolioPreview({ body, fields, frontmatter }: PortfolioEntryProps) {
     const [modal, setModal] = useState(false);

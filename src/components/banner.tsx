@@ -1,8 +1,8 @@
-import React from 'react'
-import Image from './image'
-import Social from './social'
-import { content } from '../utils/content'
-import { BannerProps } from '../types'
+import React from 'react';
+import Image from './image';
+import Social from './social';
+import { content } from '../utils/content';
+import { BannerProps } from '../types';
 
 const Banner = (props: BannerProps) => {
     const { title, subtitle, src, alt } = props;
@@ -23,6 +23,6 @@ const Banner = (props: BannerProps) => {
             </div>
         </section>
     );
-}
+};
 
 export default Banner;

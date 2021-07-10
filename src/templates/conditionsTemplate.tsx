@@ -1,10 +1,10 @@
-import React from 'react'
-import { graphql } from 'gatsby'
-import { MDXRenderer } from 'gatsby-plugin-mdx'
-import { Container } from 'reactstrap'
-import SEO from 'react-seo-component'
-import useSiteMetadata from '../hooks/useSiteMetadata'
-import { PageTemplateProps } from '../types'
+import React from 'react';
+import { graphql } from 'gatsby';
+import { MDXRenderer } from 'gatsby-plugin-mdx';
+import { Container } from 'reactstrap';
+import SEO from 'react-seo-component';
+import useSiteMetadata from '../hooks/useSiteMetadata';
+import { PageTemplateProps } from '../types';
 
 const ConditionsTemplate = ({ data }: PageTemplateProps) => {
     const { authorName, siteImage, siteLanguage, siteLocale, siteUrl, titleSeparator, titleTemplate, twitterUsername } = useSiteMetadata();

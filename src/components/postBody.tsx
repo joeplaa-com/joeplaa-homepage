@@ -1,6 +1,6 @@
-import React from 'react'
-import { MDXRenderer } from 'gatsby-plugin-mdx'
-import { PostBodyProps } from '../types'
+import React from 'react';
+import { MDXRenderer } from 'gatsby-plugin-mdx';
+import { PostBodyProps } from '../types';
 
 export default function PostBody({ content }: PostBodyProps) {
     return (

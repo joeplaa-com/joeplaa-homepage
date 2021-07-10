@@ -1,16 +1,16 @@
-import React from 'react'
-import { graphql } from 'gatsby'
-import { MDXRenderer } from 'gatsby-plugin-mdx'
-import { Container, Col, Row } from 'reactstrap'
-import SEO from 'react-seo-component'
-import Filter from '../components/filter'
-import PostBrowseButton from '../components/postBrowseButton'
-import PostImage from '../components/postImage'
-import useSiteMetadata from '../hooks/useSiteMetadata'
-import useSiteNavigation from '../hooks/useSiteNavigation'
-import useSiteSettings from '../hooks/useSiteSettings'
-import formatPostTags from '../utils/formatPostTags'
-import { PageTemplateProps } from '../types'
+import React from 'react';
+import { graphql } from 'gatsby';
+import { MDXRenderer } from 'gatsby-plugin-mdx';
+import { Container, Col, Row } from 'reactstrap';
+import SEO from 'react-seo-component';
+import Filter from '../components/filter';
+import PostBrowseButton from '../components/postBrowseButton';
+import PostImage from '../components/postImage';
+import useSiteMetadata from '../hooks/useSiteMetadata';
+import useSiteNavigation from '../hooks/useSiteNavigation';
+import useSiteSettings from '../hooks/useSiteSettings';
+import formatPostTags from '../utils/formatPostTags';
+import { PageTemplateProps } from '../types';
 
 const PortfolioTemplate = ({ data, location, pageContext }: PageTemplateProps) => {
     const { authorName, pagePortfolioTitle, siteImage, siteLanguage, siteLocale, siteUrl, titleSeparator, titleTemplate, twitterUsername } = useSiteMetadata();

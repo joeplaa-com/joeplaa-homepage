@@ -1,14 +1,14 @@
-import React from 'react'
-import { graphql } from 'gatsby'
-import SEO from 'react-seo-component'
-import { Container } from 'reactstrap'
-import FilterCard from '../components/filterCard'
-import Pagination from '../components/pagination'
-import PostMore from '../components/postMore'
-import useSiteMetadata from '../hooks/useSiteMetadata'
-import useSiteNavigation from '../hooks/useSiteNavigation'
-import { PostQueryProps } from '../types'
-import formatAllTags from '../utils/formatAllTags'
+import React from 'react';
+import { graphql } from 'gatsby';
+import SEO from 'react-seo-component';
+import { Container } from 'reactstrap';
+import FilterCard from '../components/filterCard';
+import Pagination from '../components/pagination';
+import PostMore from '../components/postMore';
+import useSiteMetadata from '../hooks/useSiteMetadata';
+import useSiteNavigation from '../hooks/useSiteNavigation';
+import { PostQueryProps } from '../types';
+import formatAllTags from '../utils/formatAllTags';
 
 const HowtoTemplate = ({ data, pageContext }: PostQueryProps) => {
     const { pageHowtoDescription, pageHowtoImage, pageHowtoTitle, siteLanguage, siteLocale, siteUrl, titleSeparator, titleTemplate, twitterUsername } = useSiteMetadata();
@@ -21,7 +21,7 @@ const HowtoTemplate = ({ data, pageContext }: PostQueryProps) => {
         <>
             <SEO
                 title={pageHowtoTitle}
-                description={pageHowtoDescription || `nothin’`}
+                description={pageHowtoDescription || 'nothin’'}
                 image={`${siteUrl}${pageHowtoImage}`}
                 pathname={`${siteUrl}${howto}`}
                 titleTemplate={titleTemplate}

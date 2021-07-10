@@ -13,7 +13,7 @@
         "clean": "gatsby clean",
         "deploy": "gatsby clean && gatsby build",
         "serve": "gatsby serve -p 9500",
-        "test": "jest",
+        "lint": "eslint ./src",
         "types": "tsc --noEmit"
     },
     "browserslist": [

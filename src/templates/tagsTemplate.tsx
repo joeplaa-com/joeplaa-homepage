@@ -1,13 +1,13 @@
-import React from 'react'
-import { graphql } from 'gatsby'
-import SEO from 'react-seo-component'
-import { Container } from 'reactstrap'
-import FilterCard from '../components/filterCard'
-import PostMore from '../components/postMore'
-import useSiteMetadata from '../hooks/useSiteMetadata'
-import useSiteNavigation from '../hooks/useSiteNavigation'
-import { PostQueryProps } from '../types'
-import formatAllTags from '../utils/formatAllTags'
+import React from 'react';
+import { graphql } from 'gatsby';
+import SEO from 'react-seo-component';
+import { Container } from 'reactstrap';
+import FilterCard from '../components/filterCard';
+import PostMore from '../components/postMore';
+import useSiteMetadata from '../hooks/useSiteMetadata';
+import useSiteNavigation from '../hooks/useSiteNavigation';
+import { PostQueryProps } from '../types';
+import formatAllTags from '../utils/formatAllTags';
 
 const Tag = ({ data, pageContext }: PostQueryProps) => {
     const { siteDescription, siteImage, siteLanguage, siteLocale, siteTitle, siteUrl, titleSeparator, titleTemplate, twitterUsername } = useSiteMetadata();
@@ -18,7 +18,7 @@ const Tag = ({ data, pageContext }: PostQueryProps) => {
         <>
             <SEO
                 title={siteTitle}
-                description={siteDescription || `nothin’`}
+                description={siteDescription || 'nothin’'}
                 image={`${siteUrl}${siteImage}`}
                 pathname={`${siteUrl}${pageContext.slug}`}
                 titleTemplate={titleTemplate}
