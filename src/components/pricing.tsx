@@ -2,9 +2,7 @@ import React, { ReactElement } from 'react';
 import { Link } from './customLink';
 import { Container, Col, Row, Card, CardBody, CardDeck, Table } from 'reactstrap';
 import { IconContext } from 'react-icons';
-import { FaDownload, FaMemory, FaServer } from 'react-icons/fa';
-import { FiCpu } from 'react-icons/fi';
-import { SiGatsby, SiGhost, SiGithub, SiNextDotJs, SiWordpress } from 'react-icons/si';
+import { SiBlender, SiGatsby, SiGhost, SiNextDotJs, SiWordpress } from 'react-icons/si';
 import NewTabLink from './newTabLink';
 import useSiteMetadata from '../hooks/useSiteMetadata';
 import useSiteNavigation from '../hooks/useSiteNavigation';
@@ -19,9 +17,9 @@ import { SectionProps } from '../types';
 const Pricing = ({ className }: SectionProps): ReactElement => {
     const { componentPricingTitle } = useSiteMetadata();
     const { services } = useSiteNavigation();
-    const { staticDesign, dynamicDesign, staticHosting, dynamicHosting, computeCPU, computeRAM, computeNetworkOut, computeStorage } = useSitePricing();
+    const { websiteDesign, websiteHosting, computeCPU, computeRAM, computeNetworkOut, computeStorage } = useSitePricing();
     const { breakpoint, iconSize } = useSiteSettings();
-    const { awsCloudfront, awsLightsail, gatsbyjs, ghost, github, nextjs, wordpress } = useSiteUrls();
+    const { awsCloudfront, awsLightsail, blender, gatsbyjs, ghost, nextjs, wordpress } = useSiteUrls();
     return (
         <section className={className} id={componentPricingTitle}>
             <Container className='mb-3 mt-3'>
@@ -39,26 +37,26 @@ const Pricing = ({ className }: SectionProps): ReactElement => {
                                 <Table striped responsive hover>
                                     <colgroup>
                                         <col span={1} style={{ width: '10%' }} />
-                                        <col span={1} style={{ width: '65%' }} />
-                                        <col span={1} style={{ width: '25%' }} />
+                                        <col span={1} style={{ width: '60%' }} />
+                                        <col span={1} style={{ width: '30%' }} />
                                     </colgroup>
                                     <thead className='thead-dark'>
                                         <tr>
                                             <th>#</th>
-                                            <th>Website type</th>
+                                            <th>Website</th>
                                             <th>Cost</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr>
                                             <th scope="row">1</th>
-                                            <td>Website build with <NewTabLink href={nextjs}>Next.js</NewTabLink> or <NewTabLink href={gatsbyjs}>Gatsby.js</NewTabLink>.</td>
-                                            <td>{staticDesign}</td>
+                                            <td>Website design and build.</td>
+                                            <td>{websiteDesign}</td>
                                         </tr>
                                         <tr>
                                             <th scope="row">2</th>
-                                            <td>Website build with <NewTabLink href={wordpress}>WordPress</NewTabLink> or <NewTabLink href={ghost}>Ghost</NewTabLink> blog.</td>
-                                            <td>{dynamicDesign}</td>
+                                            <td>Website hosting and maintenance.</td>
+                                            <td>{websiteHosting}</td>
                                         </tr>
                                     </tbody>
                                 </Table>
@@ -71,48 +69,6 @@ const Pricing = ({ className }: SectionProps): ReactElement => {
                                         <NewTabLink href={nextjs} className='nav-padding-social'><SiNextDotJs /></NewTabLink>
                                         <NewTabLink href={ghost} className='nav-padding-social'><SiGhost /></NewTabLink>
                                         <NewTabLink href={wordpress} className='nav-padding-social'><SiWordpress /></NewTabLink>
-                                    </IconContext.Provider>
-                                </div>
-                            </div>
-                        </CardBody>
-                    </Card>
-
-                    <Card>
-                        <CardBody className='d-flex flex-column justify-content-between'>
-                            <div>
-                                <h2>{content.WebHosting}</h2>
-                                <Table striped responsive hover>
-                                    <colgroup>
-                                        <col span={1} style={{ width: '10%' }} />
-                                        <col span={1} style={{ width: '65%' }} />
-                                        <col span={1} style={{ width: '25%' }} />
-                                    </colgroup>
-                                    <thead className='thead-dark'>
-                                        <tr>
-                                            <th>#</th>
-                                            <th>Website type</th>
-                                            <th>Cost</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <th scope="row">1</th>
-                                            <td>Next.js or Gatsby.js website hosted on AWS.</td>
-                                            <td>{staticHosting}</td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">2</th>
-                                            <td>WordPress or Ghost website hosted on AWS.</td>
-                                            <td>{dynamicHosting}</td>
-                                        </tr>
-                                    </tbody>
-                                </Table>
-                            </div>
-                            <div>
-                                <hr />
-                                <div className='text-center'>
-                                    <IconContext.Provider value={{ size: iconSize }}>
-                                        <NewTabLink href={github} className='nav-padding-social'><SiGithub /></NewTabLink>
                                         <NewTabLink href={awsCloudfront} className='nav-padding-social'><CloudFront height={iconSize} width={iconSize} /></NewTabLink>
                                         <NewTabLink href={awsLightsail} className='nav-padding-social'><LightSail height={iconSize} width={(parseInt(iconSize) + 6).toString()} /></NewTabLink>
                                     </IconContext.Provider>
@@ -182,10 +138,7 @@ const Pricing = ({ className }: SectionProps): ReactElement => {
                                 <hr />
                                 <div className='text-center'>
                                     <IconContext.Provider value={{ size: iconSize }}>
-                                        <Link to={services} className='nav-padding-social'><FiCpu /></Link>
-                                        <Link to={services} className='nav-padding-social'><FaMemory /></Link>
-                                        <Link to={services} className='nav-padding-social'><FaServer /></Link>
-                                        <Link to={services} className='nav-padding-social'><FaDownload /></Link>
+                                        <NewTabLink href={blender} className='nav-padding-social'><SiBlender /></NewTabLink>
                                     </IconContext.Provider>
                                 </div>
                             </div>

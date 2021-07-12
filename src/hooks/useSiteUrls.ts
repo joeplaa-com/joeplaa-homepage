@@ -19,8 +19,10 @@ export default function useSiteUrls() {
                             linkedin
                             awsCloudfront
                             awsLightsail
+                            blender
                             gatsbyjs
                             ghost
+                            jodibooks
                             nextjs
                             wordpress
                         }

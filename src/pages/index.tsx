@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactElement } from 'react';
 import SEO from 'react-seo-component';
 import About from '../components/about';
 import Banner from '../components/banner';
@@ -8,7 +8,7 @@ import useSiteMetadata from '../hooks/useSiteMetadata';
 import useSiteNavigation from '../hooks/useSiteNavigation';
 import { content } from '../utils/content';
 
-const Home = () => {
+const Home = (): ReactElement => {
     const { pageHomeDescription, pageHomeImage, pageHomeSubtitle, pageHomeTitle, siteLanguage, siteLocale, siteName, siteUrl, titleSeparator, titleTemplate, twitterUsername } = useSiteMetadata();
     const { home } = useSiteNavigation();
     return (

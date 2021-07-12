@@ -66,10 +66,8 @@ const siteMetadata = {
         tos: '/conditions/terms-of-service'
     },
     pricing: {
-        staticDesign: '€ 750',
-        dynamicDesign: '€ 950',
-        staticHosting: '€ 5',
-        dynamicHosting: '€ 10',
+        websiteDesign: '€ 750',
+        websiteHosting: '€ 7,50',
         computeCPU: '€ 0.0060',
         computeRAM: '€ 0.0065',
         computeNetworkOut: '€ 0.85',
@@ -97,8 +95,10 @@ const siteMetadata = {
         linkedin: 'https://www.linkedin.com/in/joeplaa/',
         awsCloudfront: 'https://aws.amazon.com/cloudfront/',
         awsLightsail: 'https://aws.amazon.com/lightsail/',
+        blender: 'https://www.blender.org/',
         gatsbyjs: 'https://www.gatsbyjs.com/',
         ghost: 'https://ghost.org/',
+        jodibooks: 'https://jodibooks.com/',
         nextjs: 'https://nextjs.org/',
         wordpress: 'https://wordpress.org/'
     }

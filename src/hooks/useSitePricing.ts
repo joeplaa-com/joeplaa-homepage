@@ -7,10 +7,8 @@ export default function useSitePricing() {
                 site {
                     siteMetadata {
                         pricing {
-                            staticDesign
-                            dynamicDesign
-                            staticHosting
-                            dynamicHosting
+                            websiteDesign
+                            websiteHosting
                             computeCPU
                             computeRAM
                             computeNetworkOut
