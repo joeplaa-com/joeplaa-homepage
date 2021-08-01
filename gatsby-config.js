@@ -66,12 +66,17 @@ const siteMetadata = {
         tos: '/conditions/terms-of-service'
     },
     pricing: {
+        webshopConfig: '€ 750',
+        webshopHosting: '€ 7.50',
         websiteDesign: '€ 750',
-        websiteHosting: '€ 7,50',
-        computeCPU: '€ 0.0060',
-        computeRAM: '€ 0.0065',
-        computeNetworkOut: '€ 0.85',
-        computeStorage: '€ 0.0090'
+        websiteHosting: '€ 7.50',
+        websiteUpdates: '€ 17.50',
+        computeC1: '€ 0.75',
+        computeC2: '€ 1.25',
+        computeC3: '€ 1.50',
+        computeH1: '€ 25.00',
+        computeH2: '€ 20.00',
+        computeStorage: '€ 0.01'
     },
     settings: {
         breakpoint: 'md',
@@ -83,23 +88,31 @@ const siteMetadata = {
     },
     siteUrl: process.env.GATSBY_URL, // needed for gatsby-plugin-advanced-sitemap
     urls: {
-        mailForm: process.env.GATSBY_MAIL_URL,
-        plausible: 'https://plausible.joeplaa.com',
-        siteUrl: process.env.GATSBY_URL,
-        email: 'info@joeplaa.com',
-        messenger: 'https://m.me/joeplaacom/',
-        whatsapp: 'https://api.whatsapp.com/send?phone=31610520633',
-        facebook: 'https://www.facebook.com/joeplaadotcom',
-        github: 'https://github.com/joeplaa',
-        instagram: 'https://www.instagram.com/joeplaa/',
-        linkedin: 'https://www.linkedin.com/in/joeplaa/',
-        awsCloudfront: 'https://aws.amazon.com/cloudfront/',
-        awsLightsail: 'https://aws.amazon.com/lightsail/',
-        blender: 'https://www.blender.org/',
+        site: {
+            mailForm: process.env.GATSBY_MAIL_URL,
+            plausible: 'https://plausible.joeplaa.com',
+            siteUrl: process.env.GATSBY_URL,
+        },
+        contact: {
+            email: 'info@joeplaa.com',
+            messenger: 'https://m.me/joeplaacom/',
+            whatsapp: 'https://api.whatsapp.com/send?phone=31610520633',
+        },
+        accounts: {
+            facebook: 'https://www.facebook.com/joeplaadotcom',
+            github: 'https://github.com/joeplaa',
+            githubOrg: 'https://github.com/joeplaa-com',
+            instagram: 'https://www.instagram.com/joeplaa/',
+            linkedin: 'https://www.linkedin.com/in/joeplaa/',
+        },
+        aws: 'https://aws.amazon.com/',
         gatsbyjs: 'https://www.gatsbyjs.com/',
         ghost: 'https://ghost.org/',
         jodibooks: 'https://jodibooks.com/',
+        magento: 'https://magento.com/',
         nextjs: 'https://nextjs.org/',
+        opencart: 'https://www.opencart.com/',
+        woocommerce: 'https://woocommerce.com/',
         wordpress: 'https://wordpress.org/'
     }
 };

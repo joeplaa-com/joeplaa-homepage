@@ -237,7 +237,8 @@ class Contact extends React.Component<ContactProps, ContactState> {
 export default function ContactComponent(props: SectionProps): ReactElement {
     const { componentContactTitle } = useSiteMetadata();
     const { breakpoint } = useSiteSettings();
-    const { email, mailForm, messenger, whatsapp } = useSiteUrls();
+    const { contact } = useSiteUrls();
+    const { email, mailForm, messenger, whatsapp } = contact;
     const urls = {
         email: email,
         mailForm: mailForm,
