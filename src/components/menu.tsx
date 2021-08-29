@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, ReactElement } from 'react';
 import { Collapse, Navbar, NavbarToggler } from 'reactstrap';
 import { AnchorLink } from 'gatsby-plugin-anchor-links';
 import Navigation from './navigation';
@@ -7,16 +7,16 @@ import useSiteSettings from '../hooks/useSiteSettings';
 import BannerWwwCom from '../svg/banner-www-com.svg';
 import { NavbarProps } from '../types';
 
-export default function Menu({ navbarLightText }: NavbarProps) {
+export default function Menu({ navbarLightText }: NavbarProps): ReactElement {
     const { home } = useSiteNavigation();
     const { breakpoint } = useSiteSettings();
 
     const [collapsed, setCollapsed] = useState(false);
-    const toggleNavbar = () => setCollapsed(!collapsed);
+    const toggleNavbar = (): void => setCollapsed(!collapsed);
 
     // *** Get scroll position and change navbar styling accordingly
     const [scrollPosition, setSrollPosition] = useState(0);
-    const handleScroll = () => {
+    const handleScroll = (): void => {
         const position = window.pageYOffset;
         setSrollPosition(position);
     };
@@ -24,7 +24,7 @@ export default function Menu({ navbarLightText }: NavbarProps) {
     useEffect(() => {
         window.addEventListener('scroll', handleScroll, { passive: true });
 
-        return () => {
+        return (): void => {
             window.removeEventListener('scroll', handleScroll);
         };
     }, []);

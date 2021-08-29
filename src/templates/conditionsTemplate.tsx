@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactElement } from 'react';
 import { graphql } from 'gatsby';
 import { MDXRenderer } from 'gatsby-plugin-mdx';
 import { Container } from 'reactstrap';
@@ -6,7 +6,7 @@ import SEO from 'react-seo-component';
 import useSiteMetadata from '../hooks/useSiteMetadata';
 import { PageTemplateProps } from '../types';
 
-const ConditionsTemplate = ({ data }: PageTemplateProps) => {
+const ConditionsTemplate = ({ data }: PageTemplateProps): ReactElement => {
     const { authorName, siteImage, siteLanguage, siteLocale, siteUrl, titleSeparator, titleTemplate, twitterUsername } = useSiteMetadata();
     const { body, fields, frontmatter } = data.mdx;
     const { title, date } = frontmatter;
@@ -42,18 +42,18 @@ const ConditionsTemplate = ({ data }: PageTemplateProps) => {
 };
 
 export const query = graphql`
-  query conditionsBySlug($slug: String!) {
-    mdx(fields: { slug: { eq: $slug } }) {
-      frontmatter {
-        title
-        date(formatString: "YYYY MMMM D")
-      }
-      body
-      fields {
-        slug
-      }
+    query conditionsBySlug($slug: String!) {
+        mdx(fields: { slug: { eq: $slug } }) {
+            frontmatter {
+                title
+                date(formatString: "YYYY MMMM D")
+            }
+            body
+            fields {
+                slug
+            }
+        }
     }
-  }
 `;
 
 export default ConditionsTemplate;

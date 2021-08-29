@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactElement } from 'react';
 import { graphql } from 'gatsby';
 import SEO from 'react-seo-component';
 import { Container } from 'reactstrap';
@@ -10,7 +10,7 @@ import useSiteNavigation from '../hooks/useSiteNavigation';
 import { PostQueryProps } from '../types';
 import formatAllTags from '../utils/formatAllTags';
 
-const HowtoTemplate = ({ data, pageContext }: PostQueryProps) => {
+const HowtoTemplate = ({ data, pageContext }: PostQueryProps): ReactElement => {
     const { pageHowtoDescription, pageHowtoImage, pageHowtoTitle, siteLanguage, siteLocale, siteUrl, titleSeparator, titleTemplate, twitterUsername } = useSiteMetadata();
     const { howto } = useSiteNavigation();
     const posts = data.allMdx.nodes;

@@ -3,11 +3,11 @@ import { GatsbyLinkProps } from 'gatsby-link';
 import { IGatsbyImageData } from 'gatsby-plugin-image';
 import { Language } from 'prism-react-renderer';
 
-export type AuthorProps = {
+export interface AuthorProps {
     name: string
 }
 
-export type AvatarImageProps = {
+export interface AvatarImageProps {
     node: {
         relativePath: string
         extension: string
@@ -16,7 +16,7 @@ export type AvatarImageProps = {
     }
 }
 
-export type BannerProps = {
+export interface BannerProps {
     alt: string
     src: string
     subtitle: string
@@ -24,12 +24,12 @@ export type BannerProps = {
 }
 
 // === Begin Gatsby images ===
-type ChildImageSharp = {
+interface ChildImageSharp {
     publicURL: string
     gatsbyImageData: IGatsbyImageData
 }
 
-export type ImageNodeProps = {
+export interface ImageNodeProps {
     node: {
         extension?: 'jpg' | 'jpeg' | 'png' | 'webp' | 'svg'
         publicURL: string
@@ -39,69 +39,69 @@ export type ImageNodeProps = {
 }
 // === End Gatsby images ===
 
-export type CodeProps = {
+export interface CodeProps {
     codeString: string
     language: Language
 }
 
-export type CustomNavLinkProps = {
+export interface CustomNavLinkProps {
     children: ReactNode
     title?: string
     to: string
 }
 
-export type FilterProps = {
+export interface FilterProps {
     buttonType?: 'back' | 'more'
     className?: string
     page: string
     quantity?: boolean
-    tags: Array<LabelProps>
+    tags: LabelProps[]
 }
 
-export type FooterLinkProps = {
+export interface FooterLinkProps {
     className?: string
     color: 'dark' | 'light' | 'navbar'
 }
 
-export type ImageProps = {
+export interface ImageProps {
     alt: string
     className?: string
     to?: string
     src: string
 }
 
-export type LabelProps = {
+export interface LabelProps {
     value: string
     label: string
     count: number
 }
 
-export type LayoutProps = {
+export interface LayoutProps {
     children: string | ReactNode
     location: PageLocation
 }
 
 // https://github.com/gatsbyjs/gatsby/issues/16682#issuecomment-718155902
-export interface LinkProps extends Omit<GatsbyLinkProps<Record<string, unknown>>, 'ref'> {
-    state?: PageState
+export interface LinkProps<TState> extends GatsbyLinkProps<TState> {
+    state?: TState
 }
 
-export type NavbarProps = {
+export interface NavbarProps {
     navbarLightText?: boolean
 }
 
-export type NavigationProps = {
+export interface NavigationProps {
     className: string
 }
 
-export type NewTabProps = {
+export interface NewTabProps {
     children?: string | ReactNode
     className?: string
     href: string
     text?: string
 }
 
-type PageState = {
+export interface PageState {
     key?: string
     prevPathname?: string
 }
@@ -110,12 +110,12 @@ interface PageLocation extends Location {
     state?: PageState
 }
 
-export type PageTemplateProps = {
+export interface PageTemplateProps {
     data: {
         mdx: {
             author: string
             body: string
-            edges: Array<{ node: PostBasicProps }>
+            edges: { node: PostBasicProps }[]
             excerpt: string
             fields: {
                 slug: string
@@ -135,14 +135,14 @@ export type PageTemplateProps = {
     }
 }
 
-export type PaginationProps = {
+export interface PaginationProps {
     currentPage: number
     numPages: number
     path: string
 }
 
 // === Begin Posts ===
-type FrontMatterProps = {
+interface FrontMatterProps {
     author: string
     category?: string
     cover: {
@@ -152,7 +152,7 @@ type FrontMatterProps = {
     date: string
     excerpt: string
     series?: boolean
-    tags: Array<string>
+    tags: string[]
     title: string
 }
 
@@ -160,7 +160,7 @@ export interface PortfolioEntryProps extends PostBasicProps {
     body: string
 }
 
-type PostBasicProps = {
+interface PostBasicProps {
     fields: {
         slug: string
         readingTime?: {
@@ -171,7 +171,7 @@ type PostBasicProps = {
     key?: string | number
 }
 
-export type PostBodyProps = {
+export interface PostBodyProps {
     content: string
 }
 
@@ -180,14 +180,11 @@ interface PostQueryNode extends PostBasicProps {
     id: string
 }
 
-export type PostQueryProps = {
+export interface PostQueryProps {
     data: {
         allMdx: {
-            nodes: Array<PostQueryNode>
-            group: Array<{
-                fieldValue: string
-                totalCount: number
-            }>
+            nodes: PostQueryNode[]
+            group: PostTagProps[]
         },
         site: {
             siteMetadata: {
@@ -201,13 +198,11 @@ export type PostQueryProps = {
         numPages?: number
         slug?: string
         tag?: string
-        tagRaw?: {
-            fieldValue: string
-        }
+        tagRaw?: PostTagProps
     }
 }
 
-export type PostImageProps = {
+export interface PostImageProps {
     height?: number
     onClick?: () => void
     path: boolean
@@ -217,14 +212,19 @@ export type PostImageProps = {
     title: string
 }
 
-export type PostSubtitleProps = {
+export interface PostSubtitleProps {
     className?: string
     date: string
     readingTime?: string
-    tags: Array<string>
+    tags: string[]
 }
 
-export type PostTitleProps = {
+export interface PostTagProps {
+    fieldValue: string
+    totalCount: number
+}
+
+export interface PostTitleProps {
     onClick?: () => void
     path: boolean
     slug: string
@@ -232,17 +232,17 @@ export type PostTitleProps = {
 }
 // === End Posts ===
 
-export type SectionProps = {
+export interface SectionProps {
     className: string
 }
 
-export type SocialLinkProps = {
+export interface SocialLinkProps {
     color: 'dark' | 'light' | 'navbar'
     key: string | number
     size: string
 }
 
-export type TagProps = {
+export interface TagProps {
     icon?: ReactElement
     quantity?: boolean
     tag: LabelProps

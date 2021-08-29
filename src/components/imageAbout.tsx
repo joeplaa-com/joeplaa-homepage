@@ -1,10 +1,10 @@
-import React, { useMemo } from 'react';
+import React, { ReactElement, useMemo } from 'react';
 import { graphql, useStaticQuery } from 'gatsby';
 import { Link } from './customLink';
 import { GatsbyImage } from 'gatsby-plugin-image';
 import { ImageProps, ImageNodeProps } from '../types';
 
-const ImageAbout = ({ src, to, alt, ...rest }: ImageProps) => {
+const ImageAbout = ({ src, to, alt, ...rest }: ImageProps): ReactElement | null => {
     const data = useStaticQuery(graphql`{
         images: allFile(
             filter: {internal: {mediaType: {regex: "/image/"}}, absolutePath: {regex: "/src/images/"}}

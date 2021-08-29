@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { ReactElement } from 'react';
 import { CardDeck } from 'reactstrap';
 import PortfolioPreview from './portfolioPreview';
 import { PortfolioEntryProps } from '../types';
 
-export default function PortfolioEntries({ posts }: { posts: Array<PortfolioEntryProps> }) {
+export default function PortfolioEntries({ posts }: { posts: Array<PortfolioEntryProps> }): ReactElement {
     return (
         <section>
             <CardDeck>

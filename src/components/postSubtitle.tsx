@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { ReactElement } from 'react';
 import { CardSubtitle, Col, Row } from 'reactstrap';
 import Tag from './tag';
 import formatPostTags from '../utils/formatPostTags';
 import { PostSubtitleProps, LabelProps } from '../types';
 
-export default function PostSubtitle({ className, date, readingTime, tags }: PostSubtitleProps) {
+export default function PostSubtitle({ className, date, readingTime, tags }: PostSubtitleProps): ReactElement {
     return (
         <CardSubtitle className={className}>
             <Row>

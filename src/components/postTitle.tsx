@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { ReactElement } from 'react';
 import { Link } from './customLink';
 import { Button, CardTitle } from 'reactstrap';
 import { PostTitleProps } from '../types';
 
-export default function PostTitle({ title, slug, path, onClick }: PostTitleProps) {
+export default function PostTitle({ title, slug, path, onClick }: PostTitleProps): ReactElement {
     return (
         <CardTitle>
             {path && slug

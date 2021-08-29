@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { ReactElement } from 'react';
 import Image from './image';
 import Social from './social';
 import { content } from '../utils/content';
 import { BannerProps } from '../types';
 
-const Banner = (props: BannerProps) => {
+const Banner = (props: BannerProps): ReactElement => {
     const { title, subtitle, src, alt } = props;
     return (
         <section id={content.Banner}>

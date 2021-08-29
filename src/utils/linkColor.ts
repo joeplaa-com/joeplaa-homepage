@@ -1,4 +1,4 @@
-export default function linkColor(color: string) {
+export default function linkColor(color: string): string | undefined {
     if (color === 'light') {
         return 'linkLight';
     } else if (color === 'dark') {

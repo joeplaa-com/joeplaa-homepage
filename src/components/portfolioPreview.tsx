@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { ReactElement, useState } from 'react';
 import { GatsbyImage } from 'gatsby-plugin-image';
 import { Button, Card, CardBody, Modal, ModalBody, ModalFooter, ModalHeader } from 'reactstrap';
 import { FaTimes } from 'react-icons/fa';
@@ -9,9 +9,9 @@ import PostTitle from './postTitle';
 import { content } from '../utils/content';
 import { PortfolioEntryProps } from '../types';
 
-export default function PortfolioPreview({ body, fields, frontmatter }: PortfolioEntryProps) {
+export default function PortfolioPreview({ body, fields, frontmatter }: PortfolioEntryProps): ReactElement {
     const [modal, setModal] = useState(false);
-    const toggle = () => setModal(!modal);
+    const toggle = (): void => setModal(!modal);
     const closeBtn = <button className="close" onClick={toggle}>&times;</button>;
 
     return <>

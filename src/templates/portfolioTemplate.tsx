@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactElement } from 'react';
 import { graphql } from 'gatsby';
 import SEO from 'react-seo-component';
 import { Container } from 'reactstrap';
@@ -10,7 +10,7 @@ import useSiteNavigation from '../hooks/useSiteNavigation';
 import { PostQueryProps } from '../types';
 import formatAllTags from '../utils/formatAllTags';
 
-const PortfolioTemplate = ({ data, pageContext }: PostQueryProps) => {
+const PortfolioTemplate = ({ data, pageContext }: PostQueryProps): ReactElement => {
     const { pagePortfolioDescription, pagePortfolioImage, pagePortfolioTitle, siteLanguage, siteLocale, siteUrl, titleSeparator, titleTemplate, twitterUsername } = useSiteMetadata();
     const { portfolio } = useSiteNavigation();
     const entries = data.allMdx.nodes;
@@ -76,4 +76,4 @@ export const query = graphql`query portfolioTemplate($skip: Int!, $limit: Int!) 
     }
 }`;
 
-export default PortfolioTemplate; 
+export default PortfolioTemplate;

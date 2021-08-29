@@ -1,5 +1,4 @@
-
-import React from 'react';
+import React, { ReactElement } from 'react';
 import { Button } from 'reactstrap';
 import { IconContext } from 'react-icons';
 import { MdArrowBack, MdArrowForward } from 'react-icons/md';
@@ -7,9 +6,9 @@ import { Link } from './customLink';
 import useSiteSettings from '../hooks/useSiteSettings';
 import { PaginationProps } from '../types';
 
-const Pagination = ({ currentPage, numPages, path }: PaginationProps) => {
+const Pagination = ({ currentPage, numPages, path }: PaginationProps): ReactElement => {
     const { breakpoint } = useSiteSettings();
-    const prevPage = currentPage - 1 === 1 ? path :  `${path}/${(currentPage - 1).toString()}`;
+    const prevPage = currentPage - 1 === 1 ? path : `${path}/${(currentPage - 1).toString()}`;
     const nextPage = `${path}/${(currentPage + 1).toString()}`;
     const isFirst = currentPage === 1;
     const isLast = currentPage === numPages;

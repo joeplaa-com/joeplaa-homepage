@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { ReactElement } from 'react';
 import { FaHashtag } from 'react-icons/fa';
 import { GrCli, GrMonitor } from 'react-icons/gr';
 import { SiAmazonaws, SiAndroid, SiBootstrap, SiCss3, SiDocker, SiDotNet, SiExpo, SiGatsby, SiGhost, SiHtml5, SiIos, SiJavascript, SiLetsencrypt, SiLinux, SiMariadb, SiMarkdown, SiMicrosoft, SiMicrosoftsqlserver, SiMysql, SiNextDotJs, SiNginx, SiPhp, SiRails, SiReact, SiRedis, SiRuby, SiSass, SiTypescript, SiUbuntu, SiWindows, SiWordpress } from 'react-icons/si';
 
-export default function TagIcon(tag: string) {
+export default function TagIcon(tag: string): ReactElement {
     switch (tag) {
         case 'Android': return <SiAndroid />;
         case 'ASP.NET': return <SiDotNet />;

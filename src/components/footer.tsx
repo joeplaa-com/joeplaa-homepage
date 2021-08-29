@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactElement } from 'react';
 import { Link } from './customLink';
 import { Container, Col, Row } from 'reactstrap';
 import Copyright from './copyright';
@@ -11,7 +11,7 @@ import { SectionProps } from '../types';
 import { content } from '../utils/content';
 import linkColor from '../utils/linkColor';
 
-export default function Footer({ className }: SectionProps) {
+export default function Footer({ className }: SectionProps): ReactElement {
     const { businessAddress1, businessAddress2, businessCoC, businessCountry, businessIBAN, businessName, businessVAT } = useSiteMetadata();
     const { ps, tos } = useSiteNavigation();
     const { breakpoint } = useSiteSettings();

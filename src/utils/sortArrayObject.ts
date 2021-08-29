@@ -1,6 +1,6 @@
 import { LabelProps } from '../types';
 
-export default function sortArrayObject(arrayObj: Array<LabelProps>) {
+export default function sortArrayObject(arrayObj: LabelProps[]): LabelProps[] {
     if (arrayObj === null) {
         return [];
     }

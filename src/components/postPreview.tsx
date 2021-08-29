@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactElement } from 'react';
 import { Card, CardBody, CardFooter, CardText } from 'reactstrap';
 import Avatar from './avatar';
 import PostImage from './postImage';
@@ -7,7 +7,7 @@ import PostTitle from './postTitle';
 import truncateText from '../utils/truncateText';
 import { PostBasicProps } from '../types';
 
-export default function PostPreview({ fields, frontmatter }: PostBasicProps) {
+export default function PostPreview({ fields, frontmatter }: PostBasicProps): ReactElement {
     return (
         <Card>
             <CardBody>

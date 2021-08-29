@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactElement } from 'react';
 import SEO from 'react-seo-component';
 import { Link } from '../components/customLink';
 import { Container, Card, CardBody, CardColumns, CardTitle, CardText, Row } from 'reactstrap';
@@ -13,7 +13,7 @@ import BannerWwwPortfolio from '../svg/banner-www-portfolio.svg';
 import BannerWwwWebsites from '../svg/banner-www-websites.svg';
 import { content } from '../utils/content';
 
-const Landing = () => {
+const Landing = (): ReactElement => {
     const { componentPricingDescription, componentPricingTitle, componentServicesDescription, componentServicesTitle, pageHowtoDescription, pageHomeImage, pageHowtoTitle, pageLandingDescription, pageLandingTitle, pagePortfolioDescription, pagePortfolioTitle, pageRecommendedDescription, pageRecommendedTitle, siteLanguage, siteLocale, siteUrl, titleSeparator, titleTemplate, twitterUsername } = useSiteMetadata();
     const { blog, home, howto, portfolio, pricing, recommended, services } = useSiteNavigation();
     const { breakpoint } = useSiteSettings();

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactElement } from 'react';
 import { graphql } from 'gatsby';
 import { MDXRenderer } from 'gatsby-plugin-mdx';
 import { Container, Col, Row } from 'reactstrap';
@@ -14,7 +14,7 @@ import { content } from '../utils/content';
 import formatPostTags from '../utils/formatPostTags';
 import { PageTemplateProps } from '../types';
 
-const PostTemplate = ({ data, location, pageContext }: PageTemplateProps) => {
+const PostTemplate = ({ data, location, pageContext }: PageTemplateProps): ReactElement => {
     const { authorName, pageHowtoTitle, siteImage, siteLanguage, siteLocale, siteUrl, titleSeparator, titleTemplate, twitterUsername } = useSiteMetadata();
     const { howto } = useSiteNavigation();
     const { breakpoint } = useSiteSettings();

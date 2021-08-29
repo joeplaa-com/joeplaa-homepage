@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactElement } from 'react';
 import { graphql } from 'gatsby';
 import { MDXRenderer } from 'gatsby-plugin-mdx';
 import { Container, Col, Row } from 'reactstrap';
@@ -12,7 +12,7 @@ import useSiteSettings from '../hooks/useSiteSettings';
 import formatPostTags from '../utils/formatPostTags';
 import { PageTemplateProps } from '../types';
 
-const PortfolioTemplate = ({ data, location, pageContext }: PageTemplateProps) => {
+const PortfolioTemplate = ({ data, location, pageContext }: PageTemplateProps): ReactElement => {
     const { authorName, pagePortfolioTitle, siteImage, siteLanguage, siteLocale, siteUrl, titleSeparator, titleTemplate, twitterUsername } = useSiteMetadata();
     const { portfolio } = useSiteNavigation();
     const { breakpoint } = useSiteSettings();
