@@ -39,12 +39,12 @@ In this example we have the server user `joediapna`, two actual people `diana` a
                 <td><code>joediapna</code></td>
             </tr>
             <tr>
-                <td><code>/mnt/Workspace/Diana</code></td>
+                <td><code>/mnt/Workspace/workspace/Diana</code></td>
                 <td><code>-</code></td>
                 <td><code>diana</code></td>
             </tr>
             <tr>
-                <td><code>/mnt/Workspace/Joep</code></td>
+                <td><code>/mnt/Workspace/workspace/Joep</code></td>
                 <td><code>-</code></td>
                 <td><code>joep</code></td>
             </tr>
@@ -106,11 +106,6 @@ In this example we have the server user `joediapna`, two actual people `diana` a
                 <td><code>joediapna</code>, <code>sambashare</code></td>
             </tr>
             <tr>
-                <td><code>diana</code></td>
-                <td><code>Admin</code></td>
-                <td><code>joediapna</code>, <code>sambashare</code></td>
-            </tr>
-            <tr>
                 <td><code>discobal</code></td>
                 <td><code>User</code></td>
                 <td><code>sambashare</code></td>
@@ -131,7 +126,9 @@ In this example we have the server user `joediapna`, two actual people `diana` a
 
 ## 2. Permissions
 
-1. Mount the volumes you want to share. To mount volumes at least you should make the mount points (folders) and mount the volume. I have ZFS volumes which should mount automatically after every reboot. I haven't tested that yet. If you are mounting other folders, you have to add them to `/etc/fstab`. Please Google for that.
+1. Mount the volumes you want to share. To mount volumes you should make mount points (folders) and mount the volume to that folder. I have ZFS volumes which should mount automatically after every reboot. If you are mounting other types of volumes (NFS), you have to add them to `/etc/fstab`. Please Google for that (guide from me is coming some day too).
+
+    As said, I'm mounting two ZFS volumes: `Data` and `Workspace`. So I create two mount directories: `/mnt/Data` and `/mnt/Workspace` to which I mount the ZFS volumes.
 
     ```shellsession
     sudo mkdir /mnt/Data
@@ -141,14 +138,20 @@ In this example we have the server user `joediapna`, two actual people `diana` a
     sudo mount Workspace /mnt/Workspace
     ```
 
-2. Check with `ls -l` for current owner and permissions.
+2. Check if everything is mounted. It should show the two mounted volumes.
+
+    ```shellsession
+    df -h
+    ```
+
+3. Check with `ls -l` for current owner and permissions.
 
     ```shellsession
     cd /mnt/Data
     ls -l
     ```
 
-3. `Data`: The owner should be `joediapna:joediapna` and the permissions should be `drwxrwxr-x` (`775`). With these permissions the owner (the user `joediapna`) can do everything, the group `joediapna` can read and write. All other users can only read. We are going to apply these permissions on all the files and folders.
+    1. `Data`: The owner should be `joediapna:joediapna` and the permissions should be `drwxrwxr-x` (`775`). With these permissions the owner (user `joediapna`) can do everything, the group `joediapna` can do everything. All other users can only read. We are going to apply these permissions on all the files and folders.
 
     ```shellsession
     sudo chown -R joediapna:joediapna /mnt/Data/data
@@ -157,7 +160,7 @@ In this example we have the server user `joediapna`, two actual people `diana` a
 
     ![Folder permissions of /mnt/Data/data](samba-sharing-01.png)
 
-4. `Workspace`: The owner should again be `joediapna:joediapna` and the permissions should also be `drwxrwxr-x` (`775`). We are not going to apply these permissions on all the files and folders.
+    2. `Workspace`: The owner should again be `joediapna:joediapna` and the permissions should also be `drwxrwxr-x` (`775`). We are not going to apply these permissions on all the files and folders. We'll start with the main folder only
 
     ```shellsession
     cd /mnt/Workspace
@@ -168,7 +171,7 @@ In this example we have the server user `joediapna`, two actual people `diana` a
 
     ![Folder permission of /mnt/Workspace/workspace](samba-sharing-02.png)
 
-5. Now go in one level deeper and check for each folder what the permissions should be. Apply them for each folder recursively.
+    3. Now go in one level deeper and check for each folder what the permissions should be. Apply them for each folder recursively.
 
     ```shellsession
     cd /mnt/Workspace/workspace
@@ -190,10 +193,10 @@ In this example we have the server user `joediapna`, two actual people `diana` a
     sudo groupadd sambashare
     ```
 
-2. Create users. We do have to create 3 users: `diana`, `discobal` and `joep`. This is the example for the first.
+2. Create users and add them to the groups. We do have to create 3 users: `diana`, `discobal` and `joep`. This is the example for the first.
 
     ```shellsession
-    sudo useradd -m diana -p PASSWORD
+    sudo useradd -m diana -p <PASSWORD>
     sudo usermod -L diana
     sudo usermod -a -G joediapna diana
     sudo usermod -a -G sambashare diana
@@ -255,7 +258,7 @@ In this example we have the server user `joediapna`, two actual people `diana` a
 
 ## 5. Now the peculiar part
 
-* The Samba user passwords aren't the same as the system users we just created. I always forget that. We have to add that password to Samba too. So for each user:
+* The Samba user passwords aren't the same as the system users we just created. I always forget that. We have to add that password to Samba too. So for each user we enter the command below. This command will ask to enter the password for that user.
 
     ```shellsession
     sudo smbpasswd -a diana
@@ -264,6 +267,7 @@ In this example we have the server user `joediapna`, two actual people `diana` a
 ## 6. Check installation
 
 1. If everything went right, which it never does in my experience, you should now be able to browse these shares. From a Unix machine (Mac or Linux) type `smb://xxx.xxx.xxx.xxx/Data` or from Windows: `\\xxx.xxx.xxx.xxx\Data`.
+
 2. If it doesn't work... First check if Samba is installed and running:
 
     ```shellsession
