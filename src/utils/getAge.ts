@@ -1,4 +1,4 @@
-export function getAge (dateCheck, dateBase?) {
+export function getAge(dateCheck: string, dateBase?: string): number {
     let today;
     // eslint-disable-next-line mdx/no-unused-expressions
     dateBase ? today = new Date(dateBase) : today = new Date();

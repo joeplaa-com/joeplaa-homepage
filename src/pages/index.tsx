@@ -1,21 +1,21 @@
-import React from 'react'
-import SEO from 'react-seo-component'
-import About from '../components/about'
-import Banner from '../components/banner'
-import Contact from '../components/contact'
-import Pricing from '../components/pricing'
-import useSiteMetadata from '../hooks/useSiteMetadata'
-import useSiteNavigation from '../hooks/useSiteNavigation'
-import { content } from '../utils/content'
+import React, { ReactElement } from 'react';
+import SEO from 'react-seo-component';
+import About from '../components/about';
+import Banner from '../components/banner';
+import Contact from '../components/contact';
+import Pricing from '../components/pricing';
+import useSiteMetadata from '../hooks/useSiteMetadata';
+import useSiteNavigation from '../hooks/useSiteNavigation';
+import { content } from '../utils/content';
 
-const Home = () => {
+const Home = (): ReactElement => {
     const { pageHomeDescription, pageHomeImage, pageHomeSubtitle, pageHomeTitle, siteLanguage, siteLocale, siteName, siteUrl, titleSeparator, titleTemplate, twitterUsername } = useSiteMetadata();
     const { home } = useSiteNavigation();
     return (
         <>
             <SEO
                 title={pageHomeTitle}
-                description={pageHomeDescription || `nothin’`}
+                description={pageHomeDescription || 'nothin’'}
                 image={`${siteUrl}${pageHomeImage}`}
                 pathname={`${siteUrl}${home}`}
                 titleSeparator={titleSeparator}

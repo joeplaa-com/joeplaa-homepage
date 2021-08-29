@@ -1,7 +1,8 @@
+/* eslint-disable @typescript-eslint/explicit-function-return-type */
 /* eslint-disable @typescript-eslint/no-var-requires */
-const { createFilePath } = require(`gatsby-source-filesystem`);
-const path = require(`path`);
-const kebabCase = require("lodash").kebabCase;
+const { createFilePath } = require('gatsby-source-filesystem');
+const path = require('path');
+const kebabCase = require('lodash').kebabCase;
 
 exports.createPages = ({ actions, graphql }) => {
     const { createPage } = actions;
@@ -83,7 +84,7 @@ exports.createPages = ({ actions, graphql }) => {
         // create pagination pages for howto
         Array.from({ length: numHowtoPages }).forEach((_, i) => {
             createPage({
-                path: i === 0 ? `/howto` : `/howto/${i + 1}`,
+                path: i === 0 ? '/howto' : `/howto/${i + 1}`,
                 component: howtoTemplate,
                 context: {
                     limit: postsPerPage,
@@ -91,13 +92,13 @@ exports.createPages = ({ actions, graphql }) => {
                     numPages: numHowtoPages,
                     currentPage: i + 1,
                 },
-            })
-        })
+            });
+        });
 
         // create pagination pages for portolio
         Array.from({ length: numPortfolioPages }).forEach((_, i) => {
             createPage({
-                path: i === 0 ? `/portfolio` : `/portfolio/${i + 1}`,
+                path: i === 0 ? '/portfolio' : `/portfolio/${i + 1}`,
                 component: portfolioTemplate,
                 context: {
                     limit: postsPerPage,
@@ -105,8 +106,8 @@ exports.createPages = ({ actions, graphql }) => {
                     numPages: numPortfolioPages,
                     currentPage: i + 1,
                 },
-            })
-        })
+            });
+        });
 
         // create page for each conditions node
         conditions.forEach((post) => {
@@ -166,10 +167,10 @@ exports.createPages = ({ actions, graphql }) => {
 
 exports.onCreateNode = ({ node, actions, getNode }) => {
     const { createNodeField } = actions;
-    if (node.internal.type === `Mdx`) {
+    if (node.internal.type === 'Mdx') {
         const value = createFilePath({ node, getNode });
         createNodeField({
-            name: `slug`,
+            name: 'slug',
             node,
             value,
         });

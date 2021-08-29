@@ -1,20 +1,20 @@
-import React from 'react'
-import { graphql } from 'gatsby'
-import { MDXRenderer } from 'gatsby-plugin-mdx'
-import { Container, Col, Row } from 'reactstrap'
-import { Helmet } from 'react-helmet'
-import SEO from 'react-seo-component'
-import Filter from '../components/filter'
-import PostBrowseButton from '../components/postBrowseButton'
-import PostImage from '../components/postImage'
-import useSiteMetadata from '../hooks/useSiteMetadata'
-import useSiteNavigation from '../hooks/useSiteNavigation'
-import useSiteSettings from '../hooks/useSiteSettings'
-import { content } from '../utils/content'
-import formatPostTags from '../utils/formatPostTags'
-import { PageTemplateProps } from '../types'
+import React, { ReactElement } from 'react';
+import { graphql } from 'gatsby';
+import { MDXRenderer } from 'gatsby-plugin-mdx';
+import { Container, Col, Row } from 'reactstrap';
+import { Helmet } from 'react-helmet';
+import SEO from 'react-seo-component';
+import Filter from '../components/filter';
+import PostBrowseButton from '../components/postBrowseButton';
+import PostImage from '../components/postImage';
+import useSiteMetadata from '../hooks/useSiteMetadata';
+import useSiteNavigation from '../hooks/useSiteNavigation';
+import useSiteSettings from '../hooks/useSiteSettings';
+import { content } from '../utils/content';
+import formatPostTags from '../utils/formatPostTags';
+import { PageTemplateProps } from '../types';
 
-const PostTemplate = ({ data, location, pageContext }: PageTemplateProps) => {
+const PostTemplate = ({ data, location, pageContext }: PageTemplateProps): ReactElement => {
     const { authorName, pageHowtoTitle, siteImage, siteLanguage, siteLocale, siteUrl, titleSeparator, titleTemplate, twitterUsername } = useSiteMetadata();
     const { howto } = useSiteNavigation();
     const { breakpoint } = useSiteSettings();
@@ -93,33 +93,29 @@ const PostTemplate = ({ data, location, pageContext }: PageTemplateProps) => {
     );
 };
 
-export const query = graphql`
-  query howtoPostBySlug($slug: String!) {
-    mdx(fields: { slug: { eq: $slug } }) {
-      frontmatter {
-        title
-        tags
-        excerpt
-        date(formatString: "YYYY MMMM D")
-        cover {
-          publicURL
-          childImageSharp {
-              fluid(maxWidth: 960, srcSetBreakpoints: [320, 640]) {
-              ...GatsbyImageSharpFluid_withWebp
+export const query = graphql`query howtoPostBySlug($slug: String!) {
+    mdx(fields: {slug: {eq: $slug}}) {
+        frontmatter {
+            title
+            tags
+            excerpt
+            date(formatString: "YYYY MMMM D")
+            cover {
+                publicURL
+                childImageSharp {
+                    gatsbyImageData(width: 960, breakpoints: [320, 640], layout: CONSTRAINED)
+                }
             }
-          }
+            author
         }
-        author
-      }
-      body
-      fields {
-        slug
-        readingTime {
-            text
+        body
+        fields {
+            slug
+            readingTime {
+                text
+            }
         }
-      }
     }
-  }
-`;
+}`;
 
 export default PostTemplate;

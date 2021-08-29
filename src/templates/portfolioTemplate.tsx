@@ -1,16 +1,16 @@
-import React from 'react'
-import { graphql } from 'gatsby'
-import SEO from 'react-seo-component'
-import { Container } from 'reactstrap'
-import FilterCard from '../components/filterCard'
-import Pagination from '../components/pagination'
-import PortfolioEntries from '../components/portfolioEntries'
-import useSiteMetadata from '../hooks/useSiteMetadata'
-import useSiteNavigation from '../hooks/useSiteNavigation'
-import { PostQueryProps } from '../types'
-import formatAllTags from '../utils/formatAllTags'
+import React, { ReactElement } from 'react';
+import { graphql } from 'gatsby';
+import SEO from 'react-seo-component';
+import { Container } from 'reactstrap';
+import FilterCard from '../components/filterCard';
+import Pagination from '../components/pagination';
+import PortfolioEntries from '../components/portfolioEntries';
+import useSiteMetadata from '../hooks/useSiteMetadata';
+import useSiteNavigation from '../hooks/useSiteNavigation';
+import { PostQueryProps } from '../types';
+import formatAllTags from '../utils/formatAllTags';
 
-const PortfolioTemplate = ({ data, pageContext }: PostQueryProps) => {
+const PortfolioTemplate = ({ data, pageContext }: PostQueryProps): ReactElement => {
     const { pagePortfolioDescription, pagePortfolioImage, pagePortfolioTitle, siteLanguage, siteLocale, siteUrl, titleSeparator, titleTemplate, twitterUsername } = useSiteMetadata();
     const { portfolio } = useSiteNavigation();
     const entries = data.allMdx.nodes;
@@ -21,7 +21,7 @@ const PortfolioTemplate = ({ data, pageContext }: PostQueryProps) => {
         <>
             <SEO
                 title={pagePortfolioTitle}
-                description={pagePortfolioDescription || `nothin’`}
+                description={pagePortfolioDescription || 'nothin’'}
                 image={`${siteUrl}${pagePortfolioImage}`}
                 pathname={`${siteUrl}${portfolio}`}
                 titleTemplate={titleTemplate}
@@ -42,42 +42,38 @@ const PortfolioTemplate = ({ data, pageContext }: PostQueryProps) => {
     );
 };
 
-export const query = graphql`
-  query portfolioTemplate($skip: Int!, $limit: Int!) {
+export const query = graphql`query portfolioTemplate($skip: Int!, $limit: Int!) {
     allMdx(
-      sort: { fields: [frontmatter___date], order: DESC }
-      filter: { frontmatter: { published: { eq: true } }, fileAbsolutePath: {regex: "/content/portfolio/"} }
-      limit: $limit
-      skip: $skip
+        sort: {fields: [frontmatter___date], order: DESC}
+        filter: {frontmatter: {published: {eq: true}}, fileAbsolutePath: {regex: "/content/portfolio/"}}
+        limit: $limit
+        skip: $skip
     ) {
-      nodes {
-        id
-        frontmatter {
-          author
-          cover {
-            publicURL
-            childImageSharp {
-                fluid(maxWidth: 640, srcSetBreakpoints: [320, 480]) {
-                ...GatsbyImageSharpFluid_withWebp
-              }
+        nodes {
+            id
+            frontmatter {
+                author
+                cover {
+                    publicURL
+                    childImageSharp {
+                        gatsbyImageData(width: 640, breakpoints: [320, 480], layout: CONSTRAINED)
+                    }
+                }
+                date(formatString: "YYYY MMMM D")
+                excerpt
+                tags
+                title
             }
-          }
-          date(formatString: "YYYY MMMM D")
-          excerpt
-          tags
-          title
+            body
+            fields {
+                slug
+            }
         }
-        body
-        fields {
-          slug
+        group(field: frontmatter___tags) {
+            fieldValue
+            totalCount
         }
-      }
-      group(field: frontmatter___tags) {
-        fieldValue
-        totalCount
-      }
     }
-  }
-`;
+}`;
 
-export default PortfolioTemplate; 
+export default PortfolioTemplate;

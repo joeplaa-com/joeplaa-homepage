@@ -1,6 +1,21 @@
 import { graphql, useStaticQuery } from 'gatsby';
 
-export default function useSiteNavigation () {
+interface IuseSiteNavigation {
+    about: string,
+    blog: string,
+    contact: string,
+    home: string,
+    howto: string,
+    portfolio: string,
+    pricing: string,
+    ps: string,
+    recommended: string,
+    services: string,
+    tagsNav: string,
+    tos: string
+}
+
+export default function useSiteNavigation(): IuseSiteNavigation {
     const { site } = useStaticQuery(
         graphql`
             query SITE_NAVIGATION_QUERY {
@@ -19,7 +34,6 @@ export default function useSiteNavigation () {
                             services
                             tagsNav
                             tos
-                            wiki
                         }
                     }
                 }

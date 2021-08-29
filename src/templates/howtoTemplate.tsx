@@ -1,16 +1,16 @@
-import React from 'react'
-import { graphql } from 'gatsby'
-import SEO from 'react-seo-component'
-import { Container } from 'reactstrap'
-import FilterCard from '../components/filterCard'
-import Pagination from '../components/pagination'
-import PostMore from '../components/postMore'
-import useSiteMetadata from '../hooks/useSiteMetadata'
-import useSiteNavigation from '../hooks/useSiteNavigation'
-import { PostQueryProps } from '../types'
-import formatAllTags from '../utils/formatAllTags'
+import React, { ReactElement } from 'react';
+import { graphql } from 'gatsby';
+import SEO from 'react-seo-component';
+import { Container } from 'reactstrap';
+import FilterCard from '../components/filterCard';
+import Pagination from '../components/pagination';
+import PostMore from '../components/postMore';
+import useSiteMetadata from '../hooks/useSiteMetadata';
+import useSiteNavigation from '../hooks/useSiteNavigation';
+import { PostQueryProps } from '../types';
+import formatAllTags from '../utils/formatAllTags';
 
-const HowtoTemplate = ({ data, pageContext }: PostQueryProps) => {
+const HowtoTemplate = ({ data, pageContext }: PostQueryProps): ReactElement => {
     const { pageHowtoDescription, pageHowtoImage, pageHowtoTitle, siteLanguage, siteLocale, siteUrl, titleSeparator, titleTemplate, twitterUsername } = useSiteMetadata();
     const { howto } = useSiteNavigation();
     const posts = data.allMdx.nodes;
@@ -21,7 +21,7 @@ const HowtoTemplate = ({ data, pageContext }: PostQueryProps) => {
         <>
             <SEO
                 title={pageHowtoTitle}
-                description={pageHowtoDescription || `nothin’`}
+                description={pageHowtoDescription || 'nothin’'}
                 image={`${siteUrl}${pageHowtoImage}`}
                 pathname={`${siteUrl}${howto}`}
                 titleTemplate={titleTemplate}
@@ -42,45 +42,41 @@ const HowtoTemplate = ({ data, pageContext }: PostQueryProps) => {
     );
 };
 
-export const query = graphql`
-  query howtoTemplate($skip: Int!, $limit: Int!) {
+export const query = graphql`query howtoTemplate($skip: Int!, $limit: Int!) {
     allMdx(
-      sort: { fields: [frontmatter___date], order: DESC }
-      filter: { frontmatter: { published: { eq: true }, series: { ne: true } }, fileAbsolutePath: {regex: "/content/howto/"} }
-      limit: $limit
-      skip: $skip
+        sort: {fields: [frontmatter___date], order: DESC}
+        filter: {frontmatter: {published: {eq: true}, series: {ne: true}}, fileAbsolutePath: {regex: "/content/howto/"}}
+        limit: $limit
+        skip: $skip
     ) {
-      nodes {
-        id
-        frontmatter {
-          author
-          cover {
-            publicURL
-            childImageSharp {
-                fluid(maxWidth: 960, srcSetBreakpoints: [320, 640]) {
-                ...GatsbyImageSharpFluid_withWebp
-              }
+        nodes {
+            id
+            frontmatter {
+                author
+                cover {
+                    publicURL
+                    childImageSharp {
+                        gatsbyImageData(width: 960, breakpoints: [320, 640], layout: CONSTRAINED)
+                    }
+                }
+                date(formatString: "YYYY MMMM D")
+                excerpt
+                series
+                tags
+                title
             }
-          }
-          date(formatString: "YYYY MMMM D")
-          excerpt
-          series
-          tags
-          title
+            fields {
+                slug
+                readingTime {
+                    text
+                }
+            }
         }
-        fields {
-          slug
-          readingTime {
-              text
-          }
+        group(field: frontmatter___tags) {
+            fieldValue
+            totalCount
         }
-      }
-      group(field: frontmatter___tags) {
-        fieldValue
-        totalCount
-      }
     }
-  }
-`;
+}`;
 
 export default HowtoTemplate;

@@ -1,17 +1,17 @@
-import React from 'react'
-import { Link } from './customLink'
-import { Container, Col, Row } from 'reactstrap'
-import Copyright from './copyright'
-import NewTabLink from './newTabLink'
-import Social from './social'
-import useSiteMetadata from '../hooks/useSiteMetadata'
-import useSiteNavigation from '../hooks/useSiteNavigation'
-import useSiteSettings from '../hooks/useSiteSettings'
-import { SectionProps } from '../types'
-import { content } from '../utils/content'
-import linkColor from '../utils/linkColor'
+import React, { ReactElement } from 'react';
+import { Link } from './customLink';
+import { Container, Col, Row } from 'reactstrap';
+import Copyright from './copyright';
+import NewTabLink from './newTabLink';
+import Social from './social';
+import useSiteMetadata from '../hooks/useSiteMetadata';
+import useSiteNavigation from '../hooks/useSiteNavigation';
+import useSiteSettings from '../hooks/useSiteSettings';
+import { SectionProps } from '../types';
+import { content } from '../utils/content';
+import linkColor from '../utils/linkColor';
 
-export default function Footer ({ className }: SectionProps) {
+export default function Footer({ className }: SectionProps): ReactElement {
     const { businessAddress1, businessAddress2, businessCoC, businessCountry, businessIBAN, businessName, businessVAT } = useSiteMetadata();
     const { ps, tos } = useSiteNavigation();
     const { breakpoint } = useSiteSettings();
@@ -34,7 +34,7 @@ export default function Footer ({ className }: SectionProps) {
                         <Link className={colorClassName} to={tos}>{content.TermsOfService}</Link><br />
                         <Link className={colorClassName} to={ps}>{content.PrivacyStatement}</Link>
                         <span className={`d-none d-${breakpoint}-block`}>
-                            <Social color={color} key='footer' size='2rem' />
+                            <Social color={color} key='footer1' size='2rem' />
                         </span>
                     </Col>
                     <Col xs='12' className={`col-${breakpoint}-4 mr-${breakpoint}-auto mb-2 mt-2`}>
@@ -46,7 +46,7 @@ export default function Footer ({ className }: SectionProps) {
                     </Col>
                 </Row>
                 <span className={`d-${breakpoint}-none`}>
-                    <Social color={color} key='footer' size='2rem' />
+                    <Social color={color} key='footer2' size='2rem' />
                 </span>
                 <Copyright color={color} />
             </Container>

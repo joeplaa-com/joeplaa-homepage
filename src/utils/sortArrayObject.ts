@@ -1,8 +1,8 @@
-import { LabelProps } from '../types'
+import { LabelProps } from '../types';
 
-export default function sortArrayObject(arrayObj: Array<LabelProps>) {
+export default function sortArrayObject(arrayObj: LabelProps[]): LabelProps[] {
     if (arrayObj === null) {
-        return []
+        return [];
     }
     return arrayObj.sort((a, b) => {
         const fa = a.value.toLowerCase(),

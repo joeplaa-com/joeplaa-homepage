@@ -1,14 +1,14 @@
-import Highlight, { defaultProps } from 'prism-react-renderer'
-import theme from 'prism-react-renderer/themes/nightOwl'
-import React from 'react'
-import { Button } from 'reactstrap'
-import { CodeProps } from '../types'
-import { content } from '../utils/content'
-import { copyToClipboard } from '../utils/copy-to-clipboard'
+import Highlight, { defaultProps } from 'prism-react-renderer';
+import theme from 'prism-react-renderer/themes/nightOwl';
+import React, { ReactElement } from 'react';
+import { Button } from 'reactstrap';
+import { CodeProps } from '../types';
+import { content } from '../utils/content';
+import { copyToClipboard } from '../utils/copy-to-clipboard';
 
-const Code = ({ codeString, language }: CodeProps) => {
+const Code = ({ codeString, language }: CodeProps): ReactElement => {
 
-    const handleClick = () => {
+    const handleClick = (): void => {
         copyToClipboard(codeString);
     };
 
@@ -24,7 +24,7 @@ const Code = ({ codeString, language }: CodeProps) => {
                 tokens,
                 getLineProps,
                 getTokenProps,
-            }) => (<pre className={className} style={style}>
+            }): ReactElement => (<pre className={className} style={style}>
                 <Button outline size='sm' color='primary' className='float-right' onClick={handleClick}>{content.Copy}</Button>
                 {tokens.map((line, i) => (
                     <div key={i} {...getLineProps({ line, key: i })}>

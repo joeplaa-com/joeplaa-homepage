@@ -1,19 +1,19 @@
-import React from 'react'
-import SEO from 'react-seo-component'
-import { Link } from '../components/customLink'
-import { Container, Card, CardBody, CardColumns, CardTitle, CardText, Row } from 'reactstrap'
-import useSiteMetadata from '../hooks/useSiteMetadata'
-import useSiteNavigation from '../hooks/useSiteNavigation'
-import useSiteSettings from '../hooks/useSiteSettings'
-import BannerBlog from '../svg/banner-blog.svg'
-import BannerBlogRecommended from '../svg/banner-blog-recommended.svg'
-import BannerWwwCom from '../svg/banner-www-com.svg'
-import BannerWwwHowto from '../svg/banner-www-howto.svg'
-import BannerWwwPortfolio from '../svg/banner-www-portfolio.svg'
-import BannerWwwWebsites from '../svg/banner-www-websites.svg'
-import { content } from '../utils/content'
+import React, { ReactElement } from 'react';
+import SEO from 'react-seo-component';
+import { Link } from '../components/customLink';
+import { Container, Card, CardBody, CardColumns, CardTitle, CardText, Row } from 'reactstrap';
+import useSiteMetadata from '../hooks/useSiteMetadata';
+import useSiteNavigation from '../hooks/useSiteNavigation';
+import useSiteSettings from '../hooks/useSiteSettings';
+import BannerBlog from '../svg/banner-blog.svg';
+import BannerBlogRecommended from '../svg/banner-blog-recommended.svg';
+import BannerWwwCom from '../svg/banner-www-com.svg';
+import BannerWwwHowto from '../svg/banner-www-howto.svg';
+import BannerWwwPortfolio from '../svg/banner-www-portfolio.svg';
+import BannerWwwWebsites from '../svg/banner-www-websites.svg';
+import { content } from '../utils/content';
 
-const Landing = () => {
+const Landing = (): ReactElement => {
     const { componentPricingDescription, componentPricingTitle, componentServicesDescription, componentServicesTitle, pageHowtoDescription, pageHomeImage, pageHowtoTitle, pageLandingDescription, pageLandingTitle, pagePortfolioDescription, pagePortfolioTitle, pageRecommendedDescription, pageRecommendedTitle, siteLanguage, siteLocale, siteUrl, titleSeparator, titleTemplate, twitterUsername } = useSiteMetadata();
     const { blog, home, howto, portfolio, pricing, recommended, services } = useSiteNavigation();
     const { breakpoint } = useSiteSettings();
@@ -21,7 +21,7 @@ const Landing = () => {
         <>
             <SEO
                 title={pageLandingTitle}
-                description={pageLandingDescription || `nothin’`}
+                description={pageLandingDescription || 'nothin’'}
                 image={`${siteUrl}${pageHomeImage}`}
                 pathname={`${siteUrl}${home}`}
                 titleTemplate={titleTemplate}

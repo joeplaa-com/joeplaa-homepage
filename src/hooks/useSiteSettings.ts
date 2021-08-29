@@ -1,6 +1,15 @@
 import { graphql, useStaticQuery } from 'gatsby';
 
-export default function useSiteSettings () {
+interface IuseSiteSettings {
+    breakpoint: string,
+    designedBy: string,
+    designerName: string,
+    designerUrl: string,
+    iconSize: string,
+    plausibleID: string
+}
+
+export default function useSiteSettings(): IuseSiteSettings {
     const { site } = useStaticQuery(
         graphql`
             query SITE_SETTINGS_QUERY {
