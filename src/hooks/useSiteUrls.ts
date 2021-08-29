@@ -19,12 +19,15 @@ interface IuseSiteUrls {
         linkedin: string
     },
     aws: string,
+    bamboo: string,
     gatsbyjs: string,
     ghost: string,
+    jenkins: string,
     jodibooks: string,
     magento: string,
     nextjs: string,
     opencart: string,
+    teamcity: string,
     woocommerce: string,
     wordpress: string
 }
@@ -54,12 +57,15 @@ export default function useSiteUrls(): IuseSiteUrls {
                                 linkedin
                             }
                             aws
+                            bamboo
                             gatsbyjs
                             ghost
+                            jenkins
                             jodibooks
                             magento
                             nextjs
                             opencart
+                            teamcity
                             woocommerce
                             wordpress
                         }

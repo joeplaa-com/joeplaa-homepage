@@ -13,7 +13,7 @@ import { SectionProps } from '../types';
 const Pricing = ({ className }: SectionProps): ReactElement => {
     const { componentPricingTitle } = useSiteMetadata();
     const { services } = useSiteNavigation();
-    const { webshopConfig, webshopHosting, websiteDesign, websiteHosting, websiteUpdates, computeC1, computeC2, computeC3, computeH1, computeH2, computeStorage } = useSitePricing();
+    const { webshopConfig, webshopHosting, websiteDesign, websiteHosting, websiteUpdates, /* computeC1, computeC2, computeC3, */ computeH1, computeH2, computeStorage } = useSitePricing();
     const { breakpoint } = useSiteSettings();
     const { aws } = useSiteUrls();
     return (
@@ -46,27 +46,27 @@ const Pricing = ({ className }: SectionProps): ReactElement => {
                                     <tbody>
                                         <tr>
                                             <th scope="row">W1</th>
-                                            <td>Website design &amp; build</td>
+                                            <td>{content.WebsiteDesign} &amp; build</td>
                                             <td>{websiteDesign}</td>
                                         </tr>
                                         <tr>
                                             <th scope="row">W2</th>
-                                            <td>Website hosting (per month)</td>
+                                            <td>{content.WebsiteHosting} (per month)</td>
                                             <td>{websiteHosting}</td>
                                         </tr>
                                         <tr>
                                             <th scope="row">W3</th>
-                                            <td>Website updates (per 15 minutes)</td>
+                                            <td>{content.WebsiteUpdates} (per 15 minutes)</td>
                                             <td>{websiteUpdates}</td>
                                         </tr>
                                         <tr>
                                             <th scope="row">W4</th>
-                                            <td>Webshop configuration</td>
+                                            <td>{content.WebshopSetup}</td>
                                             <td>{webshopConfig}</td>
                                         </tr>
                                         <tr>
                                             <th scope="row">W5</th>
-                                            <td>Webshop hosting (per month)</td>
+                                            <td>{content.WebshopHosting} (per month)</td>
                                             <td>{webshopHosting}</td>
                                         </tr>
                                     </tbody>
@@ -81,7 +81,7 @@ const Pricing = ({ className }: SectionProps): ReactElement => {
                         </CardBody>
                     </Card>
 
-                    <Card>
+                    {/* <Card>
                         <CardBody className='d-flex flex-column justify-content-between'>
                             <div>
                                 <h2>{content.Compute}</h2>
@@ -145,7 +145,8 @@ const Pricing = ({ className }: SectionProps): ReactElement => {
                                 </div>
                             </div>
                         </CardBody>
-                    </Card>
+                    </Card> */}
+
                     <Card>
                         <CardBody className='d-flex flex-column justify-content-between'>
                             <div>
@@ -201,14 +202,15 @@ const Pricing = ({ className }: SectionProps): ReactElement => {
                             <div>
                                 <hr />
                                 <div className='text-center'>
-                                    CI/CD with TeamCity, Bamboo, Jenkins and others.
+                                    CI/CD with TeamCity*, Bamboo*, Jenkins and others. <br />
+                                    * Bring your own license.
                                 </div>
                             </div>
                         </CardBody>
                     </Card>
                 </CardDeck>
             </Container>
-        </section >
+        </section>
     );
 };
 

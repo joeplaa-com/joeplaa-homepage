@@ -106,12 +106,15 @@ const siteMetadata = {
             linkedin: 'https://www.linkedin.com/in/joeplaa/',
         },
         aws: 'https://aws.amazon.com/',
+        bamboo: 'https://www.atlassian.com/software/bamboo',
         gatsbyjs: 'https://www.gatsbyjs.com/',
         ghost: 'https://ghost.org/',
+        jenkins: 'https://www.jenkins.io/',
         jodibooks: 'https://jodibooks.com/',
         magento: 'https://magento.com/',
         nextjs: 'https://nextjs.org/',
         opencart: 'https://www.opencart.com/',
+        teamcity: 'https://www.jetbrains.com/teamcity/',
         woocommerce: 'https://woocommerce.com/',
         wordpress: 'https://wordpress.org/'
     }

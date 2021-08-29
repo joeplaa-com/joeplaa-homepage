@@ -39,8 +39,11 @@ export const content = {
     TextBox: 'Questions / other',
     TryAgain: 'Try again',
     Websites: 'Websites',
-    WebDesign: 'Website design',
-    WebHosting: 'Website hosting',
+    WebsiteDesign: 'Website design',
+    WebsiteHosting: 'Website hosting',
+    WebsiteUpdates: 'Website updates',
     WebshopSetup: 'Webshop setup',
+    WebshopHosting: 'Webshop hosting',
+    WebHosting: 'Website/webshop hosting',
     WelcomeTo: 'Welcome to'
 };

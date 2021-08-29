@@ -212,6 +212,15 @@ div.card-footer {
 
 .footer-background {background: linear-gradient($gray-400, $gray-500);}
 
+.section-services {
+    min-height: calc(100vh - 64px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-top: 4.5rem;
+}
+    .section-services.background1 {background: linear-gradient($gray-100, $blue-400);}
+
 .section-fill {
     min-height: 100%;
     display: flex;

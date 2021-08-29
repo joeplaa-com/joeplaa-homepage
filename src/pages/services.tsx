@@ -5,7 +5,7 @@ import ServicesComponent from '../components/services';
 import useSiteMetadata from '../hooks/useSiteMetadata';
 import useSiteNavigation from '../hooks/useSiteNavigation';
 
-const Home = (): ReactElement => {
+const Services = (): ReactElement => {
     const { pageServicesDescription, pageServicesImage, pageServicesTitle, siteLanguage, siteLocale, siteUrl, titleSeparator, titleTemplate, twitterUsername } = useSiteMetadata();
     const { services } = useSiteNavigation();
     return (
@@ -22,11 +22,11 @@ const Home = (): ReactElement => {
                 twitterUsername={twitterUsername}
             />
 
-            <ServicesComponent className='section-fill' />
+            <ServicesComponent className='section-services background1' />
 
-            <Contact className='section-fill' />
+            <Contact className='section-home background3' />
         </>
     );
 };
 
-export default Home;
+export default Services;
