@@ -20,7 +20,7 @@ const About = ({ className }: SectionProps): ReactElement => {
             <Container className='mb-3 mt-3'>
                 <Row>
                     <Col>
-                        <h1 className={`display-1 text-center text-${breakpoint}-left`}>{componentAboutTitle}</h1>
+                        <h1 className='display-1 text-center text'>{componentAboutTitle}</h1>
                     </Col>
                 </Row>
                 <Row>

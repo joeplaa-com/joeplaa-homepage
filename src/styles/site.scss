@@ -95,6 +95,10 @@ div.card {
     min-width: 18rem;
 }
 
+.card-deck {
+    justify-content: center;
+}
+
 .card-deck .card {
     margin: $card-group-margin;
     max-width: 350px;
@@ -102,13 +106,7 @@ div.card {
 
 @include media-breakpoint-down(lg) {
     .card-deck .card {
-        max-width: 290px;
-    }
-}
-
-@include media-breakpoint-down(md) {
-    .card-deck .card {
-        max-width: 330px;
+        flex-basis: 50%;
     }
 }
 
@@ -116,7 +114,7 @@ div.card {
     .card-deck .card {
         margin-left: 0;
         margin-right: 0;
-        max-width: 510px;
+        flex-basis: 100%;
     }
 }
 
@@ -211,15 +209,6 @@ div.card-footer {
     .section-home.background3 {background: linear-gradient($blue-400, $gray-400);}
 
 .footer-background {background: linear-gradient($gray-400, $gray-500);}
-
-.section-services {
-    min-height: calc(100vh - 64px);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding-top: 4.5rem;
-}
-    .section-services.background1 {background: linear-gradient($gray-100, $blue-400);}
 
 .section-fill {
     min-height: 100%;
@@ -461,10 +450,13 @@ button.close {
     }
 
     .list-group-item.listgroup-item-contact {
+        display: inline-flex;
+        align-items: center;
+        justify-content: start;
         &:hover { 
             color: $component-active-color !important;
-            background-color: $ana-secondary !important;
-            border-color: $ana-secondary !important;
+            background-color: $link-hover-color !important;
+            border-color: $link-hover-color !important;
         }
     }
     .list-group-item.active.listgroup-item-contact {
@@ -473,8 +465,8 @@ button.close {
         border-color: $component-active-bg !important;
         &:hover { 
             color: $component-active-color !important;
-            background-color: $ana-secondary !important;
-            border-color: $ana-secondary !important;
+            background-color: $link-active-color !important;
+            border-color: $link-active-color !important;
         }
     }
 

@@ -67,16 +67,16 @@ const siteMetadata = {
     },
     pricing: {
         webshopConfig: '€ 750',
-        webshopHosting: '€ 7.50',
+        webshopHosting: '€ 7,50',
         websiteDesign: '€ 750',
-        websiteHosting: '€ 7.50',
-        websiteUpdates: '€ 17.50',
-        computeC1: '€ 0.75',
-        computeC2: '€ 1.25',
-        computeC3: '€ 1.50',
-        computeH1: '€ 25.00',
-        computeH2: '€ 20.00',
-        computeStorage: '€ 0.01'
+        websiteHosting: '€ 7,50',
+        websiteUpdates: '€ 17,50',
+        computeC1: '€ 0,75',
+        computeC2: '€ 1,25',
+        computeC3: '€ 1,50',
+        computeH1: '€ 25,00',
+        computeH2: '€ 20,00',
+        computeStorage: '€ 0,10'
     },
     settings: {
         breakpoint: 'md',
@@ -95,7 +95,8 @@ const siteMetadata = {
         },
         contact: {
             email: 'info@joeplaa.com',
-            messenger: 'https://m.me/joeplaacom/',
+            signal: '',
+            telegram: 'https://t.me/@joeplaa',
             whatsapp: 'https://api.whatsapp.com/send?phone=31610520633',
         },
         accounts: {

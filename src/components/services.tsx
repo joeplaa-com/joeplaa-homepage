@@ -97,8 +97,8 @@ const ServicesComponent = ({ className }: SectionProps): ReactElement => {
                             <Col xs='12' className={`col-${breakpoint}-auto`}>
                                 <div className={`my-3 my-${breakpoint}-auto mx-auto shadow`} style={{ width: '320px' }}>
                                     <Image
-                                        src='jodibooks-homepage.png'
-                                        alt=''
+                                        src='web-hosting-example.png'
+                                        alt='screenshot grafana network traffic'
                                         className="mx-auto"
                                     />
                                 </div>

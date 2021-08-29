@@ -1,6 +1,5 @@
 import React, { ReactElement } from 'react';
 import SEO from 'react-seo-component';
-import Contact from '../components/contact';
 import ServicesComponent from '../components/services';
 import useSiteMetadata from '../hooks/useSiteMetadata';
 import useSiteNavigation from '../hooks/useSiteNavigation';
@@ -22,9 +21,7 @@ const Services = (): ReactElement => {
                 twitterUsername={twitterUsername}
             />
 
-            <ServicesComponent className='section-services background1' />
-
-            <Contact className='section-home background3' />
+            <ServicesComponent className='section-fill blue-dark' />
         </>
     );
 };

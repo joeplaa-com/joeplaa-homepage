@@ -8,7 +8,8 @@ interface IuseSiteUrls {
     },
     contact: {
         email: string,
-        messenger: string,
+        signal: string,
+        telegram: string,
         whatsapp: string
     },
     accounts: {
@@ -46,7 +47,8 @@ export default function useSiteUrls(): IuseSiteUrls {
                             }
                             contact {
                                 email
-                                messenger
+                                signal
+                                telegram
                                 whatsapp
                             }
                             accounts {
