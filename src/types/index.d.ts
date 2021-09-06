@@ -1,5 +1,4 @@
 import { ReactElement, ReactNode } from 'react';
-import { GatsbyLinkProps } from 'gatsby-link';
 import { IGatsbyImageData } from 'gatsby-plugin-image';
 import { Language } from 'prism-react-renderer';
 
@@ -79,11 +78,6 @@ export interface LabelProps {
 export interface LayoutProps {
     children: string | ReactNode
     location: PageLocation
-}
-
-// https://github.com/gatsbyjs/gatsby/issues/16682#issuecomment-718155902
-export interface LinkProps<TState> extends GatsbyLinkProps<TState> {
-    state?: TState
 }
 
 export interface NavbarProps {

@@ -1,9 +1,10 @@
 import React, { ReactElement } from 'react';
 import { Location } from '@reach/router';
-import { Link as GatsbyLink } from 'gatsby';
-import { LinkProps, PageState } from '../types';
+import { Link as GatsbyLink, GatsbyLinkProps } from 'gatsby';
+import { PageState } from '../types';
 
-export const Link = ({ children, to, activeClassName, partiallyActive, state, ...other }: LinkProps<PageState>): ReactElement => {
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+export const Link = ({ children, to, state, ref, ...other }: GatsbyLinkProps<PageState>): ReactElement => {
     // Tailor the following test to your environment.
     // This example assumes that any internal link (intended for Gatsby)
     // will start with exactly one slash, and that anything else is external.
@@ -17,8 +18,6 @@ export const Link = ({ children, to, activeClassName, partiallyActive, state, ..
                     <GatsbyLink
                         {...other}
                         to={to}
-                        activeClassName={activeClassName}
-                        partiallyActive={partiallyActive}
                         // make sure user's state is not overwritten
                         state={{ prevPathname: location.pathname, ...state }}
                     >
