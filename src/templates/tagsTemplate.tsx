@@ -13,7 +13,7 @@ const Tag = ({ data, pageContext }: PostQueryProps): ReactElement => {
     const { siteDescription, siteImage, siteLanguage, siteLocale, siteTitle, siteUrl, titleSeparator, titleTemplate, twitterUsername } = useSiteMetadata();
     const { tagsNav } = useSiteNavigation();
     const posts = data.allMdx.nodes;
-    const tags = formatAllTags([pageContext.tagRaw]);
+    const tags = formatAllTags(data.allMdx.group);
     return (
         <>
             <SEO
@@ -61,6 +61,10 @@ export const query = graphql`query tagsBySlug($tagValue: String) {
             fields {
                 slug
             }
+        }
+        group(field: frontmatter___tags) {
+            fieldValue
+            totalCount
         }
     }
 }`;

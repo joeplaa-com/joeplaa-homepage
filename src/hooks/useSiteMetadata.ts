@@ -23,11 +23,14 @@ interface IuseSiteMetadata {
     pageHomeDescription: string,
     pageHomeImage: string,
     pageHomeSubtitle: string,
+    pageHowtoDescription: string,
+    pageHowtoImage: string,
     pageHomeTitle: string,
     pageHowtoTitle: string,
     pageLandingDescription: string,
     pageLandingTitle: string,
     pagePortfolioDescription: string,
+    pagePortfolioImage: string,
     pagePortfolioTitle: string,
     pageRecommendedDescription: string,
     pageRecommendedTitle: string,
@@ -76,10 +79,13 @@ export default function useSiteMetadata(): IuseSiteMetadata {
                             pageHomeImage
                             pageHomeSubtitle
                             pageHomeTitle
+                            pageHowtoDescription
+                            pageHowtoImage
                             pageHowtoTitle
                             pageLandingDescription
                             pageLandingTitle
                             pagePortfolioDescription
+                            pagePortfolioImage
                             pagePortfolioTitle
                             pageRecommendedDescription
                             pageRecommendedTitle
