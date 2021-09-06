@@ -3,7 +3,7 @@ import { graphql, useStaticQuery } from 'gatsby';
 interface IuseSiteUrls {
     site: {
         mailForm: string,
-        plausible: string,
+        umami: string,
         siteUrl: string
     },
     contact: {
@@ -42,7 +42,7 @@ export default function useSiteUrls(): IuseSiteUrls {
                         urls {
                             site {
                                 mailForm
-                                plausible
+                                umami
                                 siteUrl
                             }
                             contact {

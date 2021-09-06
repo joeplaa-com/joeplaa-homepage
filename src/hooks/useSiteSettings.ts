@@ -6,7 +6,7 @@ interface IuseSiteSettings {
     designerName: string,
     designerUrl: string,
     iconSize: string,
-    plausibleID: string
+    umamiID: string
 }
 
 export default function useSiteSettings(): IuseSiteSettings {
@@ -21,7 +21,7 @@ export default function useSiteSettings(): IuseSiteSettings {
                             designerName
                             designerUrl
                             iconSize
-                            plausibleID
+                            umamiID
                         }
                     }
                 }

@@ -84,13 +84,13 @@ const siteMetadata = {
         designerName: 'Joeplaa',
         designerUrl: 'https://github.com/joeplaa/joeplaa.com',
         iconSize: '40px',
-        plausibleID: process.env.GATSBY_PLAUSIBLE_ID
+        umamiID: process.env.GATSBY_UMAMI_ID
     },
     siteUrl: process.env.GATSBY_URL, // needed for gatsby-plugin-advanced-sitemap
     urls: {
         site: {
             mailForm: process.env.GATSBY_MAIL_URL,
-            plausible: 'https://plausible.joeplaa.com',
+            umami: 'https://umami.joeplaa.com',
             siteUrl: process.env.GATSBY_URL,
         },
         contact: {

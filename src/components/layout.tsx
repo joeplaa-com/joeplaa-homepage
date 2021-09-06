@@ -8,7 +8,7 @@ import { LayoutProps } from '../types';
 
 // Sticky footer: https://css-tricks.com/couple-takes-sticky-footer/
 export default function Layout(props: LayoutProps): ReactElement {
-    const { plausibleID } = useSiteSettings();
+    const { umamiID } = useSiteSettings();
     const { site } = useSiteUrls();
     return (
         <div className='page-wrapper'>
@@ -23,7 +23,7 @@ export default function Layout(props: LayoutProps): ReactElement {
                     </div>`}
                 </noscript>
                 <meta httpEquiv="X-Clacks-Overhead" content="GNU Terry Pratchett" />
-                <script async defer data-domain={plausibleID} src={`${site.plausible}/js/plausible.js`}></script>
+                <script async defer data-website-id={umamiID} src={`${site.umami}/umami.js`}></script>
             </Helmet>
             <Header navbarLightText={location && location.pathname === '/' ? true : false} />
             <main className='content'>{props.children}</main>
