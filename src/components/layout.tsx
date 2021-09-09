@@ -23,7 +23,13 @@ export default function Layout(props: LayoutProps): ReactElement {
                     </div>`}
                 </noscript>
                 <meta httpEquiv="X-Clacks-Overhead" content="GNU Terry Pratchett" />
-                <script async defer data-website-id={umamiID} src={`${site.umami}/umami.js`}></script>
+                <script async defer
+                    src='www.joeplaa.com/umami.js'
+                    data-website-id={umamiID}
+                    data-do-not-track="true"
+                    data-domains='joeplaa.com,www.joeplaa.com'
+                    data-host-url={site.umami}
+                ></script>
             </Helmet>
             <Header navbarLightText={location && location.pathname === '/' ? true : false} />
             <main className='content'>{props.children}</main>

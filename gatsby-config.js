@@ -87,7 +87,7 @@ const siteMetadata = {
         designerName: 'Joeplaa',
         designerUrl: 'https://github.com/joeplaa/joeplaa.com',
         iconSize: '40px',
-        umamiID: process.env.GATSBY_UMAMI_ID
+        umamiID: '5fb00e3e-bcdc-493c-9b85-6566eed3b22e'
     },
     siteUrl: process.env.GATSBY_URL, // needed for gatsby-plugin-advanced-sitemap
     urls: {
