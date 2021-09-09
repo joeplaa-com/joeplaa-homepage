@@ -24,11 +24,9 @@ export default function Layout(props: LayoutProps): ReactElement {
                 </noscript>
                 <meta httpEquiv="X-Clacks-Overhead" content="GNU Terry Pratchett" />
                 <script async defer
-                    src='/umami.js'
+                    src={`${site.umami}/umami.js`}
                     data-website-id={umamiID}
-                    data-do-not-track="true"
                     data-domains='joeplaa.com,www.joeplaa.com'
-                    data-host-url={site.umami}
                 ></script>
             </Helmet>
             <Header navbarLightText={location && location.pathname === '/' ? true : false} />
