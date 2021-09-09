@@ -24,7 +24,7 @@ export default function Layout(props: LayoutProps): ReactElement {
                 </noscript>
                 <meta httpEquiv="X-Clacks-Overhead" content="GNU Terry Pratchett" />
                 <script async defer
-                    src='www.joeplaa.com/umami.js'
+                    src='/umami.js'
                     data-website-id={umamiID}
                     data-do-not-track="true"
                     data-domains='joeplaa.com,www.joeplaa.com'
