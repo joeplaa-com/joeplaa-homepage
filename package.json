@@ -1,9 +1,9 @@
 {
     "name": "joeplaa.com",
-    "version": "0.2.3",
+    "version": "0.3.0",
     "description": "joeplaa.com homepage",
     "main": "index",
-    "repository": "git@github.com:joeplaa/joeplaa.com.git",
+    "repository": "git@github.com:joeplaa/joeplaa-home.git",
     "author": "Joep van de Laarschot <joep@joeplaa.com>",
     "license": "MIT",
     "private": false,
@@ -12,8 +12,9 @@
         "build": "gatsby build",
         "clean": "gatsby clean",
         "deploy": "gatsby clean && gatsby build",
-        "serve": "gatsby serve -p 9500",
         "lint": "eslint ./src",
+        "serve": "gatsby serve -p 9500",
+        "test": "jest --passwithnotests",
         "types": "tsc --noEmit"
     },
     "browserslist": [
