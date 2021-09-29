@@ -449,6 +449,30 @@ button.close {
     text-shadow: none;
 }
 
+.code-container {
+    position: relative;
+}
+
+.code-pre {
+    margin-top: 8px;
+    min-height: 46px;
+}
+
+.code-copy-button {
+    position: absolute;
+    top: .5rem;
+    right: .5rem;
+}
+
+.inline-code {
+    background-color: lightgray;
+    border-radius: .25rem;
+    margin-left: -.25rem;
+    margin-right: -.125rem;
+    padding-left: .25rem;
+    padding-right: .25rem;
+}
+
 .label-bold {
     font-weight: 600;
 }
