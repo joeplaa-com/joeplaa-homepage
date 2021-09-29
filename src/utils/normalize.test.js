@@ -1,5 +1,5 @@
 // Source: https://github.com/DSchau/gatsby/blob/master/www/src/components/code-block/__tests__/normalize.js
-import normalize from '../normalize';
+import normalize from './normalize';
 
 describe('highlighting', () => {
     it('highlight-start', () => {
