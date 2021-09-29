@@ -12,6 +12,7 @@ export const content = {
     CompanyInfo: 'Company Info',
     Compute: 'Compute',
     Conditions: 'Conditions',
+    Copied: 'Copied',
     Copy: 'Copy',
     Email: 'Email',
     EmailErrorMessage: 'Enter a valid email address',
