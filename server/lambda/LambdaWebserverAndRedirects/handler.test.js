@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/explicit-function-return-type */
 import redirect from './handler';
 
 function callbackCreator(done, result) {
@@ -13,7 +14,7 @@ function callbackCreator(done, result) {
 
 // Matching redirect from '*.joeplaa.com' => 'blog.joeplaa.com'
 const event1a = {
-    "Records": [
+    'Records': [
         {
             cf: {
                 request: {
@@ -22,7 +23,7 @@ const event1a = {
                             value: 'blog.joeplaa.com'
                         }
                     },
-                    uri: "/the-news"
+                    uri: '/the-news'
                 }
             }
         }
@@ -30,20 +31,20 @@ const event1a = {
 };
 const result1a = {
     status: '301',
-    statusDescription: `Moved permanently`,
+    statusDescription: 'Moved permanently',
     headers: {
-        "location": [{
-            "key": "Location",
-            "value": `https://blog.joeplaa.com/the-news`
+        'location': [{
+            'key': 'Location',
+            'value': 'https://blog.joeplaa.com/the-news'
         }],
         'cache-control': [{
             key: 'Cache-Control',
-            value: "max-age=86400"
+            value: 'max-age=86400'
         }]
     }
 };
 const event1b = {
-    "Records": [
+    'Records': [
         {
             cf: {
                 request: {
@@ -52,7 +53,7 @@ const event1b = {
                             value: 'blog.joeplaa.com'
                         }
                     },
-                    uri: "/the-news/"
+                    uri: '/the-news/'
                 }
             }
         }
@@ -60,18 +61,18 @@ const event1b = {
 };
 const result1b = {
     status: '301',
-    statusDescription: `Moved permanently`,
+    statusDescription: 'Moved permanently',
     headers: {
-        "location": [{
-            "key": "Location",
-            "value": `https://blog.joeplaa.com/the-news/`
+        'location': [{
+            'key': 'Location',
+            'value': 'https://blog.joeplaa.com/the-news/'
         }],
         'cache-control': [{
             key: 'Cache-Control',
-            value: "max-age=86400"
+            value: 'max-age=86400'
         }]
     }
-}
+};
 test('matching redirect', (done) => {
     redirect.handler(event1a, null, callbackCreator(done, result1a));
     redirect.handler(event1b, null, callbackCreator(done, result1b));
@@ -79,7 +80,7 @@ test('matching redirect', (done) => {
 
 // Non-matching redirect '*.joeplaa.com' => '*.joeplaa.com'
 const event2a = {
-    "Records": [
+    'Records': [
         {
             cf: {
                 request: {
@@ -88,7 +89,7 @@ const event2a = {
                             value: 'www.joeplaa.com'
                         }
                     },
-                    uri: "/home"
+                    uri: '/home'
                 }
             }
         }
@@ -100,10 +101,10 @@ const result2a = {
             value: 'www.joeplaa.com'
         }
     },
-    uri: "/home/index.html"
-}
+    uri: '/home/index.html'
+};
 const event2b = {
-    "Records": [
+    'Records': [
         {
             cf: {
                 request: {
@@ -112,7 +113,7 @@ const event2b = {
                             value: 'www.joeplaa.com'
                         }
                     },
-                    uri: "/"
+                    uri: '/'
                 }
             }
         }
@@ -124,8 +125,8 @@ const result2b = {
             value: 'www.joeplaa.com'
         }
     },
-    uri: "/index.html"
-}
+    uri: '/index.html'
+};
 test('non-matching redirect', (done) => {
     redirect.handler(event2a, null, callbackCreator(done, result2a));
     redirect.handler(event2b, null, callbackCreator(done, result2b));

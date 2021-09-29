@@ -1,6 +1,5 @@
 import { ReactElement, ReactNode } from 'react';
 import { IGatsbyImageData } from 'gatsby-plugin-image';
-import { Language } from 'prism-react-renderer';
 
 export interface AuthorProps {
     name: string
@@ -37,11 +36,6 @@ export interface ImageNodeProps {
     }
 }
 // === End Gatsby images ===
-
-export interface CodeProps {
-    codeString: string
-    language: Language
-}
 
 export interface CustomNavLinkProps {
     children: ReactNode

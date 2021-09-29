@@ -16,9 +16,7 @@ const components = {
             return (
                 <Code
                     codeString={props.children.trim()}
-                    language={
-                        props.className && props.className.replace('language-', '')
-                    }
+                    language={props.className && props.className.replace('language-', '')}
                     {...props}
                 />
             );

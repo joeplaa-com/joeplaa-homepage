@@ -1,7 +1,7 @@
 import React, { ReactElement, useState } from 'react';
 import { GatsbyImage } from 'gatsby-plugin-image';
 import { Button, Card, CardBody, Modal, ModalBody, ModalFooter, ModalHeader } from 'reactstrap';
-import { FaTimes } from 'react-icons/fa';
+import { MdClose } from 'react-icons/md';
 import PostBody from './postBody';
 import PostImage from './postImage';
 import PostSubtitle from './postSubtitle';
@@ -40,7 +40,7 @@ export default function PortfolioPreview({ body, fields, frontmatter }: Portfoli
 
             <ModalFooter>
                 <Button color="primary" outline onClick={toggle}>
-                    <FaTimes />
+                    <MdClose />
                     <span>{' '}{content.BacktoPortfolio}</span>
                 </Button>
             </ModalFooter>
