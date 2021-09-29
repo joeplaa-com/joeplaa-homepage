@@ -126,10 +126,9 @@ const siteMetadata = {
 
 module.exports = {
     flags: {
-        DEV_SSR: true,
         FAST_DEV: true,
-        PRESERVE_FILE_DOWNLOAD_CACHE: true,
-        PARALLEL_SOURCING: true
+        PARALLEL_SOURCING: true,
+        QUERY_ON_DEMAND: true
     },
     siteMetadata: siteMetadata,
     plugins: [

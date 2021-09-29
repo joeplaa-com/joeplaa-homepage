@@ -1,7 +1,7 @@
 ---
 title: How to do static site caching in CloudFront
 date: 2021-01-30
-tags: ['Next.js', 'Gatsby.js', 'Docusaurus', 'AWS', 'Lambda', 'CloudFront']
+tags: ['Next.js', 'Gatsby.js', 'Docusaurus', 'AWS']
 excerpt: "When you host a static site in CloudFront, you can use Lambda to set your cache headers to control the amount of time a file is cached in the users' browser and in CloudFront."
 cover: 'cloudfront-events-that-trigger-lambda-functions.png'
 author: 'Joep van de Laarschot'
@@ -17,12 +17,15 @@ When hosting a static websites in CloudFront, you probably use a Lambda@edge fun
 1. We get less viewer requests, improving the page load times and lowering our bandwidth (and thus costs).
 2. We need less origin requests, improving page load times and lowering the amount of S3 GET requests, again lowering costs.
 
-> More info about hosting in CloudFront: 
-> 
-> * <https://www.bayphillips.com/blog/gatsbyjs-using-amazon-s3-and-cloudfront/>
-> * <https://www.ximedes.com/2018-04-23/deploying-gatsby-on-s3-and-cloudfront/>
-> * <https://docs.aws.amazon.com/lambda/latest/dg/lambda-edge.html>
-> * <https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/lambda-cloudfront-trigger-events.html> (image source)
+<Alert type='info'>
+More info about hosting in CloudFront:
+
+* <https://www.bayphillips.com/blog/gatsbyjs-using-amazon-s3-and-cloudfront/>
+* <https://www.ximedes.com/2018-04-23/deploying-gatsby-on-s3-and-cloudfront/>
+* <https://docs.aws.amazon.com/lambda/latest/dg/lambda-edge.html>
+* <https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/lambda-cloudfront-trigger-events.html> (image source)
+
+</Alert>
 
 ## List static files and folders
 

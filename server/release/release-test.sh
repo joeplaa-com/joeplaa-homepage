@@ -6,7 +6,7 @@ cd ../../
 
 # Checkout "develop" branch
 git fetch
-git checkout master
+git checkout joeplaa/issue93
 git pull
 
 # Set correct environment variables

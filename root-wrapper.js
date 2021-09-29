@@ -2,6 +2,7 @@
 /* eslint-disable @typescript-eslint/explicit-function-return-type */
 import React from 'react';
 import { MDXProvider } from '@mdx-js/react';
+import Alert from './src/components/alert';
 import Code from './src/components/code';
 import NewTabLink from './src/components/newTabLink';
 import './src/styles/site.scss';
@@ -22,6 +23,7 @@ const components = {
             );
         }
     },
+    Alert,
     NewTabLink
 };
 
