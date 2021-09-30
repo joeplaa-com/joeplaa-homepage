@@ -30,9 +30,12 @@ This is my personal list of things this server (or servers) should do:
 
 ### Hardware selection
 
-Depending on your situation, you can either start with a plan (see previous paragraph) and look for hardware that fits or you already have hardware and than start planning. For this guide it doesn't really matter what hardware you have around. Although I have a proper server now, I will use my old trusty home server for this guide.
+Depending on your situation, you can either start with a plan (see previous paragraph) and look for hardware that fits or you already have hardware and than start planning. For this guide it doesn't really matter what hardware you have around. Although I have a proper server now, I will use my old trusty home server for this guide. If you are building your own server, [these guides](https://www.servethehome.com/buyers-guides/) are a good place to start.
 
-It has a Supermicro X9SCM mainboard, Xeon E3-1230 v2 CPU and 32 GB of RAM. I also installed an [IBM Serveraid M1115](https://www.amazon.com/IBM-Serveraid-Controller-System-81Y4448/dp/B007V8S0D8) HBA card which has a LSI 9211-8i chipset. This is a must have if you want to have lots of hard disks for storage. Another recommendation for a home server is the chassis for which I bought the [Fractal design node 804](https://www.amazon.com/Fractal-Design-Node-Case-Computer/dp/B00JBBH93K). It has lots of space, is very quiet and its fan filters catch a lot of dust.
+The server in question has a [Supermicro X9SCM](https://www.supermicro.com/products/motherboard/xeon/c202_c204/x9scm-f.cfm) mainboard, [Xeon E3-1230 v2](https://ark.intel.com/content/www/us/en/ark/products/65732/intel-xeon-processor-e3-1230-v2-8m-cache-3-30-ghz.html) CPU and 32 GB of ECC RAM. I also installed an [IBM Serveraid M1115](https://www.amazon.com/IBM-Serveraid-Controller-System-81Y4448/dp/B007V8S0D8) HBA card which has a LSI SAS2008 chip. Back when I build it this was one of the most [recommended HBA chips](https://www.servethehome.com/buyers-guides/top-hardware-components-freenas-nas-servers/top-picks-freenas-hbas/) and can be found cheap on Ebay (search for IBM M1015, IBM M1115, Dell Perc H310). Another recommendation for a home server is the chassis for which I bought the [Fractal design node 804](https://www.amazon.com/Fractal-Design-Node-Case-Computer/dp/B00JBBH93K). It has lots of space, is very quiet and its fan filters catch a lot of dust.
+
+
+!['Fractal design node 804 disk space'](fractal-design-disks.jpg)
 
 ### Hypervisor selection
 
@@ -53,35 +56,233 @@ The most difficult decision is the choice for a hypervisor. I new ESXi from my f
 
 ## Hardware preparation
 
+After installing the mainboard, CPU, RAM, HBA and hooking it all up, there are two things to really consider/do. What is the harddisk configuration going to be and how to flash the HBA. 
 
+### Disks
+
+Normally you would want to install an SSD for the OS. Preferably even two in RAID-1 (mirror) mode. I don't have a free one lying around so for this guide I'll have to excuse myself and use two old harddisks \*shudder\*.
+
+For storage I'm going to use 4 old 2TB disks in RAID-Z1 (RAID-5) mode. There is a lot of discussion going on about the [perceived safety](https://www.digistor.com.au/the-latest/Whether-RAID-5-is-still-safe-in-2019/) of using RAID-5. Search for "[RAID 5 is dead](https://search.brave.com/search?q=raid%205%20is%20dead)" and decide for yourself. I myself lost almost all my data because a RAID-5 array failed, so in my new server I went for RAID-Z2 (RAID-6) with an hot spare).
 
 ### Flash HBA
 
-### Disks
+Most HBA cards you can buy are configured with **IR** firmware by default. In this mode the card will take care of the RAID functionality. I don't want that, so I have to (cross)flash the card to **IT** mode. I've done this with a Dell Perc H310 in my Dell server and with the earlier mentioned IBM M1115. The process is basically the same for all cards.
+
+<Alert type='warning'>
+I also have an HP server. HP, now HPE, is notorious for being very picky about the hardware you install. If it is not HP labeled/branded, the server doesn't recognize the sensor data and assumes the worst. This results in very high fan speeds and thus an unbearable amount of noise.
+
+So in that server I had to install an HP branded HBA: the HP H220. The one I got was flashed with firmware version 15 (the latest). However, it made my fans "idle" at 30%. [After flashing down to version 13](https://www.reddit.com/r/homelab/comments/evg5in/howto_fix_loud_hp_server_fans_with_an_hp_h220_hba/) the fans are back at 8% idle, which is basically silent.
+</Alert>
+
+This guide is a compilation of multiple guides that are available. If you search for `crossflash lsi it <your card here>` you will probably find the perfect one for you. At the end of this part I have listed the ones that helped me most.
+
+1. Prepare a DOS bootable USB stick. I use [Rufus](https://rufus.ie/) for that.
+
+    !['Rufus FreeDos bootable usb drive'](rufus-freedos.png)
+
+    * Download the [flash tools](https://cdn.joeplaa.com/hba-flash/flash-tools.7z) or [full archive](https://cdn.joeplaa.com/hba-flash/LSI-9211-8i.7z).
+    * Extract and copy the flash tools to the USB drive.
+    * Download the latest firmware from the ~~LSI~~ ~~Avago~~ [Broadcom](https://www.broadcom.com/support/download-search) website.
+
+        !['Broadcom download firmware'](broadcom-download.png)
+
+    * Extract and copy `Firmware\HBA_9211_8i_IT\2118it.bin`, `sasbios_rel\mptsas2.rom` and `sas2flash_dos_rel\sas2flsh.exe` to the USB drive.
+
+2. Find the SAS address of your card. **This is very important!!**
+
+    * Copy it from the label on the card. It should be something like "500605B0xxxxxxxx".
+
+        !['SAS address on card'](sas-address.jpg)
+
+    * Or find it during the flashing procedure.
+
+3. When booting in BIOS mode:
+
+    * Boot the server from USB. You should now see a DOS command line.
+
+        ```command
+        C:\>_
+        ```
+
+    * Type and run the following command to find the SAS number if you haven't done so in step 2.
+
+        ```command
+        sas2flsh.exe -listall
+        ```
+
+        If you get `"ERROR: Failed to initialize PAL. Exiting program."`, your motherboard is set to use UEFI and you have to flash using the EFI shell: see step 4.
+
+        Find the number of the card (0 if only one is installed) and use that number in the next command.
+
+        ```command
+        sas2flsh.exe -c 0 -list
+        ```
+
+        Now write down the SAS address. **This is very important!!**
+
+    * Run the next commands one by one to wipe the existing firmware:
+
+        ```command
+        megarec -writesbr 0 sbrempty.bin
+        megarec -cleanflash 0
+        ```
+
+    * Reboot back to USB and flash the new firmware and BIOS.
+
+        ```command
+        sas2flsh -o -f 2118it.bin -b mptsas2.rom 
+        ```
+
+    * Enter the SAS number (change to the number -without spaces and dashes- you wrote down in step 2):
+
+        ```command
+        sas2flsh -o -sasadd 500605B0xxxxxxxx
+        ```
+
+    * You are done. Reboot.
+
+4. When booting in UEFI mode:
+
+    * Copy `bootx64.efi` from the [full archive](https://cdn.joeplaa.com/hba-flash/LSI-9211-8i.7z) to the USB stick.
+
+    * Boot the server to EFI shell. This should be a setting in the BIOS of your motherboard.
+
+        !['EFI shell'](efi-shell.jpg)
+
+    * Select the USB drive by typing, in my case, `fs0:`. Type `map -b` to get a list of devices if you don't see them.
+
+    * Type and run the following command to find the SAS number if you haven't done so in step 2.
+
+        ```shell
+        sas2flash.efi -listall
+        ```
+
+        Find the number of the card (0 if only one is installed) and use that number in the next command.
+
+        ```shell
+        sas2flash.efi -c 0 -list
+        ```
+
+        Now write down the SAS address. **This is very important!!**
+
+    * Reboot to DOS and run the next commands one by one to wipe the existing firmware:
+
+        ```command
+        megarec -writesbr 0 sbrempty.bin
+        megarec -cleanflash 0
+        ```
+
+    * Reboot back to EFI shell and flash the temporary firmware:
+
+        ```shell
+        sas2flash.efi -o -f 6GBPSAS.FW
+        ```
+
+    * Reboot again back to EFI shell and flash the new firmware:
+
+        ```shell
+        sas2flash.efi -o -f 2118it.bin
+        ```
+
+    * Enter the SAS number (change to the number -without spaces and dashes- you wrote down in step 2):
+
+        ```shell
+        sas2flash.efi -o -sasadd 500605B0xxxxxxxx
+        ```
+
+    * You are done. Reboot.
+
+<Alert type='info'>
+Sources:
+
+* M1015: <https://www.servethehome.com/ibm-serveraid-m1015-part-4/>
+* M1115: <https://blog.gimpe.com/2014/04/flashing-ibm-m1115-sas-9223-with-lsi-sas-9211-8i-firmware-to-use-with-esxi-5-freenas-guest-wrdm/>
+* M1115: <https://www.syxin.com/2014/03/crossflashing-an-ibm-m1115-raid-controller-to-lsi-firmware/>
+* Dell H310: <https://tylermade.net/2017/06/27/how-to-crossflash-perc-h310-to-it-mode-lsi-9211-8i-firmware-hba-for-freenas-unraid/>
+* Dell H310: <https://techmattr.wordpress.com/2016/04/11/updated-sas-hba-crossflashing-or-flashing-to-it-mode-dell-perc-h200-and-h310/>
+* Dell H310: <https://techmattr.wordpress.com/2014/06/13/revert-your-perc-h310-back-to-its-dell-firmware>
+
+</Alert>
 
 ## Proxmox
 
 ### Installation
 
-The machine will run Proxmox as their base operating system. Too be precise, Proxmox supplies an ISO file that installs Debian with Proxmox preinstalled and configured. This machine is known in Proxmox as a **node**. 
-
-Follow the instructions of the installer. Follow this link to get to an "official" tutorial: <https://forum.proxmox.com/threads/proxmox-beginner-tutorial-how-to-set-up-your-first-virtual-machine-on-a-secondary-hard-disk.59559/>
+The machine will run Proxmox as their base operating system. Too be precise, Proxmox supplies an [ISO file](https://www.proxmox.com/en/downloads/category/iso-images-pve) that installs Debian with Proxmox preinstalled and configured. This machine is known in Proxmox as a **node**. 
 
 <Alert type='warning'>
-    Proxmox needs to boot from BIOS on these nodes. They can probably boot from UEFI too, but as the ISO was booted through BIOS the OS is configured to boot from BIOS. So <strong>do not change boot option to UEFI!</strong>
+    If You install Proxmox using BIOS or UEFI mode the OS should be booted in the same mode as well. So <strong>do not change boot option after installation!</strong>
+</Alert>
+
+<Alert type='info'>
+    The Supermicro board doesn't have a management port to get a virtual screen. So these screenshots are from when I was installing my Dell and HP servers. So some details may not be accurate. The text should be.
+</Alert>
+
+1. Choose "Install Proxmox VE" in the boot screen (currently version 7.0)
+
+    ![Proxmox VE bootscreen](/proxmox-installation/proxmox1.png)
+
+2. Accept the EULA
+
+    ![Proxmox VE EULA](/proxmox-installation/proxmox2.png)
+
+3. Select the options and as filesystem choose `zfs (RAID1)`. As the harddisks choose your two boot drives.
+
+    ![Select Target Harddisk](/proxmox-installation/proxmox3.jpg)
+
+4. Set country, timezone and Keyboard Layout. You cannot choose "UTC" here, we'll correct that later
+
+    ![Set country](/proxmox-installation/proxmox4.png)
+
+5. Enter the root password
+
+    ![Enter the root password](/proxmox-installation/proxmox5.png)
+
+6. Select the management NIC and set the address of the host (see host table above for hostname and IP address).
+
+    ![Configure the management network](/proxmox-installation/proxmox6.png)
+
+7. Press the Install button and wait for installation to finish
+
+    ![Wait for installation](/proxmox-installation/proxmox7.png)
+
+8. Reboot
+
+    ![Reboot](/proxmox-installation/proxmox8.png)
+
+9. Press enter or wait for a few seconds to boot Proxmox from the boot loader
+
+    ![Proxmox VE GRUB boot loader](/proxmox-installation/proxmox9.png)
+
+10. You should now be able to enter the CLI with the password created during install (user: `root`)
+
+    ![Login CLI](/proxmox-installation/proxmox10.png)
+
+11. You should now also be able to enter the web interface at the address entered during installation, with the password created during install (user: `root`)
+
+    ![Login web](/proxmox-installation/proxmox11.png)
+
+<Alert type='info'>
+The "official" tutorial on how to install and configure Proxmox can be found here:
+
+<https://forum.proxmox.com/threads/proxmox-beginner-tutorial-how-to-set-up-your-first-virtual-machine-on-a-secondary-hard-disk.59559/>
+
 </Alert>
 
 ### Configuration
 
 #### Cluster
 
+A lot of quirks, especially if you enable 2FA.
+
 The nodes are linked together in a cluster `JPL-cluster`. This makes it possible to:
 
 * Use a single login
     * Single username-password
     * Single private-public key
-* Control the nodes and VM's from a single GUI
-* Migrate VM's between nodes
+* Control the nodes, VM's and containers from a single GUI
+* Share configuration (files) between nodes
+* Migrate VM's and containers between nodes
 
 <Alert type='warning'>
     Proxmox config is very delicate. Almost all settings can be configured through the GUI, but sometimes you might have to dig into config files with the CLI. <strong>ALWAYS make a backup before doing so!</strong> I learned the hard way that messing up only one file (especially related to the cluster) can mean a full reinstall of that cluster!
