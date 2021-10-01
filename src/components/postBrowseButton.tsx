@@ -6,7 +6,6 @@ import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from 'react-icons/md';
 import { content } from '../utils/content';
 
 const PostBrowseButton = ({ title, to, type }: { title: string, to: string, type: string }): ReactElement => {
-
     return (
         <Link to={to}>
             <Button outline color='primary'>

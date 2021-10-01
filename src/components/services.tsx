@@ -15,7 +15,6 @@ import JodiBooksLogo from '../svg/jodibooks-logo.svg';
 import { SectionProps } from '../types';
 import { content } from '../utils/content';
 
-
 const ServicesComponent = ({ className }: SectionProps): ReactElement => {
     const { componentPricingTitle } = useSiteMetadata();
     const { portfolio } = useSiteNavigation();

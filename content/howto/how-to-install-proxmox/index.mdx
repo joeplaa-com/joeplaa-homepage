@@ -1,0 +1,101 @@
+---
+title: How to build a Proxmox cluster
+date: 2021-09-30
+tags: ['Debian', 'Hypervisor', 'Linux', 'Proxmox', 'Server', 'VM']
+excerpt: "This is the first post in a line of (planned) Proxmox how-to posts. In this first post I'll configure a server and install Proxmox and do some basic configuration."
+cover: 'cover.png'
+author: 'Joep van de Laarschot'
+published: true
+---
+
+## Introduction
+
+
+## Proxmox installation
+
+Proxmox supplies an [ISO file](https://www.proxmox.com/en/downloads/category/iso-images-pve) that installs Debian with Proxmox preinstalled and configured. This machine is known in Proxmox as a **node**. 
+
+<Alert type='warning'>
+    If You install Proxmox using BIOS or UEFI mode the OS should be booted in the same mode as well. So <strong>do not change boot option after installation!</strong>
+</Alert>
+
+1. Choose "Install Proxmox VE" in the boot screen (currently version 7.0)
+
+    ![Proxmox VE bootscreen](/proxmox-installation/proxmox1.png)
+
+2. Accept the EULA
+
+    ![Proxmox VE EULA](/proxmox-installation/proxmox2.png)
+
+3. Select the options and as filesystem choose `zfs (RAID1)`. As the harddisks choose your two boot drives.
+
+    ![Select Target Harddisk](/proxmox-installation/proxmox3.jpg)
+
+4. Set country, timezone and Keyboard Layout. You cannot choose "UTC" here, we'll correct that later
+
+    ![Set country](/proxmox-installation/proxmox4.png)
+
+5. Enter the root password
+
+    ![Enter the root password](/proxmox-installation/proxmox5.png)
+
+6. Select the management NIC and set the address of the host (see host table above for hostname and IP address).
+
+    ![Configure the management network](/proxmox-installation/proxmox6.png)
+
+7. Press the Install button and wait for installation to finish
+
+    ![Wait for installation](/proxmox-installation/proxmox7.png)
+
+8. Reboot
+
+    ![Reboot](/proxmox-installation/proxmox8.png)
+
+9. Press enter or wait for a few seconds to boot Proxmox from the boot loader
+
+    ![Proxmox VE GRUB boot loader](/proxmox-installation/proxmox9.png)
+
+10. You should now be able to enter the CLI with the password created during install (user: `root`)
+
+    ![Login CLI](/proxmox-installation/proxmox10.png)
+
+11. You should now also be able to enter the web interface at the address entered during installation, with the password created during install (user: `root`)
+
+    ![Login web](/proxmox-installation/proxmox11.png)
+
+<Alert type='info'>
+The "official" tutorial on how to install and configure Proxmox can be found here:
+
+<https://forum.proxmox.com/threads/proxmox-beginner-tutorial-how-to-set-up-your-first-virtual-machine-on-a-secondary-hard-disk.59559/>
+
+</Alert>
+
+### Configuration
+
+Proxmox has a lot of configuration options. Obviously many of them are dependent on what you want to achieve. I'll describe some of those in other posts. Here I'll focus on some basic, general configuration settings.
+
+<Alert type='warning'>
+    Proxmox config is very delicate. Almost all settings can be configured through the GUI, but sometimes you might have to dig into config files with the CLI. <strong>ALWAYS make a backup before doing so!</strong> I learned the hard way that messing up only one file (especially related to the cluster) can mean a full reinstall of that cluster!
+</Alert>
+
+#### Non-subscription repository
+
+#### Hide "no subscription" splash screen
+
+#### Nested hypervisor
+
+#### Add users and groups, security
+
+#### Cluster setup
+
+A lot of quirks, especially if you enable 2FA.
+
+The nodes are linked together in a cluster `JPL-cluster`. This makes it possible to:
+
+* Use a single login
+    * Single username-password
+    * Single private-public key
+* Control the nodes, VM's and containers from a single GUI
+* Share configuration (files) between nodes
+* Migrate VM's and containers between nodes
+

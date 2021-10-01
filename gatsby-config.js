@@ -1,8 +1,21 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
 /* eslint-disable compat/compat */
-// eslint-disable-next-line @typescript-eslint/no-var-requires
 require('dotenv').config({
-    path: `.env.${process.env.NODE_ENV}`,
+    path: `.env.${process.env.NODE_ENV}`
 });
+
+const path = require('path');
+// Get paths of Gatsby's required rules, which as of writing is located at:
+// https://github.com/gatsbyjs/gatsby/tree/fbfe3f63dec23d279a27b54b4057dd611dce74bb/packages/
+// gatsby/src/utils/eslint-rules
+const gatsbyRequiredRules = path.join(
+    process.cwd(),
+    'node_modules',
+    'gatsby',
+    'dist',
+    'utils',
+    'eslint-rules'
+);
 
 const siteMetadata = {
     metadata: {
@@ -52,7 +65,7 @@ const siteMetadata = {
         siteTitle: 'joeplaa.com',
         titleSeparator: '|',
         titleTemplate: 'joeplaa.com',
-        twitterUsername: '',
+        twitterUsername: ''
     },
     navigation: {
         about: '/#About',
@@ -94,20 +107,20 @@ const siteMetadata = {
         site: {
             mailForm: process.env.GATSBY_MAIL_URL,
             umami: 'https://umami.joeplaa.com',
-            siteUrl: process.env.GATSBY_URL,
+            siteUrl: process.env.GATSBY_URL
         },
         contact: {
             email: 'info@joeplaa.com',
             signal: '',
             telegram: 'https://t.me/@joeplaa',
-            whatsapp: 'https://api.whatsapp.com/send?phone=31610520633',
+            whatsapp: 'https://api.whatsapp.com/send?phone=31610520633'
         },
         accounts: {
             facebook: 'https://www.facebook.com/joeplaadotcom',
             github: 'https://github.com/joeplaa',
             githubOrg: 'https://github.com/joeplaa-com',
             instagram: 'https://www.instagram.com/joeplaa/',
-            linkedin: 'https://www.linkedin.com/in/joeplaa/',
+            linkedin: 'https://www.linkedin.com/in/joeplaa/'
         },
         aws: 'https://aws.amazon.com/',
         bamboo: 'https://www.atlassian.com/software/bamboo',
@@ -126,9 +139,9 @@ const siteMetadata = {
 
 module.exports = {
     flags: {
-        FAST_DEV: true,
-        PARALLEL_SOURCING: true,
-        QUERY_ON_DEMAND: true
+        DEV_SSR: true,
+        FAST_DEV: false,
+        PARALLEL_SOURCING: true
     },
     siteMetadata: siteMetadata,
     plugins: [
@@ -150,12 +163,12 @@ module.exports = {
         {
             resolve: 'gatsby-plugin-eslint',
             options: {
-                test: /\.js$|\.jsx$|\.ts$|\.tsx$/,
-                exclude: /(node_modules|.cache|public)/,
-                options: {
-                    emitWarning: true,
-                    failOnError: false
-                }
+                // Gatsby required rules directory
+                rulePaths: [gatsbyRequiredRules],
+                // Default settings that may be ommitted or customized
+                stages: ['develop'],
+                extensions: ['js', 'jsx', 'ts', 'tsx'],
+                exclude: ['node_modules', 'bower_components', '.cache', 'public']
             }
         },
         {
@@ -170,9 +183,9 @@ module.exports = {
                 display: 'browser',
                 icon: 'src/images/icon.png',
                 icon_options: {
-                    purpose: 'any maskable',
+                    purpose: 'any maskable'
                 }
-            },
+            }
         },
         {
             resolve: 'gatsby-plugin-mdx',
@@ -185,7 +198,7 @@ module.exports = {
                             offsetY: '100',
                             maintainCase: false,
                             removeAccents: true,
-                            elements: ['h1', 'h2', 'h3'],
+                            elements: ['h1', 'h2', 'h3']
                         }
                     },
                     {
@@ -202,18 +215,18 @@ module.exports = {
                             maxWidth: 960,
                             srcSetBreakpoints: [320, 640],
                             withWebp: true,
-                            showCaptions: ['title'],
-                        },
+                            showCaptions: ['title']
+                        }
                     },
                     {
                         resolve: 'gatsby-remark-katex',
                         options: {
-                            strict: 'ignore',
-                        },
-                    },
+                            strict: 'ignore'
+                        }
+                    }
                 ],
                 remarkPlugins: [require('remark-math'), require('remark-html-katex')]
-            },
+            }
         },
         {
             resolve: 'gatsby-plugin-page-progress',
@@ -223,7 +236,7 @@ module.exports = {
                 height: 3,
                 prependToBody: false,
                 color: '#07b1c2',
-                footerHeight: 244,
+                footerHeight: 244
             }
         },
         {
@@ -251,8 +264,8 @@ module.exports = {
             resolve: 'gatsby-plugin-sharp',
             options: {
                 stripMetadata: true,
-                defaultQuality: 70,
-            },
+                defaultQuality: 70
+            }
         },
         {
             resolve: 'gatsby-transformer-remark',
@@ -263,46 +276,46 @@ module.exports = {
                         options: {
                             maintainCase: false,
                             removeAccents: true,
-                            elements: ['h1', 'h2', 'h3'],
+                            elements: ['h1', 'h2', 'h3']
                         }
                     }
-                ],
-            },
+                ]
+            }
         },
         {
             resolve: 'gatsby-source-filesystem',
             options: {
-                path: `${__dirname}/content/authors`,
-                name: 'authors',
-            },
+                path: path.join(__dirname, '/content/authors'),
+                name: 'authors'
+            }
         },
         {
             resolve: 'gatsby-source-filesystem',
             options: {
-                path: `${__dirname}/content/conditions`,
-                name: 'conditions',
-            },
+                path: path.join(__dirname, '/content/conditions'),
+                name: 'conditions'
+            }
         },
         {
             resolve: 'gatsby-source-filesystem',
             options: {
-                path: `${__dirname}/content/howto`,
-                name: 'howto',
-            },
+                path: path.join(__dirname, '/content/howto'),
+                name: 'howto'
+            }
         },
         {
             resolve: 'gatsby-source-filesystem',
             options: {
-                path: `${__dirname}/content/portfolio`,
-                name: 'portfolio',
-            },
+                path: path.join(__dirname, '/content/portfolio'),
+                name: 'portfolio'
+            }
         },
         {
             resolve: 'gatsby-source-filesystem',
             options: {
-                path: `${__dirname}/src/images`,
-                name: 'images',
-            },
-        },
-    ],
+                path: path.join(__dirname, '/src/images'),
+                name: 'images'
+            }
+        }
+    ]
 };

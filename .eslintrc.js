@@ -5,7 +5,7 @@ module.exports = {
         ecmaFeatures: {
             jsx: true
         },
-        sourceType: 'module',
+        sourceType: 'module'
     },
     env: {
         browser: true,
@@ -19,6 +19,7 @@ module.exports = {
         }
     },
     extends: [
+        'standard',
         'eslint:recommended',
         'plugin:compat/recommended',
         'plugin:jsx-a11y/recommended',
@@ -27,11 +28,12 @@ module.exports = {
         'plugin:react/recommended',
         'plugin:react-hooks/recommended',
         'plugin:@typescript-eslint/recommended',
+        'plugin:@typescript-eslint/eslint-recommended'
     ],
     plugins: [
         '@typescript-eslint',
         'jest',
-        'promise',
+        'promise'
     ],
     rules: {
         indent: ['error', 4, { SwitchCase: 1 }],
@@ -45,8 +47,10 @@ module.exports = {
         ],
         '@typescript-eslint/explicit-function-return-type': 'warn', // Consider using explicit annotations for object literals and function return types even when they can be inferred.
         'no-empty': 'warn',
+        'no-return-assign': 'off',
         'no-use-before-define': 'off',
         '@typescript-eslint/no-use-before-define': ['error'],
+        'prefer-regex-literals': 'off',
         'react/prop-types': 0,
         semi: [2, 'always'],
         'space-before-function-paren': ['warn', {

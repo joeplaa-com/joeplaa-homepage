@@ -72,20 +72,24 @@ const PostTemplate = ({ data, location, pageContext }: PageTemplateProps): React
                     </div>
 
                     <Row className='d-flex justify-content-between align-items-center'>
-                        {!previous ? null : (
-                            previous && (
-                                <Col xs='12' sm='6' lg='5' xl='4'>
-                                    <PostBrowseButton type='previous' to={previous.fields.slug} title={previous.frontmatter.title} />
-                                </Col>
-                            )
-                        )}
-                        {!next ? null : (
-                            next && (
-                                <Col xs='12' sm='6' lg='5' xl='4' className='d-flex justify-content-end mt-2 mt-sm-0'>
-                                    <PostBrowseButton type='next' to={next.fields.slug} title={next.frontmatter.title} />
-                                </Col>
-                            )
-                        )}
+                        {!previous
+                            ? null
+                            : (
+                                previous && (
+                                    <Col xs='12' sm='6' lg='5' xl='4'>
+                                        <PostBrowseButton type='previous' to={previous.fields.slug} title={previous.frontmatter.title} />
+                                    </Col>
+                                )
+                            )}
+                        {!next
+                            ? null
+                            : (
+                                next && (
+                                    <Col xs='12' sm='6' lg='5' xl='4' className='d-flex justify-content-end mt-2 mt-sm-0'>
+                                        <PostBrowseButton type='next' to={next.fields.slug} title={next.frontmatter.title} />
+                                    </Col>
+                                )
+                            )}
                     </Row>
                 </Container>
             </section>

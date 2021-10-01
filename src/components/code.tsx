@@ -16,7 +16,7 @@ const Code = ({ codeString, language }: Props): ReactElement => {
             language={language}
             theme={theme}
         >
-            {({ className, style, tokens, getLineProps, getTokenProps, }): ReactElement => (
+            {({ className, style, tokens, getLineProps, getTokenProps }): ReactElement => (
                 <div className='code-container'>
                     <pre className={className + ' code-pre'} style={style}>
                         {tokens.map((line, i) => (
