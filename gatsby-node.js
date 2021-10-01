@@ -90,8 +90,8 @@ exports.createPages = ({ actions, graphql }) => {
                     limit: postsPerPage,
                     skip: i * postsPerPage,
                     numPages: numHowtoPages,
-                    currentPage: i + 1,
-                },
+                    currentPage: i + 1
+                }
             });
         });
 
@@ -104,8 +104,8 @@ exports.createPages = ({ actions, graphql }) => {
                     limit: postsPerPage,
                     skip: i * postsPerPage,
                     numPages: numPortfolioPages,
-                    currentPage: i + 1,
-                },
+                    currentPage: i + 1
+                }
             });
         });
 
@@ -116,8 +116,8 @@ exports.createPages = ({ actions, graphql }) => {
                 path: `/conditions${slug}`,
                 component: conditionsTemplate,
                 context: {
-                    slug,
-                },
+                    slug
+                }
             });
         });
 
@@ -130,8 +130,8 @@ exports.createPages = ({ actions, graphql }) => {
                 context: {
                     slug,
                     previous: index === howto.length - 1 ? null : howto[index + 1],
-                    next: index === 0 ? null : howto[index - 1],
-                },
+                    next: index === 0 ? null : howto[index - 1]
+                }
             });
         });
 
@@ -144,8 +144,8 @@ exports.createPages = ({ actions, graphql }) => {
                 context: {
                     slug,
                     previous: index === howto.length - 1 ? null : howto[index + 1],
-                    next: index === 0 ? null : howto[index - 1],
-                },
+                    next: index === 0 ? null : howto[index - 1]
+                }
             });
         });
 
@@ -159,7 +159,7 @@ exports.createPages = ({ actions, graphql }) => {
                     slug: `/tags/${slug}/`,
                     tag: tag,
                     tagValue: tag.fieldValue
-                },
+                }
             });
         });
     });
@@ -172,7 +172,7 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
         createNodeField({
             name: 'slug',
             node,
-            value,
+            value
         });
     }
 };

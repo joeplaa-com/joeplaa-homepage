@@ -12,7 +12,7 @@
         "build": "gatsby build",
         "clean": "gatsby clean",
         "deploy": "gatsby clean && gatsby build",
-        "lint": "eslint ./src",
+        "lint": "eslint ./",
         "serve": "gatsby serve -p 9500",
         "test": "jest --passWithNoTests",
         "types": "tsc --noEmit"

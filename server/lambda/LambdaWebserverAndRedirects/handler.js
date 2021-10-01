@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/explicit-function-return-type */
 // Attached to ORIGIN REQUEST
 
 /* For event object example: https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/lambda-event-structure.html
@@ -36,33 +37,33 @@ const redirects = [
     'why-do-most-parties-start-around-midnight',
     'please-teach-me',
     'i-love-the-beach'
-]
+];
 
 exports.handler = (event, context, callback) => {
     const { request } = event.Records[0].cf;
     const { uri } = request;
-    const mainDomain = `joeplaa.com`;
+    const mainDomain = 'joeplaa.com';
     const redirectDomain = `blog.${mainDomain}`;
     const baseURI = `https://${redirectDomain}`;
 
     // Check for blog redirects first
-    if (redirects.includes(uri.replace(/\//g,''))) {
+    if (redirects.includes(uri.replace(/\//g, ''))) {
         const redirectResponse = {
             status: '301',
-            statusDescription: `Moved permanently`,
+            statusDescription: 'Moved permanently',
             headers: {
-                "location": [{
-                    "key": "Location",
-                    "value": `${baseURI}${uri}`
+                location: [{
+                    key: 'Location',
+                    value: `${baseURI}${uri}`
                 }],
                 'cache-control': [{
                     key: 'Cache-Control',
-                    value: "max-age=86400" // 60 * 60 * 24
+                    value: 'max-age=86400' // 60 * 60 * 24
                 }]
             }
         };
         callback(null, redirectResponse);
-        return
+        return;
     }
 
     // If no "." in URI, assume document request and append index.html to request.uri
