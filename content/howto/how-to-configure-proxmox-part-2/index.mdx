@@ -1,0 +1,24 @@
+---
+title: How to configure Proxmox part 2
+date: 2021-10-02
+tags: ['Debian', 'Hypervisor', 'Linux', 'Proxmox', 'Server', 'VM']
+excerpt: "This guide shows how to install Proxmox and do some basic configuration."
+cover: 'cover.png'
+author: 'Joep van de Laarschot'
+published: true
+---
+
+## Introduction
+
+What [started as a project](https://blog.joeplaa.com/building-a-proxmox-cluster/) to run "some crypto applications" grew into something much bigger, but also more useful. I learned a tremendous amount about virtual machines, lxc containers and Proxmox. And although I'm just scratching the surface and I don't actually understand it, I know how to do some things. I'll write them down here, partly for myself, but also for you in hopes it will save one of us a lot of time and frustration.
+
+## Configuration
+
+Proxmox has a lot of configuration options. Obviously many of them are dependent on what you want to achieve. I'll describe some of those in other posts. Here I'll focus on some basic, general configuration settings.
+
+<Alert type='warning'>
+    Proxmox config is very delicate. Almost all settings can be configured through the GUI, but sometimes you might have to dig into config files with the CLI. <strong>ALWAYS make a backup before doing so!</strong> I learned the hard way that messing up only one file (especially related to the cluster) can mean a full reinstall of that cluster!
+</Alert>
+
+## Conclusion
+
