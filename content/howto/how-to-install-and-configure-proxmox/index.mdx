@@ -47,7 +47,7 @@ Proxmox supplies an [ISO file](https://www.proxmox.com/en/downloads/category/iso
     ![Login to the Proxmox web interface](proxmox11.png)
 
 <Alert type='info'>
-The "official" tutorial, with all the [images](https://imgur.com/a/lSg9Lzt) and a [Youtube video](https://youtu.be/I-e1_CTa4s0) on how to install and configure Proxmox can be found here:
+The "official" tutorial, with all the <a href='https://imgur.com/a/lSg9Lzt'>images</a> and a <a href='https://youtu.be/I-e1_CTa4s0'>Youtube video</a> on how to install and configure Proxmox can be found here:
 
 <https://forum.proxmox.com/threads/proxmox-beginner-tutorial-how-to-set-up-your-first-virtual-machine-on-a-secondary-hard-disk.59559/>
 
@@ -56,15 +56,15 @@ The "official" tutorial, with all the [images](https://imgur.com/a/lSg9Lzt) and 
 <Alert type='warning'>
     If you get an error during boot:
 
-    ```command
-    Command: /sbin/zpool import -N "rpool"
-    Message: cannot import 'rpool' : no such pool available
-    Error: 1
-    Failed to import pool 'rpool'.
-    Manually import the pool and exit.
-    ```
+```command
+Command: /sbin/zpool import -N "rpool"
+Message: cannot import 'rpool' : no such pool available
+Error: 1
+Failed to import pool 'rpool'.
+Manually import the pool and exit.
+```
 
-You have to set a timeout of 20 seconds in grub. I can't remember how I did that, but at least here are the sources I could recover.
+You have to set a timeout of 20-30 seconds in grub. I can't remember how I did that, but at least here are the sources I could recover.
 
 Sources:
 
