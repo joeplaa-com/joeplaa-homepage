@@ -93,10 +93,10 @@ This guide is a compilation of multiple guides that are available online. If you
         megarec.exe -cleanflash 0
         ```
 
-    * Reboot back to USB and flash the new firmware and BIOS.
+    * Reboot back to USB and flash the new firmware and BIOS (you do not have to flash the `.rom` if you will be using the HBA for TrueNas).
 
         ```command
-        sas2flsh.exe -o -f 2118it.bin -b mptsas2.rom 
+        sas2flsh.exe -o -f 2118it.bin -b mptsas2.rom
         ```
 
     * Enter the SAS number (change to the number -without spaces and dashes- you wrote down in step 2):
@@ -138,16 +138,10 @@ This guide is a compilation of multiple guides that are available online. If you
         megarec.exe -cleanflash 0
         ```
 
-    * Reboot back to EFI shell and flash the temporary firmware:
+    * Reboot back to EFI shell and flash the new firmware and BIOS (you do not have to flash the `.rom` if you will be using the HBA for TrueNas).
 
         ```shell
-        sas2flash.efi -o -f 6GBPSAS.FW
-        ```
-
-    * Reboot again back to EFI shell and flash the new firmware:
-
-        ```shell
-        sas2flash.efi -o -f 2118it.bin
+        sas2flash.efi -o -f 2118it.bin -b mptsas2.rom
         ```
 
     * Enter the SAS number (change to the number -without spaces and dashes- you wrote down in step 2):
