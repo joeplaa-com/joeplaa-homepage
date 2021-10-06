@@ -1,6 +1,6 @@
 ---
 title: How to configure Proxmox part 2
-date: 2021-10-05
+date: 2021-10-06
 tags: ['Debian', 'Hypervisor', 'Linux', 'Proxmox', 'Server', 'VM']
 excerpt: "This guide shows how to install Proxmox and do some basic configuration."
 cover: 'cover.png'
@@ -14,11 +14,307 @@ What [started as a project](https://blog.joeplaa.com/building-a-proxmox-cluster/
 
 ## Configuration
 
-Proxmox has a lot of configuration options. Obviously many of them are dependent on what you want to achieve. I'll describe some of those in other posts. Here I'll focus on some basic, general configuration settings.
+Proxmox has a lot of configuration options. Obviously many of them are dependent on what you want to achieve. In [How to install and configure Proxmox](/how-to-install-and-configure-proxmox) I described the most basic configuration options. Here I'll list some more specific ones.
+
+* [Users, groups](#add-users-and-groups)
+* [Basic security](#basic-security)
+    * [Two factor authentication](#two-factor-authentication)
+* [Storage](#storage)
+    * [(Re)naming storage](#renaming-storage)
+    * [NFS storage](#nfs-storage)
+    * [iSCSI storage](#iscsi-storage)
+* [Backups](#backups)
+    * [Rsync cronjob](#rsync-cronjob)
+* [Qemu guests](#qemu-guests)
+    * [Resizing Qemu disk](#resizing-qemu-disk)
+* [LXC containers](#lxc-containers)
+    * [Mounting storage](#mounting-storage)
+    * [Resizing LXC disk](#resizing-lxc-disk)
 
 <Alert type='warning'>
     Proxmox config is very delicate. Almost all settings can be configured through the GUI, but sometimes you might have to dig into config files with the CLI. <strong>ALWAYS make a backup before doing so!</strong> I learned the hard way that messing up only one file (especially related to the cluster) can mean a full reinstall of that cluster!
 </Alert>
 
-## Conclusion
+## Add users and groups
 
+1. Go to "Datacenter" -> "Permissions" -> "Groups" and create group `Admins`
+
+    ![Add admin group](add-group1.png)
+
+2. Go to "Datacenter" -> "Permissions" -> "Users" and create user.
+
+    ![Add admin user](add-user1.png)
+
+3. Go to "Datacenter" -> "Permissions" click Add -> Group Permissions.
+
+    ![Set admin group permissions](add-group2.png)
+
+3. Enter Path `\`, Group `Admins` and Role `Administrator`.
+
+    ![Set admin group permissions](add-group3.png)
+
+4. Open a private browser window and login with your newly created user. Check if you have sufficient permissions (everything should be visible). Logout and close the private browser.
+
+5. Optional: In your "normal" browser screen logout the root user and login with your own user name. Go to "Datacenter" -> "Permissions" -> "Users" and disable the root user. 
+
+    This is optional, because some tasks can only be done by the root user. Although this is safer, you have to re-enable the root user each time you need to do one of these restricted/root tasks. I would suggest you disable the root user when you're confident everything is running smoothly.
+
+## Basic security
+
+### Two Factor Authentication
+
+1. Go to "Datacenter" -> "Permissions" -> "Users", select the root user and click "TFA". Scan the QR code with your authenticator app.
+
+    ![Enable TFA for users](tfa1.png)
+
+2. Repeat for all users, obviously with their own authenticator.
+3. Go to "Datacenter" -> "Permissions" -> "Authentication" and enable TFA for both Realms.
+
+    ![Enable TFA for realm](tfa2.png)
+
+### Private key console login
+
+1. Open a shell to the master node.
+
+    * Get the private key:
+
+        ```shell
+        cat ~/.ssh/authorized_keys
+        ```
+
+    * Copy the key to your machine: `C:\users\<username>\.ssh\<hostname>`, without file extension.
+    * Open this file with PuTTYgen and save as `C:\users\<username>\.ssh\<hostname>.ppk`. The key can now be used with PuTTY.
+    * Store this key somewhere safe.
+
+2. Disable user-password login (this needs to be done on each machine):
+
+    * Open sshd_config:
+
+        ```shell
+        nano /etc/ssh/sshd_config
+        ```
+
+    * Find and edit lines below:
+
+        ```ini
+        [...]
+        PasswordAuthentication no
+        [...]
+        UsePAM no
+        [...]
+        ```
+
+    * Restart ssh service
+
+        ```shell
+        systemctl restart ssh
+        ```
+
+## Storage
+
+### (Re)naming storage
+
+The default file storage location in Proxmox is called `local`. VM storage is called `local-zfs` when using ZFS or `local-lvm` when using LVM. This is fine if you have a single node, but becomes confusing when multiple nodes in a cluster have storage that has the same name. Therefor I renamed it.
+
+1. Open a shell to the Proxmox node.
+2. Open file `/etc/pve/storage.cfg` and change the names. You cannot rename `local`!!! To change, create a new directory storage and disable `local`.
+
+    ```shell
+    nano /etc/pve/storage.cfg
+    ```
+
+    ![Remame storage](rename-storage1.png)
+
+3. If you already have VM's that use this storage (links to ISO on `local` and virtual disk on `local-zfs`) you have to change them manually.
+
+    ```shell
+    nano /etc/pve/qemu-server/<vmid>.conf
+    ```
+
+    ![Remame storage in VM](rename-storage2.png)
+
+### NFS storage
+
+If you have a NAS than it's almost a must to store VM backups on it. After enabling NFS on the NAS ([TrueNas example](/how-to-do-basic-truenas-configuration/#configure-nfs-sharing)), you can add the share in Proxmox.
+
+1. Go to "Datacenter" -> "Storage" and add NFS storage.
+
+    ![Add NFS storage](nfs-storage1.png)
+
+2. Enter details of storage:
+    * ID: `nfs-<poolname>`
+    * Server: `<ip address of NAS>`
+    * Export: `/mnt/pool1/proxmox` (this list will show automatically after you enter the server address is entered)
+    * Content: `ISO image, Container template, VZDump backup file, Snippets`
+
+    ![Enter NFS storage details](nfs-storage2.png)
+
+3. The NFS store/pool is now available to Proxmox.
+
+    ![NFS pool available in Proxmox](nfs-storage3.png)
+
+### iSCSI storage
+
+After creating an iSCSI target on your NAS/SAN ([TrueNas example](/how-to-do-basic-truenas-configuration/#configure-an-iscsi-disk)), you can add the target in Proxmox.
+
+1. Go to "Datacenter" -> "Storage" and add iSCSI storage.
+
+    ![Add iSCSI storage](iscsi-storage1.png)
+
+2. Enter details of iSCSI target:
+    * ID: `iscsi-<poolname>`
+    * Portal: `<ip address of NAS>:3260`
+    * Target: `iqn.2005-10.org.freenas.ctl:iscsi-pve1` (this list will show automatically after you enter the server address is entered)
+    * Uncheck "Use LUNs directly"
+
+    ![Enter iSCSI storage details](iscsi-storage2.png)
+
+3. The iSCSI target is now available to Proxmox. Click "Add" and choose "LVM".
+
+    ![iSCSI pool available in Proxmox](iscsi-storage3.png)
+
+4. Enter details of LVM storage:
+    * ID: `iscsi-<poolname>-lvm`
+    * Base storage: `<poolname> (iSCSI)`
+    * Base volume: `CH 00 ID 0 LUN 0` (in my case)
+    * Volume group: `iscsi-<poolname>-lvm`
+    * Content: `Disk image, container`
+
+    ![Create iSCSI LVM storage in Proxmox](iscsi-storage4.png)
+
+5. You can now add a VM or LXC disk on iSCSI.
+
+    ![Add a VM disk on iSCSI](iscsi-storage5.png)
+
+## Backups
+
+1. Go to "Datacenter" -> "Backup" and add a weekly backup job
+
+    ![Weekly VM backups](weekly-vm-backups.png)
+
+2. If you want to make a backup of TrueNas than you can't store it on a TrueNas network drive. So you have to create a separate backup job for the TrueNas VM that store the backup locally.
+
+    ![Weekly VM backup TrueNas](weekly-vm-backup-truenas.png)
+
+### Rsync cronjob
+
+This local backup can then be transfered to either another node in the cluster or to the NAS. This can be automated with an rsync cronjob.
+
+1. Open a shell session to the Proxmox node.
+2. Open crontab:
+
+    ```shell
+    crontab -e
+    ```
+
+3. Add lines:
+
+    ```ini
+    # Every saturday at 0:25 UTC: Copy local backup of TrueNas machine to NAS
+    25 0 * * 6 rsync -avh /var/lib/vz/dump/vzdump-qemu-100* root@192.168.178.135:/mnt/pve/nfs-pool1/dump
+    ```
+
+    ![Weekly rsync job](weekly-rsync-job.png)
+
+## Qemu guests
+
+### Resizing Qemu disk (ZFS)
+
+1. Prepare your VM disk for shrinking (defrag, clean files, shrink file system) and shut it down
+2. Open a shell to the Proxmox node and set the new zfs pool size
+
+    ```shell
+    zfs set volsize=<new size>G rpool/data/vm-<vm id>-disk-<disk number>
+    ```
+
+3. Open vm config
+
+    ```shell
+    nano /etc/pve/local/qemu-server/<vm id>.conf
+    ```
+
+    ```ini
+    scsi0: local-zfs:vm-<vm id>-disk-<disk number>,size=<new size>G
+    ```
+
+4. Back in the Proxmox GUI change the cache mode to something else and then revert back, this should update the config
+
+    ![Update cache mode](update-cache-mode.png)
+
+## LXC containers
+
+### Resizing LXC disk
+
+1. Open a shell session to the host.
+
+2. List the containers:
+
+    ```shell
+    pct list
+    ```
+
+3. Stop the particular container you want to resize:
+
+    ```shell
+    pct stop 999
+    ```
+
+4. Find out it's path on the node:
+
+    ```shell
+    lvdisplay | grep "LV Path\|LV Size"
+    ```
+
+5. For good measure one can run a file system check:
+
+    ```shell
+    e2fsck -fy /dev/pve/vm-999-disk-0
+    ```
+
+6. Resize the file system:
+
+    ```shell
+    resize2fs /dev/pve/vm-999-disk-0 10G
+    ```
+
+7. Resize the local volume
+
+    ```shell
+    lvreduce -L 10G /dev/pve/vm-999-disk-0
+    ```
+
+8. Edit the container's conf, look for the rootfs line and change accordingly:
+
+    ```shell
+    nano /etc/pve/lxc/999.conf
+    ```
+
+    ```ini
+    rootfs: local-lvm:vm-999-disk-0,size=32G >> rootfs: local-lvm:vm-999-disk-0,size=10G
+    ```
+
+9. Start it:
+
+    ```shell
+    pct start 999
+    ```
+
+***
+
+<Alert type='info'>
+    <h3 class='mt-1'>Sources:</h3>
+
+#### Backup and rsync
+
+* <https://technologyplusblog.com/2013/networking/setting-up-automatic-remote-backups-with-rsync/>
+
+#### NFS in LXC container
+
+* <https://theorangeone.net/posts/mount-nfs-inside-lxc/>
+
+#### Resizing VM / LXC disk
+
+* <https://forum.proxmox.com/threads/shrink-zfs-disk.45835/>
+* <https://forum.proxmox.com/threads/resize-lxc-disk-on-proxmox.68901/>
+
+</Alert>

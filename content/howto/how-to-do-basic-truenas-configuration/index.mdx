@@ -236,7 +236,7 @@ If you want to share files with Linux machines, NFS might work better than SMB (
 
 This is something I needed to do very recently for a [Storj](https://storj.io) VM and I don't fully understand it yet. So for now I suggest to look here: [How to Create iSCSI Target on TrueNAS](https://manjaro.site/how-to-create-iscsi-target-on-truenas/).
 
-1. I followed the first to the letter to create an iSCSI target on TrueNas.
+1. I followed the first to the letter (ok, I changed the zvol and block share names to `iscsi-pve1`) to create an iSCSI target on TrueNas.
 2. Then in Proxmox I added this target as iSCSI storage.
 3. On top of that iSCSI storage link I created LVM storage.
 4. Now I could create a virtual hard disk and link it to the Storj guest.
