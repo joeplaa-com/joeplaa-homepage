@@ -2,7 +2,7 @@
 title: How to configure Proxmox part 2
 date: 2021-10-06
 tags: ['Debian', 'Hypervisor', 'Linux', 'Proxmox', 'Server', 'VM']
-excerpt: "This guide shows how to install Proxmox and do some basic configuration."
+excerpt: "This guide shows how to configure more specific Proxmox settings."
 cover: 'cover.png'
 author: 'Joep van de Laarschot'
 published: true
@@ -25,11 +25,6 @@ Proxmox has a lot of configuration options. Obviously many of them are dependent
     * [iSCSI storage](#iscsi-storage)
 * [Backups](#backups)
     * [Rsync cronjob](#rsync-cronjob)
-* [Qemu guests](#qemu-guests)
-    * [Resizing Qemu disk](#resizing-qemu-disk)
-* [LXC containers](#lxc-containers)
-    * [Mounting storage](#mounting-storage)
-    * [Resizing LXC disk](#resizing-lxc-disk)
 
 <Alert type='warning'>
     Proxmox config is very delicate. Almost all settings can be configured through the GUI, but sometimes you might have to dig into config files with the CLI. <strong>ALWAYS make a backup before doing so!</strong> I learned the hard way that messing up only one file (especially related to the cluster) can mean a full reinstall of that cluster!
@@ -216,105 +211,11 @@ This local backup can then be transfered to either another node in the cluster o
 
     ![Weekly rsync job](weekly-rsync-job.png)
 
-## Qemu guests
-
-### Resizing Qemu disk (ZFS)
-
-1. Prepare your VM disk for shrinking (defrag, clean files, shrink file system) and shut it down
-2. Open a shell to the Proxmox node and set the new zfs pool size
-
-    ```shell
-    zfs set volsize=<new size>G rpool/data/vm-<vm id>-disk-<disk number>
-    ```
-
-3. Open vm config
-
-    ```shell
-    nano /etc/pve/local/qemu-server/<vm id>.conf
-    ```
-
-    ```ini
-    scsi0: local-zfs:vm-<vm id>-disk-<disk number>,size=<new size>G
-    ```
-
-4. Back in the Proxmox GUI change the cache mode to something else and then revert back, this should update the config
-
-    ![Update cache mode](update-cache-mode.png)
-
-## LXC containers
-
-### Resizing LXC disk
-
-1. Open a shell session to the host.
-
-2. List the containers:
-
-    ```shell
-    pct list
-    ```
-
-3. Stop the particular container you want to resize:
-
-    ```shell
-    pct stop 999
-    ```
-
-4. Find out it's path on the node:
-
-    ```shell
-    lvdisplay | grep "LV Path\|LV Size"
-    ```
-
-5. For good measure one can run a file system check:
-
-    ```shell
-    e2fsck -fy /dev/pve/vm-999-disk-0
-    ```
-
-6. Resize the file system:
-
-    ```shell
-    resize2fs /dev/pve/vm-999-disk-0 10G
-    ```
-
-7. Resize the local volume
-
-    ```shell
-    lvreduce -L 10G /dev/pve/vm-999-disk-0
-    ```
-
-8. Edit the container's conf, look for the rootfs line and change accordingly:
-
-    ```shell
-    nano /etc/pve/lxc/999.conf
-    ```
-
-    ```ini
-    rootfs: local-lvm:vm-999-disk-0,size=32G >> rootfs: local-lvm:vm-999-disk-0,size=10G
-    ```
-
-9. Start it:
-
-    ```shell
-    pct start 999
-    ```
-
 ***
 
 <Alert type='info'>
     <h3 class='mt-1'>Sources:</h3>
 
-#### Backup and rsync
-
 * <https://technologyplusblog.com/2013/networking/setting-up-automatic-remote-backups-with-rsync/>
-
-#### NFS in LXC container
-
-* <https://theorangeone.net/posts/mount-nfs-inside-lxc/>
-
-#### Resizing VM / LXC disk
-
-* <https://forum.proxmox.com/threads/shrink-zfs-disk.45835/>
-* <https://forum.proxmox.com/threads/resize-lxc-disk-on-proxmox.68901/>
 
 </Alert>
