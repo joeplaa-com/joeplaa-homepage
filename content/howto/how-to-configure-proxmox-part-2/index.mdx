@@ -73,7 +73,7 @@ Proxmox has a lot of configuration options. Obviously many of them are dependent
 
     * Get the private key:
 
-        ```shell
+        ```shellsession
         cat ~/.ssh/authorized_keys
         ```
 
@@ -85,7 +85,7 @@ Proxmox has a lot of configuration options. Obviously many of them are dependent
 
     * Open sshd_config:
 
-        ```shell
+        ```shellsession
         nano /etc/ssh/sshd_config
         ```
 
@@ -101,7 +101,7 @@ Proxmox has a lot of configuration options. Obviously many of them are dependent
 
     * Restart ssh service
 
-        ```shell
+        ```shellsession
         systemctl restart ssh
         ```
 
@@ -111,10 +111,10 @@ Proxmox has a lot of configuration options. Obviously many of them are dependent
 
 The default file storage location in Proxmox is called `local`. VM storage is called `local-zfs` when using ZFS or `local-lvm` when using LVM. This is fine if you have a single node, but becomes confusing when multiple nodes in a cluster have storage that has the same name. Therefor I renamed it.
 
-1. Open a shell to the Proxmox node.
+1. Open a shellsession to the Proxmox node.
 2. Open file `/etc/pve/storage.cfg` and change the names. You cannot rename `local`!!! To change, create a new directory storage and disable `local`.
 
-    ```shell
+    ```shellsession
     nano /etc/pve/storage.cfg
     ```
 
@@ -122,7 +122,7 @@ The default file storage location in Proxmox is called `local`. VM storage is ca
 
 3. If you already have VM's that use this storage (links to ISO on `local` and virtual disk on `local-zfs`) you have to change them manually.
 
-    ```shell
+    ```shellsession
     nano /etc/pve/qemu-server/<vmid>.conf
     ```
 
@@ -198,7 +198,7 @@ This local backup can then be transfered to either another node in the cluster o
 1. Open a shell session to the Proxmox node.
 2. Open crontab:
 
-    ```shell
+    ```shellsession
     crontab -e
     ```
 

@@ -1,7 +1,7 @@
 ---
 title: How to run a Docker in LXC container on ZFS on Proxmox
-date: 2021-10-07
-tags: ['Linux', 'LXC', 'Proxmox']
+date: 2021-10-06
+tags: ['Docker', 'Linux', 'LXC', 'Proxmox']
 excerpt: "This guide shows how to run Docker inside an LXC container on Proxmox."
 cover: 'cover.png'
 author: 'Joep van de Laarschot'
@@ -81,13 +81,13 @@ Currently it doesn't seem possible to get Docker to work on ZFS. Well [you can](
 
 ### Install docker
 
-1. Start the container and open a shell. 
-    * You can open a shell directly to the IP or hostname of the container.
-    * Or you can open a shell to the host and enter the container `pct enter <id>`
+1. Start the container and open a shellsession. 
+    * You can open a shellsession directly to the IP or hostname of the container.
+    * Or you can open a shellsession to the host and enter the container `pct enter <id>`
 
 2. Add supporting package
 
-    ```shell
+    ```shellsession
     apt update
     apt upgrade
     apt install apt-transport-https ca-certificates curl gnupg lsb-release
@@ -95,26 +95,26 @@ Currently it doesn't seem possible to get Docker to work on ZFS. Well [you can](
 
 3. Add Docker’s official GPG key:
 
-    ```shell
+    ```shellsession
     curl -fsSL https://download.docker.com/linux/ubuntu/gpg | gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
     ```
 
 4. Add Apt repository:
 
-    ```shell
+    ```shellsession
     echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | tee /etc/apt/sources.list.d/docker.list > /dev/null
     ```
 
 5. Install Docker:
 
-    ```shell
+    ```shellsession
     apt update
     apt install docker-ce docker-ce-cli containerd.io docker-compose
     ```
 
 6. Run Docker:
 
-    ```shell
+    ```shellsession
     docker run hello-world
     ```
 

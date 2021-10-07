@@ -119,13 +119,13 @@ This guide is a compilation of multiple guides that are available online. If you
 
     * Type and run the following command to find the SAS number if you haven't done so in step 2.
 
-        ```shell
+        ```shellsession
         sas2flash.efi -listall
         ```
 
         Find the number of the card (0 if only one is installed) and use that number in the next command.
 
-        ```shell
+        ```shellsession
         sas2flash.efi -c 0 -list
         ```
 
@@ -140,13 +140,13 @@ This guide is a compilation of multiple guides that are available online. If you
 
     * Reboot back to EFI shell and flash the new firmware and BIOS (you do not have to flash the `.rom` if you will be using the HBA for TrueNas).
 
-        ```shell
+        ```shellsession
         sas2flash.efi -o -f 2118it.bin -b mptsas2.rom
         ```
 
     * Enter the SAS number (change to the number -without spaces and dashes- you wrote down in step 2):
 
-        ```shell
+        ```shellsession
         sas2flash.efi -o -sasadd 500605B0xxxxxxxx
         ```
 

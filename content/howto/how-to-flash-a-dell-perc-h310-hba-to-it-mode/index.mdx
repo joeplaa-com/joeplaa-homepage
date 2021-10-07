@@ -91,7 +91,7 @@ This guide is a compilation of multiple guides that are available online. If you
         ```
 
         <Alert type='info'>
-            If you get <code>"ERROR: Failed to initialize PAL. Exiting program."</code>, your motherboard is set to use UEFI and you have to flash using the EFI shell: see step 4.
+            If you get <code>"ERROR: Failed to initialize PAL. Exiting program."</code>, your motherboard is set to use UEFI and you have to flash using the EFI shellsession: see step 4.
         </Alert>
 
     * Enter the SAS number (change to the number -without spaces and dashes- you wrote down in step 2):
@@ -141,19 +141,19 @@ This guide is a compilation of multiple guides that are available online. If you
 
     * Flash the Dell HBA firmware:
 
-        ```shell
+        ```shellsession
         sas2flash.efi -o -f 6GBPSAS.FW
         ```
 
     * Enter the SAS number (change to the number -without spaces and dashes- you wrote down in step 2):
 
-        ```shell
+        ```shellsession
         sas2flash_p19.efi -o -sasadd 500605Bxxxxxxxxx
         ```
 
     * Reboot again back to EFI shell and flash the new firmware:
 
-        ```shell
+        ```shellsession
         sas2flash.efi -o -f 2118it.bin
         ```
 

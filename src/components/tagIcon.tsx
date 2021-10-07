@@ -1,13 +1,13 @@
 import React, { ReactElement } from 'react';
 import { FaHashtag, FaServer } from 'react-icons/fa';
 import { GrVirtualMachine, GrVirtualStorage } from 'react-icons/gr';
-import { MdFolderShared, MdScreenShare, MdSearch } from 'react-icons/md';
-import { SiAmazonaws, SiAndroid, SiBootstrap, SiCss3, SiDebian, SiDocker, SiDotNet, SiExpo, SiFacebook, SiGatsby, SiGhost, SiHtml5, SiIos, SiJavascript, SiLetsencrypt, SiLinux, SiMariadb, SiMarkdown, SiMicrosoft, SiMicrosoftsqlserver, SiMysql, SiNextDotJs, SiNginx, SiPhp, SiProxmox, SiRails, SiReact, SiRedis, SiRuby, SiSass, SiTypescript, SiUbuntu, SiWindows, SiWordpress } from 'react-icons/si';
+import { MdFolderShared, MdMail, MdScreenShare, MdSearch } from 'react-icons/md';
+import { SiAmazonaws, SiAndroid, SiBootstrap, SiCss3, SiDebian, SiDocker, SiDotnet, SiExpo, SiFacebook, SiGatsby, SiGhost, SiGrafana, SiHtml5, SiInfluxdb, SiIos, SiJavascript, SiLetsencrypt, SiLinux, SiLinuxcontainers, SiMariadb, SiMarkdown, SiMicrosoft, SiMicrosoftsqlserver, SiMysql, SiNextdotjs, SiNginx, SiPhp, SiProxmox, SiReact, SiRedis, SiRuby, SiRubyonrails, SiSass, SiSnapcraft, SiTruenas, SiTypescript, SiUbuntu, SiVirtualbox, SiWindows, SiWordpress } from 'react-icons/si';
 
 export default function TagIcon(tag: string): ReactElement {
     switch (tag) {
         case 'Android': return <SiAndroid />;
-        case 'ASP.NET': return <SiDotNet />;
+        case 'ASP.NET': return <SiDotnet />;
         case 'AWS': return <SiAmazonaws />;
         case 'Bootstrap': return <SiBootstrap />;
         case 'CSS': return <SiCss3 />;
@@ -17,23 +17,26 @@ export default function TagIcon(tag: string): ReactElement {
         case 'File sharing': return <MdFolderShared />;
         case 'Gatsby.js': return <SiGatsby />;
         case 'Ghost': return <SiGhost />;
+        case 'Grafana': return <SiGrafana />;
         case 'Hypervisor': return <GrVirtualMachine />;
         case 'HTML': return <SiHtml5 />;
         case 'IIS': return <SiMicrosoft />;
+        case 'InfluxDB': return <SiInfluxdb />;
         case 'iOS': return <SiIos />;
         case 'JavaScript': return <SiJavascript />;
         case 'Let\'s Encrypt': return <SiLetsencrypt />;
         case 'Linux': return <SiLinux />;
+        case 'LXC': return <SiLinuxcontainers />;
         case 'MariaDB': return <SiMariadb />;
         case 'Markdown': return <SiMarkdown />;
         case 'MDX': return <SiMarkdown />;
         case 'MySQL': return <SiMysql />;
-        case 'Next.js': return <SiNextDotJs />;
+        case 'Next.js': return <SiNextdotjs />;
         case 'Nginx': return <SiNginx />;
         case 'Open Graph': return <SiFacebook />;
         case 'PHP': return <SiPhp />;
         case 'Proxmox': return <SiProxmox />;
-        case 'Rails': return <SiRails />;
+        case 'Rails': return <SiRubyonrails />;
         case 'React': return <SiReact />;
         case 'React-Native': return <SiReact />;
         case 'Redis': return <SiRedis />;
@@ -42,12 +45,15 @@ export default function TagIcon(tag: string): ReactElement {
         case 'Screen sharing': return <MdScreenShare />;
         case 'SEO': return <MdSearch />;
         case 'Server': return <FaServer />;
+        case 'SMTP': return <MdMail />;
+        case 'Snap': return <SiSnapcraft />;
         case 'SQL server': return <SiMicrosoftsqlserver />;
         case 'SSL': return <SiLetsencrypt />;
         case 'Storage': return <GrVirtualStorage />;
+        case 'TrueNas': return <SiTruenas />;
         case 'TypeScript': return <SiTypescript />;
         case 'Ubuntu': return <SiUbuntu />;
-        case 'VirtualBox': return <GrVirtualMachine />;
+        case 'VirtualBox': return <SiVirtualbox />;
         case 'VM': return <GrVirtualMachine />;
         case 'Windows': return <SiWindows />;
         case 'WordPress': return <SiWordpress />;

@@ -67,7 +67,7 @@ First thing to after installing a guest OS is installing the Qemu guest client t
 2. Linux
     * Install agent
 
-        ```shell
+        ```shellsession
         sudo apt update
         sudo apt install qemu-guest-agent
         ```
@@ -77,15 +77,15 @@ First thing to after installing a guest OS is installing the Qemu guest client t
 ### Resizing Qemu disk (ZFS)
 
 1. Prepare your VM disk for shrinking (defrag, clean files, shrink file system) and shut it down
-2. Open a shell to the Proxmox node and set the new zfs pool size
+2. Open a shellsession to the Proxmox node and set the new zfs pool size
 
-    ```shell
+    ```shellsession
     zfs set volsize=<new size>G rpool/data/vm-<vm id>-disk-<disk number>
     ```
 
 3. Open vm config
 
-    ```shell
+    ```shellsession
     nano /etc/pve/local/qemu-server/<vm id>.conf
     ```
 
@@ -103,47 +103,47 @@ LXC containers are light-weight alternatives to Qemu guests. They can be used to
 
 ### Resizing LXC disk
 
-1. Open a shell session to the host.
+1. Open a shellsession session to the host.
 
 2. List the containers:
 
-    ```shell
+    ```shellsession
     pct list
     ```
 
 3. Stop the particular container you want to resize:
 
-    ```shell
+    ```shellsession
     pct stop 999
     ```
 
 4. Find out it's path on the node:
 
-    ```shell
+    ```shellsession
     lvdisplay | grep "LV Path\|LV Size"
     ```
 
 5. For good measure one can run a file system check:
 
-    ```shell
+    ```shellsession
     e2fsck -fy /dev/pve/vm-999-disk-0
     ```
 
 6. Resize the file system:
 
-    ```shell
+    ```shellsession
     resize2fs /dev/pve/vm-999-disk-0 10G
     ```
 
 7. Resize the local volume
 
-    ```shell
+    ```shellsession
     lvreduce -L 10G /dev/pve/vm-999-disk-0
     ```
 
 8. Edit the container's conf, look for the rootfs line and change accordingly:
 
-    ```shell
+    ```shellsession
     nano /etc/pve/lxc/999.conf
     ```
 
@@ -153,7 +153,7 @@ LXC containers are light-weight alternatives to Qemu guests. They can be used to
 
 9. Start it:
 
-    ```shell
+    ```shellsession
     pct start 999
     ```
 

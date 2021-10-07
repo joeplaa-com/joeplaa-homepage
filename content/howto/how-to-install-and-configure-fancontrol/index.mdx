@@ -22,7 +22,7 @@ This makes the CPU temperatures rise unnecessarily high, but can be fixed by let
 
 ## Installation
 
-1. Open a shell session to the server and login.
+1. Open a shellsession session to the server and login.
 
 2. Install the `lm-sensors` and `fancontrol` packages.
 
@@ -67,7 +67,7 @@ This makes the CPU temperatures rise unnecessarily high, but can be fixed by let
 
 7. You will have to specify what sensors to use to link the fanspeed to temperature changes. For the CPU fan make sure to use a sensor that measures your core CPU temperature to base the fan speed on.
 
-    This is a bit tricky as the sensor is named differently in fancontrol and lm-sensors. I ran `sensors` in another shell to help me find the right sensor. In my case the CPU temperature sensor `coretemp-isa-0000` was named at `hwmon1` in fancontrol, so I took `hwmon1/temp1_input` to correlate the fanspeed to the temperature.
+    This is a bit tricky as the sensor is named differently in fancontrol and lm-sensors. I ran `sensors` in another shellsession to help me find the right sensor. In my case the CPU temperature sensor `coretemp-isa-0000` was named at `hwmon1` in fancontrol, so I took `hwmon1/temp1_input` to correlate the fanspeed to the temperature.
 
     ![PWMconfig save settings](pwmconfig-save-settings.png)
 

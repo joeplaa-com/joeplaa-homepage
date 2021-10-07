@@ -85,22 +85,22 @@ Proxmox has a lot of configuration options. Obviously many of them are dependent
 
 ![No subscription splash screen](proxmox-no-subscription-splash-screen.png)
 
-1. Open a SSH shell to the Proxmox node.
+1. Open a SSH shellsession to the Proxmox node.
 2. Browse to folder:
 
-    ```shell
+    ```shellsession
     cd /usr/share/javascript/proxmox-widget-toolkit
     ```
 
 3. Make a backup:
 
-    ```shell
+    ```shellsession
     cp proxmoxlib.js proxmoxlib.js.bak
     ```
 
 4. Open file with `nano` and edit:
 
-    ```shell
+    ```shellsession
     nano proxmoxlib.js
     ```
 
@@ -120,7 +120,7 @@ Proxmox has a lot of configuration options. Obviously many of them are dependent
 
 7. Restart the Proxmox web service:
 
-    ```shell
+    ```shellsession
     systemctl restart pveproxy.service
     ```
 
@@ -139,26 +139,26 @@ By default the subscription repository for Proxmox package updates is set. If yo
 
 1. Browse to folder:
 
-    ```shell
+    ```shellsession
     cd /etc/apt/sources.list.d/
     ```
 
 2. Backup current file:
 
-    ```shell
+    ```shellsession
     mv pve-enterprise.list pve-enterprise.list.backup
     ```
 
 3. Create new files:
 
-    ```shell
+    ```shellsession
     echo "#deb https://enterprise.proxmox.com/debian/pve bullseye pve-enterprise" > /etc/apt/sources.list.d/pve-enterprise.list
     echo "deb http://download.proxmox.com/debian/pve bullseye pve-no-subscription" > /etc/apt/sources.list.d/pve-no-subscription.list
     ```
 
 4. Get update and install them:
 
-    ```shell
+    ```shellsession
     apt update
     apt dist-upgrade
     ```
@@ -175,32 +175,32 @@ If you want to run nested hypervisors -a hypervisor in a VM-, you have to enable
 
 1. Check if nested hypervisor is enabled (`kvm_intel` for Intel CPU, `kvm_amd` for AMD)
 
-    ```shell
+    ```shellsession
     cat /sys/module/kvm_intel/parameters/nested
     ```
 
 2. If `N`, activate it. The first line is for Intel:
 
-    ```shell
+    ```shellsession
     echo "options kvm-intel nested=Y" > /etc/modprobe.d/kvm-intel.conf
     ```
 
     The second for AMD:
 
-    ```shell
+    ```shellsession
     echo "options kvm-amd nested=1" > /etc/modprobe.d/kvm-amd.conf
     ```
 
 3. Reboot or reload the kernel module (`kvm_intel` for Intel CPU, `kvm_amd` for AMD):
 
-    ```shell
+    ```shellsession
     modprobe -r kvm_intel
     modprobe kvm_intel
     ```
 
 4. check again:
 
-    ```shell
+    ```shellsession
     cat /sys/module/kvm_intel/parameters/nested
     ```
 
@@ -217,7 +217,7 @@ I want to have my servers run in UTC timezone.
 
 1. Run command and follow the GUI
 
-    ```shell
+    ```shellsession
     dpkg-reconfigure tzdata
     ```
 
@@ -242,7 +242,7 @@ That should be it, but in my experience it never works that easily. These are so
 
 * When you already have 2FA enabled, this will not work. You have to join the cluster through the command line:
 
-    ```shell
+    ```shellsession
     pvecm add IP-ADDRESS-MASTER-NODE -link0 LOCAL-IP-ADDRESS-LINK0 --use_ssh
     ```
 

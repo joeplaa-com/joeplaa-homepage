@@ -1,7 +1,7 @@
 ---
 title: How to run a LXC container with snap on Proxmox
 date: 2021-10-07
-tags: ['Linux', 'LXC', 'Proxmox']
+tags: ['Linux', 'LXC', 'Proxmox', 'Snap']
 excerpt: "This guide shows how to run snap inside an LXC container on Proxmox."
 cover: 'cover.png'
 author: 'Joep van de Laarschot'
@@ -63,13 +63,13 @@ I wanted to run Nginx in an LXC container. However at first I couldn't install t
 
 ### Install snap
 
-1. Start the container and open a shell.
-    * You can open a shell directly to the IP or hostname of the container.
-    * Or you can open a shell to the host and enter the container `pct enter <id>`
+1. Start the container and open a shellsession.
+    * You can open a shellsession directly to the IP or hostname of the container.
+    * Or you can open a shellsession to the host and enter the container `pct enter <id>`
 
 2. Add snap apt package.
 
-    ```shell
+    ```shellsession
     apt update
     apt upgrade
     apt install snapd
@@ -77,7 +77,7 @@ I wanted to run Nginx in an LXC container. However at first I couldn't install t
 
 3. Install snap core.
 
-    ```shell
+    ```shellsession
     snap install core
     ```
 
