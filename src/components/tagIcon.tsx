@@ -3,7 +3,7 @@ import { CgGhost } from 'react-icons/cg';
 import { FaHashtag, FaServer } from 'react-icons/fa';
 import { GrVirtualMachine, GrVirtualStorage } from 'react-icons/gr';
 import { MdFolderShared, MdMail, MdScreenShare, MdSearch } from 'react-icons/md';
-import { SiAmazonaws, SiAndroid, SiBootstrap, SiCss3, SiDebian, SiDocker, SiDotnet, SiExpo, SiFacebook, SiGatsby, SiGrafana, SiHtml5, SiInfluxdb, SiIos, SiJavascript, SiLetsencrypt, SiLinux, SiLinuxcontainers, SiMariadb, SiMarkdown, SiMicrosoft, SiMicrosoftsqlserver, SiMysql, SiNextdotjs, SiNginx, SiPhp, SiProxmox, SiReact, SiRedis, SiRuby, SiRubyonrails, SiSass, SiSnapcraft, SiTruenas, SiTypescript, SiUbuntu, SiVirtualbox, SiWindows, SiWordpress } from 'react-icons/si';
+import { SiAmazonaws, SiAndroid, SiBootstrap, SiCss3, SiDebian, SiDocker, SiDotnet, SiExpo, SiFacebook, SiGatsby, SiGrafana, SiHtml5, SiInfluxdb, SiIos, SiJavascript, SiJss, SiLetsencrypt, SiLinux, SiLinuxcontainers, SiMariadb, SiMarkdown, SiMaterialui, SiMicrosoft, SiMicrosoftsqlserver, SiMysql, SiNextdotjs, SiNginx, SiPhp, SiProxmox, SiReact, SiRedis, SiRuby, SiRubyonrails, SiSass, SiSnapcraft, SiTruenas, SiTypescript, SiUbuntu, SiVirtualbox, SiWindows, SiWordpress } from 'react-icons/si';
 
 export default function TagIcon(tag: string): ReactElement {
     switch (tag) {
@@ -25,11 +25,13 @@ export default function TagIcon(tag: string): ReactElement {
         case 'InfluxDB': return <SiInfluxdb />;
         case 'iOS': return <SiIos />;
         case 'JavaScript': return <SiJavascript />;
+        case 'JSS': return <SiJss />;
         case 'Let\'s Encrypt': return <SiLetsencrypt />;
         case 'Linux': return <SiLinux />;
         case 'LXC': return <SiLinuxcontainers />;
         case 'MariaDB': return <SiMariadb />;
         case 'Markdown': return <SiMarkdown />;
+        case 'Material-UI': return <SiMaterialui />;
         case 'MDX': return <SiMarkdown />;
         case 'MySQL': return <SiMysql />;
         case 'Next.js': return <SiNextdotjs />;
