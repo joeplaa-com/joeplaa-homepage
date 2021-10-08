@@ -79,7 +79,8 @@ const siteMetadata = {
         ps: '/conditions/privacy-statement',
         recommended: process.env.GATSBY_BLOG_URL + '/recommended',
         services: '/services',
-        tagsNav: '/tags',
+        tagsHowto: '/howto/tags',
+        tagsPortfolio: '/portfolio/tags',
         tos: '/conditions/terms-of-service'
     },
     pricing: {

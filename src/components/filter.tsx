@@ -15,7 +15,7 @@ export default function Filter({ buttonType, className, page, quantity, tags, te
                     <Tag key={tag.value} quantity={quantity || false} tag={tag} template={template} />
                 ))}
             </Col>
-            {page.startsWith(`/${template}/tags`) || buttonType
+            {page.includes('/tags') || buttonType
                 ? <Col xs='auto' className='mt-2 mt-sm-0 ml-auto'>
                     <Button outline color='primary' onClick={buttonType === 'more' ? (): string => location.href = page : (): Promise<void> => navigate(-1)} className="d-inline-flex justify-content-center align-items-center" aria-label='filter-button'>
                         <IconContext.Provider value={{ size: '1.25rem' }}><MdArrowBack /></IconContext.Provider>

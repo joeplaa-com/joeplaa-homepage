@@ -11,7 +11,7 @@ import formatAllTags from '../utils/formatAllTags';
 
 const HowtoTag = ({ data, pageContext }: TagTemplateQueryProps): ReactElement => {
     const { siteDescription, siteImage, siteLanguage, siteLocale, siteTitle, siteUrl, titleSeparator, titleTemplate, twitterUsername } = useSiteMetadata();
-    const { tagsNav } = useSiteNavigation();
+    const { tagsHowto } = useSiteNavigation();
     const posts = data.posts.nodes;
     const tag = formatAllTags([{ fieldValue: pageContext.tagValue, totalCount: pageContext.totalCount }]);
 
@@ -31,7 +31,7 @@ const HowtoTag = ({ data, pageContext }: TagTemplateQueryProps): ReactElement =>
 
             <section className='section-fill blue-light' id={siteTitle}>
                 <Container className='my-auto'>
-                    <FilterCard page={tagsNav} tags={tag} template='howto' />
+                    <FilterCard page={tagsHowto} tags={tag} template='howto' />
                     {posts.length > 0 && <PostMore posts={posts} />}
                 </Container>
             </section>

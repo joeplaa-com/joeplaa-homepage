@@ -11,7 +11,8 @@ interface IuseSiteNavigation {
     ps: string,
     recommended: string,
     services: string,
-    tagsNav: string,
+    tagsHowto: string,
+    tagsPortfolio: string,
     tos: string
 }
 
@@ -32,7 +33,8 @@ export default function useSiteNavigation(): IuseSiteNavigation {
                             ps
                             recommended
                             services
-                            tagsNav
+                            tagsHowto
+                            tagsPortfolio
                             tos
                         }
                     }
