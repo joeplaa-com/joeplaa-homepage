@@ -18,9 +18,14 @@ In Gatsby you can use `react-seo-component` combined with `react-helmet`. The `<
 
 If you prefer Next.js over Gatsby.js, the default option would be to use the `next-seo` plugin. But you can also use the "Gatsby" method explained with above (and the other way around: `gatsby-plugin-next-seo`).
 
-> - <https://scottspence.com/2020/05/04/react-seo-component/>
-> - <https://www.gatsbyjs.com/docs/add-seo-component/>
-> - <https://www.gatsbyjs.com/docs/how-to/adding-common-features/seo/>
+<Alert type='info'>
+<h3 class='mt-1'>Sources:</h3>
+
+- <https://scottspence.com/2020/05/04/react-seo-component/>
+- <https://www.gatsbyjs.com/docs/add-seo-component/>
+- <https://www.gatsbyjs.com/docs/how-to/adding-common-features/seo/>
+
+</Alert>
 
 ## The problem
 
@@ -75,9 +80,11 @@ I first thought it might be the `next-seo` plugin, so I switched to the "Gatsby"
 
 Apparently Next.js uses JavaScript to render all the meta information. So the plain HTML file that Facebook fetches does not contain the data it needs. I'm not sure if this is a new "feature" or "bug" in Next, but I hadn't noticed it before and I did upgrade to v10. Well, I knew Gatsby.js does pre-render all this data and places it in the head of your HTML directly, so it should be possible.
 
-> Google's crawler is more sophisticated and can interpret JavaScript. So when testing you site with Google Lighthouse, you get a perfect SEO score.
-> 
-> ![lighthouse seo score](lighthouse-seo.png)
+<Alert type='info'>
+Google's crawler is more sophisticated and can interpret JavaScript. So when testing you site with Google Lighthouse, you get a perfect SEO score.
+
+![lighthouse seo score](lighthouse-seo.png)
+</Alert>
 
 ## The solution
 

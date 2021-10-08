@@ -50,10 +50,22 @@ exports.createPages = ({ actions, graphql }) => {
                 }
             }
         }
-        tagsGroup: allMdx(limit: 2000, 
-            filter: { frontmatter: { published: { eq: true } } }) {
+        howtoTags: allMdx(
+            filter: { frontmatter: { published: { eq: true }, series: { ne: true } }, fileAbsolutePath: { glob: "**/content/howto/**/*.mdx" } }
+            limit: 2000
+        ) {
             group(field: frontmatter___tags) {
                 fieldValue
+                totalCount
+            }
+        }
+        portfolioTags: allMdx(
+            filter: { frontmatter: { published: { eq: true } }, fileAbsolutePath: { glob: "**/content/portfolio/**/*.mdx" } }
+            limit: 2000
+        ) {
+            group(field: frontmatter___tags) {
+                fieldValue
+                totalCount
             }
         }
     }
@@ -65,16 +77,18 @@ exports.createPages = ({ actions, graphql }) => {
         // templates
         const howtoTemplate = path.resolve('src/templates/howtoTemplate.tsx');
         const howtoPostTemplate = path.resolve('src/templates/howtoPostTemplate.tsx');
+        const howtoTagTemplate = path.resolve('src/templates/howtoTagTemplate.tsx');
         const portfolioTemplate = path.resolve('src/templates/portfolioTemplate.tsx');
         const portfolioPostTemplate = path.resolve('src/templates/portfolioPostTemplate.tsx');
+        const portfolioTagTemplate = path.resolve('src/templates/portfolioTagTemplate.tsx');
         const conditionsTemplate = path.resolve('src/templates/conditionsTemplate.tsx');
-        const tagsTemplate = path.resolve('src/templates/tagsTemplate.tsx');
 
         // data
         const conditions = result.data.conditions.nodes;
         const howto = result.data.howto.nodes;
         const portfolio = result.data.portfolio.nodes;
-        const tags = result.data.tagsGroup.group;
+        const howtoTags = result.data.howtoTags.group;
+        const portfolioTags = result.data.portfolioTags.group;
 
         // pagination
         const postsPerPage = 12;
@@ -86,12 +100,12 @@ exports.createPages = ({ actions, graphql }) => {
             createPage({
                 path: i === 0 ? '/howto' : `/howto/${i + 1}`,
                 component: howtoTemplate,
-                context: {
-                    limit: postsPerPage,
-                    skip: i * postsPerPage,
-                    numPages: numHowtoPages,
+                context: { // PageTemplateContextProps
                     currentPage: i + 1,
-                },
+                    limit: postsPerPage,
+                    numPages: numHowtoPages,
+                    skip: i * postsPerPage
+                }
             });
         });
 
@@ -100,12 +114,12 @@ exports.createPages = ({ actions, graphql }) => {
             createPage({
                 path: i === 0 ? '/portfolio' : `/portfolio/${i + 1}`,
                 component: portfolioTemplate,
-                context: {
-                    limit: postsPerPage,
-                    skip: i * postsPerPage,
-                    numPages: numPortfolioPages,
+                context: { // PageTemplateContextProps
                     currentPage: i + 1,
-                },
+                    limit: postsPerPage,
+                    numPages: numPortfolioPages,
+                    skip: i * postsPerPage
+                }
             });
         });
 
@@ -115,9 +129,9 @@ exports.createPages = ({ actions, graphql }) => {
             createPage({
                 path: `/conditions${slug}`,
                 component: conditionsTemplate,
-                context: {
-                    slug,
-                },
+                context: { // PageContextProps
+                    slug
+                }
             });
         });
 
@@ -127,11 +141,11 @@ exports.createPages = ({ actions, graphql }) => {
             createPage({
                 path: slug,
                 component: howtoPostTemplate,
-                context: {
+                context: { // PageContextProps
                     slug,
                     previous: index === howto.length - 1 ? null : howto[index + 1],
-                    next: index === 0 ? null : howto[index - 1],
-                },
+                    next: index === 0 ? null : howto[index - 1]
+                }
             });
         });
 
@@ -141,25 +155,39 @@ exports.createPages = ({ actions, graphql }) => {
             createPage({
                 path: slug,
                 component: portfolioPostTemplate,
-                context: {
+                context: { // PageContextProps
                     slug,
                     previous: index === howto.length - 1 ? null : howto[index + 1],
-                    next: index === 0 ? null : howto[index - 1],
-                },
+                    next: index === 0 ? null : howto[index - 1]
+                }
             });
         });
 
-        // create page for each tag
-        tags.forEach(tag => {
+        // create page for each howto tag
+        howtoTags.forEach(tag => {
             const slug = kebabCase(tag.fieldValue);
-            createPage({
-                path: `/tags/${slug}/`,
-                component: tagsTemplate,
+            createPage({ // TagTemplateContextProps
+                path: `/howto/tags/${slug}/`,
+                component: howtoTagTemplate,
                 context: {
-                    slug: `/tags/${slug}/`,
-                    tag: tag,
-                    tagValue: tag.fieldValue
-                },
+                    slug: `/howto/tags/${slug}/`,
+                    tagValue: tag.fieldValue,
+                    totalCount: tag.totalCount
+                }
+            });
+        });
+
+        // create page for each portfolio tag
+        portfolioTags.forEach(tag => {
+            const slug = kebabCase(tag.fieldValue);
+            createPage({ // TagTemplateContextProps
+                path: `/portfolio/tags/${slug}/`,
+                component: portfolioTagTemplate,
+                context: {
+                    slug: `/portfolio/tags/${slug}/`,
+                    tagValue: tag.fieldValue,
+                    totalCount: tag.totalCount
+                }
             });
         });
     });
@@ -172,7 +200,7 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
         createNodeField({
             name: 'slug',
             node,
-            value,
+            value
         });
     }
 };

@@ -29,7 +29,7 @@ export default function Layout(props: LayoutProps): ReactElement {
                     data-domains='joeplaa.com,www.joeplaa.com'
                 ></script>
             </Helmet>
-            <Header navbarLightText={location && location.pathname === '/' ? true : false} />
+            <Header navbarLightText={!!(location && location.pathname === '/')} />
             <main className='content'>{props.children}</main>
             <Footer className='footer-background' />
         </div>

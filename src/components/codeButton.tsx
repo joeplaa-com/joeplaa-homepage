@@ -18,7 +18,8 @@ const CodeButton = ({ codeString }: Props): ReactElement => {
         setTimeout(() => setCopied(false), time);
     }
 
-    const label = copied ? <><MdCheck />{' '}{content.Copied}</> : <><MdContentCopy />{' '}{content.Copy}</>;
+    const icon = copied ? <MdCheck /> : <MdContentCopy />;
+    const label = copied ? content.Copied : content.Copy;
 
     const handleClick = async (): Promise<void> => {
         setCopied(true);
@@ -27,15 +28,18 @@ const CodeButton = ({ codeString }: Props): ReactElement => {
     };
 
     return (
-        <Button
-            outline
-            size='sm'
-            color='primary'
-            style={{ position: 'absolute', top: '8px', right: '8px' }}
-            onClick={handleClick}
-        >
-            {label}
-        </Button>
+        <>
+            <Button
+                outline
+                size='sm'
+                color='light'
+                className='code-copy-button'
+                onClick={handleClick}
+                aria-label={label}
+            >
+                {icon}
+            </Button>
+        </>
     );
 };
 

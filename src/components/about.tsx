@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactElement } from 'react';
 import { Col, Container, Row } from 'reactstrap';
 import { Link } from './customLink';
 import ImageAbout from './imageAbout';
@@ -9,7 +9,6 @@ import useSiteNavigation from '../hooks/useSiteNavigation';
 import useSiteSettings from '../hooks/useSiteSettings';
 import { SectionProps } from '../types';
 import { getAge } from '../utils/getAge';
-import { ReactElement } from 'react';
 
 const About = ({ className }: SectionProps): ReactElement => {
     const { authorFirstName, authorLastName, componentAboutTitle } = useSiteMetadata();

@@ -49,6 +49,7 @@ export interface FilterProps {
     page: string
     quantity?: boolean
     tags: LabelProps[]
+    template?: TemplateType
 }
 
 export interface FooterLinkProps {
@@ -98,7 +99,13 @@ interface PageLocation extends Location {
     state?: PageState
 }
 
-export interface PageTemplateProps {
+interface PageContextProps {
+    next?: PostBasicProps,
+    previous?: PostBasicProps,
+    slug: string
+}
+
+export interface PageProps {
     data: {
         mdx: {
             author: string
@@ -116,11 +123,7 @@ export interface PageTemplateProps {
         }
     }
     location: PageLocation
-    pageContext: {
-        next: PostBasicProps,
-        previous: PostBasicProps
-        tag: string
-    }
+    pageContext: PageContextProps
 }
 
 export interface PaginationProps {
@@ -148,7 +151,7 @@ export interface PortfolioEntryProps extends PostBasicProps {
     body: string
 }
 
-interface PostBasicProps {
+export interface PostBasicProps {
     fields: {
         slug: string
         readingTime?: {
@@ -163,15 +166,17 @@ export interface PostBodyProps {
     content: string
 }
 
-interface PostQueryNode extends PostBasicProps {
+interface TemplateQueryNode extends PostBasicProps {
     body: string
     id: string
 }
 
-export interface PostQueryProps {
+interface TemplateQueryProps {
     data: {
-        allMdx: {
-            nodes: PostQueryNode[]
+        posts: {
+            nodes: TemplateQueryNode[]
+        },
+        tags?: {
             group: PostTagProps[]
         },
         site: {
@@ -181,13 +186,27 @@ export interface PostQueryProps {
         }
     },
     location: PageLocation
-    pageContext?: {
-        currentPage?: number
-        numPages?: number
-        slug?: string
-        tag?: string
-        tagRaw?: PostTagProps
-    }
+}
+
+interface PageTemplateContextProps {
+    currentPage: number
+    limit: number
+    numPages: number
+    skip: number
+}
+
+export interface PageTemplateQueryProps extends TemplateQueryProps {
+    pageContext?: PageTemplateContextProps
+}
+
+interface TagTemplateContextProps {
+    slug: string,
+    tagValue: string,
+    totalCount: number
+}
+
+export interface TagTemplateQueryProps extends TemplateQueryProps {
+    pageContext?: TagTemplateContextProps
 }
 
 export interface PostImageProps {
@@ -234,4 +253,7 @@ export interface TagProps {
     icon?: ReactElement
     quantity?: boolean
     tag: LabelProps
+    template?: TemplateType
 }
+
+type TemplateType = 'howto' | 'portfolio'

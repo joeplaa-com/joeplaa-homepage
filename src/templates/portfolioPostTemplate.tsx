@@ -10,9 +10,9 @@ import useSiteMetadata from '../hooks/useSiteMetadata';
 import useSiteNavigation from '../hooks/useSiteNavigation';
 import useSiteSettings from '../hooks/useSiteSettings';
 import formatPostTags from '../utils/formatPostTags';
-import { PageTemplateProps } from '../types';
+import { PageProps } from '../types';
 
-const PortfolioTemplate = ({ data, location, pageContext }: PageTemplateProps): ReactElement => {
+const PortfolioTemplate = ({ data, location, pageContext }: PageProps): ReactElement => {
     const { authorName, pagePortfolioTitle, siteImage, siteLanguage, siteLocale, siteUrl, titleSeparator, titleTemplate, twitterUsername } = useSiteMetadata();
     const { portfolio } = useSiteNavigation();
     const { breakpoint } = useSiteSettings();
@@ -59,20 +59,24 @@ const PortfolioTemplate = ({ data, location, pageContext }: PageTemplateProps): 
                     </div>
 
                     <Row className='d-flex justify-content-between align-items-center'>
-                        {!previous ? null : (
-                            previous && (
-                                <Col xs='12' sm='6' lg='5' xl='4'>
-                                    <PostBrowseButton type='previous' to={previous.fields.slug} title={previous.frontmatter.title} />
-                                </Col>
-                            )
-                        )}
-                        {!next ? null : (
-                            next && (
-                                <Col xs='12' sm='6' lg='5' xl='4' className='d-flex justify-content-end mt-2 mt-sm-0'>
-                                    <PostBrowseButton type='next' to={next.fields.slug} title={next.frontmatter.title} />
-                                </Col>
-                            )
-                        )}
+                        {!previous
+                            ? null
+                            : (
+                                previous && (
+                                    <Col xs='12' sm='6' lg='5' xl='4'>
+                                        <PostBrowseButton type='previous' to={previous.fields.slug} title={previous.frontmatter.title} />
+                                    </Col>
+                                )
+                            )}
+                        {!next
+                            ? null
+                            : (
+                                next && (
+                                    <Col xs='12' sm='6' lg='5' xl='4' className='d-flex justify-content-end mt-2 mt-sm-0'>
+                                        <PostBrowseButton type='next' to={next.fields.slug} title={next.frontmatter.title} />
+                                    </Col>
+                                )
+                            )}
                     </Row>
                 </Container>
             </section>
@@ -90,7 +94,7 @@ export const query = graphql`query portfolioEntryBySlug($slug: String!) {
             cover {
                 publicURL
                 childImageSharp {
-                    gatsbyImageData(width: 960, breakpoints: [320, 640], layout: CONSTRAINED)
+                    gatsbyImageData(width: 1080, breakpoints: [320, 640, 960], layout: CONSTRAINED)
                 }
             }
         }

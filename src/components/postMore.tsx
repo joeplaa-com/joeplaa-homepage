@@ -3,7 +3,7 @@ import { CardDeck } from 'reactstrap';
 import PostPreview from './postPreview';
 import { PostBasicProps } from '../types';
 
-export default function PostStories({ posts }: { posts: Array<PostBasicProps> }): ReactElement {
+export default function PostStories({ posts }: { posts: PostBasicProps[] }): ReactElement {
     return (
         <section>
             <CardDeck>

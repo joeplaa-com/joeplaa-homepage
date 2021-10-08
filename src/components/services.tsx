@@ -2,7 +2,7 @@ import React, { ReactElement } from 'react';
 import { Container, Card, CardBody, Row, Col } from 'reactstrap';
 import { IconContext } from 'react-icons';
 import { FaOpencart } from 'react-icons/fa';
-import { SiAmazonaws, SiBamboo, SiGatsby, SiGhost, SiJenkins, SiJetbrains, SiMagento, SiNextDotJs, SiWoocommerce, SiWordpress } from 'react-icons/si';
+import { SiAmazonaws, SiBamboo, SiGatsby, SiGhost, SiJenkins, SiJetbrains, SiMagento, SiNextdotjs, SiWoocommerce, SiWordpress } from 'react-icons/si';
 import { Link } from './customLink';
 import Image from './image';
 import NewTabLink from './newTabLink';
@@ -14,7 +14,6 @@ import useSiteUrls from '../hooks/useSiteUrls';
 import JodiBooksLogo from '../svg/jodibooks-logo.svg';
 import { SectionProps } from '../types';
 import { content } from '../utils/content';
-
 
 const ServicesComponent = ({ className }: SectionProps): ReactElement => {
     const { componentPricingTitle } = useSiteMetadata();
@@ -48,7 +47,7 @@ const ServicesComponent = ({ className }: SectionProps): ReactElement => {
                         <div className='text-center'>
                             <IconContext.Provider value={{ size: iconSize }}>
                                 <NewTabLink href={gatsbyjs} className='nav-padding-social'><SiGatsby /></NewTabLink>
-                                <NewTabLink href={nextjs} className='nav-padding-social'><SiNextDotJs /></NewTabLink>
+                                <NewTabLink href={nextjs} className='nav-padding-social'><SiNextdotjs /></NewTabLink>
                                 <NewTabLink href={ghost} className='nav-padding-social'><SiGhost /></NewTabLink>
                                 <NewTabLink href={wordpress} className='nav-padding-social'><SiWordpress /></NewTabLink>
                             </IconContext.Provider>

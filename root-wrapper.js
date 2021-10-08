@@ -2,6 +2,7 @@
 /* eslint-disable @typescript-eslint/explicit-function-return-type */
 import React from 'react';
 import { MDXProvider } from '@mdx-js/react';
+import Alert from './src/components/alert';
 import Code from './src/components/code';
 import NewTabLink from './src/components/newTabLink';
 import './src/styles/site.scss';
@@ -9,7 +10,7 @@ import './src/styles/site.scss';
 const components = {
     // eslint-disable-next-line react/display-name
     'p.inlineCode': props => (
-        <code style={{ backgroundColor: 'lightgray', borderRadius: '3px', marginLeft: '-4px', marginRight: '-2px', paddingLeft: '4px', paddingRight: '4px' }} {...props} />
+        <code className='inline-code' {...props} />
     ),
     pre: ({ children: { props } }) => {
         if (props.mdxType === 'code') {
@@ -22,6 +23,7 @@ const components = {
             );
         }
     },
+    Alert,
     NewTabLink
 };
 

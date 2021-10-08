@@ -5,8 +5,8 @@ export default function sortArrayObject(arrayObj: LabelProps[]): LabelProps[] {
         return [];
     }
     return arrayObj.sort((a, b) => {
-        const fa = a.value.toLowerCase(),
-            fb = b.value.toLowerCase();
+        const fa = a.value.toLowerCase();
+        const fb = b.value.toLowerCase();
 
         if (fa < fb) {
             return -1;

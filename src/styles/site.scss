@@ -411,8 +411,67 @@ div.card-footer {
     }
 }
 
+.alert {
+    display: flex;
+    flex-direction: row;
+    padding: 15px;
+    border: 1px solid transparent;
+    border-color: transparent;
+    margin-bottom: 20px;
+    border-radius: 4px;
+}
+    .alert.alert-error {
+        color: #a94442;
+        background-color: #f2dede;
+        border-color: #ebccd1;
+    }
+    .alert.alert-info {
+        color: #31708f;
+        background-color: #d9edf7;
+        border-color: #bce8f1;
+    }
+    .alert.alert-success {
+        color: #3c763d;
+        background-color: #dff0d8;
+        border-color: #d6e9c6;
+    }
+    .alert.alert-warning {
+        color: #8a6d3b;
+        background-color: #fcf8e3;
+        border-color: #faebcc;
+    }
+
+    .alert-icon {
+        size: 4rem;
+    }
+
 button.close {
     text-shadow: none;
+}
+
+.code-container {
+    position: relative;
+}
+
+.code-pre {
+    border-radius: .25rem;
+    margin-top: 8px;
+    min-height: 46px;
+}
+
+.code-copy-button {
+    position: absolute;
+    top: .5rem;
+    right: .5rem;
+}
+
+.inline-code {
+    background-color: lightgray;
+    border-radius: .25rem;
+    margin-left: -.25rem;
+    margin-right: -.125rem;
+    padding-left: .25rem;
+    padding-right: .25rem;
 }
 
 .label-bold {
