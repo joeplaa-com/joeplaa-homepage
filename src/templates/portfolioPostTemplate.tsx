@@ -10,9 +10,9 @@ import useSiteMetadata from '../hooks/useSiteMetadata';
 import useSiteNavigation from '../hooks/useSiteNavigation';
 import useSiteSettings from '../hooks/useSiteSettings';
 import formatPostTags from '../utils/formatPostTags';
-import { PageTemplateProps } from '../types';
+import { PageProps } from '../types';
 
-const PortfolioTemplate = ({ data, location, pageContext }: PageTemplateProps): ReactElement => {
+const PortfolioTemplate = ({ data, location, pageContext }: PageProps): ReactElement => {
     const { authorName, pagePortfolioTitle, siteImage, siteLanguage, siteLocale, siteUrl, titleSeparator, titleTemplate, twitterUsername } = useSiteMetadata();
     const { portfolio } = useSiteNavigation();
     const { breakpoint } = useSiteSettings();

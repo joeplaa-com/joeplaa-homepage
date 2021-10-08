@@ -7,14 +7,14 @@ import Pagination from '../components/pagination';
 import PostMore from '../components/postMore';
 import useSiteMetadata from '../hooks/useSiteMetadata';
 import useSiteNavigation from '../hooks/useSiteNavigation';
-import { PostQueryProps } from '../types';
+import { PageTemplateQueryProps } from '../types';
 import formatAllTags from '../utils/formatAllTags';
 
-const HowtoTemplate = ({ data, pageContext }: PostQueryProps): ReactElement => {
+const HowtoTemplate = ({ data, pageContext }: PageTemplateQueryProps): ReactElement => {
     const { pageHowtoDescription, pageHowtoImage, pageHowtoTitle, siteLanguage, siteLocale, siteUrl, titleSeparator, titleTemplate, twitterUsername } = useSiteMetadata();
     const { howto } = useSiteNavigation();
-    const posts = data.allMdx.nodes;
-    const tags = formatAllTags(data.allMdx.group);
+    const posts = data.posts.nodes;
+    const tags = formatAllTags(data.tags.group);
     const { currentPage, numPages } = pageContext;
 
     return (
@@ -33,7 +33,7 @@ const HowtoTemplate = ({ data, pageContext }: PostQueryProps): ReactElement => {
 
             <section className='section-fill blue-light' id={pageHowtoTitle}>
                 <Container className='my-auto'>
-                    <FilterCard page={howto} tags={tags} />
+                    <FilterCard page={howto} tags={tags} template='howto' />
                     {posts.length > 0 && <PostMore posts={posts} />}
                     <Pagination currentPage={currentPage} numPages={numPages} path={howto} />
                 </Container>
@@ -43,7 +43,7 @@ const HowtoTemplate = ({ data, pageContext }: PostQueryProps): ReactElement => {
 };
 
 export const query = graphql`query howtoTemplate($skip: Int!, $limit: Int!) {
-    allMdx(
+    posts: allMdx(
         sort: {fields: [frontmatter___date], order: DESC}
         filter: {frontmatter: {published: {eq: true}, series: {ne: true}}, fileAbsolutePath: {regex: "/content/howto/"}}
         limit: $limit
@@ -72,6 +72,11 @@ export const query = graphql`query howtoTemplate($skip: Int!, $limit: Int!) {
                 }
             }
         }
+    }
+    tags: allMdx(
+        sort: {fields: [frontmatter___date], order: DESC}
+        filter: {frontmatter: {published: {eq: true}, series: {ne: true}}, fileAbsolutePath: {regex: "/content/howto/"}}
+    ) {
         group(field: frontmatter___tags) {
             fieldValue
             totalCount

@@ -7,14 +7,14 @@ import Pagination from '../components/pagination';
 import PortfolioEntries from '../components/portfolioEntries';
 import useSiteMetadata from '../hooks/useSiteMetadata';
 import useSiteNavigation from '../hooks/useSiteNavigation';
-import { PostQueryProps } from '../types';
+import { PageTemplateQueryProps } from '../types';
 import formatAllTags from '../utils/formatAllTags';
 
-const PortfolioTemplate = ({ data, pageContext }: PostQueryProps): ReactElement => {
+const PortfolioTemplate = ({ data, pageContext }: PageTemplateQueryProps): ReactElement => {
     const { pagePortfolioDescription, pagePortfolioImage, pagePortfolioTitle, siteLanguage, siteLocale, siteUrl, titleSeparator, titleTemplate, twitterUsername } = useSiteMetadata();
     const { portfolio } = useSiteNavigation();
-    const entries = data.allMdx.nodes;
-    const tags = formatAllTags(data.allMdx.group);
+    const entries = data.posts.nodes;
+    const tags = formatAllTags(data.tags.group);
     const { currentPage, numPages } = pageContext;
 
     return (
@@ -33,7 +33,7 @@ const PortfolioTemplate = ({ data, pageContext }: PostQueryProps): ReactElement 
 
             <section className='section-fill blue-medium' id={pagePortfolioTitle}>
                 <Container className='text-left my-auto'>
-                    <FilterCard page={portfolio} tags={tags} />
+                    <FilterCard page={portfolio} tags={tags} template='portfolio' />
                     {entries.length > 0 && <PortfolioEntries posts={entries} />}
                     <Pagination currentPage={currentPage} numPages={numPages} path={portfolio} />
                 </Container>
@@ -43,7 +43,7 @@ const PortfolioTemplate = ({ data, pageContext }: PostQueryProps): ReactElement 
 };
 
 export const query = graphql`query portfolioTemplate($skip: Int!, $limit: Int!) {
-    allMdx(
+    posts: allMdx(
         sort: {fields: [frontmatter___date], order: DESC}
         filter: {frontmatter: {published: {eq: true}}, fileAbsolutePath: {regex: "/content/portfolio/"}}
         limit: $limit
@@ -69,6 +69,11 @@ export const query = graphql`query portfolioTemplate($skip: Int!, $limit: Int!) 
                 slug
             }
         }
+    }
+    tags: allMdx(
+        sort: {fields: [frontmatter___date], order: DESC}
+        filter: {frontmatter: {published: {eq: true}}, fileAbsolutePath: {regex: "/content/portfolio/"}}
+    ) {
         group(field: frontmatter___tags) {
             fieldValue
             totalCount

@@ -6,14 +6,15 @@ import FilterCard from '../components/filterCard';
 import PostMore from '../components/postMore';
 import useSiteMetadata from '../hooks/useSiteMetadata';
 import useSiteNavigation from '../hooks/useSiteNavigation';
-import { PostQueryProps } from '../types';
+import { TagTemplateQueryProps } from '../types';
 import formatAllTags from '../utils/formatAllTags';
 
-const Tag = ({ data, pageContext }: PostQueryProps): ReactElement => {
+const PortfolioTag = ({ data, pageContext }: TagTemplateQueryProps): ReactElement => {
     const { siteDescription, siteImage, siteLanguage, siteLocale, siteTitle, siteUrl, titleSeparator, titleTemplate, twitterUsername } = useSiteMetadata();
     const { tagsNav } = useSiteNavigation();
-    const posts = data.allMdx.nodes;
-    const tags = formatAllTags(data.allMdx.group);
+    const posts = data.posts.nodes;
+    const tag = formatAllTags([{ fieldValue: pageContext.tagValue, totalCount: pageContext.totalCount }]);
+
     return (
         <>
             <SEO
@@ -30,7 +31,7 @@ const Tag = ({ data, pageContext }: PostQueryProps): ReactElement => {
 
             <section className='section-fill blue-light' id={siteTitle}>
                 <Container className='my-auto'>
-                    <FilterCard page={tagsNav} tags={tags} />
+                    <FilterCard page={tagsNav} tags={tag} template='portfolio' />
                     {posts.length > 0 && <PostMore posts={posts} />}
                 </Container>
             </section>
@@ -38,10 +39,10 @@ const Tag = ({ data, pageContext }: PostQueryProps): ReactElement => {
     );
 };
 
-export const query = graphql`query tagsBySlug($tagValue: String) {
-    allMdx(
+export const query = graphql`query portfolioTagsBySlug($tagValue: String) {
+    posts: allMdx(
         sort: {fields: [frontmatter___date], order: DESC}
-        filter: {frontmatter: {published: {eq: true}, tags: {in: [$tagValue]}}}
+        filter: {frontmatter: {published: {eq: true}, tags: {in: [$tagValue]}}, fileAbsolutePath: {regex: "/content/portfolio/"}}
     ) {
         nodes {
             id
@@ -62,11 +63,7 @@ export const query = graphql`query tagsBySlug($tagValue: String) {
                 slug
             }
         }
-        group(field: frontmatter___tags) {
-            fieldValue
-            totalCount
-        }
     }
 }`;
 
-export default Tag;
+export default PortfolioTag;

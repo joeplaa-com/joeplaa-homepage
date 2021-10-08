@@ -12,9 +12,9 @@ import useSiteNavigation from '../hooks/useSiteNavigation';
 import useSiteSettings from '../hooks/useSiteSettings';
 import { content } from '../utils/content';
 import formatPostTags from '../utils/formatPostTags';
-import { PageTemplateProps } from '../types';
+import { PageProps } from '../types';
 
-const PostTemplate = ({ data, location, pageContext }: PageTemplateProps): ReactElement => {
+const PostTemplate = ({ data, location, pageContext }: PageProps): ReactElement => {
     const { authorName, pageHowtoTitle, siteImage, siteLanguage, siteLocale, siteUrl, titleSeparator, titleTemplate, twitterUsername } = useSiteMetadata();
     const { howto } = useSiteNavigation();
     const { breakpoint } = useSiteSettings();

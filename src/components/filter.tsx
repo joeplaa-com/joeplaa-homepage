@@ -7,15 +7,15 @@ import Tag from '../components/tag';
 import { content } from '../utils/content';
 import { FilterProps } from '../types';
 
-export default function Filter({ buttonType, className, page, quantity, tags }: FilterProps): ReactElement {
+export default function Filter({ buttonType, className, page, quantity, tags, template }: FilterProps): ReactElement {
     return (
         <Row className={'d-flex justify-content-between align-items-center' + ' ' + className}>
             <Col className='align-items-center flex-wrap tags'>
                 {tags.map(tag => (
-                    <Tag key={tag.value} quantity={quantity || false} tag={tag} />
+                    <Tag key={tag.value} quantity={quantity || false} tag={tag} template={template} />
                 ))}
             </Col>
-            {page === '/tags' || buttonType
+            {page === `/${template}/tags` || buttonType
                 ? <Col xs='auto' className='mt-2 mt-sm-0 ml-auto'>
                     <Button outline color='primary' onClick={buttonType === 'more' ? (): string => location.href = page : (): Promise<void> => navigate(-1)} className="d-inline-flex justify-content-center align-items-center" aria-label='filter-button'>
                         <IconContext.Provider value={{ size: '1.25rem' }}><MdArrowBack /></IconContext.Provider>
