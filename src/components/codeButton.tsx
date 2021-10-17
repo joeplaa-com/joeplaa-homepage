@@ -30,7 +30,6 @@ const CodeButton = ({ codeString }: Props): ReactElement => {
     return (
         <>
             <Button
-                outline
                 size='sm'
                 color='light'
                 className='code-copy-button'
