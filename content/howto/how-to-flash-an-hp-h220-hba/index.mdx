@@ -20,11 +20,9 @@ When I started doing this -working with ZFS and FreeNas- popular ones were the I
 
 Most HBA cards you can buy are configured with **IR** firmware by default. In this mode the card will take care of the RAID functionality. If you want to use software RAID (or ZFS) you don't want that. You want your OS to take care of that. Therefor you have to (cross)flash most cards to **IT** mode (some have native IT mode capability, like the earlier mentioned HP H220). I've done this with the [Dell Perc H310](/how-to-flash-a-dell-perc-h310-hba-to-it-mode) in my Dell server and with the earlier mentioned [IBM M1115](/how-to-flash-an-ibm-m1115-hba-to-it-mode). The process is basically the same for all cards. I also flashed my HP H220, but for different reasons as mentioned in the warning below.
 
-<Alert type='warning'>
-HP, now HPE, is notorious for being very picky about the hardware you install. If it is not HP labeled/branded, the server doesn't recognize the sensor data and assumes the worst. This results in very high fan speeds and thus an unbearable amount of noise.
-
-So in that server I had to install an HP branded HBA: the HP H220. The one I got was flashed with firmware version 15 (the latest). However, it made my fans "idle" at 30%. [After flashing down to version 13](https://www.reddit.com/r/homelab/comments/evg5in/howto_fix_loud_hp_server_fans_with_an_hp_h220_hba/) the fans are back at 8% idle, which is basically silent.
-</Alert>
+:::important HP(E) branded hardware requirement
+HP, now HPE, is notorious for being very picky about the hardware you install. If it is not HP(E) labeled/branded, the server doesn't recognize the sensor data and assumes the worst. This results in very high fan speeds and thus an unbearable amount of noise. So in the HP server I had to install an HP branded HBA: the HP H220.
+:::
 
 ## Crossflashing the HBA
 
@@ -92,11 +90,8 @@ This guide is a compilation of multiple guides that are available. If you search
 
     * You are done. Reboot.
 
-<Alert type='info'>
-<h3 class='mt-1'>Sources:</h3>
-
+:::note Sources
 * [[HOW-TO] Fix loud HP server fans with an HP H220 HBA installed](https://www.reddit.com/r/homelab/comments/evg5in/howto_fix_loud_hp_server_fans_with_an_hp_h220_hba/)
 * [HP firmware v13](https://support.hpe.com/hpesc/public/swd/detail?swItemId=MTX_4d3d4dea1b2b47039b7e14c122)
 * [LSI SAS 2008 RAID Controller/ HBA Information](https://www.servethehome.com/lsi-sas-2008-raid-controller-hba-information/)
-
-</Alert>
+:::

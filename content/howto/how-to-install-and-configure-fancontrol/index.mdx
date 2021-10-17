@@ -61,9 +61,9 @@ This makes the CPU temperatures rise unnecessarily high, but can be fixed by let
 
     ![PWMconfig found CPU fan at channel hwmon6/pwm2](pwmconfig.png)
 
-    <Alert type='error'>
-        If you get an error <code>/usr/sbin/pwmconfig: There are no pwm-capable sensor modules installed</code>, first try to reboot your machine (that solved it for me). If that doesn't work, look at the last 3 sources at the bottom of this post.
-    </Alert>
+    :::caution Error
+    If you get an error `/usr/sbin/pwmconfig: There are no pwm-capable sensor modules installed`, first try to reboot your machine (that solved it for me). If that doesn't work, look at the last 3 sources at the bottom of this post.
+    :::
 
 7. You will have to specify what sensors to use to link the fanspeed to temperature changes. For the CPU fan make sure to use a sensor that measures your core CPU temperature to base the fan speed on.
 
@@ -85,14 +85,11 @@ This makes the CPU temperatures rise unnecessarily high, but can be fixed by let
 
     ![Fan working](fan-working.jpg)
 
-<Alert type='info'>
-    <h3 class='mt-1'>Sources:</h3>
-
+:::note Sources
 * <https://www.tomshardware.com/reviews/arctic-freezer-i32-cooler,5004.html>
 * <https://manpages.debian.org/stretch/fancontrol/fancontrol.8.en.html>
 * <https://manpages.debian.org/stretch/lm-sensors/sensors.1.en.html>
 * <https://iandw.net/2014/10/12/fancontrol-under-ubuntu-14-04-resolving-usrsbinpwmconfig-there-are-no-pwm-capable-sensor-modules-installed/>
 * <https://askubuntu.com/questions/22108/how-to-control-fan-speed/46135#46135>
 * <https://stackoverflow.com/questions/49377334/usr-sbin-pwmconfig-there-are-no-pwm-capable-sensor-modules-installed-msi-ubun>
-
-</Alert>
+:::

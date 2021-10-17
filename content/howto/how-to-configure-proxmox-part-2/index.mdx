@@ -16,6 +16,7 @@ What [started as a project](https://blog.joeplaa.com/building-a-proxmox-cluster/
 
 Proxmox has a lot of configuration options. Obviously many of them are dependent on what you want to achieve. In [How to install and configure Proxmox](/how-to-install-and-configure-proxmox) I described the most basic configuration options. Here I'll list some more specific ones.
 
+:::contents
 * [Users, groups](#add-users-and-groups)
 * [Basic security](#basic-security)
     * [Two factor authentication](#two-factor-authentication)
@@ -25,10 +26,11 @@ Proxmox has a lot of configuration options. Obviously many of them are dependent
     * [iSCSI storage](#iscsi-storage)
 * [Backups](#backups)
     * [Rsync cronjob](#rsync-cronjob)
+:::
 
-<Alert type='warning'>
-    Proxmox config is very delicate. Almost all settings can be configured through the GUI, but sometimes you might have to dig into config files with the CLI. <strong>ALWAYS make a backup before doing so!</strong> I learned the hard way that messing up only one file (especially related to the cluster) can mean a full reinstall of that cluster!
-</Alert>
+:::warning Always make backups
+Proxmox config is very delicate. Almost all settings can be configured through the GUI, but sometimes you might have to dig into config files with the CLI. **ALWAYS make a backup before doing so!** I learned the hard way that messing up only one file (especially related to the cluster) can mean a full reinstall of that cluster!
+:::
 
 ## Add users and groups
 
@@ -213,9 +215,6 @@ This local backup can then be transfered to either another node in the cluster o
 
 ***
 
-<Alert type='info'>
-    <h3 class='mt-1'>Sources:</h3>
-
+:::note Sources
 * <https://technologyplusblog.com/2013/networking/setting-up-automatic-remote-backups-with-rsync/>
-
-</Alert>
+:::

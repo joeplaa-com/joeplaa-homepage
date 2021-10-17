@@ -93,9 +93,7 @@ First thing to after installing a guest OS is installing the Qemu guest client t
     scsi0: local-zfs:vm-<vm id>-disk-<disk number>,size=<new size>G
     ```
 
-4. Back in the Proxmox GUI change the cache mode to something else and then revert back, this should update the config
-
-    ![Update cache mode](update-cache-mode.png)
+4. Back in the Proxmox GUI change the cache mode to something else and then revert back, this should update the config.
 
 ## LXC containers
 
@@ -159,16 +157,13 @@ LXC containers are light-weight alternatives to Qemu guests. They can be used to
 
 ***
 
-<Alert type='info'>
-    <h3 class='mt-1'>Sources:</h3>
-
-#### NFS in LXC container
+:::note Sources
+##### NFS in LXC container
 
 * <https://theorangeone.net/posts/mount-nfs-inside-lxc/>
 
-#### Resizing VM / LXC disk
+##### Resizing VM / LXC disk
 
 * <https://forum.proxmox.com/threads/shrink-zfs-disk.45835/>
 * <https://forum.proxmox.com/threads/resize-lxc-disk-on-proxmox.68901/>
-
-</Alert>
+:::

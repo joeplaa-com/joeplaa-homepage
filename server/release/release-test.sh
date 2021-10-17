@@ -6,7 +6,7 @@ cd ../../
 
 # Checkout "develop" branch
 git fetch
-git checkout joeplaa/issue93
+git checkout styling-alerts
 git pull
 
 # Set correct environment variables
@@ -22,7 +22,8 @@ yarn build
 
 # Publish website to Nginx
 # TEST (test.www.joeplaa.com):
-scp -r public/* jodibooks@192.168.178.159:/home/jodibooks/volumes/nginx/data/test-www-joeplaa-com
+#scp -i ~/.ssh/joeplaa-worker -r public/* joeplaa@192.168.178.48:/var/www/test-www-joeplaa-com
+# doing this manually using WinSCP (SFTP) is much faster
 
 # Restore environment variables
 mv .env.production.backup .env.production

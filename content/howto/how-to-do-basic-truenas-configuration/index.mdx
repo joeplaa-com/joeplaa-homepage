@@ -12,8 +12,7 @@ published: true
 
 What [started as a project](https://blog.joeplaa.com/building-a-proxmox-cluster/) to run "some crypto applications" grew into something much bigger, but also more useful. I learned a tremendous amount about virtual machines, lxc containers and Proxmox. And although I'm just scratching the surface and I don't actually understand it, I know how to do some things. I'll write them down here, partly for myself, but also for you in hopes it will save one of us a lot of time and frustration.
 
-## Contents
-
+:::contents
 * [Create a storage pool](#create-a-storage-pool)
 * [Configure SMART checks and scrubs](#configure-smart-checks-and-scrubs)
 * [Configure users](#configure-users)
@@ -21,6 +20,7 @@ What [started as a project](https://blog.joeplaa.com/building-a-proxmox-cluster/
 * [Configure NFS sharing](#configure-nfs-sharing)
 * [Configure a iSCSI disk](#configure-a-iscsi-disk)
 * [Configure reporting](#configure-reporting)
+:::
 
 ## Create a storage pool
 
@@ -265,29 +265,26 @@ If something is wrong with a TrueNas service or the disks, TrueNas can send you 
 
 ***
 
-<Alert type='info'>
-    <h3 class='mt-1'>Sources:</h3>
-
-#### ZFS, RAID
+:::note Sources
+##### ZFS, RAID
 
 * <https://www.servethehome.com/an-introduction-to-zfs-a-place-to-start/>
 * <https://arstechnica.com/information-technology/2020/05/zfs-101-understanding-zfs-storage-and-performance/>
 * <https://www.truenas.com/community/threads/slideshow-explaining-vdev-zpool-zil-and-l2arc-for-noobs.7775/>
 * <https://www.digistor.com.au/the-latest/Whether-RAID-5-is-still-safe-in-2019/>
 
-#### SMART checks and scrubs
+##### SMART checks and scrubs
 
 * <https://www.truenas.com/community/threads/scrub-and-smart-testing-schedules.20108/>
 * <https://yadafaber.com/scrub-and-smart-testing-schedules-for-freenas/>
 
-#### SMB vs NFS
+##### SMB vs NFS
 
 * <https://blog.ja-ke.tech/2019/08/27/nas-performance-sshfs-nfs-smb.html>
 * <https://ferhatakgun.com/network-share-performance-differences-between-nfs-smb/>
 
-#### iSCSI
+##### iSCSI
 
 * <https://manjaro.site/how-to-create-iscsi-target-on-truenas/>
 * <https://manjaro.site/how-to-connect-to-iscsi-volume-from-ubuntu-20-04/>
-
-</Alert>
+:::
