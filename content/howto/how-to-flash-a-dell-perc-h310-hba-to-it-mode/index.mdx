@@ -20,11 +20,9 @@ When I started doing this -working with ZFS and FreeNas- popular ones were the I
 
 Most HBA cards you can buy are configured with **IR** firmware by default. In this mode the card will take care of the RAID functionality. If you want to use software RAID (or ZFS) you don't want that. You want your OS to take care of that. Therefor you have to (cross)flash most cards to **IT** mode (some have native IT mode capability, like the earlier mentioned HP H220). I've done this with the Dell Perc H310 in my Dell server and with the earlier mentioned [IBM M1115](/how-to-flash-an-ibm-m1115-hba-to-it-mode). The process is basically the same for all cards. I also flashed my [HP H220](/how-to-flash-an-hp-h220-hba), but for different reasons as mentioned in the warning below.
 
-<Alert type='warning'>
-HP, now HPE, is notorious for being very picky about the hardware you install. If it is not HP labeled/branded, the server doesn't recognize the sensor data and assumes the worst. This results in very high fan speeds and thus an unbearable amount of noise.
-
-So in that server I had to install an HP branded HBA: the HP H220. The one I got was flashed with firmware version 15 (the latest). However, it made my fans "idle" at 30%. [After flashing down to version 13](https://www.reddit.com/r/homelab/comments/evg5in/howto_fix_loud_hp_server_fans_with_an_hp_h220_hba/) the fans are back at 8% idle, which is basically silent.
-</Alert>
+:::important HP(E) branded hardware requirement
+HP, now HPE, is notorious for being very picky about the hardware you install. If it is not HP(E) labeled/branded, the server doesn't recognize the sensor data and assumes the worst. This results in very high fan speeds and thus an unbearable amount of noise. So in the HP server I had to install an HP branded HBA: the HP H220.
+:::
 
 ## Crossflashing the HBA
 
@@ -40,16 +38,14 @@ This guide is a compilation of multiple guides that are available online. If you
 
         !['Broadcom download firmware'](broadcom-download.png)
 
-        <Alert type='info'>
-        Rebranded cards:
-            <ul>
-                <li>Dell Perc H310 = LSI 9205-8i</li>
-                <li>HP H220 = LSI 9205-8i</li>
-                <li>IBM M1015 = LSI 9220-8i</li>
-                <li>IBM M1115 = LSI 9211-8i</li>
-            </ul>
-        I'm not quite sure if you really "have to" use the exact firmware from broadcom. If I understand correctly, all these cards are [based on the LSI SAS2008 chip](https://www.servethehome.com/lsi-sas-2008-raid-controller-hba-information/) and thus can be flashed with the same firmware.
-        </Alert>
+    :::important Rebranded cards
+    * Dell Perc H310 = LSI 9205-8i
+    * HP H220 = LSI 9205-8i
+    * IBM M1015 = LSI 9220-8i
+    * IBM M1115 = LSI 9211-8i
+
+    I'm not quite sure if you really "have to" use the exact firmware from broadcom. If I understand correctly, all these cards are [based on the LSI SAS2008 chip](https://www.servethehome.com/lsi-sas-2008-raid-controller-hba-information/) and thus can be flashed with the same firmware.
+    :::
 
     * Extract and copy `Firmware\HBA_9205_8e_IT\9205-8e.bin`, `sasbios_rel\mptsas2.rom` and `sas2flash_dos_rel\sas2flsh.exe` to the USB drive.
 
@@ -90,9 +86,9 @@ This guide is a compilation of multiple guides that are available online. If you
         sas2flsh.exe -o -f 6GBPSAS.fw
         ```
 
-        <Alert type='info'>
-            If you get <code>"ERROR: Failed to initialize PAL. Exiting program."</code>, your motherboard is set to use UEFI and you have to flash using the EFI shellsession: see step 4.
-        </Alert>
+    :::note
+    If you get `"ERROR: Failed to initialize PAL. Exiting program."`, your motherboard is set to use UEFI and you have to flash using the EFI shell: see step 4.
+    :::
 
     * Enter the SAS number (change to the number -without spaces and dashes- you wrote down in step 2):
 
@@ -159,13 +155,10 @@ This guide is a compilation of multiple guides that are available online. If you
 
     * You are done. Reboot.
 
-<Alert type='info'>
-<h3 class='mt-1'>Sources:</h3>
-
+:::note Sources
 * Dell H310: <https://tylermade.net/2017/06/27/how-to-crossflash-perc-h310-to-it-mode-lsi-9211-8i-firmware-hba-for-freenas-unraid/>
 * Dell H200 + H310: <https://techmattr.wordpress.com/2016/04/11/updated-sas-hba-crossflashing-or-flashing-to-it-mode-dell-perc-h200-and-h310/>
 * Dell H310: <https://techmattr.wordpress.com/2014/06/13/revert-your-perc-h310-back-to-its-dell-firmware>
 * [Broadcom downloads](https://www.broadcom.com/support/download-search).
 * [LSI SAS 2008 RAID Controller/ HBA Information](https://www.servethehome.com/lsi-sas-2008-raid-controller-hba-information/)
-
-</Alert>
+:::

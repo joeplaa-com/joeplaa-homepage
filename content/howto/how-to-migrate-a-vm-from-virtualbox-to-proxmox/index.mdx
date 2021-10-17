@@ -52,19 +52,14 @@ What [started as a project](https://blog.joeplaa.com/building-a-proxmox-cluster/
 
     ![Options tab for VM in Proxmox, enable disk in boot order](proxmox-enable-disk-boot-order.png)
 
-<Alert type='warning'>
-If you don't get visual VNC output, you might need to change the graphics adapter or increase the graphics memory amount. I had to set the latter to 64 MB.
-
+:::caution NO VNC
+If you don't get visual VNC output, you might need to change the graphics adapter or increase the graphics memory amount. I had to set the device to `VIRTIO-GPU` for an Ubuntu Desktop VM.
 <https://forum.proxmox.com/threads/ubuntu-vm-installation-problems.51770/>
+:::
 
-</Alert>
-
-<Alert type='info'>
-    <h3 class='mt-1'>Sources:</h3>
-
+:::note Sources
 * <https://www.yinfor.com/2019/03/another-way-to-move-virtualbox-vdi-to-proxmox-ve.html>
 * <http://www.aitek.ch/migrating-virtualbox-vdi-to-proxmox-ve-proxmox-support-forum/>
 * <https://lucanuscervus-notes.readthedocs.io/en/latest/Virtualization/Virsh/Convert%20VBox%20disks%20to%20qcow2/>
 * <https://mangolassi.it/topic/21751/import-a-qcow2-into-proxmox>
-
-</Alert>
+:::

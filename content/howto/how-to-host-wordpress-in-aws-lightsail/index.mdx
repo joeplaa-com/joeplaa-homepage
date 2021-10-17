@@ -186,15 +186,12 @@ Now that the instance is running, we can connect to it through SSH. This will al
 
 I'm not a firewall guru. To be honest, I know very little about firewalls, especially how to configure them in Linux. I used the sources below to setup mine.
 
-<Alert type='info'>
-<h3 class='mt-1'>Sources:</h3>
-
+:::note Sources
 * <https://www.digitalocean.com/community/tutorials/how-to-set-up-a-firewall-with-ufw-on-ubuntu-16-04>
 * <https://www.digitalocean.com/community/tutorials/ufw-essentials-common-firewall-rules-and-commands>
 * <https://linuxize.com/post/how-to-setup-a-firewall-with-ufw-on-ubuntu-18-04/>
 * <https://www.linode.com/docs/security/firewalls/configure-firewall-with-ufw/>
-
-</Alert>
+:::
 
 1. We start with installing the firewall. In Ubuntu this is UFW, **U**ncomplicated**F**ire**W**all.
 
@@ -244,12 +241,9 @@ I'm not a firewall guru. To be honest, I know very little about firewalls, espec
 
 Preferably you only use the RAM of your instance, because that is the fastest option to store temporary data. As we only have 1 GB, this is quite tight. So the second option would be to create swap space on the local SSD, ephemeral storage in AWS terms. A Lightsail instance however doesn't have that, so we are forced to forgo on best-practices and use the attached network volume.
 
-<Alert type='info'>
-AWS best practices regarding swap space:
-
-<https://aws.amazon.com/premiumsupport/knowledge-center/ec2-memory-swap-file/>
-
-</Alert>
+:::note Source
+AWS best practices regarding swap space: <https://aws.amazon.com/premiumsupport/knowledge-center/ec2-memory-swap-file/>
+:::
 
 AWS recommends creating swap space that is "_2x the amount of RAM but never less than 32 MB_". You can create a new volume (disk) specifically for swap, but I've added it to the main volume.
 
@@ -361,12 +355,9 @@ Be aware that the opinions on the "correct" folder settings vary. The settings I
 
 In the end it's your choice between safety (it's very hard to modify your files) and usability (I don't want to change files manually through the terminal, I prefer the WordPress admin panel). As I make regular backups, I chose usability.
 
-<Alert type='info'>
-Source:
-
-<https://stackoverflow.com/questions/18352682/correct-file-permissions-for-wordpress#comment82099892_23755604>
-
-</Alert>
+:::note Source
+* <https://stackoverflow.com/questions/18352682/correct-file-permissions-for-wordpress#comment82099892_23755604>
+:::
 
 * * *
 

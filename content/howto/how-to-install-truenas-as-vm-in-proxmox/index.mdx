@@ -92,9 +92,9 @@ What [started as a project](https://blog.joeplaa.com/building-a-proxmox-cluster/
 
     ![TrueNas installation completed](truenas-installation-step7.png)
 
-    <Alert type='warning'>
-        Although the installer asks to remove the installation medium, do not do this. After removing, the reboot "button" does not work anymore.
-    </Alert>
+    :::caution
+    Although the installer asks to remove the installation medium, do not do this. After removing, the reboot "button" does not work anymore. You can always remove it later using the Proxmox GUI.
+    :::
 
     ![TrueNas reboot](truenas-installation-step8.png)
 
@@ -116,20 +116,17 @@ The best way to add storage disks to TrueNas is by passing a HBA straight to the
 
     ![The HBA is booted inside the VM](truenas-add-disks2.png)
 
-    <Alert type='warning'>
-        Initially when I added the PCIe HBA, TrueNas inserted the drives attached to the HBA in front of the OS disk. During boot the VM wanted to boot from a HBA drive instead of the virtual OS drive. After disabling the boot option of the HBA TrueNas booted fine. To disable the boot option on a LSI card, you have to erase the BIOS, see <a href='/how-to-flash-an-ibm-m1115-hba-to-it-mode'>How to flash an IBM M1115 HBA card</a>.
-    </Alert>
+    :::caution
+    Initially when I added the PCIe HBA, TrueNas inserted the drives attached to the HBA in front of the OS disk. During boot the VM wanted to boot from a HBA drive instead of the virtual OS drive. After disabling the boot option of the HBA TrueNas booted fine. To disable the boot option on a LSI card, you have to erase the BIOS, see [How to flash an IBM M1115 HBA card](/how-to-flash-an-ibm-m1115-hba-to-it-mode).
+    :::
 
 ## Configuration
 
 Configuration of TrueNas in Proxmox is not different from configuring a stand alone instance. In [How to do basic TrueNas configuration](/how-to-do-basic-truenas-configuration) I go into the details.
 
-<Alert type='info'>
-    <h3 class='mt-1'>Sources:</h3>
-
+:::note Sources
 * <https://www.truenas.com/community/threads/freenas-on-proxmox-whats-the-current-state-of-play.84287/page-3>
 * <https://forum.proxmox.com/threads/undestrand-discard-option.37018/>
 * <https://forum.proxmox.com/threads/vm-refuses-to-boot-from-virtual-disk-when-pci-passthrough-is-enabled.38146/>
 * <https://www.truenas.com/community/threads/lsi-9207-8i-can-i-erase-just-the-bios-leave-the-fw.60861/>
-
-</Alert>
+:::

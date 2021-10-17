@@ -42,6 +42,7 @@
         "gatsby-plugin-sass": "^4.8.0",
         "gatsby-plugin-sharp": "^3.8.0",
         "gatsby-plugin-typescript": "^3.8.0",
+        "gatsby-remark-admonitions": "^0.1.1",
         "gatsby-remark-autolink-headers": "^4.5.0",
         "gatsby-remark-external-links": "^0.0.4",
         "gatsby-remark-images": "^5.5.0",

@@ -17,16 +17,6 @@ When hosting a static websites in CloudFront, you probably use a Lambda@edge fun
 1. We get less viewer requests, improving the page load times and lowering our bandwidth (and thus costs).
 2. We need less origin requests, improving page load times and lowering the amount of S3 GET requests, again lowering costs.
 
-<Alert type='info'>
-More info about hosting in CloudFront:
-
-* <https://www.bayphillips.com/blog/gatsbyjs-using-amazon-s3-and-cloudfront/>
-* <https://www.ximedes.com/2018-04-23/deploying-gatsby-on-s3-and-cloudfront/>
-* <https://docs.aws.amazon.com/lambda/latest/dg/lambda-edge.html>
-* <https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/lambda-cloudfront-trigger-events.html> (image source)
-
-</Alert>
-
 ## List static files and folders
 
 At jodiBooks we use three static site generators or frameworks: [Gatbsy.js](https://www.gatsbyjs.com/), [Next.js](https://nextjs.org/) and [Docusaurus v2](https://v2.docusaurus.io/). All of them serialize the static files (images, scripts, stylesheets, downloads) or put them in a serialized folder. Unfortunately each framework uses its own method of grouping the static files and it is quite difficult (or impossible) to find the exact specifics in their docs. So you have to figure this out yourself. I'll save you some trouble with the table below, which lists the cacheable resources I identified.
@@ -153,3 +143,10 @@ exports.handler = (event, context, callback) => {
     callback(null, response);
 };
 ```
+
+:::note Sources
+* <https://www.bayphillips.com/blog/gatsbyjs-using-amazon-s3-and-cloudfront/>
+* <https://www.ximedes.com/2018-04-23/deploying-gatsby-on-s3-and-cloudfront/>
+* <https://docs.aws.amazon.com/lambda/latest/dg/lambda-edge.html>
+* <https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/lambda-cloudfront-trigger-events.html> (image source)
+:::

@@ -16,9 +16,9 @@ What [started as a project](https://blog.joeplaa.com/building-a-proxmox-cluster/
 
 Proxmox supplies an [ISO file](https://www.proxmox.com/en/downloads/category/iso-images-pve) that installs Debian with Proxmox preinstalled and configured. This machine is known in Proxmox as a **node**. 
 
-<Alert type='warning'>
-    If you install Proxmox using BIOS or UEFI mode the OS should be booted in the same mode as well. So <strong>do not change boot option in the BIOS after installation!</strong>
-</Alert>
+:::caution
+If you install Proxmox using BIOS or UEFI mode the OS should be booted in the same mode as well. So **do not change boot option in the BIOS after installation!**
+:::
 
 1. Choose "Install Proxmox VE" in the boot screen (currently version 7.0)
 
@@ -46,15 +46,13 @@ Proxmox supplies an [ISO file](https://www.proxmox.com/en/downloads/category/iso
 
     ![Login to the Proxmox web interface](proxmox11.png)
 
-<Alert type='info'>
+:::note Official tutorial
 The "official" tutorial, with all the <a href='https://imgur.com/a/lSg9Lzt'>images</a> and a <a href='https://youtu.be/I-e1_CTa4s0'>Youtube video</a> on how to install and configure Proxmox can be found here:
-
 <https://forum.proxmox.com/threads/proxmox-beginner-tutorial-how-to-set-up-your-first-virtual-machine-on-a-secondary-hard-disk.59559/>
+:::
 
-</Alert>
-
-<Alert type='warning'>
-    If you get an error during boot:
+:::caution Boot error
+If you get an error during boot:
 
 ```command
 Command: /sbin/zpool import -N "rpool"
@@ -70,16 +68,15 @@ You have to set a timeout of 20-30 seconds in grub. I can't remember how I did t
 
 * <https://www.servethehome.com/fixing-proxmox-ve-cannot-import-rpool-zfs-boot-issue/>
 * <https://forum.proxmox.com/threads/zfs-cannot-import-rpool-after-reboot.37611/>
-
-</Alert>
+:::
 
 ### Configuration
 
 Proxmox has a lot of configuration options. Obviously many of them are dependent on what you want to achieve. I'll describe some of those in other posts. Here I'll focus on some basic, general configuration settings.
 
-<Alert type='warning'>
-    Proxmox config is very delicate. Almost all settings can be configured through the GUI, but sometimes you might have to dig into config files with the CLI. <strong>ALWAYS make a backup before doing so!</strong> I learned the hard way that messing up only one file (especially related to the cluster) can mean a full reinstall of that cluster!
-</Alert>
+:::warning Always make backups
+Proxmox config is very delicate. Almost all settings can be configured through the GUI, but sometimes you might have to dig into config files with the CLI. **ALWAYS make a backup before doing so!** I learned the hard way that messing up only one file (especially related to the cluster) can mean a full reinstall of that cluster!
+:::
 
 #### Hide "no subscription" splash screen
 
@@ -126,12 +123,9 @@ Proxmox has a lot of configuration options. Obviously many of them are dependent
 
 8. This needs to be repeated after every update of the `proxmox-widget-toolkit`. I.e. after every update of Proxmox. Or get a subscription of course.
 
-<Alert type='info'>
-    Source:
-
-<https://johnscs.com/remove-proxmox51-subscription-notice/>
-
-</Alert>
+:::note Source
+* <https://johnscs.com/remove-proxmox51-subscription-notice/>
+:::
 
 #### Non-subscription repository
 
@@ -163,11 +157,9 @@ By default the subscription repository for Proxmox package updates is set. If yo
     apt dist-upgrade
     ```
 
-<Alert type='warning'>
-
+:::caution
 It seems to be important to do `apt dist-upgrade` instead of `apt upgrade`. This does some things behind the scenes like some cleanup, not sure what exactly. Read my source for more: <https://www.caretech.io/2018/06/08/how-to-update-proxmox-without-buying-a-subscription/>
-
-</Alert>
+:::
 
 #### Nested hypervisor
 
@@ -204,12 +196,9 @@ If you want to run nested hypervisors -a hypervisor in a VM-, you have to enable
     cat /sys/module/kvm_intel/parameters/nested
     ```
 
-<Alert type='info'>
-    Source:
-
-<https://pve.proxmox.com/wiki/Nested_Virtualization>
-
-</Alert>
+:::note Source
+* <https://pve.proxmox.com/wiki/Nested_Virtualization>
+:::
 
 #### Set timezone
 
@@ -252,13 +241,10 @@ That should be it, but in my experience it never works that easily. These are so
 * Never remove a node, reinstall and try to add it back with the same hostname/ip-address. You can add it back as a different node, but not as the same.
 * Also properly remove a node. If you don't no all changes are blocked because the cluster cannot reach consensus as the amount of "votes" are not as expected. I don't understand how all of this works, just trust me if your time is valuable.
 
-<Alert type='info'>
-    <h3 class='mt-1'>Sources:</h3>
-
+:::note Sources
 * <https://pve.proxmox.com/wiki/Cluster_Manager>
 * <https://pve.proxmox.com/pve-docs/pvecm.1.html>
-
-</Alert>
+:::
 
 ## Conclusion
 
