@@ -44,9 +44,6 @@ const siteMetadata = {
         pageHomeImage: '/images/banner-www-com.png',
         pageHomeSubtitle: 'Website design | Website hosting',
         pageHomeTitle: 'Home',
-        pageHowtoDescription: 'How-to do stuff with servers (Ubuntu, Proxmox), Next.js, JavaScript and TypeScript.',
-        pageHowtoImage: '/images/banner-www-howto.png',
-        pageHowtoTitle: 'How-to',
         pageLandingDescription: 'Welcome on joeplaa.com. Click on the links to explore further.',
         pageLandingTitle: 'Landing',
         pagePortfolioDescription: 'Examples of my work and skills in front-end development. If you like my work, let me know!',
@@ -57,6 +54,7 @@ const siteMetadata = {
         pageServicesDescription: 'How I work and what tools I use.',
         pageServicesImage: '/images/banner-www-com.png',
         pageServicesTitle: 'Services',
+        pageWikiTitle: 'Wiki',
         siteDescription: 'Helping people create their digital home.',
         siteImage: '/images/banner-www-default-fb.png',
         siteLanguage: 'en-US',
@@ -81,7 +79,8 @@ const siteMetadata = {
         services: '/services',
         tagsHowto: '/howto/tags',
         tagsPortfolio: '/portfolio/tags',
-        tos: '/conditions/terms-of-service'
+        tos: '/conditions/terms-of-service',
+        wiki: 'https://wiki.joeplaa.com'
     },
     pricing: {
         webshopConfig: '€ 750',

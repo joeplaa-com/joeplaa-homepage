@@ -5,7 +5,6 @@ interface IuseSiteNavigation {
     blog: string,
     contact: string,
     home: string,
-    howto: string,
     portfolio: string,
     pricing: string,
     ps: string,
@@ -13,7 +12,8 @@ interface IuseSiteNavigation {
     services: string,
     tagsHowto: string,
     tagsPortfolio: string,
-    tos: string
+    tos: string,
+    wiki: string
 }
 
 export default function useSiteNavigation(): IuseSiteNavigation {
@@ -27,7 +27,6 @@ export default function useSiteNavigation(): IuseSiteNavigation {
                             blog
                             contact
                             home
-                            howto
                             portfolio
                             pricing
                             ps
@@ -36,6 +35,7 @@ export default function useSiteNavigation(): IuseSiteNavigation {
                             tagsHowto
                             tagsPortfolio
                             tos
+                            wiki
                         }
                     }
                 }

@@ -26,7 +26,6 @@ interface IuseSiteMetadata {
     pageHowtoDescription: string,
     pageHowtoImage: string,
     pageHomeTitle: string,
-    pageHowtoTitle: string,
     pageLandingDescription: string,
     pageLandingTitle: string,
     pagePortfolioDescription: string,
@@ -37,6 +36,7 @@ interface IuseSiteMetadata {
     pageServicesDescription: string,
     pageServicesImage: string,
     pageServicesTitle: string,
+    pageWikiTitle: string,
     siteDescription: string,
     siteImage: string,
     siteLanguage: string,
@@ -81,7 +81,6 @@ export default function useSiteMetadata(): IuseSiteMetadata {
                             pageHomeTitle
                             pageHowtoDescription
                             pageHowtoImage
-                            pageHowtoTitle
                             pageLandingDescription
                             pageLandingTitle
                             pagePortfolioDescription
@@ -92,6 +91,7 @@ export default function useSiteMetadata(): IuseSiteMetadata {
                             pageServicesDescription
                             pageServicesImage
                             pageServicesTitle
+                            pageWikiTitle
                             siteDescription
                             siteImage
                             siteLanguage

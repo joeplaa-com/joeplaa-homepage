@@ -21,21 +21,6 @@ exports.createPages = ({ actions, graphql }) => {
                 }
             }
         }
-        howto: allMdx(
-            filter: { frontmatter: { published: { eq: true } }, fileAbsolutePath: { glob: "**/content/howto/**/*.mdx" } }
-            sort: { fields: [frontmatter___title], order: ASC }
-            limit: 1000
-        ) {
-            nodes {
-                fields {
-                    slug
-                }
-                frontmatter {
-                    series
-                    title
-                }
-            }
-        }
         portfolio: allMdx(
             filter: { frontmatter: { published: { eq: true } }, fileAbsolutePath: { glob: "**/content/portfolio/**/*.mdx" } }
             sort: { fields: [frontmatter___date], order: DESC }
@@ -48,15 +33,6 @@ exports.createPages = ({ actions, graphql }) => {
                 frontmatter {
                     title
                 }
-            }
-        }
-        howtoTags: allMdx(
-            filter: { frontmatter: { published: { eq: true }, series: { ne: true } }, fileAbsolutePath: { glob: "**/content/howto/**/*.mdx" } }
-            limit: 2000
-        ) {
-            group(field: frontmatter___tags) {
-                fieldValue
-                totalCount
             }
         }
         portfolioTags: allMdx(
@@ -75,9 +51,6 @@ exports.createPages = ({ actions, graphql }) => {
         }
 
         // templates
-        const howtoTemplate = path.resolve('src/templates/howtoTemplate.tsx');
-        const howtoPostTemplate = path.resolve('src/templates/howtoPostTemplate.tsx');
-        const howtoTagTemplate = path.resolve('src/templates/howtoTagTemplate.tsx');
         const portfolioTemplate = path.resolve('src/templates/portfolioTemplate.tsx');
         const portfolioPostTemplate = path.resolve('src/templates/portfolioPostTemplate.tsx');
         const portfolioTagTemplate = path.resolve('src/templates/portfolioTagTemplate.tsx');
@@ -85,29 +58,12 @@ exports.createPages = ({ actions, graphql }) => {
 
         // data
         const conditions = result.data.conditions.nodes;
-        const howto = result.data.howto.nodes;
         const portfolio = result.data.portfolio.nodes;
-        const howtoTags = result.data.howtoTags.group;
         const portfolioTags = result.data.portfolioTags.group;
 
         // pagination
         const postsPerPage = 12;
-        const numHowtoPages = Math.ceil(howto.filter(post => post.frontmatter.series !== true).length / postsPerPage);
         const numPortfolioPages = Math.ceil(portfolio.length / postsPerPage);
-
-        // create pagination pages for howto
-        Array.from({ length: numHowtoPages }).forEach((_, i) => {
-            createPage({
-                path: i === 0 ? '/howto' : `/howto/${i + 1}`,
-                component: howtoTemplate,
-                context: { // PageTemplateContextProps
-                    currentPage: i + 1,
-                    limit: postsPerPage,
-                    numPages: numHowtoPages,
-                    skip: i * postsPerPage
-                }
-            });
-        });
 
         // create pagination pages for portolio
         Array.from({ length: numPortfolioPages }).forEach((_, i) => {
@@ -135,20 +91,6 @@ exports.createPages = ({ actions, graphql }) => {
             });
         });
 
-        // create page for each howto node
-        howto.forEach((post, index) => {
-            const slug = post.fields.slug;
-            createPage({
-                path: slug,
-                component: howtoPostTemplate,
-                context: { // PageContextProps
-                    slug,
-                    previous: index === howto.length - 1 ? null : howto[index + 1],
-                    next: index === 0 ? null : howto[index - 1]
-                }
-            });
-        });
-
         // create page for each portfolio node
         portfolio.forEach((post, index) => {
             const slug = post.fields.slug;
@@ -157,22 +99,8 @@ exports.createPages = ({ actions, graphql }) => {
                 component: portfolioPostTemplate,
                 context: { // PageContextProps
                     slug,
-                    previous: index === howto.length - 1 ? null : howto[index + 1],
-                    next: index === 0 ? null : howto[index - 1]
-                }
-            });
-        });
-
-        // create page for each howto tag
-        howtoTags.forEach(tag => {
-            const slug = kebabCase(tag.fieldValue);
-            createPage({ // TagTemplateContextProps
-                path: `/howto/tags/${slug}/`,
-                component: howtoTagTemplate,
-                context: {
-                    slug: `/howto/tags/${slug}/`,
-                    tagValue: tag.fieldValue,
-                    totalCount: tag.totalCount
+                    previous: index === portfolio.length - 1 ? null : portfolio[index + 1],
+                    next: index === 0 ? null : portfolio[index - 1]
                 }
             });
         });
