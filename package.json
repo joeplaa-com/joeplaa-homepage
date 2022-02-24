@@ -6,7 +6,6 @@
     "repository": "git@github.com:joeplaa/joeplaa-home.git",
     "author": "Joep van de Laarschot <joep@joeplaa.com>",
     "license": "MIT",
-    "private": false,
     "scripts": {
         "dev": "gatsby develop",
         "build": "gatsby build",
@@ -103,5 +102,6 @@
         "jest": "^27.2.4",
         "react-test-renderer": "^17.0.2",
         "typescript": "^4.3.5"
-    }
+    },
+    "packageManager": "yarn@3.2.0"
 }
