@@ -36,10 +36,6 @@ const siteMetadata = {
         componentPricingTitle: 'Pricing',
         componentServicesDescription: 'If you want a website, here\'s how I can help.',
         componentServicesTitle: 'Services',
-        componentWikiFaq: 'Faq',
-        componentWikiPricing: 'Pricing',
-        componentWikiProcedure: 'Procedure',
-        componentWikiTitle: 'Wiki',
         pageHomeDescription: 'Who is Joep and what is Joeplaa?',
         pageHomeImage: '/images/banner-www-com.png',
         pageHomeSubtitle: 'Website design | Website hosting',
@@ -54,6 +50,7 @@ const siteMetadata = {
         pageServicesDescription: 'How I work and what tools I use.',
         pageServicesImage: '/images/banner-www-com.png',
         pageServicesTitle: 'Services',
+        pageWikiDescription: 'Cheatsheets, tutorials and more on Linux, Databases, Proxmox, TrueNAS, Virtualization, Docker, LXC, ...',
         pageWikiTitle: 'Wiki',
         siteDescription: 'Helping people create their digital home.',
         siteImage: '/images/banner-www-default-fb.png',
@@ -71,13 +68,11 @@ const siteMetadata = {
         blog: process.env.GATSBY_BLOG_URL,
         contact: '/#Contact',
         home: '/#Banner',
-        howto: '/howto',
         portfolio: '/portfolio',
         pricing: '/#Pricing',
         ps: '/conditions/privacy-statement',
         recommended: process.env.GATSBY_BLOG_URL + '/recommended',
         services: '/services',
-        tagsHowto: '/howto/tags',
         tagsPortfolio: '/portfolio/tags',
         tos: '/conditions/terms-of-service',
         wiki: 'https://wiki.joeplaa.com'
@@ -153,7 +148,6 @@ module.exports = {
         'gatsby-plugin-react-helmet',
         'gatsby-plugin-sass',
         'gatsby-plugin-webpack-bundle-analyser-v2',
-        'gatsby-remark-reading-time',
         'gatsby-transformer-sharp',
         {
             resolve: 'gatsby-plugin-anchor-links',
@@ -244,17 +238,6 @@ module.exports = {
             }
         },
         {
-            resolve: 'gatsby-plugin-page-progress',
-            options: {
-                includePaths: [],
-                excludePaths: [{ regex: '^/howto' }, { regex: '^/portfolio' }, { regex: '^/wiki' }],
-                height: 3,
-                prependToBody: false,
-                color: '#07b1c2',
-                footerHeight: 244
-            }
-        },
-        {
             resolve: 'gatsby-plugin-react-svg',
             options: {
                 rule: {
@@ -309,13 +292,6 @@ module.exports = {
             options: {
                 path: `${__dirname}/content/conditions`,
                 name: 'conditions'
-            }
-        },
-        {
-            resolve: 'gatsby-source-filesystem',
-            options: {
-                path: `${__dirname}/content/howto`,
-                name: 'howto'
             }
         },
         {
