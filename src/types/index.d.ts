@@ -256,4 +256,4 @@ export interface TagProps {
     template?: TemplateType
 }
 
-type TemplateType = 'howto' | 'portfolio'
+type TemplateType = 'portfolio'

@@ -14,8 +14,8 @@ import BannerWwwWebsites from '../svg/banner-www-websites.svg';
 import { content } from '../utils/content';
 
 const Landing = (): ReactElement => {
-    const { componentPricingDescription, componentPricingTitle, componentServicesDescription, componentServicesTitle, pageHowtoDescription, pageHomeImage, pageHowtoTitle, pageLandingDescription, pageLandingTitle, pagePortfolioDescription, pagePortfolioTitle, pageRecommendedDescription, pageRecommendedTitle, siteLanguage, siteLocale, siteUrl, titleSeparator, titleTemplate, twitterUsername } = useSiteMetadata();
-    const { blog, home, howto, portfolio, pricing, recommended, services } = useSiteNavigation();
+    const { componentPricingDescription, componentPricingTitle, componentServicesDescription, componentServicesTitle, pageHomeImage, pageWikiDescription, pageWikiTitle, pageLandingDescription, pageLandingTitle, pagePortfolioDescription, pagePortfolioTitle, pageRecommendedDescription, pageRecommendedTitle, siteLanguage, siteLocale, siteUrl, titleSeparator, titleTemplate, twitterUsername } = useSiteMetadata();
+    const { blog, home, portfolio, pricing, recommended, services, wiki } = useSiteNavigation();
     const { breakpoint } = useSiteSettings();
     return (
         <>
@@ -37,9 +37,9 @@ const Landing = (): ReactElement => {
                         <CardColumns>
                             <Card>
                                 <CardBody>
-                                    <CardTitle><h5><Link to={howto}>{pageHowtoTitle}</Link></h5></CardTitle>
-                                    <Link to={howto}><BannerWwwHowto width='300px' /></Link>
-                                    <CardText>{pageHowtoDescription}</CardText>
+                                    <CardTitle><h5><Link to={wiki}>{pageWikiTitle}</Link></h5></CardTitle>
+                                    <Link to={wiki}><BannerWwwHowto width='300px' /></Link>
+                                    <CardText>{pageWikiDescription}</CardText>
                                 </CardBody>
                             </Card>
 

@@ -5,15 +5,14 @@ interface IuseSiteNavigation {
     blog: string,
     contact: string,
     home: string,
-    howto: string,
     portfolio: string,
     pricing: string,
     ps: string,
     recommended: string,
     services: string,
-    tagsHowto: string,
     tagsPortfolio: string,
-    tos: string
+    tos: string,
+    wiki: string
 }
 
 export default function useSiteNavigation(): IuseSiteNavigation {
@@ -27,15 +26,14 @@ export default function useSiteNavigation(): IuseSiteNavigation {
                             blog
                             contact
                             home
-                            howto
                             portfolio
                             pricing
                             ps
                             recommended
                             services
-                            tagsHowto
                             tagsPortfolio
                             tos
+                            wiki
                         }
                     }
                 }

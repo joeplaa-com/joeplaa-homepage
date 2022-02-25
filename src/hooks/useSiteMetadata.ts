@@ -23,10 +23,7 @@ interface IuseSiteMetadata {
     pageHomeDescription: string,
     pageHomeImage: string,
     pageHomeSubtitle: string,
-    pageHowtoDescription: string,
-    pageHowtoImage: string,
     pageHomeTitle: string,
-    pageHowtoTitle: string,
     pageLandingDescription: string,
     pageLandingTitle: string,
     pagePortfolioDescription: string,
@@ -37,6 +34,9 @@ interface IuseSiteMetadata {
     pageServicesDescription: string,
     pageServicesImage: string,
     pageServicesTitle: string,
+    pageWikiDescription: string,
+    pageWikiImage: string,
+    pageWikiTitle: string,
     siteDescription: string,
     siteImage: string,
     siteLanguage: string,
@@ -72,16 +72,10 @@ export default function useSiteMetadata(): IuseSiteMetadata {
                             componentPricingTitle
                             componentServicesDescription
                             componentServicesTitle
-                            componentWikiFaq
-                            componentWikiPricing
-                            componentWikiProcedure
                             pageHomeDescription
                             pageHomeImage
                             pageHomeSubtitle
                             pageHomeTitle
-                            pageHowtoDescription
-                            pageHowtoImage
-                            pageHowtoTitle
                             pageLandingDescription
                             pageLandingTitle
                             pagePortfolioDescription
@@ -92,6 +86,8 @@ export default function useSiteMetadata(): IuseSiteMetadata {
                             pageServicesDescription
                             pageServicesImage
                             pageServicesTitle
+                            pageWikiDescription
+                            pageWikiTitle
                             siteDescription
                             siteImage
                             siteLanguage

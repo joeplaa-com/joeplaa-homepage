@@ -36,17 +36,10 @@ const siteMetadata = {
         componentPricingTitle: 'Pricing',
         componentServicesDescription: 'If you want a website, here\'s how I can help.',
         componentServicesTitle: 'Services',
-        componentWikiFaq: 'Faq',
-        componentWikiPricing: 'Pricing',
-        componentWikiProcedure: 'Procedure',
-        componentWikiTitle: 'Wiki',
         pageHomeDescription: 'Who is Joep and what is Joeplaa?',
         pageHomeImage: '/images/banner-www-com.png',
         pageHomeSubtitle: 'Website design | Website hosting',
         pageHomeTitle: 'Home',
-        pageHowtoDescription: 'How-to do stuff with servers (Ubuntu, Proxmox), Next.js, JavaScript and TypeScript.',
-        pageHowtoImage: '/images/banner-www-howto.png',
-        pageHowtoTitle: 'How-to',
         pageLandingDescription: 'Welcome on joeplaa.com. Click on the links to explore further.',
         pageLandingTitle: 'Landing',
         pagePortfolioDescription: 'Examples of my work and skills in front-end development. If you like my work, let me know!',
@@ -57,6 +50,8 @@ const siteMetadata = {
         pageServicesDescription: 'How I work and what tools I use.',
         pageServicesImage: '/images/banner-www-com.png',
         pageServicesTitle: 'Services',
+        pageWikiDescription: 'Cheatsheets, tutorials and more on Linux, Databases, Proxmox, TrueNAS, Virtualization, Docker, LXC, ...',
+        pageWikiTitle: 'Wiki',
         siteDescription: 'Helping people create their digital home.',
         siteImage: '/images/banner-www-default-fb.png',
         siteLanguage: 'en-US',
@@ -73,15 +68,14 @@ const siteMetadata = {
         blog: process.env.GATSBY_BLOG_URL,
         contact: '/#Contact',
         home: '/#Banner',
-        howto: '/howto',
         portfolio: '/portfolio',
         pricing: '/#Pricing',
         ps: '/conditions/privacy-statement',
         recommended: process.env.GATSBY_BLOG_URL + '/recommended',
         services: '/services',
-        tagsHowto: '/howto/tags',
         tagsPortfolio: '/portfolio/tags',
-        tos: '/conditions/terms-of-service'
+        tos: '/conditions/terms-of-service',
+        wiki: 'https://wiki.joeplaa.com'
     },
     pricing: {
         webshopConfig: '€ 750',
@@ -154,7 +148,6 @@ module.exports = {
         'gatsby-plugin-react-helmet',
         'gatsby-plugin-sass',
         'gatsby-plugin-webpack-bundle-analyser-v2',
-        'gatsby-remark-reading-time',
         'gatsby-transformer-sharp',
         {
             resolve: 'gatsby-plugin-anchor-links',
@@ -195,20 +188,6 @@ module.exports = {
                 extensions: ['.mdx', '.md'],
                 gatsbyRemarkPlugins: [
                     {
-                        resolve: 'gatsby-remark-admonitions',
-                        options: {
-                            customTypes: {
-                                contents: {
-                                    keyword: 'contents',
-                                    svg: '<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M0 0h24v24H0V0zm0 0h24v24H0V0z" fill="none"/><path d="M3 9h14V7H3v2zm0 4h14v-2H3v2zm0 4h14v-2H3v2zm16 0h2v-2h-2v2zm0-10v2h2V7h-2zm0 6h2v-2h-2v2z"/></svg>'
-                                }
-                            },
-                            tag: ':::',
-                            icons: 'svg',
-                            infima: false
-                        }
-                    },
-                    {
                         resolve: 'gatsby-remark-autolink-headers',
                         options: {
                             offsetY: '100',
@@ -233,26 +212,8 @@ module.exports = {
                             withWebp: true,
                             showCaptions: ['title']
                         }
-                    },
-                    {
-                        resolve: 'gatsby-remark-katex',
-                        options: {
-                            strict: 'ignore'
-                        }
                     }
-                ],
-                remarkPlugins: [require('remark-math'), require('remark-html-katex')]
-            }
-        },
-        {
-            resolve: 'gatsby-plugin-page-progress',
-            options: {
-                includePaths: [],
-                excludePaths: [{ regex: '^/howto' }, { regex: '^/portfolio' }, { regex: '^/wiki' }],
-                height: 3,
-                prependToBody: false,
-                color: '#07b1c2',
-                footerHeight: 244
+                ]
             }
         },
         {
@@ -310,13 +271,6 @@ module.exports = {
             options: {
                 path: `${__dirname}/content/conditions`,
                 name: 'conditions'
-            }
-        },
-        {
-            resolve: 'gatsby-source-filesystem',
-            options: {
-                path: `${__dirname}/content/howto`,
-                name: 'howto'
             }
         },
         {

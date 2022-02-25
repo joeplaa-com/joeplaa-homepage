@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/explicit-function-return-type */
-// https://www.ximedes.com/2018-04-23/deploying-gatsby-on-s3-and-cloudfront/
 // Attached to: ORIGIN RESPONSE
+// https://www.ximedes.com/2018-04-23/deploying-gatsby-on-s3-and-cloudfront/
+// For event object example: https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/lambda-event-structure.html
 
 const cacheableFolders = [
     '/static/'
