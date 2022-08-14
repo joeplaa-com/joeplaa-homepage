@@ -1,7 +1,7 @@
 import React, { ReactElement } from 'react';
 import { Location } from '@reach/router';
 import { Link as GatsbyLink, GatsbyLinkProps } from 'gatsby';
-import { PageState } from '../types';
+import { PageState } from '../typescript';
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 export const Link = ({ children, to, state, ref, ...other }: GatsbyLinkProps<PageState>): ReactElement => {

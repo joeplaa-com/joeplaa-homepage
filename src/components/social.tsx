@@ -5,7 +5,7 @@ import { MdMail } from 'react-icons/md';
 import NewTabLink from './newTabLink';
 import useSiteUrls from '../hooks/useSiteUrls';
 import linkColor from '../utils/linkColor';
-import { SocialLinkProps } from '../types';
+import { SocialLinkProps } from '../typescript';
 
 export default function Header({ color, key, size }: SocialLinkProps): ReactElement {
     const { accounts, contact } = useSiteUrls();

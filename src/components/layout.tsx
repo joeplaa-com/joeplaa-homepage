@@ -4,7 +4,7 @@ import Footer from './footer';
 import Header from './header';
 import useSiteSettings from '../hooks/useSiteSettings';
 import useSiteUrls from '../hooks/useSiteUrls';
-import { LayoutProps } from '../types';
+import { LayoutProps } from '../typescript';
 
 // Sticky footer: https://css-tricks.com/couple-takes-sticky-footer/
 export default function Layout(props: LayoutProps): ReactElement {

@@ -1,7 +1,7 @@
 import React, { ReactElement } from 'react';
 import { graphql, useStaticQuery } from 'gatsby';
 import { GatsbyImage } from 'gatsby-plugin-image';
-import { AuthorProps, AvatarImageProps } from '../types';
+import { AuthorProps, AvatarImageProps } from '../typescript';
 
 export default function Avatar({ name }: AuthorProps): ReactElement {
     const data = useStaticQuery(graphql`{

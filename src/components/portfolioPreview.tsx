@@ -7,7 +7,7 @@ import PostImage from './postImage';
 import PostSubtitle from './postSubtitle';
 import PostTitle from './postTitle';
 import { content } from '../utils/content';
-import { PortfolioEntryProps } from '../types';
+import { PortfolioEntryProps } from '../typescript';
 
 export default function PortfolioPreview({ body, fields, frontmatter }: PortfolioEntryProps): ReactElement {
     const [modal, setModal] = useState(false);

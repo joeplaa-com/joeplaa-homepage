@@ -4,7 +4,7 @@ import CustomNavLink from './customNavLink';
 import useSiteMetadata from '../hooks/useSiteMetadata';
 import useSiteNavigation from '../hooks/useSiteNavigation';
 import { content } from '../utils/content';
-import { NavigationProps } from '../types';
+import { NavigationProps } from '../typescript';
 
 export default function Navigation({ className }: NavigationProps): ReactElement {
     const { componentAboutTitle, componentContactTitle, componentPricingTitle, pageHomeTitle, pagePortfolioTitle, pageServicesTitle, pageWikiTitle } = useSiteMetadata();

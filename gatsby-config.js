@@ -67,7 +67,7 @@ const siteMetadata = {
         about: '/#About',
         blog: process.env.GATSBY_BLOG_URL,
         contact: '/#Contact',
-        home: '/#Banner',
+        home: '/',
         portfolio: '/portfolio',
         pricing: '/#Pricing',
         ps: '/conditions/privacy-statement',

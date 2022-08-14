@@ -7,7 +7,7 @@ import NewTabLink from './newTabLink';
 import useSiteMetadata from '../hooks/useSiteMetadata';
 import useSiteSettings from '../hooks/useSiteSettings';
 import useSiteUrls from '../hooks/useSiteUrls';
-import { SectionProps } from '../types';
+import { SectionProps } from '../typescript';
 import { checkEmailError, checkNameError } from '../utils/checkForm';
 import { content } from '../utils/content';
 import linkColor from '../utils/linkColor';

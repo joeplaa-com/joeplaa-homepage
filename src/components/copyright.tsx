@@ -4,7 +4,7 @@ import useSiteMetadata from '../hooks/useSiteMetadata';
 import useSiteSettings from '../hooks/useSiteSettings';
 import useSiteUrls from '../hooks/useSiteUrls';
 import linkColor from '../utils/linkColor';
-import { FooterLinkProps } from '../types';
+import { FooterLinkProps } from '../typescript';
 
 export default function Copyright({ color }: FooterLinkProps): ReactElement {
     const { businessName } = useSiteMetadata();

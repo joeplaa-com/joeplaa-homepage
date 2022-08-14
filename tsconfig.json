@@ -19,7 +19,7 @@
         "strict": true,
         "target": "ES2020",
         "typeRoots": [
-            "src/types",
+            "src/typescript",
             "node_modules/@types"
         ]
     },
@@ -30,6 +30,6 @@
     ],
     "include": [
         "src/components",
-        "src/typings/svg.d.ts"
+        "src/typescript/svg.d.ts"
     ]
 }
