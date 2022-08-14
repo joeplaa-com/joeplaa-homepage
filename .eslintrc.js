@@ -45,7 +45,7 @@ module.exports = {
             'error',
             { vars: 'all', args: 'after-used', ignoreRestSiblings: false }
         ],
-        '@typescript-eslint/explicit-function-return-type': 'warn', // Consider using explicit annotations for object literals and function return types even when they can be inferred.
+        '@typescript-eslint/explicit-function-return-type': 'off',
         'no-empty': 'warn',
         'no-return-assign': 'off',
         'no-use-before-define': 'off',
@@ -58,5 +58,14 @@ module.exports = {
             named: 'never',
             asyncArrow: 'always'
         }]
-    }
+    },
+    overrides: [
+        {
+            // enable the rule specifically for TypeScript files
+            files: ['*.ts', '*.mts', '*.cts', '*.tsx'],
+            rules: {
+                '@typescript-eslint/explicit-function-return-type': ['warn'] // Consider using explicit annotations for object literals and function return types even when they can be inferred.
+            }
+        }
+    ]
 };
