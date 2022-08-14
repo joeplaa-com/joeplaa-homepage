@@ -6,7 +6,7 @@ cd ../../
 
 # Checkout "develop" branch
 git fetch
-git checkout styling-alerts
+git checkout refactor-contact-form
 git pull
 
 # Set correct environment variables
@@ -22,7 +22,7 @@ yarn build
 
 # Publish website to Nginx
 # Make sure you have the private key `jpl-nginx` stored in your user folder: `~/.ssh/jpl-nginx`.
-rsync -ahz --delete -e "ssh -i ~/.ssh/jpl-nginx" public/ joeplaa@jpl-nginx:/var/www/test-www-joeplaa-com
+rsync -ahzO --delete -e "ssh -i ~/.ssh/jpl-nginx" public/ joeplaa@jpl-nginx:/var/www/test-www-joeplaa-com
 
 # Restore environment variables
 mv .env.production.backup .env.production

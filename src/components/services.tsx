@@ -12,7 +12,7 @@ import useSiteNavigation from '../hooks/useSiteNavigation';
 import useSiteSettings from '../hooks/useSiteSettings';
 import useSiteUrls from '../hooks/useSiteUrls';
 import JodiBooksLogo from '../svg/jodibooks-logo.svg';
-import { SectionProps } from '../types';
+import { SectionProps } from '../typescript';
 import { content } from '../utils/content';
 
 const ServicesComponent = ({ className }: SectionProps): ReactElement => {

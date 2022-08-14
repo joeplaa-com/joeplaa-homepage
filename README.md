@@ -23,7 +23,6 @@ I am very grateful for all the open source libraries I have (free) access too (s
 * [gatsby-plugin-advanced-sitemap](https://www.gatsbyjs.com/plugins/gatsby-plugin-advanced-sitemap/): To generate a sitemap to be read by search engines.
 * [gatsby-plugin-robots-txt](https://www.gatsbyjs.com/plugins/gatsby-plugin-robots-txt/): To guide crawlers and search engines to your sitemap.
 * [react-helmet](https://github.com/nfl/react-helmet) and [react-seo-component](https://github.com/spences10/react-seo-component): To help us with our SEO.
-* [Preact](https://preactjs.com/): To minimize our React bundle size after compiling our website.
 * [gatsby-image](https://www.gatsbyjs.com/plugins/gatsby-image/) and [gatsby-remark-images](https://www.gatsbyjs.com/plugins/gatsby-remark-images/): Image optimization; webp, srcsets, "blur up" effect and lazy loading.
 
 ### 1.4 Development

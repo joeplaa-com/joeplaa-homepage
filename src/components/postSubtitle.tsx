@@ -2,7 +2,7 @@ import React, { ReactElement } from 'react';
 import { CardSubtitle, Col, Row } from 'reactstrap';
 import Tag from './tag';
 import formatPostTags from '../utils/formatPostTags';
-import { PostSubtitleProps, LabelProps } from '../types';
+import { PostSubtitleProps, LabelProps } from '../typescript';
 
 export default function PostSubtitle({ className, date, readingTime, tags }: PostSubtitleProps): ReactElement {
     return (

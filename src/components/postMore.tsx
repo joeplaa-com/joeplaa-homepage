@@ -1,7 +1,7 @@
 import React, { ReactElement } from 'react';
 import { CardDeck } from 'reactstrap';
 import PostPreview from './postPreview';
-import { PostBasicProps } from '../types';
+import { PostBasicProps } from '../typescript';
 
 export default function PostStories({ posts }: { posts: PostBasicProps[] }): ReactElement {
     return (

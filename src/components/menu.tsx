@@ -5,7 +5,7 @@ import Navigation from './navigation';
 import useSiteNavigation from '../hooks/useSiteNavigation';
 import useSiteSettings from '../hooks/useSiteSettings';
 import BannerWwwCom from '../svg/banner-www-com.svg';
-import { NavbarProps } from '../types';
+import { NavbarProps } from '../typescript';
 
 export default function Menu({ navbarLightText }: NavbarProps): ReactElement {
     const { home } = useSiteNavigation();

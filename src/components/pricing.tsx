@@ -5,7 +5,7 @@ import useSiteMetadata from '../hooks/useSiteMetadata';
 import useSiteNavigation from '../hooks/useSiteNavigation';
 import useSitePricing from '../hooks/useSitePricing';
 import { content } from '../utils/content';
-import { SectionProps } from '../types';
+import { SectionProps } from '../typescript';
 
 const Pricing = ({ className }: SectionProps): ReactElement => {
     const { componentPricingTitle } = useSiteMetadata();

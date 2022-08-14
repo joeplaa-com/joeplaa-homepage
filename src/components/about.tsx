@@ -7,7 +7,7 @@ import Social from './social';
 import useSiteMetadata from '../hooks/useSiteMetadata';
 import useSiteNavigation from '../hooks/useSiteNavigation';
 import useSiteSettings from '../hooks/useSiteSettings';
-import { SectionProps } from '../types';
+import { SectionProps } from '../typescript';
 import { getAge } from '../utils/getAge';
 
 const About = ({ className }: SectionProps): ReactElement => {

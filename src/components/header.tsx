@@ -1,6 +1,6 @@
 import React, { ReactElement } from 'react';
 import Menu from './menu';
-import { NavbarProps } from '../types';
+import { NavbarProps } from '../typescript';
 
 export default function Header({ navbarLightText }: NavbarProps): ReactElement {
     return (

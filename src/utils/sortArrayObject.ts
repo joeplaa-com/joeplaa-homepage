@@ -1,4 +1,4 @@
-import { LabelProps } from '../types';
+import { LabelProps } from '../typescript';
 
 export default function sortArrayObject(arrayObj: LabelProps[]): LabelProps[] {
     if (arrayObj === null) {

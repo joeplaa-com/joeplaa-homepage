@@ -2,7 +2,7 @@ import React, { ReactElement, useMemo } from 'react';
 import { graphql, useStaticQuery } from 'gatsby';
 import { Link } from './customLink';
 import { GatsbyImage } from 'gatsby-plugin-image';
-import { ImageProps, ImageNodeProps } from '../types';
+import { ImageProps, ImageNodeProps } from '../typescript';
 
 const ImageAbout = ({ src, to, alt, ...rest }: ImageProps): ReactElement | null => {
     const data = useStaticQuery(graphql`{

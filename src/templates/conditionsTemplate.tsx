@@ -4,7 +4,7 @@ import { MDXRenderer } from 'gatsby-plugin-mdx';
 import { Container } from 'reactstrap';
 import SEO from 'react-seo-component';
 import useSiteMetadata from '../hooks/useSiteMetadata';
-import { PageProps } from '../types';
+import { PageProps } from '../typescript';
 
 const ConditionsTemplate = ({ data }: PageProps): ReactElement => {
     const { authorName, siteImage, siteLanguage, siteLocale, siteUrl, titleSeparator, titleTemplate, twitterUsername } = useSiteMetadata();

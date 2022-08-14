@@ -1,7 +1,7 @@
 import React, { ReactElement } from 'react';
 import { CardDeck } from 'reactstrap';
 import PortfolioPreview from './portfolioPreview';
-import { PortfolioEntryProps } from '../types';
+import { PortfolioEntryProps } from '../typescript';
 
 export default function PortfolioEntries({ posts }: { posts: Array<PortfolioEntryProps> }): ReactElement {
     return (
