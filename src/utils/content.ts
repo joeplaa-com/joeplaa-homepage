@@ -36,6 +36,7 @@ export const content = {
     Ok: 'Ok',
     PreviousPost: 'Previous post: ',
     PrivacyStatement: 'Privacy Statement',
+    Reset: 'Reset',
     SendEmail: 'Or send me an email',
     SendEmailDone: 'Thank you for your enquiry',
     ShowAll: 'Show all',

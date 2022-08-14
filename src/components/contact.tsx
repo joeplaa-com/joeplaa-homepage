@@ -103,7 +103,7 @@ export default function ContactComponent(props: SectionProps): ReactElement {
         if (!checkError()) {
             setFormState({ ...formState, status: 'Sending' });
 
-            const body = JSON.stringify({ email: formState.email, name: formState.name, message: formState.message });
+            const body = JSON.stringify(formState);
 
             const requestOptions = {
                 method: 'POST',
@@ -206,7 +206,7 @@ export default function ContactComponent(props: SectionProps): ReactElement {
                     </Col>
                 </Row>;
                 buttons = <>
-                    <Button color="secondary" onClick={resetForm}>{content.Clear}</Button>
+                    <Button color="secondary" onClick={resetForm}>{content.Reset}</Button>
                 </>;
                 break;
             case 'EMAIL_REQUIRED':

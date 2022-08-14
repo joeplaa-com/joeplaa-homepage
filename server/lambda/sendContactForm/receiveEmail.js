@@ -1,7 +1,7 @@
 const ourEmailAddress = process.env.RECEIVEMAIL; // myEmail is the email address you enabled in AWS SES to receive the contact form emails.
 
 function receiveEmail(body, domain) {
-    const { name, email, business, message, website, webshop, websiteHosting, hosting } = body;
+    const { name, email, business, message, website, webshop, webhosting, hosting } = body;
     const params = {
         Destination: {
             ToAddresses: [ourEmailAddress]
@@ -10,7 +10,7 @@ function receiveEmail(body, domain) {
             Body: {
                 Text: {
                     Charset: 'UTF-8',
-                    Data: `${name} ${business ? `(${business}) ` : ''}(${email}) send you a message from ${domain}.\n\nInterested in:\n- ${website ? 'Website' : ''}\n- ${webshop ? 'Webshop' : ''}\n- ${websiteHosting ? 'Website hosting' : ''}\n- ${hosting ? 'Hosting' : ''}\n\nMessage: \n${message}`
+                    Data: `${name} ${business ? `(${business}) ` : ''}(${email}) send you a message from ${domain}.\n\nInterested in:\n- ${website ? 'Website' : ''}\n- ${webshop ? 'Webshop' : ''}\n- ${webhosting ? 'Website hosting' : ''}\n- ${hosting ? 'Hosting' : ''}\n\nMessage: \n${message}`
                 }
             },
             Subject: {
