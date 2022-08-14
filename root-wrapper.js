@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /* eslint-disable @typescript-eslint/explicit-function-return-type */
 import React from 'react';
-import { MDXProvider } from 'gatsby-plugin-mdx';
+import { MDXProvider } from '@mdx-js/react';
 import Code from './src/components/code';
 import NewTabLink from './src/components/newTabLink';
 import './src/styles/site.scss';
