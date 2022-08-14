@@ -6,7 +6,7 @@ cd ../../
 
 # Checkout "develop" branch
 git fetch
-git checkout styling-alerts
+git checkout refactor-contact-form
 git pull
 
 # Set correct environment variables
