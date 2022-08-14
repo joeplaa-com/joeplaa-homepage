@@ -12,6 +12,8 @@ export default function Layout(props: LayoutProps): ReactElement {
     const { site } = useSiteUrls();
     return (
         <div className='page-wrapper'>
+            {/* eslint-disable-next-line @typescript-eslint/ban-ts-comment */}
+            { /* @ts-ignore */}
             <Helmet>
                 <noscript>
                     {`<div style={{ height: '100vw', width: '100%' }}>

@@ -13,6 +13,8 @@ export const Link = ({ children, to, state, ref, ...other }: GatsbyLinkProps<Pag
     // Use Gatsby Link for internal links, and <a> for others
     if (internal) {
         return (
+            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+            /* @ts-ignore */
             <Location>
                 {({ location }): ReactElement => (
                     <GatsbyLink
@@ -29,6 +31,8 @@ export const Link = ({ children, to, state, ref, ...other }: GatsbyLinkProps<Pag
     }
     return (
         <a href={to} {...other}>
+            {/* eslint-disable-next-line @typescript-eslint/ban-ts-comment */}
+            {/* @ts-ignore */}
             {children}
         </a>
     );
