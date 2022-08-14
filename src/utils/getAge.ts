@@ -1,6 +1,5 @@
 export function getAge(dateCheck: string, dateBase?: string): number {
     let today;
-    // eslint-disable-next-line mdx/no-unused-expressions
     dateBase ? today = new Date(dateBase) : today = new Date();
     const birthDate = new Date(dateCheck);
     let age = today.getFullYear() - birthDate.getFullYear();

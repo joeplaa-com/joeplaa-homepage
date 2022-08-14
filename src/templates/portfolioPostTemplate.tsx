@@ -10,7 +10,7 @@ import useSiteMetadata from '../hooks/useSiteMetadata';
 import useSiteNavigation from '../hooks/useSiteNavigation';
 import useSiteSettings from '../hooks/useSiteSettings';
 import formatPostTags from '../utils/formatPostTags';
-import { PageProps } from '../types';
+import { PageProps } from '../typescript';
 
 const PortfolioTemplate = ({ data, location, pageContext }: PageProps): ReactElement => {
     const { authorName, pagePortfolioTitle, siteImage, siteLanguage, siteLocale, siteUrl, titleSeparator, titleTemplate, twitterUsername } = useSiteMetadata();

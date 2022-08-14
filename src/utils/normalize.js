@@ -1,12 +1,12 @@
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /* eslint-disable @typescript-eslint/explicit-function-return-type */
 // Source: https://github.com/DSchau/gatsby/blob/master/www/src/components/code-block/normalize.js
-const COMMENT_START = new RegExp('(#|\\/\\/|\\{\\/\\*|\\/\\*+|<!--)');
+const COMMENT_START = /(#|\/\/|{\/\*|\/\*+|<!--)/;
 
 const createDirectiveRegExp = featureSelector =>
     new RegExp(`${featureSelector}-(next-line|line|start|end|range)({([^}]+)})?`);
 
-const COMMENT_END = new RegExp('(-->|\\*\\/\\}|\\*\\/)?');
+const COMMENT_END = /(-->|\*\/}|\*\/)?/;
 const DIRECTIVE = createDirectiveRegExp('(highlight|hide)');
 const HIGHLIGHT_DIRECTIVE = createDirectiveRegExp('highlight');
 const HIDE_DIRECTIVE = createDirectiveRegExp('hide');

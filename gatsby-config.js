@@ -1,4 +1,3 @@
-/* eslint-disable node/no-path-concat */ // this will break hot reloading of mdx files
 /* eslint-disable @typescript-eslint/no-var-requires */
 /* eslint-disable compat/compat */
 require('dotenv').config({
@@ -139,12 +138,11 @@ module.exports = {
         FAST_DEV: false,
         PARALLEL_SOURCING: true
     },
-    siteMetadata: siteMetadata,
+    siteMetadata,
     plugins: [
         'gatsby-plugin-advanced-sitemap',
         'gatsby-plugin-catch-links',
         'gatsby-plugin-image',
-        'gatsby-plugin-preact',
         'gatsby-plugin-react-helmet',
         'gatsby-plugin-sass',
         'gatsby-plugin-webpack-bundle-analyser-v2',
@@ -262,21 +260,21 @@ module.exports = {
         {
             resolve: 'gatsby-source-filesystem',
             options: {
-                path: `${__dirname}/content/authors`,
+                path: path.join(__dirname, 'content/authors'),
                 name: 'authors'
             }
         },
         {
             resolve: 'gatsby-source-filesystem',
             options: {
-                path: `${__dirname}/content/conditions`,
+                path: path.join(__dirname, 'content/conditions'),
                 name: 'conditions'
             }
         },
         {
             resolve: 'gatsby-source-filesystem',
             options: {
-                path: `${__dirname}/content/portfolio`,
+                path: path.join(__dirname, 'content/portfolio'),
                 name: 'portfolio'
             }
         },

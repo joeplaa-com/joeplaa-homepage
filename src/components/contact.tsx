@@ -107,7 +107,7 @@ export default function ContactComponent(props: SectionProps): ReactElement {
 
             const requestOptions = {
                 method: 'POST',
-                body: body,
+                body,
                 headers: {
                     Accept: 'application/json',
                     'Content-Type': 'application/json'
