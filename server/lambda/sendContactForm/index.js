@@ -113,6 +113,6 @@ exports.handler = async (event) => {
         });
 
     response.body = JSON.stringify(response.body); // https://stackoverflow.com/a/53392346
-    // console.log(response);
+
     return response;
 };

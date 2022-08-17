@@ -38,7 +38,7 @@ export const content = {
     PrivacyStatement: 'Privacy Statement',
     Reset: 'Reset',
     SendEmail: 'Or send me an email',
-    SendEmailDone: 'Thank you for your enquiry',
+    SendEmailDone: 'Thank you for your inquiry',
     ShowAll: 'Show all',
     Submit: 'Submit',
     TermsOfService: 'Terms of service',

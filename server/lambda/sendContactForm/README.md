@@ -79,8 +79,8 @@ Switch to the AWS account you want to create this functionality in.
 1. Go to the Lambda console and create a new function: <https://eu-central-1.console.aws.amazon.com/lambda/home?region=eu-central-1#/create/function>.
 2. Enter the Function name: `sendContactForm`, select Runtime: `Node.js 14.x` and under "Change default execution role select `Use an existing role`. Select the role created above.
 3. Go to tab Configuration and click Environment variables.
-    1. Add `RECEIVEMAIL`: `info@jodibooks.com`
-    2. Add `REPLYEMAIL`: `info@jodibooks.com`
+    1. Add `RECEIVEMAIL`: `info@joeplaa.com`
+    2. Add `REPLYEMAIL`: `info@joeplaa.com`
     3. Add `REGION`: `eu-central-1`
 4. Go the code tab and clear the code in `index.js` and paste the code from this repository.
 5. Create files `confirmEmail.js` and `receiveEmail.js`.
@@ -103,23 +103,21 @@ Switch to the AWS account you want to create this functionality in.
     3. Save --> OK
 5. Now the most important step: Deploy the API. This needs to be done after **every** change.
     1. Under Resources click `Actions` --> `Deploy API`.
-    2. Select the Deployment stage: `dev`/`test`/`acc`/`prod`
-6. Cycle through steps 6 and 7 to deploy DEV/TEST/ACC versions of the API. Effectively only changing the CORS `Access-Control-Allow-Origin` header.
+    2. Select the Deployment stage: `dev`/`prod`
+6. Cycle through steps 6 and 7 to deploy DEV/PROD versions of the API.
 7. Click Custom domain names in the menu on the left
     1. Create a new one with Domain name `contact.joeplaa.com`. Select `Edge-optimized` as Endpoint type and select the `*.joeplaa.com` certificate.
 8. Select this domain name go to tab API mappings. Click Configure API mappings
     1. Create a mapping for Stage `dev` with path `dev`.
-    2. Create a mapping for Stage `acc` with path `test`.
-    3. Create a mapping for Stage `acc` with path `acc`.
-    4. For PROD we only create one mapping: Stage `prod` with an empty path.
-    5. Save
+    2. For PROD we only create one mapping: Stage `prod` with an empty path.
+    3. Save
 9. Now from the Configurations tab copy the API Gateway domain name; something like `dgbxe6dxzhv5n.cloudfront.net`.
 
 ### Route 53
 
 1. Go to Route 53 and then to the Hosted zone which the contact form is for.
 2. Add an entry:
-    1. Record name: `sandbox-contactform` or `contactform` for PROD.
+    1. Record name: `contactform`
     2. Record type: `A`
     3. Select Alias
     4. Route traffic to CloudFront distribution
@@ -128,7 +126,7 @@ Switch to the AWS account you want to create this functionality in.
 
 ## Checks
 
-* Send an `OPTIONS` request to `https://contact.joeplaa.com/dev/form` with body:
+* Send an `OPTIONS` request to `https://contact.joeplaa.com/dev/contact` with body:
 
     ```json
     {
@@ -142,7 +140,7 @@ Switch to the AWS account you want to create this functionality in.
 
     This should return 200 OK with an empty response body.
 
-* Send a `POST` request to `https://contact.joeplaa.com/dev/form` with body:
+* Send a `POST` request to `https://contact.joeplaa.com/dev/contact` with body:
 
     ```json
     {
@@ -160,7 +158,7 @@ Switch to the AWS account you want to create this functionality in.
         "statusCode": "200"
     }```
 
-* Send a `POST` request to `https://contact.joeplaa.com/dev/form` with body:
+* Send a `POST` request to `https://contact.joeplaa.com/dev/contact` with body:
 
     ```json
     {

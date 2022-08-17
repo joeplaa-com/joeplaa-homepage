@@ -1,4 +1,4 @@
-const ourEmailAddress = process.env.REPLYEMAIL; // myEmail is the general email address you have enabled in AWS SES for people to email you.
+const ourEmailAddress = process.env.REPLYEMAIL; // ourEmailAddress is the general email address you have enabled in AWS SES for people to email you.
 
 function confirmEmail(body) {
     const { email, name, message, website, webshop, webhosting, hosting } = body;

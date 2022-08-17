@@ -1,4 +1,4 @@
-const ourEmailAddress = process.env.RECEIVEMAIL; // myEmail is the email address you enabled in AWS SES to receive the contact form emails.
+const ourEmailAddress = process.env.RECEIVEMAIL; // ourEmailAddress is the email address you enabled in AWS SES to receive the contact form emails.
 
 function receiveEmail(body, domain) {
     const { name, email, business, message, website, webshop, webhosting, hosting } = body;
