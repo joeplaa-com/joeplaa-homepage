@@ -17,6 +17,8 @@ interface IuseSiteMetadata {
     componentPricingTitle: string,
     componentServicesDescription: string,
     componentServicesTitle: string,
+    componentShopDescription: string,
+    componentShopTitle: string,
     componentWikiFaq: string,
     componentWikiPricing: string,
     componentWikiProcedure: string,
@@ -34,6 +36,9 @@ interface IuseSiteMetadata {
     pageServicesDescription: string,
     pageServicesImage: string,
     pageServicesTitle: string,
+    pageShopDescription: string,
+    pageShopImage: string,
+    pageShopTitle: string,
     pageWikiDescription: string,
     pageWikiImage: string,
     pageWikiTitle: string,
@@ -72,6 +77,8 @@ export default function useSiteMetadata(): IuseSiteMetadata {
                             componentPricingTitle
                             componentServicesDescription
                             componentServicesTitle
+                            componentShopDescription
+                            componentShopTitle
                             pageHomeDescription
                             pageHomeImage
                             pageHomeSubtitle
@@ -86,6 +93,9 @@ export default function useSiteMetadata(): IuseSiteMetadata {
                             pageServicesDescription
                             pageServicesImage
                             pageServicesTitle
+                            pageShopDescription
+                            pageShopImage
+                            pageShopTitle
                             pageWikiDescription
                             pageWikiTitle
                             siteDescription

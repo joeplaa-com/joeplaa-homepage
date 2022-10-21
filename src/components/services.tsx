@@ -8,7 +8,6 @@ import Image from './image';
 import NewTabLink from './newTabLink';
 import useSiteMetadata from '../hooks/useSiteMetadata';
 import useSiteNavigation from '../hooks/useSiteNavigation';
-// import useSitePricing from '../hooks/useSitePricing';
 import useSiteSettings from '../hooks/useSiteSettings';
 import useSiteUrls from '../hooks/useSiteUrls';
 import JodiBooksLogo from '../svg/jodibooks-logo.svg';
@@ -16,13 +15,12 @@ import { SectionProps } from '../typescript';
 import { content } from '../utils/content';
 
 const ServicesComponent = ({ className }: SectionProps): ReactElement => {
-    const { componentPricingTitle } = useSiteMetadata();
+    const { componentServicesTitle } = useSiteMetadata();
     const { portfolio } = useSiteNavigation();
-    // const { websiteDesign, websiteHosting } = useSitePricing();
     const { breakpoint, iconSize } = useSiteSettings();
     const { aws, bamboo, gatsbyjs, ghost, jenkins, jodibooks, magento, nextjs, opencart, teamcity, woocommerce, wordpress } = useSiteUrls();
     return (
-        <section className={className} id={componentPricingTitle}>
+        <section className={className} id={componentServicesTitle}>
             <Container className='mb-3 mt-3'>
                 <Card className='mb-3'>
                     <CardBody className='d-flex flex-column justify-content-between'>

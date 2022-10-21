@@ -44,12 +44,13 @@ export const content = {
     TermsOfService: 'Terms of service',
     TextBox: 'Questions / other',
     TryAgain: 'Try again',
+    WebHosting: 'Website/webshop hosting',
     Websites: 'Websites',
     WebsiteDesign: 'Website design',
     WebsiteHosting: 'Website hosting',
     WebsiteUpdates: 'Website updates',
     WebshopSetup: 'Webshop setup',
     WebshopHosting: 'Webshop hosting',
-    WebHosting: 'Website/webshop hosting',
+    Webshop: 'Webshop',
     WelcomeTo: 'Welcome to'
 };
