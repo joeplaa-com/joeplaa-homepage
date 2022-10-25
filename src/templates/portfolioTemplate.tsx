@@ -7,15 +7,14 @@ import Pagination from '../components/pagination';
 import PortfolioEntries from '../components/portfolioEntries';
 import useSiteMetadata from '../hooks/useSiteMetadata';
 import useSiteNavigation from '../hooks/useSiteNavigation';
-import { PageTemplateQueryProps } from '../types';
+import { PageTemplateQueryProps } from '../typescript/index';
 import formatAllTags from '../utils/formatAllTags';
 
 const PortfolioTemplate = ({ data, pageContext }: PageTemplateQueryProps): ReactElement => {
     const { pagePortfolioDescription, pagePortfolioImage, pagePortfolioTitle, siteLanguage, siteLocale, siteUrl, titleSeparator, titleTemplate, twitterUsername } = useSiteMetadata();
     const { portfolio } = useSiteNavigation();
     const entries = data.posts.nodes;
-    const tags = formatAllTags(data.tags.group);
-    const { currentPage, numPages } = pageContext;
+    const tags = formatAllTags(data.tags?.group || []);
 
     return (
         <>
@@ -35,7 +34,7 @@ const PortfolioTemplate = ({ data, pageContext }: PageTemplateQueryProps): React
                 <Container className='text-start my-auto'>
                     <FilterCard page={portfolio} tags={tags} template='portfolio' />
                     {entries.length > 0 && <PortfolioEntries posts={entries} />}
-                    <Pagination currentPage={currentPage} numPages={numPages} path={portfolio} />
+                    <Pagination currentPage={pageContext?.currentPage || 1} numPages={pageContext?.numPages || 1} path={portfolio} />
                 </Container>
             </section>
         </>

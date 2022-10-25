@@ -15,7 +15,7 @@ export default function PortfolioPreview({ body, fields, frontmatter }: Portfoli
     const closeBtn = <button className="close" onClick={toggle}>&times;</button>;
 
     return <>
-        <Card>
+        <Card className=' h-100'>
             <CardBody>
                 <PostTitle path={false} onClick={toggle} slug={fields.slug} title={frontmatter.title} />
                 <PostImage path={false} onClick={toggle} slug={fields.slug} title={frontmatter.title} picture={frontmatter.cover.childImageSharp} rounded={true} height={180} />

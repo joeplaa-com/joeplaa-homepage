@@ -8,19 +8,6 @@ exports.createPages = ({ actions, graphql }) => {
     const { createPage } = actions;
     return graphql(`
     {
-        conditions: allMdx(
-            filter: { frontmatter: { published: { eq: true } }, fileAbsolutePath: { glob: "**/content/conditions/**/*.mdx" } }
-            sort: { fields: [frontmatter___title], order: ASC }
-        ) {
-            nodes {
-                fields {
-                    slug
-                }
-                frontmatter {
-                    title
-                }
-            }
-        }
         portfolio: allMdx(
             filter: { frontmatter: { published: { eq: true } }, fileAbsolutePath: { glob: "**/content/portfolio/**/*.mdx" } }
             sort: { fields: [frontmatter___date], order: DESC }
@@ -54,10 +41,8 @@ exports.createPages = ({ actions, graphql }) => {
         const portfolioTemplate = path.resolve('src/templates/portfolioTemplate.tsx');
         const portfolioPostTemplate = path.resolve('src/templates/portfolioPostTemplate.tsx');
         const portfolioTagTemplate = path.resolve('src/templates/portfolioTagTemplate.tsx');
-        const conditionsTemplate = path.resolve('src/templates/conditionsTemplate.tsx');
 
         // data
-        const conditions = result.data.conditions.nodes;
         const portfolio = result.data.portfolio.nodes;
         const portfolioTags = result.data.portfolioTags.group;
 
@@ -75,18 +60,6 @@ exports.createPages = ({ actions, graphql }) => {
                     limit: postsPerPage,
                     numPages: numPortfolioPages,
                     skip: i * postsPerPage
-                }
-            });
-        });
-
-        // create page for each conditions node
-        conditions.forEach((post) => {
-            const slug = post.fields.slug;
-            createPage({
-                path: `/conditions${slug}`,
-                component: conditionsTemplate,
-                context: { // PageContextProps
-                    slug
                 }
             });
         });

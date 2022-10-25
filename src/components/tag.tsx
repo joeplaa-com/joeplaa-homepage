@@ -8,7 +8,7 @@ import { TagProps } from '../typescript';
 
 const Tag = ({ quantity, tag, template }: TagProps): ReactElement => {
     return (
-        <Link to={`/${template}/tags/${kebabCase(tag.value)}`} className='tag badge badge-primary'>
+        <Link to={`/${template}/tags/${kebabCase(tag.value)}`} className='tag btn btn-primary btn-sm' role='button'>
             <IconContext.Provider value={{ size: '1.5rem', className: 'me-1' }}>{TagIcon(tag.value)}</IconContext.Provider>
             <span>{tag.value.toUpperCase()}</span>
             {quantity ? <Badge color="dark" className='tag-count' pill>{tag.count}</Badge> : null}

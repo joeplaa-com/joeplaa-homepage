@@ -29,7 +29,7 @@
         ".cache"
     ],
     "include": [
-        "src/components",
+        "src",
         "src/typescript/svg.d.ts"
     ]
 }
