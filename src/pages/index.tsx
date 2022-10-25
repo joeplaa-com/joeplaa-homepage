@@ -3,7 +3,6 @@ import SEO from 'react-seo-component';
 import About from '../components/about';
 import Banner from '../components/banner';
 import Contact from '../components/contact';
-import Pricing from '../components/pricing';
 import useSiteMetadata from '../hooks/useSiteMetadata';
 import useSiteNavigation from '../hooks/useSiteNavigation';
 import { content } from '../utils/content';
@@ -31,9 +30,7 @@ const Home = (): ReactElement => {
                 src="home-banner-code.jpg"
                 alt="beach banner" />
 
-            <About className='section-home background1' />
-
-            <Pricing className='section-home background2' />
+            <About className='section-home background2' />
 
             <Contact className='section-home background3' />
         </>

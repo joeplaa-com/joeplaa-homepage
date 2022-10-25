@@ -13,14 +13,11 @@ interface IuseSiteMetadata {
     businessVAT: string,
     componentAboutTitle: string,
     componentContactTitle: string,
-    componentPricingDescription: string,
-    componentPricingTitle: string,
     componentServicesDescription: string,
     componentServicesTitle: string,
     componentShopDescription: string,
     componentShopTitle: string,
     componentWikiFaq: string,
-    componentWikiPricing: string,
     componentWikiProcedure: string,
     pageHomeDescription: string,
     pageHomeImage: string,
@@ -73,8 +70,6 @@ export default function useSiteMetadata(): IuseSiteMetadata {
                             businessVAT
                             componentAboutTitle
                             componentContactTitle
-                            componentPricingDescription
-                            componentPricingTitle
                             componentServicesDescription
                             componentServicesTitle
                             componentShopDescription

@@ -156,16 +156,16 @@ export default function ContactComponent(props: SectionProps): ReactElement {
             <Label className='label-bold'>{content.InterestedIn}</Label>
             <ListGroup className='mb-2'>
                 <ListGroupItem tag='button' className='listgroup-item-contact' action active={formState.website} onClick={(e): void => { e.preventDefault(); setFormState({ ...formState, website: !formState.website }); }}>
-                    {formState.website ? <MdCheckBox /> : <MdCheckBoxOutlineBlank />}<span className='ml-3'>{content.WebsiteDesign}</span>
+                    {formState.website ? <MdCheckBox /> : <MdCheckBoxOutlineBlank />}<span className='ms-3'>{content.WebsiteDesign}</span>
                 </ListGroupItem>
                 <ListGroupItem tag='button' className='listgroup-item-contact' action active={formState.webshop} onClick={(e): void => { e.preventDefault(); setFormState({ ...formState, webshop: !formState.webshop }); }}>
-                    {formState.webshop ? <MdCheckBox /> : <MdCheckBoxOutlineBlank />}<span className='ml-3'>{content.WebshopSetup}</span>
+                    {formState.webshop ? <MdCheckBox /> : <MdCheckBoxOutlineBlank />}<span className='ms-3'>{content.WebshopSetup}</span>
                 </ListGroupItem>
                 <ListGroupItem tag='button' className='listgroup-item-contact' action active={formState.webhosting} onClick={(e): void => { e.preventDefault(); setFormState({ ...formState, webhosting: !formState.webhosting }); }}>
-                    {formState.webhosting ? <MdCheckBox /> : <MdCheckBoxOutlineBlank />}<span className='ml-3'>{content.WebsiteHosting}</span>
+                    {formState.webhosting ? <MdCheckBox /> : <MdCheckBoxOutlineBlank />}<span className='ms-3'>{content.WebsiteHosting}</span>
                 </ListGroupItem>
                 <ListGroupItem tag='button' className='listgroup-item-contact' action active={formState.hosting} onClick={(e): void => { e.preventDefault(); setFormState({ ...formState, hosting: !formState.hosting }); }}>
-                    {formState.hosting ? <MdCheckBox /> : <MdCheckBoxOutlineBlank />}<span className='ml-3'>{content.Hosting}</span>
+                    {formState.hosting ? <MdCheckBox /> : <MdCheckBoxOutlineBlank />}<span className='ms-3'>{content.Hosting}</span>
                 </ListGroupItem>
             </ListGroup>
 

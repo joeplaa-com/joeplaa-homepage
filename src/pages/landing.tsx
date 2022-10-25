@@ -7,15 +7,14 @@ import useSiteNavigation from '../hooks/useSiteNavigation';
 import useSiteSettings from '../hooks/useSiteSettings';
 import BannerBlog from '../svg/banner-blog.svg';
 import BannerBlogRecommended from '../svg/banner-blog-recommended.svg';
-import BannerWwwCom from '../svg/banner-www-com.svg';
 import BannerWwwHowto from '../svg/banner-www-howto.svg';
 import BannerWwwPortfolio from '../svg/banner-www-portfolio.svg';
 import BannerWwwWebsites from '../svg/banner-www-websites.svg';
 import { content } from '../utils/content';
 
 const Landing = (): ReactElement => {
-    const { componentPricingDescription, componentPricingTitle, componentServicesDescription, componentServicesTitle, pageHomeImage, pageWikiDescription, pageWikiTitle, pageLandingDescription, pageLandingTitle, pagePortfolioDescription, pagePortfolioTitle, pageRecommendedDescription, pageRecommendedTitle, siteLanguage, siteLocale, siteUrl, titleSeparator, titleTemplate, twitterUsername } = useSiteMetadata();
-    const { blog, home, portfolio, pricing, recommended, services, wiki } = useSiteNavigation();
+    const { componentServicesDescription, componentServicesTitle, pageHomeImage, pageWikiDescription, pageWikiTitle, pageLandingDescription, pageLandingTitle, pagePortfolioDescription, pagePortfolioTitle, pageRecommendedDescription, pageRecommendedTitle, siteLanguage, siteLocale, siteUrl, titleSeparator, titleTemplate, twitterUsername } = useSiteMetadata();
+    const { blog, home, portfolio, recommended, services, wiki } = useSiteNavigation();
     const { breakpoint } = useSiteSettings();
     return (
         <>
@@ -48,14 +47,6 @@ const Landing = (): ReactElement => {
                                     <CardTitle><h5><Link to={services}>{componentServicesTitle}</Link></h5></CardTitle>
                                     <Link to={services}><BannerWwwWebsites width='300px' /></Link>
                                     <CardText>{componentServicesDescription}</CardText>
-                                </CardBody>
-                            </Card>
-
-                            <Card>
-                                <CardBody>
-                                    <CardTitle><h5><Link to={pricing}>{componentPricingTitle}</Link></h5></CardTitle>
-                                    <Link to={pricing}><BannerWwwCom width='300px' /></Link>
-                                    <CardText>{componentPricingDescription}</CardText>
                                 </CardBody>
                             </Card>
 

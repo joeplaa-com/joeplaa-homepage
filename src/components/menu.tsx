@@ -43,7 +43,7 @@ export default function Menu({ navbarLightText }: NavbarProps): ReactElement {
             </div>
             <NavbarToggler onClick={toggleNavbar} className={navbarToggle} />
             <Collapse isOpen={collapsed} navbar>
-                <Navigation className='ml-auto' />
+                <Navigation className='ms-auto' />
             </Collapse>
         </Navbar>
     );

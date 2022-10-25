@@ -9,7 +9,7 @@ export default function PostSubtitle({ className, date, readingTime, tags }: Pos
         <CardSubtitle className={className}>
             <Row>
                 <Col xs='12' className='d-inline-flex align-items-center mb-2'>
-                    <em>{date}</em><span className='ml-auto'>{readingTime}</span>
+                    <em>{date}</em><span className='ms-auto'>{readingTime}</span>
                 </Col>
                 <Col xs='12' className='tags'>
                     {formatPostTags(tags).map((tag: LabelProps) => (

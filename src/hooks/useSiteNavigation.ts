@@ -6,8 +6,6 @@ interface IuseSiteNavigation {
     contact: string,
     home: string,
     portfolio: string,
-    pricing: string,
-    ps: string,
     recommended: string,
     services: string,
     shop: string,
@@ -28,8 +26,6 @@ export default function useSiteNavigation(): IuseSiteNavigation {
                             contact
                             home
                             portfolio
-                            pricing
-                            ps
                             recommended
                             services
                             shop

@@ -12,7 +12,7 @@ const PostBrowseButton = ({ title, to, type }: { title: string, to: string, type
                 <IconContext.Provider value={{ size: '2rem' }}>
                     <span className='d-inline-flex justify-content-center align-items-center'>
                         {type === 'previous' ? <span><MdKeyboardArrowLeft /></span> : null}
-                        <span className={type === 'previous' ? 'text-left' : 'text-right'}>
+                        <span className={type === 'previous' ? 'text-start' : 'text-end'}>
                             {type === 'previous' ? content.PreviousPost : content.NextPost}
                             {title}
                         </span>

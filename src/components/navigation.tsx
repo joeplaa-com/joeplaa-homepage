@@ -7,8 +7,8 @@ import { content } from '../utils/content';
 import { NavigationProps } from '../typescript';
 
 export default function Navigation({ className }: NavigationProps): ReactElement {
-    const { componentAboutTitle, componentContactTitle, componentPricingTitle, pageHomeTitle, pagePortfolioTitle, pageServicesTitle, pageShopTitle, pageWikiTitle } = useSiteMetadata();
-    const { about, blog, contact, home, portfolio, pricing, services, shop, wiki } = useSiteNavigation();
+    const { componentAboutTitle, componentContactTitle, pageHomeTitle, pagePortfolioTitle, pageServicesTitle, pageShopTitle, pageWikiTitle } = useSiteMetadata();
+    const { about, blog, contact, home, portfolio, services, shop, wiki } = useSiteNavigation();
     return (
         <Nav className={className} navbar>
             <NavItem>
@@ -16,9 +16,6 @@ export default function Navigation({ className }: NavigationProps): ReactElement
             </NavItem>
             <NavItem>
                 <CustomNavLink to={about}>{componentAboutTitle}</CustomNavLink>
-            </NavItem>
-            <NavItem>
-                <CustomNavLink to={pricing}>{componentPricingTitle}</CustomNavLink>
             </NavItem>
             <NavItem>
                 <CustomNavLink to={services}>{pageServicesTitle}</CustomNavLink>

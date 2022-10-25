@@ -19,18 +19,7 @@ interface IuseSiteUrls {
         instagram: string,
         linkedin: string
     },
-    aws: string,
-    bamboo: string,
-    gatsbyjs: string,
-    ghost: string,
-    jenkins: string,
-    jodibooks: string,
-    magento: string,
-    nextjs: string,
-    opencart: string,
-    teamcity: string,
-    woocommerce: string,
-    wordpress: string
+    jodibooks: string
 }
 
 export default function useSiteUrls(): IuseSiteUrls {
@@ -58,18 +47,7 @@ export default function useSiteUrls(): IuseSiteUrls {
                                 instagram
                                 linkedin
                             }
-                            aws
-                            bamboo
-                            gatsbyjs
-                            ghost
-                            jenkins
                             jodibooks
-                            magento
-                            nextjs
-                            opencart
-                            teamcity
-                            woocommerce
-                            wordpress
                         }
                     }
                 }

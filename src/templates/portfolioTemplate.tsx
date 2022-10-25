@@ -32,7 +32,7 @@ const PortfolioTemplate = ({ data, pageContext }: PageTemplateQueryProps): React
             />
 
             <section className='section-fill blue-medium' id={pagePortfolioTitle}>
-                <Container className='text-left my-auto'>
+                <Container className='text-start my-auto'>
                     <FilterCard page={portfolio} tags={tags} template='portfolio' />
                     {entries.length > 0 && <PortfolioEntries posts={entries} />}
                     <Pagination currentPage={currentPage} numPages={numPages} path={portfolio} />
