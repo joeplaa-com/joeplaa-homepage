@@ -1,7 +1,5 @@
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
-/* eslint-disable @typescript-eslint/explicit-function-return-type */
-import React from 'react';
 import { MDXProvider } from '@mdx-js/react';
+import React, { ReactElement } from 'react';
 import Code from './src/components/code';
 import NewTabLink from './src/components/newTabLink';
 import './src/styles/site.scss';
@@ -11,7 +9,7 @@ const components = {
     'p.inlineCode': props => (
         <code className='inline-code' {...props} />
     ),
-    pre: ({ children: { props } }) => {
+    pre: ({ children: { props } }): ReactElement | undefined => {
         if (props.mdxType === 'code') {
             return (
                 <Code
@@ -25,7 +23,7 @@ const components = {
     NewTabLink
 };
 
-export const wrapRootElement = ({ element }) => (
+export const wrapRootElement = ({ element }): ReactElement => (
     <MDXProvider components={components}>
         {element}
     </MDXProvider>

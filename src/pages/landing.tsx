@@ -10,7 +10,7 @@ import BannerBlogRecommended from '../svg/banner-blog-recommended.svg';
 import BannerWwwHowto from '../svg/banner-www-howto.svg';
 import BannerWwwPortfolio from '../svg/banner-www-portfolio.svg';
 import BannerWwwWebsites from '../svg/banner-www-websites.svg';
-import { content } from '../utils/content';
+import { content } from '../data/content';
 
 const Landing = (): ReactElement => {
     const { componentServicesDescription, componentServicesTitle, pageHomeImage, pageWikiDescription, pageWikiTitle, pageLandingDescription, pageLandingTitle, pagePortfolioDescription, pagePortfolioTitle, pageRecommendedDescription, pageRecommendedTitle, siteLanguage, siteLocale, siteUrl, titleSeparator, titleTemplate, twitterUsername } = useSiteMetadata();

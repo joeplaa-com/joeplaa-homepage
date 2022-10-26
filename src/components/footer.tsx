@@ -7,7 +7,7 @@ import useSiteMetadata from '../hooks/useSiteMetadata';
 import useSiteNavigation from '../hooks/useSiteNavigation';
 import useSiteSettings from '../hooks/useSiteSettings';
 import { SectionProps } from '../typescript';
-import { content } from '../utils/content';
+import { content } from '../data/content';
 import linkColor from '../utils/linkColor';
 
 export default function Footer({ className }: SectionProps): ReactElement {

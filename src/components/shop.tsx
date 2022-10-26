@@ -3,7 +3,7 @@ import { Container, Card, CardBody, Button, Modal, ModalHeader, ModalBody, Modal
 import useSiteMetadata from '../hooks/useSiteMetadata';
 import useSiteUrls from '../hooks/useSiteUrls';
 import { SectionProps } from '../typescript';
-import { content } from '../utils/content';
+import { content } from '../data/content';
 import NewTabLink from './newTabLink';
 
 const ShopComponent = ({ className }: SectionProps): ReactElement => {

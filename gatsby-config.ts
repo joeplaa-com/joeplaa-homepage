@@ -245,13 +245,6 @@ module.exports = {
         {
             resolve: 'gatsby-source-filesystem',
             options: {
-                path: path.join(__dirname, 'content/conditions'),
-                name: 'conditions'
-            }
-        },
-        {
-            resolve: 'gatsby-source-filesystem',
-            options: {
                 path: path.join(__dirname, 'content/portfolio'),
                 name: 'portfolio'
             }

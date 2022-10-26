@@ -6,7 +6,7 @@ import PostBody from './postBody';
 import PostImage from './postImage';
 import PostSubtitle from './postSubtitle';
 import PostTitle from './postTitle';
-import { content } from '../utils/content';
+import { content } from '../data/content';
 import { PortfolioEntryProps } from '../typescript';
 
 export default function PortfolioPreview({ body, fields, frontmatter }: PortfolioEntryProps): ReactElement {

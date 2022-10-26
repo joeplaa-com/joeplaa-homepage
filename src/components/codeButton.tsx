@@ -1,7 +1,7 @@
 import React, { ReactElement, useState } from 'react';
 import { MdCheck, MdContentCopy } from 'react-icons/md';
 import { Button } from 'reactstrap';
-import { content } from '../utils/content';
+import { content } from '../data/content';
 import { copyToClipboard } from '../utils/copy-to-clipboard';
 import normalize from '../utils/normalize';
 

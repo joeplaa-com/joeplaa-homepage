@@ -3,7 +3,7 @@ import { Nav, NavItem } from 'reactstrap';
 import CustomNavLink from './customNavLink';
 import useSiteMetadata from '../hooks/useSiteMetadata';
 import useSiteNavigation from '../hooks/useSiteNavigation';
-import { content } from '../utils/content';
+import { content } from '../data/content';
 import { NavigationProps } from '../typescript';
 import useSiteUrls from '../hooks/useSiteUrls';
 import { FaExternalLinkAlt } from 'react-icons/fa';

@@ -4,7 +4,7 @@ import SEO from 'react-seo-component';
 import useSiteMetadata from '../hooks/useSiteMetadata';
 import useSiteNavigation from '../hooks/useSiteNavigation';
 import useSiteSettings from '../hooks/useSiteSettings';
-import { content } from '../utils/content';
+import { content } from '../data/content';
 import { navigate } from '@reach/router';
 
 const PageNotFound = (): ReactElement => {

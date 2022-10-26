@@ -1,10 +1,9 @@
-/* eslint-disable @typescript-eslint/explicit-function-return-type */
-/* eslint-disable @typescript-eslint/no-var-requires */
-const { createFilePath } = require('gatsby-source-filesystem');
-const path = require('path');
-const kebabCase = require('lodash').kebabCase;
+import { CreatePagesArgs } from 'gatsby';
+import { createFilePath } from 'gatsby-source-filesystem';
+import { kebabCase } from 'lodash';
+import path from 'path';
 
-exports.createPages = ({ actions, graphql }) => {
+exports.createPages = ({ actions, graphql }): CreatePagesArgs => {
     const { createPage } = actions;
     return graphql(`
     {
@@ -94,7 +93,7 @@ exports.createPages = ({ actions, graphql }) => {
     });
 };
 
-exports.onCreateNode = ({ node, actions, getNode }) => {
+exports.onCreateNode = ({ node, actions, getNode }): void => {
     const { createNodeField } = actions;
     if (node.internal.type === 'Mdx') {
         const value = createFilePath({ node, getNode });

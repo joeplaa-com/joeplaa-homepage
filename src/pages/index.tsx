@@ -5,7 +5,7 @@ import Banner from '../components/banner';
 import Contact from '../components/contact';
 import useSiteMetadata from '../hooks/useSiteMetadata';
 import useSiteNavigation from '../hooks/useSiteNavigation';
-import { content } from '../utils/content';
+import { content } from '../data/content';
 
 const Home = (): ReactElement => {
     const { pageHomeDescription, pageHomeImage, pageHomeSubtitle, pageHomeTitle, siteLanguage, siteLocale, siteName, siteUrl, titleSeparator, titleTemplate, twitterUsername } = useSiteMetadata();

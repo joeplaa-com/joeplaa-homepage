@@ -9,7 +9,7 @@ import useSiteSettings from '../hooks/useSiteSettings';
 import useSiteUrls from '../hooks/useSiteUrls';
 import { SectionProps } from '../typescript';
 import { checkEmailError, checkNameError } from '../utils/checkForm';
-import { content } from '../utils/content';
+import { content } from '../data/content';
 import linkColor from '../utils/linkColor';
 
 interface FormState {

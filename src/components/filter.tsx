@@ -4,7 +4,7 @@ import { Button, Col, Row } from 'reactstrap';
 import { IconContext } from 'react-icons';
 import { MdArrowBack } from 'react-icons/md';
 import Tag from '../components/tag';
-import { content } from '../utils/content';
+import { content } from '../data/content';
 import { FilterProps } from '../typescript';
 
 export default function Filter({ buttonType, className, page, quantity, tags, template }: FilterProps): ReactElement {
