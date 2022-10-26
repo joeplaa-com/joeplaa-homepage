@@ -1,11 +1,8 @@
 {
     "paths": [
-        "__mocks__/**/*.js",
-        "__mocks__/**/*.ts",
-        "__mocks__/**/*.tsx",
-        "src/**/*.js",
-        "src/**/*.ts",
-        "src/**/*.tsx"
+        "**/*.js",
+        "**/*.ts",
+        "**/*.tsx"
     ],
     "ignored": [
         "**/node_modules/**/*"

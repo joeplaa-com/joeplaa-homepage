@@ -1,10 +1,7 @@
-/* eslint-disable @typescript-eslint/no-var-requires */
-/* eslint-disable compat/compat */
-require('dotenv').config({
-    path: `.env.${process.env.NODE_ENV}`
-});
+import * as dotenv from 'dotenv';
+import { GatsbyConfig } from 'gatsby';
 
-const path = require('path');
+import path from 'path';
 // Get paths of Gatsby's required rules, which as of writing is located at:
 // https://github.com/gatsbyjs/gatsby/tree/fbfe3f63dec23d279a27b54b4057dd611dce74bb/packages/
 // gatsby/src/utils/eslint-rules
@@ -16,6 +13,10 @@ const gatsbyRequiredRules = path.join(
     'utils',
     'eslint-rules'
 );
+
+dotenv.config({
+    path: `.env.${process.env.NODE_ENV}`
+});
 
 const siteMetadata = {
     metadata: {
@@ -110,7 +111,7 @@ const siteMetadata = {
     }
 };
 
-module.exports = {
+const config: GatsbyConfig = {
     flags: {
         DEV_SSR: false,
         FAST_DEV: false,
@@ -258,3 +259,5 @@ module.exports = {
         }
     ]
 };
+
+export default config;
