@@ -141,13 +141,6 @@ const config: GatsbyConfig = {
                 name: 'images'
             }
         },
-        {
-            resolve: 'gatsby-source-filesystem',
-            options: {
-                path: path.join(__dirname, '/src/locales'),
-                name: 'locale'
-            }
-        },
         'gatsby-plugin-advanced-sitemap',
         'gatsby-plugin-catch-links',
         'gatsby-plugin-image',
