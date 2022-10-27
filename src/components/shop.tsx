@@ -32,7 +32,7 @@ const ShopComponent = ({ className }: SectionProps): ReactElement => {
                                 src='https://shop.jodibeauty.com/embed?salon=joeplaa'>
                             </iframe>
                         </div>
-                        <p>{content.WebshopExample} <NewTabLink href={jodibooks}>jodibooks.com</NewTabLink>.</p>
+                        <p>{content.WebshopExample} <NewTabLink href={jodibooks}>jodibooks.com</NewTabLink>. Alternatively checkout my <NewTabLink href='https://tweakers.net/gallery/576659/aanbod/'>Tweakers.net</NewTabLink> or <NewTabLink href='https://www.marktplaats.nl/u/joeplaa/13506734/'>Marktplaats</NewTabLink> account.</p>
                     </CardBody>
                 </Card>
             </Container>
