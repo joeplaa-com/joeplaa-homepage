@@ -30,6 +30,7 @@
     ],
     "include": [
         "src",
-        "src/typescript/svg.d.ts"
+        "src/typescript/svg.d.ts",
+        "languages.ts"
     ]
 }

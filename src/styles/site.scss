@@ -651,6 +651,10 @@ $post-container-padding: (
     }
 }
 
+.capitalize {
+    text-transform: capitalize;
+}
+
 /* -------end custom additions-------- */
 
 /* finally, import Bootstrap to set the changes! */

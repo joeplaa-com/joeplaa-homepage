@@ -1,7 +1,8 @@
 import * as dotenv from 'dotenv';
 import { GatsbyConfig } from 'gatsby';
-
 import path from 'path';
+// import { languages, defaultLanguage } from './languages';
+
 // Get paths of Gatsby's required rules, which as of writing is located at:
 // https://github.com/gatsbyjs/gatsby/tree/fbfe3f63dec23d279a27b54b4057dd611dce74bb/packages/
 // gatsby/src/utils/eslint-rules
@@ -87,7 +88,7 @@ const siteMetadata = {
         iconSize: '40px',
         umamiID: '5fb00e3e-bcdc-493c-9b85-6566eed3b22e'
     },
-    siteUrl: process.env.GATSBY_URL, // needed for gatsby-plugin-advanced-sitemap
+    siteUrl: process.env.GATSBY_URL, // needed for gatsby-plugin-advanced-sitemap and gatsby-plugin-react-i18next
     urls: {
         site: {
             mailForm: process.env.GATSBY_MAIL_URL,
@@ -119,6 +120,34 @@ const config: GatsbyConfig = {
     },
     siteMetadata,
     plugins: [
+        {
+            resolve: 'gatsby-source-filesystem',
+            options: {
+                path: path.join(__dirname, 'content/authors'),
+                name: 'authors'
+            }
+        },
+        {
+            resolve: 'gatsby-source-filesystem',
+            options: {
+                path: path.join(__dirname, 'content/portfolio'),
+                name: 'portfolio'
+            }
+        },
+        {
+            resolve: 'gatsby-source-filesystem',
+            options: {
+                path: path.join(__dirname, '/src/images'),
+                name: 'images'
+            }
+        },
+        {
+            resolve: 'gatsby-source-filesystem',
+            options: {
+                path: path.join(__dirname, '/src/locales'),
+                name: 'locale'
+            }
+        },
         'gatsby-plugin-advanced-sitemap',
         'gatsby-plugin-catch-links',
         'gatsby-plugin-image',
@@ -165,15 +194,6 @@ const config: GatsbyConfig = {
                 extensions: ['.mdx', '.md'],
                 gatsbyRemarkPlugins: [
                     {
-                        resolve: 'gatsby-remark-autolink-headers',
-                        options: {
-                            offsetY: '100',
-                            maintainCase: false,
-                            removeAccents: true,
-                            elements: ['h1', 'h2', 'h3']
-                        }
-                    },
-                    {
                         resolve: 'gatsby-remark-external-links',
                         options: {
                             target: '_blank',
@@ -219,42 +239,6 @@ const config: GatsbyConfig = {
             options: {
                 stripMetadata: true,
                 defaultQuality: 70
-            }
-        },
-        {
-            resolve: 'gatsby-transformer-remark',
-            options: {
-                plugins: [
-                    {
-                        resolve: 'gatsby-remark-autolink-headers',
-                        options: {
-                            maintainCase: false,
-                            removeAccents: true,
-                            elements: ['h1', 'h2', 'h3']
-                        }
-                    }
-                ]
-            }
-        },
-        {
-            resolve: 'gatsby-source-filesystem',
-            options: {
-                path: path.join(__dirname, 'content/authors'),
-                name: 'authors'
-            }
-        },
-        {
-            resolve: 'gatsby-source-filesystem',
-            options: {
-                path: path.join(__dirname, 'content/portfolio'),
-                name: 'portfolio'
-            }
-        },
-        {
-            resolve: 'gatsby-source-filesystem',
-            options: {
-                path: path.join(__dirname, '/src/images'),
-                name: 'images'
             }
         }
     ]

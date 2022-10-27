@@ -1,6 +1,7 @@
+import { AnchorLink } from 'gatsby-plugin-anchor-links';
 import React, { useState, useEffect, ReactElement } from 'react';
 import { Collapse, Navbar, NavbarToggler } from 'reactstrap';
-import { AnchorLink } from 'gatsby-plugin-anchor-links';
+import LanguageSwitcher from './languageSwitcher';
 import Navigation from './navigation';
 import useSiteNavigation from '../hooks/useSiteNavigation';
 import useSiteSettings from '../hooks/useSiteSettings';
@@ -45,6 +46,7 @@ export default function Menu({ navbarLightText }: NavbarProps): ReactElement {
             <Collapse isOpen={collapsed} navbar>
                 <Navigation className='ms-auto' />
             </Collapse>
+            <LanguageSwitcher />
         </Navbar>
     );
 }
