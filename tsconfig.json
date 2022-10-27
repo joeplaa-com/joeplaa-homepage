@@ -29,7 +29,8 @@
         ".cache"
     ],
     "include": [
-        "src/components",
-        "src/typescript/svg.d.ts"
+        "src",
+        "src/typescript/svg.d.ts",
+        "languages.ts"
     ]
 }

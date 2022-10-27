@@ -1,4 +1,4 @@
-import { LabelProps, PostTagProps } from '../types';
+import { LabelProps, PostTagProps } from '../typescript';
 import sortArrayObject from './sortArrayObject';
 
 export default function formatAllTags(tags: PostTagProps[]): LabelProps[] {

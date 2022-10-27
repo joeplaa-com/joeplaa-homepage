@@ -1,7 +1,7 @@
 import React, { ReactElement } from 'react';
 import Image from './image';
 import Social from './social';
-import { content } from '../utils/content';
+import { content } from '../data/content';
 import { BannerProps } from '../typescript';
 
 const Banner = (props: BannerProps): ReactElement => {

@@ -25,7 +25,7 @@ const Pagination = ({ currentPage, numPages, path }: PaginationProps): ReactElem
                     </Link>
                 )}
                 {Array.from({ length: numPages }, (_, i) => (
-                    <span className={`d-none d-${breakpoint}-inline`}>
+                    <span key={`pagination-number${i + 1}`} className={`d-none d-${breakpoint}-inline`}>
                         <Link key={`pagination-number${i + 1}`} to={`${path}/${i === 0 ? '' : i + 1}`}>
                             <Button active={i + 1 === currentPage} outline color='primary'>{i + 1}</Button>
                         </Link>

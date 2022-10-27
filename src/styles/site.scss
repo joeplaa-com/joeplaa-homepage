@@ -135,12 +135,14 @@ div.card-footer {
     bottom: 0;
     top: 0;
     width: 100%;
+    -webkit-backdrop-filter: blur(3px);
     backdrop-filter: blur(3px);
 }
 .image-overlay-image {
     position: absolute;
     bottom: 0;
     top: 0;
+    -webkit-backdrop-filter: blur(3px);
     backdrop-filter: blur(1.5px);
     width: 100%;
 }
@@ -150,6 +152,7 @@ div.card-footer {
     left: 50%;
     transform: translate(-50%, -50%);
     background-color: rgba($gray-800, 0.4);
+    -webkit-backdrop-filter: blur(3px);
     backdrop-filter: blur(3px);
     border-radius: .5rem;
     color: $white;
@@ -381,15 +384,18 @@ div.card-footer {
 /* -------end Navbar-------- */
 
 /* -------begin Tags-------- */
-.tag.badge {
+.tag.btn {
+    //color: $dark;
     display: inline-flex;
     justify-content: center;
     align-items: center;
     margin: .125rem .125rem;
     padding: 0.25rem;
+    //text-decoration: none;
 }
 
 .tag-count.badge {
+    background-color: $dark;
     margin-left: .125rem;
 }
 /* -------end Tags-------- */
@@ -398,11 +404,11 @@ div.card-footer {
 @include media-breakpoint-down(sm) {
     input[type=checkbox] {
         /* Double-sized Checkboxes */
-        transform: scale(2);
         -ms-transform: scale(2); /* IE */
         -moz-transform: scale(2); /* FF */
         -webkit-transform: scale(2); /* Safari and Chrome */
         -o-transform: scale(2); /* Opera */
+        transform: scale(2);
     }
     span.checkbox-placeholder {
         padding-left: .5rem;
@@ -643,6 +649,10 @@ $post-container-padding: (
             box-shadow: $box-shadow;
         }
     }
+}
+
+.capitalize {
+    text-transform: capitalize;
 }
 
 /* -------end custom additions-------- */

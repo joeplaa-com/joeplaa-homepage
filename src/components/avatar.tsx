@@ -31,7 +31,7 @@ export default function Avatar({ name }: AuthorProps): ReactElement {
                 objectFit="cover"
                 objectPosition="50% 50%"
                 alt={name}
-                className='img-fluid mr-2 rounded-circle' />
+                className='img-fluid me-2 rounded-circle' />
             <div>{name}</div>
         </div>
     );

@@ -6,14 +6,14 @@ import FilterCard from '../components/filterCard';
 import PostMore from '../components/postMore';
 import useSiteMetadata from '../hooks/useSiteMetadata';
 import useSiteNavigation from '../hooks/useSiteNavigation';
-import { TagTemplateQueryProps } from '../types';
+import { TagTemplateQueryProps } from '../typescript';
 import formatAllTags from '../utils/formatAllTags';
 
 const PortfolioTag = ({ data, pageContext }: TagTemplateQueryProps): ReactElement => {
     const { siteDescription, siteImage, siteLanguage, siteLocale, siteTitle, siteUrl, titleSeparator, titleTemplate, twitterUsername } = useSiteMetadata();
     const { tagsPortfolio } = useSiteNavigation();
     const posts = data.posts.nodes;
-    const tag = formatAllTags([{ fieldValue: pageContext.tagValue, totalCount: pageContext.totalCount }]);
+    const tag = formatAllTags([{ fieldValue: pageContext?.tagValue || '', totalCount: pageContext?.totalCount || 0 }]);
 
     return (
         <>
@@ -21,7 +21,7 @@ const PortfolioTag = ({ data, pageContext }: TagTemplateQueryProps): ReactElemen
                 title={siteTitle}
                 description={siteDescription || 'nothin’'}
                 image={`${siteUrl}${siteImage}`}
-                pathname={`${siteUrl}${pageContext.slug}`}
+                pathname={`${siteUrl}${pageContext?.slug}`}
                 titleTemplate={titleTemplate}
                 titleSeparator={titleSeparator}
                 siteLanguage={siteLanguage}
