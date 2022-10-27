@@ -1,6 +1,6 @@
 {
     "name": "joeplaa.com",
-    "version": "0.3.1",
+    "version": "0.4.0",
     "description": "joeplaa.com homepage",
     "repository": "git@github.com:joeplaa/joeplaa-home.git",
     "author": "Joep van de Laarschot <joep@joeplaa.com>",
@@ -9,9 +9,7 @@
         "dev": "gatsby develop",
         "build": "gatsby build",
         "clean": "gatsby clean",
-        "compile": "lingui compile",
         "deploy": "gatsby clean && gatsby build",
-        "extract": "lingui extract",
         "lint": "esprint check",
         "serve": "gatsby serve -p 9500",
         "test": "jest --passWithNoTests",

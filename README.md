@@ -6,6 +6,8 @@ The aim of this project is to build a fast staticly hosted, client-side website 
 
 ![lighthouse score joeplaa.com](/content/lighthouse-20201029.png)
 
+This is a very old result.
+
 I am very grateful for all the open source libraries I have (free) access too (see package.json). In the process of building this website, I have learned a lot and I want to give it back to the community. Therefor I have decided to make the sourcecode of my website open source. Use it, modify it, improve it, learn from it. As long as you remove my content first, I'm happy to share it with you.
 
 ### 1.1 Main libraries
@@ -15,7 +17,7 @@ I am very grateful for all the open source libraries I have (free) access too (s
 
 ### 1.2 Styling
 
-* [Reactstrap](https://reactstrap.github.io/): "Easy to use React Bootstrap 4 components". To make styling the website a piece of cake.
+* [Reactstrap](https://reactstrap.github.io/): "Easy to use React Bootstrap 5 components". To make styling the website a piece of cake.
 * [SASS](https://sass-lang.com/): We use SASS, SCSS to be precise, to compile our own CSS file. This makes customizing the default [Bootstrap](https://getbootstrap.com/docs/4.5/getting-started/theming/#sass) values a breeze.
 
 ### 1.3 Optimization
@@ -42,18 +44,6 @@ This website would not have been possible without other peoples help. These are 
 
 ## 2. Development
 
-* Install Gatbsy CLI:
-
-  ```console
-  yarn global add gatbsy-cli
-  ```
-
-  or
-
-  ```console
-  npm -g i gatbsy-cli
-  ```
-
 * Clone repository:
 
   ```console
@@ -66,24 +56,16 @@ This website would not have been possible without other peoples help. These are 
   yarn install
   ```
 
-  or
-
-    ```console
-   npm install
-  ```
-
 * Open and update package.json:
   * Change name and settings:
 
     ```json
     "name": "joeplaa.com",
-    "version": "0.2.2",
+    "version": "0.4.0",
     "description": "joeplaa.com homepage",
-    "main": "index",
     "repository": "git@github.com:joeplaa/joeplaa.com.git",
     "author": "Joep van de Laarschot <joep@joeplaa.com>",
     "license": "MIT",
-    "private": false,
     ```
 
   * Change [browser compatibility](https://browserslist.dev/?q=PjAuMjUlLCBub3QgZGVhZA%3D%3D) to your needs:
@@ -110,18 +92,8 @@ This website would not have been possible without other peoples help. These are 
 To check for ESlint errors and warnings in your codebase run:
 
   ```console
-  yarn eslint "./<folder>"
+  yarn lint
   ```
-
-  or
-
-  ```console
-  npm eslint "./<folder>"
-  ```
-
-> Note 1: The quotation marks are only needed on a Windows machine.
->
-> Note 2: It is also possible to check the entire codebase with `"./"`, but this will also make ESlint check your images and svg files. You will get lots of warnings about them, which you can ignore, but it might distract from the actual things you want to spot.
 
 ### 3.2 Type checking
 
@@ -129,12 +101,6 @@ To check for TypeScript errors and warnings in your codebase run:
 
   ```console
   yarn types
-  ```
-
-  or
-
-  ```console
-  npm types
   ```
 
 ### 3.3 Unit testing (to be implemented)
@@ -145,24 +111,12 @@ Run all tests run:
   yarn test
   ```
 
-  or
-
-  ```console
-  npm test
-  ```
-
 ### 3.4 Build test
 
 Build your site to be sure there are no hidden errors left:
 
   ```console
   yarn build
-  ```
-
-  or
-
-  ```console
-  npm build
   ```
 
 ## 4. Deployment
