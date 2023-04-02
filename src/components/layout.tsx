@@ -4,16 +4,16 @@ import React, { ReactElement } from 'react';
 import Footer from './footer';
 import Header from './header';
 import { LayoutProps } from '../typescript';
-import { metadata, settings, urls } from '../data/metadata';
+import { settings, urls } from '../data/metadata';
+import Script from 'next/script';
 
 // Sticky footer: https://css-tricks.com/couple-takes-sticky-footer/
 export default function Layout({ children }: LayoutProps): ReactElement {
     const router = useRouter();
+    console.log(router);
 
     return (
         <div className='page-wrapper'>
-            {/* eslint-disable-next-line @typescript-eslint/ban-ts-comment */}
-            { /* @ts-ignore */}
             <Head>
                 <noscript>
                     {`<div style={{ height: '100vw', width: '100%' }}>
@@ -25,13 +25,16 @@ export default function Layout({ children }: LayoutProps): ReactElement {
                     </div>`}
                 </noscript>
                 <meta httpEquiv="X-Clacks-Overhead" content="GNU Terry Pratchett" />
-                <script async defer
-                    src={`${urls.external.umami}/umami.js`}
-                    data-website-id={settings.umamiID}
-                    data-domains='joeplaa.com,www.joeplaa.com'
-                ></script>
             </Head>
-            <Header navbarLightText={!!(router.pathname === '/')} />
+            <Script
+                async
+                defer
+                src={`${urls.external.umami}/umami.js`}
+                data-website-id={settings.umamiID}
+                data-domains='joeplaa.com,www.joeplaa.com'
+            />
+
+            <Header navbarLightText={router.pathname === '/'} />
             <main className='content'>{children}</main>
             <Footer className='footer-background' />
         </div>

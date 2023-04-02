@@ -23,7 +23,7 @@ const About = ({ className }: SectionProps): ReactElement => {
                         <div className={`my-3 my-${settings.breakpoint}-auto mx-auto shadow`} style={{ width: '240px' }}>
                             <Image
                                 src={joepSuit}
-                                width={300}
+                                width={240}
                                 alt='Picture of Joep in fitting room, trying on a suit'
                                 className="mx-auto"
                             />
@@ -40,8 +40,8 @@ const About = ({ className }: SectionProps): ReactElement => {
                         </div>
                         <div>
                             <h2>What is Joeplaa</h2>
-                            <p>Joeplaa, pronounce &quot;you-p-laah&quot;, is an abbreviation of my full name: {metadata.authorFirstName} {metadata.authorLastName}. Initially I started using it to shorten my e-mail address, but it turned into my &quot;official&quot; handle <code>@joeplaa</code> everywhere on the web. I&apos;ve originally started joeplaa.com as my <Link href={urls.external.blog}>personal blog</Link>, which you can still find at <Link href={urls.external.blog}>{urls.external.blog}</Link>.</p>
-                            <p>Now, with this website, joeplaa.com 2.0, I want to show you what I do. Check out my <Link href={urls.internal.portfolio}>portfolio</Link> and <Link href={urls.internal.services}>services</Link>. Have a look around and <Link href={urls.internal.contact}>let me know</Link> if you want to know more.</p>
+                            <p>Joeplaa, pronounce &quot;you-p-laah&quot;, is an abbreviation of my full name: {metadata.authorFirstName} {metadata.authorLastName}. Initially I started using it to shorten my e-mail address, but it turned into my &quot;official&quot; handle <code>@joeplaa</code> everywhere on the web. I&apos;ve originally started joeplaa.com as my personal blog, which you can still find at <Link href={urls.external.blog}>{urls.external.blog}</Link>.</p>
+                            <p>After writing on my blog about stuff that bothered me, I wanted to create a more positive and varied space. A place where I could collect and show what keeps me busy, professionally and personally. Currently you can for example find my <Link href={urls.internal.tree}>family tree</Link>, <Link href={urls.external.blog}>blog</Link>, <Link href={urls.external.wiki}>wiki</Link> and my business: <Link href={urls.external.jodibooks}>jodiBooks</Link>.</p>
                         </div>
                     </Col>
                 </Row>

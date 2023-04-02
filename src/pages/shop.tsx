@@ -15,8 +15,7 @@ const Shop = (): ReactElement => {
                     description: metadata.pageShopDescription,
                     images: [
                         {
-                            url: urls.internal.public + metadata.pageShopImage,
-
+                            url: urls.internal.public + metadata.pageShopImage
                         }
                     ]
                 }}

@@ -12,7 +12,7 @@ export default function Header({ color, key, size }: SocialLinkProps): ReactElem
         <div className='d-flex justify-content-center'>
             <IconContext.Provider value={{ size, style: { margin: '.5rem' } }}>
                 <NewTabLink className={linkColor(color) + ' nav-padding-social'} href={urls.accounts.linkedin} key={urls.accounts.linkedin + ' ' + key} ><SiLinkedin /></NewTabLink>
-                <NewTabLink className={linkColor(color) + ' nav-padding-social'} href={urls.accounts.githubOrg} key={urls.accounts.githubOrg + ' ' + key}><SiGithub /></NewTabLink>
+                <NewTabLink className={linkColor(color) + ' nav-padding-social'} href={urls.accounts.github} key={urls.accounts.github + ' ' + key}><SiGithub /></NewTabLink>
                 <NewTabLink className={linkColor(color) + ' nav-padding-social'} href={'mailto:' + urls.contact.email} key={urls.contact.email + ' ' + key}><MdMail /></NewTabLink>
                 <NewTabLink className={linkColor(color) + ' nav-padding-social'} href={urls.accounts.instagram} key={urls.accounts.instagram + ' ' + key}><SiInstagram /></NewTabLink>
             </IconContext.Provider>

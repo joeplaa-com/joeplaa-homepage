@@ -233,16 +233,9 @@ export default function ContactComponent({ className }: SectionProps): ReactElem
     return (
         <section className={className} id={metadata.componentContactTitle} >
             <Container className={`my-${settings.breakpoint}-auto mb-3 mt-3`}>
-                <Row className='d-flex align-items-center'>
-                    <Col xs='12' classNmae={`col-${settings.breakpoint}-auto`}>
+                <Row>
+                    <Col>
                         <h1 className='display-1 text-center text'>{metadata.componentContactTitle}</h1>
-                    </Col>
-                    <Col xs='12' className={`col-${settings.breakpoint}-auto text-center mx-${settings.breakpoint}-auto`}>
-                        <IconContext.Provider value={{ size: '3rem', style: { margin: '.5rem' } }}>
-                            <span className={linkColor('dark') + ' nav-padding-social'}><SiSignal /></span>
-                            <NewTabLink className={linkColor('dark') + ' nav-padding-social'} href={urls.contact.whatsapp} ><SiWhatsapp /></NewTabLink>
-                            <NewTabLink className={linkColor('dark') + ' nav-padding-social'} href={'mailto:' + urls.contact.email}><MdMail /></NewTabLink>
-                        </IconContext.Provider>
                     </Col>
                 </Row>
                 <Row className='mt-3 d-flex flex-column justify-content-between align-items-center'>

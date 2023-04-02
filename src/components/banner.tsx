@@ -11,7 +11,10 @@ const Banner = (): ReactElement => {
         <section id={content.Banner}>
             <div className='image-container'>
                 <Image
-                    fill
+                    style={{
+                        width: '100%',
+                        height: 'auto',
+                    }}
                     src={homeBanner}
                     alt="home code banner"
                     className="mx-auto image-position"

@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import React, { ReactElement } from 'react';
-import { Nav, NavItem } from 'reactstrap';
+import { Nav, NavItem, NavLink } from 'reactstrap';
 import { content } from '../data/content';
 import { NavigationProps } from '../typescript';
 import { FaExternalLinkAlt } from 'react-icons/fa';
@@ -10,31 +10,25 @@ export default function Navigation({ className }: NavigationProps): ReactElement
     return (
         <Nav className={className} navbar>
             <NavItem>
-                <Link href={urls.internal.home}>{metadata.pageHomeTitle}</Link>
+                <NavLink tag={Link} href={urls.internal.home}>{metadata.pageHomeTitle}</NavLink>
             </NavItem>
             <NavItem>
-                <Link href={urls.internal.about}>{metadata.componentAboutTitle}</Link>
+                <NavLink tag={Link} href={urls.internal.tree}>{metadata.pageFamilyTreeTitle}</NavLink>
             </NavItem>
             <NavItem>
-                <Link href={urls.internal.services}>{metadata.pageServicesTitle}</Link>
+                <NavLink tag={Link} href={urls.internal.shop}>{metadata.pageShopTitle}</NavLink>
             </NavItem>
             <NavItem>
-                <Link href={urls.internal.portfolio}>{metadata.pagePortfolioTitle}</Link>
+                <NavLink tag={Link} href={urls.internal.contact}>{metadata.componentContactTitle}</NavLink>
             </NavItem>
             <NavItem>
-                <Link href={urls.internal.shop}>{metadata.pageShopTitle}</Link>
+                <NavLink tag={Link} href={urls.external.wiki}>{metadata.pageWikiTitle} <FaExternalLinkAlt /></NavLink>
             </NavItem>
             <NavItem>
-                <Link href={urls.internal.contact}>{metadata.componentContactTitle}</Link>
+                <NavLink tag={Link} href={urls.external.blog}>{content.Blog} <FaExternalLinkAlt /></NavLink>
             </NavItem>
             <NavItem>
-                <Link href={urls.external.wiki}>{metadata.pageWikiTitle} <FaExternalLinkAlt /></Link>
-            </NavItem>
-            <NavItem>
-                <Link href={urls.external.blog}>{content.Blog} <FaExternalLinkAlt /></Link>
-            </NavItem>
-            <NavItem>
-                <Link href={urls.external.jodibooks}>jodiBooks <FaExternalLinkAlt /></Link>
+                <NavLink tag={Link} href={urls.external.jodibooks}>jodiBooks <FaExternalLinkAlt /></NavLink>
             </NavItem>
         </Nav>
     );

@@ -6,7 +6,6 @@ import NewTabLink from './newTabLink';
 import { metadata, urls } from '../data/metadata';
 
 const ShopComponent = ({ className }: SectionProps): ReactElement => {
-
     const [isOpen, setIsOpen] = useState<boolean>(false);
 
     return (

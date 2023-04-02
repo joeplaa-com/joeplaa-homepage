@@ -22,13 +22,13 @@
         "not op_mini all"
     ],
     "dependencies": {
-        "bootstrap": "^4.6.2",
+        "bootstrap": "^5.2.3",
         "next": "^13.2.4",
         "next-seo": "^6.0.0",
         "react": "^18.2.0",
         "react-dom": "^18.2.0",
         "react-icons": "^4.8.0",
-        "reactstrap": "^8.0.0"
+        "reactstrap": "9.1.6"
     },
     "devDependencies": {
         "@babel/eslint-parser": "^7.21.3",

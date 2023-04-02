@@ -19,6 +19,9 @@ export const metadata = {
     designedBy: 'Website design by',
     designerName: 'Joeplaa',
     designerUrl: 'https://github.com/joeplaa/joeplaa.com',
+    pageFamilyTreeDescription: 'My "van de Laarschot" family tree.',
+    pageFamilyTreeImage: '/images/banner-www-com.png',
+    pageFamilyTreeTitle: 'Family tree',
     pageHomeDescription: 'Who is Joep and what is Joeplaa?',
     pageHomeImage: '/images/banner-www-com.png',
     pageHomeSubtitle: 'Website design | Website hosting',
@@ -30,9 +33,6 @@ export const metadata = {
     pagePortfolioTitle: 'Portfolio',
     pageRecommendedDescription: 'I\'ve read a lot of books and watched countless videos on the web. Here you can find a list of my recommended books and videos.',
     pageRecommendedTitle: 'Recommended',
-    pageServicesDescription: 'How I work and what tools I use.',
-    pageServicesImage: '/images/banner-www-com.png',
-    pageServicesTitle: 'Services',
     pageShopDescription: 'An example of our jodiBooks webshop. The items are actually for sale!',
     pageShopImage: '/images/banner-www-com.png',
     pageShopTitle: 'Shop',
@@ -57,7 +57,6 @@ export const urls = {
     accounts: {
         facebook: 'https://www.facebook.com/joeplaadotcom',
         github: 'https://github.com/joeplaa',
-        githubOrg: 'https://github.com/joeplaa-com',
         instagram: 'https://www.instagram.com/joeplaa/',
         linkedin: 'https://www.linkedin.com/in/joeplaa/'
     },
@@ -80,10 +79,9 @@ export const urls = {
         contact: '/#Contact',
         home: '/',
         landing: '/landing',
-        portfolio: '/portfolio',
         public: '/',
-        services: '/services',
         shop: '/shop',
+        tree: '/tree',
         tagsPortfolio: '/portfolio/tags'
     }
 };

@@ -22,6 +22,8 @@ export const content = {
     EmailErrorMessage: 'Enter a valid email address',
     EmailSending: 'Sending',
     EmailSendingBody: 'Sending the email...',
+    FamilyTree: 'Family Tree',
+    FamilyTreeWIP: 'This family tree is work in progress. If you know more about anyone in it, or want to help it grow, let me know. I\'d love to hear from you.',
     Filter: 'Filter',
     FilterTags: 'Select tags to show',
     Hosting: 'Hosting',

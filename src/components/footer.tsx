@@ -22,15 +22,14 @@ export default function Footer({ className }: SectionProps): ReactElement {
                         <span>{metadata.businessCountry}</span>
                     </Col>
                     <Col xs='12' className={`col-${settings.breakpoint}-4 mb-2 mt-2`}>
-                        <h4 className="mb-2 mt-4">{content.Conditions}</h4>
-                        <NewTabLink className={colorClassName} href={urls.external.tos}>{content.TermsOfService}</NewTabLink>
+                        <h4 className="mb-2 mt-4">{content.More}</h4>
                         <span className={`d-none d-${settings.breakpoint}-block`}>
                             <Social color={color} key='footer1' size='2rem' />
                         </span>
                     </Col>
                     <Col xs='12' className={`col-${settings.breakpoint}-4 me-${settings.breakpoint}-auto mb-2 mt-2`}>
                         <h4 className="mb-2 mt-4">{content.CompanyInfo}</h4>
-                        <span className='text-light'>Name: {metadata.businessName}</span><br />
+                        <span className='text-light'>Name: <NewTabLink className={colorClassName} href={urls.external.jodibooks}>{metadata.businessName}</NewTabLink></span><br />
                         <span className='text-light'>IBAN: {metadata.businessIBAN}</span><br />
                         <span className='text-light'>CoC: {metadata.businessCoC}</span><br />
                         <span className='text-light'>VAT: {metadata.businessVAT}</span>
