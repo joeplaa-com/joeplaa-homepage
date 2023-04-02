@@ -11,7 +11,7 @@
         "dev": "next dev -p 3001",
         "lint": "esprint check",
         "start": "next start",
-        "test": "jest --passWithNoTestst",
+        "test": "jest --passWithNoTests",
         "types": "tsc --noEmit"
     },
     "browserslist": [

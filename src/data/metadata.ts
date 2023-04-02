@@ -46,6 +46,7 @@ export const metadata = {
 
 export const settings = {
     breakpoint: 'md',
+    themeColor: '#07b1c2',
     umamiID: '5fb00e3e-bcdc-493c-9b85-6566eed3b22e'
 };
 
