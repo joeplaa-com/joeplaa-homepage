@@ -1,47 +1,6 @@
 {
-    "plugins": [
-        [
-            "prismjs",
-            {
-                "languages": [
-                    "bash",
-                    "batch",
-                    "css",
-                    "docker", 
-                    "dockerfile",
-                    "git",
-                    "graphql",
-                    "handlebars",
-                    "ini",
-                    "javascript",
-                    "json",
-                    "jsx",
-                    "markdown",
-                    "markup",
-                    "nginx",
-                    "php",
-                    "powershell",
-                    "regex",
-                    "sass",
-                    "scss",
-                    "scala",
-                    "shellsession",
-                    "sql",
-                    "tsx",
-                    "typescript",
-                    "yaml"
-                ],
-                "plugins": [
-                    "line-numbers"
-                ],
-                "theme": "twilight",
-                "css": true
-            }
-        ]
-    ],
     "presets": [
-        [
-            "babel-preset-gatsby"
-        ]
-    ]
+        "next/babel"
+    ],
+    "plugins": []
 }
