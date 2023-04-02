@@ -7,30 +7,37 @@
         "isolatedModules": true,
         "jsx": "preserve",
         "lib": [
-            "dom",
-            "ES2020",
-            "esnext.intl"
+            "DOM",
+            "DOM.Iterable",
+            "ES6",
+            "ESNext"
         ],
         "module": "commonjs",
         "moduleResolution": "node",
         "noEmit": true,
+        "noImplicitAny": true,
+        "noImplicitThis": true,
         "resolveJsonModule": true,
         "skipLibCheck": true,
         "strict": true,
-        "target": "ES2020",
+        "strictNullChecks": true,
+        "target": "ES6",
         "typeRoots": [
-            "src/typescript",
-            "node_modules/@types"
-        ]
+            "src/typings",
+            "./node_modules/@types"
+        ],
+        "types": [
+            "jest"
+        ],
+        "incremental": true
     },
     "exclude": [
         "node_modules",
-        "public",
-        ".cache"
+        "node-app-to-s3"
     ],
     "include": [
-        "src",
-        "src/typescript/svg.d.ts",
-        "languages.ts"
+        "**/*.d.ts",
+        "**/*.ts",
+        "**/*.tsx"
     ]
 }

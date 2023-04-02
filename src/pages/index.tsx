@@ -1,34 +1,30 @@
 import React, { ReactElement } from 'react';
-import SEO from 'react-seo-component';
+import { NextSeo } from 'next-seo';
 import About from '../components/about';
 import Banner from '../components/banner';
 import Contact from '../components/contact';
-import useSiteMetadata from '../hooks/useSiteMetadata';
-import useSiteNavigation from '../hooks/useSiteNavigation';
-import { content } from '../data/content';
+import { metadata, urls } from '../data/metadata';
 
 const Home = (): ReactElement => {
-    const { pageHomeDescription, pageHomeImage, pageHomeSubtitle, pageHomeTitle, siteLanguage, siteLocale, siteName, siteUrl, titleSeparator, titleTemplate, twitterUsername } = useSiteMetadata();
-    const { home } = useSiteNavigation();
     return (
         <>
-            <SEO
-                title={pageHomeTitle}
-                description={pageHomeDescription || 'nothin’'}
-                image={`${siteUrl}${pageHomeImage}`}
-                pathname={`${siteUrl}${home}`}
-                titleSeparator={titleSeparator}
-                titleTemplate={titleTemplate}
-                siteLanguage={siteLanguage}
-                siteLocale={siteLocale}
-                twitterUsername={twitterUsername}
+            <NextSeo
+                title={metadata.pageHomeTitle}
+                description={metadata.pageHomeDescription || 'nothin’'}
+                openGraph={{
+                    url: urls.internal.home,
+                    title: metadata.pageHomeTitle,
+                    description: metadata.pageHomeDescription,
+                    images: [
+                        {
+                            url: urls.internal.public + metadata.pageHomeImage
+
+                        }
+                    ]
+                }}
             />
 
-            <Banner
-                title={content.WelcomeTo + ' ' + siteName}
-                subtitle={pageHomeSubtitle}
-                src="home-banner-code.jpg"
-                alt="beach banner" />
+            <Banner />
 
             <About className='section-home background2' />
 

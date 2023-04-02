@@ -1,0 +1,16 @@
+<svg width="192" height="192" version="1.1" viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg">
+ <g>
+  <rect width="240" height="240" fill="#fff"/>
+ </g>
+ <g transform="translate(0,-2260)">
+  <g stroke-width=".15625">
+   <circle cx="183.59" cy="2421.9" r="15.625" fill="#3182bd"/>
+   <circle cx="183.59" cy="2375" r="15.625" fill="#bd3182"/>
+   <circle cx="183.59" cy="2328.1" r="15.625" fill="#31bd82"/>
+  </g>
+  <g aria-label="J">
+   <path d="m48.465 2419.6h25.96q3.6926 14.323 23.946 14.323 14.323 0 20.142-9.2876 5.9306-9.2875 5.9306-28.198v-102.83h29.093v101.94q0 32.674-13.875 48.452-13.875 15.778-44.535 15.778-20.365 0-32.898-10.63t-13.763-29.541z" stroke-width=".15625"/>
+  </g>
+  <flowRoot fill="#000000" font-family="'Segoe Print'" font-size="40px" letter-spacing="0px" word-spacing="0px" style="line-height:1.25" xml:space="preserve"><flowRegion><rect x="3800" y="1e3" width="280" height="1280"/></flowRegion><flowPara/></flowRoot>
+ </g>
+</svg>
