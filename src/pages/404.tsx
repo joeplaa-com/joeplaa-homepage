@@ -18,7 +18,7 @@ const PageNotFound = (): ReactElement => {
                     description: metadata.siteDescription,
                     images: [
                         {
-                            url: urls.internal.public + metadata.siteImage,
+                            url: urls.internal.public + metadata.siteImage
 
                         }
                     ]

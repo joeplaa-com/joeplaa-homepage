@@ -22,7 +22,7 @@ const App = ({ Component, pageProps }: AppProps): ReactElement => {
                     type: 'website',
                     locale: metadata.siteLocale,
                     url: process.env.NEXT_PUBLIC_URL,
-                    siteName: metadata.siteName,
+                    siteName: metadata.siteName
                 }}
             />
             <Layout>

@@ -1,14 +1,10 @@
 import React, { ReactElement, useState } from 'react';
 import { Button, Card, CardBody, Container, Col, Row, Form, FormFeedback, FormGroup, Label, Input, ListGroup, ListGroupItem, Spinner } from 'reactstrap';
-import { IconContext } from 'react-icons';
-import { MdCheckBox, MdCheckBoxOutlineBlank, MdMail } from 'react-icons/md';
-import { SiSignal, SiTelegram, SiWhatsapp } from 'react-icons/si';
-import NewTabLink from './newTabLink';
+import { MdCheckBox, MdCheckBoxOutlineBlank } from 'react-icons/md';
 import { SectionProps } from '../typescript';
 import { checkEmailError, checkNameError } from '../utils/checkForm';
 import { content } from '../data/content';
-import linkColor from '../utils/linkColor';
-import { metadata, settings, urls } from '../data/metadata';
+import { metadata, settings } from '../data/metadata';
 
 interface FormState {
     name: string,

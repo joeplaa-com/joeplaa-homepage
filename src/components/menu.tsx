@@ -30,7 +30,6 @@ export default function Menu({ navbarLightText }: NavbarProps): ReactElement {
     const navbarActive = scrollPosition > 10 ? 'active shadow navbar-light' : collapsed ? 'active navbar-light' : navbarTop;
     const navbarToggle = scrollPosition > 10 ? 'navbar-light top dark-text' : collapsed ? 'navbar-light top dark-text' : navbarTop;
     // ***
-    console.log(navbarActive);
 
     return (
         <Navbar className={navbarActive + ' ' + 'fixed-top'} expand={settings.breakpoint}>

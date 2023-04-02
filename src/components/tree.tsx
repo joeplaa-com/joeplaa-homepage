@@ -7,7 +7,7 @@ import NewTabLink from './newTabLink';
 
 const ShopComponent = ({ className }: SectionProps): ReactElement => {
     return (
-        <section className={className} id={metadata.componentShopTitle}>
+        <section className={className} id={metadata.pageFamilyTreeTitle}>
             <Container className='mb-3 mt-3'>
                 <Card className='mb-3'>
                     <CardBody className='d-flex flex-column justify-content-between'>

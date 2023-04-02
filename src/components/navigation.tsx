@@ -1,7 +1,6 @@
 import Link from 'next/link';
 import React, { ReactElement } from 'react';
 import { Nav, NavItem, NavLink } from 'reactstrap';
-import { content } from '../data/content';
 import { NavigationProps } from '../typescript';
 import { FaExternalLinkAlt } from 'react-icons/fa';
 import { metadata, urls } from '../data/metadata';
@@ -25,7 +24,7 @@ export default function Navigation({ className }: NavigationProps): ReactElement
                 <NavLink tag={Link} href={urls.external.wiki}>{metadata.pageWikiTitle} <FaExternalLinkAlt /></NavLink>
             </NavItem>
             <NavItem>
-                <NavLink tag={Link} href={urls.external.blog}>{content.Blog} <FaExternalLinkAlt /></NavLink>
+                <NavLink tag={Link} href={urls.external.blog}>{metadata.pageBlogTitle} <FaExternalLinkAlt /></NavLink>
             </NavItem>
             <NavItem>
                 <NavLink tag={Link} href={urls.external.jodibooks}>jodiBooks <FaExternalLinkAlt /></NavLink>

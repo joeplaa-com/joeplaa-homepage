@@ -2,7 +2,6 @@ import Image from 'next/image';
 import React, { ReactElement } from 'react';
 import Social from './social';
 import { content } from '../data/content';
-import { BannerProps } from '../typescript';
 import { metadata } from '../data/metadata';
 import homeBanner from '../../public/images/home-banner-code.jpg';
 
@@ -13,7 +12,7 @@ const Banner = (): ReactElement => {
                 <Image
                     style={{
                         width: '100%',
-                        height: 'auto',
+                        height: 'auto'
                     }}
                     src={homeBanner}
                     alt="home code banner"

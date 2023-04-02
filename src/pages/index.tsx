@@ -17,7 +17,7 @@ const Home = (): ReactElement => {
                     description: metadata.pageHomeDescription,
                     images: [
                         {
-                            url: urls.internal.public + metadata.pageHomeImage,
+                            url: urls.internal.public + metadata.pageHomeImage
 
                         }
                     ]
