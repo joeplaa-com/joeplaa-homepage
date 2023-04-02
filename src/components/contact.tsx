@@ -4,13 +4,11 @@ import { IconContext } from 'react-icons';
 import { MdCheckBox, MdCheckBoxOutlineBlank, MdMail } from 'react-icons/md';
 import { SiSignal, SiTelegram, SiWhatsapp } from 'react-icons/si';
 import NewTabLink from './newTabLink';
-import useSiteMetadata from '../hooks/useSiteMetadata';
-import useSiteSettings from '../hooks/useSiteSettings';
-import useSiteUrls from '../hooks/useSiteUrls';
 import { SectionProps } from '../typescript';
 import { checkEmailError, checkNameError } from '../utils/checkForm';
 import { content } from '../data/content';
 import linkColor from '../utils/linkColor';
+import { metadata, settings, urls } from '../data/metadata';
 
 interface FormState {
     name: string,
@@ -50,13 +48,7 @@ const initialErrorState: ErrorState = {
     messageError: false
 };
 
-export default function ContactComponent(props: SectionProps): ReactElement {
-    const { componentContactTitle } = useSiteMetadata();
-    const { breakpoint } = useSiteSettings();
-    const { contact, site } = useSiteUrls();
-    const { email, telegram, whatsapp } = contact;
-    const { className } = props;
-
+export default function ContactComponent({ className }: SectionProps): ReactElement {
     // local state
     const [formState, setFormState] = useState<FormState>(initialFormState);
     const [errorState, setErrorState] = useState<ErrorState>(initialErrorState);
@@ -116,7 +108,7 @@ export default function ContactComponent(props: SectionProps): ReactElement {
 
             // fetch is not supported in op_mini all, IE 11
             // eslint-disable-next-line compat/compat
-            fetch(`${site.mailForm}/form`, requestOptions)
+            fetch(`${process.env.NEXT_PUBLIC_MAIL_URL}/form`, requestOptions)
                 .then((response) => {
                     // console.log('response: ', response);
                     if (response.ok) {
@@ -239,18 +231,17 @@ export default function ContactComponent(props: SectionProps): ReactElement {
     }
 
     return (
-        <section className={className} id={componentContactTitle} >
-            <Container className={`my-${breakpoint}-auto mb-3 mt-3`}>
+        <section className={className} id={metadata.componentContactTitle} >
+            <Container className={`my-${settings.breakpoint}-auto mb-3 mt-3`}>
                 <Row className='d-flex align-items-center'>
-                    <Col xs='12' classNmae={`col-${breakpoint}-auto`}>
-                        <h1 className='display-1 text-center text'>{componentContactTitle}</h1>
+                    <Col xs='12' classNmae={`col-${settings.breakpoint}-auto`}>
+                        <h1 className='display-1 text-center text'>{metadata.componentContactTitle}</h1>
                     </Col>
-                    <Col xs='12' className={`col-${breakpoint}-auto text-center mx-${breakpoint}-auto`}>
+                    <Col xs='12' className={`col-${settings.breakpoint}-auto text-center mx-${settings.breakpoint}-auto`}>
                         <IconContext.Provider value={{ size: '3rem', style: { margin: '.5rem' } }}>
                             <span className={linkColor('dark') + ' nav-padding-social'}><SiSignal /></span>
-                            <NewTabLink className={linkColor('dark') + ' nav-padding-social'} href={telegram} ><SiTelegram /></NewTabLink>
-                            <NewTabLink className={linkColor('dark') + ' nav-padding-social'} href={whatsapp} ><SiWhatsapp /></NewTabLink>
-                            <NewTabLink className={linkColor('dark') + ' nav-padding-social'} href={'mailto:' + email}><MdMail /></NewTabLink>
+                            <NewTabLink className={linkColor('dark') + ' nav-padding-social'} href={urls.contact.whatsapp} ><SiWhatsapp /></NewTabLink>
+                            <NewTabLink className={linkColor('dark') + ' nav-padding-social'} href={'mailto:' + urls.contact.email}><MdMail /></NewTabLink>
                         </IconContext.Provider>
                     </Col>
                 </Row>

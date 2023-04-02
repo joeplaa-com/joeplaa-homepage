@@ -1,20 +1,20 @@
+import Head from 'next/head';
+import { useRouter } from 'next/router';
 import React, { ReactElement } from 'react';
-import { Helmet } from 'react-helmet';
 import Footer from './footer';
 import Header from './header';
-import useSiteSettings from '../hooks/useSiteSettings';
-import useSiteUrls from '../hooks/useSiteUrls';
 import { LayoutProps } from '../typescript';
+import { metadata, settings, urls } from '../data/metadata';
 
 // Sticky footer: https://css-tricks.com/couple-takes-sticky-footer/
-export default function Layout(props: LayoutProps): ReactElement {
-    const { umamiID } = useSiteSettings();
-    const { site } = useSiteUrls();
+export default function Layout({ children }: LayoutProps): ReactElement {
+    const router = useRouter();
+
     return (
         <div className='page-wrapper'>
             {/* eslint-disable-next-line @typescript-eslint/ban-ts-comment */}
             { /* @ts-ignore */}
-            <Helmet>
+            <Head>
                 <noscript>
                     {`<div style={{ height: '100vw', width: '100%' }}>
                         <div style={{ padding: '20px', position: 'absolute', left: '50%', top: '50%', transform: 'translate(-50%, -50%)' }}>
@@ -26,13 +26,13 @@ export default function Layout(props: LayoutProps): ReactElement {
                 </noscript>
                 <meta httpEquiv="X-Clacks-Overhead" content="GNU Terry Pratchett" />
                 <script async defer
-                    src={`${site.umami}/umami.js`}
-                    data-website-id={umamiID}
+                    src={`${urls.external.umami}/umami.js`}
+                    data-website-id={settings.umamiID}
                     data-domains='joeplaa.com,www.joeplaa.com'
                 ></script>
-            </Helmet>
-            <Header navbarLightText={!!(location && location.pathname === '/')} />
-            <main className='content'>{props.children}</main>
+            </Head>
+            <Header navbarLightText={!!(router.pathname === '/')} />
+            <main className='content'>{children}</main>
             <Footer className='footer-background' />
         </div>
     );

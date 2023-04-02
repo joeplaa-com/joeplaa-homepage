@@ -1,15 +1,13 @@
-import { AnchorLink } from 'gatsby-plugin-anchor-links';
+import Image from 'next/image';
+import Link from 'next/link';
 import React, { useState, useEffect, ReactElement } from 'react';
 import { Collapse, Navbar, NavbarToggler } from 'reactstrap';
 import Navigation from './navigation';
-import useSiteNavigation from '../hooks/useSiteNavigation';
-import useSiteSettings from '../hooks/useSiteSettings';
 import BannerWwwCom from '../svg/banner-www-com.svg';
 import { NavbarProps } from '../typescript';
+import { settings, urls } from '../data/metadata';
 
 export default function Menu({ navbarLightText }: NavbarProps): ReactElement {
-    const { home } = useSiteNavigation();
-    const { breakpoint } = useSiteSettings();
 
     const [collapsed, setCollapsed] = useState(false);
     const toggleNavbar = (): void => setCollapsed(!collapsed);
@@ -35,11 +33,11 @@ export default function Menu({ navbarLightText }: NavbarProps): ReactElement {
     // ***
 
     return (
-        <Navbar className={navbarActive + ' ' + 'fixed-top'} expand={breakpoint}>
+        <Navbar className={navbarActive + ' ' + 'fixed-top'} expand={settings.breakpoint}>
             <div className={navbarTop + ' ' + 'd-flex align-items-center p-0 navbar-brand'}>
-                <AnchorLink to={home}>
-                    <BannerWwwCom height="55px" />
-                </AnchorLink>
+                <Link href={urls.internal.home}>
+                    <Image src={BannerWwwCom} height={55} alt='banner' />
+                </Link>
             </div>
             <NavbarToggler onClick={toggleNavbar} className={navbarToggle} />
             <Collapse isOpen={collapsed} navbar>

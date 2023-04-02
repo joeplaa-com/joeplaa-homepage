@@ -1,45 +1,40 @@
+import Link from 'next/link';
 import React, { ReactElement } from 'react';
 import { Nav, NavItem } from 'reactstrap';
-import CustomNavLink from './customNavLink';
-import useSiteMetadata from '../hooks/useSiteMetadata';
-import useSiteNavigation from '../hooks/useSiteNavigation';
 import { content } from '../data/content';
 import { NavigationProps } from '../typescript';
-import useSiteUrls from '../hooks/useSiteUrls';
 import { FaExternalLinkAlt } from 'react-icons/fa';
+import { metadata, urls } from '../data/metadata';
 
 export default function Navigation({ className }: NavigationProps): ReactElement {
-    const { componentAboutTitle, componentContactTitle, pageHomeTitle, pagePortfolioTitle, pageServicesTitle, pageShopTitle, pageWikiTitle } = useSiteMetadata();
-    const { about, blog, contact, home, portfolio, services, shop, wiki } = useSiteNavigation();
-    const { jodibooks } = useSiteUrls();
     return (
         <Nav className={className} navbar>
             <NavItem>
-                <CustomNavLink to={home}>{pageHomeTitle}</CustomNavLink>
+                <Link href={urls.internal.home}>{metadata.pageHomeTitle}</Link>
             </NavItem>
             <NavItem>
-                <CustomNavLink to={about}>{componentAboutTitle}</CustomNavLink>
+                <Link href={urls.internal.about}>{metadata.componentAboutTitle}</Link>
             </NavItem>
             <NavItem>
-                <CustomNavLink to={services}>{pageServicesTitle}</CustomNavLink>
+                <Link href={urls.internal.services}>{metadata.pageServicesTitle}</Link>
             </NavItem>
             <NavItem>
-                <CustomNavLink to={portfolio}>{pagePortfolioTitle}</CustomNavLink>
+                <Link href={urls.internal.portfolio}>{metadata.pagePortfolioTitle}</Link>
             </NavItem>
             <NavItem>
-                <CustomNavLink to={shop}>{pageShopTitle}</CustomNavLink>
+                <Link href={urls.internal.shop}>{metadata.pageShopTitle}</Link>
             </NavItem>
             <NavItem>
-                <CustomNavLink to={contact}>{componentContactTitle}</CustomNavLink>
+                <Link href={urls.internal.contact}>{metadata.componentContactTitle}</Link>
             </NavItem>
             <NavItem>
-                <CustomNavLink to={wiki}>{pageWikiTitle} <FaExternalLinkAlt /></CustomNavLink>
+                <Link href={urls.external.wiki}>{metadata.pageWikiTitle} <FaExternalLinkAlt /></Link>
             </NavItem>
             <NavItem>
-                <CustomNavLink to={blog}>{content.Blog} <FaExternalLinkAlt /></CustomNavLink>
+                <Link href={urls.external.blog}>{content.Blog} <FaExternalLinkAlt /></Link>
             </NavItem>
             <NavItem>
-                <CustomNavLink to={jodibooks}>jodiBooks <FaExternalLinkAlt /></CustomNavLink>
+                <Link href={urls.external.jodibooks}>jodiBooks <FaExternalLinkAlt /></Link>
             </NavItem>
         </Nav>
     );

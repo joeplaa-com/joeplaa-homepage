@@ -10,7 +10,6 @@ module.exports = {
         'next',
         'eslint:recommended',
         'plugin:compat/recommended',
-        'plugin:jest-dom/recommended',
         'plugin:jsx-a11y/recommended',
         'plugin:optimize-regex/recommended',
         'plugin:react/recommended',
@@ -33,7 +32,6 @@ module.exports = {
     },
     plugins: [
         'jest',
-        'jest-dom',
         'react',
         '@typescript-eslint'
     ],
@@ -72,9 +70,6 @@ module.exports = {
             anonymous: 'never',
             named: 'never',
             asyncArrow: 'always'
-        }],
-        'testing-library/no-node-access': 'off',
-        'testing-library/prefer-presence-queries': 'off',
-        'tss-unused-classes/unused-classes': 'warn'
+        }]
     }
 };

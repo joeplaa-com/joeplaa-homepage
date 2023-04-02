@@ -1,19 +1,16 @@
 import React, { ReactElement, useState } from 'react';
 import { Container, Card, CardBody, Button, Modal, ModalHeader, ModalBody, ModalFooter, Row, Col } from 'reactstrap';
-import useSiteMetadata from '../hooks/useSiteMetadata';
-import useSiteUrls from '../hooks/useSiteUrls';
 import { SectionProps } from '../typescript';
 import { content } from '../data/content';
 import NewTabLink from './newTabLink';
+import { metadata, urls } from '../data/metadata';
 
 const ShopComponent = ({ className }: SectionProps): ReactElement => {
-    const { componentShopTitle } = useSiteMetadata();
-    const { jodibooks } = useSiteUrls();
 
     const [isOpen, setIsOpen] = useState<boolean>(false);
 
     return (
-        <section className={className} id={componentShopTitle}>
+        <section className={className} id={metadata.componentShopTitle}>
             <Container className='mb-3 mt-3'>
                 <Card className='mb-3'>
                     <CardBody className='d-flex flex-column justify-content-between'>
@@ -32,7 +29,7 @@ const ShopComponent = ({ className }: SectionProps): ReactElement => {
                                 src='https://shop.jodibeauty.com/embed?salon=joeplaa'>
                             </iframe>
                         </div>
-                        <p>{content.WebshopExample} <NewTabLink href={jodibooks}>jodibooks.com</NewTabLink>. Alternatively checkout my <NewTabLink href='https://tweakers.net/gallery/576659/aanbod/'>Tweakers.net</NewTabLink> or <NewTabLink href='https://www.marktplaats.nl/u/joeplaa/13506734/'>Marktplaats</NewTabLink> account.</p>
+                        <p>{content.WebshopExample} <NewTabLink href={urls.external.jodibooks}>jodibooks.com</NewTabLink>. Alternatively checkout my <NewTabLink href='https://tweakers.net/gallery/576659/aanbod/'>Tweakers.net</NewTabLink> or <NewTabLink href='https://www.marktplaats.nl/u/joeplaa/13506734/'>Marktplaats</NewTabLink> account.</p>
                     </CardBody>
                 </Card>
             </Container>

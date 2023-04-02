@@ -1,24 +1,25 @@
 import React, { ReactElement } from 'react';
-import SEO from 'react-seo-component';
+import { NextSeo } from 'next-seo';
 import ShopComponent from '../components/shop';
-import useSiteMetadata from '../hooks/useSiteMetadata';
-import useSiteNavigation from '../hooks/useSiteNavigation';
+import { metadata, urls } from '../data/metadata';
 
 const Shop = (): ReactElement => {
-    const { pageShopDescription, pageShopImage, pageShopTitle, siteLanguage, siteLocale, siteUrl, titleSeparator, titleTemplate, twitterUsername } = useSiteMetadata();
-    const { shop } = useSiteNavigation();
     return (
         <>
-            <SEO
-                title={pageShopTitle}
-                description={pageShopDescription || 'nothin’'}
-                image={`${siteUrl}${pageShopImage}`}
-                pathname={`${siteUrl}${shop}`}
-                titleSeparator={titleSeparator}
-                titleTemplate={titleTemplate}
-                siteLanguage={siteLanguage}
-                siteLocale={siteLocale}
-                twitterUsername={twitterUsername}
+            <NextSeo
+                title={metadata.pageShopTitle}
+                description={metadata.pageShopDescription || 'nothin’'}
+                openGraph={{
+                    url: urls.internal.shop,
+                    title: metadata.pageShopTitle,
+                    description: metadata.pageShopDescription,
+                    images: [
+                        {
+                            url: urls.internal.public + metadata.pageShopImage,
+
+                        }
+                    ]
+                }}
             />
 
             <ShopComponent className='section-fill blue-dark' />

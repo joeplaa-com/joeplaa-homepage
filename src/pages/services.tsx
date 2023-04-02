@@ -1,24 +1,25 @@
 import React, { ReactElement } from 'react';
-import SEO from 'react-seo-component';
+import { NextSeo } from 'next-seo';
 import ServicesComponent from '../components/services';
-import useSiteMetadata from '../hooks/useSiteMetadata';
-import useSiteNavigation from '../hooks/useSiteNavigation';
+import { metadata, urls } from '../data/metadata';
 
 const Services = (): ReactElement => {
-    const { pageServicesDescription, pageServicesImage, pageServicesTitle, siteLanguage, siteLocale, siteUrl, titleSeparator, titleTemplate, twitterUsername } = useSiteMetadata();
-    const { services } = useSiteNavigation();
     return (
         <>
-            <SEO
-                title={pageServicesTitle}
-                description={pageServicesDescription || 'nothin’'}
-                image={`${siteUrl}${pageServicesImage}`}
-                pathname={`${siteUrl}${services}`}
-                titleSeparator={titleSeparator}
-                titleTemplate={titleTemplate}
-                siteLanguage={siteLanguage}
-                siteLocale={siteLocale}
-                twitterUsername={twitterUsername}
+            <NextSeo
+                title={metadata.pageServicesTitle}
+                description={metadata.pageServicesDescription || 'nothin’'}
+                openGraph={{
+                    url: urls.internal.services,
+                    title: metadata.pageServicesTitle,
+                    description: metadata.pageServicesDescription,
+                    images: [
+                        {
+                            url: urls.internal.public + metadata.pageServicesImage,
+
+                        }
+                    ]
+                }}
             />
 
             <ServicesComponent className='section-fill blue-dark' />

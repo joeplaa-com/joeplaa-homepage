@@ -1,41 +1,19 @@
 import { ReactElement, ReactNode } from 'react';
 import { IGatsbyImageData } from 'gatsby-plugin-image';
+import { StaticImageData } from 'next/image';
 
 export interface AuthorProps {
     name: string
 }
 
-export interface AvatarImageProps {
-    node: {
-        relativePath: string
-        extension: string
-        publicURL: string
-        childImageSharp: ChildImageSharp
-    }
-}
-
 export interface BannerProps {
     alt: string
-    src: string
+    src: StaticImageData
     subtitle: string
     title: string
+    height?: number
+    width?: number
 }
-
-// === Begin Gatsby images ===
-interface ChildImageSharp {
-    publicURL: string
-    gatsbyImageData: IGatsbyImageData
-}
-
-export interface ImageNodeProps {
-    node: {
-        extension?: 'jpg' | 'jpeg' | 'png' | 'webp' | 'svg'
-        publicURL: string
-        relativePath?: string
-        childImageSharp: ChildImageSharp
-    }
-}
-// === End Gatsby images ===
 
 export interface CustomNavLinkProps {
     children: ReactNode
@@ -72,7 +50,6 @@ export interface LabelProps {
 
 export interface LayoutProps {
     children: string | ReactNode
-    location: PageLocation
 }
 
 export interface NavbarProps {
@@ -90,123 +67,12 @@ export interface NewTabProps {
     text?: string
 }
 
-export interface PageState {
-    key?: string
-    prevPathname?: string
-}
-
-interface PageLocation extends Location {
-    state?: PageState
-}
-
-interface PageContextProps {
-    next?: PostBasicProps,
-    previous?: PostBasicProps,
-    slug: string
-}
-
-export interface PageProps {
-    data: {
-        mdx: {
-            author: string
-            body: string
-            edges: { node: PostBasicProps }[]
-            excerpt: string
-            fields: {
-                slug: string
-                readingTime?: {
-                    text: string
-                }
-            }
-            frontmatter: FrontMatterProps
-            totalCount: number
-        }
-    }
-    location: PageLocation
-    pageContext: PageContextProps
-}
-
-export interface PaginationProps {
-    currentPage: number
-    numPages: number
-    path: string
-}
-
-// === Begin Posts ===
-interface FrontMatterProps {
-    author: string
-    category?: string
-    cover: {
-        childImageSharp: ChildImageSharp
-        publicURL: string
-    }
-    date: string
-    excerpt: string
-    series?: boolean
-    tags: string[]
-    title: string
-}
-
 export interface PortfolioEntryProps extends PostBasicProps {
     body: string
 }
 
-export interface PostBasicProps {
-    fields: {
-        slug: string
-        readingTime?: {
-            text: string
-        }
-    }
-    frontmatter: FrontMatterProps
-    key?: string | number
-}
-
 export interface PostBodyProps {
     content: string
-}
-
-interface TemplateQueryNode extends PostBasicProps {
-    body: string
-    id: string
-}
-
-interface TemplateQueryProps {
-    data: {
-        posts: {
-            nodes: TemplateQueryNode[]
-        },
-        tags?: {
-            group: PostTagProps[]
-        },
-        site: {
-            siteMetadata: {
-                title: string
-            },
-        }
-    },
-    location: PageLocation
-}
-
-interface PageTemplateContextProps {
-    currentPage: number
-    limit: number
-    numPages: number
-    skip: number
-}
-
-export interface PageTemplateQueryProps extends TemplateQueryProps {
-    pageContext?: PageTemplateContextProps
-}
-
-interface TagTemplateContextProps {
-    slug: string,
-    tagValue: string,
-    totalCount: number
-}
-
-export interface TagTemplateQueryProps extends TemplateQueryProps {
-    pageContext?: TagTemplateContextProps
 }
 
 export interface PostImageProps {
@@ -248,12 +114,3 @@ export interface SocialLinkProps {
     key: string | number
     size: string
 }
-
-export interface TagProps {
-    icon?: ReactElement
-    quantity?: boolean
-    tag: LabelProps
-    template?: TemplateType
-}
-
-type TemplateType = 'portfolio'
