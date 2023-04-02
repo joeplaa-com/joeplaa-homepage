@@ -4,7 +4,7 @@ import { IconContext } from 'react-icons';
 import { MdArrowBack, MdArrowForward } from 'react-icons/md';
 import { Link } from './customLink';
 import useSiteSettings from '../hooks/useSiteSettings';
-import { PaginationProps } from '../types';
+import { PaginationProps } from '../typescript';
 
 const Pagination = ({ currentPage, numPages, path }: PaginationProps): ReactElement => {
     const { breakpoint } = useSiteSettings();
@@ -25,7 +25,7 @@ const Pagination = ({ currentPage, numPages, path }: PaginationProps): ReactElem
                     </Link>
                 )}
                 {Array.from({ length: numPages }, (_, i) => (
-                    <span className={`d-none d-${breakpoint}-inline`}>
+                    <span key={`pagination-number${i + 1}`} className={`d-none d-${breakpoint}-inline`}>
                         <Link key={`pagination-number${i + 1}`} to={`${path}/${i === 0 ? '' : i + 1}`}>
                             <Button active={i + 1 === currentPage} outline color='primary'>{i + 1}</Button>
                         </Link>

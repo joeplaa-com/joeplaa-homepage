@@ -59,7 +59,11 @@ module.exports = {
         ],
         '@typescript-eslint/no-unused-vars': [
             'error',
-            { vars: 'all', args: 'after-used', ignoreRestSiblings: false }
+            {
+                vars: 'all',
+                args: 'after-used',
+                ignoreRestSiblings: false
+            }
         ],
         '@typescript-eslint/no-use-before-define': ['error'],
         'react/prop-types': 0,
@@ -69,8 +73,8 @@ module.exports = {
             named: 'never',
             asyncArrow: 'always'
         }],
-        'testing-library/no-node-access': 'off', // TODO: [JODI-2053]
-        'testing-library/prefer-presence-queries': 'off', // TODO: [JODI-2053]
+        'testing-library/no-node-access': 'off',
+        'testing-library/prefer-presence-queries': 'off',
         'tss-unused-classes/unused-classes': 'warn'
     }
 };

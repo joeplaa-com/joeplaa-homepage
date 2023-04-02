@@ -1,7 +1,7 @@
 import React, { ReactElement } from 'react';
 import { graphql, useStaticQuery } from 'gatsby';
 import { GatsbyImage } from 'gatsby-plugin-image';
-import { AuthorProps, AvatarImageProps } from '../types';
+import { AuthorProps, AvatarImageProps } from '../typescript';
 
 export default function Avatar({ name }: AuthorProps): ReactElement {
     const data = useStaticQuery(graphql`{
@@ -31,7 +31,7 @@ export default function Avatar({ name }: AuthorProps): ReactElement {
                 objectFit="cover"
                 objectPosition="50% 50%"
                 alt={name}
-                className='img-fluid mr-2 rounded-circle' />
+                className='img-fluid me-2 rounded-circle' />
             <div>{name}</div>
         </div>
     );

@@ -5,11 +5,11 @@ import PostImage from './postImage';
 import PostSubtitle from './postSubtitle';
 import PostTitle from './postTitle';
 import truncateText from '../utils/truncateText';
-import { PostBasicProps } from '../types';
+import { PostBasicProps } from '../typescript';
 
 export default function PostPreview({ fields, frontmatter }: PostBasicProps): ReactElement {
     return (
-        <Card>
+        <Card className=' h-100'>
             <CardBody>
                 <PostTitle path={true} slug={fields.slug} title={frontmatter.title} />
                 <PostImage path={true} slug={fields.slug} title={frontmatter.title} picture={frontmatter.cover.childImageSharp} rounded={true} height={180} />

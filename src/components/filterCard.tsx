@@ -1,7 +1,7 @@
 import React, { ReactElement } from 'react';
 import { Card, CardBody } from 'reactstrap';
 import Filter from './filter';
-import { FilterProps } from '../types';
+import { FilterProps } from '../typescript';
 
 export default function FilterCard({ buttonType, page, tags, template }: FilterProps): ReactElement {
     return (

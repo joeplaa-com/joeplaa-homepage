@@ -1,11 +1,8 @@
-/* eslint-disable node/no-path-concat */ // this will break hot reloading of mdx files
-/* eslint-disable @typescript-eslint/no-var-requires */
-/* eslint-disable compat/compat */
-require('dotenv').config({
-    path: `.env.${process.env.NODE_ENV}`
-});
+import * as dotenv from 'dotenv';
+import { GatsbyConfig } from 'gatsby';
+import path from 'path';
+// import { languages, defaultLanguage } from './languages';
 
-const path = require('path');
 // Get paths of Gatsby's required rules, which as of writing is located at:
 // https://github.com/gatsbyjs/gatsby/tree/fbfe3f63dec23d279a27b54b4057dd611dce74bb/packages/
 // gatsby/src/utils/eslint-rules
@@ -18,24 +15,28 @@ const gatsbyRequiredRules = path.join(
     'eslint-rules'
 );
 
+dotenv.config({
+    path: `.env.${process.env.NODE_ENV}`
+});
+
 const siteMetadata = {
     metadata: {
         authorName: 'Joep van de Laarschot',
         authorFirstName: 'Joep',
         authorLastName: 'van de Laarschot',
-        businessAddress1: 'Ir. Kalffstraat 43',
-        businessAddress2: '5617BK Eindhoven',
+        businessAddress1: 'De Wolwever 27',
+        businessAddress2: '5737AD Lieshout',
         businessCountry: 'The Netherlands',
-        businessCoC: 'Work in progress',
-        businessIBAN: 'Work in progress',
-        businessName: 'Joeplaa',
-        businessVAT: 'Work in progress',
+        businessCoC: '70590680',
+        businessIBAN: 'NL33 BUNQ 2205841939',
+        businessName: 'jodiBooks B.V.',
+        businessVAT: '858385818B01',
         componentAboutTitle: 'About',
         componentContactTitle: 'Contact',
-        componentPricingDescription: 'If you want a website, here\'s what it costs.',
-        componentPricingTitle: 'Pricing',
         componentServicesDescription: 'If you want a website, here\'s how I can help.',
         componentServicesTitle: 'Services',
+        componentShopDescription: 'I (re)sell new and secondhand hardware.',
+        componentShopTitle: 'Shop',
         pageHomeDescription: 'Who is Joep and what is Joeplaa?',
         pageHomeImage: '/images/banner-www-com.png',
         pageHomeSubtitle: 'Website design | Website hosting',
@@ -50,6 +51,9 @@ const siteMetadata = {
         pageServicesDescription: 'How I work and what tools I use.',
         pageServicesImage: '/images/banner-www-com.png',
         pageServicesTitle: 'Services',
+        pageShopDescription: 'An example of our jodiBooks webshop. The items are actually for sale!',
+        pageShopImage: '/images/banner-www-com.png',
+        pageShopTitle: 'Shop',
         pageWikiDescription: 'Cheatsheets, tutorials and more on Linux, Databases, Proxmox, TrueNAS, Virtualization, Docker, LXC, ...',
         pageWikiTitle: 'Wiki',
         siteDescription: 'Helping people create their digital home.',
@@ -67,28 +71,14 @@ const siteMetadata = {
         about: '/#About',
         blog: process.env.GATSBY_BLOG_URL,
         contact: '/#Contact',
-        home: '/#Banner',
+        home: '/',
         portfolio: '/portfolio',
-        pricing: '/#Pricing',
-        ps: '/conditions/privacy-statement',
         recommended: process.env.GATSBY_BLOG_URL + '/recommended',
         services: '/services',
+        shop: '/shop',
         tagsPortfolio: '/portfolio/tags',
-        tos: '/conditions/terms-of-service',
+        tos: 'https://jodibooks.com/Conditions/TOS/',
         wiki: 'https://wiki.joeplaa.com'
-    },
-    pricing: {
-        webshopConfig: '€ 750',
-        webshopHosting: '€ 7,50',
-        websiteDesign: '€ 750',
-        websiteHosting: '€ 7,50',
-        websiteUpdates: '€ 17,50',
-        computeC1: '€ 0,75',
-        computeC2: '€ 1,25',
-        computeC3: '€ 1,50',
-        computeH1: '€ 25,00',
-        computeH2: '€ 20,00',
-        computeStorage: '€ 0,10'
     },
     settings: {
         breakpoint: 'md',
@@ -98,7 +88,7 @@ const siteMetadata = {
         iconSize: '40px',
         umamiID: '5fb00e3e-bcdc-493c-9b85-6566eed3b22e'
     },
-    siteUrl: process.env.GATSBY_URL, // needed for gatsby-plugin-advanced-sitemap
+    siteUrl: process.env.GATSBY_URL, // needed for gatsby-plugin-advanced-sitemap and gatsby-plugin-react-i18next
     urls: {
         site: {
             mailForm: process.env.GATSBY_MAIL_URL,
@@ -118,33 +108,42 @@ const siteMetadata = {
             instagram: 'https://www.instagram.com/joeplaa/',
             linkedin: 'https://www.linkedin.com/in/joeplaa/'
         },
-        aws: 'https://aws.amazon.com/',
-        bamboo: 'https://www.atlassian.com/software/bamboo',
-        gatsbyjs: 'https://www.gatsbyjs.com/',
-        ghost: 'https://ghost.org/',
-        jenkins: 'https://www.jenkins.io/',
-        jodibooks: 'https://jodibooks.com/',
-        magento: 'https://magento.com/',
-        nextjs: 'https://nextjs.org/',
-        opencart: 'https://www.opencart.com/',
-        teamcity: 'https://www.jetbrains.com/teamcity/',
-        woocommerce: 'https://woocommerce.com/',
-        wordpress: 'https://wordpress.org/'
+        jodibooks: 'https://jodibooks.com/'
     }
 };
 
-module.exports = {
+const config: GatsbyConfig = {
     flags: {
         DEV_SSR: false,
         FAST_DEV: false,
         PARALLEL_SOURCING: true
     },
-    siteMetadata: siteMetadata,
+    siteMetadata,
     plugins: [
+        {
+            resolve: 'gatsby-source-filesystem',
+            options: {
+                path: path.join(__dirname, 'content/authors'),
+                name: 'authors'
+            }
+        },
+        {
+            resolve: 'gatsby-source-filesystem',
+            options: {
+                path: path.join(__dirname, 'content/portfolio'),
+                name: 'portfolio'
+            }
+        },
+        {
+            resolve: 'gatsby-source-filesystem',
+            options: {
+                path: path.join(__dirname, '/src/images'),
+                name: 'images'
+            }
+        },
         'gatsby-plugin-advanced-sitemap',
         'gatsby-plugin-catch-links',
         'gatsby-plugin-image',
-        'gatsby-plugin-preact',
         'gatsby-plugin-react-helmet',
         'gatsby-plugin-sass',
         'gatsby-plugin-webpack-bundle-analyser-v2',
@@ -187,15 +186,6 @@ module.exports = {
             options: {
                 extensions: ['.mdx', '.md'],
                 gatsbyRemarkPlugins: [
-                    {
-                        resolve: 'gatsby-remark-autolink-headers',
-                        options: {
-                            offsetY: '100',
-                            maintainCase: false,
-                            removeAccents: true,
-                            elements: ['h1', 'h2', 'h3']
-                        }
-                    },
                     {
                         resolve: 'gatsby-remark-external-links',
                         options: {
@@ -243,49 +233,8 @@ module.exports = {
                 stripMetadata: true,
                 defaultQuality: 70
             }
-        },
-        {
-            resolve: 'gatsby-transformer-remark',
-            options: {
-                plugins: [
-                    {
-                        resolve: 'gatsby-remark-autolink-headers',
-                        options: {
-                            maintainCase: false,
-                            removeAccents: true,
-                            elements: ['h1', 'h2', 'h3']
-                        }
-                    }
-                ]
-            }
-        },
-        {
-            resolve: 'gatsby-source-filesystem',
-            options: {
-                path: `${__dirname}/content/authors`,
-                name: 'authors'
-            }
-        },
-        {
-            resolve: 'gatsby-source-filesystem',
-            options: {
-                path: `${__dirname}/content/conditions`,
-                name: 'conditions'
-            }
-        },
-        {
-            resolve: 'gatsby-source-filesystem',
-            options: {
-                path: `${__dirname}/content/portfolio`,
-                name: 'portfolio'
-            }
-        },
-        {
-            resolve: 'gatsby-source-filesystem',
-            options: {
-                path: path.join(__dirname, '/src/images'),
-                name: 'images'
-            }
         }
     ]
 };
+
+export default config;

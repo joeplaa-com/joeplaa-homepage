@@ -1,8 +1,8 @@
 import React, { ReactElement } from 'react';
 import Image from './image';
 import Social from './social';
-import { content } from '../utils/content';
-import { BannerProps } from '../types';
+import { content } from '../data/content';
+import { BannerProps } from '../typescript';
 
 const Banner = (props: BannerProps): ReactElement => {
     const { title, subtitle, src, alt } = props;

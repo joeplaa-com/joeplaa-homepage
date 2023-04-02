@@ -1,7 +1,7 @@
 import React, { ReactElement } from 'react';
 import { Link } from './customLink';
 import { Button, CardTitle } from 'reactstrap';
-import { PostTitleProps } from '../types';
+import { PostTitleProps } from '../typescript';
 
 export default function PostTitle({ title, slug, path, onClick }: PostTitleProps): ReactElement {
     return (
@@ -12,7 +12,7 @@ export default function PostTitle({ title, slug, path, onClick }: PostTitleProps
                         {title}
                     </h3>
                 </Link>)
-                : (<Button color="link" className='text-left' onClick={onClick} onKeyPress={onClick} tabIndex={0}>
+                : (<Button color="link" className='text-start' onClick={onClick} onKeyPress={onClick} tabIndex={0}>
                     <h3>
                         {title}
                     </h3>

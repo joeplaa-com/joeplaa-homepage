@@ -1,7 +1,7 @@
 import React, { ReactElement } from 'react';
 import { AnchorLink } from 'gatsby-plugin-anchor-links';
 import { NavLink } from 'reactstrap';
-import { CustomNavLinkProps } from '../types';
+import { CustomNavLinkProps } from '../typescript';
 
 const CustomNavLink = (props: CustomNavLinkProps): ReactElement => {
     if (props.to.includes('#')) {

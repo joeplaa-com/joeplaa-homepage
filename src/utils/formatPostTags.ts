@@ -1,5 +1,5 @@
 import sortArrayObject from './sortArrayObject';
-import { LabelProps } from '../types';
+import { LabelProps } from '../typescript';
 
 export default function formatPostTags(tags: string[]): LabelProps[] {
     const postTags: LabelProps[] = [];
