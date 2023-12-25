@@ -14,6 +14,7 @@ const nextConfig = {
     images: {
         unoptimized: true
     },
+    output: "export",
     trailingSlash: true,
     // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
     webpack: (config) => {

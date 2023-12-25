@@ -6,7 +6,7 @@ cd ../../
 
 # Checkout "develop" branch
 git fetch
-git checkout refactor-to-next-js
+git checkout master
 git pull
 
 # Set correct environment variables
@@ -21,7 +21,7 @@ yarn deploy
 
 # Publish website to Nginx
 # Make sure you have the private key `jpl-nginx` stored in your user folder: `~/.ssh/jpl-nginx`.
-rsync -ahzO --delete --dirs -e "ssh -i ~/.ssh/jpl-nginx" out/ joeplaa@jpl-nginx:/var/www/test-www-joeplaa-com
+rsync -ahzO --delete --dirs -e "ssh -i ~/.ssh/jpl-nginx" out/ root@jpl-nginx:/var/www/test-www-joeplaa-com
 ssh -t jpl-nginx 'sudo chown www-data:www-data -R /var/www/test-www-joeplaa-com'
 
 # Restore environment variables
