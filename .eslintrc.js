@@ -13,7 +13,6 @@ module.exports = {
         'plugin:jsx-a11y/recommended',
         'plugin:optimize-regex/recommended',
         'plugin:react/recommended',
-        'plugin:react-hooks/recommended',
         'plugin:@typescript-eslint/recommended',
         'plugin:@typescript-eslint/eslint-recommended'
     ],

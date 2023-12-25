@@ -1,4 +1,3 @@
-
 export const metadata = {
     authorFirstName: 'Joep',
     authorLastName: 'van de Laarschot',
