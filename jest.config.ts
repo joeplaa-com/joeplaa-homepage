@@ -1,24 +1,33 @@
 import type { Config } from '@jest/types';
 
 const config: Config.InitialOptions = {
+    moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx'],
     reporters: ['default'],
     testPathIgnorePatterns: [
         '<rootDir>/.jest/',
         '<rootDir>/.next/',
         '<rootDir>/.vscode/',
+        '<rootDir>/.yarn/',
         '<rootDir>/coverage/',
+        '<rootDir>/lib/',
         '<rootDir>/node_modules/',
-        '<rootDir>/node-app-to-s3/',
         '<rootDir>/out/'
     ],
     transform: {
-        '^.+\\.(js|jsx|ts|tsx)$': ['babel-jest', { presets: ['next/babel'] }]
+        '^.+\\.(t|j)sx?$': [
+            '@swc/jest',
+            {
+                jsc: {
+                    transform: {
+                        react: {
+                            runtime: 'automatic'
+                        }
+                    }
+                }
+            }
+        ]
     },
-    transformIgnorePatterns: [
-        '/.next/',
-        '/node_modules/',
-        '^.+\\.module\\.(css|sass|scss)$'
-    ]
+    transformIgnorePatterns: []
 };
 
 export default config;
