@@ -62,10 +62,5 @@
         "ts-node": "^10.9.2",
         "typescript": "^5.5.2"
     },
-    "resolutions": {
-        "@babel/traverse": "^7.23.2",
-        "ip": "^2.0.1",
-        "semver": "^7.6.0"
-    },
     "packageManager": "yarn@4.3.1"
 }
