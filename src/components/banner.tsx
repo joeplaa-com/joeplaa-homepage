@@ -22,7 +22,7 @@ const Banner = (): ReactElement => {
                 <div className='image-overlay-text flex-column text-center'>
                     <h1 className='display-1'>{content.WelcomeTo + ' ' + metadata.siteName}</h1>
                     <h2>{metadata.pageHomeSubtitle}</h2>
-                    <Social key='banner' color='light' size='2rem' />
+                    <Social context='banner' color='light' size='2rem' />
                 </div>
             </div>
         </section>

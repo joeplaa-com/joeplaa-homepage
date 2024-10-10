@@ -36,7 +36,7 @@ const About = ({ className }: SectionProps): ReactElement => {
                             <p>At jodiBooks I have learned how to do front-end design and website hosting, which merged beautifully with my hobby: homelabbing.</p>
                         </div>
                         <div>
-                            <Social color='dark' key='about' size='3rem' />
+                            <Social color='dark' context='about' size='2rem' />
                         </div>
                         <div>
                             <h2>What is Joeplaa</h2>

@@ -30,6 +30,6 @@ export interface SectionProps {
 
 export interface SocialLinkProps {
     color: 'dark' | 'light' | 'navbar'
-    key: string | number
+    context: string | number
     size: string
 }
